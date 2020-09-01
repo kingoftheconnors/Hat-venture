@@ -51,6 +51,7 @@ start_node = "idle"
 [node name="Block" type="StaticBody2D" groups=[
 "block",
 ]]
+collision_layer = 3
 script = ExtResource( 2 )
 state = 3
 boxedItem = 1

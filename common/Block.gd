@@ -2,10 +2,12 @@ tool
 extends StaticBody2D
 
 onready var animator = get_node("AnimationTree")
-onready var pon = load("res://Common/Pon.tscn")
+onready var pon = load("res://items/Pon.tscn")
+onready var hat = load("res://items/RunnerHat.tscn")
+onready var brewhat = load("res://items/BrewingHat.tscn")
 
 enum BlockState {BREAKABLE, BREAKABLE2, SOLID, ITEM_HAT}
-enum Item { NONE, PON, RUNNER }
+enum Item { NONE, PON, RUNNER, BREWER }
 var prevBlockState
 export(BlockState) var state
 export(Item) var boxedItem = Item.NONE
@@ -36,7 +38,17 @@ func collide(collision):
 				collect.collide()
 				add_child(collect)
 			Item.RUNNER:
-				pass
+				var collect = hat.instance()
+				collect.set_position(Vector2(0, -16))
+				collect.get_node("Body").velo.y = -150
+				add_child(collect)
+			Item.BREWER:
+				var collect = brewhat.instance()
+				collect.set_position(Vector2(0, -16))
+				collect.get_node("Body").velo.y = -150
+				add_child(collect)
+		if boxedItem != Item.NONE:
+			boxedItem = Item.NONE
 		if state == BlockState.ITEM_HAT or boxedItem != Item.NONE:
 			state = BlockState.SOLID
 		elif state == BlockState.BREAKABLE or state == BlockState.BREAKABLE2:

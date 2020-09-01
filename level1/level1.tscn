@@ -2,13 +2,13 @@
 
 [ext_resource path="res://level1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://level1/background1.tres" type="TileSet" id=2]
-[ext_resource path="res://common/level.gd" type="Script" id=3]
+[ext_resource path="res://items/level.gd" type="Script" id=3]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://common/Camera.gd" type="Script" id=5]
 [ext_resource path="res://enemy/hen/Hen.tscn" type="PackedScene" id=6]
 [ext_resource path="res://common/spawn.tscn" type="PackedScene" id=7]
 [ext_resource path="res://common/Block.tscn" type="PackedScene" id=8]
-[ext_resource path="res://common/Pon.tscn" type="PackedScene" id=9]
+[ext_resource path="res://items/Pon.tscn" type="PackedScene" id=9]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 3 )
@@ -23,7 +23,7 @@ layer = -3
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.3, 1 )
-motion_mirroring = Vector2( 408, 0 )
+motion_mirroring = Vector2( 416, 0 )
 
 [node name="Horizon" type="TileMap" parent="ParallaxBackground/ParallaxLayer"]
 z_index = -2
@@ -108,3 +108,8 @@ z_index = -1
 
 [node name="Block" parent="." instance=ExtResource( 8 )]
 position = Vector2( 136, -48 )
+boxedItem = 2
+
+[node name="Block2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 168, -48 )
+boxedItem = 3

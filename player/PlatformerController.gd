@@ -5,17 +5,17 @@ signal off_cliff
 const TURNOFF_SPEED = 20
 const SPEED = 40
 const ACCELERATION = 5
+const DIVE_SPEED = 200
 const MAX_SPEED = 120
-const MAX_RUNNING_SPEED = 170
+const MAX_RUNNING_SPEED = 200
 export(int) var BOUNCE_FORCE = 300
 export(float) var FALL_MULTIPLIER = 1.1
+export(int) var DIVE_OUT_STRENGTH = 175
 export(int) var JUMP_STRENGTH = 300
 export(int) var STOMP_VELO = 250
 export(int) var CLIMBING_SPEED = 200
 export(int) var WALL_CLIMBING_SPEED = 150
 export(bool) var wall_climbing = false
-
-export(int) var TERMINAL_VELOCITY = 300
 
 # Sound effects
 #onready var jump_sfx = get_node("SoundJump")
@@ -27,6 +27,7 @@ var _stun = 0
 var frozen = false
 var stationary = false
 var crouching = false
+var diving = false
 
 var max_velo = MAX_SPEED
 var velo = Vector2()
@@ -34,7 +35,7 @@ var velo = Vector2()
 var jump_timer = 0
 var coyoteTimer = 0
 var climbing = false
-var just_jumped = false
+var dive_jump = true
 var air_time = 0
 
 var init_placed = false
@@ -63,15 +64,19 @@ func move():
 	var horizontal = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"))
 	var vertical = (Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"))
 	
-	if frozen or stationary:
+	if frozen or stationary or diving:
 		horizontal = 0; vertical = 0
 	if crouching:
 		horizontal = 0
 	
 	# Friction (before moving so friction only applies when player is
 	# standing still or going over conventional speeds)
-	if (is_on_floor() and horizontal == 0) or abs(velo.x) > max_velo:
-		velo.x *= 0.89
+	if !diving:
+		if horizontal == 0:
+			velo.x *= 0.84
+	else: # Diving friction
+		if is_on_floor():
+			velo.x *= 0.93
 	
 	# Setting direction
 	if horizontal * direction < 0:
@@ -104,14 +109,14 @@ func move():
 		_stun -= 1
 	
 	#Gravity
-	if !climbing:
+	if !climbing and !frozen:
 		if velo.y < 0:
 			velo.y += Constants.gravity
 		else:
 			velo.y += Constants.gravity * FALL_MULTIPLIER
 			# terminal velocity
-			if velo.y > TERMINAL_VELOCITY:
-				velo.y = TERMINAL_VELOCITY
+			if velo.y > Constants.terminalVelocity:
+				velo.y = Constants.terminalVelocity
 	
 	# Ladder climbing
 	if vertical != 0 and on_ladders > 0:
@@ -126,7 +131,6 @@ func move():
 	# Apply Movement
 	if !frozen:
 		velo = move_player(velo)
-	print(velo.y)
 	
 	if position.y > camera.limit_bottom:
 		emit_signal("off_cliff")
@@ -170,9 +174,13 @@ func push(direc):
 
 func manage_flags():
 	if is_on_floor() or climbing:
-		coyoteTimer = 10
+		if coyoteTimer < 10:
+			coyoteTimer = 10
+		if !dive_jump:
+			dive_jump = true
 	else:
-		air_time = true
+		if !air_time:
+			air_time = true
 		if coyoteTimer > 0:
 			coyoteTimer -= 1
 	
@@ -185,6 +193,10 @@ func manage_flags():
 		jump_timer -= 1
 		if is_on_floor():
 			jump()
+	
+	if diving and is_on_floor() and abs(velo.x) < MAX_SPEED:
+		animator["parameters/playback"].travel("idle")
+		diving = false
 
 var holding_jump = false
 
@@ -193,7 +205,7 @@ func _unhandled_input(event):
 		# This will run once on the frame when the action is first pressed
 		if event.is_action_pressed("ui_A"):
 			holding_jump = true
-			if is_on_floor() or coyoteTimer > 0 or climbing:
+			if is_on_floor() or coyoteTimer > 0 or climbing or (diving and dive_jump):
 				jump()
 			else:
 				jump_timer = 10
@@ -204,12 +216,6 @@ func _unhandled_input(event):
 				#animator["parameters/playback"].travel("freefall")
 			holding_jump = false
 			jump_timer = 0
-		
-		if event.is_action_pressed("ui_B"):
-			max_velo = MAX_RUNNING_SPEED
-		
-		if event.is_action_released("ui_B"):
-			max_velo = MAX_SPEED
 		
 		if event.is_action_pressed("ui_crouch"):
 			crouching = true
@@ -224,14 +230,31 @@ func _unhandled_input(event):
 
 func jump():
 	# Basic Jump
-	velo.y = min(-JUMP_STRENGTH, velo.y)
+	if !diving:
+		velo.y = min(-JUMP_STRENGTH, velo.y)
+	# Out-of-dive Jump
+	if diving:
+		diving = false
+		dive_jump = false
+		velo.y = min(-DIVE_OUT_STRENGTH, velo.y)
 	# Energy jump
 	coyoteTimer = 0
 	jump_timer = 0
 	climbing = false
-	just_jumped = true
 	#jump_sfx.play()
 	animator["parameters/playback"].travel("jump")
+
+func start_run():
+	max_velo = MAX_RUNNING_SPEED
+	
+func stop_run():
+	max_velo = MAX_SPEED
+	
+func dive():
+	if dive_jump and !diving:
+		diving = true
+		velo.x = DIVE_SPEED * direction
+		animator["parameters/playback"].travel("dive")
 
 func bounce():
 	var direc = Vector2(0, -BOUNCE_FORCE)
@@ -251,3 +274,23 @@ func stun(amo, stun_mult = 3):
 
 func set_freeze(flag):
 	frozen = flag
+
+
+##############################
+#
+# EXTERNAL NODE METHODS
+#
+####################
+
+func get_power_node():
+	return $Power
+
+func get_animtor_node():
+	return animator
+
+func create_skid():
+	if is_on_floor():
+		var skid = preload("res://player/subscenes/skid.tscn").instance()
+		skid.init(direction)
+		skid.position += position + $ScaleChildren/hitbox/CollisionShape2D.position
+		get_parent().add_child(skid)
