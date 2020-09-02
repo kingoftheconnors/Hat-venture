@@ -5,3 +5,4 @@ static func power(body, this):
 	# TODO: Update GUI
 	
 	this.get_node("AnimationPlayer").play("collect")
+	return false

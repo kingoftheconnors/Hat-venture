@@ -163,7 +163,7 @@ func move_player(velo):
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if collision and collision.collider.is_in_group("block"):
-			collision.collider.collide(collision)
+			collision.collider.collide(collision, self)
 	return moved_velo
 
 func push(direc):

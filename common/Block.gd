@@ -3,7 +3,7 @@ extends StaticBody2D
 
 onready var animator = get_node("AnimationTree")
 onready var pon = load("res://items/Pon.tscn")
-onready var hat = load("res://items/RunnerHat.tscn")
+onready var runnerhat = load("res://items/RunnerHat.tscn")
 onready var brewhat = load("res://items/BrewingHat.tscn")
 
 enum BlockState {BREAKABLE, BREAKABLE2, SOLID, ITEM_HAT}
@@ -28,28 +28,28 @@ func _process(delta):
 func smash():
 	queue_free()
 
-func collide(collision):
+func collide(collision, collidingBody):
 	if collision.normal.y > 0:
 		animator["parameters/playback"].travel("bop")
 		match boxedItem:
 			Item.PON:
-				var collect = pon.instance()
-				collect.set_position(Vector2(0, -16))
-				collect.collide()
-				add_child(collect)
+				var defeatedMafia = pon.instance()
+				defeatedMafia.set_position(Vector2(0, -16))
+				add_child(defeatedMafia)
+				defeatedMafia.collect(collidingBody)
 			Item.RUNNER:
-				var collect = hat.instance()
-				collect.set_position(Vector2(0, -16))
-				collect.get_node("Body").velo.y = -150
-				add_child(collect)
+				var hat = runnerhat.instance()
+				hat.set_position(Vector2(0, -16))
+				hat.get_node("Body").velo.y = -150
+				add_child(hat)
 			Item.BREWER:
-				var collect = brewhat.instance()
-				collect.set_position(Vector2(0, -16))
-				collect.get_node("Body").velo.y = -150
-				add_child(collect)
-		if boxedItem != Item.NONE:
-			boxedItem = Item.NONE
+				var hat = brewhat.instance()
+				hat.set_position(Vector2(0, -16))
+				hat.get_node("Body").velo.y = -150
+				add_child(hat)
 		if state == BlockState.ITEM_HAT or boxedItem != Item.NONE:
 			state = BlockState.SOLID
 		elif state == BlockState.BREAKABLE or state == BlockState.BREAKABLE2:
 			smash()
+		if boxedItem != Item.NONE:
+			boxedItem = Item.NONE
