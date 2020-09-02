@@ -10,6 +10,7 @@ func _ready():
 func init(direc):
 	scale.x = -direc
 	velo.x = -direc * SPEED
+	position.x = -direc*8
 
 func _physics_process(delta):
 	position += velo * SPEED * delta
