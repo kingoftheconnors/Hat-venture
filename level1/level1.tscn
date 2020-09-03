@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://level1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://level1/background1.tres" type="TileSet" id=2]
@@ -9,6 +9,11 @@
 [ext_resource path="res://common/spawn.tscn" type="PackedScene" id=7]
 [ext_resource path="res://common/Block.tscn" type="PackedScene" id=8]
 [ext_resource path="res://items/Pon.tscn" type="PackedScene" id=9]
+[ext_resource path="res://items/pon.gd" type="Script" id=10]
+[ext_resource path="res://items/brewingPower.gd" type="Script" id=11]
+[ext_resource path="res://items/runningPower.gd" type="Script" id=12]
+[ext_resource path="res://items/hardPower.gd" type="Script" id=13]
+[ext_resource path="res://items/thorPower.gd" type="Script" id=14]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 3 )
@@ -108,26 +113,36 @@ z_index = -1
 
 [node name="Block" parent="." instance=ExtResource( 8 )]
 position = Vector2( 136, -48 )
-boxedItem = 2
+boxedItem = ExtResource( 12 )
 
 [node name="Block2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 168, -48 )
-boxedItem = 3
+boxedItem = ExtResource( 11 )
+
+[node name="Block7" parent="." instance=ExtResource( 8 )]
+position = Vector2( 328, -48 )
+boxedItem = ExtResource( 14 )
+
+[node name="Block8" parent="." instance=ExtResource( 8 )]
+position = Vector2( 360, -48 )
+boxedItem = ExtResource( 13 )
 
 [node name="Block3" parent="." instance=ExtResource( 8 )]
 position = Vector2( 152, -48 )
 state = 0
-boxedItem = 0
+boxedItem = ExtResource( 10 )
 
 [node name="Block4" parent="." instance=ExtResource( 8 )]
 position = Vector2( 184, -48 )
 state = 1
+boxedItem = null
 
 [node name="Block5" parent="." instance=ExtResource( 8 )]
 position = Vector2( 120, -48 )
 state = 1
-boxedItem = 0
+boxedItem = null
 
 [node name="Block6" parent="." instance=ExtResource( 8 )]
 position = Vector2( 152, -104 )
 state = 1
+boxedItem = ExtResource( 10 )

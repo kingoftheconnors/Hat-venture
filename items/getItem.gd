@@ -7,6 +7,7 @@ func _on_Area2D_body_entered(body):
 		collect(body)
 
 func collect(body):
-	var destroy = itemCommand.power(body, self)
+	print("Collecting")
+	var destroy = itemCommand.new().power(body, self)
 	if destroy:
 		queue_free()

@@ -1,0 +1,25 @@
+0.1:
+Moving
+Dialog
+Powerups
+Health loss
+Losing powers due to health loss
+Lil'Ens
+Tilemaps
+Blocks
+
+0.1.3
+Move skid animation 8 pixels off
+Pon animation effect
+Powers deactivate when you lose them due to health loss
+Made player colliders square, so square blocks cannot be slid down
+
+
+
+Powers:
+
+* Hat Kid's throw animation should be shorter. Think the animation on Mario 1's fireball throw.
+** Hat Kid's main gimmick feels wonky on the ground compared to how it looks and works in AHiT. Should have more air to the dash, should have the ability to get a speed boost if jump button is pressed at the right time, and should slide on the ground just a bit without picking oneself up.
+* Sprint should ramp up slower and the animation should reflect the speed.
+* And then there's the brewing cap but i still need to make a sprite for that so :P
+Loving this so far! Really starting to feel like the game should. Thx again for the help!!!

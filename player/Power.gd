@@ -2,29 +2,28 @@ extends Node
 
 onready var platformController = get_node("../")
 onready var animator = get_node("../AnimationTree")
-var power = Constants.Power.DEFAULT
+
+export(Resource) var defaultPower
+onready var power = defaultPower.new()
 
 const POWER_BASE_HP = 2
 var power_hp = POWER_BASE_HP
 
 # Called when the node enters the scene tree for the first time.
 func set_power(powerType):
+	power.deactivate(platformController, animator)
 	power = powerType
 	power_hp = POWER_BASE_HP
 	updatePowerValues()
 	animator["parameters/playback"].travel("power_get")
 
 func updatePowerValues():
-	animator["parameters/crouch/blend_position"] = int(power)
-	animator["parameters/freefall/blend_position"] = int(power)
-	animator["parameters/idle/blend_position"] = int(power)
-	animator["parameters/jump/blend_position"] = int(power)
-	animator["parameters/skid/blend_position"] = int(power)
-	animator["parameters/walk/blend_position"] = int(power)
-	
-	# Turn off all powers
-	for powerType in Constants.Power:
-		set_power_active(Constants.Power[powerType], false)
+	animator["parameters/crouch/blend_position"] = int(power.blendValue)
+	animator["parameters/freefall/blend_position"] = int(power.blendValue)
+	animator["parameters/idle/blend_position"] = int(power.blendValue)
+	animator["parameters/jump/blend_position"] = int(power.blendValue)
+	animator["parameters/skid/blend_position"] = int(power.blendValue)
+	animator["parameters/walk/blend_position"] = int(power.blendValue)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_B"):
@@ -33,24 +32,14 @@ func _unhandled_input(event):
 		set_power_active(power, false)
 
 func set_power_active(type, flag):
-	if type == Constants.Power.DEFAULT:
-		if flag:
-			platformController.dive()
-	if type == Constants.Power.RUNNER:
-		animator["parameters/conditions/running"] = flag
-		animator["parameters/conditions/not_running"] = !flag
-		if flag:
-			platformController.start_run()
-		else:
-			platformController.stop_run()
-	if type == Constants.Power.BREWER:
-		if flag:
-			animator["parameters/playback"].travel("throw")
-		#	platformController.throw()
+	if flag:
+		power.activate(platformController, animator)
+	else:
+		power.deactivate(platformController, animator)
 
 func hit():
 	power_hp -= 1
-	if power_hp <= 0 and power != Constants.Power.DEFAULT:
-		power = Constants.Power.DEFAULT
+	if power_hp <= 0 and power.name() != "DefaultHat":
+		power = defaultPower.new()
 		updatePowerValues()
 		animator["parameters/playback"].travel("refresh")
