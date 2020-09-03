@@ -33,19 +33,19 @@ func _unhandled_input(event):
 		set_power_active(power, false)
 
 func set_power_active(type, flag):
-	if power == Constants.Power.DEFAULT:
+	if type == Constants.Power.DEFAULT:
 		if flag:
 			platformController.dive()
-	if power == Constants.Power.RUNNER:
+	if type == Constants.Power.RUNNER:
 		animator["parameters/conditions/running"] = flag
 		animator["parameters/conditions/not_running"] = !flag
 		if flag:
 			platformController.start_run()
 		else:
 			platformController.stop_run()
-	if power == Constants.Power.BREWER:
-		animator["parameters/playback"].travel("throw")
-		#if flag:
+	if type == Constants.Power.BREWER:
+		if flag:
+			animator["parameters/playback"].travel("throw")
 		#	platformController.throw()
 
 func hit():

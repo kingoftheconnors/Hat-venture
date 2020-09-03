@@ -186,8 +186,8 @@ func manage_flags():
 	
 	if is_on_floor() and air_time:
 		air_time = false
-		#animator["parameters/playback"].travel("land")
-		animator["parameters/playback"].travel("idle")
+		if animator["parameters/playback"].get_travel_path().size() == 0:
+			animator["parameters/playback"].travel("idle")
 	
 	if jump_timer > 0:
 		jump_timer -= 1
@@ -195,7 +195,8 @@ func manage_flags():
 			jump()
 	
 	if diving and is_on_floor() and abs(velo.x) < MAX_SPEED:
-		animator["parameters/playback"].travel("idle")
+		if animator["parameters/playback"].get_travel_path().size() == 0:
+			animator["parameters/playback"].travel("idle")
 		diving = false
 
 var holding_jump = false
