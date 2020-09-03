@@ -1,9 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://items/getItem.gd" type="Script" id=1]
-[ext_resource path="res://items/itemMovement.gd" type="Script" id=2]
+[ext_resource path="res://items/Resources/getItem.gd" type="Script" id=1]
+[ext_resource path="res://items/Resources/itemMovement.gd" type="Script" id=2]
 [ext_resource path="res://items/brewingPower.gd" type="Script" id=3]
-[ext_resource path="res://items/brewingCap.png" type="Texture" id=4]
+[ext_resource path="res://items/Resources/brewingCap.png" type="Texture" id=4]
+
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.22684

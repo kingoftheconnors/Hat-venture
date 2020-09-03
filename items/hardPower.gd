@@ -14,7 +14,7 @@ func deactivate(body, animator):
 	pass
 
 func spawnFromBox(collidingBody):
-	var hardhat = load("res://items/HardHat.tscn")
+	var hardhat = load("res://items/Resources/HardHat.tscn")
 	var hat = hardhat.instance()
 	hat.set_position(Vector2(0, -16))
 	hat.get_node("Body").velo.y = -150

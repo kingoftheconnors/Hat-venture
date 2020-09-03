@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/thorCap.png-89a1e279c6958df67f8bcd07cc84ae18.stex"
+path="res://.import/block.png-b0cdd6f9654f2c2c4dd2c5cdadbe2fac.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/thorCap.png"
-dest_files=[ "res://.import/thorCap.png-89a1e279c6958df67f8bcd07cc84ae18.stex" ]
+source_file="res://common/Resources/block.png"
+dest_files=[ "res://.import/block.png-b0cdd6f9654f2c2c4dd2c5cdadbe2fac.stex" ]
 
 [params]
 

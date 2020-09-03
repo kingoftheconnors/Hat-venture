@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hardCap.png-bc8dd25a733dba035c8d0d66b1080687.stex"
+path="res://.import/thorCap.png-e60d14ff78eba4b0e4b733159f78f872.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/hardCap.png"
-dest_files=[ "res://.import/hardCap.png-bc8dd25a733dba035c8d0d66b1080687.stex" ]
+source_file="res://items/Resources/thorCap.png"
+dest_files=[ "res://.import/thorCap.png-e60d14ff78eba4b0e4b733159f78f872.stex" ]
 
 [params]
 

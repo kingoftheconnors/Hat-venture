@@ -2,8 +2,8 @@ tool
 extends StaticBody2D
 
 onready var animator = get_node("AnimationTree")
-onready var pon = load("res://items/Pon.tscn")
-onready var runnerhat = load("res://items/RunnerHat.tscn")
+onready var pon = load("res://items/Resources/Pon.tscn")
+onready var runnerhat = load("res://items/Resources/RunnerHat.tscn")
 
 enum BlockState {BREAKABLE, BREAKABLE2, SOLID, ITEM_HAT}
 var prevBlockState

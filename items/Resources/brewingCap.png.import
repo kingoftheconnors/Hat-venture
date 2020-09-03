@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/brawlersCap.png-191b9b7e7c0df9a9b82aae0825786451.stex"
+path="res://.import/brewingCap.png-3ec14d45afb67c27a07c92f69cb724bb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/brawlersCap.png"
-dest_files=[ "res://.import/brawlersCap.png-191b9b7e7c0df9a9b82aae0825786451.stex" ]
+source_file="res://items/Resources/brewingCap.png"
+dest_files=[ "res://.import/brewingCap.png-3ec14d45afb67c27a07c92f69cb724bb.stex" ]
 
 [params]
 

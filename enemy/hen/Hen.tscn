@@ -1,8 +1,9 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://enemy/lemming.gd" type="Script" id=1]
-[ext_resource path="res://enemy/EnemyCore.gd" type="Script" id=2]
+[ext_resource path="res://enemy/Scripts/lemming.gd" type="Script" id=1]
+[ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=2]
 [ext_resource path="res://enemy/hen/hen.png" type="Texture" id=3]
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"

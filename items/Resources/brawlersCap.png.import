@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hpon.png-7f55a3322b6740b79a2ae4de07a53cf2.stex"
+path="res://.import/brawlersCap.png-af1813d9cb55ec732647209cf2475bef.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/hpon.png"
-dest_files=[ "res://.import/hpon.png-7f55a3322b6740b79a2ae4de07a53cf2.stex" ]
+source_file="res://items/Resources/brawlersCap.png"
+dest_files=[ "res://.import/brawlersCap.png-af1813d9cb55ec732647209cf2475bef.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

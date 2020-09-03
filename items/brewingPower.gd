@@ -15,7 +15,7 @@ func deactivate(body, animator):
 	pass
 
 func spawnFromBox(collidingBody):
-	var brewhat = load("res://items/BrewingHat.tscn")
+	var brewhat = load("res://items/Resources/BrewingHat.tscn")
 	var hat = brewhat.instance()
 	hat.set_position(Vector2(0, -16))
 	hat.get_node("Body").velo.y = -150

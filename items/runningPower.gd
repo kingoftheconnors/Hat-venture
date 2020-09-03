@@ -18,7 +18,7 @@ func deactivate(body, animator):
 	body.stop_run()
 
 func spawnFromBox(collidingBody):
-	var runnerhat = load("res://items/RunnerHat.tscn")
+	var runnerhat = load("res://items/Resources/RunnerHat.tscn")
 	var hat = runnerhat.instance()
 	hat.set_position(Vector2(0, -16))
 	hat.get_node("Body").velo.y = -150
