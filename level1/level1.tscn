@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://level1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://level1/background1.tres" type="TileSet" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://items/runningPower.gd" type="Script" id=12]
 [ext_resource path="res://items/hardPower.gd" type="Script" id=13]
 [ext_resource path="res://items/thorPower.gd" type="Script" id=14]
+[ext_resource path="res://items/Resources/HardHat.tscn" type="PackedScene" id=15]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 3 )
@@ -146,3 +147,98 @@ boxedItem = null
 position = Vector2( 152, -104 )
 state = 1
 boxedItem = ExtResource( 10 )
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Block9" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 608, -8 )
+state = 1
+boxedItem = null
+
+[node name="Block10" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 608, -24 )
+state = 1
+boxedItem = null
+
+[node name="Block11" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 608, -40 )
+state = 1
+boxedItem = null
+
+[node name="Block14" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 624, -8 )
+state = 1
+boxedItem = null
+
+[node name="Block13" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 624, -24 )
+state = 1
+boxedItem = null
+
+[node name="Block12" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 624, -40 )
+state = 1
+boxedItem = null
+
+[node name="Block17" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 640, -8 )
+state = 1
+boxedItem = null
+
+[node name="Block16" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 640, -24 )
+state = 1
+boxedItem = null
+
+[node name="Block15" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 640, -40 )
+state = 1
+boxedItem = null
+
+[node name="Block20" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 656, -8 )
+state = 1
+boxedItem = null
+
+[node name="Block19" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 656, -24 )
+state = 1
+boxedItem = null
+
+[node name="Block18" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 656, -40 )
+state = 1
+boxedItem = null
+
+[node name="Block23" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 672, -8 )
+state = 1
+boxedItem = null
+
+[node name="Block22" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 672, -24 )
+state = 1
+boxedItem = null
+
+[node name="Block21" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 672, -40 )
+state = 1
+boxedItem = null
+
+[node name="Block26" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 688, -8 )
+state = 1
+boxedItem = null
+
+[node name="RunnersCap" parent="Node/Block26" instance=ExtResource( 15 )]
+position = Vector2( -744, -8 )
+
+[node name="Block25" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 688, -24 )
+state = 1
+boxedItem = null
+
+[node name="Block24" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 688, -40 )
+state = 1
+boxedItem = null

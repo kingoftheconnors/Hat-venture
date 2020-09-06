@@ -27,11 +27,13 @@ func updatePowerValues():
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_B"):
-		set_power_active(power, true)
+		set_power_active(true)
 	if event.is_action_released("ui_B"):
-		set_power_active(power, false)
+		set_power_active(false)
+	if event.is_action_released("ui_release"):
+		release_power()
 
-func set_power_active(type, flag):
+func set_power_active(flag):
 	if flag:
 		power.activate(platformController, animator)
 	else:
@@ -40,6 +42,9 @@ func set_power_active(type, flag):
 func hit():
 	power_hp -= 1
 	if power_hp <= 0 and power.name() != "DefaultHat":
+		release_power()
+
+func release_power():
 		power = defaultPower.new()
 		updatePowerValues()
 		animator["parameters/playback"].travel("refresh")

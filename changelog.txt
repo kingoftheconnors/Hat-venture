@@ -15,13 +15,25 @@ Powers deactivate when you lose them due to health loss
 Made player colliders square, so blocks cannot be slid down
 Add Thor Power
 Add Hard Hat Power
+Cleaned up local files for ease of use
 
 Powers:
 Hat Kid throwing animation is now .2 seconds long
+Hat Kid throwing bottles
+Should bash
 
-* Hat Kid throwing
-* Shoulder bash
+
+This sprint:
+* Shoulder bash feel good
 * SPEEN
 ** Hat Kid's main gimmick feels wonky on the ground compared to how it looks and works in AHiT. Should have more air to the dash, should have the ability to get a speed boost if jump button is pressed at the right time, and should slide on the ground just a bit without picking oneself up.
 * Sprint should ramp up slower and the animation should reflect the speed.
-* Block breaking
+* Block breaking animation
+* De-equip power button
+
+Next Sprint:
+* Bottle explosion
+* Hard Hat passive ability
+* Brewing cap charging?
+* Enemies
+* Ease of tileset use

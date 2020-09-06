@@ -27,13 +27,23 @@ func _process(delta):
 func smash():
 	queue_free()
 
+func hit(collidingBody):
+	animator["parameters/playback"].travel("bop")
+	if power != null:
+		var createdItem = power.spawnFromBox(collidingBody)
+		call_deferred("add_child", createdItem)
+		state = BlockState.SOLID
+		power = null
+	elif state == BlockState.BREAKABLE or state == BlockState.BREAKABLE2:
+		smash()
+		# Return true when block is destroyed
+		return true
+	# Return false for un-smashed blocks
+	return false
+
 func collide(collision, collidingBody):
 	if collision.normal.y > 0:
-		animator["parameters/playback"].travel("bop")
-		if power != null:
-			var createdItem = power.spawnFromBox(collidingBody)
-			add_child(createdItem)
-			state = BlockState.SOLID
-			power = null
-		elif state == BlockState.BREAKABLE or state == BlockState.BREAKABLE2:
-			smash()
+		hit(collidingBody)
+
+func damage():
+	return hit(null)

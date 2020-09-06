@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export(Vector2) var velo = Vector2(1, 0)
+export(Vector2) var velo = Vector2(10, 0)
 onready var sprite = get_node("EnemyCore")
 
 # Called when the node enters the scene tree for the first time.
@@ -13,3 +13,9 @@ func _process(delta):
 	# Turn around sprite of enemies walking backwards
 	if(velo.x * sprite.scale.x < 0):
 		sprite.scale = Vector2(-sprite.scale.x, sprite.scale.y)
+
+func damage():
+	return sprite.damage()
+
+func get_damage():
+	return sprite.get_damage()

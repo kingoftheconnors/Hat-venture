@@ -8,6 +8,7 @@ const ACCELERATION = 5
 const DIVE_SPEED = 200
 const MAX_SPEED = 120
 const MAX_RUNNING_SPEED = 200
+const BASH_SPEED = 160
 export(int) var BOUNCE_FORCE = 300
 export(float) var FALL_MULTIPLIER = 1.1
 export(int) var DIVE_OUT_STRENGTH = 175
@@ -25,9 +26,10 @@ onready var camera = get_node("../Camera2D")
 
 var _stun = 0
 var frozen = false
-var stationary = false
+var autoMoving = false
 var crouching = false
 var diving = false
+var bashing = false
 
 var max_velo = MAX_SPEED
 var velo = Vector2()
@@ -56,7 +58,7 @@ func set_spawn(pos):
 	cur_spawn = pos
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _physics_process(_delta):
 	move()
 	manage_flags()
 
@@ -64,17 +66,18 @@ func move():
 	var horizontal = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"))
 	var vertical = (Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"))
 	
-	if frozen or stationary or diving:
+	if frozen or diving:
 		horizontal = 0; vertical = 0
 	if crouching:
 		horizontal = 0
+	if bashing:
+		horizontal = direction
 	
 	# Friction (before moving so friction only applies when player is
 	# standing still or going over conventional speeds)
-	if !diving:
-		if horizontal == 0:
-			velo.x *= 0.84
-	else: # Diving friction
+	if (horizontal == 0 and !autoMoving) or velo.x > max_velo:
+		velo.x *= 0.84
+	elif diving: # Diving friction
 		if is_on_floor():
 			velo.x *= 0.93
 	
@@ -157,9 +160,9 @@ func calc_direc(ui_direc, cur_speed, speed = SPEED):
 	else:
 		return cur_speed
 
-func move_player(velo):
+func move_player(v):
 	#var snap = Vector2.DOWN * 16 if is_on_floor() and !just_jumped else Vector2.ZERO
-	var moved_velo = move_and_slide(velo, Vector2.UP)#_with_snap(velo, snap, Vector2.UP, true)
+	var moved_velo = move_and_slide(v, Vector2.UP)#_with_snap(velo, snap, Vector2.UP, true)
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if collision and collision.collider.is_in_group("block"):
@@ -187,7 +190,8 @@ func manage_flags():
 	if is_on_floor() and air_time:
 		air_time = false
 		if animator["parameters/playback"].get_travel_path().size() == 0:
-			animator["parameters/playback"].travel("idle")
+			animator["parameters/conditions/jumping"] = false
+			animator["parameters/conditions/not_jumping"] = true
 	
 	if jump_timer > 0:
 		jump_timer -= 1
@@ -198,11 +202,12 @@ func manage_flags():
 		if animator["parameters/playback"].get_travel_path().size() == 0:
 			animator["parameters/playback"].travel("idle")
 		diving = false
+		autoMoving = false
 
 var holding_jump = false
 
 func _unhandled_input(event):
-	if !frozen and !stationary:
+	if !frozen:
 		# This will run once on the frame when the action is first pressed
 		if event.is_action_pressed("ui_A"):
 			holding_jump = true
@@ -218,16 +223,18 @@ func _unhandled_input(event):
 			holding_jump = false
 			jump_timer = 0
 		
-		if event.is_action_pressed("ui_crouch"):
-			crouching = true
-			animator["parameters/playback"].travel("crouch")
-			animator["parameters/conditions/crouching"] = true
-			animator["parameters/conditions/not_crouching"] = false
-		
-		if event.is_action_released("ui_crouch"):
-			crouching = false
-			animator["parameters/conditions/crouching"] = false
-			animator["parameters/conditions/not_crouching"] = true
+		# Don't allow crouching while automoving
+		if !autoMoving:
+			if event.is_action_pressed("ui_crouch"):
+				crouching = true
+				animator["parameters/playback"].travel("crouch")
+				animator["parameters/conditions/crouching"] = true
+				animator["parameters/conditions/not_crouching"] = false
+			
+			if event.is_action_released("ui_crouch"):
+				crouching = false
+				animator["parameters/conditions/crouching"] = false
+				animator["parameters/conditions/not_crouching"] = true
 
 func jump():
 	# Basic Jump
@@ -236,6 +243,7 @@ func jump():
 	# Out-of-dive Jump
 	if diving:
 		diving = false
+		autoMoving = false
 		dive_jump = false
 		velo.y = min(-DIVE_OUT_STRENGTH, velo.y)
 	# Energy jump
@@ -243,7 +251,8 @@ func jump():
 	jump_timer = 0
 	climbing = false
 	#jump_sfx.play()
-	animator["parameters/playback"].travel("jump")
+	animator["parameters/conditions/jumping"] = true
+	animator["parameters/conditions/not_jumping"] = false
 
 func start_run():
 	max_velo = MAX_RUNNING_SPEED
@@ -254,8 +263,29 @@ func stop_run():
 func dive():
 	if dive_jump and !diving:
 		diving = true
+		autoMoving = true
 		velo.x = DIVE_SPEED * direction
 		animator["parameters/playback"].travel("dive")
+
+func bash():
+	if !bashing:
+		bashing = true
+		autoMoving = true
+		crouching = false
+		max_velo = BASH_SPEED
+		velo.x = direction * MAX_RUNNING_SPEED
+		animator["parameters/playback"].travel("bash")
+		yield(get_tree().create_timer(0.5), "timeout")
+		unbash()
+
+func unbash():
+	max_velo = MAX_SPEED
+	bashing = false
+	autoMoving = false
+	if animator["parameters/playback"].get_current_node() == "bash":
+		animator["parameters/playback"].start("end_bash")
+	else:
+		animator["parameters/playback"].get_current_node()
 
 func bounce():
 	var direc = Vector2(0, -BOUNCE_FORCE)
@@ -282,6 +312,9 @@ func set_freeze(flag):
 # EXTERNAL NODE METHODS
 #
 ####################
+
+func get_direction():
+	return direction
 
 func get_power_node():
 	return $Power

@@ -23,7 +23,7 @@ var prev_down = 0
 func _ready():
 	VisualServer.set_default_clear_color(col)
 
-func _process(delta):
+func _process(_delta):
 	if prev_left != left or prev_right != right \
 		or prev_up != up or prev_down != down:
 		update()

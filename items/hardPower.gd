@@ -8,7 +8,7 @@ func power(body, this):
 	return true
 
 func activate(body, animator):
-	pass
+	body.bash()
 
 func deactivate(body, animator):
 	pass

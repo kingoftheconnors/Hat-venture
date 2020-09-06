@@ -14,6 +14,8 @@ func get_damage():
 func damage():
 	emit_signal("hurt")
 	animator["parameters/playback"].travel("die")
+	# Always die, so always true
+	return true
 
 func die():
 	get_parent().queue_free()
