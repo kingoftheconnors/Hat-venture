@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://level1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://level1/background1.tres" type="TileSet" id=2]
@@ -13,8 +13,6 @@
 [ext_resource path="res://items/brewingPower.gd" type="Script" id=11]
 [ext_resource path="res://items/runningPower.gd" type="Script" id=12]
 [ext_resource path="res://items/hardPower.gd" type="Script" id=13]
-[ext_resource path="res://items/thorPower.gd" type="Script" id=14]
-[ext_resource path="res://items/Resources/HardHat.tscn" type="PackedScene" id=15]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 3 )
@@ -120,12 +118,8 @@ boxedItem = ExtResource( 12 )
 position = Vector2( 168, -48 )
 boxedItem = ExtResource( 11 )
 
-[node name="Block7" parent="." instance=ExtResource( 8 )]
-position = Vector2( 328, -48 )
-boxedItem = ExtResource( 14 )
-
 [node name="Block8" parent="." instance=ExtResource( 8 )]
-position = Vector2( 360, -48 )
+position = Vector2( 104, -48 )
 boxedItem = ExtResource( 13 )
 
 [node name="Block3" parent="." instance=ExtResource( 8 )]
@@ -215,6 +209,36 @@ position = Vector2( 672, -8 )
 state = 1
 boxedItem = null
 
+[node name="Block27" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 352, -8 )
+state = 1
+boxedItem = null
+
+[node name="Block28" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 352, -24 )
+state = 1
+boxedItem = null
+
+[node name="Block29" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 400, -48 )
+state = 1
+boxedItem = null
+
+[node name="Block31" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 400, -80 )
+state = 1
+boxedItem = ExtResource( 10 )
+
+[node name="Block32" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 504, -8 )
+state = 1
+boxedItem = null
+
+[node name="Block30" parent="Node" instance=ExtResource( 8 )]
+position = Vector2( 400, -64 )
+state = 1
+boxedItem = null
+
 [node name="Block22" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 672, -24 )
 state = 1
@@ -229,9 +253,6 @@ boxedItem = null
 position = Vector2( 688, -8 )
 state = 1
 boxedItem = null
-
-[node name="RunnersCap" parent="Node/Block26" instance=ExtResource( 15 )]
-position = Vector2( -744, -8 )
 
 [node name="Block25" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 688, -24 )

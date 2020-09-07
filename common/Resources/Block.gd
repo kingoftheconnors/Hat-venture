@@ -25,7 +25,7 @@ func _process(delta):
 		prevBlockState = state
 
 func smash():
-	queue_free()
+	animator["parameters/playback"].travel("smash")
 
 func hit(collidingBody):
 	animator["parameters/playback"].travel("bop")

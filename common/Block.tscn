@@ -1,8 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://common/Resources/block.png" type="Texture" id=1]
 [ext_resource path="res://common/Resources/Block.gd" type="Script" id=2]
-
+[ext_resource path="res://common/Resources/shard.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -26,6 +26,84 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "smash"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="AnimationNodeAnimation" id=4]
 animation = "bop"
@@ -33,21 +111,33 @@ animation = "bop"
 [sub_resource type="AnimationNodeAnimation" id=5]
 animation = "idle"
 
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "smash"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=6]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=7]
 switch_mode = 2
 auto_advance = true
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+
 [sub_resource type="AnimationNodeStateMachine" id=8]
 states/bop/node = SubResource( 4 )
 states/bop/position = Vector2( 491, 87 )
 states/idle/node = SubResource( 5 )
 states/idle/position = Vector2( 264, 87 )
-transitions = [ "idle", "bop", SubResource( 6 ), "bop", "idle", SubResource( 7 ) ]
+states/smash/node = SubResource( 12 )
+states/smash/position = Vector2( 491, 188 )
+transitions = [ "idle", "bop", SubResource( 6 ), "bop", "idle", SubResource( 7 ), "bop", "smash", SubResource( 13 ) ]
 start_node = "idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+
+[sub_resource type="Curve" id=11]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 334.636 ), 0.0, 0.0, 0, 0 ]
 
 [node name="Block" type="StaticBody2D" groups=[
 "block",
@@ -68,9 +158,25 @@ shape = SubResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/bop = SubResource( 2 )
 anims/idle = SubResource( 3 )
+anims/smash = SubResource( 10 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 8 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 9 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 4
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource( 3 )
+direction = Vector2( 0, -1 )
+spread = 90.0
+gravity = Vector2( 0, 210 )
+initial_velocity = 135.0
+angle = 90.0
+angle_random = 1.0
+angle_curve = SubResource( 11 )

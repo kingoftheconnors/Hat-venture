@@ -23,15 +23,16 @@ Hat Kid throwing bottles
 Should bash
 Slowed acceleration for all walking
 Sprint animation speeds up to reflect speed
-
+Dive has a slight upwards-velocity that overrides current vertical speed (whether upwards or downwards)
+Extended amount of speed that has to be lost in a dive-slide before Hat Kid picks themselves back up
+Dives have a slower fall rate than normal, giving more air time
 
 This sprint:
-* Block breaking animation
-* SPEEN
-* Contact frienda about music?
-** Hat Kid's main gimmick feels wonky on the ground compared to how it looks and works in AHiT. Should have more air to the dash, should have the ability to get a speed boost if jump button is pressed at the right time, and should slide on the ground just a bit without picking oneself up.
+** Have the ability to get a speed boost if jump button is pressed at the right time
+
 
 Backlog:
+* SPEEN
 * SFX!
 * De-equip animation
 * Bottle explosion

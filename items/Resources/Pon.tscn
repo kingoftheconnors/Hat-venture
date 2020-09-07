@@ -1,27 +1,12 @@
 [gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://items/Resources/getItem.gd" type="Script" id=1]
 [ext_resource path="res://items/pon.gd" type="Script" id=3]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends Node2D
-
-export(Resource) var itemCommand
-
-func _on_Area2D_body_entered(body):
-	if body.is_in_group(\"player\"):
-		collect(body)
-
-func collect(body):
-	print(\"Collecting\")
-	var destroy = itemCommand.new().power(body, self)
-	if destroy:
-		queue_free()
-"
-
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 radius = 13.2705
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "collect"
 length = 0.4
 step = 0.05
@@ -62,21 +47,21 @@ tracks/2/keys = {
 "times": PoolRealArray( 0.05, 0.25, 0.4 )
 }
 
-[sub_resource type="StreamTexture" id=4]
+[sub_resource type="StreamTexture" id=3]
 load_path = "res://.import/pon.png-d2599f77421495deb53a3265b0147403.stex"
 
 [node name="Pon" type="Node2D"]
-script = SubResource( 1 )
+script = ExtResource( 1 )
 itemCommand = ExtResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/collect = SubResource( 3 )
+anims/collect = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = SubResource( 4 )
+texture = SubResource( 3 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

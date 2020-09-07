@@ -44,16 +44,17 @@ func _on_hurtbox_area_entered(area):
 		controller.on_ladders += 1
 
 func _on_bashbox_body_entered(body):
-	if controller.get_stun() <= 0 and body.has_method("damage"):
-		if not body.is_in_group("player"):
+	if not body.is_in_group("player"):
+		if body.has_method("damage"):
 			# TODO: Play sound effect
 			var destroyed = body.damage()
-			animator["parameters/playback"].start("bash")
-			# Bounce back
-			if not destroyed:
-				var direc = Vector2(-1 if global_position.x < body.global_position.x else 1, -0.5) * KNOCKBACK_MULTIPLIER
-				controller.push(direc)
-				controller.unbash()
+			controller.upgrade_smash()
+			if destroyed:
+				return
+		# Bounce back
+		var direc = Vector2(-controller.direction, -0.5) * KNOCKBACK_MULTIPLIER
+		controller.push(direc)
+		controller.unbash()
 
 func damage(damage = 1):
 	turn_invincibilty(true)

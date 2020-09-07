@@ -2,19 +2,29 @@ extends KinematicBody2D
 
 signal off_cliff
 
+# DEFAULT
 const TURNOFF_SPEED = 20
 const SPEED = 40
 const ACCELERATION = 4
 const DIVE_SPEED = 200
 const MAX_SPEED = 120
-const MAX_RUNNING_SPEED = 200
-const BASH_SPEED = 150
-const BASH_FORCE = 400
 export(int) var BOUNCE_FORCE = 300
 export(float) var FALL_MULTIPLIER = 1.1
-export(int) var DIVE_OUT_STRENGTH = 175
 export(int) var JUMP_STRENGTH = 300
-export(int) var STOMP_VELO = 250
+
+# DIVE
+export(float) var DIVE_FALL_MULTIPLIER = 0.85
+export(int) var DIVE_OUT_STRENGTH = 175
+
+# RUN
+const MAX_RUNNING_SPEED = 200
+
+# BASH
+const BASH_SPEED = 150
+const BASH_ACCELERATION = 10
+const BASH_FORCE = 400
+
+# CLIMBING
 export(int) var CLIMBING_SPEED = 200
 export(int) var WALL_CLIMBING_SPEED = 150
 export(bool) var wall_climbing = false
@@ -119,7 +129,10 @@ func move():
 		if velo.y < 0:
 			velo.y += Constants.gravity
 		else:
-			velo.y += Constants.gravity * FALL_MULTIPLIER
+			if diving:
+				velo.y += Constants.gravity * DIVE_FALL_MULTIPLIER
+			else:
+				velo.y += Constants.gravity * FALL_MULTIPLIER
 			# terminal velocity
 			if velo.y > Constants.terminalVelocity:
 				velo.y = Constants.terminalVelocity
@@ -192,20 +205,13 @@ func manage_flags():
 	
 	if is_on_floor() and air_time:
 		air_time = false
-		if animator["parameters/playback"].get_travel_path().size() == 0:
-			animator["parameters/conditions/jumping"] = false
-			animator["parameters/conditions/not_jumping"] = true
+		animator["parameters/conditions/jumping"] = false
+		animator["parameters/conditions/not_jumping"] = true
 	
 	if jump_timer > 0:
 		jump_timer -= 1
 		if is_on_floor():
 			jump()
-	
-	if diving and is_on_floor() and abs(velo.x) < MAX_SPEED:
-		if animator["parameters/playback"].get_travel_path().size() == 0:
-			animator["parameters/playback"].travel("idle")
-		diving = false
-		autoMoving = false
 
 var holding_jump = false
 
@@ -248,6 +254,7 @@ func jump():
 		diving = false
 		autoMoving = false
 		dive_jump = false
+		max_velo = MAX_SPEED
 		velo.y = min(-DIVE_OUT_STRENGTH, velo.y)
 	# Energy jump
 	coyoteTimer = 0
@@ -267,7 +274,8 @@ func dive():
 	if dive_jump and !diving:
 		diving = true
 		autoMoving = true
-		velo.x = DIVE_SPEED * direction
+		max_velo = DIVE_SPEED
+		push(Vector2(DIVE_SPEED * direction, -DIVE_SPEED/2))
 		animator["parameters/playback"].travel("dive")
 
 func bash():
@@ -278,6 +286,12 @@ func bash():
 		max_velo = BASH_SPEED
 		velo = Vector2(direction * BASH_FORCE, 0)
 		animator["parameters/playback"].travel("bash")
+
+func upgrade_smash():
+	if bashing:
+		max_velo += BASH_ACCELERATION
+		velo = Vector2(direction * BASH_FORCE, 0)
+		animator["parameters/playback"].start("bash")
 
 func unbash():
 	max_velo = MAX_SPEED
@@ -294,6 +308,7 @@ func bounce():
 		velo.x = direc.x
 	if ( velo.y * direc.y < 0 or abs(velo.y) < abs(direc.y) ):
 		velo.y = direc.y
+	dive_jump = true
 
 func get_stun():
 	return _stun
