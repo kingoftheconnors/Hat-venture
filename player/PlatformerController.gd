@@ -4,11 +4,12 @@ signal off_cliff
 
 const TURNOFF_SPEED = 20
 const SPEED = 40
-const ACCELERATION = 5
+const ACCELERATION = 4
 const DIVE_SPEED = 200
 const MAX_SPEED = 120
 const MAX_RUNNING_SPEED = 200
-const BASH_SPEED = 160
+const BASH_SPEED = 150
+const BASH_FORCE = 400
 export(int) var BOUNCE_FORCE = 300
 export(float) var FALL_MULTIPLIER = 1.1
 export(int) var DIVE_OUT_STRENGTH = 175
@@ -22,6 +23,7 @@ export(bool) var wall_climbing = false
 #onready var jump_sfx = get_node("SoundJump")
 onready var scale_manager = get_node("ScaleChildren")
 onready var animator = get_node("AnimationTree")
+onready var animatorPlayer = get_node("AnimationPlayer")
 onready var camera = get_node("../Camera2D")
 
 var _stun = 0
@@ -75,7 +77,7 @@ func move():
 	
 	# Friction (before moving so friction only applies when player is
 	# standing still or going over conventional speeds)
-	if (horizontal == 0 and !autoMoving) or velo.x > max_velo:
+	if (horizontal == 0 and !autoMoving) or abs(velo.x) > max_velo:
 		velo.x *= 0.84
 	elif diving: # Diving friction
 		if is_on_floor():
@@ -98,6 +100,7 @@ func move():
 		if horizontal != 0:
 			animator["parameters/conditions/walking"] = true
 			animator["parameters/conditions/not_walking"] = false
+			animator["parameters/run/TimeScale/scale"] = .5 + abs(velo.x)/MAX_RUNNING_SPEED
 		else:
 			animator["parameters/conditions/walking"] = false
 			animator["parameters/conditions/not_walking"] = true
@@ -112,7 +115,7 @@ func move():
 		_stun -= 1
 	
 	#Gravity
-	if !climbing and !frozen:
+	if !climbing and !frozen and !bashing:
 		if velo.y < 0:
 			velo.y += Constants.gravity
 		else:
@@ -273,19 +276,14 @@ func bash():
 		autoMoving = true
 		crouching = false
 		max_velo = BASH_SPEED
-		velo.x = direction * MAX_RUNNING_SPEED
+		velo = Vector2(direction * BASH_FORCE, 0)
 		animator["parameters/playback"].travel("bash")
-		yield(get_tree().create_timer(0.5), "timeout")
-		unbash()
 
 func unbash():
 	max_velo = MAX_SPEED
 	bashing = false
 	autoMoving = false
-	if animator["parameters/playback"].get_current_node() == "bash":
-		animator["parameters/playback"].start("end_bash")
-	else:
-		animator["parameters/playback"].get_current_node()
+	# TODO: Set recharge
 
 func bounce():
 	var direc = Vector2(0, -BOUNCE_FORCE)

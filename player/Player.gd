@@ -5,6 +5,7 @@ extends Sprite
 
 onready var controller = get_parent().get_parent()
 onready var hurtbox = get_node("../hurtbox")
+onready var animator = get_node("../../AnimationTree")
 
 const KNOCKBACK_MULTIPLIER = 250
 var invincibility_frames = 0
@@ -43,10 +44,11 @@ func _on_hurtbox_area_entered(area):
 		controller.on_ladders += 1
 
 func _on_bashbox_body_entered(body):
-	if controller.get_stun() <= 0:
+	if controller.get_stun() <= 0 and body.has_method("damage"):
 		if not body.is_in_group("player"):
 			# TODO: Play sound effect
 			var destroyed = body.damage()
+			animator["parameters/playback"].start("bash")
 			# Bounce back
 			if not destroyed:
 				var direc = Vector2(-1 if global_position.x < body.global_position.x else 1, -0.5) * KNOCKBACK_MULTIPLIER
