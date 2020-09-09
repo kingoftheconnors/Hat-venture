@@ -33,6 +33,27 @@ func _unhandled_input(event):
 		set_power_active(false)
 	if event.is_action_released("ui_release"):
 		release_power()
+	
+	if Constants.DEBUG_MODE:
+		if event is InputEventKey and event.pressed and event.scancode == KEY_1:
+			set_power(defaultPower.new())
+			updatePowerValues()
+			animator["parameters/playback"].travel("power_get")
+		if event is InputEventKey and event.pressed and event.scancode == KEY_2:
+			var script = preload("res://items/runningPower.gd")
+			set_power(script.new())
+			updatePowerValues()
+			animator["parameters/playback"].travel("power_get")
+		if event is InputEventKey and event.pressed and event.scancode == KEY_3:
+			var script = preload("res://items/thorPower.gd")
+			set_power(script.new())
+			updatePowerValues()
+			animator["parameters/playback"].travel("power_get")
+		if event is InputEventKey and event.pressed and event.scancode == KEY_4:
+			var script = preload("res://items/hardPower.gd")
+			set_power(script.new())
+			updatePowerValues()
+			animator["parameters/playback"].travel("power_get")
 
 func set_power_active(flag):
 	if flag:

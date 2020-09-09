@@ -39,19 +39,21 @@ Updated breakables image to match mockup
 
 Shoulder bash only ONCE in air
 
+Debug mode (set power)
+
 This sprint:
 Powers:
 -Brew arc tweak upwards
 -Brew bottle explosion
 -Brew startup frames
  Have the ability to get a speed boost if jump button is pressed at the right time
-*Small framestop each shoulder bash chain (see Mole gauntletts, Shovel Knight)
+*Small framestop each shoulder bash chain (see Mole gauntlets, Shovel Knight)
 *Skidding opposite bash direction glitch
 +Power cooldowns
 
 Misc:
 Crow
-Debug mode (set power, reload scene, change gui)
+Debug mode (reload scene, change gui)
 Background vanish bug
 Pon sparkle animation
 Score GUI

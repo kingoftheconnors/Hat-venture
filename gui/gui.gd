@@ -42,7 +42,7 @@ var text_to_run = []
 var text_crawl_func
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept") and Constants.DEBUG_MODE:
 		queue_dialog([
 			{name = "You", text = "The future is now, thanks to dialog!"},
 			{name = "Me", text = "Dialog is so amazing!"},
