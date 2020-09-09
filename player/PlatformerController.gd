@@ -13,6 +13,8 @@ export(float) var FALL_MULTIPLIER = 1.1
 export(int) var JUMP_STRENGTH = 300
 
 # DIVE
+var diving = false
+var dive_jump = true
 export(float) var DIVE_FALL_MULTIPLIER = 0.85
 export(int) var DIVE_OUT_STRENGTH = 175
 
@@ -20,9 +22,10 @@ export(int) var DIVE_OUT_STRENGTH = 175
 const MAX_RUNNING_SPEED = 200
 
 # BASH
-const BASH_SPEED = 150
+var can_bash = false
+var bashing = false
+const BASH_SPEED = 230
 const BASH_ACCELERATION = 10
-const BASH_FORCE = 400
 
 # CLIMBING
 export(int) var CLIMBING_SPEED = 200
@@ -40,8 +43,6 @@ var _stun = 0
 var frozen = false
 var autoMoving = false
 var crouching = false
-var diving = false
-var bashing = false
 
 var max_velo = MAX_SPEED
 var velo = Vector2()
@@ -49,7 +50,6 @@ var velo = Vector2()
 var jump_timer = 0
 var coyoteTimer = 0
 var climbing = false
-var dive_jump = true
 var air_time = 0
 
 var init_placed = false
@@ -80,15 +80,15 @@ func move():
 	
 	if frozen or diving:
 		horizontal = 0; vertical = 0
-	if crouching:
+	if crouching and is_on_floor() and !autoMoving:
 		horizontal = 0
 	if bashing:
 		horizontal = direction
 	
 	# Friction (before moving so friction only applies when player is
 	# standing still or going over conventional speeds)
-	if (horizontal == 0 and !autoMoving) or abs(velo.x) > max_velo:
-		velo.x *= 0.84
+	if (horizontal == 0 and !autoMoving) or (is_on_floor() and abs(velo.x) > max_velo):
+		velo.x *= 0.86
 	elif diving: # Diving friction
 		if is_on_floor():
 			velo.x *= 0.93
@@ -193,10 +193,7 @@ func push(direc):
 
 func manage_flags():
 	if is_on_floor() or climbing:
-		if coyoteTimer < 10:
-			coyoteTimer = 10
-		if !dive_jump:
-			dive_jump = true
+		refresh_flags()
 	else:
 		if !air_time:
 			air_time = true
@@ -212,6 +209,14 @@ func manage_flags():
 		jump_timer -= 1
 		if is_on_floor():
 			jump()
+
+func refresh_flags():
+	if coyoteTimer < 5:
+		coyoteTimer = 5
+	if !dive_jump:
+		dive_jump = true
+	if !can_bash:
+		can_bash = true
 
 var holding_jump = false
 
@@ -233,17 +238,16 @@ func _unhandled_input(event):
 			jump_timer = 0
 		
 		# Don't allow crouching while automoving
-		if !autoMoving:
-			if event.is_action_pressed("ui_crouch"):
-				crouching = true
-				animator["parameters/playback"].travel("crouch")
-				animator["parameters/conditions/crouching"] = true
-				animator["parameters/conditions/not_crouching"] = false
-			
-			if event.is_action_released("ui_crouch"):
-				crouching = false
-				animator["parameters/conditions/crouching"] = false
-				animator["parameters/conditions/not_crouching"] = true
+		if event.is_action_pressed("ui_crouch"):
+			crouching = true
+			animator["parameters/playback"].travel("crouch")
+			animator["parameters/conditions/crouching"] = true
+			animator["parameters/conditions/not_crouching"] = false
+		
+		if event.is_action_released("ui_crouch"):
+			crouching = false
+			animator["parameters/conditions/crouching"] = false
+			animator["parameters/conditions/not_crouching"] = true
 
 func jump():
 	# Basic Jump
@@ -279,21 +283,26 @@ func dive():
 		animator["parameters/playback"].travel("dive")
 
 func bash():
-	if !bashing:
+	if !bashing and can_bash:
+		can_bash = false
 		bashing = true
 		autoMoving = true
 		crouching = false
 		max_velo = BASH_SPEED
-		velo = Vector2(direction * BASH_FORCE, 0)
+		velo = Vector2(direction * max_velo, 1)
 		animator["parameters/playback"].travel("bash")
 
 func upgrade_smash():
 	if bashing:
 		max_velo += BASH_ACCELERATION
-		velo = Vector2(direction * BASH_FORCE, 0)
+		velo = Vector2(direction * max_velo, 1)
 		animator["parameters/playback"].start("bash")
 
 func unbash():
+	if velo.x > 0:
+		velo.x = max(MAX_SPEED, velo.x - (max_velo - MAX_SPEED))
+	else:
+		velo.x = min(-MAX_SPEED, velo.x + (max_velo - MAX_SPEED))
 	max_velo = MAX_SPEED
 	bashing = false
 	autoMoving = false
@@ -308,7 +317,7 @@ func bounce():
 		velo.x = direc.x
 	if ( velo.y * direc.y < 0 or abs(velo.y) < abs(direc.y) ):
 		velo.y = direc.y
-	dive_jump = true
+	refresh_flags()
 
 func get_stun():
 	return _stun

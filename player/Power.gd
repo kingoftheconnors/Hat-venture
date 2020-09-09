@@ -24,6 +24,7 @@ func updatePowerValues():
 	animator["parameters/jump/blend_position"] = int(power.blendValue)
 	animator["parameters/skid/blend_position"] = int(power.blendValue)
 	animator["parameters/walk/blend_position"] = int(power.blendValue)
+	animator["parameters/hurt/blend_position"] = int(power.blendValue)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_B"):

@@ -1,4 +1,4 @@
-0.1:
+0.1
 Moving
 Dialog
 Powerups
@@ -7,6 +7,7 @@ Losing powers due to health loss
 Lil'Ens
 Tilemaps
 Blocks
+
 
 0.1.3
 Move skid animation 8 pixels off
@@ -17,7 +18,6 @@ Add Thor Power
 Add Hard Hat Power
 Cleaned up local files for ease of use
 
-Powers:
 Hat Kid throwing animation is now .2 seconds long
 Hat Kid throwing bottles
 Should bash
@@ -27,17 +27,46 @@ Dive has a slight upwards-velocity that overrides current vertical speed (whethe
 Extended amount of speed that has to be lost in a dive-slide before Hat Kid picks themselves back up
 Dives have a slower fall rate than normal, giving more air time
 
+
+0.1.4
+Dive no longer auto-stand
+No push-back when hurt
+Shortened Coyote time
+Crouch doesn't stop movement in air
+Friction decreased slightly
+Particles rotate flip-wise and use image from original mockup for block shatter
+Updated breakables image to match mockup
+
+Shoulder bash only ONCE in air
+
 This sprint:
-** Have the ability to get a speed boost if jump button is pressed at the right time
+Powers:
+-Brew arc tweak upwards
+-Brew bottle explosion
+-Brew startup frames
+ Have the ability to get a speed boost if jump button is pressed at the right time
+*Small framestop each shoulder bash chain (see Mole gauntletts, Shovel Knight)
+*Skidding opposite bash direction glitch
++Power cooldowns
+
+Misc:
+Crow
+Debug mode (set power, reload scene, change gui)
+Background vanish bug
+Pon sparkle animation
+Score GUI
+Closing-game-errors
+
 
 
 Backlog:
-* SPEEN
+* Power recharge timer
 * SFX!
 * De-equip animation
-* Bottle explosion
-* Hard Hat passive ability
 * Brewing cap charging?
-* Enemies
+* Hard Hat passive ability
 * Ease of tileset use
-* Power recharge timer
+* SPEEN
+* Celeste-level platformer-mercy:
+    Bashing into a wall will check if it could slide up or down to ease around block
+    Jumping into ceiling will check if it could slide left or right to ease around block

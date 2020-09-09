@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://common/Resources/block.png" type="Texture" id=1]
 [ext_resource path="res://common/Resources/Block.gd" type="Script" id=2]
-[ext_resource path="res://common/Resources/shard.png" type="Texture" id=3]
+[ext_resource path="res://common/Resources/particle.png" type="Texture" id=3]
+[ext_resource path="res://common/Resources/particle2.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -51,7 +52,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=4]
 resource_name = "smash"
 length = 2.0
 tracks/0/type = "method"
@@ -105,39 +106,46 @@ tracks/3/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "bop"
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=12]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "smash"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
 
-[sub_resource type="AnimationNodeStateMachine" id=8]
-states/bop/node = SubResource( 4 )
+[sub_resource type="AnimationNodeStateMachine" id=11]
+states/bop/node = SubResource( 5 )
 states/bop/position = Vector2( 491, 87 )
-states/idle/node = SubResource( 5 )
+states/idle/node = SubResource( 6 )
 states/idle/position = Vector2( 264, 87 )
-states/smash/node = SubResource( 12 )
+states/smash/node = SubResource( 7 )
 states/smash/position = Vector2( 491, 188 )
-transitions = [ "idle", "bop", SubResource( 6 ), "bop", "idle", SubResource( 7 ), "bop", "smash", SubResource( 13 ) ]
+transitions = [ "idle", "bop", SubResource( 8 ), "bop", "idle", SubResource( 9 ), "bop", "smash", SubResource( 10 ) ]
 start_node = "idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 
-[sub_resource type="Curve" id=11]
+[sub_resource type="AnimatedTexture" id=13]
+frames = 2
+fps = 8.0
+frame_0/texture = ExtResource( 3 )
+frame_1/texture = ExtResource( 4 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="Curve" id=14]
 min_value = -360.0
 max_value = 360.0
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 334.636 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
 [node name="Block" type="StaticBody2D" groups=[
 "block",
@@ -158,25 +166,27 @@ shape = SubResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/bop = SubResource( 2 )
 anims/idle = SubResource( 3 )
-anims/smash = SubResource( 10 )
+anims/smash = SubResource( 4 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 8 )
+tree_root = SubResource( 11 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 9 )
+parameters/playback = SubResource( 12 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
-amount = 4
+amount = 20
 lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
-texture = ExtResource( 3 )
-direction = Vector2( 0, -1 )
-spread = 90.0
-gravity = Vector2( 0, 210 )
-initial_velocity = 135.0
-angle = 90.0
-angle_random = 1.0
-angle_curve = SubResource( 11 )
+fract_delta = false
+texture = SubResource( 13 )
+emission_shape = 4
+emission_points = PoolVector2Array( 2, 2, -2, 2, 2, -2, -2, -2 )
+emission_normals = PoolVector2Array( 70, -150, -70, -150, 70, -250, -70, -250 )
+emission_colors = PoolColorArray(  )
+direction = Vector2( 0, 0 )
+spread = 0.0
+gravity = Vector2( 0, 400 )
+angle_curve = SubResource( 14 )

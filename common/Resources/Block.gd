@@ -21,7 +21,7 @@ func _process(delta):
 			BlockState.BREAKABLE:
 				$Sprite.frame = 2
 			BlockState.BREAKABLE2:
-				$Sprite.frame = 3
+				$Sprite.frame = 2
 		prevBlockState = state
 
 func smash():

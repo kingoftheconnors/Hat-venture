@@ -9,7 +9,7 @@ onready var animator = get_node("../../AnimationTree")
 
 const KNOCKBACK_MULTIPLIER = 250
 var invincibility_frames = 0
-var INVINCIBILITY_TIME = 40
+var INVINCIBILITY_TIME = 50
 
 signal hurt
 signal dead
@@ -35,11 +35,9 @@ func _on_hurtbox_area_entered(area):
 	if area.is_in_group("hitbox") and invincibility_frames <= 0 and area.get_parent() != get_parent():
 		var damage = area.get_parent().get_damage()
 		# TODO: Play sound effect
-		controller.stun(damage)
 		damage(damage)
+		animator['parameters/playback'].travel('hurt')
 		# Bounce back
-		var direc = (global_position - area.global_position).normalized() * KNOCKBACK_MULTIPLIER
-		controller.push(direc)
 	elif area.is_in_group("ladder"):
 		controller.on_ladders += 1
 
