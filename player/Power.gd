@@ -45,11 +45,16 @@ func _unhandled_input(event):
 			updatePowerValues()
 			animator["parameters/playback"].travel("power_get")
 		if event is InputEventKey and event.pressed and event.scancode == KEY_3:
-			var script = preload("res://items/thorPower.gd")
+			var script = preload("res://items/brewingPower.gd")
 			set_power(script.new())
 			updatePowerValues()
 			animator["parameters/playback"].travel("power_get")
 		if event is InputEventKey and event.pressed and event.scancode == KEY_4:
+			var script = preload("res://items/thorPower.gd")
+			set_power(script.new())
+			updatePowerValues()
+			animator["parameters/playback"].travel("power_get")
+		if event is InputEventKey and event.pressed and event.scancode == KEY_5:
 			var script = preload("res://items/hardPower.gd")
 			set_power(script.new())
 			updatePowerValues()

@@ -24,7 +24,7 @@ const MAX_RUNNING_SPEED = 200
 # BASH
 var can_bash = false
 var bashing = false
-const BASH_SPEED = 230
+const BASH_SPEED = 215
 const BASH_ACCELERATION = 10
 
 # CLIMBING
@@ -299,6 +299,8 @@ func upgrade_smash():
 		animator["parameters/playback"].start("bash")
 
 func unbash():
+	if animator["parameters/playback"].get_current_node() == "bash":
+		animator["parameters/playback"].start("end_bash")
 	if velo.x > 0:
 		velo.x = max(MAX_SPEED, velo.x - (max_velo - MAX_SPEED))
 	else:
@@ -334,6 +336,13 @@ func set_freeze(flag):
 # EXTERNAL NODE METHODS
 #
 ####################
+
+func spawn_bottle():
+	var brewbottle = load("res://player/brewing/BrewingBottle.tscn")
+	var bottle = brewbottle.instance()
+	bottle.position = position - Vector2(direction*3, 0)
+	bottle.init(direction)
+	get_parent().add_child(bottle)
 
 func get_direction():
 	return direction

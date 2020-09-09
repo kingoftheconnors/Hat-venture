@@ -57,7 +57,7 @@ extents = Vector2( 4.545, 11 )
 
 [sub_resource type="Animation" id=5]
 length = 0.2
-step = 0.05
+step = 0.075
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -65,7 +65,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
+"times": PoolRealArray( 0, 0.075, 0.15 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2 ]
@@ -1881,7 +1881,8 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id=42]
-length = 0.2
+length = 0.3
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -1889,10 +1890,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 0, 1 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("ScaleChildren/PlayerCore:hframes")
@@ -1904,7 +1905,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 1 ]
+"values": [ 2 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("ScaleChildren/PlayerCore:texture")
@@ -1917,6 +1918,20 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ ExtResource( 23 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.08 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_bottle"
+} ]
 }
 
 [sub_resource type="Animation" id=43]
@@ -2507,7 +2522,7 @@ states/walk/node = SubResource( 100 )
 states/walk/position = Vector2( 606.697, 154.872 )
 transitions = [ "idle", "crouch", SubResource( 101 ), "idle", "walk", SubResource( 102 ), "walk", "idle", SubResource( 103 ), "walk", "skid", SubResource( 104 ), "skid", "walk", SubResource( 105 ), "idle", "jump", SubResource( 106 ), "jump", "idle", SubResource( 107 ), "jump", "freefall", SubResource( 108 ), "freefall", "idle", SubResource( 109 ), "crouch", "end_crouch", SubResource( 110 ), "end_crouch", "idle", SubResource( 111 ), "idle", "throw", SubResource( 112 ), "throw", "idle", SubResource( 113 ), "idle", "dive", SubResource( 114 ), "dive", "end_dive", SubResource( 115 ), "end_dive", "idle", SubResource( 116 ), "idle", "power_get", SubResource( 117 ), "power_get", "idle", SubResource( 118 ), "idle", "refresh", SubResource( 119 ), "refresh", "idle", SubResource( 120 ), "idle", "bash", SubResource( 121 ), "end_bash", "idle", SubResource( 122 ), "walk", "jump", SubResource( 123 ), "bash", "end_bash", SubResource( 124 ), "end_dive", "jump", SubResource( 125 ), "run", "jump", SubResource( 126 ), "run", "skid", SubResource( 127 ), "walk", "run", SubResource( 128 ), "run", "walk", SubResource( 129 ), "run", "idle", SubResource( 130 ), "idle", "hurt", SubResource( 131 ), "hurt", "idle", SubResource( 132 ) ]
 start_node = "idle"
-graph_offset = Vector2( 209.385, -107.504 )
+graph_offset = Vector2( 209.385, -219.392 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=134]
 

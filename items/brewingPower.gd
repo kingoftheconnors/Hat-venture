@@ -9,11 +9,6 @@ func power(body, this):
 
 func activate(body, animator):
 	animator["parameters/playback"].travel("throw")
-	var brewbottle = load("res://player/brewing/BrewingBottle.tscn")
-	var bottle = brewbottle.instance()
-	bottle.position = body.position
-	bottle.init(body.get_direction())
-	body.get_parent().add_child(bottle)
 
 func deactivate(body, animator):
 	pass
