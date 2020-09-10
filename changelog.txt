@@ -47,7 +47,7 @@ This sprint:
 Powers:
 -Brew bottle explosion
  Have the ability to get a speed boost if jump button is pressed at the right time
-*Small framestop each shoulder bash chain (see Dust Knuckles, Shovel Knight)
+*Small animation change each shoulder bash chain (see Dust Knuckles, Shovel Knight)
 +Power cooldowns
 
 Misc:

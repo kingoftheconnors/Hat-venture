@@ -121,6 +121,14 @@ func move():
 		else:
 			animator["parameters/conditions/skidding"] = false
 			animator["parameters/conditions/not_skidding"] = true
+		
+		if diving:
+			if is_on_floor():
+				animator["parameters/conditions/dive_resting"] = true
+				animator["parameters/conditions/not_dive_resting"] = false
+			else:
+				animator["parameters/conditions/dive_resting"] = false
+				animator["parameters/conditions/not_dive_resting"] = true
 	else:
 		_stun -= 1
 	

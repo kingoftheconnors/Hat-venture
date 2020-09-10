@@ -1,4 +1,4 @@
-[gd_scene load_steps=174 format=2]
+[gd_scene load_steps=180 format=2]
 
 [ext_resource path="res://player/regular/idle.png" type="Texture" id=1]
 [ext_resource path="res://player/PlatformerController.gd" type="Script" id=2]
@@ -39,6 +39,7 @@
 [ext_resource path="res://items/defaultPower.gd" type="Script" id=37]
 [ext_resource path="res://player/hard/bash.png" type="Texture" id=38]
 [ext_resource path="res://player/hard/dashfx.png" type="Texture" id=39]
+[ext_resource path="res://player/regular/lyingdown.png" type="Texture" id=40]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.5
@@ -561,6 +562,46 @@ tracks/6/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 4.545, 6.22265 ) ]
+}
+
+[sub_resource type="Animation" id=135]
+resource_name = "dive_rest"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ScaleChildren/PlayerCore:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 24 ), ExtResource( 40 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ScaleChildren/PlayerCore:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -2171,6 +2212,9 @@ value_label = "power"
 [sub_resource type="AnimationNodeAnimation" id=55]
 animation = "dive"
 
+[sub_resource type="AnimationNodeAnimation" id=136]
+animation = "dive_rest"
+
 [sub_resource type="AnimationNodeAnimation" id=56]
 animation = "end_bash"
 
@@ -2487,6 +2531,15 @@ advance_condition = "not_walking"
 switch_mode = 2
 auto_advance = true
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=137]
+advance_condition = "dive_resting"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=138]
+advance_condition = "jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=139]
+advance_condition = "not_dive_resting"
+
 [sub_resource type="AnimationNodeStateMachine" id=133]
 states/bash/node = SubResource( 48 )
 states/bash/position = Vector2( 489.697, -156.681 )
@@ -2494,6 +2547,8 @@ states/crouch/node = SubResource( 54 )
 states/crouch/position = Vector2( 975.697, 4.944 )
 states/dive/node = SubResource( 55 )
 states/dive/position = Vector2( 281.697, 4.944 )
+states/dive_rest/node = SubResource( 136 )
+states/dive_rest/position = Vector2( 281.697, -74.4237 )
 states/end_bash/node = SubResource( 56 )
 states/end_bash/position = Vector2( 489.697, -74.4237 )
 states/end_crouch/node = SubResource( 57 )
@@ -2520,9 +2575,9 @@ states/throw/node = SubResource( 94 )
 states/throw/position = Vector2( 606.697, -156.681 )
 states/walk/node = SubResource( 100 )
 states/walk/position = Vector2( 606.697, 154.872 )
-transitions = [ "idle", "crouch", SubResource( 101 ), "idle", "walk", SubResource( 102 ), "walk", "idle", SubResource( 103 ), "walk", "skid", SubResource( 104 ), "skid", "walk", SubResource( 105 ), "idle", "jump", SubResource( 106 ), "jump", "idle", SubResource( 107 ), "jump", "freefall", SubResource( 108 ), "freefall", "idle", SubResource( 109 ), "crouch", "end_crouch", SubResource( 110 ), "end_crouch", "idle", SubResource( 111 ), "idle", "throw", SubResource( 112 ), "throw", "idle", SubResource( 113 ), "idle", "dive", SubResource( 114 ), "dive", "end_dive", SubResource( 115 ), "end_dive", "idle", SubResource( 116 ), "idle", "power_get", SubResource( 117 ), "power_get", "idle", SubResource( 118 ), "idle", "refresh", SubResource( 119 ), "refresh", "idle", SubResource( 120 ), "idle", "bash", SubResource( 121 ), "end_bash", "idle", SubResource( 122 ), "walk", "jump", SubResource( 123 ), "bash", "end_bash", SubResource( 124 ), "end_dive", "jump", SubResource( 125 ), "run", "jump", SubResource( 126 ), "run", "skid", SubResource( 127 ), "walk", "run", SubResource( 128 ), "run", "walk", SubResource( 129 ), "run", "idle", SubResource( 130 ), "idle", "hurt", SubResource( 131 ), "hurt", "idle", SubResource( 132 ) ]
+transitions = [ "idle", "crouch", SubResource( 101 ), "idle", "walk", SubResource( 102 ), "walk", "idle", SubResource( 103 ), "walk", "skid", SubResource( 104 ), "skid", "walk", SubResource( 105 ), "idle", "jump", SubResource( 106 ), "jump", "idle", SubResource( 107 ), "jump", "freefall", SubResource( 108 ), "freefall", "idle", SubResource( 109 ), "crouch", "end_crouch", SubResource( 110 ), "end_crouch", "idle", SubResource( 111 ), "idle", "throw", SubResource( 112 ), "throw", "idle", SubResource( 113 ), "idle", "dive", SubResource( 114 ), "dive", "end_dive", SubResource( 115 ), "end_dive", "idle", SubResource( 116 ), "idle", "power_get", SubResource( 117 ), "power_get", "idle", SubResource( 118 ), "idle", "refresh", SubResource( 119 ), "refresh", "idle", SubResource( 120 ), "idle", "bash", SubResource( 121 ), "end_bash", "idle", SubResource( 122 ), "walk", "jump", SubResource( 123 ), "bash", "end_bash", SubResource( 124 ), "end_dive", "jump", SubResource( 125 ), "run", "jump", SubResource( 126 ), "run", "skid", SubResource( 127 ), "walk", "run", SubResource( 128 ), "run", "walk", SubResource( 129 ), "run", "idle", SubResource( 130 ), "idle", "hurt", SubResource( 131 ), "hurt", "idle", SubResource( 132 ), "dive", "dive_rest", SubResource( 137 ), "dive_rest", "end_dive", SubResource( 138 ), "dive_rest", "dive", SubResource( 139 ) ]
 start_node = "idle"
-graph_offset = Vector2( 209.385, -219.392 )
+graph_offset = Vector2( 150.88, -171.44 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=134]
 
@@ -2541,8 +2596,7 @@ defaultPower = ExtResource( 37 )
 [node name="ScaleChildren" type="Node2D" parent="."]
 
 [node name="PlayerCore" type="Sprite" parent="ScaleChildren"]
-texture = ExtResource( 1 )
-hframes = 2
+texture = ExtResource( 24 )
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="ScaleChildren"]
@@ -2588,6 +2642,7 @@ anims/crouch = SubResource( 6 )
 "anims/crouch (runner)" = SubResource( 9 )
 "anims/crouch (thor)" = SubResource( 10 )
 anims/dive = SubResource( 11 )
+anims/dive_rest = SubResource( 135 )
 anims/end_bash = SubResource( 12 )
 anims/end_crouch = SubResource( 13 )
 anims/freefall = SubResource( 14 )
@@ -2631,8 +2686,10 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 134 )
 parameters/conditions/crouching = false
+parameters/conditions/dive_resting = false
 parameters/conditions/jumping = false
 parameters/conditions/not_crouching = true
+parameters/conditions/not_dive_resting = false
 parameters/conditions/not_jumping = false
 parameters/conditions/not_running = true
 parameters/conditions/not_skidding = true
