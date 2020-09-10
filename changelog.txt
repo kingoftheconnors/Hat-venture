@@ -40,22 +40,24 @@ Updated breakables image to match mockup
 Shoulder bash only ONCE in air
 Brew startup frame
 Brew arc tweak upwards
+Sliding resting animation :3
 
 Debug mode (set power)
+Crow
 
 This sprint:
 Powers:
--Brew bottle explosion
  Have the ability to get a speed boost if jump button is pressed at the right time
-*Small animation change each shoulder bash chain (see Dust Knuckles, Shovel Knight)
+*Stun time after bashing (if no combo)
 +Power cooldowns
+*Small animation signal each combo rocker
+-Brew bottle explosion
 
 Misc:
-Crow
 Debug mode (reload scene, change gui)
 Background vanish bug
-Pon sparkle animation
 Score GUI
+Pon sparkle animation
 Closing-game-errors
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://level1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://level1/background1.tres" type="TileSet" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://items/brewingPower.gd" type="Script" id=11]
 [ext_resource path="res://items/runningPower.gd" type="Script" id=12]
 [ext_resource path="res://items/hardPower.gd" type="Script" id=13]
+[ext_resource path="res://enemy/crow/Crow.tscn" type="PackedScene" id=14]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 3 )
@@ -263,3 +264,7 @@ boxedItem = null
 position = Vector2( 688, -40 )
 state = 1
 boxedItem = null
+
+[node name="Crow" parent="." instance=ExtResource( 14 )]
+position = Vector2( 504, -32 )
+velo = Vector2( -30, 0 )
