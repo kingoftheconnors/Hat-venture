@@ -78,9 +78,12 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "register_death"
+}, {
 "args": [  ],
 "method": "die"
 } ]
@@ -168,13 +171,14 @@ height = 14.3208
 "shadow",
 ]]
 script = ExtResource( 1 )
+velo = Vector2( 0, 0 )
 
 [node name="EnemyCore" type="Sprite" parent="."]
 position = Vector2( -2, 0 )
 texture = ExtResource( 3 )
 hframes = 3
-frame = 1
 script = ExtResource( 2 )
+deathScore = 200
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyCore"]
 anims/default = SubResource( 1 )

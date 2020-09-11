@@ -11,8 +11,18 @@ const KNOCKBACK_MULTIPLIER = 250
 var invincibility_frames = 0
 var INVINCIBILITY_TIME = 50
 
+var MAX_HEALTH = 4
+var health = 4
+
 signal hurt
 signal dead
+
+func _unhandled_input(event):
+	if Constants.DEBUG_MODE:
+		if event is InputEventKey and event.pressed and event.scancode == KEY_BRACELEFT:
+			damage()
+		if event is InputEventKey and event.pressed and event.scancode == KEY_BRACERIGHT:
+			heal()
 
 func _process(_delta):
 	if invincibility_frames > 0:
@@ -56,10 +66,15 @@ func _on_bashbox_body_entered(body):
 
 func damage(damage = 1):
 	turn_invincibilty(true)
-	Gui.damage()
+	health -= damage
+	Gui.update_health(health, MAX_HEALTH)
 	emit_signal("hurt")
 	# Player doesn't die unless game ends, so always return false
 	return false
+
+func heal(amo = 1):
+	health += amo
+	Gui.update_health(health, MAX_HEALTH)
 
 func turn_invincibilty(flag):
 	if flag == true:

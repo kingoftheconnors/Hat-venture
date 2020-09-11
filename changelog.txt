@@ -42,8 +42,10 @@ Brew startup frame
 Brew arc tweak upwards
 Sliding resting animation :3
 
-Debug mode (set power)
+Debug mode (set power, reload scene, change gui)
 Crow
+Score GUI
+
 
 This sprint:
 Powers:
@@ -54,15 +56,16 @@ Powers:
 -Brew bottle explosion
 
 Misc:
-Debug mode (reload scene, change gui)
+Pons
 Background vanish bug
-Score GUI
 Pon sparkle animation
 Closing-game-errors
+Max Health changes?
 
 
 
 Backlog:
+* Score variations
 * Skidding opposite bash direction glitch (cannot isolate?)
 * Power recharge timer
 * SFX!

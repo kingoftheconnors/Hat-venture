@@ -32,6 +32,12 @@ func _process(_delta):
 		prev_up = up
 		prev_down = down
 
+func _unhandled_input(event):
+	if Constants.DEBUG_MODE:
+		if event is InputEventKey and event.pressed and event.scancode == KEY_BACKSPACE:
+			print("Resetting scene!")
+			get_tree().reload_current_scene()
+
 # Called when the node enters the scene tree for the first time.
 func _draw():
 	if not Engine.editor_hint:

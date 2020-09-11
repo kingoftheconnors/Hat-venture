@@ -19,8 +19,12 @@ func start(stageNum):
 	stageName.text = "stage" + stageNum
 	energy.value = 4
 
-func damage():
-	energy.value = energy.value - 1
+func update_health(value, max_value):
+	energy.set_max(max_value)
+	energy.set_value(value)
+
+func heal():
+	energy.value = energy.value + 1
 
 func death():
 	energy.value = 0
@@ -29,9 +33,14 @@ func death():
 func startBossBattle(life):
 	bossEnergy.value = life
 
-func addScore(amo):
+func add_score(amo):
+	print("Adding score")
 	score += amo
-	playerScore.text = "SCORE:" + ("%06d" % score)
+	playerScore.set_text("SCORE:" + ("%06d" % score))
+
+func reset_score():
+	score = 0
+	playerScore.set_text("SCORE:" + ("%06d" % score))
 
 onready var dialog = $DialogBox
 onready var dialogName = $DialogBox/Name
@@ -55,6 +64,13 @@ func _process(delta):
 		start_dialog(next_box.name, next_box.text)
 	else:
 		end_dialog()
+
+func _unhandled_input(event):
+	if Constants.DEBUG_MODE:
+		if event is InputEventKey and event.pressed and event.scancode == KEY_EQUAL:
+			add_score(100)
+		if event is InputEventKey and event.pressed and event.scancode == KEY_MINUS:
+			reset_score()
 
 func queue_dialog(array_text):
 	text_to_run += array_text
