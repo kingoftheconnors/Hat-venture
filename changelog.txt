@@ -37,6 +37,7 @@ Friction decreased slightly
 Particles rotate flip-wise and use image from original mockup for block shatter
 Updated breakables image to match mockup
 
+Super dash speed boost
 Shoulder bash only ONCE in air
 Brew startup frame
 Brew arc tweak upwards
@@ -49,7 +50,7 @@ Score GUI
 
 This sprint:
 Powers:
- Have the ability to get a speed boost if jump button is pressed at the right time
+Super dash animation
 *Stun time after bashing (if no combo)
 +Power cooldowns
 *Small animation signal each combo rocker

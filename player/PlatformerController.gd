@@ -7,6 +7,7 @@ const TURNOFF_SPEED = 20
 const SPEED = 40
 const ACCELERATION = 4
 const DIVE_SPEED = 200
+const SUPERDIVE_SPEED = 275
 const MAX_SPEED = 120
 export(int) var BOUNCE_FORCE = 300
 export(float) var FALL_MULTIPLIER = 1.1
@@ -15,6 +16,7 @@ export(int) var JUMP_STRENGTH = 300
 # DIVE
 var diving = false
 var dive_jump = true
+var superdive_window = false
 export(float) var DIVE_FALL_MULTIPLIER = 0.85
 export(int) var DIVE_OUT_STRENGTH = 175
 
@@ -41,7 +43,7 @@ onready var camera = get_node("../Camera2D")
 
 var _stun = 0
 var frozen = false
-var autoMoving = false
+var speeding = false
 var crouching = false
 
 var max_velo = MAX_SPEED
@@ -80,14 +82,14 @@ func move():
 	
 	if frozen or diving:
 		horizontal = 0; vertical = 0
-	if crouching and is_on_floor() and !autoMoving:
+	if crouching and is_on_floor() and !speeding:
 		horizontal = 0
 	if bashing:
 		horizontal = direction
 	
 	# Friction (before moving so friction only applies when player is
 	# standing still or going over conventional speeds)
-	if (horizontal == 0 and !autoMoving) or (is_on_floor() and abs(velo.x) > max_velo):
+	if (horizontal == 0 and !speeding) or (is_on_floor() and abs(velo.x) > max_velo):
 		velo.x *= 0.86
 	elif diving: # Diving friction
 		if is_on_floor():
@@ -213,6 +215,9 @@ func manage_flags():
 		animator["parameters/conditions/jumping"] = false
 		animator["parameters/conditions/not_jumping"] = true
 	
+	if is_on_floor() and speeding and !bashing and !diving:
+		speeding = false
+	
 	if jump_timer > 0:
 		jump_timer -= 1
 		if is_on_floor():
@@ -264,10 +269,12 @@ func jump():
 	# Out-of-dive Jump
 	if diving:
 		diving = false
-		autoMoving = false
+		#speeding = false
 		dive_jump = false
 		max_velo = MAX_SPEED
 		velo.y = min(-DIVE_OUT_STRENGTH, velo.y)
+		if superdive_window:
+			velo = Vector2(direction * SUPERDIVE_SPEED, -SUPERDIVE_SPEED)
 	# Energy jump
 	coyoteTimer = 0
 	jump_timer = 0
@@ -285,16 +292,21 @@ func stop_run():
 func dive():
 	if dive_jump and !diving:
 		diving = true
-		autoMoving = true
+		speeding = true
 		max_velo = DIVE_SPEED
 		push(Vector2(DIVE_SPEED * direction, -DIVE_SPEED/2))
 		animator["parameters/playback"].travel("dive")
+
+func superdive_active():
+	superdive_window = true
+func superdive_inactive():
+	superdive_window = false
 
 func bash():
 	if !bashing and can_bash:
 		can_bash = false
 		bashing = true
-		autoMoving = true
+		speeding = true
 		crouching = false
 		max_velo = BASH_SPEED
 		velo = Vector2(direction * max_velo, 1)
@@ -315,7 +327,7 @@ func unbash():
 		velo.x = min(-MAX_SPEED, velo.x + (max_velo - MAX_SPEED))
 	max_velo = MAX_SPEED
 	bashing = false
-	autoMoving = false
+	speeding = false
 	# TODO: Set recharge
 
 func bounce():

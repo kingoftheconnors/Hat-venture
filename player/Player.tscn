@@ -43,7 +43,7 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.5
-height = 6.5
+height = 0.0
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 4.0
@@ -54,7 +54,7 @@ radius = 4.0
 height = 15.0
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 4.545, 11 )
+extents = Vector2( 4.545, 6.22265 )
 
 [sub_resource type="Animation" id=5]
 length = 0.2
@@ -563,10 +563,25 @@ tracks/6/keys = {
 "update": 0,
 "values": [ Vector2( 4.545, 6.22265 ) ]
 }
+tracks/7/type = "method"
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "superdive_inactive"
+} ]
+}
 
 [sub_resource type="Animation" id=12]
 resource_name = "dive_rest"
 length = 2.0
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -602,6 +617,23 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 1, 2 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "superdive_active"
+}, {
+"args": [  ],
+"method": "superdive_inactive"
+} ]
 }
 
 [sub_resource type="Animation" id=13]
@@ -2576,7 +2608,7 @@ states/walk/node = SubResource( 102 )
 states/walk/position = Vector2( 606.697, 154.872 )
 transitions = [ "idle", "crouch", SubResource( 103 ), "idle", "walk", SubResource( 104 ), "walk", "idle", SubResource( 105 ), "walk", "skid", SubResource( 106 ), "skid", "walk", SubResource( 107 ), "idle", "jump", SubResource( 108 ), "jump", "idle", SubResource( 109 ), "jump", "freefall", SubResource( 110 ), "freefall", "idle", SubResource( 111 ), "crouch", "end_crouch", SubResource( 112 ), "end_crouch", "idle", SubResource( 113 ), "idle", "throw", SubResource( 114 ), "throw", "idle", SubResource( 115 ), "idle", "dive", SubResource( 116 ), "dive", "end_dive", SubResource( 117 ), "end_dive", "idle", SubResource( 118 ), "idle", "power_get", SubResource( 119 ), "power_get", "idle", SubResource( 120 ), "idle", "refresh", SubResource( 121 ), "refresh", "idle", SubResource( 122 ), "idle", "bash", SubResource( 123 ), "end_bash", "idle", SubResource( 124 ), "walk", "jump", SubResource( 125 ), "bash", "end_bash", SubResource( 126 ), "end_dive", "jump", SubResource( 127 ), "run", "jump", SubResource( 128 ), "run", "skid", SubResource( 129 ), "walk", "run", SubResource( 130 ), "run", "walk", SubResource( 131 ), "run", "idle", SubResource( 132 ), "idle", "hurt", SubResource( 133 ), "hurt", "idle", SubResource( 134 ), "dive", "dive_rest", SubResource( 135 ), "dive_rest", "end_dive", SubResource( 136 ), "dive_rest", "dive", SubResource( 137 ) ]
 start_node = "idle"
-graph_offset = Vector2( 150.88, -171.44 )
+graph_offset = Vector2( 150.88, -157.02 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=139]
 
@@ -2595,8 +2627,7 @@ defaultPower = ExtResource( 37 )
 [node name="ScaleChildren" type="Node2D" parent="."]
 
 [node name="PlayerCore" type="Sprite" parent="ScaleChildren"]
-texture = ExtResource( 1 )
-hframes = 2
+texture = ExtResource( 24 )
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="ScaleChildren"]
@@ -2609,7 +2640,7 @@ texture = ExtResource( 39 )
 ]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScaleChildren/hurtbox"]
-position = Vector2( 0.5, -1.5 )
+position = Vector2( 0.5, 2.5 )
 shape = SubResource( 1 )
 
 [node name="hitbox" type="Area2D" parent="ScaleChildren" groups=[
@@ -2631,7 +2662,7 @@ shape = SubResource( 3 )
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.449, 2 )
+position = Vector2( 0.449, 4.75 )
 shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
