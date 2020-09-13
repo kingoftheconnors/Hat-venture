@@ -1,4 +1,4 @@
-extends Object
+class_name hardPower
 
 var blendValue = 4
 func name(): return "HardHat"

@@ -1,4 +1,4 @@
-extends Object
+class_name thorPower
 
 var blendValue = 3
 func name(): return "ThorHat"

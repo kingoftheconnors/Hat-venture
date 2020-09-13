@@ -8,9 +8,44 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Reference",
+"class": "brewingPower",
+"language": "GDScript",
+"path": "res://items/brewingPower.gd"
+}, {
+"base": "Reference",
+"class": "defaultPower",
+"language": "GDScript",
+"path": "res://items/defaultPower.gd"
+}, {
+"base": "Reference",
+"class": "hardPower",
+"language": "GDScript",
+"path": "res://items/hardPower.gd"
+}, {
+"base": "Reference",
+"class": "pon",
+"language": "GDScript",
+"path": "res://items/pon.gd"
+}, {
+"base": "Reference",
+"class": "runningPower",
+"language": "GDScript",
+"path": "res://items/runningPower.gd"
+}, {
+"base": "Reference",
+"class": "thorPower",
+"language": "GDScript",
+"path": "res://items/thorPower.gd"
+} ]
 _global_script_class_icons={
-
+"brewingPower": "",
+"defaultPower": "",
+"hardPower": "",
+"pon": "",
+"runningPower": "",
+"thorPower": ""
 }
 
 [application]

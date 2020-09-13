@@ -43,7 +43,7 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.5
-height = 0.0
+height = 6.5
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 4.0
@@ -54,7 +54,7 @@ radius = 4.0
 height = 15.0
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 4.545, 6.22265 )
+extents = Vector2( 4.545, 11 )
 
 [sub_resource type="Animation" id=5]
 length = 0.2
@@ -2627,7 +2627,8 @@ defaultPower = ExtResource( 37 )
 [node name="ScaleChildren" type="Node2D" parent="."]
 
 [node name="PlayerCore" type="Sprite" parent="ScaleChildren"]
-texture = ExtResource( 24 )
+texture = ExtResource( 1 )
+hframes = 2
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="ScaleChildren"]
@@ -2640,7 +2641,7 @@ texture = ExtResource( 39 )
 ]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScaleChildren/hurtbox"]
-position = Vector2( 0.5, 2.5 )
+position = Vector2( 0.5, -1.5 )
 shape = SubResource( 1 )
 
 [node name="hitbox" type="Area2D" parent="ScaleChildren" groups=[
@@ -2662,7 +2663,7 @@ shape = SubResource( 3 )
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.449, 4.75 )
+position = Vector2( 0.449, 2 )
 shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

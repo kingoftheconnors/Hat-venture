@@ -1,11 +1,10 @@
-extends Object
+class_name pon
 
 func power(body, this):
 	print("Collect pon!")
 	# TODO: Update GUI
 	
-	this.get_node("AnimationPlayer").play("collect")
-	return false
+	return true
 
 # Pons are not equipped as abilities, so so this isn't called
 func activate(body, animator):
@@ -16,9 +15,12 @@ func deactivate(body, animator):
 	pass
 
 func spawnFromBox(collidingBody):
+	# Get pon
+	power(null, null)
+	# Spawn Pon Animation
 	var pon = load("res://items/Resources/Pon.tscn")
-	var defeatedMafia = pon.instance()
-	defeatedMafia.set_position(Vector2(0, -16))
-	defeatedMafia.collect(collidingBody)
-	return defeatedMafia
+	var instancedPon = pon.instance()
+	instancedPon.set_position(Vector2(0, -16))
+	instancedPon.get_node("AnimationPlayer").play("collect")
+	return instancedPon
 

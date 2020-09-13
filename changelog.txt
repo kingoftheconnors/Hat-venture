@@ -42,39 +42,37 @@ Shoulder bash only ONCE in air
 Brew startup frame
 Brew arc tweak upwards
 Sliding resting animation :3
+Extended background so it could loop properly
 
 Debug mode (set power, reload scene, change gui)
 Crow
 Score GUI
+Pon collect animation simplified
+
+Fixed some closing-game-errors
 
 
 This sprint:
-Powers:
-Super dash animation
-*Stun time after bashing (if no combo)
-+Power cooldowns
-*Small animation signal each combo rocker
--Brew bottle explosion
-
-Misc:
-Pons
-Background vanish bug
-Pon sparkle animation
-Closing-game-errors
-Max Health changes?
+* Walk left breaking block error
 
 
 
 Backlog:
-* Score variations
+*Super dash animation
+*Stun time after bashing (if no combo)
+*Small animation signal each combo rocker
+-Brew bottle explosion
+* SPEEN
+
+* Pons
+* Max Health changes?
+* Score sources and uses
 * Skidding opposite bash direction glitch (cannot isolate?)
-* Power recharge timer
 * SFX!
 * De-equip animation
 * Brewing cap charging?
 * Hard Hat passive ability
 * Ease of tileset use
-* SPEEN
 * Celeste-level platformer-mercy:
     Bashing into a wall will check if it could slide up or down to ease around block
     Jumping into ceiling will check if it could slide left or right to ease around block

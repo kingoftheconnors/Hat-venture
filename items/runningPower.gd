@@ -1,4 +1,4 @@
-extends Object
+class_name runningPower
 
 var blendValue = 1
 func name(): return "RunningHat"

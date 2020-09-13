@@ -1,4 +1,4 @@
-extends Object
+class_name brewingPower
 
 var blendValue = 2
 func name(): return "Pon"

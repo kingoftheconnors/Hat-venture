@@ -1,4 +1,4 @@
-extends Object
+class_name defaultPower
 
 var blendValue = 0
 func name(): return "DefaultHat"

@@ -3,65 +3,55 @@
 [ext_resource path="res://items/Resources/getItem.gd" type="Script" id=1]
 [ext_resource path="res://items/pon.gd" type="Script" id=3]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 13.2705
-
 [sub_resource type="Animation" id=2]
 resource_name = "collect"
-length = 0.4
+length = 0.5
 step = 0.05
-tracks/0/type = "method"
-tracks/0/path = NodePath(".")
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Sprite:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.4 ),
+"points": PoolRealArray( 0, -0.25, 0, 0.0286251, -0.859758, -8, -0.25, 0, 0.0397349, 0.308223, 4, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.05, 0.25, 0.5 )
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "queue_free"
 } ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.05, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/2/type = "bezier"
-tracks/2/path = NodePath("Sprite:position:y")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.0286251, -0.859758, -8, -0.25, 0, 0.0397349, 0.308223, -0.205511, -0.0370072, -4.01895, 0.25, 0 ),
-"times": PoolRealArray( 0.05, 0.25, 0.4 )
-}
 
 [sub_resource type="StreamTexture" id=3]
 load_path = "res://.import/pon.png-d2599f77421495deb53a3265b0147403.stex"
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 7.0
 
 [node name="Pon" type="Node2D"]
 script = ExtResource( 1 )
 itemCommand = ExtResource( 3 )
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/collect = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.857143 )
+position = Vector2( 0, 4 )
 texture = SubResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
