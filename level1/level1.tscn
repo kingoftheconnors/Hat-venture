@@ -132,12 +132,10 @@ boxedItem = ExtResource( 10 )
 [node name="Block4" parent="." instance=ExtResource( 8 )]
 position = Vector2( 184, -48 )
 state = 1
-boxedItem = null
 
 [node name="Block5" parent="." instance=ExtResource( 8 )]
 position = Vector2( 120, -48 )
 state = 1
-boxedItem = null
 
 [node name="Block6" parent="." instance=ExtResource( 8 )]
 position = Vector2( 152, -104 )
@@ -149,82 +147,66 @@ boxedItem = ExtResource( 10 )
 [node name="Block9" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 608, -8 )
 state = 1
-boxedItem = null
 
 [node name="Block10" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 608, -24 )
 state = 1
-boxedItem = null
 
 [node name="Block11" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 608, -40 )
 state = 1
-boxedItem = null
 
 [node name="Block14" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 624, -8 )
 state = 1
-boxedItem = null
 
 [node name="Block13" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 624, -24 )
 state = 1
-boxedItem = null
 
 [node name="Block12" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 624, -40 )
 state = 1
-boxedItem = null
 
 [node name="Block17" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 640, -8 )
 state = 1
-boxedItem = null
 
 [node name="Block16" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 640, -24 )
 state = 1
-boxedItem = null
 
 [node name="Block15" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 640, -40 )
 state = 1
-boxedItem = null
 
 [node name="Block20" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 656, -8 )
 state = 1
-boxedItem = null
 
 [node name="Block19" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 656, -24 )
 state = 1
-boxedItem = null
 
 [node name="Block18" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 656, -40 )
 state = 1
-boxedItem = null
 
 [node name="Block23" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 672, -8 )
 state = 1
-boxedItem = null
 
 [node name="Block27" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 352, -8 )
 state = 1
-boxedItem = null
 
 [node name="Block28" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 352, -24 )
 state = 1
-boxedItem = null
 
 [node name="Block29" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 400, -48 )
 state = 1
-boxedItem = null
 
 [node name="Block31" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 400, -80 )
@@ -234,37 +216,30 @@ boxedItem = ExtResource( 10 )
 [node name="Block32" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 504, -8 )
 state = 1
-boxedItem = null
 
 [node name="Block30" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 400, -64 )
 state = 1
-boxedItem = null
 
 [node name="Block22" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 672, -24 )
 state = 1
-boxedItem = null
 
 [node name="Block21" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 672, -40 )
 state = 1
-boxedItem = null
 
 [node name="Block26" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 688, -8 )
 state = 1
-boxedItem = null
 
 [node name="Block25" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 688, -24 )
 state = 1
-boxedItem = null
 
 [node name="Block24" parent="Node" instance=ExtResource( 8 )]
 position = Vector2( 688, -40 )
 state = 1
-boxedItem = null
 
 [node name="Crow" parent="." instance=ExtResource( 14 )]
 position = Vector2( 504, -32 )

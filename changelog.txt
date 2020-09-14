@@ -36,24 +36,18 @@ Crouch doesn't stop movement in air
 Friction decreased slightly
 Particles rotate flip-wise and use image from original mockup for block shatter
 Updated breakables image to match mockup
-
 Super dash speed boost
 Shoulder bash only ONCE in air
 Brew startup frame
 Brew arc tweak upwards
 Sliding resting animation :3
 Extended background so it could loop properly
-
 Debug mode (set power, reload scene, change gui)
 Crow
 Score GUI
 Pon collect animation simplified
-
 Fixed some closing-game-errors
-
-
-This sprint:
-* Walk left breaking block error
+Walk left breaking block error
 
 
 

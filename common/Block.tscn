@@ -153,7 +153,6 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 collision_layer = 3
 script = ExtResource( 2 )
 state = 3
-boxedItem = 1
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
