@@ -167,8 +167,10 @@ func move():
 		
 	if position.x < camera.limit_left:
 		position.x = camera.limit_left
+		velo.x = max(0, velo.x)
 	if position.x > camera.limit_right:
 		position.x = camera.limit_right
+		velo.x = min(0, velo.x)
 
 func calc_direc(ui_direc, cur_speed, speed = SPEED):
 	if ui_direc > 0 and cur_speed >= ui_direc*SPEED*.9: # Accelerate right
@@ -237,11 +239,12 @@ func _unhandled_input(event):
 	if !frozen:
 		# This will run once on the frame when the action is first pressed
 		if event.is_action_pressed("ui_A"):
-			holding_jump = true
-			if is_on_floor() or coyoteTimer > 0 or climbing or (diving and dive_jump):
-				jump()
-			else:
-				jump_timer = 10
+			if !bashing:
+				holding_jump = true
+				if is_on_floor() or coyoteTimer > 0 or climbing or (diving and dive_jump):
+					jump()
+				else:
+					jump_timer = 10
 		
 		if event.is_action_released("ui_A"):
 			if holding_jump and velo.y < 0:
@@ -250,7 +253,6 @@ func _unhandled_input(event):
 			holding_jump = false
 			jump_timer = 0
 		
-		# Don't allow crouching while automoving
 		if event.is_action_pressed("ui_crouch"):
 			crouching = true
 			animator["parameters/playback"].travel("crouch")
@@ -288,7 +290,7 @@ func start_run():
 	
 func stop_run():
 	max_velo = MAX_SPEED
-	
+
 func dive():
 	if dive_jump and !diving:
 		diving = true
@@ -321,9 +323,9 @@ func upgrade_smash():
 func unbash():
 	if animator["parameters/playback"].get_current_node() == "bash":
 		animator["parameters/playback"].start("end_bash")
-	if velo.x > 0:
+	if velo.x > max_velo:
 		velo.x = max(MAX_SPEED, velo.x - (max_velo - MAX_SPEED))
-	else:
+	elif velo.x < -max_velo:
 		velo.x = min(-MAX_SPEED, velo.x + (max_velo - MAX_SPEED))
 	max_velo = MAX_SPEED
 	bashing = false

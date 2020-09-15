@@ -12,9 +12,12 @@ func get_damage():
 		print("WARNING: Getting 0 damage from " + self.name)
 	return damage
 
-func damage():
+func damage(isStomp):
 	emit_signal("hurt")
-	animator["parameters/playback"].travel("die")
+	if isStomp:
+		animator["parameters/playback"].travel("smash")
+	else:
+		animator["parameters/playback"].travel("die")
 	# Always die, so always true
 	return true
 

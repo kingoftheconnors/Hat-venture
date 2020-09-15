@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "blastDying",
+"language": "GDScript",
+"path": "res://enemy/Scripts/blastDying.gd"
+}, {
+"base": "Reference",
 "class": "brewingPower",
 "language": "GDScript",
 "path": "res://items/brewingPower.gd"
@@ -23,6 +28,16 @@ _global_script_classes=[ {
 "class": "hardPower",
 "language": "GDScript",
 "path": "res://items/hardPower.gd"
+}, {
+"base": "Reference",
+"class": "lemming",
+"language": "GDScript",
+"path": "res://enemy/Scripts/lemming.gd"
+}, {
+"base": "Reference",
+"class": "paraenemy",
+"language": "GDScript",
+"path": "res://enemy/Scripts/paraenemy.gd"
 }, {
 "base": "Reference",
 "class": "pon",
@@ -40,9 +55,12 @@ _global_script_classes=[ {
 "path": "res://items/thorPower.gd"
 } ]
 _global_script_class_icons={
+"blastDying": "",
 "brewingPower": "",
 "defaultPower": "",
 "hardPower": "",
+"lemming": "",
+"paraenemy": "",
 "pon": "",
 "runningPower": "",
 "thorPower": ""

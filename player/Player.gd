@@ -20,7 +20,7 @@ signal dead
 func _unhandled_input(event):
 	if Constants.DEBUG_MODE:
 		if event is InputEventKey and event.pressed and event.scancode == KEY_BRACELEFT:
-			damage()
+			damage(false)
 		if event is InputEventKey and event.pressed and event.scancode == KEY_BRACERIGHT:
 			heal()
 
@@ -37,7 +37,7 @@ func _on_hitbox_area_entered(area):
 		if area.is_in_group("hurtbox"):
 			# Play sound effect
 			#jump_enem_sfx.play()
-			area.get_parent().damage()
+			area.get_parent().damage(true)
 			# Jump up by damage amount
 			controller.bounce()
 
@@ -45,7 +45,7 @@ func _on_hurtbox_area_entered(area):
 	if area.is_in_group("hitbox") and invincibility_frames <= 0 and area.get_parent() != get_parent():
 		var damage = area.get_parent().get_damage()
 		# TODO: Play sound effect
-		damage(damage)
+		damage(false, damage)
 		animator['parameters/playback'].travel('hurt')
 		# Bounce back
 	elif area.is_in_group("ladder"):
@@ -55,7 +55,7 @@ func _on_bashbox_body_entered(body):
 	if not body.is_in_group("player"):
 		if body.has_method("damage"):
 			# TODO: Play sound effect
-			var destroyed = body.damage()
+			var destroyed = body.damage(false)
 			controller.upgrade_smash()
 			if destroyed:
 				return
@@ -64,7 +64,7 @@ func _on_bashbox_body_entered(body):
 		controller.push(direc)
 		controller.unbash()
 
-func damage(damage = 1):
+func damage(isStomp, damage = 1):
 	turn_invincibilty(true)
 	health -= damage
 	Gui.update_health(health, MAX_HEALTH)

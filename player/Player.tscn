@@ -144,7 +144,7 @@ tracks/6/keys = {
 "values": [ 5.5 ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("CollisionShape2D:disabled")
+tracks/7/path = NodePath("ScaleChildren/hurtbox/CollisionShape2D:disabled")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -156,7 +156,7 @@ tracks/7/keys = {
 "values": [ true ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("ScaleChildren/hurtbox/CollisionShape2D:disabled")
+tracks/8/path = NodePath("CollisionShape2D:disabled")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -702,7 +702,7 @@ tracks/4/keys = {
 } ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("CollisionShape2D:disabled")
+tracks/5/path = NodePath("ScaleChildren/hurtbox/CollisionShape2D:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -714,7 +714,7 @@ tracks/5/keys = {
 "values": [ false ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("ScaleChildren/hurtbox/CollisionShape2D:disabled")
+tracks/6/path = NodePath("CollisionShape2D:disabled")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -727,7 +727,7 @@ tracks/6/keys = {
 }
 
 [sub_resource type="Animation" id=14]
-length = 0.05
+length = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("CollisionShape2D:position")
 tracks/0/interp = 1
@@ -2608,7 +2608,7 @@ states/walk/node = SubResource( 102 )
 states/walk/position = Vector2( 606.697, 154.872 )
 transitions = [ "idle", "crouch", SubResource( 103 ), "idle", "walk", SubResource( 104 ), "walk", "idle", SubResource( 105 ), "walk", "skid", SubResource( 106 ), "skid", "walk", SubResource( 107 ), "idle", "jump", SubResource( 108 ), "jump", "idle", SubResource( 109 ), "jump", "freefall", SubResource( 110 ), "freefall", "idle", SubResource( 111 ), "crouch", "end_crouch", SubResource( 112 ), "end_crouch", "idle", SubResource( 113 ), "idle", "throw", SubResource( 114 ), "throw", "idle", SubResource( 115 ), "idle", "dive", SubResource( 116 ), "dive", "end_dive", SubResource( 117 ), "end_dive", "idle", SubResource( 118 ), "idle", "power_get", SubResource( 119 ), "power_get", "idle", SubResource( 120 ), "idle", "refresh", SubResource( 121 ), "refresh", "idle", SubResource( 122 ), "idle", "bash", SubResource( 123 ), "end_bash", "idle", SubResource( 124 ), "walk", "jump", SubResource( 125 ), "bash", "end_bash", SubResource( 126 ), "end_dive", "jump", SubResource( 127 ), "run", "jump", SubResource( 128 ), "run", "skid", SubResource( 129 ), "walk", "run", SubResource( 130 ), "run", "walk", SubResource( 131 ), "run", "idle", SubResource( 132 ), "idle", "hurt", SubResource( 133 ), "hurt", "idle", SubResource( 134 ), "dive", "dive_rest", SubResource( 135 ), "dive_rest", "end_dive", SubResource( 136 ), "dive_rest", "dive", SubResource( 137 ) ]
 start_node = "idle"
-graph_offset = Vector2( 150.88, -157.02 )
+graph_offset = Vector2( 150.88, -118.736 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=139]
 
@@ -2638,6 +2638,7 @@ texture = ExtResource( 39 )
 
 [node name="hurtbox" type="Area2D" parent="ScaleChildren" groups=[
 "hurtbox",
+"player",
 ]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScaleChildren/hurtbox"]
@@ -2646,6 +2647,7 @@ shape = SubResource( 1 )
 
 [node name="hitbox" type="Area2D" parent="ScaleChildren" groups=[
 "hitbox",
+"player",
 ]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScaleChildren/hitbox"]
@@ -2655,6 +2657,7 @@ shape = SubResource( 2 )
 
 [node name="bashbox" type="Area2D" parent="ScaleChildren" groups=[
 "hitbox",
+"player",
 ]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScaleChildren/bashbox"]

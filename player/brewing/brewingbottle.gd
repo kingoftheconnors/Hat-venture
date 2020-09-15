@@ -14,5 +14,5 @@ func _physics_process(delta):
 func _on_Area2D_body_entered(body):
 	if not body.is_in_group("player"):
 		if body.has_method("damage"):
-			body.damage()
+			body.damage(false)
 		queue_free()

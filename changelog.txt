@@ -50,23 +50,31 @@ Fixed some closing-game-errors
 Walk left breaking block error
 
 
+0.1.5
+Fixed turning on edge of level-bug
+Fixed bashing on edge of level-bug
+Fixed bash-and-jump with hard hat glitch
+Enemies doing a flip death instead of smash death on certain attacks
+
+This sprint:
+No freeze on picking up hat you already have
+Getting power during bash-and-dive causes vertical weirdness
+Stun time after bashing (if no combo)
+Death & Lives
+Ease of tileset use
 
 Backlog:
 *Super dash animation
-*Stun time after bashing (if no combo)
 *Small animation signal each combo rocker
 -Brew bottle explosion
 * SPEEN
-
-* Pons
-* Max Health changes?
+* De-equip animation
+* Pons GUI
 * Score sources and uses
 * Skidding opposite bash direction glitch (cannot isolate?)
 * SFX!
-* De-equip animation
 * Brewing cap charging?
 * Hard Hat passive ability
-* Ease of tileset use
 * Celeste-level platformer-mercy:
     Bashing into a wall will check if it could slide up or down to ease around block
     Jumping into ceiling will check if it could slide left or right to ease around block

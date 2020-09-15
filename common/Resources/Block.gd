@@ -49,5 +49,5 @@ func collide(collision, collidingBody):
 		and abs(global_position.x - collision.position.x) <= 8:
 		hit(collidingBody)
 
-func damage():
+func damage(isStomp):
 	return hit(null)

@@ -3,7 +3,7 @@
 [ext_resource path="res://items/Resources/getItem.gd" type="Script" id=1]
 [ext_resource path="res://items/pon.gd" type="Script" id=3]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=4]
 resource_name = "collect"
 length = 0.35
 step = 0.05
@@ -32,10 +32,10 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="StreamTexture" id=3]
+[sub_resource type="StreamTexture" id=2]
 load_path = "res://.import/pon.png-d2599f77421495deb53a3265b0147403.stex"
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=3]
 radius = 7.0
 
 [node name="Pon" type="Node2D"]
@@ -43,14 +43,15 @@ script = ExtResource( 1 )
 itemCommand = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/collect = SubResource( 2 )
+anims/collect = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.857143 )
-texture = SubResource( 3 )
+texture = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
