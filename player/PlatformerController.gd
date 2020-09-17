@@ -26,6 +26,7 @@ const MAX_RUNNING_SPEED = 200
 # BASH
 var can_bash = false
 var bashing = false
+var bashing_combo = false
 const BASH_SPEED = 215
 const BASH_ACCELERATION = 10
 
@@ -80,6 +81,11 @@ func move():
 	var horizontal = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"))
 	var vertical = (Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"))
 	
+	if _stun > 0:
+		horizontal = 0
+		vertical = 0
+		_stun -= 1
+	
 	if frozen or diving:
 		horizontal = 0; vertical = 0
 	if crouching and is_on_floor() and !speeding:
@@ -102,37 +108,33 @@ func move():
 		else:
 			direction = -1
 		scale_manager.scale = Vector2(direction, 1)
+
+	# Basic movement
+	velo.x = calc_direc(horizontal, velo.x)
 	
-	# Stun
-	if _stun <= 0:
-		# Basic movement
-		velo.x = calc_direc(horizontal, velo.x)
-		
-		# Animating
-		if horizontal != 0:
-			animator["parameters/conditions/walking"] = true
-			animator["parameters/conditions/not_walking"] = false
-			animator["parameters/run/TimeScale/scale"] = .5 + abs(velo.x)/MAX_RUNNING_SPEED
-		else:
-			animator["parameters/conditions/walking"] = false
-			animator["parameters/conditions/not_walking"] = true
-		
-		if velo.x * horizontal < 0:
-			animator["parameters/conditions/skidding"] = true
-			animator["parameters/conditions/not_skidding"] = false
-		else:
-			animator["parameters/conditions/skidding"] = false
-			animator["parameters/conditions/not_skidding"] = true
-		
-		if diving:
-			if is_on_floor():
-				animator["parameters/conditions/dive_resting"] = true
-				animator["parameters/conditions/not_dive_resting"] = false
-			else:
-				animator["parameters/conditions/dive_resting"] = false
-				animator["parameters/conditions/not_dive_resting"] = true
+	# Animating
+	if horizontal != 0:
+		animator["parameters/conditions/walking"] = true
+		animator["parameters/conditions/not_walking"] = false
+		animator["parameters/run/TimeScale/scale"] = .5 + abs(velo.x)/MAX_RUNNING_SPEED
 	else:
-		_stun -= 1
+		animator["parameters/conditions/walking"] = false
+		animator["parameters/conditions/not_walking"] = true
+	
+	if velo.x * horizontal < 0:
+		animator["parameters/conditions/skidding"] = true
+		animator["parameters/conditions/not_skidding"] = false
+	else:
+		animator["parameters/conditions/skidding"] = false
+		animator["parameters/conditions/not_skidding"] = true
+	
+	if diving:
+		if is_on_floor():
+			animator["parameters/conditions/dive_resting"] = true
+			animator["parameters/conditions/not_dive_resting"] = false
+		else:
+			animator["parameters/conditions/dive_resting"] = false
+			animator["parameters/conditions/not_dive_resting"] = true
 	
 	#Gravity
 	if !climbing and !frozen and !bashing:
@@ -319,16 +321,21 @@ func upgrade_smash():
 		max_velo += BASH_ACCELERATION
 		velo = Vector2(direction * max_velo, 1)
 		animator["parameters/playback"].start("bash")
+		bashing_combo = true
 
 func unbash():
-	if velo.x > max_velo:
-		velo.x = max(MAX_SPEED, velo.x - (max_velo - MAX_SPEED))
-	elif velo.x < -max_velo:
-		velo.x = min(-MAX_SPEED, velo.x + (max_velo - MAX_SPEED))
-	max_velo = MAX_SPEED
-	bashing = false
-	speeding = false
-	# TODO: Set recharge
+	if bashing:
+		if velo.x > max_velo:
+			velo.x = max(MAX_SPEED, velo.x - (max_velo - MAX_SPEED))
+		elif velo.x < -max_velo:
+			velo.x = min(-MAX_SPEED, velo.x + (max_velo - MAX_SPEED))
+		max_velo = MAX_SPEED
+		bashing = false
+		speeding = false
+		if bashing_combo == false:
+			stun(10)
+		bashing_combo = false
+		# TODO: Set recharge
 
 func bounce():
 	var direc = Vector2(0, -BOUNCE_FORCE)

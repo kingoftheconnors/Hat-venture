@@ -56,14 +56,14 @@ Fixed bashing on edge of level-bug
 Fixed bash-and-jump with hard hat glitch
 Enemies doing a flip death instead of smash death on certain attacks
 Picking up pons during bash works properly
+Player no longer freezes on picking up hat they already have
+Picking up powers interrupting bash
+Stun time after bashing (if no combo)
 
 This sprint:
-Picking up powers interrupting bash
-No freeze on picking up hat you already have
-Getting power during bash-and-dive causes vertical weirdness
-Stun time after bashing (if no combo)
-Death & Lives
 Ease of tileset use
+Death & Lives
+Checkpoints
 
 Backlog:
 * SPEEN
