@@ -55,8 +55,10 @@ Fixed turning on edge of level-bug
 Fixed bashing on edge of level-bug
 Fixed bash-and-jump with hard hat glitch
 Enemies doing a flip death instead of smash death on certain attacks
+Picking up pons during bash works properly
 
 This sprint:
+Picking up powers interrupting bash
 No freeze on picking up hat you already have
 Getting power during bash-and-dive causes vertical weirdness
 Stun time after bashing (if no combo)
@@ -64,13 +66,7 @@ Death & Lives
 Ease of tileset use
 
 Backlog:
-*Super dash animation
-*Small animation signal each combo rocker
--Brew bottle explosion
 * SPEEN
-* De-equip animation
-* Pons GUI
-* Score sources and uses
 * Skidding opposite bash direction glitch (cannot isolate?)
 * SFX!
 * Brewing cap charging?
@@ -78,3 +74,11 @@ Backlog:
 * Celeste-level platformer-mercy:
     Bashing into a wall will check if it could slide up or down to ease around block
     Jumping into ceiling will check if it could slide left or right to ease around block
+
+Waiting on Ang:
+*Super dash animation
+*Small animation signal each combo rocker
+-Brew bottle explosion
+* De-equip animation
+* Pons GUI
+* Score sources and uses

@@ -1,4 +1,4 @@
-[gd_scene load_steps=180 format=2]
+[gd_scene load_steps=183 format=2]
 
 [ext_resource path="res://player/regular/idle.png" type="Texture" id=1]
 [ext_resource path="res://player/PlatformerController.gd" type="Script" id=2]
@@ -2249,6 +2249,9 @@ animation = "dive_rest"
 [sub_resource type="AnimationNodeAnimation" id=58]
 animation = "end_bash"
 
+[sub_resource type="AnimationNodeAnimation" id=140]
+animation = "end_bash"
+
 [sub_resource type="AnimationNodeAnimation" id=59]
 animation = "end_crouch"
 
@@ -2536,6 +2539,7 @@ advance_condition = "jumping"
 [sub_resource type="AnimationNodeStateMachineTransition" id=126]
 switch_mode = 2
 auto_advance = true
+priority = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=127]
 switch_mode = 2
@@ -2571,6 +2575,12 @@ advance_condition = "jumping"
 [sub_resource type="AnimationNodeStateMachineTransition" id=137]
 advance_condition = "not_dive_resting"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=141]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=142]
+
 [sub_resource type="AnimationNodeStateMachine" id=138]
 states/bash/node = SubResource( 49 )
 states/bash/position = Vector2( 489.697, -156.681 )
@@ -2582,6 +2592,8 @@ states/dive_rest/node = SubResource( 57 )
 states/dive_rest/position = Vector2( 281.697, -74.4237 )
 states/end_bash/node = SubResource( 58 )
 states/end_bash/position = Vector2( 489.697, -74.4237 )
+states/end_bashes/node = SubResource( 140 )
+states/end_bashes/position = Vector2( 489.697, -74.4237 )
 states/end_crouch/node = SubResource( 59 )
 states/end_crouch/position = Vector2( 796.697, 4.944 )
 states/end_dive/node = SubResource( 60 )
@@ -2606,9 +2618,9 @@ states/throw/node = SubResource( 96 )
 states/throw/position = Vector2( 606.697, -156.681 )
 states/walk/node = SubResource( 102 )
 states/walk/position = Vector2( 606.697, 154.872 )
-transitions = [ "idle", "crouch", SubResource( 103 ), "idle", "walk", SubResource( 104 ), "walk", "idle", SubResource( 105 ), "walk", "skid", SubResource( 106 ), "skid", "walk", SubResource( 107 ), "idle", "jump", SubResource( 108 ), "jump", "idle", SubResource( 109 ), "jump", "freefall", SubResource( 110 ), "freefall", "idle", SubResource( 111 ), "crouch", "end_crouch", SubResource( 112 ), "end_crouch", "idle", SubResource( 113 ), "idle", "throw", SubResource( 114 ), "throw", "idle", SubResource( 115 ), "idle", "dive", SubResource( 116 ), "dive", "end_dive", SubResource( 117 ), "end_dive", "idle", SubResource( 118 ), "idle", "power_get", SubResource( 119 ), "power_get", "idle", SubResource( 120 ), "idle", "refresh", SubResource( 121 ), "refresh", "idle", SubResource( 122 ), "idle", "bash", SubResource( 123 ), "end_bash", "idle", SubResource( 124 ), "walk", "jump", SubResource( 125 ), "bash", "end_bash", SubResource( 126 ), "end_dive", "jump", SubResource( 127 ), "run", "jump", SubResource( 128 ), "run", "skid", SubResource( 129 ), "walk", "run", SubResource( 130 ), "run", "walk", SubResource( 131 ), "run", "idle", SubResource( 132 ), "idle", "hurt", SubResource( 133 ), "hurt", "idle", SubResource( 134 ), "dive", "dive_rest", SubResource( 135 ), "dive_rest", "end_dive", SubResource( 136 ), "dive_rest", "dive", SubResource( 137 ) ]
+transitions = [ "idle", "crouch", SubResource( 103 ), "idle", "walk", SubResource( 104 ), "walk", "idle", SubResource( 105 ), "walk", "skid", SubResource( 106 ), "skid", "walk", SubResource( 107 ), "idle", "jump", SubResource( 108 ), "jump", "idle", SubResource( 109 ), "jump", "freefall", SubResource( 110 ), "freefall", "idle", SubResource( 111 ), "crouch", "end_crouch", SubResource( 112 ), "end_crouch", "idle", SubResource( 113 ), "idle", "throw", SubResource( 114 ), "throw", "idle", SubResource( 115 ), "idle", "dive", SubResource( 116 ), "dive", "end_dive", SubResource( 117 ), "end_dive", "idle", SubResource( 118 ), "idle", "power_get", SubResource( 119 ), "power_get", "idle", SubResource( 120 ), "idle", "refresh", SubResource( 121 ), "refresh", "idle", SubResource( 122 ), "idle", "bash", SubResource( 123 ), "end_bash", "idle", SubResource( 124 ), "walk", "jump", SubResource( 125 ), "bash", "end_bash", SubResource( 126 ), "end_dive", "jump", SubResource( 127 ), "run", "jump", SubResource( 128 ), "run", "skid", SubResource( 129 ), "walk", "run", SubResource( 130 ), "run", "walk", SubResource( 131 ), "run", "idle", SubResource( 132 ), "idle", "hurt", SubResource( 133 ), "hurt", "idle", SubResource( 134 ), "dive", "dive_rest", SubResource( 135 ), "dive_rest", "end_dive", SubResource( 136 ), "dive_rest", "dive", SubResource( 137 ), "end_bashes", "idle", SubResource( 141 ), "bash", "end_bashes", SubResource( 142 ) ]
 start_node = "idle"
-graph_offset = Vector2( 150.88, -118.736 )
+graph_offset = Vector2( 150.88, -214.297 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=139]
 

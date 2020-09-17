@@ -13,6 +13,9 @@ func activate(body, animator):
 func deactivate(body, animator):
 	pass
 
+func force_deactivate(body, animator):
+	body.unbash()
+
 func spawnFromBox(collidingBody):
 	var hardhat = load("res://items/Resources/HardHat.tscn")
 	var hat = hardhat.instance()

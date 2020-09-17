@@ -321,8 +321,6 @@ func upgrade_smash():
 		animator["parameters/playback"].start("bash")
 
 func unbash():
-	if animator["parameters/playback"].get_current_node() == "bash":
-		animator["parameters/playback"].start("end_bash")
 	if velo.x > max_velo:
 		velo.x = max(MAX_SPEED, velo.x - (max_velo - MAX_SPEED))
 	elif velo.x < -max_velo:

@@ -17,6 +17,9 @@ func deactivate(body, animator):
 	animator["parameters/conditions/not_running"] = true
 	body.stop_run()
 
+func force_deactivate(body, animator):
+	deactivate(body, animator)
+
 func spawnFromBox(collidingBody):
 	var runnerhat = load("res://items/Resources/RunnerHat.tscn")
 	var hat = runnerhat.instance()

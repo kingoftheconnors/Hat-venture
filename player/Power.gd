@@ -9,13 +9,13 @@ onready var power = defaultPower.new()
 const POWER_BASE_HP = 2
 var power_hp = POWER_BASE_HP
 
-# Called when the node enters the scene tree for the first time.
 func set_power(powerType):
-	power.deactivate(platformController, animator)
-	power = powerType
-	power_hp = POWER_BASE_HP
-	updatePowerValues()
-	animator["parameters/playback"].travel("power_get")
+	if powerType.name() != power.name():
+		power.force_deactivate(platformController, animator)
+		power = powerType
+		power_hp = POWER_BASE_HP
+		updatePowerValues()
+		animator["parameters/playback"].travel("power_get")
 
 func updatePowerValues():
 	animator["parameters/crouch/blend_position"] = int(power.blendValue)

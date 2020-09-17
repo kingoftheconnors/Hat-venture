@@ -42,7 +42,6 @@ func hit(collidingBody):
 	return false
 
 func collide(collision, collidingBody):
-	print(collision.travel)
 	if collision.normal.y > 0 \
 		and collision.travel.y < -0.25 \
 		and collision.position.y >= global_position.y + 7.9 \
