@@ -47,7 +47,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "lemming",
 "language": "GDScript",
-"path": "res://enemy/hen/lemming.gd"
+"path": "res://enemy/Scripts/lemming.gd"
 }, {
 "base": "Reference",
 "class": "paraenemy",
