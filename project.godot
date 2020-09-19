@@ -30,6 +30,11 @@ _global_script_classes=[ {
 "path": "res://items/hardPower.gd"
 }, {
 "base": "Reference",
+"class": "hpon",
+"language": "GDScript",
+"path": "res://items/HPon.gd"
+}, {
+"base": "Reference",
 "class": "lemming",
 "language": "GDScript",
 "path": "res://enemy/Scripts/lemming.gd"
@@ -59,6 +64,7 @@ _global_script_class_icons={
 "brewingPower": "",
 "defaultPower": "",
 "hardPower": "",
+"hpon": "",
 "lemming": "",
 "paraenemy": "",
 "pon": "",

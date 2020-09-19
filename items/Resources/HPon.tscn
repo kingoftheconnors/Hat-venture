@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://items/Resources/getItem.gd" type="Script" id=1]
+[ext_resource path="res://items/HPon.gd" type="Script" id=2]
+[ext_resource path="res://items/Resources/hpon.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "collect"
+length = 0.35
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Sprite:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.017295, -5.06503, -8, -0.1, 0, 0.0969265, 0.958139, 4, -0.0159007, -5.68349, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 0.35 )
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.35 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 7.0
+
+[node name="HPon" type="Node2D"]
+script = ExtResource( 1 )
+itemCommand = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/collect = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.857143 )
+texture = ExtResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

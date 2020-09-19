@@ -86,7 +86,7 @@ func damage(isStomp, damage = 1):
 	return true
 
 func heal(amo = 1):
-	health += amo
+	health = min(health + amo, MAX_HEALTH)
 	Gui.update_health(health, MAX_HEALTH)
 
 func turn_invincibilty(flag):

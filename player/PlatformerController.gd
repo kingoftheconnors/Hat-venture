@@ -223,7 +223,11 @@ func manage_flags():
 	
 	if jump_timer > 0:
 		jump_timer -= 1
-		if is_on_floor():
+		if _stun <= 0 \
+			and (is_on_floor() \
+				or coyoteTimer > 0 \
+				or climbing \
+				or (diving and dive_jump)):
 			jump()
 
 func refresh_flags():
@@ -242,10 +246,7 @@ func _unhandled_input(event):
 		if event.is_action_pressed("ui_A"):
 			if !bashing:
 				holding_jump = true
-				if is_on_floor() or coyoteTimer > 0 or climbing or (diving and dive_jump):
-					jump()
-				else:
-					jump_timer = 10
+				jump_timer = 10
 		
 		if event.is_action_released("ui_A"):
 			if holding_jump and velo.y < 0:
@@ -306,7 +307,7 @@ func superdive_inactive():
 	superdive_window = false
 
 func bash():
-	if !bashing and can_bash:
+	if !bashing and can_bash and _stun <= 0:
 		can_bash = false
 		bashing = true
 		speeding = true
@@ -385,3 +386,8 @@ func create_skid():
 		skid.init(direction)
 		skid.position += position + $ScaleChildren/hitbox/CollisionShape2D.position
 		get_parent().add_child(skid)
+
+func damage(isStomp, amount = 1):
+	$ScaleChildren/PlayerCore.damage(isStomp, amount)
+func heal(amount = 1):
+	$ScaleChildren/PlayerCore.heal(amount)

@@ -59,13 +59,15 @@ Picking up pons during bash works properly
 Player no longer freezes on picking up hat they already have
 Picking up powers interrupting bash
 Stun time after bashing (if no combo)
+Ease of tileset use
+Health Pons
 
 This sprint:
-Ease of tileset use
+Health Pons
 Checkpoints
-SPEEN
 
 Backlog:
+* SPEEN
 * SFX!
 * Brewing cap charging?
 * Hard Hat passive ability

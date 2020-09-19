@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hpon.png-3ab16b9932622dcfe6a3e42734621e88.stex"
+path="res://.import/powerblocks.png-eebff1a11d9e27f3dc2c4222426fcf58.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/Resources/hpon.png"
-dest_files=[ "res://.import/hpon.png-3ab16b9932622dcfe6a3e42734621e88.stex" ]
+source_file="res://common/powerblocks.png"
+dest_files=[ "res://.import/powerblocks.png-eebff1a11d9e27f3dc2c4222426fcf58.stex" ]
 
 [params]
 
