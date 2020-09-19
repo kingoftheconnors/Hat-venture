@@ -64,13 +64,26 @@ func _on_bashbox_body_entered(body):
 		controller.push(direc)
 		controller.unbash()
 
+func cliff_damage():
+	print("cliff damage")
+	var dead = damage(false)
+	if !dead:
+		controller.reset_position()
+
 func damage(isStomp, damage = 1):
-	turn_invincibilty(true)
-	health -= damage
-	Gui.update_health(health, MAX_HEALTH)
-	emit_signal("hurt")
-	# Player doesn't die unless game ends, so always return false
-	return false
+	if health > 0:
+		turn_invincibilty(true)
+		health -= damage
+		Gui.update_health(health, MAX_HEALTH)
+		emit_signal("hurt")
+		# Player doesn't die unless game ends, so always return false
+		print(health)
+		if health <= 0:
+			die()
+			return true
+		else:
+			return false
+	return true
 
 func heal(amo = 1):
 	health += amo
@@ -95,4 +108,4 @@ func _on_hurtbox_area_exited(area):
 
 func die():
 	emit_signal("dead")
-	get_tree().quit()
+	LevelLoader.die()

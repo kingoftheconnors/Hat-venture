@@ -15,8 +15,13 @@ signal textbox_end
 
 var score = 0
 
+func hide():
+	gui.visible = false
+func show():
+	gui.visible = true
+
 func start(stageNum):
-	stageName.text = "stage" + stageNum
+	stageName.text = "stage" + str(stageNum)
 	energy.value = 4
 
 func update_health(value, max_value):
@@ -27,8 +32,11 @@ func heal():
 	energy.value = energy.value + 1
 
 func death():
-	energy.value = 0
-	lives.text = int(lives.text) - 1
+	energy.value = 4
+	lives.text = str(int(lives.text) - 1)
+	
+func getNumLives():
+	return lives.text
 
 func startBossBattle(life):
 	bossEnergy.value = life
@@ -62,7 +70,7 @@ func _process(delta):
 	elif text_to_run.size() > 0:
 		var next_box = text_to_run.pop_front()
 		start_dialog(next_box.name, next_box.text)
-	else:
+	elif dialog.visible == true:
 		end_dialog()
 
 func _unhandled_input(event):

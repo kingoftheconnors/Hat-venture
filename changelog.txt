@@ -62,12 +62,10 @@ Stun time after bashing (if no combo)
 
 This sprint:
 Ease of tileset use
-Death & Lives
 Checkpoints
+SPEEN
 
 Backlog:
-* SPEEN
-* Skidding opposite bash direction glitch (cannot isolate?)
 * SFX!
 * Brewing cap charging?
 * Hard Hat passive ability
@@ -76,6 +74,7 @@ Backlog:
     Jumping into ceiling will check if it could slide left or right to ease around block
 
 Waiting on Ang:
+*Death animation
 *Super dash animation
 *Small animation signal each combo rocker
 -Brew bottle explosion

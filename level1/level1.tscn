@@ -12,7 +12,7 @@
 [ext_resource path="res://items/pon.gd" type="Script" id=10]
 [ext_resource path="res://items/brewingPower.gd" type="Script" id=11]
 [ext_resource path="res://items/runningPower.gd" type="Script" id=12]
-[ext_resource path="res://items/hardPower.gd" type="Script" id=13]
+[ext_resource path="res://items/thorPower.gd" type="Script" id=13]
 [ext_resource path="res://enemy/crow/Crow.tscn" type="PackedScene" id=14]
 
 [node name="Level" type="Node2D"]

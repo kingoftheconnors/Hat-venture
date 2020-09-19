@@ -6,6 +6,7 @@ export(int) var right = 32
 export(int) var up = 32
 export(int) var down = 32
 export(Color, RGB) var col
+export(int) var stageNum = 1
 
 var prev_left = 0
 var prev_right = 0
@@ -22,6 +23,7 @@ var prev_down = 0
 
 func _ready():
 	VisualServer.set_default_clear_color(col)
+	Gui.start(stageNum)
 
 func _process(_delta):
 	if prev_left != left or prev_right != right \

@@ -165,7 +165,6 @@ func move():
 	
 	if position.y > camera.limit_bottom:
 		emit_signal("off_cliff")
-		reset_position()
 		
 	if position.x < camera.limit_left:
 		position.x = camera.limit_left

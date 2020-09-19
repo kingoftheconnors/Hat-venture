@@ -76,6 +76,7 @@ config/icon="res://icon.png"
 
 Constants="*res://constants/GameConstants.tscn"
 Gui="*res://gui/gui.tscn"
+LevelLoader="*res://common/LevelLoader.tscn"
 
 [display]
 
