@@ -3,7 +3,7 @@ class_name blastDying
 var velo = Vector2(40, -200)
 
 func _init(direction):
-	velo.x = velo.x * -direction
+	velo.x = velo.x * -direction.x
 
 # Called when the node enters the scene tree for the first time.
 func frame(body, sprite, delta):
@@ -12,3 +12,4 @@ func frame(body, sprite, delta):
 	velo.y = retVelo.y + Constants.gravity
 	if body.is_on_wall():
 		velo = Vector2(-velo.x, velo.y)
+	

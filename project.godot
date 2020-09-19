@@ -25,6 +25,16 @@ _global_script_classes=[ {
 "path": "res://items/defaultPower.gd"
 }, {
 "base": "Reference",
+"class": "flypath",
+"language": "GDScript",
+"path": "res://enemy/eltun/flypath.gd"
+}, {
+"base": "Reference",
+"class": "flystraight",
+"language": "GDScript",
+"path": "res://enemy/eltun/flystraight.gd"
+}, {
+"base": "Reference",
 "class": "hardPower",
 "language": "GDScript",
 "path": "res://items/hardPower.gd"
@@ -37,12 +47,12 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "lemming",
 "language": "GDScript",
-"path": "res://enemy/Scripts/lemming.gd"
+"path": "res://enemy/hen/lemming.gd"
 }, {
 "base": "Reference",
 "class": "paraenemy",
 "language": "GDScript",
-"path": "res://enemy/Scripts/paraenemy.gd"
+"path": "res://enemy/crow/paraenemy.gd"
 }, {
 "base": "Reference",
 "class": "pon",
@@ -58,18 +68,26 @@ _global_script_classes=[ {
 "class": "thorPower",
 "language": "GDScript",
 "path": "res://items/thorPower.gd"
+}, {
+"base": "Reference",
+"class": "zigzag",
+"language": "GDScript",
+"path": "res://enemy/eltun/zigzag.gd"
 } ]
 _global_script_class_icons={
 "blastDying": "",
 "brewingPower": "",
 "defaultPower": "",
+"flypath": "",
+"flystraight": "",
 "hardPower": "",
 "hpon": "",
 "lemming": "",
 "paraenemy": "",
 "pon": "",
 "runningPower": "",
-"thorPower": ""
+"thorPower": "",
+"zigzag": ""
 }
 
 [application]

@@ -1,12 +1,12 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=2]
-[ext_resource path="res://enemy/crow/crow.png" type="Texture" id=3]
+[ext_resource path="res://enemy/eltun/eltun.png" type="Texture" id=3]
 [ext_resource path="res://enemy/Scripts/EnemyController.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
-length = 0.4
+length = 0.2
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -15,7 +15,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
+"times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
@@ -165,26 +165,16 @@ tracks/6/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
+resource_name = "smash"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 2 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -194,8 +184,20 @@ tracks/1/keys = {
 "method": "die"
 } ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("../HitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 tracks/2/type = "value"
-tracks/2/path = NodePath("../HitBox/CollisionShape2D:disabled")
+tracks/2/path = NodePath("../CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -207,7 +209,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("../CollisionShape2D:disabled")
+tracks/3/path = NodePath("../HurtBox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -219,7 +221,7 @@ tracks/3/keys = {
 "values": [ true ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("../HurtBox/CollisionShape2D:disabled")
+tracks/4/path = NodePath("..:velo")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -227,11 +229,11 @@ tracks/4/enabled = true
 tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("..:velo")
+tracks/5/path = NodePath(".:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -240,7 +242,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ Vector2( 1, -1 ) ]
 }
 tracks/6/type = "method"
 tracks/6/path = NodePath("..")
@@ -253,7 +255,7 @@ tracks/6/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "smash_death"
+"method": "blast_death"
 } ]
 }
 
@@ -274,9 +276,9 @@ animation = "smash"
 states/default/node = SubResource( 4 )
 states/default/position = Vector2( 162, 112 )
 states/die/node = SubResource( 5 )
-states/die/position = Vector2( 357, 107 )
+states/die/position = Vector2( 357, 112 )
 states/smash/node = SubResource( 6 )
-states/smash/position = Vector2( 357, 194 )
+states/smash/position = Vector2( 357, 30 )
 transitions = [ "default", "die", SubResource( 7 ), "default", "smash", SubResource( 8 ) ]
 start_node = "default"
 
@@ -294,7 +296,7 @@ height = 5.0
 radius = 3.0
 height = 14.3208
 
-[node name="Crow" type="KinematicBody2D" groups=[
+[node name="Eltun" type="KinematicBody2D" groups=[
 "shadow",
 ]]
 script = ExtResource( 4 )
@@ -302,9 +304,10 @@ script = ExtResource( 4 )
 [node name="EnemyCore" type="Sprite" parent="."]
 position = Vector2( -2, 0 )
 texture = ExtResource( 3 )
-hframes = 3
+hframes = 2
+frame = 1
 script = ExtResource( 2 )
-deathScore = 200
+deathScore = 150
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyCore"]
 anims/default = SubResource( 1 )
