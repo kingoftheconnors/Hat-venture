@@ -22,8 +22,9 @@ var prev_down = 0
 #$Player/Camera2D.limit_bottom = map_limits.end.y * map_cellsize.y
 
 func _ready():
-	VisualServer.set_default_clear_color(col)
-	Gui.start(stageNum)
+	if !Engine.is_editor_hint():
+		VisualServer.set_default_clear_color(col)
+		Gui.start(stageNum)
 
 func _process(_delta):
 	if prev_left != left or prev_right != right \

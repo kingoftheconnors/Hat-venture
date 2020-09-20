@@ -12,4 +12,4 @@ func frame(body, sprite, delta):
 	velo.y = retVelo.y + Constants.gravity
 	if body.is_on_wall():
 		velo = Vector2(-velo.x, velo.y)
-	
+
