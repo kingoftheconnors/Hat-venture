@@ -1,32 +1,52 @@
+tool
+extends Resource
 class_name flypath
 
 var frozen = false
 var velo = Vector2()
-var move_speed = 30
+var move_speed = 60
 var direction = Vector2(1, 0)
 
 var flight_path : NodePath
 var patrol_points : Array = []
-var patrol_index = 0
+var patrol_index = -1
 
-func _init(_direction):
+func _init(_direction, export_dict):
 	direction = _direction.x
+	update_exports(export_dict)
+
+func update_exports(export_dict):
+	flight_path = export_dict.get('movement/path', '.')
 
 # Called when the node enters the scene tree for the first time.
 func frame(body, sprite, delta):
-	print("Frame! ", frozen)
-	if !frozen:
-		print("Path: ", flight_path)
+	# Set patrol baked points
+	if patrol_points.size() == 0:
+		patrol_points = body.get_node(flight_path).curve.get_baked_points()
+	# Set first frame position
+	if patrol_index < 0:
+		set_first_patrol_index(body)
+	elif !frozen:
 		if !flight_path:
 			return
-		if patrol_points.size() == 0:
-			patrol_points = body.get_node(flight_path).curve.get_baked_points()
+		print(patrol_index)
 		var target = patrol_points[patrol_index]
 		if body.position.distance_to(target) < 1:
 			patrol_index = wrapi(patrol_index + direction, 0, patrol_points.size())
 			target = patrol_points[patrol_index]
 		velo = (target - body.position).normalized() * move_speed
 		velo = body.move_and_slide(velo)
+		# Turn around sprite of enemies walking backwards
+		if(velo.x * sprite.scale.x < 0):
+			sprite.scale = Vector2(-sprite.scale.x, sprite.scale.y)
+
+func set_first_patrol_index(body):
+	var closest_point = body.get_node(flight_path).curve.get_closest_point(body.position)
+	var closest_distance = INF
+	for i in range(0, patrol_points.size()):
+		if (closest_point - patrol_points[i]).length() < closest_distance:
+			patrol_index = i
+			closest_distance = (closest_point - patrol_points[i]).length()
 
 func smash_death():
 	frozen = true
@@ -43,13 +63,3 @@ func get_script_export_list():
 		"type": TYPE_NODE_PATH
 	}]
 	return property_list
-
-func get_property(property):
-	if property == "movement/path":
-		return flight_path # One can implement custom getter logic here
-
-func set_property(property, value):
-	if property == "movement/path":
-		flight_path = value # One can implement custom setter logic here
-		return true
-	return false

@@ -1,3 +1,4 @@
+extends Resource
 class_name paraenemy
 
 var velo = Vector2(30, 0)
@@ -5,7 +6,7 @@ var JUMP_FORCE = 200
 var direction = Vector2()
 var frozen = false
 
-func _init(_direction):
+func _init(_direction, export_dict):
 	velo.x = velo.x * _direction.x
 	direction = _direction
 
@@ -33,3 +34,7 @@ func smash_death():
 
 func get_direction():
 	return direction
+
+# reference methods for editor accessing flightPath
+func get_script_export_list():
+	return []

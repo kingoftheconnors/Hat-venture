@@ -1,3 +1,5 @@
+tool
+extends Resource
 class_name zigzag
 
 var velo = Vector2(40, 80)
@@ -7,7 +9,7 @@ var DASH_TRESHHOLD = 30
 var direction = Vector2()
 var frozen = false
 
-func _init(_direction):
+func _init(_direction, export_dict):
 	velo = DASH_FORCE * _direction
 	direction = _direction
 
@@ -37,3 +39,7 @@ func smash_death():
 
 func get_direction():
 	return direction
+
+# reference methods for editor accessing flightPath
+func get_script_export_list():
+	return []

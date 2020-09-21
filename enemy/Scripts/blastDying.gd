@@ -1,8 +1,9 @@
+extends Resource
 class_name blastDying
 
 var velo = Vector2(40, -200)
 
-func _init(direction):
+func _init(direction, export_dict):
 	velo.x = velo.x * -direction.x
 
 # Called when the node enters the scene tree for the first time.
