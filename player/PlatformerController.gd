@@ -3,12 +3,12 @@ extends KinematicBody2D
 signal off_cliff
 
 # DEFAULT
-const TURNOFF_SPEED = 20
+const TURNOFF_SPEED = 15
 const SPEED = 40
 const ACCELERATION = 4
 const DIVE_SPEED = 200
 const SUPERDIVE_SPEED = 275
-const MAX_SPEED = 120
+const MAX_SPEED = 117
 export(int) var BOUNCE_FORCE = 300
 export(float) var FALL_MULTIPLIER = 1.1
 export(int) var JUMP_STRENGTH = 300
@@ -22,6 +22,7 @@ export(int) var DIVE_OUT_STRENGTH = 175
 
 # RUN
 const MAX_RUNNING_SPEED = 200
+const RUN_JUMP_SPEED = 275
 
 # BASH
 var can_bash = false
@@ -29,6 +30,7 @@ var bashing = false
 var bashing_combo = false
 const BASH_SPEED = 215
 const BASH_ACCELERATION = 10
+const KNOCKBACK_MULTIPLIER = 250
 
 # CLIMBING
 export(int) var CLIMBING_SPEED = 200
@@ -41,6 +43,7 @@ onready var scale_manager = get_node("ScaleChildren")
 onready var animator = get_node("AnimationTree")
 onready var animatorPlayer = get_node("AnimationPlayer")
 onready var camera = get_node("../Camera2D")
+onready var core = get_node("ScaleChildren/PlayerCore")
 
 var _stun = 0
 var frozen = false
@@ -73,11 +76,11 @@ func set_spawn(pos):
 	cur_spawn = pos
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(_delta):
-	move()
+func _physics_process(delta):
+	move(delta)
 	manage_flags()
 
-func move():
+func move(delta):
 	var horizontal = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"))
 	var vertical = (Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"))
 	
@@ -88,7 +91,7 @@ func move():
 	
 	if frozen or diving:
 		horizontal = 0; vertical = 0
-	if crouching and is_on_floor() and !speeding:
+	if crouching and is_on_floor():
 		horizontal = 0
 	if bashing:
 		horizontal = direction
@@ -96,7 +99,7 @@ func move():
 	# Friction (before moving so friction only applies when player is
 	# standing still or going over conventional speeds)
 	if (horizontal == 0 and !speeding) or (is_on_floor() and abs(velo.x) > max_velo):
-		velo.x *= 0.86
+		velo.x *= 0.87
 	elif diving: # Diving friction
 		if is_on_floor():
 			velo.x *= 0.93
@@ -110,7 +113,10 @@ func move():
 		scale_manager.scale = Vector2(direction, 1)
 
 	# Basic movement
-	velo.x = calc_direc(horizontal, velo.x)
+	if bashing:
+		velo = Vector2(direction * max_velo, 0)
+	else:
+		velo.x = calc_direc(horizontal, velo.x)
 	
 	# Animating
 	if horizontal != 0:
@@ -191,18 +197,83 @@ func calc_direc(ui_direc, cur_speed, speed = SPEED):
 
 func move_player(v):
 	#var snap = Vector2.DOWN * 16 if is_on_floor() and !just_jumped else Vector2.ZERO
-	var moved_velo = move_and_slide(v, Vector2.UP)#_with_snap(velo, snap, Vector2.UP, true)
+	var prev_velo = v
+	var new_velo = move_and_slide(v, Vector2.UP)#_with_snap(velo, snap, Vector2.UP, true)
+	var recognize_collision = true
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
-		if collision and collision.collider.is_in_group("block"):
-			collision.collider.collide(collision, self)
-	return moved_velo
+		if !collision.collider.is_in_group("Player"):
+			# Special cases when hitting level tiles
+			if collision.collider.get_collision_layer_bit(1) == true:
+				# Corner correction
+				if collision.local_shape.get_name() == "HeadCollider":
+					if collision.position.y > collision.local_shape.global_position.y - collision.local_shape.shape.radius + .15:
+						# Push sideways and set recognize_collision to false
+						recognize_collision = false
+						if collision.position.x < global_position.x:
+							position.x += 1
+						else:
+							position.x -= 1
+				# Hitting blocks
+				if recognize_collision:
+					if collision and collision.collider.is_in_group("block"):
+						collision.collider.collide(collision, self)
+	if !recognize_collision:
+		new_velo = prev_velo
+	if bashing:
+		new_velo.y = 0
+	return new_velo
+
+onready var bash_collider = get_node("ScaleChildren/bashbox/BashCollider")
+func bash_bounce(body):
+	# Special cases when bashing
+	#if bashing and abs(collision.normal.x) > abs(collision.normal.y):
+	var destroyedBody = core.bash(body)
+	# Smashing through an object (disabling its collision)
+	if destroyedBody:
+		body.set_collision_layer(0)
+		body.set_collision_mask(0)
+		#recognize_collision = false
+	else:
+		# Bash Corner Correction
+		var recognize_collision = true
+		var space_state = get_world_2d().direct_space_state
+		var topPos = bash_collider.global_position-Vector2(0, bash_collider.shape.extents.y)
+		var bottomPos = bash_collider.global_position+Vector2(0, bash_collider.shape.extents.y)
+		# Test corner correction downwards
+		var upperHit = space_state.intersect_ray(topPos, topPos+Vector2(20*direction, 0), [], 2)
+		if upperHit:
+			#rint("Upper hit")
+			for i in range(12):
+				var result = space_state.intersect_ray(topPos+Vector2(0, i), topPos+Vector2(20*direction, i), [], 2)
+				if !result:
+					recognize_collision = false
+					position.y += i
+					break
+		# Test corner correction upwards
+		var lowerHit = space_state.intersect_ray(bottomPos, bottomPos+Vector2(20*direction, 0), [], 2)
+		if lowerHit:
+			#print("Lower hit")
+			for i in range(12):
+				var result = space_state.intersect_ray(bottomPos+Vector2(0, -i), bottomPos+Vector2(20*direction, -i), [], 2)
+				if !result:
+					recognize_collision = false
+					print(i)
+					position.y -= i
+					break
+		if recognize_collision:
+			# No corner correction, bounce off
+			var direc = Vector2(-direction, -0.5) * KNOCKBACK_MULTIPLIER
+			velo = push(direc)
+			unbash()
 
 func push(direc):
+	var pushed_velo = velo
 	if ( velo.x * direc.x < 0 or abs(velo.x) < abs(direc.x) ):
-		velo.x = direc.x
+		pushed_velo.x = direc.x
 	if ( velo.y * direc.y < 0 or abs(velo.y) < abs(direc.y) ):
-		velo.y = direc.y
+		pushed_velo.y = direc.y
+	return pushed_velo
 
 func manage_flags():
 	if is_on_floor() or climbing:
@@ -298,7 +369,7 @@ func dive():
 		diving = true
 		speeding = true
 		max_velo = DIVE_SPEED
-		push(Vector2(DIVE_SPEED * direction, -DIVE_SPEED/2))
+		velo = push(Vector2(DIVE_SPEED * direction, -DIVE_SPEED/2))
 		animator["parameters/playback"].travel("dive")
 
 func superdive_active():
@@ -310,10 +381,8 @@ func bash():
 	if !bashing and can_bash and _stun <= 0:
 		can_bash = false
 		bashing = true
-		speeding = true
 		crouching = false
 		max_velo = BASH_SPEED
-		velo = Vector2(direction * max_velo, 1)
 		animator["parameters/playback"].travel("bash")
 
 func upgrade_smash():
@@ -331,7 +400,6 @@ func unbash():
 			velo.x = min(-MAX_SPEED, velo.x + (max_velo - MAX_SPEED))
 		max_velo = MAX_SPEED
 		bashing = false
-		speeding = false
 		if bashing_combo == false:
 			stun(10)
 		bashing_combo = false
@@ -377,7 +445,7 @@ func get_direction():
 func get_power_node():
 	return $Power
 
-func get_animtor_node():
+func get_animator_node():
 	return animator
 
 func create_skid():
@@ -388,6 +456,6 @@ func create_skid():
 		get_parent().add_child(skid)
 
 func damage(isStomp, amount = 1):
-	$ScaleChildren/PlayerCore.damage(isStomp, amount)
+	core.damage(isStomp, amount)
 func heal(amount = 1):
-	$ScaleChildren/PlayerCore.heal(amount)
+	core.heal(amount)

@@ -29,7 +29,6 @@ func frame(body, sprite, delta):
 	elif !frozen:
 		if !flight_path:
 			return
-		print(patrol_index)
 		var target = patrol_points[patrol_index]
 		if body.position.distance_to(target) < 1:
 			patrol_index = wrapi(patrol_index + direction, 0, patrol_points.size())

@@ -26,7 +26,6 @@ func _get(property):
 		return controller_variables[property]
 
 func _set(property, value):
-	print(property, ": ", value)
 	# Changing controller
 	if property == "movement/controller":
 		controller = value

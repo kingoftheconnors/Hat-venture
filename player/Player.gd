@@ -7,7 +7,6 @@ onready var controller = get_parent().get_parent()
 onready var hurtbox = get_node("../hurtbox")
 onready var animator = get_node("../../AnimationTree")
 
-const KNOCKBACK_MULTIPLIER = 250
 var invincibility_frames = 0
 var INVINCIBILITY_TIME = 50
 
@@ -51,21 +50,18 @@ func _on_hurtbox_area_entered(area):
 	elif area.is_in_group("ladder"):
 		controller.on_ladders += 1
 
-func _on_bashbox_body_entered(body):
+# Bash at body. If the object is destroyed, return true
+func bash(body):
 	if not body.is_in_group("player"):
 		if body.has_method("damage"):
 			# TODO: Play sound effect
 			var destroyed = body.damage(false)
-			controller.upgrade_smash()
 			if destroyed:
-				return
-		# Bounce back
-		var direc = Vector2(-controller.direction, -0.5) * KNOCKBACK_MULTIPLIER
-		controller.push(direc)
-		controller.unbash()
+				controller.upgrade_smash()
+			return destroyed
+	return false
 
 func cliff_damage():
-	print("cliff damage")
 	var dead = damage(false)
 	if !dead:
 		controller.reset_position()
@@ -77,7 +73,6 @@ func damage(isStomp, damage = 1):
 		Gui.update_health(health, MAX_HEALTH)
 		emit_signal("hurt")
 		# Player doesn't die unless game ends, so always return false
-		print(health)
 		if health <= 0:
 			die()
 			return true

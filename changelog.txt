@@ -61,25 +61,30 @@ Picking up powers interrupting bash
 Stun time after bashing (if no combo)
 Ease of tileset use
 Health Pons
+Eltuns with three flight patterns
 
-This sprint:
-Eltun flystraight script having exported variables able to be edited
-Enemies only start moving on first frame onscreen
-Checkpoints
+
+This Sprint:
+* Celeste-level platformer-mercy:
+    Dive-Sliding off a cliff will always stop just short
+    Skidding off a cliff will always stop just short
+* Enemies only start moving on first frame onscreen
+* Eltun script-editting not causing "method not found error" when saving (which resets stuff. Yeck)
+* Eltun zigzag more like wavy
+* SFX!
+* Power-swapping
 
 Backlog:
+* Level Select
 * SPEEN
-* SFX!
-* Hard Hat passive ability
-* Celeste-level platformer-mercy:
-    Bashing into a wall will check if it could slide up or down to ease around block
-    Jumping into ceiling will check if it could slide left or right to ease around block
 
-Waiting on Ang:
-*Death animation
-*Super dash animation
-*Small animation signal each combo rocker
--Brew bottle explosion
+Input needed:
+* Checkpoints
+* Death animation
+* Super dash animation
+* Small animation signal each combo rocker
+* Brew bottle explosion
 * De-equip animation
 * Pons GUI
 * Score sources and uses
+* Hard Hat passive ability

@@ -14,3 +14,6 @@ func frame(body, sprite, delta):
 	if body.is_on_wall():
 		velo = Vector2(-velo.x, velo.y)
 
+# reference methods for editor accessing flightPath
+func get_script_export_list():
+	return []
