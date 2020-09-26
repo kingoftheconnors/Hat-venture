@@ -1,15 +1,17 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://level1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://level1/background1.tres" type="TileSet" id=2]
 [ext_resource path="res://level.gd" type="Script" id=3]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://common/Camera.gd" type="Script" id=5]
-[ext_resource path="res://enemy/eltun/zigzag.gd" type="Script" id=6]
+[ext_resource path="res://enemy/eltun/direct_zigzag.gd" type="Script" id=6]
 [ext_resource path="res://common/spawn.tscn" type="PackedScene" id=7]
 [ext_resource path="res://items/Resources/HPon.tscn" type="PackedScene" id=8]
 [ext_resource path="res://items/Resources/Pon.tscn" type="PackedScene" id=9]
+[ext_resource path="res://enemy/eltun/bouncy.gd" type="Script" id=10]
 [ext_resource path="res://enemy/eltun/eltun.tscn" type="PackedScene" id=11]
+[ext_resource path="res://enemy/eltun/pace.gd" type="Script" id=12]
 [ext_resource path="res://common/TileInstancer.gd" type="Script" id=15]
 
 [sub_resource type="Curve2D" id=1]
@@ -117,13 +119,20 @@ position = Vector2( 480, -96 )
 
 [node name="Eltun" parent="." instance=ExtResource( 11 )]
 position = Vector2( 72, -96 )
-direction = Vector2( 1, 1 )
-movement/controller = ExtResource( 6 )
+direction = Vector2( 1, -1 )
+movement/controller = ExtResource( 10 )
+movement/jump_force = 100
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource( 1 )
 
 [node name="Eltun2" parent="." instance=ExtResource( 11 )]
-position = Vector2( 176, -16 )
-direction = Vector2( 1, 1 )
+position = Vector2( 528, -120 )
+direction = Vector2( -1, -1 )
 movement/controller = ExtResource( 6 )
+movement/turnaround_time = 100
+
+[node name="Eltun3" parent="." instance=ExtResource( 11 )]
+position = Vector2( 280, -24 )
+direction = Vector2( 0, -1 )
+movement/controller = ExtResource( 12 )

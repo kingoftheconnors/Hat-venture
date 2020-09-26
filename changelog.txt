@@ -63,16 +63,17 @@ Ease of tileset use
 Health Pons
 Eltuns with three flight patterns
 
+0.1.6
+Corner Correction
+Dive-Sliding has extra friction just before falling off a cliff
+Skidding has extra friction just before falling off a cliff
+Eltun move pattern (up-down-pace, bouncy, direct-zigzag)
+Enemies only start moving on first frame onscreen
 
 This Sprint:
-* Celeste-level platformer-mercy:
-    Dive-Sliding off a cliff will always stop just short
-    Skidding off a cliff will always stop just short
-* Enemies only start moving on first frame onscreen
-* Eltun script-editting not causing "method not found error" when saving (which resets stuff. Yeck)
-* Eltun zigzag more like wavy
-* SFX!
 * Power-swapping
+* Make super-dash-jump a bit more like in aHiT
+* Eltun script-editting not causing "method not found error" when saving (which resets stuff. Yeck)
 
 Backlog:
 * Level Select
@@ -88,3 +89,4 @@ Input needed:
 * Pons GUI
 * Score sources and uses
 * Hard Hat passive ability
+* SFX!

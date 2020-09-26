@@ -50,5 +50,3 @@ func _draw():
 	draw_line(Vector2(right, up-320), Vector2(right, down+320), Color(1, 0, 0), 5)
 	draw_line(Vector2(left-320, up), Vector2(right+320, up), Color(1, 0, 0), 5)
 	draw_line(Vector2(left-320, down), Vector2(right+320, down), Color(1, 0, 0), 5)
-
-

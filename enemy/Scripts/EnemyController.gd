@@ -3,6 +3,7 @@ extends Node
 
 onready var sprite = get_node("EnemyCore")
 export(Vector2) var direction = Vector2(1,0)
+var is_active = false
 
 var controller : Resource
 var controller_script
@@ -54,8 +55,9 @@ func _get_property_list():
 	# Controller variables
 	if has_controller_script():
 		var cscript = get_controller_script()
-		print("Script : ", cscript.has_method("get_script_export_list"))
-		return retval + cscript.get_script_export_list()
+		if cscript.has_method("get_script_export_list"):
+			print("Script : ", cscript.has_method("get_script_export_list"))
+			return retval + cscript.get_script_export_list()
 	return retval
 	
 # Called when the node enters the scene tree for the first time.
@@ -65,7 +67,7 @@ func _ready():
 
 # Called when the node enters the scene tree for the first time.
 func _process(delta):
-	if !Engine.is_editor_hint():
+	if !Engine.is_editor_hint() and is_active:
 		get_controller_script().frame(self, sprite, delta)
 
 func damage(isStomp):
@@ -81,3 +83,6 @@ func blast_death():
 
 func smash_death():
 	get_controller_script().smash_death()
+
+func _on_VisibilityNotifier2D_screen_entered():
+	is_active = true
