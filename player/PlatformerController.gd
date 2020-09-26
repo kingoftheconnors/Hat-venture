@@ -31,6 +31,7 @@ var bashing_combo = false
 const BASH_SPEED = 215
 const BASH_ACCELERATION = 10
 const KNOCKBACK_MULTIPLIER = 250
+const POST_BASH_STUN = 6
 
 # CLIMBING
 export(int) var CLIMBING_SPEED = 200
@@ -45,6 +46,10 @@ onready var animatorPlayer = get_node("AnimationPlayer")
 onready var camera = get_node("../Camera2D")
 onready var core = get_node("ScaleChildren/PlayerCore")
 
+onready var skidRayCast1 = get_node("SkidRay")
+onready var skidRayCast2 = get_node("SkidRay2")
+
+# Movement vars
 var _stun = 0
 var frozen = false
 var speeding = false
@@ -57,8 +62,8 @@ var jump_timer = 0
 var coyoteTimer = 0
 var climbing = false
 var air_time = 0
+var skid_perfect = false
 
-var init_placed = false
 # Initial spawn for players dying. An educated guess for a legal, safe position
 var cur_spawn = Vector2()
 
@@ -117,6 +122,11 @@ func move(delta):
 		velo = Vector2(direction * max_velo, 0)
 	else:
 		velo.x = calc_direc(horizontal, velo.x)
+	
+	# Skid perfect
+	if skid_perfect and is_on_floor():
+		if !skidRayCast1.is_colliding() or !skidRayCast2.is_colliding():
+			velo.x *= 0.86
 	
 	# Animating
 	if horizontal != 0:
@@ -358,11 +368,30 @@ func jump():
 	animator["parameters/conditions/jumping"] = true
 	animator["parameters/conditions/not_jumping"] = false
 
-func start_run():
-	max_velo = MAX_RUNNING_SPEED
+func bounce():
+	var direc = Vector2(0, -BOUNCE_FORCE)
+	if !holding_jump:
+		direc *= release_jump_damp
 	
-func stop_run():
-	max_velo = MAX_SPEED
+	if ( velo.x * direc.x < 0 or abs(velo.x) < abs(direc.x) ):
+		velo.x = direc.x
+	if ( velo.y * direc.y < 0 or abs(velo.y) < abs(direc.y) ):
+		velo.y = direc.y
+	refresh_flags()
+
+func get_stun():
+	return _stun
+
+func stun(amo, stun_mult = 3):
+	_stun = amo * stun_mult
+
+func set_freeze(flag):
+	frozen = flag
+
+
+##############################
+# STATE METHODS
+####################
 
 func dive():
 	if dive_jump and !diving:
@@ -376,6 +405,16 @@ func superdive_active():
 	superdive_window = true
 func superdive_inactive():
 	superdive_window = false
+
+func start_run():
+	max_velo = MAX_RUNNING_SPEED
+func stop_run():
+	max_velo = MAX_SPEED
+
+func start_skid_perfect():
+	skid_perfect = true
+func stop_skid_perfect():
+	skid_perfect = false
 
 func bash():
 	if !bashing and can_bash and _stun <= 0:
@@ -401,35 +440,13 @@ func unbash():
 		max_velo = MAX_SPEED
 		bashing = false
 		if bashing_combo == false:
-			stun(10)
+			stun(POST_BASH_STUN)
 		bashing_combo = false
 		# TODO: Set recharge
 
-func bounce():
-	var direc = Vector2(0, -BOUNCE_FORCE)
-	if !holding_jump:
-		direc *= release_jump_damp
-	
-	if ( velo.x * direc.x < 0 or abs(velo.x) < abs(direc.x) ):
-		velo.x = direc.x
-	if ( velo.y * direc.y < 0 or abs(velo.y) < abs(direc.y) ):
-		velo.y = direc.y
-	refresh_flags()
-
-func get_stun():
-	return _stun
-
-func stun(amo, stun_mult = 3):
-	_stun = amo * stun_mult
-
-func set_freeze(flag):
-	frozen = flag
-
 
 ##############################
-#
 # EXTERNAL NODE METHODS
-#
 ####################
 
 func spawn_bottle():

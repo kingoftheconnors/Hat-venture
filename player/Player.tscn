@@ -1,4 +1,4 @@
-[gd_scene load_steps=184 format=2]
+[gd_scene load_steps=186 format=2]
 
 [ext_resource path="res://player/regular/idle.png" type="Texture" id=1]
 [ext_resource path="res://player/PlatformerController.gd" type="Script" id=2]
@@ -46,10 +46,10 @@ radius = 6.5
 height = 6.5
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 4.0
-height = 4.0
+radius = 3.0
+height = 6.0
 
-[sub_resource type="RectangleShape2D" id=144]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 4, 11.75 )
 
 [sub_resource type="CapsuleShape2D" id=4]
@@ -687,11 +687,14 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.05 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.001, 0.05 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "superdive_active"
+}, {
+"args": [  ],
+"method": "start_skid_perfect"
 }, {
 "args": [  ],
 "method": "superdive_inactive"
@@ -861,6 +864,20 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 0.5, 3.757 ) ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "stop_skid_perfect"
+} ]
 }
 
 [sub_resource type="Animation" id=16]
@@ -1814,11 +1831,14 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.001 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "create_skid"
+}, {
+"args": [  ],
+"method": "start_skid_perfect"
 } ]
 }
 
@@ -1868,11 +1888,14 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.001 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "create_skid"
+}, {
+"args": [  ],
+"method": "start_skid_perfect"
 } ]
 }
 
@@ -1922,11 +1945,14 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.001 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "create_skid"
+}, {
+"args": [  ],
+"method": "start_skid_perfect"
 } ]
 }
 
@@ -1976,11 +2002,14 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.001 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "create_skid"
+}, {
+"args": [  ],
+"method": "start_skid_perfect"
 } ]
 }
 
@@ -2030,11 +2059,14 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.001 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "create_skid"
+}, {
+"args": [  ],
+"method": "start_skid_perfect"
 } ]
 }
 
@@ -2332,17 +2364,20 @@ animation = "dive"
 [sub_resource type="AnimationNodeAnimation" id=58]
 animation = "dive_rest"
 
-[sub_resource type="AnimationNodeAnimation" id=59]
-animation = "end_bash"
-
-[sub_resource type="AnimationNodeAnimation" id=60]
-animation = "end_bash"
-
 [sub_resource type="AnimationNodeAnimation" id=61]
 animation = "end_crouch"
 
 [sub_resource type="AnimationNodeAnimation" id=62]
 animation = "end_crouch"
+
+[sub_resource type="AnimationNodeAnimation" id=144]
+animation = "end_crouch"
+
+[sub_resource type="AnimationNodeAnimation" id=59]
+animation = "end_bash"
+
+[sub_resource type="AnimationNodeAnimation" id=60]
+animation = "end_bash"
 
 [sub_resource type="AnimationNodeAnimation" id=63]
 animation = "freefall"
@@ -2562,9 +2597,6 @@ advance_condition = "not_walking"
 [sub_resource type="AnimationNodeStateMachineTransition" id=108]
 advance_condition = "skidding"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=109]
-advance_condition = "not_skidding"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=110]
 advance_condition = "jumping"
 
@@ -2667,6 +2699,13 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=141]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=145]
+advance_condition = "not_skidding"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=146]
+switch_mode = 2
+auto_advance = true
+
 [sub_resource type="AnimationNodeStateMachine" id=142]
 states/bash/node = SubResource( 50 )
 states/bash/position = Vector2( 489.697, -156.681 )
@@ -2676,14 +2715,16 @@ states/dive/node = SubResource( 57 )
 states/dive/position = Vector2( 281.697, 4.944 )
 states/dive_rest/node = SubResource( 58 )
 states/dive_rest/position = Vector2( 281.697, -74.4237 )
+states/end_1/node = SubResource( 61 )
+states/end_1/position = Vector2( 796.697, 4.944 )
+states/end_2/node = SubResource( 62 )
+states/end_2/position = Vector2( 447.697, 4.944 )
+states/end_3/node = SubResource( 144 )
+states/end_3/position = Vector2( 796.697, 154.872 )
 states/end_bash/node = SubResource( 59 )
 states/end_bash/position = Vector2( 489.697, -74.4237 )
 states/end_bashes/node = SubResource( 60 )
 states/end_bashes/position = Vector2( 489.697, -74.4237 )
-states/end_crouch/node = SubResource( 61 )
-states/end_crouch/position = Vector2( 796.697, 4.944 )
-states/end_dive/node = SubResource( 62 )
-states/end_dive/position = Vector2( 447.697, 4.944 )
 states/freefall/node = SubResource( 68 )
 states/freefall/position = Vector2( 373.697, 82.872 )
 states/hurt/node = SubResource( 74 )
@@ -2699,14 +2740,14 @@ states/refresh/position = Vector2( 752.697, -74.4237 )
 states/run/node = SubResource( 91 )
 states/run/position = Vector2( 606.697, 270.88 )
 states/skid/node = SubResource( 97 )
-states/skid/position = Vector2( 796.697, 154.872 )
+states/skid/position = Vector2( 796.697, 270.88 )
 states/throw/node = SubResource( 98 )
 states/throw/position = Vector2( 606.697, -156.681 )
 states/walk/node = SubResource( 104 )
 states/walk/position = Vector2( 606.697, 154.872 )
-transitions = [ "idle", "crouch", SubResource( 105 ), "idle", "walk", SubResource( 106 ), "walk", "idle", SubResource( 107 ), "walk", "skid", SubResource( 108 ), "skid", "walk", SubResource( 109 ), "idle", "jump", SubResource( 110 ), "jump", "idle", SubResource( 111 ), "jump", "freefall", SubResource( 112 ), "freefall", "idle", SubResource( 113 ), "crouch", "end_crouch", SubResource( 114 ), "end_crouch", "idle", SubResource( 115 ), "idle", "throw", SubResource( 116 ), "throw", "idle", SubResource( 117 ), "idle", "dive", SubResource( 118 ), "dive", "end_dive", SubResource( 119 ), "end_dive", "idle", SubResource( 120 ), "idle", "power_get", SubResource( 121 ), "power_get", "idle", SubResource( 122 ), "idle", "refresh", SubResource( 123 ), "refresh", "idle", SubResource( 124 ), "idle", "bash", SubResource( 125 ), "end_bash", "idle", SubResource( 126 ), "walk", "jump", SubResource( 127 ), "bash", "end_bash", SubResource( 128 ), "end_dive", "jump", SubResource( 129 ), "run", "jump", SubResource( 130 ), "run", "skid", SubResource( 131 ), "walk", "run", SubResource( 132 ), "run", "walk", SubResource( 133 ), "run", "idle", SubResource( 134 ), "idle", "hurt", SubResource( 135 ), "hurt", "idle", SubResource( 136 ), "dive", "dive_rest", SubResource( 137 ), "dive_rest", "end_dive", SubResource( 138 ), "dive_rest", "dive", SubResource( 139 ), "end_bashes", "idle", SubResource( 140 ), "bash", "end_bashes", SubResource( 141 ) ]
+transitions = [ "idle", "crouch", SubResource( 105 ), "idle", "walk", SubResource( 106 ), "walk", "idle", SubResource( 107 ), "walk", "skid", SubResource( 108 ), "idle", "jump", SubResource( 110 ), "jump", "idle", SubResource( 111 ), "jump", "freefall", SubResource( 112 ), "freefall", "idle", SubResource( 113 ), "crouch", "end_1", SubResource( 114 ), "end_1", "idle", SubResource( 115 ), "idle", "throw", SubResource( 116 ), "throw", "idle", SubResource( 117 ), "idle", "dive", SubResource( 118 ), "dive", "end_2", SubResource( 119 ), "end_2", "idle", SubResource( 120 ), "idle", "power_get", SubResource( 121 ), "power_get", "idle", SubResource( 122 ), "idle", "refresh", SubResource( 123 ), "refresh", "idle", SubResource( 124 ), "idle", "bash", SubResource( 125 ), "end_bash", "idle", SubResource( 126 ), "walk", "jump", SubResource( 127 ), "bash", "end_bash", SubResource( 128 ), "end_2", "jump", SubResource( 129 ), "run", "jump", SubResource( 130 ), "run", "skid", SubResource( 131 ), "walk", "run", SubResource( 132 ), "run", "walk", SubResource( 133 ), "run", "idle", SubResource( 134 ), "idle", "hurt", SubResource( 135 ), "hurt", "idle", SubResource( 136 ), "dive", "dive_rest", SubResource( 137 ), "dive_rest", "end_2", SubResource( 138 ), "dive_rest", "dive", SubResource( 139 ), "end_bashes", "idle", SubResource( 140 ), "bash", "end_bashes", SubResource( 141 ), "skid", "end_3", SubResource( 145 ), "end_3", "walk", SubResource( 146 ) ]
 start_node = "idle"
-graph_offset = Vector2( 200.685, -203.177 )
+graph_offset = Vector2( 200.685, -153.111 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=143]
 
@@ -2749,7 +2790,7 @@ shape = SubResource( 1 )
 ]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScaleChildren/hitbox"]
-position = Vector2( 0.491637, 13.2454 )
+position = Vector2( 0, 13 )
 rotation = 1.5708
 shape = SubResource( 2 )
 
@@ -2762,7 +2803,7 @@ collision_mask = 3
 
 [node name="BashCollider" type="CollisionShape2D" parent="ScaleChildren/bashbox"]
 position = Vector2( 8, 1 )
-shape = SubResource( 144 )
+shape = SubResource( 3 )
 disabled = true
 
 [node name="HeadCollider" type="CollisionShape2D" parent="."]
@@ -2845,6 +2886,18 @@ parameters/jump/blend_position = 0
 parameters/run/TimeScale/scale = 1.0
 parameters/skid/blend_position = 0
 parameters/walk/blend_position = 0.0
+
+[node name="SkidRay" type="RayCast2D" parent="."]
+position = Vector2( 5, 0 )
+enabled = true
+cast_to = Vector2( 0, 20 )
+collision_mask = 3
+
+[node name="SkidRay2" type="RayCast2D" parent="."]
+position = Vector2( -5, 0 )
+enabled = true
+cast_to = Vector2( 0, 20 )
+collision_mask = 3
 [connection signal="off_cliff" from="." to="ScaleChildren/PlayerCore" method="cliff_damage"]
 [connection signal="hurt" from="ScaleChildren/PlayerCore" to="Power" method="hit"]
 [connection signal="area_entered" from="ScaleChildren/hurtbox" to="ScaleChildren/PlayerCore" method="_on_hurtbox_area_entered"]
