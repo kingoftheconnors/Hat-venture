@@ -20,6 +20,12 @@ func deactivate(body, animator):
 func force_deactivate(body, animator):
 	deactivate(body, animator)
 
+func release():
+	var runnerhat = load("res://items/Resources/ReleasedRunnerHat.tscn")
+	var hat = runnerhat.instance()
+	hat.set_position(Vector2(0, -8))
+	return hat
+
 func spawnFromBox(collidingBody):
 	var runnerhat = load("res://items/Resources/RunnerHat.tscn")
 	var hat = runnerhat.instance()

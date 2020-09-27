@@ -69,7 +69,8 @@ Dive-Sliding has extra friction just before falling off a cliff
 Skidding has extra friction just before falling off a cliff
 Eltun move pattern (up-down-pace, bouncy, direct-zigzag)
 Enemies only start moving on first frame onscreen
-Make super-dash-jump a bit more like in aHiT
+Make super-dash-jump a bit longer
+De-equip animation
 
 This Sprint:
 * Eltun script-editting not causing "method not found error" when saving (which resets stuff. Yeck)
@@ -77,14 +78,12 @@ This Sprint:
 Backlog:
 * Level Select
 * SPEEN
-
 Input needed:
 * Checkpoints
 * Death animation
 * Super dash animation
 * Small animation signal each combo rocker
 * Brew bottle explosion
-* De-equip animation
 * Pons GUI
 * Score sources and uses
 * Hard Hat passive ability

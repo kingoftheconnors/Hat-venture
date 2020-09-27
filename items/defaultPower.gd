@@ -16,5 +16,8 @@ func deactivate(body, animator):
 func force_deactivate(body, animator):
 	deactivate(body, animator)
 
+func release():
+	pass
+
 func spawnFromBox(collidingBody):
 	pass

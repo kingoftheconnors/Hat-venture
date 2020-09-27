@@ -16,6 +16,12 @@ func deactivate(body, animator):
 func force_deactivate(body, animator):
 	deactivate(body, animator)
 
+func release():
+	var brewhat = load("res://items/Resources/ReleasedBrewHat.tscn")
+	var hat = brewhat.instance()
+	hat.set_position(Vector2(0, -8))
+	return hat
+
 func spawnFromBox(collidingBody):
 	var brewhat = load("res://items/Resources/BrewingHat.tscn")
 	var hat = brewhat.instance()

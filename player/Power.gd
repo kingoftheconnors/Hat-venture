@@ -6,6 +6,7 @@ onready var animator = get_node("../AnimationTree")
 export(Resource) var defaultPower
 onready var power = defaultPower.new()
 
+const RELEASED_HAT_LAUNCH_SPEED = 60
 const POWER_BASE_HP = 2
 var power_hp = POWER_BASE_HP
 
@@ -72,6 +73,11 @@ func hit():
 		release_power()
 
 func release_power():
-		power = defaultPower.new()
-		updatePowerValues()
-		animator["parameters/playback"].travel("refresh")
+	var releaseHat = power.release()
+	if releaseHat:
+		releaseHat.position += get_parent().position
+		releaseHat.velo.x = -platformController.get_direction()*RELEASED_HAT_LAUNCH_SPEED
+		get_parent().get_parent().add_child(releaseHat)
+	power = defaultPower.new()
+	updatePowerValues()
+	animator["parameters/playback"].travel("refresh")
