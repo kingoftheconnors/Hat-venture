@@ -23,7 +23,7 @@ func _get(property):
 	if property == "movement/controller":
 		return controller
 	# Controller variables
-	if "movement" in property and controller_variables.has(property):
+	if controller_variables.has(property):
 		return controller_variables[property]
 
 func _set(property, value):
@@ -38,7 +38,6 @@ func _set(property, value):
 	if has_controller_script():
 		for prop in get_controller_script().get_script_export_list():
 			if prop.name == property:
-				print("Setting dictionary ", prop.name, ": ", value)
 				controller_variables[prop.name] = value
 				get_controller_script().update_exports(controller_variables)
 				property_list_changed_notify() # update inspect
@@ -56,10 +55,13 @@ func _get_property_list():
 	if has_controller_script():
 		var cscript = get_controller_script()
 		if cscript.has_method("get_script_export_list"):
-			print("Script : ", cscript.has_method("get_script_export_list"))
-			return retval + cscript.get_script_export_list()
+			var exports = cscript.get_script_export_list()
+			for prop in exports:
+				if !controller_variables.has(prop.name):
+					controller_variables[prop.name] = prop.default
+			return retval + exports
 	return retval
-	
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if has_controller_script():

@@ -4,10 +4,12 @@ class_name pace
 
 var velo = Vector2(40, 40)
 var DASH_FORCE = Vector2(40,40)
-var turnaround_time = 100
 var direction = Vector2()
 var frozen = false
 var frame = 0
+
+const DEFAULT_TURNAROUND_TIME = 100
+var turnaround_time
 
 func _init(_direction, export_dict):
 	velo = DASH_FORCE * _direction
@@ -56,7 +58,8 @@ func get_script_export_list():
 		"hint": PROPERTY_HINT_NONE,
 		"usage": PROPERTY_USAGE_DEFAULT,
 		"name": "movement/turnaround_time",
-		"type": TYPE_INT
+		"type": TYPE_INT,
+		"default": DEFAULT_TURNAROUND_TIME
 	}]
 	return property_list
 

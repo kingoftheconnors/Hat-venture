@@ -3,10 +3,12 @@ extends Resource
 class_name bouncy
 
 var velo = Vector2(40, 0)
-var jump_force = 100
 var direction = Vector2()
 var frozen = false
 var frame = 0
+
+const DEFAULT_JUMP_FORCE = 100
+var jump_force
 
 func _init(_direction, export_dict):
 	direction = _direction
@@ -15,7 +17,7 @@ func _init(_direction, export_dict):
 	velo.y = jump_force * _direction.x
 
 func update_exports(export_dict):
-	jump_force = abs(export_dict.get('movement/jump_force', 100))
+	jump_force = abs(export_dict.get('movement/jump_force', DEFAULT_JUMP_FORCE))
 
 # Called when the node enters the scene tree for the first time.
 func frame(body, sprite, delta):
@@ -52,7 +54,8 @@ func get_script_export_list():
 		"hint": PROPERTY_HINT_NONE,
 		"usage": PROPERTY_USAGE_DEFAULT,
 		"name": "movement/jump_force",
-		"type": TYPE_INT
+		"type": TYPE_INT,
+		"default": DEFAULT_JUMP_FORCE
 	}]
 	return property_list
 

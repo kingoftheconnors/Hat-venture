@@ -11,7 +11,7 @@
 [ext_resource path="res://items/Resources/Pon.tscn" type="PackedScene" id=9]
 [ext_resource path="res://enemy/eltun/bouncy.gd" type="Script" id=10]
 [ext_resource path="res://enemy/eltun/eltun.tscn" type="PackedScene" id=11]
-[ext_resource path="res://enemy/eltun/pace.gd" type="Script" id=12]
+[ext_resource path="res://enemy/eltun/flypath.gd" type="Script" id=12]
 [ext_resource path="res://common/TileInstancer.gd" type="Script" id=15]
 
 [sub_resource type="Curve2D" id=1]
@@ -120,8 +120,8 @@ position = Vector2( 480, -96 )
 [node name="Eltun" parent="." instance=ExtResource( 11 )]
 position = Vector2( 72, -96 )
 direction = Vector2( 1, -1 )
-movement/controller = ExtResource( 10 )
-movement/jump_force = 100
+movement/controller = ExtResource( 6 )
+movement/turnaround_time = 100
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource( 1 )
@@ -129,11 +129,11 @@ curve = SubResource( 1 )
 [node name="Eltun2" parent="." instance=ExtResource( 11 )]
 position = Vector2( 528, -120 )
 direction = Vector2( -1, -1 )
-movement/controller = ExtResource( 6 )
-movement/turnaround_time = 100
+movement/controller = ExtResource( 10 )
+movement/jump_force = 100
 
 [node name="Eltun3" parent="." instance=ExtResource( 11 )]
-position = Vector2( 280, -24 )
-direction = Vector2( 0, -1 )
+position = Vector2( 96, -72 )
+direction = Vector2( -1, -1 )
 movement/controller = ExtResource( 12 )
-movement/turnaround_time = 50
+movement/path = NodePath("../Path2D")

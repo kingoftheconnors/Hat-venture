@@ -59,6 +59,7 @@ func get_script_export_list():
 		"hint": PROPERTY_HINT_NONE,
 		"usage": PROPERTY_USAGE_DEFAULT,
 		"name": "movement/path",
-		"type": TYPE_NODE_PATH
+		"type": TYPE_NODE_PATH,
+		"default": "."
 	}]
 	return property_list
