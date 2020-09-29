@@ -1,7 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://items/Resources/sprintSpinning.png" type="Texture" id=1]
+[ext_resource path="res://items/Resources/getItem.gd" type="Script" id=2]
 [ext_resource path="res://items/Resources/itemMovement.gd" type="Script" id=3]
+[ext_resource path="res://items/runningPower.gd" type="Script" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -46,8 +48,11 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 2, 3 )
 
-[sub_resource type="Animation" id=11]
-resource_name = "fade"
+[sub_resource type="CapsuleShape2D" id=11]
+radius = 5.69403
+height = 6.66597
+
+[sub_resource type="Animation" id=12]
 length = 3.0
 step = 0.05
 tracks/0/type = "method"
@@ -89,20 +94,33 @@ tracks/2/keys = {
 "values": [ true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true ]
 }
 
-[node name="Body" type="KinematicBody2D"]
+[node name="RunnersCap" type="Node2D"]
+script = ExtResource( 2 )
+itemCommand = ExtResource( 4 )
+
+[node name="Body" type="KinematicBody2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 3 )
-gravityMultiplier = 1
+gravityMultiplier = 0.5
 is_despawn = true
 
-[node name="Sprite" type="AnimatedSprite" parent="."]
+[node name="Sprite" type="AnimatedSprite" parent="Body"]
 frames = SubResource( 9 )
+frame = 4
 playing = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 position = Vector2( 0, 1 )
 shape = SubResource( 10 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/fade = SubResource( 11 )
+[node name="Area2D" type="Area2D" parent="Body"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Area2D"]
+rotation = 1.5708
+shape = SubResource( 11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body"]
+anims/fade = SubResource( 12 )
+[connection signal="area_entered" from="Body/Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="Body/Area2D" to="." method="_on_Area2D_body_entered"]

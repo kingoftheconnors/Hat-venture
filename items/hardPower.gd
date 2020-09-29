@@ -4,7 +4,7 @@ var blendValue = 4
 func name(): return "HardHat"
 
 func power(body, this):
-	body.get_power_node().set_power(self)
+	body.get_power_node().acquire_power(self)
 	return true
 
 func activate(body, animator):

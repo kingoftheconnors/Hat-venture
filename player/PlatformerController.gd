@@ -7,7 +7,6 @@ const TURNOFF_SPEED = 15
 const SPEED = 40
 const ACCELERATION = 4
 const DIVE_SPEED = 200
-const SUPERDIVE_SPEED = 275
 const MAX_SPEED = 117
 export(int) var BOUNCE_FORCE = 300
 export(float) var FALL_MULTIPLIER = 1.1
@@ -15,10 +14,12 @@ export(int) var JUMP_STRENGTH = 300
 
 # DIVE
 var diving = false
-var dive_jump = true
+var can_dive = true
 var superdive_window = false
 export(float) var DIVE_FALL_MULTIPLIER = 0.85
-export(int) var DIVE_OUT_STRENGTH = 175
+export(int) var DIVE_OUT_STRENGTH = 200
+export(int) var DIVE_OUT_SPEED = 140
+const SUPERDIVE_SPEED = 275
 
 # RUN
 const MAX_RUNNING_SPEED = 200
@@ -31,7 +32,8 @@ var bashing_combo = false
 const BASH_SPEED = 215
 const BASH_ACCELERATION = 10
 const KNOCKBACK_MULTIPLIER = 250
-const POST_BASH_STUN = 6
+const POST_BASH_STUN = 11
+var bash_wait = 0
 
 # CLIMBING
 export(int) var CLIMBING_SPEED = 200
@@ -132,7 +134,8 @@ func move(delta):
 	if horizontal != 0:
 		animator["parameters/conditions/walking"] = true
 		animator["parameters/conditions/not_walking"] = false
-		animator["parameters/run/TimeScale/scale"] = .5 + abs(velo.x)/MAX_RUNNING_SPEED
+		animator["parameters/walk/4/blend_position"] = abs(velo.x)/MAX_RUNNING_SPEED
+		animator["parameters/walk/4/1/Speed/scale"] = .5 + abs(velo.x)/MAX_RUNNING_SPEED
 	else:
 		animator["parameters/conditions/walking"] = false
 		animator["parameters/conditions/not_walking"] = true
@@ -308,16 +311,18 @@ func manage_flags():
 			and (is_on_floor() \
 				or coyoteTimer > 0 \
 				or climbing \
-				or (diving and dive_jump)):
+				or (diving)):
 			jump()
 
 func refresh_flags():
 	if coyoteTimer < 5:
 		coyoteTimer = 5
-	if !dive_jump:
-		dive_jump = true
+	if !can_dive:
+		can_dive = true
 	if !can_bash:
-		can_bash = true
+		bash_wait -= 1
+		if bash_wait <= 0:
+			can_bash = true
 
 var holding_jump = false
 
@@ -353,10 +358,7 @@ func jump():
 		velo.y = min(-JUMP_STRENGTH, velo.y)
 	# Out-of-dive Jump
 	if diving:
-		diving = false
-		#speeding = false
-		dive_jump = false
-		max_velo = MAX_SPEED
+		undive()
 		velo.y = min(-DIVE_OUT_STRENGTH, velo.y)
 		if superdive_window:
 			velo = Vector2(direction * SUPERDIVE_SPEED, -SUPERDIVE_SPEED)
@@ -394,12 +396,22 @@ func set_freeze(flag):
 ####################
 
 func dive():
-	if dive_jump and !diving:
+	print("Can dive: ", can_dive, ". Diving: ", diving)
+	if can_dive and !diving:
+		can_dive = false
 		diving = true
 		speeding = true
 		max_velo = DIVE_SPEED
 		velo = push(Vector2(DIVE_SPEED * direction, -DIVE_SPEED/2))
 		animator["parameters/playback"].travel("dive")
+func undive():
+	diving = false
+	#speeding = false
+	max_velo = MAX_SPEED
+	if velo.x > 0:
+		velo.x = min(DIVE_OUT_SPEED, velo.x)
+	else:
+		velo.x = max(-DIVE_OUT_SPEED, velo.x)
 
 func superdive_active():
 	superdive_window = true
@@ -440,10 +452,10 @@ func unbash():
 		max_velo = MAX_SPEED
 		bashing = false
 		if bashing_combo == false:
-			stun(POST_BASH_STUN)
+			bash_wait = POST_BASH_STUN
+		else:
+			can_bash = true
 		bashing_combo = false
-		# TODO: Set recharge
-
 
 ##############################
 # EXTERNAL NODE METHODS

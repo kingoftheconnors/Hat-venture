@@ -1,10 +1,10 @@
 extends KinematicBody2D
 
-export(int) var gravityMultiplier = 0
+export(float) var gravityMultiplier = 0
 export(bool) var is_despawn = false
 onready var animator = get_node("AnimationPlayer")
 
-var velo = Vector2(0, -160)
+var velo = Vector2(0, -110)
 
 func _physics_process(delta):
 	velo.y += Constants.gravity * gravityMultiplier

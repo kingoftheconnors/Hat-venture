@@ -67,6 +67,8 @@ func cliff_damage():
 		controller.reset_position()
 
 func damage(isStomp, damage = 1):
+	controller.can_dive = true
+	controller.can_bash = true
 	if health > 0:
 		turn_invincibilty(true)
 		health -= damage

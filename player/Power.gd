@@ -10,13 +10,16 @@ const RELEASED_HAT_LAUNCH_SPEED = 60
 const POWER_BASE_HP = 2
 var power_hp = POWER_BASE_HP
 
-func set_power(powerType):
+func acquire_power(powerType):
 	if powerType.name() != power.name():
-		power.force_deactivate(platformController, animator)
-		power = powerType
-		power_hp = POWER_BASE_HP
-		updatePowerValues()
+		set_power(powerType)
 		animator["parameters/playback"].travel("power_get")
+
+func set_power(powerType):
+	power.force_deactivate(platformController, animator)
+	power = powerType
+	power_hp = POWER_BASE_HP
+	updatePowerValues()
 
 func updatePowerValues():
 	animator["parameters/crouch/blend_position"] = int(power.blendValue)
@@ -37,27 +40,27 @@ func _unhandled_input(event):
 	
 	if Constants.DEBUG_MODE:
 		if event is InputEventKey and event.pressed and event.scancode == KEY_1:
-			set_power(defaultPower.new())
+			acquire_power(defaultPower.new())
 			updatePowerValues()
 			animator["parameters/playback"].travel("power_get")
 		if event is InputEventKey and event.pressed and event.scancode == KEY_2:
 			var script = preload("res://items/runningPower.gd")
-			set_power(script.new())
+			acquire_power(script.new())
 			updatePowerValues()
 			animator["parameters/playback"].travel("power_get")
 		if event is InputEventKey and event.pressed and event.scancode == KEY_3:
 			var script = preload("res://items/brewingPower.gd")
-			set_power(script.new())
+			acquire_power(script.new())
 			updatePowerValues()
 			animator["parameters/playback"].travel("power_get")
 		if event is InputEventKey and event.pressed and event.scancode == KEY_4:
 			var script = preload("res://items/thorPower.gd")
-			set_power(script.new())
+			acquire_power(script.new())
 			updatePowerValues()
 			animator["parameters/playback"].travel("power_get")
 		if event is InputEventKey and event.pressed and event.scancode == KEY_5:
 			var script = preload("res://items/hardPower.gd")
-			set_power(script.new())
+			acquire_power(script.new())
 			updatePowerValues()
 			animator["parameters/playback"].travel("power_get")
 
@@ -76,8 +79,8 @@ func release_power():
 	var releaseHat = power.release()
 	if releaseHat:
 		releaseHat.position += get_parent().position
-		releaseHat.velo.x = -platformController.get_direction()*RELEASED_HAT_LAUNCH_SPEED
+		releaseHat.set_velo_x(-platformController.get_direction()*RELEASED_HAT_LAUNCH_SPEED)
 		get_parent().get_parent().add_child(releaseHat)
-	power = defaultPower.new()
+	set_power(defaultPower.new())
 	updatePowerValues()
 	animator["parameters/playback"].travel("refresh")

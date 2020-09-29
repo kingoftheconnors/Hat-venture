@@ -4,17 +4,17 @@ var blendValue = 1
 func name(): return "RunningHat"
 
 func power(body, this):
-	body.get_power_node().set_power(self)
+	body.get_power_node().acquire_power(self)
 	return true
 
 func activate(body, animator):
-	animator["parameters/conditions/running"] = true
-	animator["parameters/conditions/not_running"] = false
+	#animator["parameters/walk/4/conditions/running"] = true
+	#animator["parameters/walk/4/conditions/not_running"] = false
 	body.start_run()
 
 func deactivate(body, animator):
-	animator["parameters/conditions/running"] = false
-	animator["parameters/conditions/not_running"] = true
+	#animator["parameters/walk/4/conditions/running"] = false
+	#animator["parameters/walk/4/conditions/not_running"] = true
 	body.stop_run()
 
 func force_deactivate(body, animator):

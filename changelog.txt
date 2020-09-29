@@ -73,24 +73,28 @@ Make super-dash-jump a bit longer
 De-equip animation
 Eltun default values
 
+0.1.7
+Hitting an enemy resets diving and bashing
+Dash sprint sprites only used when Hat Kid hits top speed
+Collecting fallen hats
+Fallen hats have less gravity
+A basic no-bash-timer when you don't get a combo
+Forcing power deactivation when dying and releasing power (glitch fix)
+
 This Sprint:
-* Dive jump with & w/o boost should be nerfed a bit in terms of horizontal movement. It feels like when you jump out you go too fast.
-* Diving onto an enemy I feel should set you back into the fall state instead of a dive state, allowing the user to dive again if they so choose.
-* Sprites look a little jittery this time around. Did something change?
-* Sprint Cap shouldn't accelerate in the air, unless that's what happens in AHiT. I honestly don't remember.
-* On that note, the specific dash sprites should only be used when Hat Kid hits at the very least close to top speed. Otherwise have her use normal walk sprites for the beginning of a dash.
-* Hard hat dash stops horizontal movement for whatever reason which doesn't feel right, especially in the air.
-* Eltuns don't have their squash animation? Is there a reason for that?
-* Potions thrown don't pause when getting a new hat
-* Dying-while-running keeps sprint hat even when losing power (glitch)
+* Sprint Cap shouldn't accelerate in the air, unless that's what happens in AHiT
+* Eltuns don't have their squash animation
+* Game pausing when getting a new hat
 * Un-diving controlled by animation so power-gain-transitions won't cause us getting stuck in dive-freeze (glitch)
 * SPEEN
+* Bash-stun visual effect
 
 Backlog:
 * Level Select
 * Hard Hat stun animation
 * Hard Hat passive ability
 Input needed:
+* Spinning hard hat and thor hat
 * Checkpoints
 * Death animation
 * Super dash animation
