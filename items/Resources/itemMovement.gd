@@ -11,7 +11,6 @@ func _physics_process(delta):
 	# terminal velocity
 	if velo.y > Constants.terminalVelocity:
 		velo.y = Constants.terminalVelocity
-	print(velo)
 	velo = move_and_slide(velo, Vector2.UP)
 	if is_on_floor():
 		velo.x *= 0.93

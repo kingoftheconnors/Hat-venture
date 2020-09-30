@@ -80,12 +80,12 @@ Collecting fallen hats
 Fallen hats have less gravity
 A basic no-bash-timer when you don't get a combo
 Forcing power deactivation when dying and releasing power (glitch fix)
+Un-diving controlled by animation
+Sprint Cap doesn't accelerate in the air, and has skid trails on ground to represent high speed
 
 This Sprint:
-* Sprint Cap shouldn't accelerate in the air, unless that's what happens in AHiT
 * Eltuns don't have their squash animation
 * Game pausing when getting a new hat
-* Un-diving controlled by animation so power-gain-transitions won't cause us getting stuck in dive-freeze (glitch)
 * SPEEN
 * Bash-stun visual effect
 

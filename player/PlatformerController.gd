@@ -4,9 +4,9 @@ signal off_cliff
 
 # DEFAULT
 const TURNOFF_SPEED = 15
-const SPEED = 40
+const BASE_SPEED = 30
+var base_speed = BASE_SPEED
 const ACCELERATION = 4
-const DIVE_SPEED = 200
 const MAX_SPEED = 117
 export(int) var BOUNCE_FORCE = 300
 export(float) var FALL_MULTIPLIER = 1.1
@@ -16,6 +16,7 @@ export(int) var JUMP_STRENGTH = 300
 var diving = false
 var can_dive = true
 var superdive_window = false
+const DIVE_SPEED = 200
 export(float) var DIVE_FALL_MULTIPLIER = 0.85
 export(int) var DIVE_OUT_STRENGTH = 200
 export(int) var DIVE_OUT_SPEED = 140
@@ -23,7 +24,8 @@ const SUPERDIVE_SPEED = 275
 
 # RUN
 const MAX_RUNNING_SPEED = 200
-const RUN_JUMP_SPEED = 275
+const BASE_RUN_SPEED = 50
+var running
 
 # BASH
 var can_bash = false
@@ -118,12 +120,20 @@ func move(delta):
 		else:
 			direction = -1
 		scale_manager.scale = Vector2(direction, 1)
-
+	
+	# Running
+	if running and is_on_floor():
+		if max_velo != MAX_RUNNING_SPEED:
+			max_velo = MAX_RUNNING_SPEED
+	elif max_velo == MAX_RUNNING_SPEED:
+		max_velo = MAX_SPEED
+	
 	# Basic movement
 	if bashing:
 		velo = Vector2(direction * max_velo, 0)
 	else:
 		velo.x = calc_direc(horizontal, velo.x)
+	
 	
 	# Skid perfect
 	if skid_perfect and is_on_floor():
@@ -192,14 +202,14 @@ func move(delta):
 		position.x = camera.limit_right
 		velo.x = min(0, velo.x)
 
-func calc_direc(ui_direc, cur_speed, speed = SPEED):
-	if ui_direc > 0 and cur_speed >= ui_direc*SPEED*.9: # Accelerate right
+func calc_direc(ui_direc, cur_speed, speed = base_speed):
+	if ui_direc > 0 and cur_speed >= ui_direc*base_speed*.9: # Accelerate right
 		return max(cur_speed, min(cur_speed + ui_direc*ACCELERATION, max_velo))
 	elif ui_direc > 0 and cur_speed > -ui_direc*TURNOFF_SPEED: # On low speed, set to base speed instantly
 		return max(cur_speed, ui_direc*speed)
-	elif ui_direc < 0 and cur_speed <= ui_direc*SPEED*.9: # Accelerate left
+	elif ui_direc < 0 and cur_speed <= ui_direc*base_speed*.9: # Accelerate left
 		return min(cur_speed, max(cur_speed + ui_direc*ACCELERATION, -max_velo))
-	elif ui_direc < 0 and cur_speed < -ui_direc*SPEED: # On low speed, set to base speed instantly
+	elif ui_direc < 0 and cur_speed < -ui_direc*base_speed: # On low speed, set to base speed instantly
 		return min(cur_speed, ui_direc*speed)
 	elif ui_direc != 0:  # Sliding for when velo is launched out of regular range (and attempting to turn back)
 		return cur_speed + ui_direc*ACCELERATION
@@ -419,9 +429,11 @@ func superdive_inactive():
 	superdive_window = false
 
 func start_run():
-	max_velo = MAX_RUNNING_SPEED
+	base_speed = BASE_RUN_SPEED
+	running = true
 func stop_run():
-	max_velo = MAX_SPEED
+	base_speed = BASE_SPEED
+	running = false
 
 func start_skid_perfect():
 	skid_perfect = true

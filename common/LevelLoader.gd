@@ -7,7 +7,7 @@ func die():
 	var levelName = get_tree().get_current_scene().filename
 	animationPlayer.play("cover")
 	yield(get_tree().create_timer(.7), "timeout")
-	get_tree().change_scene(levelName)
+	var _success = get_tree().change_scene(levelName)
 	Gui.death()
 	Gui.reset_score()
 	Gui.show()
