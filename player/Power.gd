@@ -35,7 +35,7 @@ func _unhandled_input(event):
 		set_power_active(true)
 	if event.is_action_released("ui_B"):
 		set_power_active(false)
-	if event.is_action_released("ui_release"):
+	if event.is_action_pressed("ui_release"):
 		release_power()
 	
 	if Constants.DEBUG_MODE:
@@ -84,3 +84,9 @@ func release_power():
 	set_power(defaultPower.new())
 	updatePowerValues()
 	animator["parameters/playback"].travel("refresh")
+
+func pause_game():
+	get_tree().paused = true
+func resume_game():
+	get_tree().paused = false
+

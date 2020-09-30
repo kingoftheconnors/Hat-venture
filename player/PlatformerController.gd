@@ -24,7 +24,7 @@ const SUPERDIVE_SPEED = 275
 
 # RUN
 const MAX_RUNNING_SPEED = 200
-const BASE_RUN_SPEED = 50
+const BASE_RUN_SPEED = 45
 var running
 
 # BASH

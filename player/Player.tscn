@@ -40,6 +40,7 @@
 [ext_resource path="res://player/hard/bash.png" type="Texture" id=38]
 [ext_resource path="res://player/hard/dashfx.png" type="Texture" id=39]
 [ext_resource path="res://player/regular/lyingdown.png" type="Texture" id=40]
+[ext_resource path="res://player/PlayerAnimationTree.tres" type="AnimationNodeStateMachinePlayback" id=41]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.5
@@ -1801,15 +1802,9 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ true ],
-"method": "set_freeze"
-}, {
-"args": [ false ],
-"method": "set_freeze"
-} ]
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:visible")
@@ -1822,6 +1817,23 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true, false, true, false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Power")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "pause_game"
+}, {
+"args": [  ],
+"method": "resume_game"
+} ]
 }
 
 [sub_resource type="Animation" id=38]
@@ -2842,9 +2854,7 @@ states/walk/node = SubResource( 107 )
 states/walk/position = Vector2( 606.697, 154.872 )
 transitions = [ "idle", "crouch", SubResource( 108 ), "idle", "walk", SubResource( 109 ), "walk", "idle", SubResource( 110 ), "walk", "skid", SubResource( 111 ), "idle", "jump", SubResource( 112 ), "jump", "idle", SubResource( 113 ), "jump", "freefall", SubResource( 114 ), "freefall", "idle", SubResource( 115 ), "crouch", "end_1", SubResource( 116 ), "end_1", "idle", SubResource( 117 ), "idle", "throw", SubResource( 118 ), "throw", "idle", SubResource( 119 ), "idle", "dive", SubResource( 120 ), "dive", "end_dive", SubResource( 121 ), "end_dive", "idle", SubResource( 122 ), "idle", "power_get", SubResource( 123 ), "power_get", "idle", SubResource( 124 ), "idle", "refresh", SubResource( 125 ), "refresh", "idle", SubResource( 126 ), "idle", "bash", SubResource( 127 ), "end_bash", "idle", SubResource( 128 ), "walk", "jump", SubResource( 129 ), "bash", "end_bash", SubResource( 130 ), "end_dive", "jump", SubResource( 131 ), "idle", "hurt", SubResource( 132 ), "hurt", "idle", SubResource( 133 ), "dive", "dive_rest", SubResource( 134 ), "dive_rest", "end_dive", SubResource( 135 ), "dive_rest", "dive", SubResource( 136 ), "end_bashes", "idle", SubResource( 137 ), "bash", "end_bashes", SubResource( 138 ), "skid", "end_3", SubResource( 139 ), "end_3", "walk", SubResource( 140 ) ]
 start_node = "idle"
-graph_offset = Vector2( 269.477, 79.525 )
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=142]
+graph_offset = Vector2( 241.96, -108.983 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "all",
@@ -2861,8 +2871,8 @@ defaultPower = ExtResource( 37 )
 [node name="ScaleChildren" type="Node2D" parent="."]
 
 [node name="PlayerCore" type="Sprite" parent="ScaleChildren"]
-texture = ExtResource( 13 )
-hframes = 3
+texture = ExtResource( 1 )
+hframes = 2
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="ScaleChildren"]
@@ -2911,6 +2921,7 @@ position = Vector2( 0.5, 3.757 )
 shape = SubResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+pause_mode = 2
 anims/bash = SubResource( 6 )
 anims/crouch = SubResource( 7 )
 "anims/crouch (brewing)" = SubResource( 8 )
@@ -2958,10 +2969,11 @@ anims/walk = SubResource( 46 )
 "anims/walk (thor)" = SubResource( 50 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+pause_mode = 2
 tree_root = SubResource( 141 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 142 )
+parameters/playback = ExtResource( 41 )
 parameters/conditions/crouching = false
 parameters/conditions/dive_resting = false
 parameters/conditions/jumping = false
