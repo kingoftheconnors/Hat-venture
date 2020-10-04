@@ -12,6 +12,9 @@ export(int) var BOUNCE_FORCE = 300
 export(float) var FALL_MULTIPLIER = 1.1
 export(int) var JUMP_STRENGTH = 300
 
+# POWERS
+var can_use_power = true
+
 # DIVE
 var diving = false
 var can_dive = true
@@ -27,15 +30,20 @@ const MAX_RUNNING_SPEED = 200
 const BASE_RUN_SPEED = 45
 var running
 
+# SPIN
+var spinning
+const SPIN_HORIZONTAL_SPEED = 150
+const SPIN_LENGTH = 2.5
+const POST_SPIN_STUN = 70
+
 # BASH
-var can_bash = false
 var bashing = false
 var bashing_combo = false
 const BASH_SPEED = 215
 const BASH_ACCELERATION = 10
 const KNOCKBACK_MULTIPLIER = 250
-const POST_BASH_STUN = 11
-var bash_wait = 0
+const POST_BASH_STUN = 50
+var power_stun = 0
 
 # CLIMBING
 export(int) var CLIMBING_SPEED = 200
@@ -98,12 +106,12 @@ func move(delta):
 		vertical = 0
 		_stun -= 1
 	
-	if frozen or diving:
-		horizontal = 0; vertical = 0
 	if crouching and is_on_floor():
 		horizontal = 0
-	if bashing:
+	if bashing or spinning:
 		horizontal = direction
+	if frozen or diving:
+		horizontal = 0; vertical = 0
 	
 	# Friction (before moving so friction only applies when player is
 	# standing still or going over conventional speeds)
@@ -129,8 +137,10 @@ func move(delta):
 		max_velo = MAX_SPEED
 	
 	# Basic movement
-	if bashing:
-		velo = Vector2(direction * max_velo, 0)
+	if bashing or spinning:
+	#	velo = Vector2(direction * max_velo, 0)
+	#elif spinning:
+		velo.x = direction * max_velo
 	else:
 		velo.x = calc_direc(horizontal, velo.x)
 	
@@ -142,28 +152,28 @@ func move(delta):
 	
 	# Animating
 	if horizontal != 0:
-		animator["parameters/conditions/walking"] = true
-		animator["parameters/conditions/not_walking"] = false
-		animator["parameters/walk/4/blend_position"] = abs(velo.x)/MAX_RUNNING_SPEED
-		animator["parameters/walk/4/1/Speed/scale"] = .5 + abs(velo.x)/MAX_RUNNING_SPEED
+		animator["parameters/PlayerMovement/conditions/walking"] = true
+		animator["parameters/PlayerMovement/conditions/not_walking"] = false
+		animator["parameters/PlayerMovement/walk/4/blend_position"] = abs(velo.x)/MAX_RUNNING_SPEED
+		animator["parameters/PlayerMovement/walk/4/1/Speed/scale"] = .5 + abs(velo.x)/MAX_RUNNING_SPEED
 	else:
-		animator["parameters/conditions/walking"] = false
-		animator["parameters/conditions/not_walking"] = true
+		animator["parameters/PlayerMovement/conditions/walking"] = false
+		animator["parameters/PlayerMovement/conditions/not_walking"] = true
 	
 	if velo.x * horizontal < 0:
-		animator["parameters/conditions/skidding"] = true
-		animator["parameters/conditions/not_skidding"] = false
+		animator["parameters/PlayerMovement/conditions/skidding"] = true
+		animator["parameters/PlayerMovement/conditions/not_skidding"] = false
 	else:
-		animator["parameters/conditions/skidding"] = false
-		animator["parameters/conditions/not_skidding"] = true
+		animator["parameters/PlayerMovement/conditions/skidding"] = false
+		animator["parameters/PlayerMovement/conditions/not_skidding"] = true
 	
 	if diving:
 		if is_on_floor():
-			animator["parameters/conditions/dive_resting"] = true
-			animator["parameters/conditions/not_dive_resting"] = false
+			animator["parameters/PlayerMovement/conditions/dive_resting"] = true
+			animator["parameters/PlayerMovement/conditions/not_dive_resting"] = false
 		else:
-			animator["parameters/conditions/dive_resting"] = false
-			animator["parameters/conditions/not_dive_resting"] = true
+			animator["parameters/PlayerMovement/conditions/dive_resting"] = false
+			animator["parameters/PlayerMovement/conditions/not_dive_resting"] = true
 	
 	#Gravity
 	if !climbing and !frozen and !bashing:
@@ -241,6 +251,10 @@ func move_player(v):
 				if recognize_collision:
 					if collision and collision.collider.is_in_group("block"):
 						collision.collider.collide(collision, self)
+		# Spin turning around
+		if spinning and recognize_collision:
+			if abs(collision.normal.x) > abs(collision.normal.y):
+				direction = -direction
 	if !recognize_collision:
 		new_velo = prev_velo
 	if bashing:
@@ -251,9 +265,10 @@ onready var bash_collider = get_node("ScaleChildren/bashbox/BashCollider")
 func bash_bounce(body):
 	# Special cases when bashing
 	#if bashing and abs(collision.normal.x) > abs(collision.normal.y):
-	var destroyedBody = core.bash(body)
+	var destroyedBody = core.attack(body)
 	# Smashing through an object (disabling its collision)
 	if destroyedBody:
+		upgrade_smash()
 		body.set_collision_layer(0)
 		body.set_collision_mask(0)
 		#recognize_collision = false
@@ -290,6 +305,16 @@ func bash_bounce(body):
 			velo = push(direc)
 			unbash()
 
+func spin_bounce(body):
+	if !body.is_in_group("player"):
+		print("Hit body ", body)
+		var destroyedBody = core.attack(body)
+		# Smashing through an object (disabling its collision)
+		#if destroyedBody:
+		#	body.set_collision_layer(0)
+		#	body.set_collision_mask(0)
+			#direction = -direction
+
 func push(direc):
 	var pushed_velo = velo
 	if ( velo.x * direc.x < 0 or abs(velo.x) < abs(direc.x) ):
@@ -299,6 +324,8 @@ func push(direc):
 	return pushed_velo
 
 func manage_flags():
+	power_stun_frame()
+	
 	if is_on_floor() or climbing:
 		refresh_flags()
 	else:
@@ -309,10 +336,10 @@ func manage_flags():
 	
 	if is_on_floor() and air_time:
 		air_time = false
-		animator["parameters/conditions/jumping"] = false
-		animator["parameters/conditions/not_jumping"] = true
-	
-	if is_on_floor() and speeding and !bashing and !diving:
+		animator["parameters/PlayerMovement/conditions/jumping"] = false
+		animator["parameters/PlayerMovement/conditions/not_jumping"] = true
+
+	if is_on_floor() and speeding and !bashing and !diving and !spinning:
 		speeding = false
 	
 	if jump_timer > 0:
@@ -329,10 +356,6 @@ func refresh_flags():
 		coyoteTimer = 5
 	if !can_dive:
 		can_dive = true
-	if !can_bash:
-		bash_wait -= 1
-		if bash_wait <= 0:
-			can_bash = true
 
 var holding_jump = false
 
@@ -353,14 +376,14 @@ func _unhandled_input(event):
 		
 		if event.is_action_pressed("ui_crouch"):
 			crouching = true
-			animator["parameters/playback"].travel("crouch")
-			animator["parameters/conditions/crouching"] = true
-			animator["parameters/conditions/not_crouching"] = false
+			animator["parameters/PlayerMovement/playback"].travel("crouch")
+			animator["parameters/PlayerMovement/conditions/crouching"] = true
+			animator["parameters/PlayerMovement/conditions/not_crouching"] = false
 		
 		if event.is_action_released("ui_crouch"):
 			crouching = false
-			animator["parameters/conditions/crouching"] = false
-			animator["parameters/conditions/not_crouching"] = true
+			animator["parameters/PlayerMovement/conditions/crouching"] = false
+			animator["parameters/PlayerMovement/conditions/not_crouching"] = true
 
 func jump():
 	# Basic Jump
@@ -377,8 +400,8 @@ func jump():
 	jump_timer = 0
 	climbing = false
 	#jump_sfx.play()
-	animator["parameters/conditions/jumping"] = true
-	animator["parameters/conditions/not_jumping"] = false
+	animator["parameters/PlayerMovement/conditions/jumping"] = true
+	animator["parameters/PlayerMovement/conditions/not_jumping"] = false
 
 func bounce():
 	var direc = Vector2(0, -BOUNCE_FORCE)
@@ -397,6 +420,17 @@ func get_stun():
 func stun(amo, stun_mult = 3):
 	_stun = amo * stun_mult
 
+func power_stun(amo):
+	animator["parameters/PlayerEffect/playback"].travel("powerlessFlash")
+	power_stun = amo
+	
+func power_stun_frame():
+	if power_stun > 0:
+		power_stun -= 1
+		if power_stun <= 0:
+			animator["parameters/PlayerEffect/playback"].travel("powerlessOff")
+			can_use_power = true
+
 func set_freeze(flag):
 	frozen = flag
 
@@ -413,7 +447,9 @@ func dive():
 		speeding = true
 		max_velo = DIVE_SPEED
 		velo = push(Vector2(DIVE_SPEED * direction, -DIVE_SPEED/2))
-		animator["parameters/playback"].travel("dive")
+		animator["parameters/PlayerMovement/playback"].travel("dive")
+		animator["parameters/PlayerMovement/conditions/jumping"] = false
+		animator["parameters/PlayerMovement/conditions/not_jumping"] = true
 func undive():
 	diving = false
 	#speeding = false
@@ -441,18 +477,18 @@ func stop_skid_perfect():
 	skid_perfect = false
 
 func bash():
-	if !bashing and can_bash and _stun <= 0:
-		can_bash = false
+	if !bashing and can_use_power and _stun <= 0:
+		can_use_power = false
 		bashing = true
 		crouching = false
 		max_velo = BASH_SPEED
-		animator["parameters/playback"].travel("bash")
+		animator["parameters/PlayerMovement/playback"].travel("bash")
 
 func upgrade_smash():
 	if bashing:
 		max_velo += BASH_ACCELERATION
 		velo = Vector2(direction * max_velo, 1)
-		animator["parameters/playback"].start("bash")
+		animator["parameters/PlayerMovement/playback"].start("bash")
 		bashing_combo = true
 
 func unbash():
@@ -464,9 +500,31 @@ func unbash():
 		max_velo = MAX_SPEED
 		bashing = false
 		if bashing_combo == false:
-			bash_wait = POST_BASH_STUN
+			power_stun(POST_BASH_STUN)
 		else:
-			can_bash = true
+			can_use_power = true
+		bashing_combo = false
+
+func spin():
+	if !spinning and can_use_power and _stun <= 0:
+		can_use_power = false
+		spinning = true
+		crouching = false
+		max_velo = SPIN_HORIZONTAL_SPEED
+		animator["parameters/PlayerMovement/playback"].travel("spin")
+		yield(get_tree().create_timer(SPIN_LENGTH), "timeout")
+		print("end-spin")
+		if animator["parameters/PlayerMovement/playback"].get_current_node() == "spin":
+			animator["parameters/PlayerMovement/playback"].travel("end_spin")
+
+func unspin():
+	if spinning:
+		max_velo = MAX_SPEED
+		spinning = false
+		if bashing_combo == false:
+			power_stun(POST_SPIN_STUN)
+		else:
+			can_use_power = true
 		bashing_combo = false
 
 ##############################

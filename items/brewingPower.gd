@@ -8,7 +8,7 @@ func power(body, this):
 	return true
 
 func activate(body, animator):
-	animator["parameters/playback"].travel("throw")
+	animator["parameters/PlayerMovement/playback"].travel("throw")
 
 func deactivate(body, animator):
 	pass

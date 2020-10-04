@@ -84,12 +84,10 @@ Un-diving controlled by animation
 Sprint Cap doesn't accelerate in the air, and has skid trails on ground to represent high speed
 Eltuns squash animation
 Game pauses when getting a new hat
-
-This Sprint:
-* SPEEN
-* Bash-stun visual effect
+Bash-stun visual effect
 
 Backlog:
+* SPEEN
 * Level Select
 * Hard Hat stun animation
 * Hard Hat passive ability

@@ -13,7 +13,7 @@ var power_hp = POWER_BASE_HP
 func acquire_power(powerType):
 	if powerType.name() != power.name():
 		set_power(powerType)
-		animator["parameters/playback"].travel("power_get")
+		animator["parameters/PlayerMovement/playback"].travel("power_get")
 
 func set_power(powerType):
 	power.force_deactivate(platformController, animator)
@@ -22,13 +22,13 @@ func set_power(powerType):
 	updatePowerValues()
 
 func updatePowerValues():
-	animator["parameters/crouch/blend_position"] = int(power.blendValue)
-	animator["parameters/freefall/blend_position"] = int(power.blendValue)
-	animator["parameters/idle/blend_position"] = int(power.blendValue)
-	animator["parameters/jump/blend_position"] = int(power.blendValue)
-	animator["parameters/skid/blend_position"] = int(power.blendValue)
-	animator["parameters/walk/blend_position"] = int(power.blendValue)
-	animator["parameters/hurt/blend_position"] = int(power.blendValue)
+	animator["parameters/PlayerMovement/crouch/blend_position"] = int(power.blendValue)
+	animator["parameters/PlayerMovement/freefall/blend_position"] = int(power.blendValue)
+	animator["parameters/PlayerMovement/idle/blend_position"] = int(power.blendValue)
+	animator["parameters/PlayerMovement/jump/blend_position"] = int(power.blendValue)
+	animator["parameters/PlayerMovement/skid/blend_position"] = int(power.blendValue)
+	animator["parameters/PlayerMovement/walk/blend_position"] = int(power.blendValue)
+	animator["parameters/PlayerMovement/hurt/blend_position"] = int(power.blendValue)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_B"):
@@ -42,27 +42,27 @@ func _unhandled_input(event):
 		if event is InputEventKey and event.pressed and event.scancode == KEY_1:
 			acquire_power(defaultPower.new())
 			updatePowerValues()
-			animator["parameters/playback"].travel("power_get")
+			animator["parameters/PlayerMovement/playback"].travel("power_get")
 		if event is InputEventKey and event.pressed and event.scancode == KEY_2:
 			var script = preload("res://items/runningPower.gd")
 			acquire_power(script.new())
 			updatePowerValues()
-			animator["parameters/playback"].travel("power_get")
+			animator["parameters/PlayerMovement/playback"].travel("power_get")
 		if event is InputEventKey and event.pressed and event.scancode == KEY_3:
 			var script = preload("res://items/brewingPower.gd")
 			acquire_power(script.new())
 			updatePowerValues()
-			animator["parameters/playback"].travel("power_get")
+			animator["parameters/PlayerMovement/playback"].travel("power_get")
 		if event is InputEventKey and event.pressed and event.scancode == KEY_4:
 			var script = preload("res://items/thorPower.gd")
 			acquire_power(script.new())
 			updatePowerValues()
-			animator["parameters/playback"].travel("power_get")
+			animator["parameters/PlayerMovement/playback"].travel("power_get")
 		if event is InputEventKey and event.pressed and event.scancode == KEY_5:
 			var script = preload("res://items/hardPower.gd")
 			acquire_power(script.new())
 			updatePowerValues()
-			animator["parameters/playback"].travel("power_get")
+			animator["parameters/PlayerMovement/playback"].travel("power_get")
 
 func set_power_active(flag):
 	if flag:
@@ -83,7 +83,7 @@ func release_power():
 		get_parent().get_parent().add_child(releaseHat)
 	set_power(defaultPower.new())
 	updatePowerValues()
-	animator["parameters/playback"].travel("refresh")
+	animator["parameters/PlayerMovement/playback"].travel("refresh")
 
 func pause_game():
 	get_tree().paused = true

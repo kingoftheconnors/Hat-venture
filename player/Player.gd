@@ -45,19 +45,17 @@ func _on_hurtbox_area_entered(area):
 		var damage = area.get_parent().get_damage()
 		# TODO: Play sound effect
 		damage(false, damage)
-		animator['parameters/playback'].travel('hurt')
+		animator['parameters/PlayerMovement/playback'].travel('hurt')
 		# Bounce back
 	elif area.is_in_group("ladder"):
 		controller.on_ladders += 1
 
 # Bash at body. If the object is destroyed, return true
-func bash(body):
+func attack(body):
 	if not body.is_in_group("player"):
 		if body.has_method("damage"):
 			# TODO: Play sound effect
 			var destroyed = body.damage(false)
-			if destroyed:
-				controller.upgrade_smash()
 			return destroyed
 	return false
 
@@ -68,7 +66,7 @@ func cliff_damage():
 
 func damage(isStomp, damage = 1):
 	controller.can_dive = true
-	controller.can_bash = true
+	controller.can_use_power = true
 	if health > 0:
 		turn_invincibilty(true)
 		health -= damage
