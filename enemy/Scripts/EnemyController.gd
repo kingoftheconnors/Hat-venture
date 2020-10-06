@@ -2,7 +2,7 @@ tool
 extends Node
 
 onready var sprite = get_node("EnemyCore")
-export(Vector2) var direction = Vector2(1,0)
+export(Vector2) var base_direction = Vector2(1,0)
 var is_active = false
 
 var controller : Resource
@@ -10,10 +10,10 @@ var controller_script
 var controller_variables = {}
 func get_controller_script():
 	if controller_script == null:
-		controller_script = controller.new(direction, controller_variables)
+		controller_script = controller.new(base_direction, controller_variables)
 	return controller_script
 func reset_controller_script():
-	controller_script = controller.new(direction, controller_variables)
+	controller_script = controller.new(base_direction, controller_variables)
 func has_controller_script():
 	return controller_script != null
 
@@ -88,3 +88,6 @@ func smash_death():
 
 func _on_VisibilityNotifier2D_screen_entered():
 	is_active = true
+
+func get_sprite():
+	return sprite

@@ -62,4 +62,3 @@ func get_script_export_list():
 		"default": DEFAULT_TURNAROUND_TIME
 	}]
 	return property_list
-

@@ -85,14 +85,12 @@ Sprint Cap doesn't accelerate in the air, and has skid trails on ground to repre
 Eltuns squash animation
 Game pauses when getting a new hat
 Bash-stun visual effect
+Spin hat first draft
 
 Backlog:
-* SPEEN
 * Level Select
-* Hard Hat stun animation
 * Hard Hat passive ability
 Input needed:
-* Spinning hard hat and thor hat
 * Checkpoints
 * Death animation
 * Super dash animation

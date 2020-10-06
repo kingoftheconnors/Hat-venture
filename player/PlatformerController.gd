@@ -127,6 +127,7 @@ func move(delta):
 			direction = 1
 		else:
 			direction = -1
+	if scale_manager.scale.x != direction:
 		scale_manager.scale = Vector2(direction, 1)
 	
 	# Running
