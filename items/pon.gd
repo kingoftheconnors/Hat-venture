@@ -1,9 +1,8 @@
 class_name pon
 
 func power(body, this):
-	print("Collect pon!")
-	# TODO: Update GUI
-	
+	# Update GUI
+	Gui.add_pons(1)
 	return true
 
 # Pons are not equipped as abilities, so so this isn't called

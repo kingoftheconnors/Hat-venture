@@ -87,12 +87,13 @@ Spin hat first draft
 0.1.8
 Poddles
 Poddleballs dying when hitting a wall
+Pon GUI
 
 This sprint:
-Pons
+G-g-g-game over
+Slow spinning deceleration (when in air)
 Spinning fine-tuning
 Checkpoints
-G-g-g-game over
 
 Backlog:
 * Level Select

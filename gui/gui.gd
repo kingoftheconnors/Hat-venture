@@ -7,6 +7,7 @@ onready var playerScore = $Player/ScoreArea/Score
 
 onready var stageName = $Player/StageName
 onready var lives = $Player/LiveNum
+onready var pons = $Player/PonsNum
 
 onready var scoreArea = $Player/ScoreArea
 onready var bossArea = $Player/BossArea
@@ -21,31 +22,44 @@ func show():
 	gui.visible = true
 
 func start(stageNum):
-	stageName.text = "stage" + str(stageNum)
+	stageName.text = "LV." + str(stageNum)
 	energy.value = 4
 
 func update_health(value, max_value):
 	energy.set_max(max_value)
 	energy.set_value(value)
-
 func heal():
 	energy.value = energy.value + 1
 
 func death():
 	energy.value = 4
 	lives.text = str(int(lives.text) - 1)
-	
+	# TODO: Game over
+func one_up():
+	lives.text = str(int(lives.text) + 1)
 func getNumLives():
 	return lives.text
 
+func add_pons(amo):
+	pons.text = str(int(pons.text) + amo)
+	add_score(amo*25)
+	if int(pons.text) >= 100:
+		pons.text = str(int(pons.text) - 100)
+		one_up()
+func set_pons(amo):
+	pons.text = amo
+func get_pons():
+	return pons.text
+
+
 func startBossBattle(life):
 	bossEnergy.value = life
+	# TODO: Show boss health
 
 func add_score(amo):
 	print("Adding score")
 	score += amo
 	playerScore.set_text("SCORE:" + ("%06d" % score))
-
 func reset_score():
 	score = 0
 	playerScore.set_text("SCORE:" + ("%06d" % score))
@@ -79,6 +93,8 @@ func _unhandled_input(event):
 			add_score(100)
 		if event is InputEventKey and event.pressed and event.scancode == KEY_MINUS:
 			reset_score()
+		if event is InputEventKey and event.pressed and event.scancode == KEY_0:
+			add_pons(3)
 
 func queue_dialog(array_text):
 	text_to_run += array_text
