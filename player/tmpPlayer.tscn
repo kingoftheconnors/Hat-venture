@@ -1,4 +1,4 @@
-[gd_scene load_steps=183 format=2]
+[gd_scene load_steps=92 format=2]
 
 [ext_resource path="res://player/regular/idle.png" type="Texture" id=1]
 [ext_resource path="res://player/PlatformerController.gd" type="Script" id=2]
@@ -40,7 +40,6 @@
 [ext_resource path="res://player/hard/bash.png" type="Texture" id=38]
 [ext_resource path="res://player/hard/dashfx.png" type="Texture" id=39]
 [ext_resource path="res://player/regular/lyingdown.png" type="Texture" id=40]
-[ext_resource path="res://player/PlayerAnimationTree.tres" type="AnimationNodeStateMachinePlayback" id=41]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.5
@@ -2438,423 +2437,7 @@ tracks/2/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=51]
-animation = "bash"
-
-[sub_resource type="AnimationNodeAnimation" id=52]
-animation = "crouch"
-
-[sub_resource type="AnimationNodeAnimation" id=53]
-animation = "crouch (runner)"
-
-[sub_resource type="AnimationNodeAnimation" id=54]
-animation = "crouch (brewing)"
-
-[sub_resource type="AnimationNodeAnimation" id=55]
-animation = "crouch (thor)"
-
-[sub_resource type="AnimationNodeAnimation" id=56]
-animation = "crouch (hard)"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id=57]
-blend_point_0/node = SubResource( 52 )
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource( 53 )
-blend_point_1/pos = 1.0
-blend_point_2/node = SubResource( 54 )
-blend_point_2/pos = 2.0
-blend_point_3/node = SubResource( 55 )
-blend_point_3/pos = 3.0
-blend_point_4/node = SubResource( 56 )
-blend_point_4/pos = 4.0
-min_space = 0.0
-max_space = 4.0
-snap = 1.0
-value_label = "power"
-
-[sub_resource type="AnimationNodeAnimation" id=58]
-animation = "dive"
-
-[sub_resource type="AnimationNodeAnimation" id=59]
-animation = "dive_rest"
-
-[sub_resource type="AnimationNodeAnimation" id=60]
-animation = "end_crouch"
-
-[sub_resource type="AnimationNodeAnimation" id=61]
-animation = "end_crouch"
-
-[sub_resource type="AnimationNodeAnimation" id=62]
-animation = "end_bash"
-
-[sub_resource type="AnimationNodeAnimation" id=63]
-animation = "end_bash"
-
-[sub_resource type="AnimationNodeAnimation" id=64]
-animation = "end_dive"
-
-[sub_resource type="AnimationNodeAnimation" id=65]
-animation = "freefall"
-
-[sub_resource type="AnimationNodeAnimation" id=66]
-animation = "freefall (runner)"
-
-[sub_resource type="AnimationNodeAnimation" id=67]
-animation = "freefall (brewing)"
-
-[sub_resource type="AnimationNodeAnimation" id=68]
-animation = "freefall (thor)"
-
-[sub_resource type="AnimationNodeAnimation" id=69]
-animation = "freefall (hard)"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id=70]
-blend_point_0/node = SubResource( 65 )
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource( 66 )
-blend_point_1/pos = 1.0
-blend_point_2/node = SubResource( 67 )
-blend_point_2/pos = 2.0
-blend_point_3/node = SubResource( 68 )
-blend_point_3/pos = 3.0
-blend_point_4/node = SubResource( 69 )
-blend_point_4/pos = 4.0
-min_space = 0.0
-max_space = 4.0
-snap = 1.0
-value_label = "power"
-
-[sub_resource type="AnimationNodeAnimation" id=71]
-animation = "hurt"
-
-[sub_resource type="AnimationNodeAnimation" id=72]
-animation = "hurt (runner)"
-
-[sub_resource type="AnimationNodeAnimation" id=73]
-animation = "hurt (brewing)"
-
-[sub_resource type="AnimationNodeAnimation" id=74]
-animation = "hurt (thor)"
-
-[sub_resource type="AnimationNodeAnimation" id=75]
-animation = "hurt (hard)"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id=76]
-blend_point_0/node = SubResource( 71 )
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource( 72 )
-blend_point_1/pos = 1.0
-blend_point_2/node = SubResource( 73 )
-blend_point_2/pos = 2.0
-blend_point_3/node = SubResource( 74 )
-blend_point_3/pos = 3.0
-blend_point_4/node = SubResource( 75 )
-blend_point_4/pos = 4.0
-min_space = 0.0
-max_space = 4.0
-snap = 1.0
-
-[sub_resource type="AnimationNodeAnimation" id=77]
-animation = "idle"
-
-[sub_resource type="AnimationNodeAnimation" id=78]
-animation = "idle (runner)"
-
-[sub_resource type="AnimationNodeAnimation" id=79]
-animation = "idle (brewing)"
-
-[sub_resource type="AnimationNodeAnimation" id=80]
-animation = "idle (thor)"
-
-[sub_resource type="AnimationNodeAnimation" id=81]
-animation = "idle (hard)"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id=82]
-blend_point_0/node = SubResource( 77 )
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource( 78 )
-blend_point_1/pos = 1.0
-blend_point_2/node = SubResource( 79 )
-blend_point_2/pos = 2.0
-blend_point_3/node = SubResource( 80 )
-blend_point_3/pos = 3.0
-blend_point_4/node = SubResource( 81 )
-blend_point_4/pos = 4.0
-min_space = 0.0
-max_space = 4.0
-snap = 1.0
-value_label = "power"
-
-[sub_resource type="AnimationNodeAnimation" id=83]
-animation = "jump"
-
-[sub_resource type="AnimationNodeAnimation" id=84]
-animation = "jump (runner)"
-
-[sub_resource type="AnimationNodeAnimation" id=85]
-animation = "jump (brewing)"
-
-[sub_resource type="AnimationNodeAnimation" id=86]
-animation = "jump (thor)"
-
-[sub_resource type="AnimationNodeAnimation" id=87]
-animation = "jump (hard)"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id=88]
-blend_point_0/node = SubResource( 83 )
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource( 84 )
-blend_point_1/pos = 1.0
-blend_point_2/node = SubResource( 85 )
-blend_point_2/pos = 2.0
-blend_point_3/node = SubResource( 86 )
-blend_point_3/pos = 3.0
-blend_point_4/node = SubResource( 87 )
-blend_point_4/pos = 4.0
-min_space = 0.0
-max_space = 4.0
-snap = 1.0
-
-[sub_resource type="AnimationNodeAnimation" id=89]
-animation = "power_get"
-
-[sub_resource type="AnimationNodeAnimation" id=90]
-animation = "refresh"
-
-[sub_resource type="AnimationNodeAnimation" id=91]
-animation = "skid"
-
-[sub_resource type="AnimationNodeAnimation" id=92]
-animation = "skid (runner)"
-
-[sub_resource type="AnimationNodeAnimation" id=93]
-animation = "skid (brewing)"
-
-[sub_resource type="AnimationNodeAnimation" id=94]
-animation = "skid (thor)"
-
-[sub_resource type="AnimationNodeAnimation" id=95]
-animation = "skid (hard)"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id=96]
-blend_point_0/node = SubResource( 91 )
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource( 92 )
-blend_point_1/pos = 1.0
-blend_point_2/node = SubResource( 93 )
-blend_point_2/pos = 2.0
-blend_point_3/node = SubResource( 94 )
-blend_point_3/pos = 3.0
-blend_point_4/node = SubResource( 95 )
-blend_point_4/pos = 4.0
-min_space = 0.0
-max_space = 4.0
-snap = 1.0
-value_label = "power"
-
-[sub_resource type="AnimationNodeAnimation" id=97]
-animation = "throw"
-
-[sub_resource type="AnimationNodeAnimation" id=98]
-animation = "walk"
-
-[sub_resource type="AnimationNodeAnimation" id=99]
-animation = "walk (brewing)"
-
-[sub_resource type="AnimationNodeAnimation" id=100]
-animation = "walk (thor)"
-
-[sub_resource type="AnimationNodeAnimation" id=101]
-animation = "walk (hard)"
-
-[sub_resource type="AnimationNodeAnimation" id=102]
-animation = "walk (runner)"
-
-[sub_resource type="AnimationNodeAnimation" id=103]
-animation = "run (cycle)"
-
-[sub_resource type="AnimationNodeTimeScale" id=104]
-
-[sub_resource type="AnimationNodeBlendTree" id=105]
-graph_offset = Vector2( 29.159, 0 )
-nodes/Animation/node = SubResource( 103 )
-nodes/Animation/position = Vector2( 160, 40 )
-nodes/Speed/node = SubResource( 104 )
-nodes/Speed/position = Vector2( 360, 40 )
-nodes/output/position = Vector2( 540, 80 )
-node_connections = [ "output", 0, "Speed", "Speed", 0, "Animation" ]
-
-[sub_resource type="AnimationNodeBlendSpace1D" id=106]
-blend_point_0/node = SubResource( 102 )
-blend_point_0/pos = 0.94
-blend_point_1/node = SubResource( 105 )
-blend_point_1/pos = 0.95
-min_space = 0.0
-snap = 0.01
-value_label = "speed"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id=107]
-blend_point_0/node = SubResource( 98 )
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource( 99 )
-blend_point_1/pos = 2.0
-blend_point_2/node = SubResource( 100 )
-blend_point_2/pos = 3.0
-blend_point_3/node = SubResource( 101 )
-blend_point_3/pos = 4.0
-blend_point_4/node = SubResource( 106 )
-blend_point_4/pos = 1.0
-min_space = 0.0
-max_space = 4.0
-snap = 1.0
-value_label = "power"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=108]
-advance_condition = "crouching"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=109]
-advance_condition = "walking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=110]
-advance_condition = "not_walking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=111]
-advance_condition = "skidding"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=112]
-advance_condition = "jumping"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=113]
-advance_condition = "not_jumping"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=114]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=115]
-advance_condition = "not_jumping"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=116]
-advance_condition = "not_crouching"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=117]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=118]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=119]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=120]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=121]
-advance_condition = "jumping"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=122]
-switch_mode = 2
-auto_advance = true
-priority = 3
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=123]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=124]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=125]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=126]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=127]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=128]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=129]
-advance_condition = "jumping"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=130]
-switch_mode = 2
-auto_advance = true
-priority = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=131]
-switch_mode = 2
-advance_condition = "jumping"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=132]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=133]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=134]
-advance_condition = "dive_resting"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=135]
-advance_condition = "jumping"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=136]
-advance_condition = "not_dive_resting"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=137]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=138]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=139]
-advance_condition = "not_skidding"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=140]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachine" id=141]
-states/bash/node = SubResource( 51 )
-states/bash/position = Vector2( 489.697, -156.681 )
-states/crouch/node = SubResource( 57 )
-states/crouch/position = Vector2( 970.697, -74.4237 )
-states/dive/node = SubResource( 58 )
-states/dive/position = Vector2( 281.697, 43.944 )
-states/dive_rest/node = SubResource( 59 )
-states/dive_rest/position = Vector2( 281.697, -74.4237 )
-states/end_1/node = SubResource( 60 )
-states/end_1/position = Vector2( 796.697, 4.944 )
-states/end_3/node = SubResource( 61 )
-states/end_3/position = Vector2( 796.697, 154.872 )
-states/end_bash/node = SubResource( 62 )
-states/end_bash/position = Vector2( 489.697, -74.4237 )
-states/end_bashes/node = SubResource( 63 )
-states/end_bashes/position = Vector2( 489.697, -74.4237 )
-states/end_dive/node = SubResource( 64 )
-states/end_dive/position = Vector2( 447.697, 4.944 )
-states/freefall/node = SubResource( 70 )
-states/freefall/position = Vector2( 373.697, 82.872 )
-states/hurt/node = SubResource( 76 )
-states/hurt/position = Vector2( 722.697, -156.681 )
-states/idle/node = SubResource( 82 )
-states/idle/position = Vector2( 606.697, 4.944 )
-states/jump/node = SubResource( 88 )
-states/jump/position = Vector2( 447.697, 154.872 )
-states/power_get/node = SubResource( 89 )
-states/power_get/position = Vector2( 796.697, 87.872 )
-states/refresh/node = SubResource( 90 )
-states/refresh/position = Vector2( 752.697, -74.4237 )
-states/skid/node = SubResource( 96 )
-states/skid/position = Vector2( 796.697, 270.88 )
-states/throw/node = SubResource( 97 )
-states/throw/position = Vector2( 606.697, -156.681 )
-states/walk/node = SubResource( 107 )
-states/walk/position = Vector2( 606.697, 154.872 )
-transitions = [ "idle", "crouch", SubResource( 108 ), "idle", "walk", SubResource( 109 ), "walk", "idle", SubResource( 110 ), "walk", "skid", SubResource( 111 ), "idle", "jump", SubResource( 112 ), "jump", "idle", SubResource( 113 ), "jump", "freefall", SubResource( 114 ), "freefall", "idle", SubResource( 115 ), "crouch", "end_1", SubResource( 116 ), "end_1", "idle", SubResource( 117 ), "idle", "throw", SubResource( 118 ), "throw", "idle", SubResource( 119 ), "idle", "dive", SubResource( 120 ), "dive", "end_dive", SubResource( 121 ), "end_dive", "idle", SubResource( 122 ), "idle", "power_get", SubResource( 123 ), "power_get", "idle", SubResource( 124 ), "idle", "refresh", SubResource( 125 ), "refresh", "idle", SubResource( 126 ), "idle", "bash", SubResource( 127 ), "end_bash", "idle", SubResource( 128 ), "walk", "jump", SubResource( 129 ), "bash", "end_bash", SubResource( 130 ), "end_dive", "jump", SubResource( 131 ), "idle", "hurt", SubResource( 132 ), "hurt", "idle", SubResource( 133 ), "dive", "dive_rest", SubResource( 134 ), "dive_rest", "end_dive", SubResource( 135 ), "dive_rest", "dive", SubResource( 136 ), "end_bashes", "idle", SubResource( 137 ), "bash", "end_bashes", SubResource( 138 ), "skid", "end_3", SubResource( 139 ), "end_3", "walk", SubResource( 140 ) ]
-start_node = "idle"
-graph_offset = Vector2( 173.29, -147.818 )
+[sub_resource type="AnimationNodeBlendSpace1D" id=51]
 
 [node name="Player" type="KinematicBody2D" groups=[
 "all",
@@ -2871,12 +2454,11 @@ defaultPower = ExtResource( 37 )
 [node name="ScaleChildren" type="Node2D" parent="."]
 
 [node name="PlayerCore" type="Sprite" parent="ScaleChildren"]
-texture = ExtResource( 1 )
-hframes = 2
+texture = ExtResource( 38 )
+hframes = 3
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="ScaleChildren"]
-visible = false
 position = Vector2( 8, 1 )
 texture = ExtResource( 39 )
 
@@ -2888,6 +2470,7 @@ texture = ExtResource( 39 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScaleChildren/hurtbox"]
 position = Vector2( 0.5, -1.5 )
 shape = SubResource( 1 )
+disabled = true
 
 [node name="hitbox" type="Area2D" parent="ScaleChildren" groups=[
 "hitbox",
@@ -2909,16 +2492,17 @@ collision_mask = 3
 [node name="BashCollider" type="CollisionShape2D" parent="ScaleChildren/bashbox"]
 position = Vector2( 8, 1 )
 shape = SubResource( 3 )
-disabled = true
 
 [node name="HeadCollider" type="CollisionShape2D" parent="."]
 position = Vector2( 0.5, -5.5 )
 rotation = 0.785398
 shape = SubResource( 4 )
+disabled = true
 
 [node name="BodyCollider" type="CollisionShape2D" parent="."]
 position = Vector2( 0.5, 3.757 )
 shape = SubResource( 5 )
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 pause_mode = 2
@@ -2970,41 +2554,24 @@ anims/walk = SubResource( 46 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 pause_mode = 2
-tree_root = SubResource( 141 )
+tree_root = SubResource( 51 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/playback = ExtResource( 41 )
-parameters/conditions/crouching = false
-parameters/conditions/dive_resting = false
-parameters/conditions/jumping = false
-parameters/conditions/not_crouching = true
-parameters/conditions/not_dive_resting = false
-parameters/conditions/not_jumping = false
-parameters/conditions/not_skidding = true
-parameters/conditions/not_walking = true
-parameters/conditions/skidding = false
-parameters/conditions/walking = false
-parameters/crouch/blend_position = 0
-parameters/freefall/blend_position = 0.0
-parameters/hurt/blend_position = 0.0
-parameters/idle/blend_position = 0.0
-parameters/jump/blend_position = 0
-parameters/skid/blend_position = 0
-parameters/walk/blend_position = 0.0
-parameters/walk/4/blend_position = 0.0
-parameters/walk/4/1/Speed/scale = 1.0
+parameters/blend_position = -0.695473
 
 [node name="SkidRay" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 5, 0 )
 enabled = true
 cast_to = Vector2( 0, 20 )
 collision_mask = 3
 
 [node name="SkidRay2" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( -5, 0 )
 enabled = true
 cast_to = Vector2( 0, 20 )
 collision_mask = 3
+
 [connection signal="off_cliff" from="." to="ScaleChildren/PlayerCore" method="cliff_damage"]
 [connection signal="hurt" from="ScaleChildren/PlayerCore" to="Power" method="hit"]
 [connection signal="area_entered" from="ScaleChildren/hurtbox" to="ScaleChildren/PlayerCore" method="_on_hurtbox_area_entered"]
