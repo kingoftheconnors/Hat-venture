@@ -88,11 +88,24 @@ Spin hat first draft
 Poddles
 Poddleballs dying when hitting a wall
 Pon GUI
+Big Pons
+Big Feet so falling off cliff is harder (maybe smaller enemy boxes?)
 
 This sprint:
+Test Throw Bottle Explosion
+Crouch slide
+SMB2 Music
+Spinning Hard Hat
+Turning around on lying-down-state
+Falling into a pit should kill automatically like in Mario
+Jumping side-left into blocks breaks them (glitch)
+Dive boost fx
+Squished enemies stay on screen a tad too long.
+Death animation should be what's on the sheet (fly up and down and out)
+Fade in-out should be a 3 tone fade like in Mario. To explain, in order to simulate a fade, they'd switch up palettes for every .5 second so that every color was brighter until they were all white. I'd say just look at most GB games and you'll see what I'm referring to.
 G-g-g-game over
+Spinning rework
 Slow spinning deceleration (when in air)
-Spinning fine-tuning
 Checkpoints
 
 Backlog:

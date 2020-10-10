@@ -121,8 +121,10 @@ curve = SubResource( 1 )
 
 [node name="Eltun3" parent="." instance=ExtResource( 11 )]
 position = Vector2( 96, -72 )
+base_direction = Vector2( 1, 0 )
 movement/controller = ExtResource( 12 )
 movement/path = NodePath("../Path2D")
 
 [node name="Poddle" parent="." instance=ExtResource( 6 )]
 position = Vector2( 320, -32 )
+base_direction = Vector2( 1, 0 )
