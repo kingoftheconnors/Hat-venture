@@ -89,11 +89,12 @@ Poddles
 Poddleballs dying when hitting a wall
 Pon GUI
 Big Pons
-Big Feet so falling off cliff is harder (maybe smaller enemy boxes?)
+Big Feet so falling off cliff is harder
+Crouch slide
 
 This sprint:
-Test Throw Bottle Explosion
-Crouch slide
+Turning while crouching
+Crouching after spin allows walking?
 SMB2 Music
 Spinning Hard Hat
 Turning around on lying-down-state

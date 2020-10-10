@@ -115,11 +115,13 @@ func move(delta):
 	
 	# Friction (before moving so friction only applies when player is
 	# standing still or going over conventional speeds)
-	if (horizontal == 0 and !speeding) or (is_on_floor() and abs(velo.x) > max_velo):
+	if (horizontal == 0 and !speeding and !crouching) or (is_on_floor() and abs(velo.x) > max_velo):
 		velo.x *= 0.87
 	elif diving: # Diving friction
 		if is_on_floor():
 			velo.x *= 0.93
+	elif crouching:
+		velo.x *= 0.96
 	
 	# Setting direction
 	if horizontal * direction < 0:
