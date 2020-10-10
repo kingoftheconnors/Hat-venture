@@ -172,6 +172,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=4]
+length = 0.5
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -179,7 +180,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -270,72 +271,76 @@ animation = "default"
 [sub_resource type="AnimationNodeAnimation" id=6]
 animation = "die"
 
-[sub_resource type="AnimationNodeAnimation" id=15]
-animation = "shoot"
-
-[sub_resource type="AnimationNodeAnimation" id=16]
-animation = "shoot"
-
-[sub_resource type="AnimationNodeAnimation" id=17]
-animation = "shoot"
-
 [sub_resource type="AnimationNodeAnimation" id=7]
+animation = "shoot"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "shoot"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "shoot"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "smash"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+switch_mode = 2
+auto_advance = true
+priority = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+switch_mode = 2
+auto_advance = true
+priority = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+switch_mode = 2
+auto_advance = true
+priority = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+switch_mode = 2
+auto_advance = true
+priority = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=18]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=19]
-switch_mode = 2
-auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
-
-[sub_resource type="AnimationNodeStateMachine" id=10]
+[sub_resource type="AnimationNodeStateMachine" id=20]
 states/default/node = SubResource( 5 )
 states/default/position = Vector2( 205, 118 )
 states/die/node = SubResource( 6 )
 states/die/position = Vector2( 400, 75 )
-states/shoot/node = SubResource( 17 )
+states/shoot/node = SubResource( 9 )
 states/shoot/position = Vector2( 205, 207.5 )
-"states/shoot 2/node" = SubResource( 15 )
+"states/shoot 2/node" = SubResource( 7 )
 "states/shoot 2/position" = Vector2( 22.2196, 207.5 )
-"states/shoot 3/node" = SubResource( 16 )
+"states/shoot 3/node" = SubResource( 8 )
 "states/shoot 3/position" = Vector2( 22.2196, 118 )
-states/smash/node = SubResource( 7 )
+states/smash/node = SubResource( 10 )
 states/smash/position = Vector2( 400, 134 )
-transitions = [ "default", "die", SubResource( 8 ), "default", "smash", SubResource( 9 ), "default", "shoot", SubResource( 18 ), "shoot", "shoot 2", SubResource( 19 ), "shoot 2", "shoot 3", SubResource( 20 ), "shoot 3", "default", SubResource( 21 ), "shoot", "default", SubResource( 23 ), "shoot 3", "shoot 2", SubResource( 24 ), "shoot 2", "shoot", SubResource( 25 ) ]
+transitions = [ "default", "die", SubResource( 11 ), "default", "smash", SubResource( 12 ), "default", "shoot", SubResource( 13 ), "shoot", "shoot 2", SubResource( 14 ), "shoot 2", "shoot 3", SubResource( 15 ), "shoot 3", "default", SubResource( 16 ), "shoot", "default", SubResource( 17 ), "shoot 3", "shoot 2", SubResource( 18 ), "shoot 2", "shoot", SubResource( 19 ) ]
 start_node = "default"
 graph_offset = Vector2( -93.7804, 36.24 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=21]
 
-[sub_resource type="CapsuleShape2D" id=12]
+[sub_resource type="CapsuleShape2D" id=22]
 radius = 3.0
 height = 14.3208
 
-[sub_resource type="CapsuleShape2D" id=13]
+[sub_resource type="CapsuleShape2D" id=23]
 radius = 7.17361
 height = 5.52895
 
-[sub_resource type="CapsuleShape2D" id=14]
+[sub_resource type="CapsuleShape2D" id=24]
 radius = 6.0
 height = 9.0
 
@@ -346,7 +351,6 @@ movement/controller = ExtResource( 3 )
 [node name="EnemyCore" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 3
-frame = 1
 script = ExtResource( 4 )
 deathScore = 300
 
@@ -357,10 +361,10 @@ anims/shoot = SubResource( 3 )
 anims/smash = SubResource( 4 )
 
 [node name="AnimationTree" type="AnimationTree" parent="EnemyCore"]
-tree_root = SubResource( 10 )
+tree_root = SubResource( 20 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 11 )
+parameters/playback = SubResource( 21 )
 
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
@@ -369,7 +373,7 @@ position = Vector2( 0, -10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 rotation = 1.5708
-shape = SubResource( 12 )
+shape = SubResource( 22 )
 
 [node name="HitBox" type="Area2D" parent="." groups=[
 "hitbox",
@@ -377,11 +381,11 @@ shape = SubResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 0, 2 )
-shape = SubResource( 13 )
+shape = SubResource( 23 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1.5 )
-shape = SubResource( 14 )
+shape = SubResource( 24 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
