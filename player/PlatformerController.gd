@@ -398,6 +398,7 @@ func jump():
 		velo.y = min(-DIVE_OUT_STRENGTH, velo.y)
 		if superdive_window:
 			velo = Vector2(direction * SUPERDIVE_SPEED, -SUPERDIVE_SPEED)
+			animator["parameters/PlayerMovement/playback"].travel("dive_boost")
 	# Energy jump
 	coyoteTimer = 0
 	jump_timer = 0

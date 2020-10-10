@@ -5,7 +5,7 @@
 [ext_resource path="res://level.gd" type="Script" id=3]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://common/Camera.gd" type="Script" id=5]
-[ext_resource path="res://enemy/poddle/Poddles.tscn" type="PackedScene" id=6]
+[ext_resource path="res://enemy/poddle/Poddle.tscn" type="PackedScene" id=6]
 [ext_resource path="res://common/spawn.tscn" type="PackedScene" id=7]
 [ext_resource path="res://items/Resources/HPon.tscn" type="PackedScene" id=8]
 [ext_resource path="res://items/Resources/Pon.tscn" type="PackedScene" id=9]
@@ -121,10 +121,8 @@ curve = SubResource( 1 )
 
 [node name="Eltun3" parent="." instance=ExtResource( 11 )]
 position = Vector2( 96, -72 )
-base_direction = Vector2( 1, 0 )
 movement/controller = ExtResource( 12 )
 movement/path = NodePath("../Path2D")
 
 [node name="Poddle" parent="." instance=ExtResource( 6 )]
 position = Vector2( 320, -32 )
-base_direction = Vector2( 1, 0 )

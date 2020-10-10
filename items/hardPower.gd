@@ -17,7 +17,10 @@ func force_deactivate(body, animator):
 	body.unbash()
 
 func release():
-	pass
+	var hardhat = load("res://items/Resources/ReleasedHardHat.tscn")
+	var hat = hardhat.instance()
+	hat.set_position(Vector2(0, -8))
+	return hat
 
 func spawnFromBox(collidingBody):
 	var hardhat = load("res://items/Resources/HardHat.tscn")

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hardSpinning.png-1240b57b8855deb9095231de4bd14748.stex"
+path="res://.import/dive_boost.png-07c96d7501d00c23088f925948747d83.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/Resources/hardSpinning.png"
-dest_files=[ "res://.import/hardSpinning.png-1240b57b8855deb9095231de4bd14748.stex" ]
+source_file="res://player/regular/dive_boost.png"
+dest_files=[ "res://.import/dive_boost.png-07c96d7501d00c23088f925948747d83.stex" ]
 
 [params]
 
