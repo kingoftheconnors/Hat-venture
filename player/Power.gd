@@ -20,6 +20,8 @@ func set_power(powerType):
 	power = powerType
 	power_hp = POWER_BASE_HP
 	updatePowerValues()
+	
+	SceneTree
 
 func updatePowerValues():
 	animator["parameters/PlayerMovement/crouch/blend_position"] = int(power.blendValue)

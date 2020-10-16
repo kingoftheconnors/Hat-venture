@@ -106,12 +106,23 @@ func move(delta):
 		vertical = 0
 		_stun -= 1
 	
-	if crouching and is_on_floor():
-		horizontal = 0
 	if bashing or spinning:
 		horizontal = direction
 	if frozen or diving:
 		horizontal = 0; vertical = 0
+	
+	# Setting direction
+	if horizontal * direction < 0:
+		if horizontal > 0:
+			direction = 1
+		else:
+			direction = -1
+	if scale_manager.scale.x != direction:
+		scale_manager.scale = Vector2(direction, 1)
+	
+	# Crouching (can turn around but doesn't move')
+	if crouching and is_on_floor():
+		horizontal = 0
 	
 	# Friction (before moving so friction only applies when player is
 	# standing still or going over conventional speeds)
@@ -122,15 +133,6 @@ func move(delta):
 			velo.x *= 0.93
 	elif crouching:
 		velo.x *= 0.96
-	
-	# Setting direction
-	if horizontal * direction < 0:
-		if horizontal > 0:
-			direction = 1
-		else:
-			direction = -1
-	if scale_manager.scale.x != direction:
-		scale_manager.scale = Vector2(direction, 1)
 	
 	# Running
 	if running and is_on_floor():
@@ -146,7 +148,6 @@ func move(delta):
 		velo.x = direction * max_velo
 	else:
 		velo.x = calc_direc(horizontal, velo.x)
-	
 	
 	# Skid perfect
 	if skid_perfect and is_on_floor():
@@ -231,6 +232,7 @@ func calc_direc(ui_direc, cur_speed, speed = base_speed):
 	else:
 		return cur_speed
 
+onready var feetCollider = get_node("FeetCollider")
 func move_player(v):
 	#var snap = Vector2.DOWN * 16 if is_on_floor() and !just_jumped else Vector2.ZERO
 	var prev_velo = v
@@ -252,8 +254,9 @@ func move_player(v):
 							position.x -= 1
 				# Hitting blocks
 				if recognize_collision:
-					if collision and collision.collider.is_in_group("block"):
-						collision.collider.collide(collision, self)
+					if collision.local_shape != feetCollider:
+						if collision and collision.collider.is_in_group("block"):
+							collision.collider.collide(collision, self)
 		# Spin turning around
 		if spinning and recognize_collision:
 			if abs(collision.normal.x) > abs(collision.normal.y):
@@ -378,15 +381,9 @@ func _unhandled_input(event):
 			jump_timer = 0
 		
 		if event.is_action_pressed("ui_crouch"):
-			crouching = true
-			animator["parameters/PlayerMovement/playback"].travel("crouch")
-			animator["parameters/PlayerMovement/conditions/crouching"] = true
-			animator["parameters/PlayerMovement/conditions/not_crouching"] = false
-		
+			crouch()
 		if event.is_action_released("ui_crouch"):
-			crouching = false
-			animator["parameters/PlayerMovement/conditions/crouching"] = false
-			animator["parameters/PlayerMovement/conditions/not_crouching"] = true
+			uncrouch()
 
 func jump():
 	# Basic Jump
@@ -463,6 +460,15 @@ func undive():
 	else:
 		velo.x = max(-DIVE_OUT_SPEED, velo.x)
 
+func crouch():
+	crouching = true
+	animator["parameters/PlayerMovement/conditions/crouching"] = true
+	animator["parameters/PlayerMovement/conditions/not_crouching"] = false
+func uncrouch():
+	crouching = false
+	animator["parameters/PlayerMovement/conditions/crouching"] = false
+	animator["parameters/PlayerMovement/conditions/not_crouching"] = true
+
 func superdive_active():
 	superdive_window = true
 func superdive_inactive():
@@ -484,7 +490,7 @@ func bash():
 	if !bashing and can_use_power and _stun <= 0:
 		can_use_power = false
 		bashing = true
-		crouching = false
+		uncrouch()
 		max_velo = BASH_SPEED
 		animator["parameters/PlayerMovement/playback"].travel("bash")
 
@@ -513,7 +519,7 @@ func spin():
 	if !spinning and can_use_power and _stun <= 0:
 		can_use_power = false
 		spinning = true
-		crouching = false
+		uncrouch()
 		max_velo = SPIN_HORIZONTAL_SPEED
 		animator["parameters/PlayerMovement/playback"].travel("spin")
 		yield(get_tree().create_timer(SPIN_LENGTH), "timeout")
