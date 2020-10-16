@@ -60,9 +60,8 @@ func attack(body):
 	return false
 
 func cliff_damage():
-	var dead = damage(false)
-	if !dead:
-		controller.reset_position()
+	for i in range(health):
+		damage(false)
 
 func damage(isStomp, damage = 1):
 	controller.can_dive = true
@@ -102,5 +101,7 @@ func _on_hurtbox_area_exited(area):
 		controller.on_ladders -= 1
 
 func die():
+	controller.set_velo(0, -200)
+	animator['parameters/PlayerMovement/playback'].start('die')
 	emit_signal("dead")
 	LevelLoader.die()

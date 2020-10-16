@@ -551,6 +551,9 @@ func spawn_bottle():
 func get_direction():
 	return direction
 
+func set_velo(new_velo):
+	velo = new_velo
+
 func get_power_node():
 	return $Power
 

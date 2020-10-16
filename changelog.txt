@@ -89,20 +89,22 @@ Poddles
 Poddleballs dying when hitting a wall
 Pon GUI
 Big Pons
-Big Feet so falling off cliff is harder
 Crouch slide
 Spinning Hard Hat (released)
+
+0.1.9
 Squished enemies disappear faster
 Dive boost fx
 Turning while crouching
+Death 3 tone fade
+Rudimentary palette system
+Death animation
+Falling into a pit should kill automatically like in Mario
 
 This sprint:
 SMW2 Music
 ---
-Fade in-out should be a 3 tone fade like in Mario. To explain, in order to simulate a fade, they'd switch up palettes for every .5 second so that every color was brighter until they were all white. I'd say just look at most GB games and you'll see what I'm referring to.
-Death animation should be what's on the sheet (fly up and down and out)
 Checkpoints
-Falling into a pit should kill automatically like in Mario
 G-g-g-game over
 Small pause when hit
 Small knockback when hit
