@@ -14,6 +14,7 @@ onready var bossArea = $Player/BossArea
 
 signal textbox_end
 
+const MAX_ENERGY = 4
 var score = 0
 
 func hide():
@@ -31,12 +32,10 @@ func update_health(value, max_value):
 func heal():
 	energy.value = energy.value + 1
 
-func death():
-	energy.value = 4
-	lives.text = str(int(lives.text) - 1)
-	# TODO: Game over
-func one_up():
-	lives.text = str(int(lives.text) + 1)
+func reset_energy():
+	energy.value = MAX_ENERGY
+func set_lives(num_lives):
+	lives.text = str(num_lives)
 func getNumLives():
 	return lives.text
 
@@ -45,7 +44,7 @@ func add_pons(amo):
 	add_score(amo*25)
 	if int(pons.text) >= 100:
 		pons.text = str(int(pons.text) - 100)
-		one_up()
+		PlayerGameManager.one_up()
 func set_pons(amo):
 	pons.text = amo
 func get_pons():

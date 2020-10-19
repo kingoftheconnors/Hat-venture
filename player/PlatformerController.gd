@@ -307,9 +307,12 @@ func bash_bounce(body):
 					break
 		if recognize_collision:
 			# No corner correction, bounce off
-			var direc = Vector2(-direction, -0.5) * KNOCKBACK_MULTIPLIER
-			velo = push(direc)
+			bounce_back()
 			unbash()
+
+func bounce_back():
+	var direc = Vector2(-direction, -0.5) * KNOCKBACK_MULTIPLIER
+	push(direc)
 
 func spin_bounce(body):
 	if !body.is_in_group("player"):
@@ -327,7 +330,7 @@ func push(direc):
 		pushed_velo.x = direc.x
 	if ( velo.y * direc.y < 0 or abs(velo.y) < abs(direc.y) ):
 		pushed_velo.y = direc.y
-	return pushed_velo
+	velo = pushed_velo
 
 func manage_flags():
 	power_stun_frame()
@@ -447,7 +450,7 @@ func dive():
 		diving = true
 		speeding = true
 		max_velo = DIVE_SPEED
-		velo = push(Vector2(DIVE_SPEED * direction, -DIVE_SPEED/2))
+		push(Vector2(DIVE_SPEED * direction, -DIVE_SPEED/2))
 		animator["parameters/PlayerMovement/playback"].travel("dive")
 		animator["parameters/PlayerMovement/conditions/jumping"] = false
 		animator["parameters/PlayerMovement/conditions/not_jumping"] = true

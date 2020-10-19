@@ -100,17 +100,20 @@ Death 3 tone fade
 Rudimentary palette system
 Death animation
 Falling into a pit should kill automatically like in Mario
+Small pause when hit
+Small knockback when hit by colliding with enemies
+G-g-g-game over
 
 This sprint:
 SMW2 Music
 ---
 Checkpoints
-G-g-g-game over
-Small pause when hit
-Small knockback when hit
+Game over screen control
 ---
 Spinning rework
 Slow spinning deceleration (when in air)
+---
+That Eltun
 
 Backlog:
 * Extended feet (only-downwards-collision)

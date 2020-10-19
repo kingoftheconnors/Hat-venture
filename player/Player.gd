@@ -7,9 +7,6 @@ onready var controller = get_parent().get_parent()
 onready var hurtbox = get_node("../hurtbox")
 onready var animator = get_node("../../AnimationTree")
 
-var invincibility_frames = 0
-var INVINCIBILITY_TIME = 50
-
 var MAX_HEALTH = 4
 var health = 4
 
@@ -23,14 +20,6 @@ func _unhandled_input(event):
 		if event is InputEventKey and event.pressed and event.scancode == KEY_BRACERIGHT:
 			heal()
 
-func _process(_delta):
-	if invincibility_frames > 0:
-		invincibility_frames -= 1
-		# Make every 10 frames be invisible to make flashing animation
-		visible = (invincibility_frames % 10 < 5)
-		if invincibility_frames == 0:
-			turn_invincibilty(false)
-
 func _on_hitbox_area_entered(area):
 	if controller.get_stun() <= 0 and area.get_parent() != get_parent():
 		if area.is_in_group("hurtbox"):
@@ -41,12 +30,12 @@ func _on_hitbox_area_entered(area):
 			controller.bounce()
 
 func _on_hurtbox_area_entered(area):
-	if area.is_in_group("hitbox") and invincibility_frames <= 0 and area.get_parent() != get_parent():
+	if area.is_in_group("hitbox") and area.get_parent() != get_parent():
 		var damage = area.get_parent().get_damage()
 		# TODO: Play sound effect
 		damage(false, damage)
-		animator['parameters/PlayerMovement/playback'].travel('hurt')
 		# Bounce back
+		controller.bounce_back()
 	elif area.is_in_group("ladder"):
 		controller.on_ladders += 1
 
@@ -66,18 +55,17 @@ func cliff_damage():
 func damage(isStomp, damage = 1):
 	controller.can_dive = true
 	controller.can_use_power = true
+	health -= damage
+	Gui.update_health(health, MAX_HEALTH)
 	if health > 0:
-		turn_invincibilty(true)
-		health -= damage
-		Gui.update_health(health, MAX_HEALTH)
+		animator['parameters/PlayerMovement/playback'].travel('hurt')
+		animator['parameters/PlayerEffect/playback'].travel('hurtFlash')
 		emit_signal("hurt")
-		# Player doesn't die unless game ends, so always return false
-		if health <= 0:
-			die()
-			return true
-		else:
-			return false
-	return true
+	else:
+		player_die()
+		return true
+	# Player didn't die. Return false
+	return false
 
 func heal(amo = 1):
 	health = min(health + amo, MAX_HEALTH)
@@ -85,7 +73,6 @@ func heal(amo = 1):
 
 func turn_invincibilty(flag):
 	if flag == true:
-		invincibility_frames = INVINCIBILITY_TIME
 		controller.set_collision_layer_bit(0, false)
 		controller.set_collision_mask_bit(0, false)
 		hurtbox.set_collision_layer_bit(0, false)
@@ -100,8 +87,20 @@ func _on_hurtbox_area_exited(area):
 	if area.is_in_group("ladder"):
 		controller.on_ladders -= 1
 
+var dying = false
+func player_die():
+	if !dying:
+		controller.set_velo(Vector2(0, -300))
+		controller.stun(40)
+		animator['parameters/PlayerMovement/playback'].travel('die')
+		dying = true
+
 func die():
-	controller.set_velo(0, -200)
-	animator['parameters/PlayerMovement/playback'].start('die')
 	emit_signal("dead")
-	LevelLoader.die()
+	PlayerGameManager.die()
+
+func pause_game():
+	get_tree().paused = true
+func resume_game():
+	get_tree().paused = false
+	print("Resume called")

@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://gui/white.png" type="Texture" id=1]
+[ext_resource path="res://font/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://levelgameover/menuselector.png" type="Texture" id=3]
+[ext_resource path="res://levelgameover/ded.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 52
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continue" type="Label" parent="."]
+anchor_left = 0.547
+anchor_top = 0.725
+anchor_right = 0.547
+anchor_bottom = 0.792
+margin_left = -128.08
+margin_top = 0.193726
+margin_right = 127.92
+margin_bottom = 0.0336914
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "CONTINUE"
+
+[node name="Quit" type="Label" parent="."]
+anchor_left = 0.548
+anchor_top = 0.837
+anchor_right = 0.548
+anchor_bottom = 0.904
+margin_left = -126.72
+margin_top = 0.23999
+margin_right = 127.28
+margin_bottom = 0.0799866
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "QUIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOver" type="Label" parent="."]
+anchor_left = 0.008
+anchor_top = 0.223
+anchor_right = 0.997
+anchor_bottom = 0.358
+margin_left = -0.12
+margin_top = -0.0400009
+margin_right = -0.0800171
+margin_bottom = 0.159988
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "GAME OVER"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 0.44
+anchor_top = 0.557
+anchor_right = 0.564
+anchor_bottom = 0.669
+margin_left = 0.212311
+margin_top = -0.227325
+margin_right = -0.147705
+margin_bottom = 0.0126648
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Selector" type="TextureRect" parent="."]
+anchor_left = 0.55
+anchor_top = 0.719
+anchor_right = 0.55
+anchor_bottom = 0.802
+margin_left = -187.082
+margin_top = -0.084137
+margin_right = -137.082
+margin_bottom = -0.924133
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
