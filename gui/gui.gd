@@ -15,7 +15,6 @@ onready var bossArea = $Player/BossArea
 signal textbox_end
 
 const MAX_ENERGY = 4
-var score = 0
 
 func hide():
 	gui.visible = false
@@ -36,32 +35,16 @@ func reset_energy():
 	energy.value = MAX_ENERGY
 func set_lives(num_lives):
 	lives.text = str(num_lives)
-func getNumLives():
-	return lives.text
 
-func add_pons(amo):
-	pons.text = str(int(pons.text) + amo)
-	add_score(amo*25)
-	if int(pons.text) >= 100:
-		pons.text = str(int(pons.text) - 100)
-		PlayerGameManager.one_up()
 func set_pons(amo):
-	pons.text = amo
-func get_pons():
-	return pons.text
-
+	pons.text = str(amo)
 
 func startBossBattle(life):
 	bossEnergy.value = life
 	# TODO: Show boss health
 
-func add_score(amo):
-	print("Adding score")
-	score += amo
-	playerScore.set_text("SCORE:" + ("%06d" % score))
-func reset_score():
-	score = 0
-	playerScore.set_text("SCORE:" + ("%06d" % score))
+func set_score(amo):
+	playerScore.set_text("SCORE:" + ("%06d" % amo))
 
 onready var dialog = $DialogBox
 onready var dialogName = $DialogBox/Name
@@ -85,15 +68,6 @@ func _process(delta):
 		start_dialog(next_box.name, next_box.text)
 	elif dialog.visible == true:
 		end_dialog()
-
-func _unhandled_input(event):
-	if Constants.DEBUG_MODE:
-		if event is InputEventKey and event.pressed and event.scancode == KEY_EQUAL:
-			add_score(100)
-		if event is InputEventKey and event.pressed and event.scancode == KEY_MINUS:
-			reset_score()
-		if event is InputEventKey and event.pressed and event.scancode == KEY_0:
-			add_pons(3)
 
 func queue_dialog(array_text):
 	text_to_run += array_text

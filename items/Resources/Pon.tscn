@@ -46,7 +46,6 @@ itemCommand = ExtResource( 3 )
 anims/collect = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0.857143 )
 texture = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -3,6 +3,17 @@ extends Node
 onready var animationPlayer = $AnimationPlayer
 
 var lives = 3
+var pons = 0
+var score = 0
+
+func _unhandled_input(event):
+	if Constants.DEBUG_MODE:
+		if event is InputEventKey and event.pressed and event.scancode == KEY_EQUAL:
+			add_score(100)
+		if event is InputEventKey and event.pressed and event.scancode == KEY_MINUS:
+			score = 0; Gui.set_score(score)
+		if event is InputEventKey and event.pressed and event.scancode == KEY_0:
+			add_pons(3)
 
 func die():
 	# Get current levelname to return to after playing animation
@@ -10,9 +21,10 @@ func die():
 	# Fade to white
 	animationPlayer.play("cover")
 	yield(get_tree().create_timer(.6), "timeout")
-	lives -= 1
-	Gui.set_lives(lives)
-	# TODO: Game over
+	pons = 0; Gui.set_pons(pons)
+	score = 0; Gui.set_score(score)
+	lives -= 1; Gui.set_lives(lives)
+	# Game over
 	if lives <= 0:
 		Gui.hide()
 		var _success = get_tree().change_scene("res://levelgameover/gameOver.tscn")
@@ -21,9 +33,20 @@ func die():
 		# Re-load level
 		var _success = get_tree().change_scene(levelName)
 		Gui.reset_energy()
-		Gui.reset_score()
 		#get_tree().change_scene("res://transitionScenes/death.tscn")
 		animationPlayer.play("reveal") # Starts with covering screen
+
+func add_score(amo):
+	score += amo
+	Gui.set_score(score)
+
+func add_pons(amo):
+	pons = pons + amo
+	add_score(amo*25)
+	if pons >= 100:
+		pons = pons - 100
+		PlayerGameManager.one_up()
+	Gui.set_pons(pons)
 
 func one_up():
 	lives += 1
