@@ -104,3 +104,5 @@ func pause_game():
 func resume_game():
 	get_tree().paused = false
 	print("Resume called")
+func resume_player():
+	controller.pause_mode = PAUSE_MODE_PROCESS

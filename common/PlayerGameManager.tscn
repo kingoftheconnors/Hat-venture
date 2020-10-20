@@ -125,6 +125,7 @@ tracks/0/keys = {
 }
 
 [node name="LevelLoader" type="CanvasLayer"]
+pause_mode = 2
 layer = 4
 script = ExtResource( 1 )
 

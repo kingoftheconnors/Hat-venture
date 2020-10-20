@@ -105,17 +105,19 @@ Small knockback when hit by colliding with enemies
 G-g-g-game over
 Spinning rework
 
+0.2
+Pon transparency removed
+Dive boost animation a bit quicker
+Pon counter resets on death
+Dash-get-power glitch fixed
+Death animation tweaked to be similar to Mario.
+
 This sprint:
 SMW2 Music
 ---
 Checkpoints
 Game over screen control
 ---
-* Pon counter doesn't reset on death. It prolly should.
-* Dive return animation should be a bit quicker
-* You can get stuck in dive state with the thor hat again
-* Some sprites have a weird transparency thing goin on, namely the pons. I assume it has to do with the palette?
-* The death animation should freeze everything. Hat Kid should stay in place for a second before falling, similar to how it is in Mario.
 * Similarly, death by falling into a hole shouldn't play the death animation, and should just have the music.
 * * Game Over text should be how it is in the mockups
 * Thor's Cap should have a bit more vertical and/or horizontal reach to it. It feels rather lackluster as it is ATM meaning it becomes difficult to reach anything with its ability.

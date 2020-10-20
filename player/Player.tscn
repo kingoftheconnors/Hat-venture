@@ -578,7 +578,8 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id=17]
-length = 2.0
+length = 2.5
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -670,11 +671,20 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 1.9 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.7, 2, 2.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
+"method": "pause_game"
+}, {
+"args": [  ],
+"method": "resume_player"
+}, {
+"args": [  ],
 "method": "die"
+}, {
+"args": [  ],
+"method": "resume_game"
 } ]
 }
 
@@ -3504,12 +3514,12 @@ states/walk/node = SubResource( 136 )
 states/walk/position = Vector2( 302, 192.684 )
 transitions = [ "idle", "walk", SubResource( 137 ), "walk", "idle", SubResource( 138 ), "walk", "skid", SubResource( 139 ), "skid", "end_crouch", SubResource( 140 ), "end_crouch", "walk", SubResource( 141 ), "walk", "jump", SubResource( 142 ), "jump", "freefall", SubResource( 143 ), "freefall", "idle", SubResource( 144 ), "idle", "jump", SubResource( 145 ), "jump", "idle", SubResource( 146 ), "idle", "dive", SubResource( 147 ), "dive", "dive_rest", SubResource( 148 ), "dive_rest", "dive", SubResource( 149 ), "dive_rest", "end_dive", SubResource( 150 ), "end_dive", "jump", SubResource( 151 ), "end_dive", "idle", SubResource( 152 ), "dive", "end_dive", SubResource( 153 ), "idle", "bash", SubResource( 154 ), "bash", "end_bash_x", SubResource( 155 ), "bash", "end_bash_s", SubResource( 156 ), "idle", "throw", SubResource( 157 ), "throw", "idle", SubResource( 158 ), "idle", "refresh", SubResource( 159 ), "refresh", "idle", SubResource( 160 ), "end_crouch 2", "idle", SubResource( 161 ), "idle", "power_get", SubResource( 162 ), "power_get", "idle", SubResource( 163 ), "idle", "crouch", SubResource( 164 ), "crouch", "end_crouch 2", SubResource( 165 ), "end_bash_x", "idle", SubResource( 166 ), "end_bash_s", "idle", SubResource( 167 ), "idle", "spin", SubResource( 168 ), "spin", "end_spin", SubResource( 169 ), "end_spin", "idle", SubResource( 170 ), "dive_rest", "end_dive 2", SubResource( 171 ), "end_dive 2", "dive_boost", SubResource( 172 ), "dive_boost", "jump", SubResource( 173 ), "idle", "die", SubResource( 174 ), "idle", "hurt", SubResource( 175 ), "hurt", "idle", SubResource( 176 ) ]
 start_node = "idle"
-graph_offset = Vector2( 7.31317, -60.8712 )
+graph_offset = Vector2( -154.019, -60.8712 )
 
 [sub_resource type="AnimationNodeAdd2" id=178]
 
 [sub_resource type="AnimationNodeBlendTree" id=179]
-graph_offset = Vector2( 0, 508 )
+graph_offset = Vector2( 0, 519.5 )
 nodes/PlayerEffect/node = SubResource( 74 )
 nodes/PlayerEffect/position = Vector2( 280, 80 )
 nodes/PlayerMovement/node = SubResource( 177 )

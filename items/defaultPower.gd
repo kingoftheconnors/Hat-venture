@@ -11,10 +11,11 @@ func activate(body, animator):
 	body.dive()
 
 func deactivate(body, animator):
-	body.undive()
+	pass
 
 func force_deactivate(body, animator):
 	deactivate(body, animator)
+	body.undive()
 
 func release():
 	pass
