@@ -11,7 +11,7 @@ func activate(body, animator):
 	body.dive()
 
 func deactivate(body, animator):
-	pass
+	body.undive()
 
 func force_deactivate(body, animator):
 	deactivate(body, animator)

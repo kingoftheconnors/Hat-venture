@@ -32,9 +32,10 @@ var running
 
 # SPIN
 var spinning
+const SPIN_JUMP_SPEED = 225
 const SPIN_HORIZONTAL_SPEED = 150
-const SPIN_LENGTH = 2.5
-const POST_SPIN_STUN = 70
+const SPIN_LENGTH = .4
+const POST_SPIN_STUN = 40
 
 # BASH
 var bashing = false
@@ -524,9 +525,10 @@ func spin():
 		spinning = true
 		uncrouch()
 		max_velo = SPIN_HORIZONTAL_SPEED
+		if !is_on_floor():
+			push(Vector2(0, -SPIN_JUMP_SPEED))
 		animator["parameters/PlayerMovement/playback"].travel("spin")
 		yield(get_tree().create_timer(SPIN_LENGTH), "timeout")
-		print("end-spin")
 		if animator["parameters/PlayerMovement/playback"].get_current_node() == "spin":
 			animator["parameters/PlayerMovement/playback"].travel("end_spin")
 
