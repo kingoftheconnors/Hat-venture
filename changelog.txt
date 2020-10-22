@@ -111,6 +111,9 @@ Dive boost animation a bit quicker
 Pon counter resets on death
 Dash-get-power glitch fixed
 Death animation tweaked to be similar to Mario.
+Add FX to Spinning
+No air resistance immediately after spinning ends. Air resistance only reapplies after touching ground
+Thor's Cap increased vertical reach and runtime
 
 This sprint:
 SMW2 Music
@@ -119,13 +122,10 @@ Checkpoints
 Game over screen control
 ---
 * Similarly, death by falling into a hole shouldn't play the death animation, and should just have the music.
-* * Game Over text should be how it is in the mockups
-* Thor's Cap should have a bit more vertical and/or horizontal reach to it. It feels rather lackluster as it is ATM meaning it becomes difficult to reach anything with its ability.
-* Speaking of, I think it that the grounded version should just have a spin with the FX for more damage-focused ability, saving the aerial for maneuverability.
-* Also add the FX to the move so they can actually hit things lol
+* Game Over text should be how it is in the mockups
 ---
-Slow spinning deceleration (when in air)
-Spinning hitting blocks too soon
+Speaking of, I think it that the grounded version should just have a spin with the FX for more damage-focused ability, saving the aerial for maneuverability.
+Spinning hitting blocks too soon causes turning around
 ---
 That Eltun
 

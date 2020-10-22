@@ -4,7 +4,7 @@ signal off_cliff
 
 # DEFAULT
 const TURNOFF_SPEED = 15
-const BASE_SPEED = 30
+const BASE_SPEED = 25
 var base_speed = BASE_SPEED
 const ACCELERATION = 4
 const MAX_SPEED = 117
@@ -32,9 +32,9 @@ var running
 
 # SPIN
 var spinning
-const SPIN_JUMP_SPEED = 225
-const SPIN_HORIZONTAL_SPEED = 150
-const SPIN_LENGTH = .4
+const SPIN_JUMP_SPEED = 265
+const SPIN_HORIZONTAL_SPEED = 155
+const SPIN_LENGTH = .7
 const POST_SPIN_STUN = 40
 
 # BASH
@@ -65,7 +65,7 @@ onready var skidRayCast2 = get_node("SkidRay2")
 # Movement vars
 var _stun = 0
 var frozen = false
-var speeding = false
+var ignore_air_friction = false
 var crouching = false
 
 var max_velo = MAX_SPEED
@@ -127,7 +127,7 @@ func move(delta):
 	
 	# Friction (before moving so friction only applies when player is
 	# standing still or going over conventional speeds)
-	if (horizontal == 0 and !speeding and !crouching) or (is_on_floor() and abs(velo.x) > max_velo):
+	if (horizontal == 0 and !ignore_air_friction and !is_on_floor()) or (horizontal == 0 and !crouching and is_on_floor()) or (is_on_floor() and abs(velo.x) > max_velo):
 		velo.x *= 0.87
 	elif diving: # Diving friction
 		if is_on_floor():
@@ -349,8 +349,9 @@ func manage_flags():
 		animator["parameters/PlayerMovement/conditions/jumping"] = false
 		animator["parameters/PlayerMovement/conditions/not_jumping"] = true
 
-	if is_on_floor() and speeding and !bashing and !diving and !spinning:
-		speeding = false
+	if is_on_floor() and ignore_air_friction:
+		if !bashing and !diving and !spinning and abs(velo.x) < max_velo*.8:
+			ignore_air_friction = false
 	
 	if jump_timer > 0:
 		jump_timer -= 1
@@ -378,7 +379,7 @@ func _unhandled_input(event):
 				jump_timer = 10
 		
 		if event.is_action_released("ui_A"):
-			if holding_jump and velo.y < 0:
+			if holding_jump and !spinning and velo.y < 0:
 				velo.y *= release_jump_damp
 				#animator["parameters/playback"].travel("freefall")
 			holding_jump = false
@@ -449,7 +450,7 @@ func dive():
 	if can_dive and !diving:
 		can_dive = false
 		diving = true
-		speeding = true
+		ignore_air_friction = true
 		max_velo = DIVE_SPEED
 		push(Vector2(DIVE_SPEED * direction, -DIVE_SPEED/2))
 		animator["parameters/PlayerMovement/playback"].travel("dive")
@@ -457,7 +458,6 @@ func dive():
 		animator["parameters/PlayerMovement/conditions/not_jumping"] = true
 func undive():
 	diving = false
-	#speeding = false
 	max_velo = MAX_SPEED
 	if velo.x > 0:
 		velo.x = min(DIVE_OUT_SPEED, velo.x)
@@ -523,6 +523,7 @@ func spin():
 	if !spinning and can_use_power and _stun <= 0:
 		can_use_power = false
 		spinning = true
+		ignore_air_friction = true
 		uncrouch()
 		max_velo = SPIN_HORIZONTAL_SPEED
 		if !is_on_floor():
