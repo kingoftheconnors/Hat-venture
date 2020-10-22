@@ -93,7 +93,7 @@ height = 6.0
 extents = Vector2( 4, 11.75 )
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 7, 11 )
+extents = Vector2( 8, 11 )
 
 [sub_resource type="CapsuleShape2D" id=7]
 radius = 4.5
@@ -3600,8 +3600,8 @@ defaultPower = ExtResource( 37 )
 
 [node name="PlayerCore" type="Sprite" parent="ScaleChildren"]
 material = SubResource( 2 )
-texture = ExtResource( 41 )
-hframes = 3
+texture = ExtResource( 1 )
+hframes = 2
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="ScaleChildren"]
@@ -3663,7 +3663,7 @@ collision_layer = 0
 collision_mask = 3
 
 [node name="BashCollider" type="CollisionShape2D" parent="spinbox"]
-position = Vector2( 13, 1 )
+position = Vector2( 14, 1 )
 shape = SubResource( 6 )
 disabled = true
 
@@ -3676,7 +3676,7 @@ collision_layer = 0
 collision_mask = 3
 
 [node name="BashCollider" type="CollisionShape2D" parent="spinbox2"]
-position = Vector2( -13, 1 )
+position = Vector2( -15, 1 )
 shape = SubResource( 6 )
 disabled = true
 

@@ -114,15 +114,15 @@ Death animation tweaked to be similar to Mario.
 Add FX to Spinning
 No air resistance immediately after spinning ends. Air resistance only reapplies after touching ground
 Thor's Cap increased vertical reach and runtime
+Death by falling into a hole no longer plays the death animation, although it pauses for the same length
+Game over screen control
+Game Over text changed to how it is in the mockups
 
 This sprint:
 SMW2 Music
 ---
 Checkpoints
-Game over screen control
----
-* Similarly, death by falling into a hole shouldn't play the death animation, and should just have the music.
-* Game Over text should be how it is in the mockups
+Fixing death animation (slight vertical jump before game pause kicks in)
 ---
 Speaking of, I think it that the grounded version should just have a spin with the FX for more damage-focused ability, saving the aerial for maneuverability.
 Spinning hitting blocks too soon causes turning around

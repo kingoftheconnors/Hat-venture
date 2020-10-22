@@ -34,7 +34,21 @@ func die():
 		var _success = get_tree().change_scene(levelName)
 		Gui.reset_energy()
 		#get_tree().change_scene("res://transitionScenes/death.tscn")
-		animationPlayer.play("reveal") # Starts with covering screen
+		animationPlayer.play("reveal") # Uncover screen after loading level
+
+func start_level(levelNum):
+	# Get current levelname to return to after playing animation
+	var levelName = "res://level" + str(levelNum) + "/level" + str(levelNum) + ".tscn"
+	# Fade to white
+	animationPlayer.play("cover")
+	yield(get_tree().create_timer(.6), "timeout")
+	pons = 0; Gui.set_pons(pons)
+	score = 0; Gui.set_score(score)
+	lives = 4; Gui.set_lives(lives)
+	Gui.reset_energy()
+	# Load level
+	var _success = get_tree().change_scene(levelName)
+	animationPlayer.play("reveal")
 
 func add_score(amo):
 	score += amo

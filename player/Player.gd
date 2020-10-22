@@ -49,8 +49,9 @@ func attack(body):
 	return false
 
 func cliff_damage():
-	for i in range(health):
-		damage(false)
+	health = 0
+	Gui.update_health(health, MAX_HEALTH)
+	player_die(false)
 
 func damage(isStomp, damage = 1):
 	controller.can_dive = true
@@ -88,9 +89,12 @@ func _on_hurtbox_area_exited(area):
 		controller.on_ladders -= 1
 
 var dying = false
-func player_die():
+func player_die(animate = true):
 	if !dying:
-		controller.set_velo(Vector2(0, -300))
+		if animate:
+			controller.set_velo(Vector2(0, -300))
+		else:
+			controller.set_velo(Vector2(0, 0))
 		controller.stun(40)
 		animator['parameters/PlayerMovement/playback'].travel('die')
 		dying = true

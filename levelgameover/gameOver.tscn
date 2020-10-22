@@ -1,20 +1,144 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://gui/white.png" type="Texture" id=1]
 [ext_resource path="res://font/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://levelgameover/menuselector.png" type="Texture" id=3]
 [ext_resource path="res://levelgameover/ded.png" type="Texture" id=4]
+[ext_resource path="res://levelgameover/Selector.gd" type="Script" id=5]
+[ext_resource path="res://levelgameover/gameovertext.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 52
-outline_size = 4
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 2 )
+[sub_resource type="Animation" id=4]
+resource_name = "continue"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.724 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:anchor_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.79 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:margin_top")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -4.57153 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:margin_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4.74847 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 163.66, 342.948 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "quit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.836 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:anchor_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.904 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:margin_top")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -4.33099 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:margin_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4.74847 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 161.139, 396.949 ) ]
+}
 
 [node name="TextureRect" type="TextureRect"]
 anchor_right = 1.0
@@ -54,24 +178,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GameOver" type="Label" parent="."]
+[node name="GameOver2" type="TextureRect" parent="."]
 anchor_left = 0.008
 anchor_top = 0.223
 anchor_right = 0.997
 anchor_bottom = 0.358
-margin_left = -0.12
-margin_top = -0.0400009
-margin_right = -0.0800171
-margin_bottom = 0.159988
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "GAME OVER"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_left = 26.88
+margin_top = 2.96
+margin_right = -26.08
+margin_bottom = -13.84
+texture = ExtResource( 6 )
+expand = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_left = 0.44
@@ -89,16 +206,21 @@ __meta__ = {
 }
 
 [node name="Selector" type="TextureRect" parent="."]
-anchor_left = 0.55
-anchor_top = 0.719
-anchor_right = 0.55
-anchor_bottom = 0.802
-margin_left = -187.082
-margin_top = -0.084137
-margin_right = -137.082
-margin_bottom = -0.924133
+anchor_left = 0.549
+anchor_top = 0.724
+anchor_right = 0.549
+anchor_bottom = 0.79
+margin_left = -187.7
+margin_top = -4.57153
+margin_right = -137.7
+margin_bottom = 4.74847
 texture = ExtResource( 3 )
 expand = true
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Selector"]
+anims/continue = SubResource( 4 )
+anims/quit = SubResource( 5 )
