@@ -130,11 +130,11 @@ movement/path = NodePath("../Path2D")
 
 [node name="Poddle" parent="." instance=ExtResource( 6 )]
 position = Vector2( 320, -32 )
+movement/is_turning = false
 
 [node name="MusicIntro" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 13 )
-autoplay = true
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
@@ -145,6 +145,6 @@ script = ExtResource( 10 )
 pause_mode = 2
 stream = ExtResource( 16 )
 script = ExtResource( 10 )
-[connection signal="dead" from="Player" to="GameOver" method="start_music"]
 [connection signal="dead" from="Player" to="Music" method="stop_music"]
+[connection signal="dead" from="Player" to="GameOver" method="start_music"]
 [connection signal="finished" from="MusicIntro" to="Music" method="start_music"]
