@@ -11,7 +11,6 @@ var MAX_HEALTH = 4
 var health = 4
 
 signal hurt
-signal dead
 
 func _unhandled_input(event):
 	if Constants.DEBUG_MODE:
@@ -91,16 +90,17 @@ func _on_hurtbox_area_exited(area):
 var dying = false
 func player_die(animate = true):
 	if !dying:
+		controller.set_velo(Vector2(0, 0))
+		controller.emit_signal("dead")
 		if animate:
-			controller.set_velo(Vector2(0, -300))
+			animator['parameters/PlayerMovement/playback'].travel('die')
 		else:
-			controller.set_velo(Vector2(0, 0))
+			animator['parameters/PlayerMovement/playback'].travel('die_simple')
 		controller.stun(40)
-		animator['parameters/PlayerMovement/playback'].travel('die')
 		dying = true
 
 func die():
-	emit_signal("dead")
+	print("DYING!")
 	PlayerGameManager.die()
 
 func pause_game():

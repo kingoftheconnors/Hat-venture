@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal off_cliff
+signal dead
 
 # DEFAULT
 const TURNOFF_SPEED = 15

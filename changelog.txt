@@ -117,16 +117,27 @@ Thor's Cap increased vertical reach and runtime
 Death by falling into a hole no longer plays the death animation, although it pauses for the same length
 Game over screen control
 Game Over text changed to how it is in the mockups
+SMW2 Music
+Fixed death animation (slight vertical jump before game pause kicks in)
 
 This sprint:
-SMW2 Music
----
 Checkpoints
-Fixing death animation (slight vertical jump before game pause kicks in)
 ---
-Speaking of, I think it that the grounded version should just have a spin with the FX for more damage-focused ability, saving the aerial for maneuverability.
+Grounded spin longer
 Spinning hitting blocks too soon causes turning around
 ---
+Hard Hat should have invincibility during the charge, making it more safe against enemies like the Poddles.
+Should be a small pause during the Hard Hat when it breaks a block or hits an enemy, just to give it extra oomph
+Should also be able to jump during the bash, but only while on the ground. Gives the move just the right amount of versatility
+In exchange, shorten the charge speed. It seems way too quick, especially when dashing through brick blocks.
+--
+Give some extra space in the test world!! Mainly for fiddling with abilities since it's rather hard to do so with everything all over the place
+Add an NPC so I stop hitting Enter on accident and triggering 4 things of dialog lol (If you need me to write/sprite something up for that LMK)
+Start thinking about cutscenes and making a format to add to the test world. Dialog will happen mainly in there (except for the hub world, which will have NPCs), and having a way to animate those quickly and easily will help out in the long run.
+Poddles shouldn't change direction when they're shooting--only when they're idle
+Score should only reset when a game over occurs. You could possibly have a penalty
+I'll also be redoing the GameOver sprites so they work, but generally sprites should be 1:1 in-game so everything looks uniform. Same goes for text, since that looks funky-ish
+--
 That Eltun
 
 Backlog:

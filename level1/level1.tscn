@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://level1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://level1/background1.tres" type="TileSet" id=2]
@@ -9,9 +9,13 @@
 [ext_resource path="res://common/spawn.tscn" type="PackedScene" id=7]
 [ext_resource path="res://items/Resources/HPon.tscn" type="PackedScene" id=8]
 [ext_resource path="res://items/Resources/Pon.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Music/startSong.gd" type="Script" id=10]
 [ext_resource path="res://enemy/eltun/eltun.tscn" type="PackedScene" id=11]
 [ext_resource path="res://enemy/eltun/flypath.gd" type="Script" id=12]
+[ext_resource path="res://Music/lvl1intro.ogg" type="AudioStream" id=13]
+[ext_resource path="res://Music/lvl1.ogg" type="AudioStream" id=14]
 [ext_resource path="res://common/TileInstancer.gd" type="Script" id=15]
+[ext_resource path="res://Music/smb_mariodie.wav" type="AudioStream" id=16]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -126,3 +130,21 @@ movement/path = NodePath("../Path2D")
 
 [node name="Poddle" parent="." instance=ExtResource( 6 )]
 position = Vector2( 320, -32 )
+
+[node name="MusicIntro" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 13 )
+autoplay = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 14 )
+script = ExtResource( 10 )
+
+[node name="GameOver" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 16 )
+script = ExtResource( 10 )
+[connection signal="dead" from="Player" to="GameOver" method="start_music"]
+[connection signal="dead" from="Player" to="Music" method="stop_music"]
+[connection signal="finished" from="MusicIntro" to="Music" method="start_music"]

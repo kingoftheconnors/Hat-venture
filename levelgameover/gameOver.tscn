@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://gui/white.png" type="Texture" id=1]
 [ext_resource path="res://font/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
@@ -6,13 +6,14 @@
 [ext_resource path="res://levelgameover/ded.png" type="Texture" id=4]
 [ext_resource path="res://levelgameover/Selector.gd" type="Script" id=5]
 [ext_resource path="res://levelgameover/gameovertext.png" type="Texture" id=6]
+[ext_resource path="res://Music/Game_Over2.ogg" type="AudioStream" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "continue"
 length = 0.5
 tracks/0/type = "value"
@@ -76,7 +77,7 @@ tracks/4/keys = {
 "values": [ Vector2( 163.66, 342.948 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "quit"
 length = 0.5
 tracks/0/type = "value"
@@ -222,5 +223,9 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Selector"]
-anims/continue = SubResource( 4 )
-anims/quit = SubResource( 5 )
+anims/continue = SubResource( 2 )
+anims/quit = SubResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
