@@ -36,12 +36,13 @@ var spinning
 const SPIN_JUMP_SPEED = 265
 const SPIN_HORIZONTAL_SPEED = 155
 const SPIN_LENGTH = .7
+const GROUNDED_SPIN_LENGTH = 1.2
 const POST_SPIN_STUN = 40
 
 # BASH
 var bashing = false
 var bashing_combo = false
-const BASH_SPEED = 215
+const BASH_SPEED = 180
 const BASH_ACCELERATION = 10
 const KNOCKBACK_MULTIPLIER = 250
 const POST_BASH_STUN = 50
@@ -262,7 +263,9 @@ func move_player(v):
 		# Spin turning around
 		if spinning and recognize_collision:
 			if abs(collision.normal.x) > abs(collision.normal.y):
-				direction = -direction
+				var destroyedBody = spin_bounce(collision.collider)
+				if !destroyedBody:
+					direction = -direction
 	if !recognize_collision:
 		new_velo = prev_velo
 	if bashing:
@@ -320,6 +323,8 @@ func spin_bounce(body):
 	if !body.is_in_group("player"):
 		print("Hit body ", body)
 		var destroyedBody = core.attack(body)
+		return destroyedBody
+	return false
 		# Smashing through an object (disabling its collision)
 		#if destroyedBody:
 		#	body.set_collision_layer(0)
@@ -530,7 +535,10 @@ func spin():
 		if !is_on_floor():
 			push(Vector2(0, -SPIN_JUMP_SPEED))
 		animator["parameters/PlayerMovement/playback"].travel("spin")
-		yield(get_tree().create_timer(SPIN_LENGTH), "timeout")
+		if !is_on_floor():
+			yield(get_tree().create_timer(SPIN_LENGTH), "timeout")
+		else:
+			yield(get_tree().create_timer(GROUNDED_SPIN_LENGTH), "timeout")
 		if animator["parameters/PlayerMovement/playback"].get_current_node() == "spin":
 			animator["parameters/PlayerMovement/playback"].travel("end_spin")
 

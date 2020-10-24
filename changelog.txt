@@ -119,14 +119,14 @@ Game over screen control
 Game Over text changed to how it is in the mockups
 SMW2 Music
 Fixed death animation (slight vertical jump before game pause kicks in)
+Grounded spin longer than in-air spin
+Spinning hitting blocks too soon no longer causes turning around
 
 This sprint:
 Checkpoints
 ---
-Grounded spin longer
-Spinning hitting blocks too soon causes turning around
----
-Hard Hat should have invincibility during the charge, making it more safe against enemies like the Poddles.
+Make bash feels good
+Hard Hat should have invincibility a little bit after charge, making it more safe against enemies like the Poddles.
 Should be a small pause during the Hard Hat when it breaks a block or hits an enemy, just to give it extra oomph
 Should also be able to jump during the bash, but only while on the ground. Gives the move just the right amount of versatility
 In exchange, shorten the charge speed. It seems way too quick, especially when dashing through brick blocks.
