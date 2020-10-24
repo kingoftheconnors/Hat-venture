@@ -121,15 +121,16 @@ SMW2 Music
 Fixed death animation (slight vertical jump before game pause kicks in)
 Grounded spin longer than in-air spin
 Spinning hitting blocks too soon no longer causes turning around
+Make bash feels good
 
 This sprint:
 Checkpoints
 ---
-Make bash feels good
 Hard Hat should have invincibility a little bit after charge, making it more safe against enemies like the Poddles.
 Should be a small pause during the Hard Hat when it breaks a block or hits an enemy, just to give it extra oomph
 Should also be able to jump during the bash, but only while on the ground. Gives the move just the right amount of versatility
 In exchange, shorten the charge speed. It seems way too quick, especially when dashing through brick blocks.
+Getting hurt interrupts end_bash transition
 --
 Give some extra space in the test world!! Mainly for fiddling with abilities since it's rather hard to do so with everything all over the place
 Add an NPC so I stop hitting Enter on accident and triggering 4 things of dialog lol (If you need me to write/sprite something up for that LMK)

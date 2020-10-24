@@ -42,8 +42,8 @@ const POST_SPIN_STUN = 40
 # BASH
 var bashing = false
 var bashing_combo = false
-const BASH_SPEED = 180
-const BASH_ACCELERATION = 10
+const BASH_SPEED = 200
+const BASH_ACCELERATION = 4
 const KNOCKBACK_MULTIPLIER = 250
 const POST_BASH_STUN = 50
 var power_stun = 0
@@ -129,20 +129,17 @@ func move(delta):
 	
 	# Friction (before moving so friction only applies when player is
 	# standing still or going over conventional speeds)
-	if (horizontal == 0 and !ignore_air_friction and !is_on_floor()) or (horizontal == 0 and !crouching and is_on_floor()) or (is_on_floor() and abs(velo.x) > max_velo):
+	if (horizontal == 0 and !ignore_air_friction and !is_on_floor()):
+		velo.x *= 0.87
+	elif (horizontal == 0 and !crouching and is_on_floor()):
+		velo.x *= 0.87
+	elif ((is_on_floor() or bashing) and abs(velo.x) > max_velo):
 		velo.x *= 0.87
 	elif diving: # Diving friction
 		if is_on_floor():
 			velo.x *= 0.93
 	elif crouching:
 		velo.x *= 0.96
-	
-	# Running
-	if running and is_on_floor():
-		if max_velo != MAX_RUNNING_SPEED:
-			max_velo = MAX_RUNNING_SPEED
-	elif max_velo == MAX_RUNNING_SPEED:
-		max_velo = MAX_SPEED
 	
 	# Basic movement
 	if bashing or spinning:
@@ -485,9 +482,11 @@ func superdive_inactive():
 	superdive_window = false
 
 func start_run():
+	max_velo = MAX_RUNNING_SPEED
 	base_speed = BASE_RUN_SPEED
 	running = true
 func stop_run():
+	max_velo = MAX_SPEED
 	base_speed = BASE_SPEED
 	running = false
 
@@ -506,10 +505,18 @@ func bash():
 
 func upgrade_smash():
 	if bashing:
+		frozen = true
 		max_velo += BASH_ACCELERATION
-		velo = Vector2(direction * max_velo, 1)
-		animator["parameters/PlayerMovement/playback"].start("bash")
+		velo = Vector2(-direction*10, 0)
 		bashing_combo = true
+		yield(get_tree().create_timer(.05), "timeout")
+		frozen = false
+		upgrade_smash_rush()
+		animator["parameters/PlayerMovement/playback"].start("bash")
+
+func upgrade_smash_rush():
+	print("Upgrading to ", max_velo)
+	velo = Vector2(direction * max_velo*1.5, 1)
 
 func unbash():
 	if bashing:
