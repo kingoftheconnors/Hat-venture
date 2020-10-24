@@ -22,11 +22,11 @@ func die():
 	animationPlayer.play("cover")
 	yield(get_tree().create_timer(.6), "timeout")
 	pons = 0; Gui.set_pons(pons)
-	score = 0; Gui.set_score(score)
 	lives -= 1; Gui.set_lives(lives)
 	# Game over
 	if lives <= 0:
 		Gui.hide()
+		score = 0; Gui.set_score(score)
 		var _success = get_tree().change_scene("res://levelgameover/gameOver.tscn")
 		animationPlayer.play("reveal") # Starts with covering screen
 	else:
