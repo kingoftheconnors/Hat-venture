@@ -5,55 +5,54 @@
 [ext_resource path="res://items/Resources/itemMovement.gd" type="Script" id=3]
 [ext_resource path="res://items/Resources/getItem.gd" type="Script" id=4]
 
-[sub_resource type="CapsuleShape2D" id=12]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 6.22684
 height = 7.36611
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 16, 10 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
 region = Rect2( 16, 0, 16, 10 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 1 )
 region = Rect2( 32, 0, 16, 10 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
 region = Rect2( 48, 0, 16, 10 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
 region = Rect2( 64, 0, 16, 10 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 1 )
 region = Rect2( 80, 0, 16, 10 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 1 )
 region = Rect2( 96, 0, 16, 10 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 1 )
 region = Rect2( 112, 0, 16, 10 )
 
-[sub_resource type="SpriteFrames" id=9]
+[sub_resource type="SpriteFrames" id=10]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 2, 3 )
 
-[sub_resource type="Animation" id=11]
-resource_name = "fade"
+[sub_resource type="Animation" id=12]
 length = 3.0
 step = 0.05
 tracks/0/type = "method"
@@ -77,10 +76,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 1.0, 0.6, 0.4, 0.2, 0.0 ]
+"values": [ 0.6, 0.4, 0.2, 0.0 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite:visible")
@@ -110,18 +109,18 @@ is_despawn = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Area2D"]
 rotation = 1.5708
-shape = SubResource( 12 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Body"]
-frames = SubResource( 9 )
-frame = 1
+frames = SubResource( 10 )
+frame = 4
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 position = Vector2( 0, 1 )
-shape = SubResource( 10 )
+shape = SubResource( 11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Body"]
-anims/fade = SubResource( 11 )
+anims/fade = SubResource( 12 )
 [connection signal="area_entered" from="Body/Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Body/Area2D" to="." method="_on_Area2D_body_entered"]

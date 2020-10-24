@@ -17,7 +17,10 @@ func force_deactivate(body, animator):
 	deactivate(body, animator)
 
 func release():
-	pass
+	var thorhat = load("res://items/Resources/ReleasedThorHat.tscn")
+	var hat = thorhat.instance()
+	hat.set_position(Vector2(0, -8))
+	return hat
 
 func spawnFromBox(collidingBody):
 	var thorhat = load("res://items/Resources/ThorHat.tscn")

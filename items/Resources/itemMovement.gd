@@ -20,3 +20,4 @@ func _physics_process(delta):
 			var collision = get_slide_collision(i)
 			if collision.travel.y > 0.1:
 				animator.play("fade")
+				$Sprite.speed_scale = .75 + randf()*1.5
