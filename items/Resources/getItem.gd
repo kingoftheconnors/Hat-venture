@@ -3,12 +3,15 @@ extends Node2D
 export(Resource) var itemCommand
 onready var wait_collect = 5
 
+signal collected
+
 func _physics_process(delta):
 	if wait_collect > 0:
 		wait_collect -= 1
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("player"):
+		emit_signal("collected")
 		collect(body)
 
 func collect(body):

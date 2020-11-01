@@ -37,7 +37,7 @@ func die():
 		animationPlayer.play("reveal") # Uncover screen after loading level
 
 func start_level(levelNum):
-	# Get current levelname to return to after playing animation
+	# Get levelname to return to after playing animation
 	var levelName = "res://level" + str(levelNum) + "/level" + str(levelNum) + ".tscn"
 	# Fade to white
 	animationPlayer.play("cover")

@@ -180,16 +180,15 @@ __meta__ = {
 }
 
 [node name="GameOver2" type="TextureRect" parent="."]
-anchor_left = 0.008
-anchor_top = 0.223
-anchor_right = 0.997
-anchor_bottom = 0.358
-margin_left = 26.88
-margin_top = 2.96
-margin_right = -26.08
-margin_bottom = -13.84
+anchor_left = 0.503
+anchor_top = 0.26
+anchor_right = 0.503
+anchor_bottom = 0.348
+margin_left = -215.92
+margin_top = 0.199997
+margin_right = 216.08
+margin_bottom = -0.0400085
 texture = ExtResource( 6 )
-expand = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_left = 0.44
@@ -201,7 +200,6 @@ margin_top = -0.227325
 margin_right = -0.147705
 margin_bottom = 0.0126648
 texture = ExtResource( 4 )
-expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
