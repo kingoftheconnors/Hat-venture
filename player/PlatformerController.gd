@@ -180,7 +180,7 @@ func move(delta):
 			animator["parameters/PlayerMovement/conditions/not_dive_resting"] = true
 	
 	#Gravity
-	if !climbing and !frozen and !bashing:
+	if !climbing and !frozen:
 		if velo.y < 0:
 			velo.y += Constants.gravity
 		else:
@@ -265,8 +265,8 @@ func move_player(v):
 					direction = -direction
 	if !recognize_collision:
 		new_velo = prev_velo
-	if bashing:
-		new_velo.y = 0
+	#if bashing:
+	#	new_velo.y = 0
 	return new_velo
 
 onready var bash_collider = get_node("ScaleChildren/bashbox/BashCollider")
@@ -377,9 +377,8 @@ func _unhandled_input(event):
 	if !frozen:
 		# This will run once on the frame when the action is first pressed
 		if event.is_action_pressed("ui_A"):
-			if !bashing:
-				holding_jump = true
-				jump_timer = 10
+			holding_jump = true
+			jump_timer = 10
 		
 		if event.is_action_released("ui_A"):
 			if holding_jump and !spinning and velo.y < 0:
