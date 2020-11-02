@@ -138,10 +138,12 @@ movement/path = NodePath("../Path2D")
 [node name="Poddle" parent="." instance=ExtResource( 6 )]
 position = Vector2( 443.039, -12.4537 )
 base_direction = Vector2( -1, 0 )
+movement/is_turning = true
 
 [node name="Poddle2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2205.16, -61.8999 )
 base_direction = Vector2( -1, 0 )
+movement/is_turning = true
 
 [node name="Crow" parent="." instance=ExtResource( 18 )]
 position = Vector2( 1260.62, -27.4241 )

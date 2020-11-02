@@ -196,18 +196,6 @@ tracks/6/keys = {
 "update": 1,
 "values": [ true ]
 }
-tracks/7/type = "value"
-tracks/7/path = NodePath("HeadCollider:disabled")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
 
 [sub_resource type="Animation" id=12]
 tracks/0/type = "value"
@@ -3734,8 +3722,8 @@ defaultPower = ExtResource( 37 )
 
 [node name="PlayerCore" type="Sprite" parent="ScaleChildren"]
 material = SubResource( 2 )
-texture = ExtResource( 41 )
-hframes = 3
+texture = ExtResource( 1 )
+hframes = 2
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="ScaleChildren"]
