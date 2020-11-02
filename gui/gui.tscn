@@ -205,13 +205,12 @@ __meta__ = {
 }
 
 [node name="DialogBox" type="NinePatchRect" parent="."]
-visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -88.0
 texture = ExtResource( 9 )
-patch_margin_left = 120
+patch_margin_left = 233
 patch_margin_top = 20
 patch_margin_right = 8
 patch_margin_bottom = 8
@@ -240,16 +239,13 @@ anchor_top = 0.25
 anchor_right = 0.975
 anchor_bottom = 0.844
 margin_right = -24.0
-margin_bottom = -0.272003
+margin_bottom = -1.272
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "YOU SAID THIS WAS FRUIT JUICE!"
+text = "Are you looking for your umbrella? I saw it land near the market area when you, you know..."
 autowrap = true
+percent_visible = -0.0135135
 max_lines_visible = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="TextureRect" type="TextureRect" parent="DialogBox"]
-margin_right = 40.0
-margin_bottom = 40.0

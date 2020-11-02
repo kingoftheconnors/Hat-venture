@@ -49,6 +49,7 @@ func set_score(amo):
 onready var dialog = $DialogBox
 onready var dialogName = $DialogBox/Name
 onready var dialogText = $DialogBox/Dialog
+onready var textboxes = game_dialog.new()
 
 const letters_per_sec = 20.0
 var text_to_run = []
@@ -56,11 +57,7 @@ var text_crawl_func
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept") and Constants.DEBUG_MODE:
-		queue_dialog([
-			{name = "You", text = "The future is now, thanks to dialog!"},
-			{name = "Me", text = "Dialog is so amazing!"},
-			{name = "You", text = "Indeed! Check out this SCIENCE!!"}
-		])
+		queue_dialog(1)
 	if text_crawl_func is GDScriptFunctionState:
 		text_crawl_func = text_crawl_func.resume(delta)
 	elif text_to_run.size() > 0:
@@ -69,8 +66,8 @@ func _process(delta):
 	elif dialog.visible == true:
 		end_dialog()
 
-func queue_dialog(array_text):
-	text_to_run += array_text
+func queue_dialog(textbox_num):
+	text_to_run += textboxes.get_dialog(textbox_num)
 	if !(text_crawl_func is GDScriptFunctionState):
 		var next_box = text_to_run.pop_front()
 		start_dialog(next_box.name, next_box.text)
@@ -81,6 +78,7 @@ func start_dialog(name, text):
 	dialog.visible = true
 	dialogName.text = name
 	dialogText.text = text
+	dialogText.lines_skipped = 0
 	# Start text crawl
 	text_crawl_func = crawl(text.length())
 	
@@ -89,13 +87,21 @@ func end_dialog():
 	gui.visible = true
 	dialog.visible = false
 
+func get_printed_lines(dialogText):
+	return dialogText.lines_skipped + dialogText.get_line_count() * dialogText.percent_visible
+
 func crawl(text_length):
 	# Text crawl
 	dialogText.percent_visible = 0
 	var speed = 1
-	while dialogText.percent_visible < 1:
+	while get_printed_lines(dialogText) < dialogText.get_line_count():
 		var delta = yield()
+		print(dialogText.get_visible_line_count())
 		dialogText.percent_visible += delta * speed * letters_per_sec/text_length
+		#print("Lines: ", get_printed_lines(dialogText), "/", dialogText.get_line_count(), ". ", dialogText.percent_visible, "% - ", get_printed_lines(dialogText))
+		if dialogText.percent_visible > 2/float(dialogText.get_line_count()) and get_printed_lines(dialogText) < dialogText.get_line_count():
+			dialogText.lines_skipped += 1
+			dialogText.percent_visible -= 1/float(dialogText.get_line_count())
 		if Input.is_action_just_pressed("ui_A"):
 			speed = 5
 		elif Input.is_action_just_released("ui_A"):

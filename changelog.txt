@@ -127,21 +127,23 @@ Spinning thor hat
 Hats with a bit of delta randomness on ending frame
 Poddles no longer change direction when they're shooting--only when they're idle
 Score only resets when a game over occurs
+Level 1 enlarged
+Game over scene doesn't expand images, so they look more natural
 
 This sprint:
-Checkpoints
----
+-- DIALOG:
+Add an NPC so I stop hitting Enter on accident and triggering 4 things of dialog lol (If you need me to write/sprite something up for that LMK)
+Start thinking about cutscenes and making a format to add to the test world. Dialog will happen mainly in there (except for the hub world, which will have NPCs), and having a way to animate those quickly and easily will help out in the long run.
+--- BASHING:
 Hard Hat should have invincibility a little bit after charge, making it more safe against enemies like the Poddles.
 Should also be able to jump during the bash, but only while on the ground. Gives the move just the right amount of versatility
 In exchange, shorten the charge speed. It seems way too quick, especially when dashing through brick blocks.
 Fix Getting hurt interrupts end_bash transition
 --
-Give some extra space in the test world!! Mainly for fiddling with abilities since it's rather hard to do so with everything all over the place
-Add an NPC so I stop hitting Enter on accident and triggering 4 things of dialog lol (If you need me to write/sprite something up for that LMK)
-Start thinking about cutscenes and making a format to add to the test world. Dialog will happen mainly in there (except for the hub world, which will have NPCs), and having a way to animate those quickly and easily will help out in the long run.
-I'll also be redoing the GameOver sprites so they work, but generally sprites should be 1:1 in-game so everything looks uniform. Same goes for text, since that looks funky-ish
---
 That Eltun
+--
+Checkpoints
+Fullscreen
 
 Backlog:
 * Extended feet (only-downwards-collision)
