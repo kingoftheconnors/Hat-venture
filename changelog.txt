@@ -137,12 +137,11 @@ Dialog B button skipping to next line
 Bash invincibility
 Tightening bash corner correction and feel
 Bash jumping made easier
+Screen Scaling support
 
 This sprint:
 That Eltun
 --
-Checkpoints
-Fullscreen
 --
 Gravity and walking feeling like syrup
 Increase spin length after bouncing?
@@ -158,3 +157,4 @@ Input needed:
 * Checkpoints
 * Score sources and uses
 * SFX!
+* Checkpoints
