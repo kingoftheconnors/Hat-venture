@@ -42,10 +42,11 @@ const POST_SPIN_STUN = 40
 # BASH
 var bashing = false
 var bashing_combo = false
-const BASH_SPEED = 200
-const BASH_ACCELERATION = 4
-const KNOCKBACK_MULTIPLIER = 250
+const BASH_SPEED = 180
+const POST_CRASH_SPEED = 200
+const KNOCKBACK_MULTIPLIER = 150
 const POST_BASH_STUN = 50
+const BASH_CORRECTION_SIZE = 14
 var power_stun = 0
 
 # CLIMBING
@@ -69,6 +70,7 @@ var _stun = 0
 var frozen = false
 var ignore_air_friction = false
 var crouching = false
+var gravity = true
 
 var max_velo = MAX_SPEED
 var velo = Vector2()
@@ -180,7 +182,7 @@ func move(delta):
 			animator["parameters/PlayerMovement/conditions/not_dive_resting"] = true
 	
 	#Gravity
-	if !climbing and !frozen:
+	if !frozen and gravity and !climbing:
 		if velo.y < 0:
 			velo.y += Constants.gravity
 		else:
@@ -276,6 +278,8 @@ func bash_bounce(body):
 	var destroyedBody = core.attack(body)
 	# Smashing through an object (disabling its collision)
 	if destroyedBody:
+		# Move towards center
+		velo.y = move_and_slide(Vector2(0, body.position.y - position.y)).y
 		upgrade_smash()
 		body.set_collision_layer(0)
 		body.set_collision_mask(0)
@@ -287,25 +291,26 @@ func bash_bounce(body):
 		var topPos = bash_collider.global_position-Vector2(0, bash_collider.shape.extents.y)
 		var bottomPos = bash_collider.global_position+Vector2(0, bash_collider.shape.extents.y)
 		# Test corner correction downwards
-		var upperHit = space_state.intersect_ray(topPos, topPos+Vector2(20*direction, 0), [], 2)
-		if upperHit:
-			#rint("Upper hit")
-			for i in range(12):
-				var result = space_state.intersect_ray(topPos+Vector2(0, i), topPos+Vector2(20*direction, i), [], 2)
-				if !result:
-					recognize_collision = false
-					position.y += i
-					break
-		# Test corner correction upwards
-		var lowerHit = space_state.intersect_ray(bottomPos, bottomPos+Vector2(20*direction, 0), [], 2)
-		if lowerHit:
-			#print("Lower hit")
-			for i in range(12):
-				var result = space_state.intersect_ray(bottomPos+Vector2(0, -i), bottomPos+Vector2(20*direction, -i), [], 2)
+		var upperHit = space_state.intersect_ray(topPos, topPos+Vector2(5*direction, 0), [], 2)
+		var lowerHit = space_state.intersect_ray(bottomPos, bottomPos+Vector2(5*direction, 0), [], 2)
+		if upperHit and !lowerHit:
+			for i in range(BASH_CORRECTION_SIZE):
+				var result = space_state.intersect_ray(topPos+Vector2(0, i), topPos+Vector2(5*direction, i), [], 2)
 				if !result:
 					recognize_collision = false
 					print(i)
-					position.y -= i
+					move_and_collide(Vector2(0, i+1))
+					pause_gravity()
+					break
+		# Test corner correction upwards
+		if lowerHit and !upperHit:
+			for i in range(BASH_CORRECTION_SIZE):
+				var result = space_state.intersect_ray(bottomPos+Vector2(0, -i), bottomPos+Vector2(5*direction, -i), [], 2)
+				if !result:
+					recognize_collision = false
+					print(i)
+					move_and_collide(Vector2(0, -(i+1)))
+					pause_gravity()
 					break
 		if recognize_collision:
 			# No corner correction, bounce off
@@ -498,26 +503,27 @@ func bash():
 	if !bashing and can_use_power and _stun <= 0:
 		can_use_power = false
 		bashing = true
+		ignore_air_friction = true
 		uncrouch()
 		max_velo = BASH_SPEED
+		if !is_on_floor():
+			velo.y = 0; pause_gravity()
 		animator["parameters/PlayerMovement/playback"].travel("bash")
 
 func upgrade_smash():
 	if bashing:
-		frozen = true
-		max_velo += BASH_ACCELERATION
-		velo = Vector2(-direction*10, 0)
+		set_freeze(true)
+		animator["parameters/PlayerMovement/playback"].start("pre-bash")
 		bashing_combo = true
-		yield(get_tree().create_timer(.05), "timeout")
-		frozen = false
-		upgrade_smash_rush()
-		animator["parameters/PlayerMovement/playback"].start("bash")
 
 func upgrade_smash_rush():
-	print("Upgrading to ", max_velo)
-	velo = Vector2(direction * max_velo*1.5, 1)
+	set_freeze(false)
+	max_velo = POST_CRASH_SPEED
+	velo = Vector2(direction * max_velo, 0)
+	pause_gravity()
 
 func unbash():
+	resume_gravity()
 	if bashing:
 		if velo.x > max_velo:
 			velo.x = max(MAX_SPEED, velo.x - (max_velo - MAX_SPEED))
@@ -592,3 +598,11 @@ func damage(isStomp, amount = 1):
 	core.damage(isStomp, amount)
 func heal(amount = 1):
 	core.heal(amount)
+
+onready var gravity_timer = get_node("GravityTimer")
+func pause_gravity():
+	gravity = false
+	gravity_timer.start()
+func resume_gravity():
+	gravity = true
+	gravity_timer.stop()

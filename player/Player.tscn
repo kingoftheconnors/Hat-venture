@@ -1,4 +1,4 @@
-[gd_scene load_steps=229 format=2]
+[gd_scene load_steps=231 format=2]
 
 [ext_resource path="res://player/regular/idle.png" type="Texture" id=1]
 [ext_resource path="res://player/PlatformerController.gd" type="Script" id=2]
@@ -90,7 +90,7 @@ radius = 3.0
 height = 6.0
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 4, 11.75 )
+extents = Vector2( 4, 10.5 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 7, 11 )
@@ -110,7 +110,7 @@ resource_name = "aaaaa"
 length = 1.4
 
 [sub_resource type="Animation" id=11]
-length = 0.3
+length = 0.38
 step = 0.038
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
@@ -119,10 +119,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.075, 0.15, 0.225, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.075, 0.15, 0.225, 0.3, 0.38 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 0, 1 ]
+"values": [ 0, 1, 2, 0, 1, 2 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("ScaleChildren/PlayerCore:texture")
@@ -2483,6 +2483,37 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=185]
+resource_name = "pre-bash"
+length = 0.05
+step = 0.038
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScaleChildren/bashbox/BashCollider:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.038 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "upgrade_smash_rush"
+} ]
+}
+
 [sub_resource type="Animation" id=51]
 length = 0.01
 
@@ -3277,9 +3308,6 @@ animation = "dive_rest"
 [sub_resource type="AnimationNodeAnimation" id=88]
 animation = "end_bash"
 
-[sub_resource type="AnimationNodeAnimation" id=89]
-animation = "end_bash"
-
 [sub_resource type="AnimationNodeAnimation" id=90]
 animation = "end_crouch"
 
@@ -3417,6 +3445,9 @@ snap = 1.0
 
 [sub_resource type="AnimationNodeAnimation" id=119]
 animation = "power_get"
+
+[sub_resource type="AnimationNodeAnimation" id=186]
+animation = "pre-bash"
 
 [sub_resource type="AnimationNodeAnimation" id=120]
 animation = "refresh"
@@ -3566,8 +3597,6 @@ advance_condition = "jumping"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=156]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=157]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=158]
 switch_mode = 2
 auto_advance = true
@@ -3600,10 +3629,6 @@ advance_condition = "crouching"
 [sub_resource type="AnimationNodeStateMachineTransition" id=167]
 advance_condition = "not_crouching"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=168]
-switch_mode = 2
-auto_advance = true
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=169]
 switch_mode = 2
 auto_advance = true
@@ -3634,9 +3659,17 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=179]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=187]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=188]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=189]
+switch_mode = 2
+auto_advance = true
+
 [sub_resource type="AnimationNodeStateMachine" id=180]
 states/bash/node = SubResource( 76 )
-states/bash/position = Vector2( 242.886, -52.279 )
+states/bash/position = Vector2( 100.267, -83.279 )
 states/crouch/node = SubResource( 82 )
 states/crouch/position = Vector2( 498, 225.684 )
 states/die/node = SubResource( 83 )
@@ -3650,9 +3683,7 @@ states/dive_boost/position = Vector2( -213.094, 127.684 )
 states/dive_rest/node = SubResource( 87 )
 states/dive_rest/position = Vector2( -42.7333, 19.8216 )
 states/end_bash_s/node = SubResource( 88 )
-states/end_bash_s/position = Vector2( 242.886, 14.7646 )
-states/end_bash_x/node = SubResource( 89 )
-states/end_bash_x/position = Vector2( 242.886, 14.7646 )
+states/end_bash_s/position = Vector2( 224.886, -15.2354 )
 states/end_crouch/node = SubResource( 91 )
 states/end_crouch/position = Vector2( 127.267, 259.184 )
 "states/end_crouch 2/node" = SubResource( 90 )
@@ -3673,6 +3704,8 @@ states/jump/node = SubResource( 118 )
 states/jump/position = Vector2( -42.7333, 192.684 )
 states/power_get/node = SubResource( 119 )
 states/power_get/position = Vector2( 582, 49.684 )
+states/pre-bash/node = SubResource( 186 )
+states/pre-bash/position = Vector2( 258.24, -117.503 )
 states/refresh/node = SubResource( 120 )
 states/refresh/position = Vector2( 715, 42.684 )
 states/skid/node = SubResource( 126 )
@@ -3683,9 +3716,9 @@ states/throw/node = SubResource( 128 )
 states/throw/position = Vector2( 371, -52.279 )
 states/walk/node = SubResource( 138 )
 states/walk/position = Vector2( 302, 192.684 )
-transitions = [ "idle", "walk", SubResource( 139 ), "walk", "idle", SubResource( 140 ), "walk", "skid", SubResource( 141 ), "skid", "end_crouch", SubResource( 142 ), "end_crouch", "walk", SubResource( 143 ), "walk", "jump", SubResource( 144 ), "jump", "freefall", SubResource( 145 ), "freefall", "idle", SubResource( 146 ), "idle", "jump", SubResource( 147 ), "jump", "idle", SubResource( 148 ), "idle", "dive", SubResource( 149 ), "dive", "dive_rest", SubResource( 150 ), "dive_rest", "dive", SubResource( 151 ), "dive_rest", "end_dive", SubResource( 152 ), "end_dive", "jump", SubResource( 153 ), "end_dive", "idle", SubResource( 154 ), "dive", "end_dive", SubResource( 155 ), "idle", "bash", SubResource( 156 ), "bash", "end_bash_x", SubResource( 157 ), "bash", "end_bash_s", SubResource( 158 ), "idle", "throw", SubResource( 159 ), "throw", "idle", SubResource( 160 ), "idle", "refresh", SubResource( 161 ), "refresh", "idle", SubResource( 162 ), "end_crouch 2", "idle", SubResource( 163 ), "idle", "power_get", SubResource( 164 ), "power_get", "idle", SubResource( 165 ), "idle", "crouch", SubResource( 166 ), "crouch", "end_crouch 2", SubResource( 167 ), "end_bash_x", "idle", SubResource( 168 ), "end_bash_s", "idle", SubResource( 169 ), "idle", "spin", SubResource( 170 ), "spin", "end_spin", SubResource( 171 ), "end_spin", "idle", SubResource( 172 ), "dive_rest", "end_dive 2", SubResource( 173 ), "end_dive 2", "dive_boost", SubResource( 174 ), "dive_boost", "jump", SubResource( 175 ), "idle", "die", SubResource( 176 ), "idle", "hurt", SubResource( 177 ), "hurt", "idle", SubResource( 178 ), "idle", "die_simple", SubResource( 179 ) ]
+transitions = [ "idle", "walk", SubResource( 139 ), "walk", "idle", SubResource( 140 ), "walk", "skid", SubResource( 141 ), "skid", "end_crouch", SubResource( 142 ), "end_crouch", "walk", SubResource( 143 ), "walk", "jump", SubResource( 144 ), "jump", "freefall", SubResource( 145 ), "freefall", "idle", SubResource( 146 ), "idle", "jump", SubResource( 147 ), "jump", "idle", SubResource( 148 ), "idle", "dive", SubResource( 149 ), "dive", "dive_rest", SubResource( 150 ), "dive_rest", "dive", SubResource( 151 ), "dive_rest", "end_dive", SubResource( 152 ), "end_dive", "jump", SubResource( 153 ), "end_dive", "idle", SubResource( 154 ), "dive", "end_dive", SubResource( 155 ), "idle", "bash", SubResource( 156 ), "bash", "end_bash_s", SubResource( 158 ), "idle", "throw", SubResource( 159 ), "throw", "idle", SubResource( 160 ), "idle", "refresh", SubResource( 161 ), "refresh", "idle", SubResource( 162 ), "end_crouch 2", "idle", SubResource( 163 ), "idle", "power_get", SubResource( 164 ), "power_get", "idle", SubResource( 165 ), "idle", "crouch", SubResource( 166 ), "crouch", "end_crouch 2", SubResource( 167 ), "end_bash_s", "idle", SubResource( 169 ), "idle", "spin", SubResource( 170 ), "spin", "end_spin", SubResource( 171 ), "end_spin", "idle", SubResource( 172 ), "dive_rest", "end_dive 2", SubResource( 173 ), "end_dive 2", "dive_boost", SubResource( 174 ), "dive_boost", "jump", SubResource( 175 ), "idle", "die", SubResource( 176 ), "idle", "hurt", SubResource( 177 ), "hurt", "idle", SubResource( 178 ), "idle", "die_simple", SubResource( 179 ), "bash", "pre-bash", SubResource( 187 ), "pre-bash", "end_bash_s", SubResource( 188 ), "pre-bash", "bash", SubResource( 189 ) ]
 start_node = "idle"
-graph_offset = Vector2( 47.6456, -60.8712 )
+graph_offset = Vector2( -88.7602, -166.599 )
 
 [sub_resource type="AnimationNodeAdd2" id=181]
 
@@ -3765,12 +3798,11 @@ shape = SubResource( 4 )
 "hitbox",
 "player",
 ]]
-visible = false
 collision_layer = 0
 collision_mask = 3
 
 [node name="BashCollider" type="CollisionShape2D" parent="ScaleChildren/bashbox"]
-position = Vector2( 8, 1 )
+position = Vector2( 8, 1.5 )
 shape = SubResource( 5 )
 disabled = true
 
@@ -3855,6 +3887,7 @@ anims/power_get = SubResource( 47 )
 anims/powerlessActive = SubResource( 48 )
 anims/powerlessFlash = SubResource( 49 )
 anims/powerlessOff = SubResource( 50 )
+anims/pre-bash = SubResource( 185 )
 anims/refresh = SubResource( 51 )
 "anims/run (cycle)" = SubResource( 52 )
 anims/skid = SubResource( 53 )
@@ -3911,6 +3944,9 @@ position = Vector2( -5, 0 )
 enabled = true
 cast_to = Vector2( 0, 20 )
 collision_mask = 3
+
+[node name="GravityTimer" type="Timer" parent="."]
+wait_time = 0.25
 [connection signal="off_cliff" from="." to="ScaleChildren/PlayerCore" method="cliff_damage"]
 [connection signal="hurt" from="ScaleChildren/PlayerCore" to="Power" method="hit"]
 [connection signal="area_entered" from="ScaleChildren/hurtbox" to="ScaleChildren/PlayerCore" method="_on_hurtbox_area_entered"]
@@ -3919,3 +3955,4 @@ collision_mask = 3
 [connection signal="body_entered" from="ScaleChildren/bashbox" to="." method="bash_bounce"]
 [connection signal="body_entered" from="spinbox" to="." method="spin_bounce"]
 [connection signal="body_entered" from="spinbox2" to="." method="spin_bounce"]
+[connection signal="timeout" from="GravityTimer" to="." method="resume_gravity"]
