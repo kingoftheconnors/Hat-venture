@@ -93,23 +93,24 @@ func get_printed_lines(dialogText):
 func crawl(text_length):
 	# Text crawl
 	dialogText.percent_visible = 0
+	var lettersVisible = 0.0
+	var num_lines = ceil(dialogText.get_total_character_count()/20.0)
 	var speed = 1
 	while get_printed_lines(dialogText) < dialogText.get_line_count():
 		var delta = yield()
-		print(dialogText.get_visible_line_count())
-		dialogText.percent_visible += delta * speed * letters_per_sec/text_length
-		#print("Lines: ", get_printed_lines(dialogText), "/", dialogText.get_line_count(), ". ", dialogText.percent_visible, "% - ", get_printed_lines(dialogText))
-		if dialogText.percent_visible > 2/float(dialogText.get_line_count()) and get_printed_lines(dialogText) < dialogText.get_line_count():
+		lettersVisible += delta * speed * letters_per_sec
+		if dialogText.visible_characters >= 39:
 			dialogText.lines_skipped += 1
-			dialogText.percent_visible -= 1/float(dialogText.get_line_count())
+			lettersVisible -= 20
+		dialogText.set_visible_characters(int(lettersVisible))
 		if Input.is_action_just_pressed("ui_A"):
 			speed = 5
 		elif Input.is_action_just_released("ui_A"):
 			speed = 1
 		if Input.is_action_just_pressed("ui_B"):
-			dialogText.percent_visible = 1
+			break
 	yield()
 	# Wait for user input
-	while(!Input.is_action_just_pressed("ui_A") and !Input.is_action_just_pressed("ui_B")):
+	while(!Input.is_action_just_pressed("ui_A") and !Input.is_action_pressed("ui_B")):
 		yield()
 	return
