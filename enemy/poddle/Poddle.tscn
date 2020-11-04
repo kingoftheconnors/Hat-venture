@@ -1,10 +1,11 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://enemy/poddle/poddle.png" type="Texture" id=1]
 [ext_resource path="res://enemy/Scripts/EnemyController.gd" type="Script" id=2]
 [ext_resource path="res://enemy/poddle/watcher.gd" type="Script" id=3]
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=4]
 [ext_resource path="res://enemy/poddle/shooter.gd" type="Script" id=5]
+[ext_resource path="res://enemy/Scripts/Hitbox.gd" type="Script" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
@@ -350,7 +351,7 @@ height = 14.3208
 
 [sub_resource type="CapsuleShape2D" id=23]
 radius = 7.17361
-height = 5.52895
+height = 0.0
 
 [sub_resource type="CapsuleShape2D" id=24]
 radius = 6.0
@@ -359,12 +360,11 @@ height = 9.0
 [node name="Poddle" type="KinematicBody2D"]
 script = ExtResource( 2 )
 movement/controller = ExtResource( 3 )
-movement/is_turning = false
+movement/is_turning = true
 
 [node name="EnemyCore" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 3
-frame = 1
 script = ExtResource( 4 )
 deathScore = 300
 
@@ -392,6 +392,7 @@ shape = SubResource( 22 )
 [node name="HitBox" type="Area2D" parent="." groups=[
 "hitbox",
 ]]
+script = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 0, 2 )

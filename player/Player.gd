@@ -30,7 +30,7 @@ func _on_hitbox_area_entered(area):
 
 func _on_hurtbox_area_entered(area):
 	if area.is_in_group("hitbox") and area.get_parent() != get_parent():
-		var damage = area.get_parent().get_damage()
+		var damage = area.get_damage()
 		# TODO: Play sound effect
 		damage(false, damage)
 		# Bounce back

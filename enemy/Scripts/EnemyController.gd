@@ -74,7 +74,6 @@ func _process(delta):
 
 func damage(isStomp):
 	return sprite.damage(isStomp)
-
 func get_damage():
 	return sprite.get_damage()
 

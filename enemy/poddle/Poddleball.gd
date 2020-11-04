@@ -15,9 +15,6 @@ func _physics_process(delta):
 onready var animation_player = $AnimationPlayer
 
 func _on_Area2D_body_entered(body):
-	if body.is_in_group("player"):
-		if body.has_method("damage"):
-			body.damage(false)
 	# Colliding with tiles
 	if body.get_collision_layer_bit(1):
 		velo = Vector2(-velo.x/10, -75)

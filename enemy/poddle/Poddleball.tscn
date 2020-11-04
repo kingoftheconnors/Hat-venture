@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://enemy/poddle/Poddleball.gd" type="Script" id=1]
 [ext_resource path="res://enemy/poddle/poddleball.png" type="Texture" id=2]
+[ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=3]
+[ext_resource path="res://enemy/Scripts/Hitbox.gd" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 5.502
@@ -36,6 +38,9 @@ tracks/1/keys = {
 } ]
 }
 
+[sub_resource type="CircleShape2D" id=3]
+radius = 4.0
+
 [node name="Poddleball" type="Sprite"]
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
@@ -47,4 +52,15 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/disable = SubResource( 2 )
+
+[node name="HitBox" type="Area2D" parent="." groups=[
+"hitbox",
+]]
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource( 3 )
+
+[node name="EnemyCore" type="Node2D" parent="."]
+script = ExtResource( 3 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

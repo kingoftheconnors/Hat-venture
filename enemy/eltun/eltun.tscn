@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://enemy/eltun/zigzag.gd" type="Script" id=1]
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=2]
 [ext_resource path="res://enemy/eltun/eltun.png" type="Texture" id=3]
 [ext_resource path="res://enemy/Scripts/EnemyController.gd" type="Script" id=4]
+[ext_resource path="res://enemy/Scripts/Hitbox.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
@@ -327,6 +328,7 @@ shape = SubResource( 11 )
 [node name="HitBox" type="Area2D" parent="." groups=[
 "hitbox",
 ]]
+script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 0, 2 )

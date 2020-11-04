@@ -129,21 +129,25 @@ Poddles no longer change direction when they're shooting--only when they're idle
 Score only resets when a game over occurs
 Level 1 enlarged
 Game over scene doesn't expand images, so they look more natural
+Bash jumping
+
+0.2.1
+Dialog line crawl sharpened
+Dialog B button skipping to next line
+Bash invincibility
+Tightening bash corner correction and feel
+Bash jumping made easier
 
 This sprint:
--- DIALOG:
-Add an NPC so I stop hitting Enter on accident and triggering 4 things of dialog lol (If you need me to write/sprite something up for that LMK)
-Start thinking about cutscenes and making a format to add to the test world. Dialog will happen mainly in there (except for the hub world, which will have NPCs), and having a way to animate those quickly and easily will help out in the long run.
---- BASHING:
-Hard Hat should have invincibility a little bit after charge, making it more safe against enemies like the Poddles.
-Should also be able to jump during the bash, but only while on the ground. Gives the move just the right amount of versatility
-In exchange, shorten the charge speed. It seems way too quick, especially when dashing through brick blocks.
-Fix Getting hurt interrupts end_bash transition
---
 That Eltun
 --
 Checkpoints
 Fullscreen
+--
+Gravity and walking feeling like syrup
+Increase spin length after bouncing?
+-- DIALOG:
+Start thinking about cutscenes and making a format to add to the test world. Dialog will happen mainly in there (except for the hub world, which will have NPCs), and having a way to animate those quickly and easily will help out in the long run.
 
 Backlog:
 * Extended feet (only-downwards-collision)

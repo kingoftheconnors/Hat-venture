@@ -14,10 +14,11 @@ func get_damage():
 
 func damage(isStomp):
 	emit_signal("hurt")
-	if isStomp:
-		animator["parameters/playback"].travel("smash")
-	else:
-		animator["parameters/playback"].travel("die")
+	if animator:
+		if isStomp:
+			animator["parameters/playback"].travel("smash")
+		else:
+			animator["parameters/playback"].travel("die")
 	# Always die, so always true
 	return true
 
