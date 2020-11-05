@@ -1,21 +1,20 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://enemy/poddle/watcher.gd" type="Script" id=1]
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=2]
-[ext_resource path="res://NPCs/DialogStarter.gd" type="Script" id=3]
 [ext_resource path="res://enemy/Scripts/EnemyController.gd" type="Script" id=4]
 [ext_resource path="res://NPCs/MustacheGirl.png" type="Texture" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( -5, 0, -4, -0.1, 4, -0.1, 5, 0 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 25, 22 )
-
 [node name="NPC" type="KinematicBody2D"]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 4 )
+controller_variables = {
+"movement/is_turning": true
+}
 movement/controller = ExtResource( 1 )
 movement/is_turning = true
 
@@ -33,13 +32,4 @@ position = Vector2( 0, 13 )
 shape = SubResource( 1 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-
-[node name="DialogBox" type="Area2D" parent="."]
-visible = false
-script = ExtResource( 3 )
-dialog_num = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogBox"]
-position = Vector2( 0, 6 )
-shape = SubResource( 2 )
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]

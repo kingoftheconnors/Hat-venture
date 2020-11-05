@@ -139,12 +139,12 @@ Tightening bash corner correction and feel
 Bash jumping made easier
 Screen Scaling support
 Fixed Eltun losing path glitch
+Choosing NPC dialog from root
 
 This sprint:
-Choosing NPC dialog from root
---
 Gravity and walking feeling like syrup
 Increase spin length after bouncing?
+Spin ABOVE box
 -- DIALOG:
 Start thinking about cutscenes and making a format to add to the test world. Dialog will happen mainly in there (except for the hub world, which will have NPCs), and having a way to animate those quickly and easily will help out in the long run.
 
