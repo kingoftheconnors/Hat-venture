@@ -138,10 +138,10 @@ Bash invincibility
 Tightening bash corner correction and feel
 Bash jumping made easier
 Screen Scaling support
+Fixed Eltun losing path glitch
 
 This sprint:
-That Eltun
---
+Choosing NPC dialog from root
 --
 Gravity and walking feeling like syrup
 Increase spin length after bouncing?

@@ -56,8 +56,6 @@ var text_to_run = []
 var text_crawl_func
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_accept") and Constants.DEBUG_MODE:
-		queue_dialog(1)
 	if text_crawl_func is GDScriptFunctionState:
 		text_crawl_func = text_crawl_func.resume(delta)
 	elif text_to_run.size() > 0:

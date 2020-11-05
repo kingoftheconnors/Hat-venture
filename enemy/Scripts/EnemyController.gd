@@ -5,9 +5,9 @@ onready var sprite = get_node("EnemyCore")
 export(Vector2) var base_direction = Vector2(1,0)
 var is_active = false
 
-var controller : Resource
 var controller_script
-var controller_variables = {}
+var controller : Resource
+export(Dictionary) var controller_variables
 func get_controller_script():
 	if controller_script == null:
 		controller_script = controller.new(base_direction, controller_variables)
@@ -63,9 +63,9 @@ func _get_property_list():
 	return retval
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	if has_controller_script():
-		reset_controller_script()
+#func _ready():
+#	if has_controller_script():
+#		reset_controller_script()
 
 # Called when the node enters the scene tree for the first time.
 func _process(delta):

@@ -453,7 +453,6 @@ func set_freeze(flag):
 ####################
 
 func dive():
-	print("Can dive: ", can_dive, ". Diving: ", diving)
 	if can_dive and !diving:
 		can_dive = false
 		diving = true

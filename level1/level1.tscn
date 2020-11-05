@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://level1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://level1/background1.tres" type="TileSet" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://items/Resources/Pon.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Music/startSong.gd" type="Script" id=10]
 [ext_resource path="res://enemy/eltun/eltun.tscn" type="PackedScene" id=11]
+[ext_resource path="res://enemy/eltun/flypath.gd" type="Script" id=12]
 [ext_resource path="res://Music/lvl1intro.ogg" type="AudioStream" id=13]
 [ext_resource path="res://Music/lvl1.ogg" type="AudioStream" id=14]
 [ext_resource path="res://common/TileInstancer.gd" type="Script" id=15]
@@ -24,14 +25,14 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 72, -96, 0, 0, 0, 0, 112, -136, 0, 0, 0, 0, 176, -136, 0, 0, 0, 0, 216, -96, 0, 0, 0, 0, 216, -40, 0, 0, 0, 0, 176, -16, 0, 0, 0, 0, 112, -16, 0, 0, 0, 0, 72, -48 )
+"points": PoolVector2Array( 0, 0, 0, 0, 72, -96, 0, 0, 0, 0, 112, -136, 0, 0, 0, 0, 176, -136, 0, 0, 0, 0, 216, -96, 0, 0, 0, 0, 216, -40, 0, 0, 0, 0, 176, -16, 0, 0, 0, 0, 87.5475, -15.8959, 0, 0, 0, 0, 71.4497, -50.4525 )
 }
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 3 )
 left = -112
 right = 2412
-up = -300
+up = -250
 down = 48
 col = Color( 0.67451, 0.682353, 0.67451, 1 )
 
@@ -126,67 +127,113 @@ position = Vector2( 480, -96 )
 
 [node name="Node" type="Node" parent="."]
 
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource( 1 )
-
 [node name="Poddle" parent="." instance=ExtResource( 6 )]
 position = Vector2( 443.039, -12.4537 )
 base_direction = Vector2( -1, 0 )
+controller_variables = {
+"movement/is_turning": false
+}
 movement/is_turning = false
 
 [node name="Poddle2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2205.16, -61.8999 )
 base_direction = Vector2( -1, 0 )
+controller_variables = {
+"movement/is_turning": false
+}
 movement/is_turning = false
 
 [node name="Crow" parent="." instance=ExtResource( 18 )]
 position = Vector2( 1260.62, -27.4241 )
 base_direction = Vector2( -1, 0 )
+controller_variables = {
+
+}
 
 [node name="Crow2" parent="." instance=ExtResource( 18 )]
 position = Vector2( 1642.61, -27.4241 )
 base_direction = Vector2( -1, 0 )
+controller_variables = {
+
+}
 
 [node name="Crow3" parent="." instance=ExtResource( 18 )]
 position = Vector2( 1775.99, -28.8208 )
 base_direction = Vector2( -1, 0 )
+controller_variables = {
+
+}
 
 [node name="Crow4" parent="." instance=ExtResource( 18 )]
 position = Vector2( 1917.05, -28.8208 )
 base_direction = Vector2( -1, 0 )
+controller_variables = {
+
+}
 
 [node name="Hen4" parent="." instance=ExtResource( 17 )]
 position = Vector2( 378.687, 6.82526 )
+controller_variables = {
+
+}
 
 [node name="Hen3" parent="." instance=ExtResource( 17 )]
 position = Vector2( 1224.54, -25.9964 )
 base_direction = Vector2( -1, 0 )
+controller_variables = {
+
+}
 
 [node name="Hen" parent="." instance=ExtResource( 17 )]
 position = Vector2( 786.592, -7.8586 )
 base_direction = Vector2( -1, 0 )
+controller_variables = {
+
+}
 
 [node name="Eltun" parent="." instance=ExtResource( 11 )]
 position = Vector2( 955.638, -46.35 )
 base_direction = Vector2( 0, -1 )
+controller_variables = {
+"movement/turnaround_time": 170
+}
 movement/controller = ExtResource( 19 )
-movement/turnaround_time = 150
+movement/turnaround_time = 170
 
 [node name="Eltun2" parent="." instance=ExtResource( 11 )]
 position = Vector2( 1042.11, -60.2723 )
 base_direction = Vector2( 0, -1 )
+controller_variables = {
+"movement/turnaround_time": 170
+}
 movement/controller = ExtResource( 19 )
-movement/turnaround_time = 100
+movement/turnaround_time = 170
 
 [node name="Eltun4" parent="." instance=ExtResource( 11 )]
 position = Vector2( 1484.61, -148.056 )
 base_direction = Vector2( -1, 0 )
+controller_variables = {
+"movement/turnaround_time": 170
+}
 movement/controller = ExtResource( 19 )
-movement/turnaround_time = 175
+movement/turnaround_time = 170
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="Eltun5" parent="." instance=ExtResource( 11 )]
+position = Vector2( 64.5886, -87.4941 )
+controller_variables = {
+"movement/path": NodePath("../Path2D")
+}
+movement/controller = ExtResource( 12 )
 
 [node name="Hen2" parent="." instance=ExtResource( 17 )]
 position = Vector2( 617.978, -9.50763 )
 base_direction = Vector2( -1, 0 )
+controller_variables = {
+
+}
 
 [node name="TimePiece" parent="." instance=ExtResource( 21 )]
 position = Vector2( 2361.27, -93.5477 )
@@ -211,8 +258,11 @@ stream = ExtResource( 22 )
 script = ExtResource( 10 )
 
 [node name="NPC" parent="." instance=ExtResource( 20 )]
-position = Vector2( 86.4659, -45.7321 )
+position = Vector2( 68.9952, -44.1145 )
 collision_mask = 3
+controller_variables = {
+"movement/is_turning": true
+}
 [connection signal="dead" from="Player" to="GameOver" method="start_music"]
 [connection signal="dead" from="Player" to="Music" method="stop_music"]
 [connection signal="collected" from="TimePiece" to="Win" method="start_music"]
