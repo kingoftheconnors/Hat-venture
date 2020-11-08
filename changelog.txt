@@ -141,11 +141,9 @@ Screen Scaling support
 Fixed Eltun losing path glitch
 Choosing NPC dialog from root
 Gravity, walking, and running tuned up to be more like Mario
+Basic dialog scene signal system
 
 This sprint:
-Hitting blocks from underneath VERY closeby
--- DIALOG:
-Start thinking about cutscenes and making a format to add to the test world. Dialog will happen mainly in there (except for the hub world, which will have NPCs), and having a way to animate those quickly and easily will help out in the long run.
 -- Misc
 Interrupting jump with getting hurt so that the freefall animation interrupts hurt's pause function which causes game to be paused forever?
 GIF CREATION KEY

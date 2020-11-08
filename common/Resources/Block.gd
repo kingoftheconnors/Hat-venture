@@ -44,7 +44,7 @@ func hit(collidingBody):
 func collide(collision, collidingBody):
 	if collision.normal.y > 0 \
 		and abs(collision.normal.y) > abs(collision.normal.x) \
-		and collision.travel.y < -0.25 \
+		and collision.travel.y < -0.15 \
 		and collision.position.y >= global_position.y + 7.9:
 		hit(collidingBody)
 
