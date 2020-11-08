@@ -140,13 +140,16 @@ Bash jumping made easier
 Screen Scaling support
 Fixed Eltun losing path glitch
 Choosing NPC dialog from root
+Gravity, walking, and running tuned up to be more like Mario
 
 This sprint:
-Gravity and walking feeling like syrup
 Increase spin length after bouncing?
-Spin ABOVE box
+Spin breaking ABOVE boxes and enemies
 -- DIALOG:
 Start thinking about cutscenes and making a format to add to the test world. Dialog will happen mainly in there (except for the hub world, which will have NPCs), and having a way to animate those quickly and easily will help out in the long run.
+-- Misc
+Interrupting jump with a hurt so that it goes to freefall interrupts hurt pause function so game is paused forever?
+GIF CREATING BUTTON
 
 Backlog:
 * Extended feet (only-downwards-collision)

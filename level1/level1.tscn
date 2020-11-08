@@ -91,11 +91,12 @@ tile_data = PoolIntArray( -1245193, 0, 0, -1245192, 0, 2, -1179657, 0, 65536, -1
 script = ExtResource( 15 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1, -16 )
+position = Vector2( 1.17444, -484.14 )
 rotation = 4.46638e-06
 
 [node name="Camera2D" type="Camera2D" parent="."]
 pause_mode = 2
+position = Vector2( -1.16634, -481.701 )
 current = true
 zoom = Vector2( 0.5, 0.5 )
 limit_right = 10000542
@@ -108,7 +109,7 @@ drag_margin_bottom = 0.0
 script = ExtResource( 5 )
 
 [node name="Node2D" parent="." instance=ExtResource( 7 )]
-position = Vector2( 0, -16 )
+position = Vector2( -2.63068, -482.606 )
 playerPath = NodePath("../Player")
 
 [node name="Pon" parent="." instance=ExtResource( 9 )]
@@ -132,15 +133,17 @@ position = Vector2( 480, -96 )
 position = Vector2( 443.039, -12.4537 )
 base_direction = Vector2( -1, 0 )
 controller_variables = {
-"movement/is_turning": true
+"movement/is_turning": false
 }
+movement/is_turning = false
 
 [node name="Poddle2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 2205.16, -61.8999 )
+position = Vector2( 2335.54, -62.3769 )
 base_direction = Vector2( -1, 0 )
 controller_variables = {
-"movement/is_turning": true
+"movement/is_turning": false
 }
+movement/is_turning = false
 
 [node name="Crow" parent="." instance=ExtResource( 18 )]
 position = Vector2( 1260.62, -27.4241 )
@@ -226,7 +229,6 @@ controller_variables = {
 "movement/path": NodePath("../Path2D")
 }
 movement/controller = ExtResource( 12 )
-movement/path = NodePath("../Path2D")
 
 [node name="Hen2" parent="." instance=ExtResource( 17 )]
 position = Vector2( 617.978, -9.50763 )

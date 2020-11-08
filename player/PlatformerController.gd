@@ -5,30 +5,32 @@ signal dead
 
 # DEFAULT
 const TURNOFF_SPEED = 15
-const BASE_SPEED = 25
+const BASE_SPEED = 10 #25
 var base_speed = BASE_SPEED
-const ACCELERATION = 4
-const MAX_SPEED = 117
+const ACCELERATION = 5
+const MAX_SPEED = 93
 export(int) var BOUNCE_FORCE = 300
 export(float) var FALL_MULTIPLIER = 1.1
-export(int) var JUMP_STRENGTH = 300
+export(int) var JUMP_STRENGTH = 275
 
 # POWERS
 var can_use_power = true
 
 # DIVE
 var diving = false
+var can_superdive = false
 var can_dive = true
-var superdive_window = false
+const SUPERDIVE_TIME = 15
+var superdive_timer = 0
 const DIVE_SPEED = 200
 export(float) var DIVE_FALL_MULTIPLIER = 0.85
 export(int) var DIVE_OUT_STRENGTH = 200
 export(int) var DIVE_OUT_SPEED = 140
 const SUPERDIVE_SPEED = 275
+const DIVE_MERCY = 3
 
 # RUN
-const MAX_RUNNING_SPEED = 200
-const BASE_RUN_SPEED = 45
+const MAX_RUNNING_SPEED = 212
 var running
 
 # SPIN
@@ -95,6 +97,7 @@ func reset_position():
 	velo = Vector2()
 
 func set_spawn(pos):
+	position = pos
 	cur_spawn = pos
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -356,10 +359,21 @@ func manage_flags():
 		air_time = false
 		animator["parameters/PlayerMovement/conditions/jumping"] = false
 		animator["parameters/PlayerMovement/conditions/not_jumping"] = true
-
+	
 	if is_on_floor() and ignore_air_friction:
 		if !bashing and !diving and !spinning and abs(velo.x) < max_velo*.8:
 			ignore_air_friction = false
+	
+	if diving and is_on_floor() and can_superdive:
+		superdive_timer = SUPERDIVE_TIME
+		can_superdive = false
+	
+	if diving and !is_on_floor() and !can_superdive:
+		can_superdive = true
+	
+	if superdive_timer > 0:
+		print(superdive_timer)
+		superdive_timer -= 1
 	
 	if jump_timer > 0:
 		jump_timer -= 1
@@ -405,7 +419,7 @@ func jump():
 	if diving:
 		undive()
 		velo.y = min(-DIVE_OUT_STRENGTH, velo.y)
-		if superdive_window:
+		if (is_on_floor() and superdive_timer > 0) or (!is_on_floor() and move_and_collide(Vector2(0, DIVE_MERCY), true, true, true)):
 			velo = Vector2(direction * SUPERDIVE_SPEED, -SUPERDIVE_SPEED)
 			animator["parameters/PlayerMovement/playback"].travel("dive_boost")
 	# Energy jump
@@ -479,18 +493,13 @@ func uncrouch():
 	animator["parameters/PlayerMovement/conditions/crouching"] = false
 	animator["parameters/PlayerMovement/conditions/not_crouching"] = true
 
-func superdive_active():
-	superdive_window = true
-func superdive_inactive():
-	superdive_window = false
-
 func start_run():
 	max_velo = MAX_RUNNING_SPEED
-	base_speed = BASE_RUN_SPEED
+	#base_speed = BASE_RUN_SPEED
 	running = true
 func stop_run():
 	max_velo = MAX_SPEED
-	base_speed = BASE_SPEED
+	#base_speed = BASE_SPEED
 	running = false
 
 func start_skid_perfect():
