@@ -38,12 +38,12 @@ var spinning
 const SPIN_JUMP_SPEED = 265
 const SPIN_HORIZONTAL_SPEED = 155
 const SPIN_LENGTH = .7
-const GROUNDED_SPIN_LENGTH = 1.2
+const GROUNDED_SPIN_LENGTH = 1.3
 const POST_SPIN_STUN = 40
 
 # BASH
+var power_combo = false
 var bashing = false
-var bashing_combo = false
 const BASH_SPEED = 180
 const POST_CRASH_SPEED = 200
 const KNOCKBACK_MULTIPLIER = 150
@@ -326,7 +326,6 @@ func bounce_back():
 
 func spin_bounce(body):
 	if !body.is_in_group("player"):
-		print("Hit body ", body)
 		var destroyedBody = core.attack(body)
 		return destroyedBody
 	return false
@@ -522,7 +521,7 @@ func upgrade_smash():
 	if bashing:
 		set_freeze(true)
 		animator["parameters/PlayerMovement/playback"].start("pre-bash")
-		bashing_combo = true
+		power_combo = true
 
 func upgrade_smash_rush():
 	set_freeze(false)
@@ -539,11 +538,11 @@ func unbash():
 			velo.x = min(-MAX_SPEED, velo.x + (max_velo - MAX_SPEED))
 		max_velo = MAX_SPEED
 		bashing = false
-		if bashing_combo == false:
+		if power_combo == false:
 			power_stun(POST_BASH_STUN)
 		else:
 			can_use_power = true
-		bashing_combo = false
+		power_combo = false
 
 func spin():
 	if !spinning and can_use_power and _stun <= 0:
@@ -566,11 +565,7 @@ func unspin():
 	if spinning:
 		max_velo = MAX_SPEED
 		spinning = false
-		if bashing_combo == false:
-			power_stun(POST_SPIN_STUN)
-		else:
-			can_use_power = true
-		bashing_combo = false
+		power_stun(POST_SPIN_STUN)
 
 ##############################
 # EXTERNAL NODE METHODS

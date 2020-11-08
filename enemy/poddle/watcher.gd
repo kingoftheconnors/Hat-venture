@@ -48,3 +48,7 @@ func get_script_export_list():
 		"default": false
 	}]
 	return property_list
+
+func jump(jump_force = 200):
+	print("Jumping! ", jump_force)
+	velo.y = -jump_force

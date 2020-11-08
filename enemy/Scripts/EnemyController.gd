@@ -90,3 +90,6 @@ func _on_VisibilityNotifier2D_screen_entered():
 
 func get_sprite():
 	return sprite
+
+func jump(jump_force = 125):
+	controller_script.jump(jump_force)
