@@ -46,6 +46,7 @@ func start_level(levelNum):
 	score = 0; Gui.set_score(score)
 	lives = 4; Gui.set_lives(lives)
 	Gui.reset_energy()
+	Gui.show()
 	# Load level
 	var _success = get_tree().change_scene(levelName)
 	animationPlayer.play("reveal")
