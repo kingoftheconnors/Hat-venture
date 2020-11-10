@@ -229,7 +229,6 @@ controller_variables = {
 "movement/path": NodePath("../Path2D")
 }
 movement/controller = ExtResource( 12 )
-movement/path = NodePath("../Path2D")
 
 [node name="Hen2" parent="." instance=ExtResource( 17 )]
 position = Vector2( 617.978, -9.50763 )
@@ -267,13 +266,12 @@ collision_mask = 3
 controller_variables = {
 "movement/is_turning": true
 }
-movement/is_turning = true
 
 [node name="DialogBox" parent="NPC" instance=ExtResource( 23 )]
 visible = true
 [connection signal="dead" from="Player" to="Music" method="stop_music"]
 [connection signal="dead" from="Player" to="GameOver" method="start_music"]
-[connection signal="collected" from="TimePiece" to="Music" method="stop_music"]
 [connection signal="collected" from="TimePiece" to="Win" method="start_music"]
+[connection signal="collected" from="TimePiece" to="Music" method="stop_music"]
 [connection signal="finished" from="MusicIntro" to="Music" method="start_music"]
 [connection signal="action1" from="NPC/DialogBox" to="NPC" method="jump"]

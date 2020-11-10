@@ -100,7 +100,6 @@ func player_die(animate = true):
 		dying = true
 
 func die():
-	print("DYING!")
 	PlayerGameManager.die()
 
 func pause_game():

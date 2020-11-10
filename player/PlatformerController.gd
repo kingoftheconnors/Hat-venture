@@ -211,7 +211,7 @@ func move(delta):
 	if !frozen:
 		velo = move_player(velo)
 	
-	if position.y > camera.limit_bottom:
+	if position.y > camera.limit_bottom + 20:
 		emit_signal("off_cliff")
 		
 	if position.x < camera.limit_left:

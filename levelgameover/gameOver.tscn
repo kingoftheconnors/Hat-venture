@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://gui/white.png" type="Texture" id=1]
 [ext_resource path="res://font/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://levelgameover/Selector.gd" type="Script" id=5]
 [ext_resource path="res://levelgameover/gameovertext.png" type="Texture" id=6]
 [ext_resource path="res://Music/Game_Over2.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Music/startSong.gd" type="Script" id=8]
+[ext_resource path="res://Music/startTimer.gd" type="Script" id=9]
+[ext_resource path="res://Music/Game_Over.ogg" type="AudioStream" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -210,9 +213,9 @@ anchor_top = 0.724
 anchor_right = 0.549
 anchor_bottom = 0.79
 margin_left = -187.7
-margin_top = -4.57153
+margin_top = -4.57199
 margin_right = -137.7
-margin_bottom = 4.74847
+margin_bottom = 4.74802
 texture = ExtResource( 3 )
 expand = true
 script = ExtResource( 5 )
@@ -224,6 +227,18 @@ __meta__ = {
 anims/continue = SubResource( 2 )
 anims/quit = SubResource( 3 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
+[node name="GameOverTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
 autoplay = true
+
+[node name="Timer" type="Timer" parent="GameOverTheme"]
+wait_time = 0.5
+one_shot = true
+script = ExtResource( 9 )
+
+[node name="GameOverTheme2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -12.0
+script = ExtResource( 8 )
+[connection signal="finished" from="GameOverTheme" to="GameOverTheme/Timer" method="start_timer"]
+[connection signal="timeout" from="GameOverTheme/Timer" to="GameOverTheme2" method="start_music"]
