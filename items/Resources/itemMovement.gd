@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+const ENEMY_GRAVITY = 9
 export(float) var gravityMultiplier = 0
 export(bool) var is_despawn = false
 onready var animator = get_node("AnimationPlayer")
@@ -7,7 +8,7 @@ onready var animator = get_node("AnimationPlayer")
 var velo = Vector2(0, -110)
 
 func _physics_process(delta):
-	velo.y += Constants.gravity * gravityMultiplier
+	velo.y += ENEMY_GRAVITY * gravityMultiplier
 	# terminal velocity
 	if velo.y > Constants.terminalVelocity:
 		velo.y = Constants.terminalVelocity

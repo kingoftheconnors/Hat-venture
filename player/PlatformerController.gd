@@ -4,6 +4,7 @@ signal off_cliff
 signal dead
 
 # DEFAULT
+const PLAYER_GRAVITY = 10
 const TURNOFF_SPEED = 15
 const BASE_SPEED = 10 #25
 var base_speed = BASE_SPEED
@@ -187,12 +188,12 @@ func move(delta):
 	#Gravity
 	if !frozen and gravity and !climbing:
 		if velo.y < 0:
-			velo.y += Constants.gravity
+			velo.y += PLAYER_GRAVITY
 		else:
 			if diving:
-				velo.y += Constants.gravity * DIVE_FALL_MULTIPLIER
+				velo.y += PLAYER_GRAVITY * DIVE_FALL_MULTIPLIER
 			else:
-				velo.y += Constants.gravity * FALL_MULTIPLIER
+				velo.y += PLAYER_GRAVITY * FALL_MULTIPLIER
 			# terminal velocity
 			if velo.y > Constants.terminalVelocity:
 				velo.y = Constants.terminalVelocity
@@ -371,7 +372,6 @@ func manage_flags():
 		can_superdive = true
 	
 	if superdive_timer > 0:
-		print(superdive_timer)
 		superdive_timer -= 1
 	
 	if jump_timer > 0:

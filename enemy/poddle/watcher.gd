@@ -2,6 +2,7 @@ tool
 extends Resource
 class_name shooter
 
+const ENEMY_GRAVITY = 9
 var direction = Vector2()
 var velo = Vector2(0, 0)
 var frozen = false
@@ -22,7 +23,7 @@ func frame(body, sprite, delta):
 	if !frozen:
 		var retVelo = body.move_and_slide(velo, Vector2.UP)
 		# Gravity
-		velo.y = retVelo.y + Constants.gravity
+		velo.y = retVelo.y + ENEMY_GRAVITY
 		# Turn to player
 		if is_turning:
 			var player_nodes = body.get_tree().get_nodes_in_group("player_root")

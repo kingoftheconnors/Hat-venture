@@ -1,5 +1,6 @@
 extends Node2D
 
+const FALLING_BODY_GRAVITY = 11
 var velo = Vector2()
 var moving = true
 var gravityMultiplier = 0.75
@@ -11,7 +12,7 @@ func init(direc):
 
 func _physics_process(delta):
 	if moving:
-		velo.y += Constants.gravity * gravityMultiplier
+		velo.y += FALLING_BODY_GRAVITY * gravityMultiplier
 		position += velo * delta
 
 func _on_Area2D_body_entered(body):

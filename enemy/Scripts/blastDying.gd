@@ -2,6 +2,7 @@ tool
 extends Resource
 class_name blastDying
 
+const FALLING_BODY_GRAVITY = 11
 var velo = Vector2(40, -200)
 
 func _init(direction, export_dict):
@@ -11,7 +12,7 @@ func _init(direction, export_dict):
 func frame(body, sprite, delta):
 	var retVelo = body.move_and_slide(velo, Vector2.UP)
 	# Gravity
-	velo.y = retVelo.y + Constants.gravity
+	velo.y = retVelo.y + FALLING_BODY_GRAVITY
 	if body.is_on_wall():
 		velo = Vector2(-velo.x, velo.y)
 

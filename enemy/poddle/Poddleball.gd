@@ -1,5 +1,6 @@
 extends Node2D
 
+const FALLING_BODY_GRAVITY = 11
 var velo = Vector2()
 var gravityMultiplier = 0.75
 var falling = false
@@ -10,7 +11,7 @@ func init(direc):
 func _physics_process(delta):
 	position += velo * delta
 	if falling:
-		velo.y += Constants.gravity * 50 * delta
+		velo.y += FALLING_BODY_GRAVITY * 50 * delta
 
 onready var animation_player = $AnimationPlayer
 

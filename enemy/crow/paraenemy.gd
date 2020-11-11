@@ -2,8 +2,9 @@ tool
 extends Resource
 class_name paraenemy
 
+const ENEMY_GRAVITY = 9
 var velo = Vector2(30, 0)
-var JUMP_FORCE = 200
+var JUMP_FORCE = 179
 var direction = Vector2()
 var frozen = false
 
@@ -16,7 +17,7 @@ func frame(body, sprite, delta):
 	if !frozen:
 		var retVelo = body.move_and_slide(velo, Vector2.UP)
 		# Gravity
-		velo.y = retVelo.y + Constants.gravity
+		velo.y = retVelo.y + ENEMY_GRAVITY
 		# Jumping
 		if body.is_on_floor():
 			velo.y = -JUMP_FORCE

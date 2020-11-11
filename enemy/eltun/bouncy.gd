@@ -2,6 +2,7 @@ tool
 extends Resource
 class_name bouncy
 
+const ENEMY_GRAVITY = 9
 var velo = Vector2(40, 0)
 var direction = Vector2()
 var frozen = false
@@ -23,7 +24,7 @@ func update_exports(export_dict):
 func frame(body, sprite, delta):
 	if !frozen:
 		var retVelo = body.move_and_slide(velo, Vector2.UP)
-		velo.y = retVelo.y + Constants.gravity/2
+		velo.y = retVelo.y + ENEMY_GRAVITY/2
 		# Zigzag
 		frame += 1
 		if velo.y > jump_force or body.is_on_floor():
