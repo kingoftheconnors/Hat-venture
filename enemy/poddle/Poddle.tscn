@@ -70,6 +70,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [ true, false ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("..:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "die"
@@ -152,6 +164,18 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("..:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, -1 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -359,8 +383,11 @@ height = 9.0
 
 [node name="Poddle" type="KinematicBody2D"]
 script = ExtResource( 2 )
+controller_variables = {
+"movement/is_turning": false
+}
 movement/controller = ExtResource( 3 )
-movement/is_turning = true
+movement/is_turning = false
 
 [node name="EnemyCore" type="Sprite" parent="."]
 texture = ExtResource( 1 )
