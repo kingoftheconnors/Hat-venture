@@ -46,7 +46,7 @@ func _draw():
 	if not Engine.editor_hint:
 		return
 	
-	draw_line(Vector2(left, up-320), Vector2(left, down+320), Color(1, 0, 0), 5)
-	draw_line(Vector2(right, up-320), Vector2(right, down+320), Color(1, 0, 0), 5)
-	draw_line(Vector2(left-320, up), Vector2(right+320, up), Color(1, 0, 0), 5)
-	draw_line(Vector2(left-320, down), Vector2(right+320, down), Color(1, 0, 0), 5)
+	draw_line(Vector2(left, up-160), Vector2(left, down+160), Color(1, 0, 0), 5)
+	draw_line(Vector2(right, up-160), Vector2(right, down+160), Color(1, 0, 0), 5)
+	draw_line(Vector2(left-160, up), Vector2(right+160, up), Color(1, 0, 0), 5)
+	draw_line(Vector2(left-160, down), Vector2(right+160, down), Color(1, 0, 0), 5)

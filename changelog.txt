@@ -148,10 +148,9 @@ UI is re-revealed when you continue from gameover
 Gameover music start-and-continue
 Player die lower
 Players can no longer dive while dead
+Non-scroll rooms (Megaman style)
 
 This sprint:
--- Camera
-Non-scroll rooms (Megaman style)
 -- Enemies
 Some enemies, when hit with a potion, don't flip similar to Mario style.
 Crows jump WAY too high. Think how Paragoombas jump.
