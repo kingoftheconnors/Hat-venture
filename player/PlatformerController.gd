@@ -62,7 +62,7 @@ export(bool) var wall_climbing = false
 onready var scale_manager = get_node("ScaleChildren")
 onready var animator = get_node("AnimationTree")
 onready var animatorPlayer = get_node("AnimationPlayer")
-onready var camera = get_node("../Camera2D")
+onready var camera = get_node("../Camera")
 onready var core = get_node("ScaleChildren/PlayerCore")
 
 onready var skidRayCast1 = get_node("SkidRay")
@@ -214,13 +214,6 @@ func move(delta):
 	
 	if position.y > camera.limit_bottom + 20:
 		emit_signal("off_cliff")
-		
-	if position.x < camera.limit_left:
-		position.x = camera.limit_left
-		velo.x = max(0, velo.x)
-	if position.x > camera.limit_right:
-		position.x = camera.limit_right
-		velo.x = min(0, velo.x)
 
 func calc_direc(ui_direc, cur_speed, speed = base_speed):
 	if ui_direc > 0 and cur_speed >= ui_direc*base_speed*.9: # Accelerate right

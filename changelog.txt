@@ -150,10 +150,11 @@ Player die lower
 Players can no longer dive while dead
 Non-scroll rooms (Megaman style)
 Fixed bug when some enemies, when hit with a potion, don't flip vertically
-Crows jump lower and most enemies fall slower.
+Crows jump lower
+Most enemies fall slower
+Camera limits act as walls (bouncing off of, colliding with, etc)
 
 This sprint:
--- Enemies
 -- Errors
 Animation Tree
 "Can't change this state while flushing queries" (call deferred during scene signal system)
@@ -162,6 +163,7 @@ Decrease bash stun amount
 Text maybe shouldn't scroll down automatically. Give the player time to read it, and prompt them to press z once the dialog clears (or press x to fast forward dialog)
 X also skips the whole dialog which I guess is fine??? Idk seems counterintuitive
 -- Misc
+Error: Being in dive when changing level causes weird hitboxes
 The music start and loop parts for the grass world seem to have a small gap in between? Is there any way to fix that?
 Timepiece-get-anim (pause game)
 Interrupting jump with getting hurt so that the freefall animation interrupts hurt's pause function which causes game to be paused forever?
