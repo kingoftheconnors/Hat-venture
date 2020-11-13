@@ -97,27 +97,27 @@ tracks/2/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "Collect"
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
 
-[sub_resource type="AnimationNodeStateMachine" id=8]
-states/Collect/node = SubResource( 5 )
+[sub_resource type="AnimationNodeStateMachine" id=7]
+states/Collect/node = SubResource( 3 )
 states/Collect/position = Vector2( 350, 75 )
-states/Idle/node = SubResource( 6 )
+states/Idle/node = SubResource( 4 )
 states/Idle/position = Vector2( 149, 75 )
-transitions = [ "Idle", "Collect", SubResource( 7 ), "Collect", "Idle", SubResource( 10 ) ]
+transitions = [ "Idle", "Collect", SubResource( 5 ), "Collect", "Idle", SubResource( 6 ) ]
 start_node = "Idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=9]
 radius = 9.5
 
 [node name="TimePiece" type="Node2D"]
@@ -125,24 +125,23 @@ script = ExtResource( 1 )
 itemCommand = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Collect = SubResource( 3 )
-anims/Idle = SubResource( 4 )
+anims/Collect = SubResource( 1 )
+anims/Idle = SubResource( 2 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 8 )
+tree_root = SubResource( 7 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 9 )
+parameters/playback = SubResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -30 )
+position = Vector2( 0, -0.147835 )
 texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 2 )
-disabled = true
+shape = SubResource( 9 )
 
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource( 5 )
