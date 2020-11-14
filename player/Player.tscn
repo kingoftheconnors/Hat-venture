@@ -2432,6 +2432,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [ Color( 0.686275, 0.686275, 0.686275, 1 ), Color( 1, 1, 1, 1 ), Color( 0.686275, 0.686275, 0.686275, 1 ), Color( 1, 1, 1, 1 ), Color( 0.686275, 0.686275, 0.686275, 1 ), Color( 1, 1, 1, 1 ) ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath("ScaleChildren/PlayerCore")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ false ],
+"method": "turn_invincibilty"
+} ]
+}
 
 [sub_resource type="Animation" id=49]
 length = 0.1
@@ -2459,6 +2473,20 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("ScaleChildren/PlayerCore")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ false ],
+"method": "turn_invincibilty"
+} ]
 }
 
 [sub_resource type="Animation" id=50]
@@ -3249,7 +3277,7 @@ states/powerlessOff/node = SubResource( 69 )
 states/powerlessOff/position = Vector2( 544, 112 )
 transitions = [ "powerlessOff", "powerlessFlash", SubResource( 70 ), "powerlessFlash", "powerlessFlash 2", SubResource( 71 ), "powerlessFlash 2", "powerlessOff", SubResource( 72 ), "powerlessFlash", "hurtFlash", SubResource( 73 ), "hurtFlash", "powerlessOff", SubResource( 74 ), "powerlessOff", "hurtFlash", SubResource( 75 ) ]
 start_node = "powerlessOff"
-graph_offset = Vector2( 0, -9.628 )
+graph_offset = Vector2( 0, -6.624 )
 
 [sub_resource type="AnimationNodeAnimation" id=77]
 animation = "bash"
@@ -3677,7 +3705,7 @@ states/dive_boost/position = Vector2( -213.094, 127.684 )
 states/dive_rest/node = SubResource( 88 )
 states/dive_rest/position = Vector2( -42.7333, 19.8216 )
 states/end_bash_s/node = SubResource( 89 )
-states/end_bash_s/position = Vector2( 224.886, -15.2354 )
+states/end_bash_s/position = Vector2( 258.24, -25.2354 )
 states/end_crouch/node = SubResource( 91 )
 states/end_crouch/position = Vector2( 127.267, 259.184 )
 "states/end_crouch 2/node" = SubResource( 90 )
@@ -3712,12 +3740,12 @@ states/walk/node = SubResource( 139 )
 states/walk/position = Vector2( 302, 192.684 )
 transitions = [ "idle", "walk", SubResource( 140 ), "walk", "idle", SubResource( 141 ), "walk", "skid", SubResource( 142 ), "skid", "end_crouch", SubResource( 143 ), "end_crouch", "walk", SubResource( 144 ), "walk", "jump", SubResource( 145 ), "jump", "freefall", SubResource( 146 ), "freefall", "idle", SubResource( 147 ), "idle", "jump", SubResource( 148 ), "jump", "idle", SubResource( 149 ), "idle", "dive", SubResource( 150 ), "dive", "dive_rest", SubResource( 151 ), "dive_rest", "dive", SubResource( 152 ), "dive_rest", "end_dive", SubResource( 153 ), "end_dive", "jump", SubResource( 154 ), "end_dive", "idle", SubResource( 155 ), "dive", "end_dive", SubResource( 156 ), "idle", "bash", SubResource( 157 ), "bash", "end_bash_s", SubResource( 158 ), "idle", "throw", SubResource( 159 ), "throw", "idle", SubResource( 160 ), "idle", "refresh", SubResource( 161 ), "refresh", "idle", SubResource( 162 ), "end_crouch 2", "idle", SubResource( 163 ), "idle", "power_get", SubResource( 164 ), "power_get", "idle", SubResource( 165 ), "idle", "crouch", SubResource( 166 ), "crouch", "end_crouch 2", SubResource( 167 ), "end_bash_s", "idle", SubResource( 168 ), "idle", "spin", SubResource( 169 ), "spin", "end_spin", SubResource( 170 ), "end_spin", "idle", SubResource( 171 ), "dive_rest", "end_dive 2", SubResource( 172 ), "end_dive 2", "dive_boost", SubResource( 173 ), "dive_boost", "jump", SubResource( 174 ), "idle", "die", SubResource( 175 ), "idle", "hurt", SubResource( 176 ), "hurt", "idle", SubResource( 177 ), "idle", "die_simple", SubResource( 178 ), "bash", "pre-bash", SubResource( 179 ), "pre-bash", "end_bash_s", SubResource( 180 ), "pre-bash", "bash", SubResource( 181 ) ]
 start_node = "idle"
-graph_offset = Vector2( -88.7602, -166.599 )
+graph_offset = Vector2( -132.629, -110.939 )
 
 [sub_resource type="AnimationNodeAdd2" id=183]
 
 [sub_resource type="AnimationNodeBlendTree" id=184]
-graph_offset = Vector2( 0, 508 )
+graph_offset = Vector2( 0, 127 )
 nodes/PlayerEffect/node = SubResource( 76 )
 nodes/PlayerEffect/position = Vector2( 280, 80 )
 nodes/PlayerMovement/node = SubResource( 182 )

@@ -40,7 +40,7 @@ const SPIN_JUMP_SPEED = 265
 const SPIN_HORIZONTAL_SPEED = 155
 const SPIN_LENGTH = .7
 const GROUNDED_SPIN_LENGTH = 1.3
-const POST_SPIN_STUN = 40
+const POST_SPIN_STUN = 20
 
 # BASH
 var power_combo = false
@@ -542,6 +542,7 @@ func unbash():
 		else:
 			can_use_power = true
 		power_combo = false
+		core.turn_invincibilty(true)
 
 func spin():
 	if !spinning and can_use_power and _stun <= 0:

@@ -154,21 +154,23 @@ Crows jump lower
 Most enemies fall slower
 Camera limits act as walls (bouncing off of, colliding with, etc)
 Text goes to subsequent lines only by player intervention
+Fix Animation Tree error
+Decrease bash stun amount
+Post-Power invincibility frames
 
 This sprint:
--- Errors
-Animation Tree
-"Can't change this state while flushing queries" (call deferred during scene signal system)
-Being in dive when changing level causes weird hitboxes
-Level transition during pause
--- Game feel
-Decrease bash stun amount
-X also skips the whole dialog which I guess is fine??? Idk seems counterintuitive
+Compile for QuantumPotato
+Timepiece-get-anim (pause game)
+GIF CREATION KEY (https://github.com/jegor377/godot-gdgifexporter)
+Level Clear Time
+
 -- Misc
 The music start and loop parts for the grass world seem to have a small gap in between? Is there any way to fix that?
-Timepiece-get-anim (pause game)
 Interrupting jump with getting hurt so that the freefall animation interrupts hurt's pause function which causes game to be paused forever?
-GIF CREATION KEY
+Interrupting dive with getting hurt causes being locked in no-jump-mode
+Angus' 
+Level transition during pause causes frozen game
+
 
 Backlog:
 * Score Multiplicity (no-touch-ground-combos, allowing to dive into blocks from side to jump upwards which would keep combo going, getting done with time left on timer, etc)
