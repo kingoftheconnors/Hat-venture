@@ -171,7 +171,10 @@ Interrupting jump with getting hurt so that the freefall animation interrupts hu
 GIF CREATION KEY
 
 Backlog:
-* Extended feet (only-downwards-collision)
+* Score Multiplicity (no-touch-ground-combos, allowing to dive into blocks from side to jump upwards which would keep combo going, getting done with time left on timer, etc)
+* Different worlds with different color schemes
+* Always introduce new mechanics/enemies in subsequent levels
+* Side tracks and secrets (pipes, areas under blocks, etc)
 * Level Select
 * Hard Hat passive ability
 Input needed:

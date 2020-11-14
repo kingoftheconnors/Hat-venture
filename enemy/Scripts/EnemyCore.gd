@@ -2,7 +2,7 @@ extends Node
 
 # ALL ENEMIES SHOULD HAVE A HURTBOX OF AT LEAST RADIUS 3 or 4
 signal hurt
-onready var animator = get_node("AnimationTree")
+onready var animator = get_node_or_null("AnimationTree")
 
 export(int) var damage = 1
 export(int) var deathScore = 100

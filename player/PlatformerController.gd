@@ -48,7 +48,7 @@ var bashing = false
 const BASH_SPEED = 180
 const POST_CRASH_SPEED = 200
 const KNOCKBACK_MULTIPLIER = 150
-const POST_BASH_STUN = 50
+const POST_BASH_STUN = 30
 const BASH_CORRECTION_SIZE = 14
 var power_stun = 0
 
@@ -438,6 +438,12 @@ func get_stun():
 
 func stun(amo, stun_mult = 3):
 	_stun = amo * stun_mult
+	if spinning:
+		unspin()
+	if bashing:
+		unbash()
+	if diving:
+		undive()
 
 func power_stun(amo):
 	animator["parameters/PlayerEffect/playback"].travel("powerlessFlash")

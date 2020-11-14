@@ -384,10 +384,10 @@ height = 9.0
 [node name="Poddle" type="KinematicBody2D"]
 script = ExtResource( 2 )
 controller_variables = {
-"movement/is_turning": false
+"movement/is_turning": true
 }
 movement/controller = ExtResource( 3 )
-movement/is_turning = false
+movement/is_turning = true
 
 [node name="EnemyCore" type="Sprite" parent="."]
 texture = ExtResource( 1 )
