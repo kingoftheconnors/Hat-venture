@@ -14,15 +14,13 @@ var prev_up = 0
 var prev_down = 0
 
 # GIF recording software
-signal gif_complete
-
 var gifexporter = preload("res://gdgifexporter/gifexporter.gd")
 var exporter = null
 # load and initialize quantization method that you want to use
 var quantization = preload("res://gdgifexporter/quantization/enhanced_uniform_quantization.gd").new()
 var saving_gif := false
 var pics = []
-const FRAME_LENGTH = .05
+const FRAME_LENGTH = .08
 const GIF_WIDTH = 440
 const GIF_HEIGHT = 440
 var gif_threads := []
@@ -112,6 +110,7 @@ func create_gif(thread_num : int):
 		file.store_buffer(exporter.export_file_data())
 		file.close()
 		saving_gif = false
+		pics = []
 		print("Gif saved!")
 
 func join_threads():

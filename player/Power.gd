@@ -75,7 +75,7 @@ func set_power_active(flag):
 func hit():
 	power_hp -= 1
 	if power_hp <= 0 and power.name() != "DefaultHat":
-		release_power()
+		call_deferred("release_power")
 
 func release_power():
 	var releaseHat = power.release()
