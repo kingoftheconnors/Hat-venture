@@ -6,7 +6,6 @@ onready var screen_radius = get_node("CollisionShape2D").shape.extents
 
 func _ready():
 	var window_size = get_viewport().size
-	print(window_size)
 
 func capture_camera(body):
 	if body.is_in_group("player"):

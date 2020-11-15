@@ -295,7 +295,6 @@ func bash_bounce(body):
 				var result = space_state.intersect_ray(topPos+Vector2(0, i), topPos+Vector2(5*direction, i), [], 2)
 				if !result:
 					recognize_collision = false
-					print(i)
 					move_and_collide(Vector2(0, i+1))
 					pause_gravity()
 					break
@@ -305,7 +304,6 @@ func bash_bounce(body):
 				var result = space_state.intersect_ray(bottomPos+Vector2(0, -i), bottomPos+Vector2(5*direction, -i), [], 2)
 				if !result:
 					recognize_collision = false
-					print(i)
 					move_and_collide(Vector2(0, -(i+1)))
 					pause_gravity()
 					break

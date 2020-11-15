@@ -159,18 +159,24 @@ Decrease bash stun amount
 Post-Power invincibility frames
 
 This sprint:
+GIF CREATION KEY (https://github.com/jegor377/godot-gdgifexporter)
+    Make a coroutine
+
 Compile for QuantumPotato
 Timepiece-get-anim (pause game)
-GIF CREATION KEY (https://github.com/jegor377/godot-gdgifexporter)
 Level Clear Time
+Cleanup warning
+Screen-moving limit only affects player while moving, and THEN affects enemies when stationary
+Framerate supercrows
+Framerate glitching path-eltun
+Post-gif-save-framerate drop
 
 -- Misc
 The music start and loop parts for the grass world seem to have a small gap in between? Is there any way to fix that?
 Interrupting jump with getting hurt so that the freefall animation interrupts hurt's pause function which causes game to be paused forever?
 Interrupting dive with getting hurt causes being locked in no-jump-mode
-Angus' 
 Level transition during pause causes frozen game
-
+Longer invincibility frames
 
 Backlog:
 * Score Multiplicity (no-touch-ground-combos, allowing to dive into blocks from side to jump upwards which would keep combo going, getting done with time left on timer, etc)
