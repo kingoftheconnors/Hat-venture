@@ -68,7 +68,7 @@ func _get_property_list():
 #		reset_controller_script()
 
 # Called when the node enters the scene tree for the first time.
-func _process(delta):
+func _physics_process(delta):
 	if !Engine.is_editor_hint() and is_active:
 		get_controller_script().frame(self, sprite, delta)
 

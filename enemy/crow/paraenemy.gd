@@ -2,9 +2,9 @@ tool
 extends Resource
 class_name paraenemy
 
-const ENEMY_GRAVITY = 9
+const ENEMY_GRAVITY = 8
 var velo = Vector2(30, 0)
-var JUMP_FORCE = 179
+var JUMP_FORCE = 170
 var direction = Vector2()
 var frozen = false
 

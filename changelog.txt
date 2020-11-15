@@ -159,10 +159,9 @@ Decrease bash stun amount
 Post-Power invincibility frames
 GIF CREATION KEY (R)
 Fix FlushQueries error
+Fix framerate inconsistencies in enemies
 
 This sprint:
-Framerate supercrows
-Framerate glitching path-eltun
 Interrupting jump with getting hurt so that the freefall animation interrupts hurt's pause function which causes game to be paused forever?
 Interrupting dive with getting hurt causes being locked in no-jump-mode
 Level transition during pause causes frozen game
@@ -181,6 +180,7 @@ Post-gif-save-framerate drop
 -- Misc
 The music start and loop parts for the grass world seem to have a small gap in between? Is there any way to fix that?
 TODOs
+Coyote-jump out of bash?
 
 Backlog:
 * Score Multiplicity (no-touch-ground-combos, allowing to dive into blocks from side to jump upwards which would keep combo going, getting done with time left on timer, etc)
