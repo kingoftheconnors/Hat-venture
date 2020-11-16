@@ -160,12 +160,12 @@ Post-Power invincibility frames
 GIF CREATION KEY (R)
 Fix FlushQueries error
 Fix framerate inconsistencies in enemies
+Fixed interrupting dive with getting hurt causing being locked in no-walk-mode
+
+0.2.3
+Longer invincibility frames
 
 This sprint:
-Interrupting jump with getting hurt so that the freefall animation interrupts hurt's pause function which causes game to be paused forever?
-Interrupting dive with getting hurt causes being locked in no-jump-mode
-Level transition during pause causes frozen game
-Longer invincibility frames
 Getting hurt + diving + jumping on someone = way higher momentum?
 -- Features
 Superdive OFF of enemies!!! (weaker than regular superjump)
@@ -180,7 +180,7 @@ Post-gif-save-framerate drop
 -- Misc
 The music start and loop parts for the grass world seem to have a small gap in between? Is there any way to fix that?
 TODOs
-Coyote-jump out of bash?
+Coyote-jump seconds after bash?
 
 Backlog:
 * Score Multiplicity (no-touch-ground-combos, allowing to dive into blocks from side to jump upwards which would keep combo going, getting done with time left on timer, etc)
