@@ -21,13 +21,15 @@ var can_use_power = true
 var diving = false
 var can_superdive = false
 var can_dive = true
-const SUPERDIVE_TIME = 15
+const SUPERDIVE_TIME = 7
 var superdive_timer = 0
-const DIVE_SPEED = 200
+var mini_superdive_timer = 0
+const DIVE_SPEED = 192
 export(float) var DIVE_FALL_MULTIPLIER = 0.85
 export(int) var DIVE_OUT_STRENGTH = 200
 export(int) var DIVE_OUT_SPEED = 140
-const SUPERDIVE_SPEED = 275
+const SUPERDIVE_SPEED = 250
+const MINI_SUPERDIVE_SPEED = 205
 const DIVE_MERCY = 3
 
 # RUN
@@ -41,13 +43,16 @@ const SPIN_HORIZONTAL_SPEED = 155
 const SPIN_LENGTH = .7
 const GROUNDED_SPIN_LENGTH = 1.3
 const POST_SPIN_STUN = 20
+const SPIN_JUMP_DECELERATION = 0.89
+const SPIN_DECELERATION = 0.87
+const SPIN_ACCELERATION = 15
 
 # BASH
 var power_combo = false
 var bashing = false
 const BASH_SPEED = 180
 const POST_CRASH_SPEED = 200
-const KNOCKBACK_MULTIPLIER = 150
+const KNOCKBACK_MULTIPLIER = 140
 const POST_BASH_STUN = 30
 const BASH_CORRECTION_SIZE = 14
 var power_stun = 0
@@ -115,8 +120,13 @@ func move(delta):
 		vertical = 0
 		_stun -= 1
 	
-	if bashing or spinning:
+	if bashing:
 		horizontal = direction
+	if spinning:
+		if horizontal * direction >= 0:
+			horizontal = direction
+		else:
+			horizontal = 0
 	if frozen or diving:
 		horizontal = 0; vertical = 0
 	
@@ -135,7 +145,13 @@ func move(delta):
 	
 	# Friction (before moving so friction only applies when player is
 	# standing still or going over conventional speeds)
-	if (horizontal == 0 and !ignore_air_friction and !is_on_floor()):
+	if horizontal == 0 and spinning:
+		if abs(velo.x) > MAX_SPEED:
+			if is_on_floor():
+				velo.x *= SPIN_DECELERATION
+			else:
+				velo.x *= SPIN_JUMP_DECELERATION
+	elif (horizontal == 0 and !ignore_air_friction and !is_on_floor()):
 		velo.x *= 0.87
 	elif (horizontal == 0 and !crouching and is_on_floor()):
 		velo.x *= 0.87
@@ -148,12 +164,14 @@ func move(delta):
 		velo.x *= 0.96
 	
 	# Basic movement
-	if bashing or spinning:
+	if bashing:
 	#	velo = Vector2(direction * max_velo, 0)
 	#elif spinning:
 		velo.x = direction * max_velo
+	elif spinning:
+		velo.x = calc_direc(direction, velo.x, SPIN_ACCELERATION)
 	else:
-		velo.x = calc_direc(horizontal, velo.x)
+		velo.x = calc_direc(horizontal, velo.x, ACCELERATION)
 	
 	# Skid perfect
 	if skid_perfect and is_on_floor():
@@ -215,17 +233,17 @@ func move(delta):
 	if position.y > camera.limit_bottom + 20:
 		emit_signal("off_cliff")
 
-func calc_direc(ui_direc, cur_speed, speed = base_speed):
+func calc_direc(ui_direc, cur_speed, accel = ACCELERATION, speed = base_speed):
 	if ui_direc > 0 and cur_speed >= ui_direc*base_speed*.9: # Accelerate right
-		return max(cur_speed, min(cur_speed + ui_direc*ACCELERATION, max_velo))
+		return max(cur_speed, min(cur_speed + ui_direc*accel, max_velo))
 	elif ui_direc > 0 and cur_speed > -ui_direc*TURNOFF_SPEED: # On low speed, set to base speed instantly
 		return max(cur_speed, ui_direc*speed)
 	elif ui_direc < 0 and cur_speed <= ui_direc*base_speed*.9: # Accelerate left
-		return min(cur_speed, max(cur_speed + ui_direc*ACCELERATION, -max_velo))
+		return min(cur_speed, max(cur_speed + ui_direc*accel, -max_velo))
 	elif ui_direc < 0 and cur_speed < -ui_direc*base_speed: # On low speed, set to base speed instantly
 		return min(cur_speed, ui_direc*speed)
 	elif ui_direc != 0:  # Sliding for when velo is launched out of regular range (and attempting to turn back)
-		return cur_speed + ui_direc*ACCELERATION
+		return cur_speed + ui_direc*accel
 	elif ui_direc == 0 and abs(cur_speed) <= TURNOFF_SPEED:  # Hard stop on release
 		return 0
 	else:
@@ -328,12 +346,10 @@ func spin_bounce(body):
 			#direction = -direction
 
 func push(direc):
-	var pushed_velo = velo
 	if ( velo.x * direc.x < 0 or abs(velo.x) < abs(direc.x) ):
-		pushed_velo.x = direc.x
+		velo.x = direc.x
 	if ( velo.y * direc.y < 0 or abs(velo.y) < abs(direc.y) ):
-		pushed_velo.y = direc.y
-	velo = pushed_velo
+		velo.y = direc.y
 
 func manage_flags():
 	power_stun_frame()
@@ -364,6 +380,8 @@ func manage_flags():
 	
 	if superdive_timer > 0:
 		superdive_timer -= 1
+	if mini_superdive_timer > 0:
+		mini_superdive_timer -= 1
 	
 	if jump_timer > 0:
 		jump_timer -= 1
@@ -390,7 +408,7 @@ func _unhandled_input(event):
 			jump_timer = 10
 		
 		if event.is_action_released("ui_A"):
-			if holding_jump and !spinning and velo.y < 0:
+			if holding_jump and !spinning and !diving and velo.y < 0:
 				velo.y *= release_jump_damp
 				#animator["parameters/playback"].travel("freefall")
 			holding_jump = false
@@ -404,13 +422,16 @@ func _unhandled_input(event):
 func jump():
 	# Basic Jump
 	if !diving:
-		velo.y = min(-JUMP_STRENGTH, velo.y)
+		push(Vector2(0, -JUMP_STRENGTH))
 	# Out-of-dive Jump
 	if diving:
 		undive()
-		velo.y = min(-DIVE_OUT_STRENGTH, velo.y)
-		if (is_on_floor() and superdive_timer > 0) or (!is_on_floor() and move_and_collide(Vector2(0, DIVE_MERCY), true, true, true)):
-			velo = Vector2(direction * SUPERDIVE_SPEED, -SUPERDIVE_SPEED)
+		push(Vector2(0, -DIVE_OUT_STRENGTH))
+		if (superdive_timer > 0) or (!is_on_floor() and move_and_collide(Vector2(0, DIVE_MERCY), true, true, true)):
+			push(Vector2(direction * SUPERDIVE_SPEED, -SUPERDIVE_SPEED))
+			animator["parameters/PlayerMovement/playback"].travel("dive_boost")
+		if (mini_superdive_timer > 0):
+			push(Vector2(direction * SUPERDIVE_SPEED, -SUPERDIVE_SPEED))
 			animator["parameters/PlayerMovement/playback"].travel("dive_boost")
 	# Energy jump
 	coyoteTimer = 0
@@ -424,11 +445,9 @@ func bounce():
 	var direc = Vector2(0, -BOUNCE_FORCE)
 	if !holding_jump:
 		direc *= release_jump_damp
-	
-	if ( velo.x * direc.x < 0 or abs(velo.x) < abs(direc.x) ):
-		velo.x = direc.x
-	if ( velo.y * direc.y < 0 or abs(velo.y) < abs(direc.y) ):
-		velo.y = direc.y
+	push(direc)
+	if diving and can_superdive:
+		superdive_timer = SUPERDIVE_TIME
 	refresh_flags()
 
 func get_stun():
@@ -468,7 +487,7 @@ func dive():
 		diving = true
 		ignore_air_friction = true
 		max_velo = DIVE_SPEED
-		push(Vector2(DIVE_SPEED * direction, -DIVE_SPEED/2))
+		velo = Vector2(DIVE_SPEED * direction, -DIVE_SPEED*3/4)
 		animator["parameters/PlayerMovement/playback"].travel("dive")
 		animator["parameters/PlayerMovement/conditions/jumping"] = false
 		animator["parameters/PlayerMovement/conditions/not_jumping"] = true
@@ -523,7 +542,8 @@ func upgrade_smash():
 func upgrade_smash_rush():
 	set_freeze(false)
 	max_velo = POST_CRASH_SPEED
-	velo = Vector2(direction * max_velo, 0)
+	push(Vector2(direction * max_velo, 0))
+	velo.y = 0
 	pause_gravity()
 
 func unbash():

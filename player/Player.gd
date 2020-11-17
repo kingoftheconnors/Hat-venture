@@ -20,7 +20,7 @@ func _unhandled_input(event):
 			heal()
 
 func _on_hitbox_area_entered(area):
-	if controller.get_stun() <= 0 and area.get_parent() != get_parent():
+	if not area.is_in_group("player"):
 		if area.is_in_group("hurtbox"):
 			# Play sound effect
 			#jump_enem_sfx.play()
