@@ -25,9 +25,9 @@ const SUPERDIVE_TIME = 7
 var superdive_timer = 0
 var mini_superdive_timer = 0
 const DIVE_SPEED = 192
-export(float) var DIVE_FALL_MULTIPLIER = 0.85
-export(int) var DIVE_OUT_STRENGTH = 200
-export(int) var DIVE_OUT_SPEED = 140
+const DIVE_FALL_MULTIPLIER = 0.85
+const DIVE_OUT_STRENGTH = 200
+const DIVE_OUT_SPEED = 140
 const SUPERDIVE_SPEED = 250
 const MINI_SUPERDIVE_SPEED = 205
 const DIVE_MERCY = 3
@@ -53,9 +53,12 @@ var bashing = false
 const BASH_SPEED = 180
 const POST_CRASH_SPEED = 200
 const KNOCKBACK_MULTIPLIER = 140
-const POST_BASH_STUN = 30
+const POST_BASH_STUN = 35
 const BASH_CORRECTION_SIZE = 14
 var power_stun = 0
+const POST_BASH_JUMP_TIME = 10
+var post_bash_jump_timer = 0
+const BASH_OUT_STRENGTH = 180
 
 # CLIMBING
 export(int) var CLIMBING_SPEED = 200
@@ -84,6 +87,7 @@ var max_velo = MAX_SPEED
 var velo = Vector2()
 
 var jump_timer = 0
+const JUMP_TIME = 10
 var coyoteTimer = 0
 var climbing = false
 var air_time = 0
@@ -382,6 +386,8 @@ func manage_flags():
 		superdive_timer -= 1
 	if mini_superdive_timer > 0:
 		mini_superdive_timer -= 1
+	if post_bash_jump_timer > 0:
+		post_bash_jump_timer -= 1
 	
 	if jump_timer > 0:
 		jump_timer -= 1
@@ -389,7 +395,8 @@ func manage_flags():
 			and (is_on_floor() \
 				or coyoteTimer > 0 \
 				or climbing \
-				or (diving)):
+				or diving \
+				or (post_bash_jump_timer > 0)):
 			jump()
 
 func refresh_flags():
@@ -405,7 +412,7 @@ func _unhandled_input(event):
 		# This will run once on the frame when the action is first pressed
 		if event.is_action_pressed("ui_A"):
 			holding_jump = true
-			jump_timer = 10
+			jump_timer = JUMP_TIME
 		
 		if event.is_action_released("ui_A"):
 			if holding_jump and !spinning and !diving and velo.y < 0:
@@ -420,11 +427,11 @@ func _unhandled_input(event):
 			uncrouch()
 
 func jump():
-	# Basic Jump
-	if !diving:
+	if post_bash_jump_timer > 0 and !is_on_floor():
+		push(Vector2(0, -BASH_OUT_STRENGTH))
+	elif !diving: # Basic Jump
 		push(Vector2(0, -JUMP_STRENGTH))
-	# Out-of-dive Jump
-	if diving:
+	else: # Out-of-dive Jump
 		undive()
 		push(Vector2(0, -DIVE_OUT_STRENGTH))
 		if (superdive_timer > 0) or (!is_on_floor() and move_and_collide(Vector2(0, DIVE_MERCY), true, true, true)):
@@ -453,14 +460,17 @@ func bounce():
 func get_stun():
 	return _stun
 
-func stun(amo, stun_mult = 3):
-	_stun = amo * stun_mult
+func release_all_powers():
 	if spinning:
 		unspin()
 	if bashing:
 		unbash()
 	if diving:
 		undive()
+
+func stun(amo, stun_mult = 3):
+	_stun = amo * stun_mult
+	release_all_powers()
 
 func power_stun(amo):
 	animator["parameters/PlayerEffect/playback"].travel("powerlessFlash")
@@ -560,6 +570,7 @@ func unbash():
 		else:
 			can_use_power = true
 		power_combo = false
+		post_bash_jump_timer = POST_BASH_JUMP_TIME
 		core.turn_invincibilty(true)
 
 func spin():
@@ -605,8 +616,11 @@ func set_velo(new_velo):
 func get_power_node():
 	return $Power
 
-func get_animator_node():
-	return animator["parameters/PlayerMovement/playback"]
+func force_animation(animation):
+	if bashing:
+		animator["parameters/PlayerMovement/playback"].start("end_bash")
+	release_all_powers()
+	animator["parameters/PlayerMovement/playback"].travel(animation)
 
 func create_skid():
 	if is_on_floor():

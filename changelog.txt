@@ -172,10 +172,11 @@ Screen-moving limit doesn't affect enemies while the walls are moving
 Screen affected by pause (cannot move when game-overed)
 Timepiece-get-anim
 Main music loop trimmed to remove small gap in between intro and music
+Weak-coyote-jump seconds after bash
 
-This sprint:
-Score Multiplicity (no-touch-ground-combos, allowing to dive into blocks from side to jump upwards which would keep combo going, getting done with time left on timer, etc)
-Coyote-jump (less powerful jump) seconds after bash?
+This Sprint:
+Fix bash gravity-not-paused glitch (after bash, speed doesn't go back to normal)
+Bash-next-to-block bug
 
 Backlog:
 * Pause game during dance
@@ -185,7 +186,7 @@ Backlog:
 * Side tracks and secrets (pipes, areas under blocks, etc)
 Input needed:
 * Checkpoints
-* Score sources and uses
+* Score sources and uses (no-touch-ground-combos, allowing to dive into blocks from side to jump upwards which would keep combo going, getting done with time left on timer, etc)
 * SFX!
 Notes:
 * Different worlds with different color schemes
