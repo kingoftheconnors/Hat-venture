@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://level1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://level1/background1.tres" type="TileSet" id=2]
@@ -21,7 +21,6 @@
 [ext_resource path="res://enemy/eltun/pace.gd" type="Script" id=19]
 [ext_resource path="res://NPCs/TemplateNPC.tscn" type="PackedScene" id=20]
 [ext_resource path="res://items/Resources/TimePiece.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Music/smb_stage_clear.wav" type="AudioStream" id=22]
 [ext_resource path="res://NPCs/DialogBox.tscn" type="PackedScene" id=23]
 [ext_resource path="res://common/CameraCapture.tscn" type="PackedScene" id=24]
 
@@ -96,6 +95,8 @@ position = Vector2( -1.04162, -344.528 )
 rotation = 4.46638e-06
 
 [node name="Camera" parent="." instance=ExtResource( 5 )]
+pause_mode = 0
+smoothing_speed = 12.0
 
 [node name="Node2D" parent="." instance=ExtResource( 7 )]
 position = Vector2( -3.56511, -341.033 )
@@ -122,9 +123,8 @@ position = Vector2( 480, -96 )
 position = Vector2( 443.039, -12.4537 )
 base_direction = Vector2( -1, 0 )
 controller_variables = {
-"movement/is_turning": false
+"movement/is_turning": true
 }
-movement/is_turning = false
 
 [node name="Crow" parent="." instance=ExtResource( 18 )]
 position = Vector2( 1260.62, -27.4241 )
@@ -219,15 +219,13 @@ controller_variables = {
 
 }
 
-[node name="TimePiece" parent="." instance=ExtResource( 21 )]
-position = Vector2( 2361.27, -93.5477 )
-
 [node name="CameraCapture" parent="." instance=ExtResource( 24 )]
 position = Vector2( 2280, -72 )
 
 [node name="MusicIntro" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 13 )
+autoplay = true
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
@@ -237,11 +235,6 @@ script = ExtResource( 10 )
 [node name="GameOver" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 16 )
-script = ExtResource( 10 )
-
-[node name="Win" type="AudioStreamPlayer" parent="."]
-pause_mode = 2
-stream = ExtResource( 22 )
 script = ExtResource( 10 )
 
 [node name="NPC" parent="." instance=ExtResource( 20 )]
@@ -254,9 +247,17 @@ controller_variables = {
 
 [node name="DialogBox" parent="NPC" instance=ExtResource( 23 )]
 visible = true
-[connection signal="dead" from="Player" to="Music" method="stop_music"]
+
+[node name="Poddle2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 2063.79, -29.4543 )
+controller_variables = {
+"movement/is_turning": true
+}
+
+[node name="TimePiece" parent="." instance=ExtResource( 21 )]
+position = Vector2( 2349.08, -114.113 )
 [connection signal="dead" from="Player" to="GameOver" method="start_music"]
-[connection signal="collected" from="TimePiece" to="Win" method="start_music"]
-[connection signal="collected" from="TimePiece" to="Music" method="stop_music"]
+[connection signal="dead" from="Player" to="Music" method="stop_music"]
 [connection signal="finished" from="MusicIntro" to="Music" method="start_music"]
 [connection signal="action1" from="NPC/DialogBox" to="NPC" method="jump"]
+[connection signal="collected" from="TimePiece" to="Music" method="stop_music"]

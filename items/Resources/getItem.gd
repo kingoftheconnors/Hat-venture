@@ -25,6 +25,7 @@ func _on_Area2D_area_entered(area):
 		var parent = area.get_parent()
 		while parent.get_name() != "Player":
 			parent = parent.get_parent()
+		emit_signal("collected")
 		collect(parent)
 
 func set_velo(_velo):

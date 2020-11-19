@@ -168,29 +168,25 @@ Superdive OFF of enemies!!! (weaker than regular superjump)
 Slow down superjumps and make harder to pull off
 Spin-attack deceleration
 Dive a little bit more vertical velocity
+Screen-moving limit doesn't affect enemies while the walls are moving
+Screen affected by pause (cannot move when game-overed)
+Timepiece-get-anim
+Main music loop trimmed to remove small gap in between intro and music
 
 This sprint:
-Timepiece-get-anim (pause game)
-Screen-moving limit only affects player while moving, and THEN affects enemies when stationary
-Cleanup warning
-Level Clear Time
-Post-gif-save-framerate drop
-Bash+Skid+FallDeath = Screen moving while death animation plays
--- Misc
-The music start and loop parts for the grass world seem to have a small gap in between? Is there any way to fix that?
-TODOs
-Coyote-jump (with power of out-of-dive-jump) seconds after bash?
+Score Multiplicity (no-touch-ground-combos, allowing to dive into blocks from side to jump upwards which would keep combo going, getting done with time left on timer, etc)
+Coyote-jump (less powerful jump) seconds after bash?
 
 Backlog:
-* Score Multiplicity (no-touch-ground-combos, allowing to dive into blocks from side to jump upwards which would keep combo going, getting done with time left on timer, etc)
-* Different worlds with different color schemes
-* Always introduce new mechanics/enemies in subsequent levels
-* Side tracks and secrets (pipes, areas under blocks, etc)
+* Pause game during dance
+* Level Clear Time
+* Enemies
 * Level Select
-* Hard Hat passive ability
+* Side tracks and secrets (pipes, areas under blocks, etc)
 Input needed:
-* Thor Hat Spinning
 * Checkpoints
 * Score sources and uses
 * SFX!
-* Checkpoints
+Notes:
+* Different worlds with different color schemes
+* Always introduce new mechanics/enemies in subsequent levels

@@ -606,7 +606,7 @@ func get_power_node():
 	return $Power
 
 func get_animator_node():
-	return animator
+	return animator["parameters/PlayerMovement/playback"]
 
 func create_skid():
 	if is_on_floor():
