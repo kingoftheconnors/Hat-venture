@@ -40,11 +40,10 @@ func _on_hurtbox_area_entered(area):
 
 # Bash at body. If the object is destroyed, return true
 func attack(body):
-	if not body.is_in_group("player"):
-		if body.has_method("damage"):
-			# TODO: Play sound effect
-			var destroyed = body.damage(false)
-			return destroyed
+	if body.has_method("damage"):
+		# TODO: Play sound effect
+		var destroyed = body.damage(false)
+		return destroyed
 	return false
 
 func cliff_damage():

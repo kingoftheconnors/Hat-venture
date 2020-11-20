@@ -173,15 +173,17 @@ Screen affected by pause (cannot move when game-overed)
 Timepiece-get-anim
 Main music loop trimmed to remove small gap in between intro and music
 Weak-coyote-jump seconds after bash
+Bash-intense glitch
+Bash-next-to-block now works properly
 
 This Sprint:
-Fix bash gravity-not-paused glitch (after bash, speed doesn't go back to normal)
-Bash-next-to-block bug
+Pause game during dance
+Enemies
+Jitterbug (saving frames takes too much processing power)
+Dialog scene system
 
 Backlog:
-* Pause game during dance
 * Level Clear Time
-* Enemies
 * Level Select
 * Side tracks and secrets (pipes, areas under blocks, etc)
 Input needed:

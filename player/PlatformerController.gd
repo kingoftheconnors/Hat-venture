@@ -53,7 +53,7 @@ var bashing = false
 const BASH_SPEED = 180
 const POST_CRASH_SPEED = 200
 const KNOCKBACK_MULTIPLIER = 140
-const POST_BASH_STUN = 35
+const POST_BASH_STUN = 38
 const BASH_CORRECTION_SIZE = 14
 var power_stun = 0
 const POST_BASH_JUMP_TIME = 10
@@ -261,29 +261,34 @@ func move_player(v):
 	var recognize_collision = true
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
-		if !collision.collider.is_in_group("Player"):
-			# Special cases when hitting level tiles
-			if collision.collider.get_collision_layer_bit(1) == true:
-				# Corner correction
-				if collision.local_shape.get_name() == "HeadCollider":
-					if collision.position.y > collision.local_shape.global_position.y - collision.local_shape.shape.radius + .15:
-						# Push sideways and set recognize_collision to false
-						recognize_collision = false
-						if collision.position.x < global_position.x:
-							position.x += 1
-						else:
-							position.x -= 1
-				# Hitting blocks
-				if recognize_collision:
-					if collision.local_shape != feetCollider:
-						if collision and collision.collider.is_in_group("block"):
-							collision.collider.collide(collision, self)
-		# Spin turning around
-		if spinning and recognize_collision:
-			if abs(collision.normal.x) > abs(collision.normal.y):
-				var destroyedBody = spin_bounce(collision.collider)
-				if !destroyedBody:
-					direction = -direction
+		if collision != null:
+			if !collision.collider.is_in_group("Player"):
+				# Special cases when hitting level tiles
+				if collision.collider.get_collision_layer_bit(1) == true:
+					# Corner correction
+					if collision.local_shape.get_name() == "HeadCollider":
+						if collision.position.y > collision.local_shape.global_position.y - collision.local_shape.shape.radius + .15:
+							# Push player vertically and set recognize_collision to false
+							recognize_collision = false
+							if collision.position.x < global_position.x:
+								position.x += 1
+							else:
+								position.x -= 1
+					# Hitting blocks
+					if recognize_collision:
+						if collision.local_shape != feetCollider:
+							if collision and collision.collider.is_in_group("block"):
+								collision.collider.collide(collision, self)
+			# Spin turning around
+			if spinning and recognize_collision:
+				if abs(collision.normal.x) > abs(collision.normal.y):
+					var destroyedBody = spin_bounce(collision.collider)
+					if !destroyedBody:
+						direction = -direction
+			# Bash Hitting
+			if bashing and recognize_collision:
+				if abs(collision.normal.x) > abs(collision.normal.y):
+					var destroyedBody = bash_bounce(collision.collider)
 	if !recognize_collision:
 		new_velo = prev_velo
 	#if bashing:
@@ -293,46 +298,47 @@ func move_player(v):
 onready var bash_collider = get_node("ScaleChildren/bashbox/BashCollider")
 func bash_bounce(body):
 	# Special cases when bashing
-	#if bashing and abs(collision.normal.x) > abs(collision.normal.y):
-	var destroyedBody = core.attack(body)
-	# Smashing through an object (disabling its collision)
-	if destroyedBody:
-		# Move towards center
-		velo.y = move_and_slide(Vector2(0, body.position.y - position.y)).y
-		upgrade_smash()
-		body.set_collision_layer(0)
-		body.set_collision_mask(0)
-		#recognize_collision = false
-	else:
-		# Bash Corner Correction
-		var recognize_collision = true
-		var space_state = get_world_2d().direct_space_state
-		var topPos = bash_collider.global_position-Vector2(0, bash_collider.shape.extents.y)
-		var bottomPos = bash_collider.global_position+Vector2(0, bash_collider.shape.extents.y)
-		# Test corner correction downwards
-		var upperHit = space_state.intersect_ray(topPos, topPos+Vector2(5*direction, 0), [], 2)
-		var lowerHit = space_state.intersect_ray(bottomPos, bottomPos+Vector2(5*direction, 0), [], 2)
-		if upperHit and !lowerHit:
-			for i in range(BASH_CORRECTION_SIZE):
-				var result = space_state.intersect_ray(topPos+Vector2(0, i), topPos+Vector2(5*direction, i), [], 2)
-				if !result:
-					recognize_collision = false
-					move_and_collide(Vector2(0, i+1))
-					pause_gravity()
-					break
-		# Test corner correction upwards
-		if lowerHit and !upperHit:
-			for i in range(BASH_CORRECTION_SIZE):
-				var result = space_state.intersect_ray(bottomPos+Vector2(0, -i), bottomPos+Vector2(5*direction, -i), [], 2)
-				if !result:
-					recognize_collision = false
-					move_and_collide(Vector2(0, -(i+1)))
-					pause_gravity()
-					break
-		if recognize_collision:
-			# No corner correction, bounce off
-			bounce_back()
-			unbash()
+	if !body.is_in_group("player"):
+		var destroyedBody = core.attack(body)
+		# Smashing through an object (disabling its collision)
+		print(destroyedBody)
+		if destroyedBody:
+			# Move towards center
+			velo.y = move_and_slide(Vector2(0, body.position.y - position.y)).y
+			upgrade_smash()
+			body.set_collision_layer(0)
+			body.set_collision_mask(0)
+			#recognize_collision = false
+		else:
+			# Bash Corner Correction
+			var recognize_collision = true
+			var space_state = get_world_2d().direct_space_state
+			var topPos = bash_collider.global_position-Vector2(0, bash_collider.shape.extents.y)
+			var bottomPos = bash_collider.global_position+Vector2(0, bash_collider.shape.extents.y)
+			# Test corner correction downwards
+			var upperHit = space_state.intersect_ray(topPos, topPos+Vector2(5*direction, 0), [], 2)
+			var lowerHit = space_state.intersect_ray(bottomPos, bottomPos+Vector2(5*direction, 0), [], 2)
+			if upperHit and !lowerHit:
+				for i in range(BASH_CORRECTION_SIZE):
+					var result = space_state.intersect_ray(topPos+Vector2(0, i), topPos+Vector2(5*direction, i), [], 2)
+					if !result:
+						recognize_collision = false
+						move_and_collide(Vector2(0, i+1))
+						pause_gravity()
+						break
+			# Test corner correction upwards
+			if lowerHit and !upperHit:
+				for i in range(BASH_CORRECTION_SIZE):
+					var result = space_state.intersect_ray(bottomPos+Vector2(0, -i), bottomPos+Vector2(5*direction, -i), [], 2)
+					if !result:
+						recognize_collision = false
+						move_and_collide(Vector2(0, -(i+1)))
+						pause_gravity()
+						break
+			if recognize_collision:
+				# No corner correction, bounce off
+				bounce_back()
+				unbash()
 
 func bounce_back():
 	var direc = Vector2(-direction, -0.5) * KNOCKBACK_MULTIPLIER
@@ -343,11 +349,6 @@ func spin_bounce(body):
 		var destroyedBody = core.attack(body)
 		return destroyedBody
 	return false
-		# Smashing through an object (disabling its collision)
-		#if destroyedBody:
-		#	body.set_collision_layer(0)
-		#	body.set_collision_mask(0)
-			#direction = -direction
 
 func push(direc):
 	if ( velo.x * direc.x < 0 or abs(velo.x) < abs(direc.x) ):
