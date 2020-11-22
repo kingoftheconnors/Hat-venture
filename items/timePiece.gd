@@ -2,6 +2,7 @@ class_name timePiece
 
 func power(body, this):
 	# Play Animation
+	PlayerGameManager.pause_except([body])
 	this.get_node("AnimationTree")["parameters/playback"].travel("Collect")
 	body.force_animation("dance")
 	return false

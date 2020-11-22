@@ -129,6 +129,7 @@ start_node = "Idle"
 radius = 9.5
 
 [node name="TimePiece" type="Node2D"]
+pause_mode = 2
 position = Vector2( -12, 12 )
 script = ExtResource( 1 )
 itemCommand = ExtResource( 3 )
@@ -144,8 +145,7 @@ active = true
 parameters/playback = SubResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -1.81453 )
-scale = Vector2( 0.936755, 1 )
+position = Vector2( 0, -1.41989 )
 texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]

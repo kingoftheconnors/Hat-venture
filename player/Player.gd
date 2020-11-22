@@ -102,9 +102,6 @@ func die():
 	PlayerGameManager.die()
 
 func pause_game():
-	get_tree().paused = true
+	PlayerGameManager.pause_except([controller])
 func resume_game():
-	get_tree().paused = false
-	print("Resume called")
-func resume_player():
-	controller.pause_mode = PAUSE_MODE_PROCESS
+	PlayerGameManager.unpause()

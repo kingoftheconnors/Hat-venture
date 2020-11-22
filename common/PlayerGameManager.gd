@@ -21,6 +21,7 @@ func die():
 	# Fade to white
 	animationPlayer.play("cover")
 	yield(get_tree().create_timer(.6), "timeout")
+	unpause()
 	pons = 0; Gui.set_pons(pons)
 	lives -= 1; Gui.set_lives(lives)
 	# Game over
@@ -42,6 +43,7 @@ func start_level(levelNum):
 	# Fade to white
 	animationPlayer.play("cover")
 	yield(get_tree().create_timer(.6), "timeout")
+	unpause()
 	pons = 0; Gui.set_pons(pons)
 	score = 0; Gui.set_score(score)
 	lives = 4; Gui.set_lives(lives)
@@ -66,3 +68,16 @@ func add_pons(amo):
 func one_up():
 	lives += 1
 	Gui.set_lives(lives)
+
+var active_bodies = []
+func pause_except(active_bodies_in_pause):
+	for body in active_bodies_in_pause:
+		body.set_pause_mode(PAUSE_MODE_PROCESS)
+	active_bodies = active_bodies_in_pause
+	get_tree().paused = true
+
+func unpause():
+	for body in active_bodies:
+		if body != null:
+			body.set_pause_mode(PAUSE_MODE_INHERIT)
+	get_tree().paused = false
