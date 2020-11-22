@@ -22,7 +22,7 @@ var saving_gif := false
 var pics = []
 const FRAME_LENGTH = .08
 const GIF_WIDTH = 440
-const GIF_HEIGHT = 440
+const GIF_HEIGHT = 352
 var gif_threads := []
 var gif_frames := []
 
@@ -48,20 +48,16 @@ func _process(delta):
 		prev_right = right
 		prev_up = up
 		prev_down = down
-	time_passed += delta
+
+func _physics_process(delta):
 	if !Engine.is_editor_hint():
+		time_passed += delta
 		if Constants.DEBUG_MODE and time_passed > FRAME_LENGTH and !saving_gif:
-			time_passed -= FRAME_LENGTH
 			# write image using quantization quantizator and with one second animation delay
-			var img = get_viewport().get_texture().get_data()
-			img.flip_x()
-			img.crop(img.get_width() - (img.get_width()-GIF_WIDTH)/2, img.get_height() - (img.get_height()-GIF_HEIGHT)/2)
-			img.flip_x(); img.flip_y()
-			img.crop(GIF_WIDTH, GIF_HEIGHT)
-			img.convert(Image.FORMAT_RGBA8)
-			pics.append(img)
-			if pics.size() > 4/FRAME_LENGTH:
+			pics.append(get_viewport().get_texture().get_data())
+			if pics.size() > 5/FRAME_LENGTH:
 				pics.pop_front()
+			time_passed -= FRAME_LENGTH
 		# Cleaning save-gif threads
 		if Constants.DEBUG_MODE and gif_threads.size() > 0 and !saving_gif:
 			join_threads()
@@ -78,14 +74,20 @@ func _unhandled_input(event):
 				else:
 					print(thread_num, ": ", "Not a thread")
 		
-		if event is InputEventKey and event.pressed and event.scancode == KEY_R and !saving_gif:
+		if event is InputEventKey and event.pressed and event.scancode == KEY_F12 and !saving_gif:
 			if pics.size() > 10:
+				for img in pics:
+					img.flip_x()
+					img.crop(img.get_width() - (img.get_width()-GIF_WIDTH)/2, img.get_height() - (img.get_height()-GIF_HEIGHT)/2)
+					img.flip_x(); img.flip_y()
+					img.crop(GIF_WIDTH, GIF_HEIGHT)
+					img.convert(Image.FORMAT_RGBA8)
 				saving_gif = true
 				exporter = gifexporter.new(GIF_WIDTH, GIF_HEIGHT)
 				gif_threads = []; gif_frames = []
 				# Make one thread for each frame we need to generate
 				# We're not including the last five frames
-				for thread_num in range(pics.size()-5):
+				for thread_num in range(pics.size()-10):
 					gif_threads.append(Thread.new())
 					gif_frames.append(null)
 					gif_threads[thread_num].start(self, "create_gif", thread_num, Thread.PRIORITY_LOW)
@@ -116,7 +118,9 @@ func create_gif(thread_num : int):
 func join_threads():
 	print("Joining!")
 	for thread in gif_threads:
+		print(thread)
 		if thread is Thread and thread.is_active():
+			print("Joining")
 			thread.wait_to_finish()
 	gif_threads = []; gif_frames = []
 

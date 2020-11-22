@@ -76,7 +76,7 @@ func queue_dialog(dialog_starter, textbox_num):
 
 func start_dialog(next_box):
 	if next_box.has("name"):
-		get_tree().paused = true
+		PlayerGameManager.pause_except([])
 		gui.visible = false
 		dialog.visible = true
 		dialogName.text = next_box.name
@@ -91,7 +91,7 @@ func start_dialog(next_box):
 		yield( self, "continue_scene" )
 
 func end_dialog():
-	get_tree().paused = false
+	PlayerGameManager.unpause()
 	gui.visible = true
 	dialog.visible = false
 

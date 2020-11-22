@@ -170,26 +170,39 @@ Spin-attack deceleration
 Dive a little bit more vertical velocity
 Screen-moving limit doesn't affect enemies while the walls are moving
 Screen affected by pause (cannot move when game-overed)
+
+0.2.4
 Timepiece-get-anim
 Main music loop trimmed to remove small gap in between intro and music
 Weak-coyote-jump seconds after bash
 Bash-intense glitch
 Bash-next-to-block now works properly
+Camera let active during pauses, so when player dies, camera can follow offscreen
+Pause game during dance
+Pause in getting-hurt only affects enemies
+Key to turn off debug mode
+Key to capture gif is now F12
 
 This Sprint:
-Pause game during dance
-Enemies
-Jitterbug (saving frames takes too much processing power)
 Dialog scene system
+Boi shakes when diving against edge of screen
 
 Backlog:
-* Level Clear Time
-* Level Select
-* Side tracks and secrets (pipes, areas under blocks, etc)
-Input needed:
-* Checkpoints
-* Score sources and uses (no-touch-ground-combos, allowing to dive into blocks from side to jump upwards which would keep combo going, getting done with time left on timer, etc)
-* SFX!
+Mechanics
+  * Running?
+  * Level Clear Time
+  * Score Multiplicity (no-touch-ground-combos, allowing block-tech which would keep combo going, etc)
+Level 1
+  * Side tracks and secrets (pipes, areas under blocks, etc)
+  * Checkpoints
+  * Music
+  * SFX!
+Boss 1
+  * Crab boi?
+Level Select
+  * Ship and telescopes
+Level 2
+  * Enemies and new mechanics
+
 Notes:
 * Different worlds with different color schemes
-* Always introduce new mechanics/enemies in subsequent levels
