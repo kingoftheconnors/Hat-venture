@@ -10,6 +10,7 @@ var prevBlockState
 export(BlockState) var state
 export(Resource) var boxedItem = null
 onready var power = boxedItem.new() if boxedItem != null else null
+const DEATH_SCORE = 10
 
 func _process(delta):
 	if prevBlockState != state:
@@ -25,6 +26,7 @@ func _process(delta):
 		prevBlockState = state
 
 func smash():
+	PlayerGameManager.add_score(DEATH_SCORE)
 	animator["parameters/playback"].travel("smash")
 
 func hit(collidingBody):
