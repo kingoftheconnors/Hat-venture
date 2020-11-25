@@ -79,6 +79,7 @@ onready var skidRayCast2 = get_node("SkidRay2")
 # Movement vars
 var _stun = 0
 var frozen = false
+var suspended = false
 var ignore_air_friction = false
 var crouching = false
 var gravity = true
@@ -231,7 +232,8 @@ func move(delta):
 			climbing = false
 	
 	# Apply Movement
-	velo = move_player(velo)
+	if !suspended:
+		velo = move_player(velo)
 	
 	if position.y > camera.limit_bottom + 20:
 		emit_signal("off_cliff")
@@ -299,11 +301,10 @@ func bash_bounce(body):
 	# Special cases when bashing
 	if !body.is_in_group("player"):
 		var destroyedBody = core.attack(body)
+		print("Destroyed: ", destroyedBody)
 		# Smashing through an object (disabling its collision)
-		print(destroyedBody)
 		if destroyedBody:
 			# Move towards center
-			velo.y = move_and_slide(Vector2(0, body.position.y - position.y)).y
 			upgrade_smash()
 			body.set_collision_layer(0)
 			body.set_collision_mask(0)
@@ -337,6 +338,7 @@ func bash_bounce(body):
 			if recognize_collision:
 				# No corner correction, bounce off
 				bounce_back()
+				print("Bouncing")
 				unbash()
 
 func bounce_back():
@@ -491,6 +493,9 @@ func set_freeze(flag):
 		release_all_powers()
 	frozen = flag
 
+func suspend_movement(flag):
+	suspended = flag
+
 # Universal method for other nodes to know if keys and actions from
 # the player can be used. This is good for dialog, death scenes, etc
 func is_active():
@@ -553,19 +558,21 @@ func bash():
 		animator["parameters/PlayerMovement/playback"].travel("bash")
 
 func upgrade_smash():
+	print("Upgrading: ", bashing)
 	if bashing:
-		set_freeze(true)
+		suspend_movement(true)
 		animator["parameters/PlayerMovement/playback"].start("pre-bash")
 		power_combo = true
 
 func upgrade_smash_rush():
-	set_freeze(false)
+	suspend_movement(false)
 	max_velo = POST_CRASH_SPEED
 	push(Vector2(direction * max_velo, 0))
 	velo.y = 0
 	pause_gravity()
 
 func unbash():
+	print("Unbashing")
 	resume_gravity()
 	if bashing:
 		if velo.x > max_velo:
