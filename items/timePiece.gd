@@ -4,7 +4,7 @@ func power(body, this):
 	# Play Animation
 	PlayerGameManager.pause_except([body])
 	this.get_node("AnimationTree")["parameters/playback"].travel("Collect")
-	body.force_animation("dance")
+	body.animate("dance")
 	return false
 
 # Time pieces are not equipped as abilities, so so this isn't called

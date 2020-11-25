@@ -3847,8 +3847,8 @@ states/dive_boost/node = SubResource( 90 )
 states/dive_boost/position = Vector2( -202.094, 100.684 )
 states/dive_rest/node = SubResource( 91 )
 states/dive_rest/position = Vector2( -24.7333, -25.2354 )
-states/end_bash_s/node = SubResource( 92 )
-states/end_bash_s/position = Vector2( 258.24, -25.2354 )
+states/end_bash/node = SubResource( 92 )
+states/end_bash/position = Vector2( 258.24, -25.2354 )
 states/end_crouch/node = SubResource( 94 )
 states/end_crouch/position = Vector2( 127.267, 259.184 )
 "states/end_crouch 2/node" = SubResource( 93 )
@@ -3883,9 +3883,9 @@ states/throw/node = SubResource( 133 )
 states/throw/position = Vector2( 371, -52.279 )
 states/walk/node = SubResource( 143 )
 states/walk/position = Vector2( 302, 192.684 )
-transitions = [ "idle", "walk", SubResource( 144 ), "walk", "idle", SubResource( 145 ), "walk", "skid", SubResource( 146 ), "skid", "end_crouch", SubResource( 147 ), "end_crouch", "walk", SubResource( 148 ), "walk", "jump", SubResource( 149 ), "jump", "freefall", SubResource( 150 ), "freefall", "idle", SubResource( 151 ), "idle", "jump", SubResource( 152 ), "jump", "idle", SubResource( 153 ), "idle", "dive", SubResource( 154 ), "dive", "dive_rest", SubResource( 155 ), "dive_rest", "dive", SubResource( 156 ), "dive_rest", "end_dive", SubResource( 157 ), "dive", "end_dive", SubResource( 158 ), "idle", "bash", SubResource( 159 ), "bash", "end_bash_s", SubResource( 160 ), "idle", "throw", SubResource( 161 ), "throw", "idle", SubResource( 162 ), "idle", "refresh", SubResource( 163 ), "refresh", "idle", SubResource( 164 ), "end_crouch 2", "idle", SubResource( 165 ), "idle", "power_get", SubResource( 166 ), "power_get", "idle", SubResource( 167 ), "idle", "crouch", SubResource( 168 ), "crouch", "end_crouch 2", SubResource( 169 ), "end_bash_s", "idle", SubResource( 170 ), "idle", "spin", SubResource( 171 ), "spin", "end_spin", SubResource( 172 ), "end_spin", "idle", SubResource( 173 ), "dive_rest", "end_dive 2", SubResource( 174 ), "end_dive 2", "dive_boost", SubResource( 175 ), "dive_boost", "jump", SubResource( 176 ), "idle", "die", SubResource( 177 ), "idle", "hurt", SubResource( 178 ), "hurt", "idle", SubResource( 179 ), "idle", "die_simple", SubResource( 180 ), "bash", "pre-bash", SubResource( 181 ), "pre-bash", "end_bash_s", SubResource( 182 ), "pre-bash", "bash", SubResource( 183 ), "end_dive", "end_dive_call", SubResource( 184 ), "end_dive_call", "idle", SubResource( 185 ), "end_dive_call", "jump", SubResource( 186 ), "idle", "dance", SubResource( 187 ) ]
+transitions = [ "idle", "walk", SubResource( 144 ), "walk", "idle", SubResource( 145 ), "walk", "skid", SubResource( 146 ), "skid", "end_crouch", SubResource( 147 ), "end_crouch", "walk", SubResource( 148 ), "walk", "jump", SubResource( 149 ), "jump", "freefall", SubResource( 150 ), "freefall", "idle", SubResource( 151 ), "idle", "jump", SubResource( 152 ), "jump", "idle", SubResource( 153 ), "idle", "dive", SubResource( 154 ), "dive", "dive_rest", SubResource( 155 ), "dive_rest", "dive", SubResource( 156 ), "dive_rest", "end_dive", SubResource( 157 ), "dive", "end_dive", SubResource( 158 ), "idle", "bash", SubResource( 159 ), "bash", "end_bash", SubResource( 160 ), "idle", "throw", SubResource( 161 ), "throw", "idle", SubResource( 162 ), "idle", "refresh", SubResource( 163 ), "refresh", "idle", SubResource( 164 ), "end_crouch 2", "idle", SubResource( 165 ), "idle", "power_get", SubResource( 166 ), "power_get", "idle", SubResource( 167 ), "idle", "crouch", SubResource( 168 ), "crouch", "end_crouch 2", SubResource( 169 ), "end_bash", "idle", SubResource( 170 ), "idle", "spin", SubResource( 171 ), "spin", "end_spin", SubResource( 172 ), "end_spin", "idle", SubResource( 173 ), "dive_rest", "end_dive 2", SubResource( 174 ), "end_dive 2", "dive_boost", SubResource( 175 ), "dive_boost", "jump", SubResource( 176 ), "idle", "die", SubResource( 177 ), "idle", "hurt", SubResource( 178 ), "hurt", "idle", SubResource( 179 ), "idle", "die_simple", SubResource( 180 ), "bash", "pre-bash", SubResource( 181 ), "pre-bash", "end_bash", SubResource( 182 ), "pre-bash", "bash", SubResource( 183 ), "end_dive", "end_dive_call", SubResource( 184 ), "end_dive_call", "idle", SubResource( 185 ), "end_dive_call", "jump", SubResource( 186 ), "idle", "dance", SubResource( 187 ) ]
 start_node = "idle"
-graph_offset = Vector2( -86.7266, 125.461 )
+graph_offset = Vector2( -79.9844, -171.019 )
 
 [sub_resource type="AnimationNodeAdd2" id=189]
 

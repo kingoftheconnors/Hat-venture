@@ -13,7 +13,6 @@ onready var scoreArea = $Player/ScoreArea
 onready var bossArea = $Player/BossArea
 
 signal textbox_end
-signal continue_scene
 
 const MAX_ENERGY = 4
 
@@ -55,6 +54,7 @@ onready var textboxes = game_dialog.new()
 const letters_per_sec = 20.0
 var text_to_run = []
 var text_crawl_func
+var dialog_active = false
 
 func _process(delta):
 	if text_crawl_func is GDScriptFunctionState:
@@ -62,11 +62,17 @@ func _process(delta):
 	elif text_to_run.size() > 0:
 		var next_box = text_to_run.pop_front()
 		start_dialog(next_box)
-	elif dialog.visible == true:
+	elif dialog_active:
 		end_dialog()
 
-func queue_dialog(dialog_starter, textbox_num):
+func queue_text(dialog_starter, textbox : Dictionary):
+	queue(dialog_starter, [textbox])
+
+func queue_dialog(dialog_starter, textbox_num : int):
 	var textbox = textboxes.get_dialog(textbox_num)
+	queue(dialog_starter, textbox)
+
+func queue(dialog_starter, textbox):
 	for textbox_dict in textbox:
 		textbox_dict.starter = dialog_starter
 	text_to_run += textbox
@@ -75,8 +81,9 @@ func queue_dialog(dialog_starter, textbox_num):
 		start_dialog(next_box)
 
 func start_dialog(next_box):
+	dialog_active = true
+	PlayerGameManager.pause_except([])
 	if next_box.has("name"):
-		PlayerGameManager.pause_except([])
 		gui.visible = false
 		dialog.visible = true
 		dialogName.text = next_box.name
@@ -88,9 +95,23 @@ func start_dialog(next_box):
 		print("Signalling: ", next_box)
 		next_box.starter.emit_signal(next_box.signal)
 		# Wait for program to return signal that we can continue scene
-		yield( self, "continue_scene" )
+		if next_box.has("delay"):
+			gui.visible = true
+			dialog.visible = false
+			text_crawl_func = delay(next_box['delay'])
+	elif next_box.has("unfreeze"):
+		for body in next_box['unfreeze']:
+			body.set_pause_mode(PAUSE_MODE_PROCESS)
+	elif next_box.has("freeze"):
+		for body in next_box['freeze']:
+			body.set_pause_mode(PAUSE_MODE_INHERIT)
+	elif next_box.has("unfreeze_player"):
+		next_box['unfreeze_player'].set_freeze(false)
+	elif next_box.has("freeze_player"):
+		next_box['freeze_player'].set_freeze(true)
 
 func end_dialog():
+	dialog_active = false
 	PlayerGameManager.unpause()
 	gui.visible = true
 	dialog.visible = false
@@ -100,6 +121,12 @@ func continue_scene():
 
 func get_printed_lines(dialogText):
 	return dialogText.lines_skipped + dialogText.get_line_count() * dialogText.percent_visible
+
+func delay(wait_time):
+	var time_passed = 0
+	while time_passed < wait_time:
+		var delta = yield()
+		time_passed += delta
 
 func crawl(text_length):
 	# Text crawl

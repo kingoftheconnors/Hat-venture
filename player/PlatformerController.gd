@@ -208,7 +208,7 @@ func move(delta):
 			animator["parameters/PlayerMovement/conditions/not_dive_resting"] = true
 	
 	#Gravity
-	if !frozen and gravity and !climbing:
+	if gravity and !climbing:
 		if velo.y < 0:
 			velo.y += PLAYER_GRAVITY
 		else:
@@ -231,8 +231,7 @@ func move(delta):
 			climbing = false
 	
 	# Apply Movement
-	if !frozen:
-		velo = move_player(velo)
+	velo = move_player(velo)
 	
 	if position.y > camera.limit_bottom + 20:
 		emit_signal("off_cliff")
@@ -462,11 +461,14 @@ func get_stun():
 	return _stun
 
 func release_all_powers():
-	if spinning:
-		unspin()
 	if bashing:
+		animator["parameters/PlayerMovement/playback"].start("end_bash")
 		unbash()
+	if spinning:
+		animator["parameters/PlayerMovement/playback"].start("end_spin")
+		unspin()
 	if diving:
+		animator["parameters/PlayerMovement/playback"].start("end_dive")
 		undive()
 
 func stun(amo, stun_mult = 3):
@@ -485,8 +487,14 @@ func power_stun_frame():
 			can_use_power = true
 
 func set_freeze(flag):
+	if flag == true:
+		release_all_powers()
 	frozen = flag
 
+# Universal method for other nodes to know if keys and actions from
+# the player can be used. This is good for dialog, death scenes, etc
+func is_active():
+	return !frozen
 
 ##############################
 # STATE METHODS
@@ -617,9 +625,7 @@ func set_velo(new_velo):
 func get_power_node():
 	return $Power
 
-func force_animation(animation):
-	if bashing:
-		animator["parameters/PlayerMovement/playback"].start("end_bash")
+func animate(animation):
 	release_all_powers()
 	animator["parameters/PlayerMovement/playback"].travel(animation)
 

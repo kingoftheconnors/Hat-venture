@@ -28,3 +28,6 @@ func register_death():
 
 func die():
 	get_parent().queue_free()
+
+func animate(animation_name):
+	animator["parameters/playback"].travel(animation_name)

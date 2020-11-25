@@ -184,8 +184,7 @@ Key to turn off debug mode
 Key to capture gif is now F12
 
 This Sprint:
-Dialog scene system
-Boi shakes when diving against edge of screen
+Bash problem
 
 Backlog:
 Mechanics
@@ -205,4 +204,5 @@ Level 2
   * Enemies and new mechanics
 
 Notes:
+* Hat Girl DANCE :3
 * Different worlds with different color schemes

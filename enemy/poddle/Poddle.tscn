@@ -392,6 +392,7 @@ movement/is_turning = true
 [node name="EnemyCore" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 3
+frame = 1
 script = ExtResource( 4 )
 deathScore = 300
 

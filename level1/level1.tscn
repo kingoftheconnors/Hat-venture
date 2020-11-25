@@ -156,7 +156,6 @@ controller_variables = {
 
 [node name="Hen4" parent="." instance=ExtResource( 17 )]
 position = Vector2( 378.687, 6.82526 )
-base_direction = Vector2( 1, 0 )
 controller_variables = {
 
 }
@@ -207,12 +206,10 @@ curve = SubResource( 1 )
 
 [node name="Eltun5" parent="." instance=ExtResource( 11 )]
 position = Vector2( 64.5886, -87.4941 )
-base_direction = Vector2( 1, 0 )
 controller_variables = {
 "movement/path": NodePath("../Path2D")
 }
 movement/controller = ExtResource( 12 )
-movement/path = NodePath("../Path2D")
 
 [node name="Hen2" parent="." instance=ExtResource( 17 )]
 position = Vector2( 617.978, -9.50763 )
@@ -240,20 +237,18 @@ stream = ExtResource( 16 )
 script = ExtResource( 10 )
 
 [node name="NPC" parent="." instance=ExtResource( 20 )]
-pause_mode = 2
 position = Vector2( 68.9952, -44.1145 )
 collision_mask = 3
-base_direction = Vector2( 1, 0 )
 controller_variables = {
 "movement/is_turning": true
 }
 
 [node name="DialogBox" parent="NPC" instance=ExtResource( 23 )]
 visible = true
+active_bodies_in_dialog = [ NodePath("..") ]
 
 [node name="Poddle2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2063.79, -29.4543 )
-base_direction = Vector2( 1, 0 )
 controller_variables = {
 "movement/is_turning": false
 }
@@ -261,8 +256,8 @@ movement/is_turning = false
 
 [node name="TimePiece" parent="." instance=ExtResource( 21 )]
 position = Vector2( 2349.08, -114.113 )
-[connection signal="dead" from="Player" to="GameOver" method="start_music"]
 [connection signal="dead" from="Player" to="Music" method="stop_music"]
+[connection signal="dead" from="Player" to="GameOver" method="start_music"]
 [connection signal="finished" from="MusicIntro" to="Music" method="start_music"]
-[connection signal="action1" from="NPC/DialogBox" to="NPC" method="jump"]
+[connection signal="action1" from="NPC/DialogBox" to="NPC" method="damage" binds= [ false ]]
 [connection signal="collected" from="TimePiece" to="Music" method="stop_music"]
