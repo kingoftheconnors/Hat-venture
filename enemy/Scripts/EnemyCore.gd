@@ -24,7 +24,7 @@ func damage(isStomp):
 
 func register_death():
 	#var score_fx = preload("res://common/Block.tscn")
-	PlayerGameManager.add_score(deathScore)
+	PlayerGameManager.add_score(deathScore, true)
 
 func die():
 	get_parent().queue_free()

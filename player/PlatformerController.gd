@@ -372,6 +372,7 @@ func manage_flags():
 		air_time = false
 		animator["parameters/PlayerMovement/conditions/jumping"] = false
 		animator["parameters/PlayerMovement/conditions/not_jumping"] = true
+		PlayerGameManager.reset_multiplicity()
 	
 	if is_on_floor() and ignore_air_friction:
 		if !bashing and !diving and !spinning and abs(velo.x) < max_velo*.8:

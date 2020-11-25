@@ -5,6 +5,7 @@ onready var animationPlayer = $AnimationPlayer
 var lives = 3
 var pons = 0
 var score = 0
+var multiplicity = 1
 
 func _unhandled_input(event):
 	if Constants.DEBUG_MODE:
@@ -53,9 +54,16 @@ func start_level(levelNum):
 	var _success = get_tree().change_scene(levelName)
 	animationPlayer.play("reveal")
 
-func add_score(amo):
-	score += amo
+func add_score(amo, affects_multiplicity = false):
+	score += amo*multiplicity
 	Gui.set_score(score)
+	if affects_multiplicity:
+		multiplicity += 1
+		Gui.set_score_mult(multiplicity)
+
+func reset_multiplicity():
+	multiplicity = 1
+	Gui.set_score_mult(multiplicity)
 
 func add_pons(amo):
 	pons = pons + amo
@@ -78,6 +86,6 @@ func pause_except(active_bodies_in_pause):
 
 func unpause():
 	for body in active_bodies:
-		if body != null:
+		if is_instance_valid(body):
 			body.set_pause_mode(PAUSE_MODE_INHERIT)
 	get_tree().paused = false

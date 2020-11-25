@@ -4,6 +4,7 @@ onready var gui = $Player
 onready var energy = $Player/Energy
 onready var bossEnergy = $Player/BossArea/BossEnergy
 onready var playerScore = $Player/ScoreArea/Score
+onready var playerScoreMult = $Player/ScoreArea/Multiplicity
 
 onready var stageName = $Player/StageName
 onready var lives = $Player/LiveNum
@@ -44,7 +45,14 @@ func startBossBattle(life):
 	# TODO: Show boss health
 
 func set_score(amo):
-	playerScore.set_text("SCORE:" + ("%06d" % amo))
+	playerScore.set_text("SCORE  :" + ("%06d" % amo))
+
+func set_score_mult(amo):
+	playerScoreMult.set_text("x%d" % amo)
+	if amo == 1:
+		playerScoreMult.visible = false
+	else:
+		playerScoreMult.visible = true
 
 onready var dialog = $DialogBox
 onready var dialogName = $DialogBox/Name
