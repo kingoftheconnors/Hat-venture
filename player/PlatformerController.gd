@@ -385,6 +385,9 @@ func manage_flags():
 	if diving and !is_on_floor() and !can_superdive:
 		can_superdive = true
 	
+	if running and is_on_floor():
+		max_velo = max(min(MAX_RUNNING_SPEED, abs(velo.x)+5), MAX_SPEED)
+	
 	if superdive_timer > 0:
 		superdive_timer -= 1
 	if mini_superdive_timer > 0:
@@ -534,12 +537,11 @@ func uncrouch():
 	animator["parameters/PlayerMovement/conditions/not_crouching"] = true
 
 func start_run():
-	max_velo = MAX_RUNNING_SPEED
 	#base_speed = BASE_RUN_SPEED
 	running = true
 func stop_run():
-	max_velo = MAX_SPEED
 	#base_speed = BASE_SPEED
+	max_velo = MAX_SPEED
 	running = false
 
 func start_skid_perfect():
