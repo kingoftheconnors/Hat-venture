@@ -24,14 +24,16 @@ func frame(body, sprite, delta):
 		var retVelo = body.move_and_slide(velo, Vector2.UP)
 		# Gravity
 		velo.y = retVelo.y + ENEMY_GRAVITY
+		if direction.x * sprite.scale.x < 0:
+			sprite.scale = Vector2(-sprite.scale.x, sprite.scale.y)
 		# Turn to player
 		if is_turning:
 			var player_nodes = body.get_tree().get_nodes_in_group("player_root")
 			if player_nodes.size() > 0:
-				if player_nodes[0].global_position.x > body.global_position.x and sprite.scale.x < 0:
-						sprite.scale = Vector2(-sprite.scale.x, sprite.scale.y)
-				if player_nodes[0].global_position.x < body.global_position.x and sprite.scale.x > 0:
-						sprite.scale = Vector2(-sprite.scale.x, sprite.scale.y)
+				if player_nodes[0].global_position.x > body.global_position.x and direction.x < 0:
+					direction.x = -direction.x
+				elif player_nodes[0].global_position.x < body.global_position.x and direction.x > 0:
+					direction.x = -direction.x
 
 func smash_death():
 	frozen = true

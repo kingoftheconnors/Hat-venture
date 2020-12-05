@@ -5,7 +5,7 @@ signal hurt
 onready var animator = get_node_or_null("AnimationTree")
 
 export(int) var damage = 1
-export(int) var deathScore = 100
+export(int) var death_score = 100
 
 func get_damage():
 	if damage == 0:
@@ -24,10 +24,11 @@ func damage(isStomp):
 
 func register_death():
 	#var score_fx = preload("res://common/Block.tscn")
-	PlayerGameManager.add_score(deathScore, true)
+	PlayerGameManager.add_score(death_score, true)
 
 func die():
-	get_parent().queue_free()
+	get_parent().visible = false
+	death_score = 0
 
 func animate(animation_name):
 	animator["parameters/playback"].travel(animation_name)

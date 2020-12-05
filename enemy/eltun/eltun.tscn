@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://enemy/eltun/zigzag.gd" type="Script" id=1]
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=2]
@@ -57,6 +57,28 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("..:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath(".:scale:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
 }
 
 [sub_resource type="Animation" id=2]
@@ -262,27 +284,31 @@ animation = "smash"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=8]
 
-[sub_resource type="AnimationNodeStateMachine" id=9]
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachine" id=18]
 states/default/node = SubResource( 4 )
 states/default/position = Vector2( 162, 112 )
 states/die/node = SubResource( 5 )
 states/die/position = Vector2( 357, 112 )
 states/smash/node = SubResource( 6 )
 states/smash/position = Vector2( 357, 30 )
-transitions = [ "default", "die", SubResource( 7 ), "default", "smash", SubResource( 8 ) ]
+transitions = [ "default", "die", SubResource( 7 ), "default", "smash", SubResource( 8 ), "die", "default", SubResource( 16 ), "smash", "default", SubResource( 17 ) ]
 start_node = "default"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
 
-[sub_resource type="CapsuleShape2D" id=11]
+[sub_resource type="CapsuleShape2D" id=20]
 radius = 6.84349
 height = 0.0100565
 
-[sub_resource type="CapsuleShape2D" id=12]
+[sub_resource type="CapsuleShape2D" id=14]
 radius = 6.0
 height = 5.0
 
-[sub_resource type="CapsuleShape2D" id=13]
+[sub_resource type="CapsuleShape2D" id=15]
 radius = 3.0
 height = 14.3208
 
@@ -297,7 +323,6 @@ movement/controller = ExtResource( 1 )
 position = Vector2( -2, 0 )
 texture = ExtResource( 3 )
 hframes = 3
-frame = 1
 script = ExtResource( 2 )
 deathScore = 150
 
@@ -307,15 +332,15 @@ anims/die = SubResource( 2 )
 anims/smash = SubResource( 3 )
 
 [node name="AnimationTree" type="AnimationTree" parent="EnemyCore"]
-tree_root = SubResource( 9 )
+tree_root = SubResource( 18 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 10 )
+parameters/playback = SubResource( 19 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1.5 )
 rotation = 1.5708
-shape = SubResource( 11 )
+shape = SubResource( 20 )
 
 [node name="HitBox" type="Area2D" parent="." groups=[
 "hitbox",
@@ -325,7 +350,7 @@ script = ExtResource( 5 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 0, 2 )
 rotation = 1.5708
-shape = SubResource( 12 )
+shape = SubResource( 14 )
 
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
@@ -334,7 +359,8 @@ position = Vector2( 0, -5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 rotation = 1.5708
-shape = SubResource( 13 )
+shape = SubResource( 15 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
