@@ -183,15 +183,40 @@ Pause in getting-hurt only affects enemies
 Key to turn off debug mode
 Key to capture gif is now F12
 
-This Sprint:
-Bash problem
+0.2.5
+Dialog Scene system
+Running does not accelerate in air (but still feels good)
+
+0.2.6
+  Pause menu. Sound options
+  Persistent Settings Data
+
+Mechanics:
+  Rollback running lack-of-air speed
+  Bug Angus: Graphics for explosion
+Game Feel:
+  Increase vertical drag margin for camera (so camera doesn't move vertically on every jump)
+Enemies:
+  Poddle deactivate when offscreen & Enemy respawns
+  Score multiplier goes down after a certain time (shorter fuse with higher multipliers?)
+  Lil'ens falling off cliffs
+  Inyourface-Eltun (no second-attack)
+Glitches:
+  Spinning-back-and-force-against-wall-of-blocks (from right-to-left)
+  DIVE REST-hurt: Death interrupted (0 health... IMMORTAL!?!) [doesn't reset when health is regained]
+  Spin+Bash-hurt: Death interrupted (0 health... IMMORTAL!?!)
+  Bash-body-interruption
+  Bashing/Spinning-into-camera-area fails capture
+  Eltun Pattern bugs (jumping at pacer moves upwards)
+  Force reset-during-flash causes white hero
+Debug Mode:
+  Debug mode how-to info
+Options:
+  Framerate cap (30-45?)
 
 Backlog:
-Mechanics
-  * Running?
-  * Level Clear Time
-  * Score Multiplicity (no-touch-ground-combos, allowing block-tech which would keep combo going, etc)
 Level 1
+  * Find people for level design
   * Side tracks and secrets (pipes, areas under blocks, etc)
   * Checkpoints
   * Music
@@ -202,6 +227,7 @@ Level Select
   * Ship and telescopes
 Level 2
   * Enemies and new mechanics
+Persistent Data (autosave system)
 
 Notes:
 * Hat Girl DANCE :3
