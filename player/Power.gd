@@ -87,6 +87,7 @@ func release_power():
 	set_power(defaultPower.new())
 	updatePowerValues()
 	animator["parameters/PlayerMovement/playback"].travel("refresh")
+	platformController.release_all_powers()
 
 func pause_game():
 	get_tree().paused = true

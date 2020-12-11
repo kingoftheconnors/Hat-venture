@@ -618,7 +618,7 @@ tracks/3/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource( 45 )
+"stream": null
 } ],
 "times": PoolRealArray( 1 )
 }
@@ -1136,7 +1136,7 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id=23]
-length = 0.01
+length = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/Sprite:visible")
 tracks/0/interp = 1
@@ -3832,7 +3832,7 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id=188]
 states/bash/node = SubResource( 79 )
-states/bash/position = Vector2( 100.267, -83.279 )
+states/bash/position = Vector2( 100.267, -52.279 )
 states/crouch/node = SubResource( 85 )
 states/crouch/position = Vector2( 498, 225.684 )
 states/dance/node = SubResource( 86 )
@@ -3848,7 +3848,7 @@ states/dive_boost/position = Vector2( -202.094, 100.684 )
 states/dive_rest/node = SubResource( 91 )
 states/dive_rest/position = Vector2( -24.7333, -25.2354 )
 states/end_bash/node = SubResource( 92 )
-states/end_bash/position = Vector2( 258.24, -25.2354 )
+states/end_bash/position = Vector2( 258.24, -5.16211 )
 states/end_crouch/node = SubResource( 94 )
 states/end_crouch/position = Vector2( 127.267, 259.184 )
 "states/end_crouch 2/node" = SubResource( 93 )
@@ -3872,9 +3872,9 @@ states/jump/position = Vector2( -42.7333, 192.684 )
 states/power_get/node = SubResource( 123 )
 states/power_get/position = Vector2( 582, 49.684 )
 states/pre-bash/node = SubResource( 124 )
-states/pre-bash/position = Vector2( 258.24, -117.503 )
+states/pre-bash/position = Vector2( 258.24, -102.503 )
 states/refresh/node = SubResource( 125 )
-states/refresh/position = Vector2( 715, 42.684 )
+states/refresh/position = Vector2( 712, 42.684 )
 states/skid/node = SubResource( 131 )
 states/skid/position = Vector2( 302, 259.184 )
 states/spin/node = SubResource( 132 )
@@ -3885,7 +3885,7 @@ states/walk/node = SubResource( 143 )
 states/walk/position = Vector2( 302, 192.684 )
 transitions = [ "idle", "walk", SubResource( 144 ), "walk", "idle", SubResource( 145 ), "walk", "skid", SubResource( 146 ), "skid", "end_crouch", SubResource( 147 ), "end_crouch", "walk", SubResource( 148 ), "walk", "jump", SubResource( 149 ), "jump", "freefall", SubResource( 150 ), "freefall", "idle", SubResource( 151 ), "idle", "jump", SubResource( 152 ), "jump", "idle", SubResource( 153 ), "idle", "dive", SubResource( 154 ), "dive", "dive_rest", SubResource( 155 ), "dive_rest", "dive", SubResource( 156 ), "dive_rest", "end_dive", SubResource( 157 ), "dive", "end_dive", SubResource( 158 ), "idle", "bash", SubResource( 159 ), "bash", "end_bash", SubResource( 160 ), "idle", "throw", SubResource( 161 ), "throw", "idle", SubResource( 162 ), "idle", "refresh", SubResource( 163 ), "refresh", "idle", SubResource( 164 ), "end_crouch 2", "idle", SubResource( 165 ), "idle", "power_get", SubResource( 166 ), "power_get", "idle", SubResource( 167 ), "idle", "crouch", SubResource( 168 ), "crouch", "end_crouch 2", SubResource( 169 ), "end_bash", "idle", SubResource( 170 ), "idle", "spin", SubResource( 171 ), "spin", "end_spin", SubResource( 172 ), "end_spin", "idle", SubResource( 173 ), "dive_rest", "end_dive 2", SubResource( 174 ), "end_dive 2", "dive_boost", SubResource( 175 ), "dive_boost", "jump", SubResource( 176 ), "idle", "die", SubResource( 177 ), "idle", "hurt", SubResource( 178 ), "hurt", "idle", SubResource( 179 ), "idle", "die_simple", SubResource( 180 ), "bash", "pre-bash", SubResource( 181 ), "pre-bash", "end_bash", SubResource( 182 ), "pre-bash", "bash", SubResource( 183 ), "end_dive", "end_dive_call", SubResource( 184 ), "end_dive_call", "idle", SubResource( 185 ), "end_dive_call", "jump", SubResource( 186 ), "idle", "dance", SubResource( 187 ) ]
 start_node = "idle"
-graph_offset = Vector2( 92.7706, 14.161 )
+graph_offset = Vector2( -104.159, -127.739 )
 
 [sub_resource type="AnimationNodeAdd2" id=189]
 
@@ -3922,7 +3922,8 @@ defaultPower = ExtResource( 37 )
 
 [node name="PlayerCore" type="Sprite" parent="ScaleChildren"]
 material = SubResource( 2 )
-texture = ExtResource( 43 )
+texture = ExtResource( 1 )
+hframes = 2
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="ScaleChildren"]
@@ -4118,6 +4119,9 @@ wait_time = 0.25
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 45 )
+
+[node name="Uninvincible" type="Timer" parent="."]
+wait_time = 0.75
 [connection signal="off_cliff" from="." to="ScaleChildren/PlayerCore" method="cliff_damage"]
 [connection signal="hurt" from="ScaleChildren/PlayerCore" to="Power" method="hit"]
 [connection signal="area_entered" from="ScaleChildren/hurtbox" to="ScaleChildren/PlayerCore" method="_on_hurtbox_area_entered"]
@@ -4127,3 +4131,4 @@ stream = ExtResource( 45 )
 [connection signal="body_entered" from="spinbox" to="." method="spin_bounce"]
 [connection signal="body_entered" from="spinbox2" to="." method="spin_bounce"]
 [connection signal="timeout" from="GravityTimer" to="." method="resume_gravity"]
+[connection signal="timeout" from="Uninvincible" to="ScaleChildren/PlayerCore" method="turn_invincibilty" binds= [ false ]]

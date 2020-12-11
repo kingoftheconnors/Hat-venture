@@ -14,7 +14,7 @@ func deactivate(body, animator):
 	pass
 
 func force_deactivate(body, animator):
-	deactivate(body, animator)
+	pass
 
 func release():
 	var thorhat = load("res://items/Resources/ReleasedThorHat.tscn")

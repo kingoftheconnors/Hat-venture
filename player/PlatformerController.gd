@@ -263,7 +263,7 @@ func move_player(v):
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if collision != null:
-			if !collision.collider.is_in_group("Player"):
+			if !collision.collider.is_in_group("player"):
 				# Special cases when hitting level tiles
 				if collision.collider.get_collision_layer_bit(1) == true:
 					# Corner correction
@@ -299,47 +299,48 @@ func move_player(v):
 onready var bash_collider = get_node("ScaleChildren/bashbox/BashCollider")
 func bash_bounce(body):
 	# Special cases when bashing
-	if !body.is_in_group("player"):
-		var destroyedBody = core.attack(body)
-		print("Destroyed: ", destroyedBody)
-		# Smashing through an object (disabling its collision)
-		if destroyedBody:
-			# Move towards center
-			upgrade_smash()
-			body.set_collision_layer(0)
-			body.set_collision_mask(0)
-			#recognize_collision = false
-		else:
-			# Bash Corner Correction
-			var recognize_collision = true
-			var space_state = get_world_2d().direct_space_state
-			var topPos = bash_collider.global_position-Vector2(0, bash_collider.shape.extents.y)
-			var bottomPos = bash_collider.global_position+Vector2(0, bash_collider.shape.extents.y)
-			# Test corner correction downwards
-			var upperHit = space_state.intersect_ray(topPos, topPos+Vector2(5*direction, 0), [], 2)
-			var lowerHit = space_state.intersect_ray(bottomPos, bottomPos+Vector2(5*direction, 0), [], 2)
-			if upperHit and !lowerHit:
-				for i in range(BASH_CORRECTION_SIZE):
-					var result = space_state.intersect_ray(topPos+Vector2(0, i), topPos+Vector2(5*direction, i), [], 2)
-					if !result:
-						recognize_collision = false
-						move_and_collide(Vector2(0, i+1))
-						pause_gravity()
-						break
-			# Test corner correction upwards
-			if lowerHit and !upperHit:
-				for i in range(BASH_CORRECTION_SIZE):
-					var result = space_state.intersect_ray(bottomPos+Vector2(0, -i), bottomPos+Vector2(5*direction, -i), [], 2)
-					if !result:
-						recognize_collision = false
-						move_and_collide(Vector2(0, -(i+1)))
-						pause_gravity()
-						break
-			if recognize_collision:
-				# No corner correction, bounce off
-				bounce_back()
-				print("Bouncing")
-				unbash()
+	if bashing:
+		if !body.is_in_group("player"):
+			var destroyedBody = core.attack(body)
+			print("Destroyed: ", destroyedBody)
+			# Smashing through an object (disabling its collision)
+			if destroyedBody:
+				# Move towards center
+				upgrade_smash()
+				body.set_collision_layer(0)
+				body.set_collision_mask(0)
+				#recognize_collision = false
+			else:
+				# Bash Corner Correction
+				var recognize_collision = true
+				var space_state = get_world_2d().direct_space_state
+				var topPos = bash_collider.global_position-Vector2(0, bash_collider.shape.extents.y)
+				var bottomPos = bash_collider.global_position+Vector2(0, bash_collider.shape.extents.y)
+				# Test corner correction downwards
+				var upperHit = space_state.intersect_ray(topPos, topPos+Vector2(5*direction, 0), [], 2)
+				var lowerHit = space_state.intersect_ray(bottomPos, bottomPos+Vector2(5*direction, 0), [], 2)
+				if upperHit and !lowerHit:
+					for i in range(BASH_CORRECTION_SIZE):
+						var result = space_state.intersect_ray(topPos+Vector2(0, i), topPos+Vector2(5*direction, i), [], 2)
+						if !result:
+							recognize_collision = false
+							move_and_collide(Vector2(0, i+1))
+							pause_gravity()
+							break
+				# Test corner correction upwards
+				if lowerHit and !upperHit:
+					for i in range(BASH_CORRECTION_SIZE):
+						var result = space_state.intersect_ray(bottomPos+Vector2(0, -i), bottomPos+Vector2(5*direction, -i), [], 2)
+						if !result:
+							recognize_collision = false
+							move_and_collide(Vector2(0, -(i+1)))
+							pause_gravity()
+							break
+				if recognize_collision:
+					# No corner correction, bounce off
+					bounce_back()
+					print("Bouncing")
+					unbash()
 
 func bounce_back():
 	var direc = Vector2(-direction, -0.5) * KNOCKBACK_MULTIPLIER
@@ -372,7 +373,6 @@ func manage_flags():
 		air_time = false
 		animator["parameters/PlayerMovement/conditions/jumping"] = false
 		animator["parameters/PlayerMovement/conditions/not_jumping"] = true
-		PlayerGameManager.reset_multiplicity()
 	
 	if is_on_floor() and ignore_air_friction:
 		if !bashing and !diving and !spinning and abs(velo.x) < max_velo*.8:
@@ -573,7 +573,7 @@ func upgrade_smash_rush():
 	pause_gravity()
 
 func unbash():
-	print("Unbashing")
+	print("Unbashing: ", bashing)
 	resume_gravity()
 	if bashing:
 		if velo.x > max_velo:

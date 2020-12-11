@@ -14,7 +14,7 @@ func deactivate(body, animator):
 	pass
 
 func force_deactivate(body, animator):
-	body.unbash()
+	pass
 
 func release():
 	var hardhat = load("res://items/Resources/ReleasedHardHat.tscn")
