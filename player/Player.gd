@@ -12,6 +12,14 @@ var health = 4
 
 signal hurt
 
+func _process(delta):
+	if dying:
+		controller.set_velo_x(0)
+		if animating_death:
+			animator['parameters/PlayerMovement/playback'].travel('die')
+		else:
+			animator['parameters/PlayerMovement/playback'].travel('die_simple')
+
 func _unhandled_input(event):
 	if Constants.DEBUG_MODE:
 		if event is InputEventKey and event.pressed and event.scancode == KEY_BRACELEFT:
@@ -87,14 +95,11 @@ func _on_hurtbox_area_exited(area):
 		controller.on_ladders -= 1
 
 var dying = false
+var animating_death = false
 func player_die(animate = true):
 	if !dying:
-		controller.set_velo(Vector2(0, 0))
 		controller.emit_signal("dead")
-		if animate:
-			animator['parameters/PlayerMovement/playback'].travel('die')
-		else:
-			animator['parameters/PlayerMovement/playback'].travel('die_simple')
+		animating_death = animate
 		controller.stun(40)
 		dying = true
 

@@ -629,6 +629,10 @@ func get_direction():
 
 func set_velo(new_velo):
 	velo = new_velo
+func set_velo_x(x):
+	velo.x = x
+func set_velo_y(y):
+	velo.y = y
 
 func get_power_node():
 	return $Power

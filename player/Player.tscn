@@ -796,13 +796,13 @@ tracks/8/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [ true ],
-"method": "set_freeze"
+"method": "suspend_movement"
 }, {
 "args": [ Vector2( 0, -300 ) ],
 "method": "set_velo"
 }, {
 "args": [ false ],
-"method": "set_freeze"
+"method": "suspend_movement"
 } ]
 }
 
@@ -3836,11 +3836,11 @@ states/bash/position = Vector2( 100.267, -83.279 )
 states/crouch/node = SubResource( 85 )
 states/crouch/position = Vector2( 498, 225.684 )
 states/dance/node = SubResource( 86 )
-states/dance/position = Vector2( 681.183, 125.621 )
+states/dance/position = Vector2( 682.183, 127.684 )
 states/die/node = SubResource( 87 )
-states/die/position = Vector2( 521, 127.684 )
+states/die/position = Vector2( 682.183, 163.684 )
 states/die_simple/node = SubResource( 88 )
-states/die_simple/position = Vector2( 547, 127.684 )
+states/die_simple/position = Vector2( 689, 100.684 )
 states/dive/node = SubResource( 89 )
 states/dive/position = Vector2( 127.267, 42.684 )
 states/dive_boost/node = SubResource( 90 )
@@ -3858,13 +3858,13 @@ states/end_dive/position = Vector2( -24.7333, 63.684 )
 "states/end_dive 2/node" = SubResource( 95 )
 "states/end_dive 2/position" = Vector2( -202.094, 15.8379 )
 states/end_dive_call/node = SubResource( 97 )
-states/end_dive_call/position = Vector2( 65.2667, 100.684 )
+states/end_dive_call/position = Vector2( 62.2667, 100.684 )
 states/end_spin/node = SubResource( 98 )
 states/end_spin/position = Vector2( 589, -5.16211 )
 states/freefall/node = SubResource( 104 )
 states/freefall/position = Vector2( -42.7333, 259.184 )
 states/hurt/node = SubResource( 110 )
-states/hurt/position = Vector2( 589, 178.684 )
+states/hurt/position = Vector2( 498, 176.684 )
 states/idle/node = SubResource( 116 )
 states/idle/position = Vector2( 302, 127.684 )
 states/jump/node = SubResource( 122 )
@@ -3885,12 +3885,12 @@ states/walk/node = SubResource( 143 )
 states/walk/position = Vector2( 302, 192.684 )
 transitions = [ "idle", "walk", SubResource( 144 ), "walk", "idle", SubResource( 145 ), "walk", "skid", SubResource( 146 ), "skid", "end_crouch", SubResource( 147 ), "end_crouch", "walk", SubResource( 148 ), "walk", "jump", SubResource( 149 ), "jump", "freefall", SubResource( 150 ), "freefall", "idle", SubResource( 151 ), "idle", "jump", SubResource( 152 ), "jump", "idle", SubResource( 153 ), "idle", "dive", SubResource( 154 ), "dive", "dive_rest", SubResource( 155 ), "dive_rest", "dive", SubResource( 156 ), "dive_rest", "end_dive", SubResource( 157 ), "dive", "end_dive", SubResource( 158 ), "idle", "bash", SubResource( 159 ), "bash", "end_bash", SubResource( 160 ), "idle", "throw", SubResource( 161 ), "throw", "idle", SubResource( 162 ), "idle", "refresh", SubResource( 163 ), "refresh", "idle", SubResource( 164 ), "end_crouch 2", "idle", SubResource( 165 ), "idle", "power_get", SubResource( 166 ), "power_get", "idle", SubResource( 167 ), "idle", "crouch", SubResource( 168 ), "crouch", "end_crouch 2", SubResource( 169 ), "end_bash", "idle", SubResource( 170 ), "idle", "spin", SubResource( 171 ), "spin", "end_spin", SubResource( 172 ), "end_spin", "idle", SubResource( 173 ), "dive_rest", "end_dive 2", SubResource( 174 ), "end_dive 2", "dive_boost", SubResource( 175 ), "dive_boost", "jump", SubResource( 176 ), "idle", "die", SubResource( 177 ), "idle", "hurt", SubResource( 178 ), "hurt", "idle", SubResource( 179 ), "idle", "die_simple", SubResource( 180 ), "bash", "pre-bash", SubResource( 181 ), "pre-bash", "end_bash", SubResource( 182 ), "pre-bash", "bash", SubResource( 183 ), "end_dive", "end_dive_call", SubResource( 184 ), "end_dive_call", "idle", SubResource( 185 ), "end_dive_call", "jump", SubResource( 186 ), "idle", "dance", SubResource( 187 ) ]
 start_node = "idle"
-graph_offset = Vector2( -79.9844, -171.019 )
+graph_offset = Vector2( 92.7706, 14.161 )
 
 [sub_resource type="AnimationNodeAdd2" id=189]
 
 [sub_resource type="AnimationNodeBlendTree" id=190]
-graph_offset = Vector2( 0, 508 )
+graph_offset = Vector2( 0, 444.5 )
 nodes/PlayerEffect/node = SubResource( 78 )
 nodes/PlayerEffect/position = Vector2( 280, 80 )
 nodes/PlayerMovement/node = SubResource( 188 )
@@ -3922,8 +3922,7 @@ defaultPower = ExtResource( 37 )
 
 [node name="PlayerCore" type="Sprite" parent="ScaleChildren"]
 material = SubResource( 2 )
-texture = ExtResource( 1 )
-hframes = 2
+texture = ExtResource( 43 )
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="ScaleChildren"]

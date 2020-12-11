@@ -190,22 +190,17 @@ Running does not accelerate in air (but still feels good)
 0.2.6
   Pause menu. Sound options
   Persistent Settings Data
-
-Mechanics:
   Rollback running lack-of-air speed
-  Bug Angus: Graphics for explosion
-Game Feel:
-  Increase vertical drag margin for camera (so camera doesn't move vertically on every jump)
-Enemies:
-  Poddle deactivate when offscreen & Enemy respawns
-  Score multiplier goes down after a certain time (shorter fuse with higher multipliers?)
-  Lil'ens falling off cliffs
-  Inyourface-Eltun (no second-attack)
+  Add vertical drag margin for camera (so camera doesn't move vertically on every jump)
+  Deactivate enemies while offscreen
+  Enemy respawns
+  Score multiplier goes down after a certain time (shorter fuse with higher multipliers)
+  Respawned enemies don't give score
+  Lil'ens NOT falling off cliffs
+  Fix death
+
 Glitches:
-  Spinning-back-and-force-against-wall-of-blocks (from right-to-left)
-  DIVE REST-hurt: Death interrupted (0 health... IMMORTAL!?!) [doesn't reset when health is regained]
-  Spin+Bash-hurt: Death interrupted (0 health... IMMORTAL!?!)
-  Bash-body-interruption
+  Bash+release-hat = NO  HITBOX
   Bashing/Spinning-into-camera-area fails capture
   Eltun Pattern bugs (jumping at pacer moves upwards)
   Force reset-during-flash causes white hero
@@ -213,6 +208,15 @@ Debug Mode:
   Debug mode how-to info
 Options:
   Framerate cap (30-45?)
+Level Design:
+  Find help
+  Invisible walls
+Angus:
+  Explosion graphic
+  Should we really have score be on a timer? Encouraging players to get streaks by not landing would be a good way to encourage players to experiment with diving, bashing and spinning
+Unconfirmed glitches:
+  Spinning-back-and-force-against-wall-of-blocks (from right-to-left)
+  Eltun and player blocking each other
 
 Backlog:
 Level 1
