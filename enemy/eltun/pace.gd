@@ -1,5 +1,3 @@
-tool
-extends Resource
 class_name pace
 
 var velo = Vector2(40, 40)
@@ -22,7 +20,7 @@ func update_exports(export_dict):
 # Called when the node enters the scene tree for the first time.
 func frame(body, sprite, delta):
 	if !frozen:
-		velo = body.move_and_slide(velo, Vector2.UP)
+		body.move_and_slide(velo, Vector2.UP, true)
 		# Zigzag
 		frame += 1
 		if frame > turnaround_time:

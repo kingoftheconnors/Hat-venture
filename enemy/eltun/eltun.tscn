@@ -1,6 +1,5 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://enemy/eltun/zigzag.gd" type="Script" id=1]
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=2]
 [ext_resource path="res://enemy/eltun/eltun.png" type="Texture" id=3]
 [ext_resource path="res://enemy/Scripts/EnemyController.gd" type="Script" id=4]
@@ -284,23 +283,23 @@ animation = "smash"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=8]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
 
-[sub_resource type="AnimationNodeStateMachine" id=18]
+[sub_resource type="AnimationNodeStateMachine" id=11]
 states/default/node = SubResource( 4 )
 states/default/position = Vector2( 162, 112 )
 states/die/node = SubResource( 5 )
 states/die/position = Vector2( 357, 112 )
 states/smash/node = SubResource( 6 )
 states/smash/position = Vector2( 357, 30 )
-transitions = [ "default", "die", SubResource( 7 ), "default", "smash", SubResource( 8 ), "die", "default", SubResource( 16 ), "smash", "default", SubResource( 17 ) ]
+transitions = [ "default", "die", SubResource( 7 ), "default", "smash", SubResource( 8 ), "die", "default", SubResource( 9 ), "smash", "default", SubResource( 10 ) ]
 start_node = "default"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 
-[sub_resource type="CapsuleShape2D" id=20]
+[sub_resource type="CapsuleShape2D" id=13]
 radius = 6.84349
 height = 0.0100565
 
@@ -317,14 +316,13 @@ script = ExtResource( 4 )
 controller_variables = {
 
 }
-movement/controller = ExtResource( 1 )
+movement/controller = null
 
 [node name="EnemyCore" type="Sprite" parent="."]
 position = Vector2( -2, 0 )
 texture = ExtResource( 3 )
 hframes = 3
 script = ExtResource( 2 )
-deathScore = 150
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyCore"]
 anims/default = SubResource( 1 )
@@ -332,15 +330,15 @@ anims/die = SubResource( 2 )
 anims/smash = SubResource( 3 )
 
 [node name="AnimationTree" type="AnimationTree" parent="EnemyCore"]
-tree_root = SubResource( 18 )
+tree_root = SubResource( 11 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 19 )
+parameters/playback = SubResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1.5 )
 rotation = 1.5708
-shape = SubResource( 20 )
+shape = SubResource( 13 )
 
 [node name="HitBox" type="Area2D" parent="." groups=[
 "hitbox",

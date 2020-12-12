@@ -1,5 +1,3 @@
-tool
-extends Resource
 class_name flypath
 
 var frozen = false

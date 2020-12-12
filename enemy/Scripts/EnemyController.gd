@@ -1,5 +1,5 @@
 tool
-extends Node
+extends KinematicBody2D
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
@@ -63,7 +63,7 @@ export(Vector2) var base_direction = Vector2(1,0)
 var is_active = false
 
 var controller_script = null
-var controller : Resource
+var controller : Object
 export(Dictionary) var controller_variables
 func get_controller_script():
 	if controller_script == null:
@@ -93,6 +93,9 @@ func _set(property, value):
 		return true
 	# Controller variables
 	if has_controller_script():
+		# TEST ERRORS WHENEVER GAME OPENS
+		#print(get_controller_script())
+		#print(get_controller_script().has_method("get_script_export_list"))
 		for prop in get_controller_script().get_script_export_list():
 			if prop.name == property:
 				controller_variables[prop.name] = value

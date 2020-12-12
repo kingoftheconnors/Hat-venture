@@ -1,5 +1,3 @@
-tool
-extends Resource
 class_name flystraight
 
 var velo = Vector2(40, 40)

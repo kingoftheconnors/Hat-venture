@@ -362,11 +362,11 @@ priority = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=19]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
 
-[sub_resource type="AnimationNodeStateMachine" id=20]
+[sub_resource type="AnimationNodeStateMachine" id=22]
 states/default/node = SubResource( 5 )
 states/default/position = Vector2( 205, 118 )
 states/die/node = SubResource( 6 )
@@ -379,21 +379,21 @@ states/shoot/position = Vector2( 205, 207.5 )
 "states/shoot 3/position" = Vector2( 22.2196, 118 )
 states/smash/node = SubResource( 10 )
 states/smash/position = Vector2( 336, 169 )
-transitions = [ "default", "die", SubResource( 11 ), "default", "smash", SubResource( 12 ), "default", "shoot", SubResource( 13 ), "shoot", "shoot 2", SubResource( 14 ), "shoot 2", "shoot 3", SubResource( 15 ), "shoot 3", "default", SubResource( 16 ), "shoot", "default", SubResource( 17 ), "shoot 3", "shoot 2", SubResource( 18 ), "shoot 2", "shoot", SubResource( 19 ), "smash", "default", SubResource( 25 ), "die", "default", SubResource( 26 ) ]
+transitions = [ "default", "die", SubResource( 11 ), "default", "smash", SubResource( 12 ), "default", "shoot", SubResource( 13 ), "shoot", "shoot 2", SubResource( 14 ), "shoot 2", "shoot 3", SubResource( 15 ), "shoot 3", "default", SubResource( 16 ), "shoot", "default", SubResource( 17 ), "shoot 3", "shoot 2", SubResource( 18 ), "shoot 2", "shoot", SubResource( 19 ), "smash", "default", SubResource( 20 ), "die", "default", SubResource( 21 ) ]
 start_node = "default"
 graph_offset = Vector2( -93.7804, 12.08 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=21]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
-[sub_resource type="CapsuleShape2D" id=22]
+[sub_resource type="CapsuleShape2D" id=24]
 radius = 3.0
 height = 14.3208
 
-[sub_resource type="CapsuleShape2D" id=23]
+[sub_resource type="CapsuleShape2D" id=25]
 radius = 7.17361
 height = 0.0
 
-[sub_resource type="CapsuleShape2D" id=24]
+[sub_resource type="CapsuleShape2D" id=26]
 radius = 6.0
 height = 9.0
 
@@ -401,16 +401,15 @@ height = 9.0
 script = ExtResource( 2 )
 base_direction = Vector2( -1, 0 )
 controller_variables = {
-"movement/is_turning": false
+"movement/is_turning": true
 }
 movement/controller = ExtResource( 3 )
-movement/is_turning = false
+movement/is_turning = true
 
 [node name="EnemyCore" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 3
 script = ExtResource( 4 )
-deathScore = 300
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyCore"]
 anims/default = SubResource( 1 )
@@ -419,10 +418,10 @@ anims/shoot = SubResource( 3 )
 anims/smash = SubResource( 4 )
 
 [node name="AnimationTree" type="AnimationTree" parent="EnemyCore"]
-tree_root = SubResource( 20 )
+tree_root = SubResource( 22 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 21 )
+parameters/playback = SubResource( 23 )
 
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
@@ -431,7 +430,7 @@ position = Vector2( 0, -10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 rotation = 1.5708
-shape = SubResource( 22 )
+shape = SubResource( 24 )
 
 [node name="HitBox" type="Area2D" parent="." groups=[
 "hitbox",
@@ -440,17 +439,17 @@ script = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 0, 2 )
-shape = SubResource( 23 )
+shape = SubResource( 25 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1.5 )
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
 [node name="Shooter" type="Node" parent="."]
 script = ExtResource( 5 )
-[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="Shooter" method="_on_VisibilityNotifier2D_screen_entered"]
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="Shooter" method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

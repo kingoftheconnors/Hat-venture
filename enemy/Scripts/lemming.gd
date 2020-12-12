@@ -1,5 +1,3 @@
-tool
-extends Resource
 class_name lemming
 
 const ENEMY_GRAVITY = 9

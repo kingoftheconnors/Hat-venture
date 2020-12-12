@@ -1,5 +1,3 @@
-tool
-extends Resource
 class_name paraenemy
 
 const ENEMY_GRAVITY = 8

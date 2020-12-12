@@ -1,5 +1,3 @@
-tool
-extends Resource
 class_name bouncy
 
 const ENEMY_GRAVITY = 9

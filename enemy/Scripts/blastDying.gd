@@ -1,5 +1,3 @@
-tool
-extends Resource
 class_name blastDying
 
 const FALLING_BODY_GRAVITY = 11
