@@ -1,9 +1,8 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://enemy/crow/paraenemy.gd" type="Script" id=1]
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=2]
 [ext_resource path="res://enemy/crow/crow.png" type="Texture" id=3]
-[ext_resource path="res://enemy/Scripts/EnemyController.gd" type="Script" id=4]
 [ext_resource path="res://enemy/Scripts/Hitbox.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=1]
@@ -70,6 +69,16 @@ tracks/4/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/5/type = "bezier"
+tracks/5/path = NodePath(".:scale:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "die"
@@ -127,8 +136,8 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("..:velo")
+tracks/4/type = "method"
+tracks/4/path = NodePath("..")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -136,34 +145,20 @@ tracks/4/enabled = true
 tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ {
+"args": [  ],
+"method": "blast_death"
+} ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath(".:scale")
+tracks/5/type = "bezier"
+tracks/5/path = NodePath(".:scale:y")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, -1 ) ]
-}
-tracks/6/type = "method"
-tracks/6/path = NodePath("..")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "blast_death"
-} ]
+"points": PoolRealArray( -1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
 }
 
 [sub_resource type="Animation" id=3]
@@ -233,25 +228,13 @@ tracks/4/keys = {
 "update": 1,
 "values": [ true ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("..:velo")
+tracks/5/type = "method"
+tracks/5/path = NodePath("..")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ) ]
-}
-tracks/6/type = "method"
-tracks/6/path = NodePath("..")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -286,6 +269,7 @@ states/smash/node = SubResource( 6 )
 states/smash/position = Vector2( 357, 194 )
 transitions = [ "default", "die", SubResource( 7 ), "default", "smash", SubResource( 8 ), "die", "default", SubResource( 9 ), "smash", "default", SubResource( 10 ) ]
 start_node = "default"
+graph_offset = Vector2( -41.0206, -20.748 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 
@@ -304,16 +288,13 @@ height = 14.3208
 [node name="Crow" type="KinematicBody2D" groups=[
 "shadow",
 ]]
-script = ExtResource( 4 )
-controller_variables = {
-
-}
-movement/controller = ExtResource( 1 )
+script = ExtResource( 1 )
 
 [node name="EnemyCore" type="Sprite" parent="."]
 position = Vector2( -2, 0 )
 texture = ExtResource( 3 )
 hframes = 3
+frame = 1
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyCore"]

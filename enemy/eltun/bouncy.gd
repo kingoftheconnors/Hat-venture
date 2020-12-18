@@ -1,25 +1,19 @@
+extends "res://enemy/Scripts/EnemyController.gd"
 class_name bouncy
 
 const ENEMY_GRAVITY = 9
 var velo = Vector2(40, 0)
-var direction = Vector2()
-var frozen = false
+export(Vector2) var direction = Vector2(1,0)
 var frame = 0
 
-const DEFAULT_JUMP_FORCE = 100
-var jump_force
+export(int) var jump_force = 100
 
-func _init(_direction, export_dict):
-	direction = _direction
-	update_exports(export_dict)
-	velo.x = velo.x * _direction.x
-	velo.y = jump_force * _direction.x
-
-func update_exports(export_dict):
-	jump_force = abs(export_dict.get('movement/jump_force', DEFAULT_JUMP_FORCE))
+func _ready():
+	velo.x = velo.x * direction.x
+	velo.y = jump_force * direction.y
 
 # Called when the node enters the scene tree for the first time.
-func frame(body, sprite, delta):
+func frame(body : KinematicBody2D, sprite : Sprite, delta):
 	if !frozen:
 		var retVelo = body.move_and_slide(velo, Vector2.UP)
 		velo.y = retVelo.y + ENEMY_GRAVITY/2
@@ -41,20 +35,5 @@ func frame(body, sprite, delta):
 			else:
 				direction.x = -1
 
-func smash_death():
-	frozen = true
-
-func get_direction():
+func get_direction() -> Vector2:
 	return direction
-
-# reference methods for editor accessing turnaround time
-func get_script_export_list():
-	var property_list = [{
-		"hint": PROPERTY_HINT_NONE,
-		"usage": PROPERTY_USAGE_DEFAULT,
-		"name": "movement/jump_force",
-		"type": TYPE_INT,
-		"default": DEFAULT_JUMP_FORCE
-	}]
-	return property_list
-

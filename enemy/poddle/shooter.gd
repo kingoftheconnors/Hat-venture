@@ -3,7 +3,6 @@ extends Node
 # Shoop shoop
 func shoot(path_to_root):
 	if is_active:
-		print("Shooting")
 		var root = get_node(path_to_root)
 		var sprite = root.get_sprite()
 		var bullet = preload("res://enemy/poddle/Poddleball.tscn")

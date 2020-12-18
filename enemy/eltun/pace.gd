@@ -1,24 +1,18 @@
+extends "res://enemy/Scripts/EnemyController.gd"
 class_name pace
 
 var velo = Vector2(40, 40)
 var DASH_FORCE = Vector2(40,40)
-var direction = Vector2()
-var frozen = false
+export(Vector2) var direction = Vector2(1,0)
 var frame = 0
 
-const DEFAULT_TURNAROUND_TIME = 100
-var turnaround_time
+export(int) var turnaround_time = 150
 
-func _init(_direction, export_dict):
-	velo = DASH_FORCE * _direction
-	direction = _direction
-	update_exports(export_dict)
-
-func update_exports(export_dict):
-	turnaround_time = export_dict.get('movement/turnaround_time', 100)
+func _ready():
+	velo = DASH_FORCE * direction
 
 # Called when the node enters the scene tree for the first time.
-func frame(body, sprite, delta):
+func frame(body : KinematicBody2D, sprite : Sprite, delta):
 	if !frozen:
 		body.move_and_slide(velo, Vector2.UP, true)
 		# Zigzag
@@ -44,19 +38,5 @@ func frame(body, sprite, delta):
 			else:
 				direction.x = -1
 
-func smash_death():
-	frozen = true
-
-func get_direction():
+func get_direction() -> Vector2:
 	return direction
-
-# reference methods for editor accessing turnaround time
-func get_script_export_list():
-	var property_list = [{
-		"hint": PROPERTY_HINT_NONE,
-		"usage": PROPERTY_USAGE_DEFAULT,
-		"name": "movement/turnaround_time",
-		"type": TYPE_INT,
-		"default": DEFAULT_TURNAROUND_TIME
-	}]
-	return property_list

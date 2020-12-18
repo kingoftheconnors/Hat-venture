@@ -198,25 +198,28 @@ Running does not accelerate in air (but still feels good)
   Respawned enemies don't give score
   Lil'ens NOT falling off cliffs
   Fix death
+  Fix Pushing-Pacing-Eltun-bug
+  Turn off white-flash when level restarts
 
 Glitches:
-  Bash+release-hat = NO  HITBOX
-  Bashing/Spinning-into-camera-area fails capture
-  Eltun Pattern bugs (jumping at pacer moves upwards)
-  Force reset-during-flash causes white hero
+  Dying while diving causes weird collision box sizes
+Mechanics:
+  Spinning - waeker gravity
+  Level design
 Debug Mode:
   Debug mode how-to info
 Options:
-  Framerate cap (30-45?)
+  Framerate cap (DebugSettings -> Target Framerate: 30-45?)
 Level Design:
   Find help
-  Invisible walls
+  Fake walls
 Angus:
   Explosion graphic
   Should we really have score be on a timer? Encouraging players to get streaks by not landing would be a good way to encourage players to experiment with diving, bashing and spinning
 Unconfirmed glitches:
   Spinning-back-and-force-against-wall-of-blocks (from right-to-left)
-  Eltun and player blocking each other
+  Eltun and player blocking each other (player seems to jump back at each hit)
+  Bashing/Spinning-into-camera-area fails capture
 
 Backlog:
 Level 1

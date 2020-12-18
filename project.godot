@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://enemy/Scripts/blastDying.gd"
 }, {
-"base": "Reference",
+"base": "KinematicBody2D",
 "class": "bouncy",
 "language": "GDScript",
 "path": "res://enemy/eltun/bouncy.gd"
@@ -34,17 +34,17 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://items/defaultPower.gd"
 }, {
-"base": "Reference",
+"base": "KinematicBody2D",
 "class": "direct_zigzag",
 "language": "GDScript",
 "path": "res://enemy/eltun/direct_zigzag.gd"
 }, {
-"base": "Reference",
+"base": "KinematicBody2D",
 "class": "flypath",
 "language": "GDScript",
 "path": "res://enemy/eltun/flypath.gd"
 }, {
-"base": "Reference",
+"base": "KinematicBody2D",
 "class": "flystraight",
 "language": "GDScript",
 "path": "res://enemy/eltun/flystraight.gd"
@@ -64,17 +64,17 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://items/HPon.gd"
 }, {
-"base": "Reference",
+"base": "KinematicBody2D",
 "class": "lemming",
 "language": "GDScript",
 "path": "res://enemy/Scripts/lemming.gd"
 }, {
-"base": "Reference",
+"base": "KinematicBody2D",
 "class": "pace",
 "language": "GDScript",
 "path": "res://enemy/eltun/pace.gd"
 }, {
-"base": "Reference",
+"base": "KinematicBody2D",
 "class": "paraenemy",
 "language": "GDScript",
 "path": "res://enemy/crow/paraenemy.gd"
@@ -89,7 +89,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://items/runningPower.gd"
 }, {
-"base": "Reference",
+"base": "KinematicBody2D",
 "class": "shooter",
 "language": "GDScript",
 "path": "res://enemy/poddle/watcher.gd"
@@ -104,7 +104,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://items/timePiece.gd"
 }, {
-"base": "Reference",
+"base": "KinematicBody2D",
 "class": "zigzag",
 "language": "GDScript",
 "path": "res://enemy/eltun/zigzag.gd"
@@ -144,6 +144,10 @@ Constants="*res://constants/GameConstants.tscn"
 Gui="*res://gui/gui.tscn"
 PlayerGameManager="*res://common/PlayerGameManager.tscn"
 OptionsMenu="*res://gui/OptionsMenu.tscn"
+
+[debug]
+
+settings/fps/force_fps=60
 
 [display]
 

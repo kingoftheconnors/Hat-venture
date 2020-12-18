@@ -1,7 +1,6 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://enemy/poddle/poddle.png" type="Texture" id=1]
-[ext_resource path="res://enemy/Scripts/EnemyController.gd" type="Script" id=2]
 [ext_resource path="res://enemy/poddle/watcher.gd" type="Script" id=3]
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=4]
 [ext_resource path="res://enemy/poddle/shooter.gd" type="Script" id=5]
@@ -59,19 +58,19 @@ tracks/3/keys = {
 "values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("..:movement/is_turning")
+tracks/4/path = NodePath("..:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("..:scale")
+tracks/5/path = NodePath("..:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -79,20 +78,20 @@ tracks/5/enabled = true
 tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"update": 1,
+"values": [ true ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("..:visible")
+tracks/6/path = NodePath("..:is_turning")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -398,13 +397,8 @@ radius = 6.0
 height = 9.0
 
 [node name="Poddle" type="KinematicBody2D"]
-script = ExtResource( 2 )
-base_direction = Vector2( -1, 0 )
-controller_variables = {
-"movement/is_turning": true
-}
-movement/controller = ExtResource( 3 )
-movement/is_turning = true
+script = ExtResource( 3 )
+is_turning = true
 
 [node name="EnemyCore" type="Sprite" parent="."]
 texture = ExtResource( 1 )

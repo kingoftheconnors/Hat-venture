@@ -1,27 +1,20 @@
+extends "res://enemy/Scripts/EnemyController.gd"
 class_name flypath
 
-var frozen = false
 var velo = Vector2()
 var move_speed = 60
-var direction = Vector2(1, 0)
+export(int) var direction : int = 1
 
-var flight_path : NodePath
+export(NodePath) var flight_path
 var patrol_points : Array = []
 var patrol_index = -1
 
-func _init(_direction, export_dict):
-	direction = _direction.x
-	update_exports(export_dict)
-
-func update_exports(export_dict):
-	flight_path = export_dict.get('movement/path', '.')
-
 # Called when the node enters the scene tree for the first time.
-func frame(body, sprite, delta):
+func frame(body : KinematicBody2D, sprite : Sprite, delta):
 	# Set patrol baked points
 	if !flight_path.is_empty() and flight_path.get_name_count() > 0:
 		if patrol_points.size() == 0:
-			patrol_points = body.get_node(flight_path).curve.get_baked_points()
+			patrol_points = get_node(flight_path).curve.get_baked_points()
 		# Set first frame position
 		if patrol_index < 0:
 			set_first_patrol_index(body)
@@ -39,26 +32,12 @@ func frame(body, sprite, delta):
 				sprite.scale = Vector2(-sprite.scale.x, sprite.scale.y)
 
 func set_first_patrol_index(body):
-	var closest_point = body.get_node(flight_path).curve.get_closest_point(body.position)
+	var closest_point = get_node(flight_path).curve.get_closest_point(body.position)
 	var closest_distance = INF
 	for i in range(0, patrol_points.size()):
 		if (closest_point - patrol_points[i]).length() < closest_distance:
 			patrol_index = i
 			closest_distance = (closest_point - patrol_points[i]).length()
 
-func smash_death():
-	frozen = true
-
-func get_direction():
-	return direction
-
-# reference methods for editor accessing flightPath
-func get_script_export_list():
-	var property_list = [{
-		"hint": PROPERTY_HINT_NONE,
-		"usage": PROPERTY_USAGE_DEFAULT,
-		"name": "movement/path",
-		"type": TYPE_NODE_PATH,
-		"default": "."
-	}]
-	return property_list
+func get_direction() -> Vector2:
+	return Vector2(direction, 0)

@@ -3,7 +3,7 @@ class_name blastDying
 const FALLING_BODY_GRAVITY = 11
 var velo = Vector2(40, -200)
 
-func _init(direction, export_dict):
+func _init(direction):
 	velo.x = velo.x * -direction.x
 
 # Called when the node enters the scene tree for the first time.

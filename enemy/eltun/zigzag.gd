@@ -1,18 +1,17 @@
+extends "res://enemy/Scripts/EnemyController.gd"
 class_name zigzag
 
 var velo = Vector2(40, 80)
 var DASH_FORCE = Vector2(40,80)
 var DASH_FRICTION = 0.985
 var DASH_TRESHHOLD = 30
-var direction = Vector2()
-var frozen = false
+export(Vector2) var direction = Vector2(1,0)
 
-func _init(_direction, export_dict):
-	velo = DASH_FORCE * _direction
-	direction = _direction
+func _ready():
+	velo = DASH_FORCE * direction
 
 # Called when the node enters the scene tree for the first time.
-func frame(body, sprite, delta):
+func frame(body : KinematicBody2D, sprite : Sprite, delta):
 	if !frozen:
 		var retVelo = body.move_and_slide(velo, Vector2.UP)
 		# Zigzag
@@ -32,10 +31,7 @@ func frame(body, sprite, delta):
 			else:
 				direction.x = -1
 
-func smash_death():
-	frozen = true
-
-func get_direction():
+func get_direction() -> Vector2:
 	return direction
 
 # reference methods for editor accessing flightPath
