@@ -200,9 +200,9 @@ Running does not accelerate in air (but still feels good)
   Fix death
   Fix Pushing-Pacing-Eltun-bug
   Turn off white-flash when level restarts
+  Normalize player collision boxes in idle state
 
 Glitches:
-  Dying while diving causes weird collision box sizes
 Mechanics:
   Spinning - waeker gravity
   Level design
