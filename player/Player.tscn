@@ -1,4 +1,4 @@
-[gd_scene load_steps=239 format=2]
+[gd_scene load_steps=240 format=2]
 
 [ext_resource path="res://player/regular/idle.png" type="Texture" id=1]
 [ext_resource path="res://player/PlatformerController.gd" type="Script" id=2]
@@ -93,6 +93,9 @@ height = 6.0
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 4, 10.5 )
+
+[sub_resource type="CircleShape2D" id=193]
+radius = 11.0
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 7, 11 )
@@ -1622,6 +1625,18 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ScaleChildren/spinbodysmasher/SpinCollider:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=28]
@@ -3535,6 +3550,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [ false, true ]
 }
+tracks/8/type = "value"
+tracks/8/path = NodePath("ScaleChildren/spinbodysmasher/SpinCollider:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=62]
 length = 0.3
@@ -4310,6 +4337,7 @@ graph_offset = Vector2( -104.159, -127.739 )
 [sub_resource type="AnimationNodeAdd2" id=189]
 
 [sub_resource type="AnimationNodeBlendTree" id=190]
+graph_offset = Vector2( 0, 508 )
 nodes/PlayerEffect/node = SubResource( 78 )
 nodes/PlayerEffect/position = Vector2( 280, 80 )
 nodes/PlayerMovement/node = SubResource( 188 )
@@ -4341,7 +4369,7 @@ defaultPower = ExtResource( 37 )
 
 [node name="PlayerCore" type="Sprite" parent="ScaleChildren"]
 material = SubResource( 2 )
-texture = ExtResource( 29 )
+texture = ExtResource( 1 )
 hframes = 2
 script = ExtResource( 4 )
 
@@ -4393,6 +4421,17 @@ collision_mask = 3
 [node name="BashCollider" type="CollisionShape2D" parent="ScaleChildren/bashbox"]
 position = Vector2( 8, 1.5 )
 shape = SubResource( 5 )
+disabled = true
+
+[node name="spinbodysmasher" type="Area2D" parent="ScaleChildren" groups=[
+"hitbox",
+"player",
+]]
+collision_layer = 0
+
+[node name="SpinCollider" type="CollisionShape2D" parent="ScaleChildren/spinbodysmasher"]
+position = Vector2( 0, -5 )
+shape = SubResource( 193 )
 disabled = true
 
 [node name="spinbox" type="Area2D" parent="." groups=[
@@ -4551,6 +4590,7 @@ wait_time = 0.75
 [connection signal="area_exited" from="ScaleChildren/hurtbox" to="ScaleChildren/PlayerCore" method="_on_hurtbox_area_exited"]
 [connection signal="area_entered" from="ScaleChildren/hitbox" to="ScaleChildren/PlayerCore" method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="ScaleChildren/bashbox" to="." method="bash_bounce"]
+[connection signal="body_entered" from="ScaleChildren/spinbodysmasher" to="." method="spin_bounce"]
 [connection signal="body_entered" from="spinbox" to="." method="spin_bounce"]
 [connection signal="body_entered" from="spinbox2" to="." method="spin_bounce"]
 [connection signal="timeout" from="GravityTimer" to="." method="resume_gravity"]

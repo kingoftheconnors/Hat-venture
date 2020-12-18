@@ -40,11 +40,13 @@ var running
 var spinning
 const SPIN_JUMP_SPEED = 265
 const SPIN_HORIZONTAL_SPEED = 155
-const SPIN_LENGTH = .7
-const GROUNDED_SPIN_LENGTH = 1.3
+const SPIN_FORWARD_SPEED = 180
+const SPIN_LENGTH = 1.5
 const POST_SPIN_STUN = 20
+const SPIN_FALL_MULTIPLIER = 0.65
+const SPIN_TERMINAL_VELOCITY_MULTIPLIER = 0.25
 const SPIN_JUMP_DECELERATION = 0.89
-const SPIN_DECELERATION = 0.87
+const SPIN_DECELERATION = 0.85
 const SPIN_ACCELERATION = 15
 
 # BASH
@@ -128,6 +130,11 @@ func move(delta):
 	if bashing:
 		horizontal = direction
 	if spinning:
+		# A horizontal opposite the current direction is treated as 0 (slow down)
+		if horizontal > 0:
+			max_velo = SPIN_FORWARD_SPEED
+		else:
+			max_velo = SPIN_HORIZONTAL_SPEED
 		if horizontal * direction >= 0:
 			horizontal = direction
 		else:
@@ -182,6 +189,9 @@ func move(delta):
 	if skid_perfect and is_on_floor():
 		if !skidRayCast1.is_colliding() or !skidRayCast2.is_colliding():
 			velo.x *= 0.86
+	if spinning and horizontal == 0 and is_on_floor():
+		if !skidRayCast1.is_colliding() or !skidRayCast2.is_colliding():
+			velo.x *= 0.7
 	
 	# Animating
 	if horizontal != 0:
@@ -215,11 +225,15 @@ func move(delta):
 		else:
 			if diving:
 				velo.y += PLAYER_GRAVITY * DIVE_FALL_MULTIPLIER
+			elif spinning:
+				velo.y += PLAYER_GRAVITY * SPIN_FALL_MULTIPLIER
 			else:
 				velo.y += PLAYER_GRAVITY * FALL_MULTIPLIER
 			# terminal velocity
 			if velo.y > Constants.terminalVelocity:
 				velo.y = Constants.terminalVelocity
+			if spinning and velo.y > Constants.terminalVelocity*SPIN_TERMINAL_VELOCITY_MULTIPLIER:
+				velo.y = Constants.terminalVelocity*SPIN_TERMINAL_VELOCITY_MULTIPLIER
 	
 	# Ladder climbing
 	if vertical != 0 and on_ladders > 0:
@@ -349,6 +363,9 @@ func bounce_back():
 func spin_bounce(body):
 	if !body.is_in_group("player"):
 		var destroyedBody = core.attack(body)
+		if destroyedBody:
+			body.set_collision_layer(0)
+			body.set_collision_mask(0)
 		return destroyedBody
 	return false
 
@@ -600,10 +617,7 @@ func spin():
 		if !is_on_floor():
 			push(Vector2(0, -SPIN_JUMP_SPEED))
 		animator["parameters/PlayerMovement/playback"].travel("spin")
-		if !is_on_floor():
-			yield(get_tree().create_timer(SPIN_LENGTH), "timeout")
-		else:
-			yield(get_tree().create_timer(GROUNDED_SPIN_LENGTH), "timeout")
+		yield(get_tree().create_timer(SPIN_LENGTH), "timeout")
 		if animator["parameters/PlayerMovement/playback"].get_current_node() == "spin":
 			animator["parameters/PlayerMovement/playback"].travel("end_spin")
 
