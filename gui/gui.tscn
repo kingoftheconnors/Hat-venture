@@ -22,10 +22,10 @@ font_data = ExtResource( 5 )
 [sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=6]
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 size = 24
 font_data = ExtResource( 5 )
 
@@ -177,7 +177,7 @@ anchor_bottom = 1.0
 margin_left = 17.0
 margin_top = -6.0
 margin_right = 50.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "x5"
 __meta__ = {
@@ -274,7 +274,7 @@ anchor_right = 0.975
 anchor_bottom = 0.844
 margin_right = -24.0
 margin_bottom = -1.272
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Are you looking for your umbrella? I saw it land near the market area when you, you know..."
 autowrap = true

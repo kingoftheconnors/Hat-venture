@@ -10,9 +10,9 @@ const BASE_SPEED = 10 #25
 var base_speed = BASE_SPEED
 const ACCELERATION = 5
 const MAX_SPEED = 93
-export(int) var BOUNCE_FORCE = 300
-export(float) var FALL_MULTIPLIER = 1.1
-export(int) var JUMP_STRENGTH = 275
+var BOUNCE_FORCE := 300
+var FALL_MULTIPLIER : float = 1.1
+var JUMP_STRENGTH := 275
 
 # POWERS
 var can_use_power = true
@@ -63,9 +63,9 @@ var post_bash_jump_timer = 0
 const BASH_OUT_STRENGTH = 180
 
 # CLIMBING
-export(int) var CLIMBING_SPEED = 200
-export(int) var WALL_CLIMBING_SPEED = 150
-export(bool) var wall_climbing = false
+var CLIMBING_SPEED := 200
+var WALL_CLIMBING_SPEED := 150
+var wall_climbing := false
 
 # Sound effects
 #onready var jump_sfx = get_node("SoundJump")
@@ -99,11 +99,11 @@ var skid_perfect = false
 # Initial spawn for players dying. An educated guess for a legal, safe position
 var cur_spawn = Vector2()
 
-export(float) var release_jump_damp = 0.4
+var release_jump_damp : float = 0.4
 
 var direction = 1
 
-export var on_ladders = 0
+var on_ladders = 0
 
 func reset_position():
 	position = cur_spawn
@@ -381,13 +381,17 @@ func manage_flags():
 	if is_on_floor() or climbing:
 		refresh_flags()
 	else:
+		# First frame off ground
 		if !air_time:
 			air_time = true
+			PlayerGameManager.set_multiplicity_fast_decrease(false)
 		if coyoteTimer > 0:
 			coyoteTimer -= 1
 	
+	# First frame on ground
 	if is_on_floor() and air_time:
 		air_time = false
+		PlayerGameManager.set_multiplicity_fast_decrease(true)
 		animator["parameters/PlayerMovement/conditions/jumping"] = false
 		animator["parameters/PlayerMovement/conditions/not_jumping"] = true
 	

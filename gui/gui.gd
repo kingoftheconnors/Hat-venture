@@ -165,3 +165,17 @@ func crawl(text_length):
 	while(!Input.is_action_just_pressed("ui_A") and !Input.is_action_pressed("ui_B")):
 		yield()
 	return
+
+func notify_multiplicity_time(time):
+	if time < 0.1:
+		playerScoreMult.visible = true
+	elif time < 0.25:
+		playerScoreMult.visible = false
+	elif time < 0.4:
+		playerScoreMult.visible = true
+	elif time < 0.55:
+		playerScoreMult.visible = false
+	elif time < 0.7:
+		playerScoreMult.visible = true
+	elif time < 0.85:
+		playerScoreMult.visible = false

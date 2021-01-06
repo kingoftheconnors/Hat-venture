@@ -6,6 +6,22 @@ var lives = 3
 var pons = 0
 var score = 0
 var multiplicity = 1
+const MULTIPLICITY_TIME = 2
+var fast_decrease := false
+var multiplicity_decrease_time_left = -1
+
+func _process(delta):
+	if multiplicity_decrease_time_left >= 0:
+		Gui.notify_multiplicity_time(multiplicity_decrease_time_left)
+		multiplicity_decrease_time_left -= delta
+		# Double multiplicity decrease speed when fast_decrease is on
+		if fast_decrease:
+			multiplicity_decrease_time_left -= delta
+		if multiplicity_decrease_time_left <= 0:
+			reduce_multiplicity()
+
+func set_multiplicity_fast_decrease(flag : bool):
+	fast_decrease = flag
 
 func _unhandled_input(event):
 	if Constants.DEBUG_MODE:
@@ -59,11 +75,17 @@ func add_score(amo, affects_multiplicity = false):
 	Gui.set_score(score)
 	if affects_multiplicity:
 		multiplicity += 1
-		Gui.set_score_mult(multiplicity)
+		if multiplicity > 1:
+			Gui.set_score_mult(multiplicity)
+			multiplicity_decrease_time_left = MULTIPLICITY_TIME
 
-func reset_multiplicity():
-	multiplicity = 1
+func reduce_multiplicity():
+	multiplicity -= 1
 	Gui.set_score_mult(multiplicity)
+	if multiplicity > 1:
+		multiplicity_decrease_time_left = MULTIPLICITY_TIME
+	else:
+		multiplicity_decrease_time_left = -1
 
 func add_pons(amo):
 	pons = pons + amo
