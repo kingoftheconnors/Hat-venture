@@ -13,16 +13,20 @@
 [ext_resource path="res://gui/DebugMode.gd" type="Script" id=11]
 
 [sub_resource type="DynamicFont" id=1]
+size = 8
 font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=2]
+size = 8
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=3]
+size = 8
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=4]
+size = 8
 font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=5]
@@ -37,10 +41,12 @@ script = ExtResource( 8 )
 [node name="Name2" type="Label" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -210.0
+margin_left = -104.0
+margin_bottom = 8.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "DEBUG MODE ON"
+align = 2
 uppercase = true
 script = ExtResource( 11 )
 __meta__ = {
@@ -51,7 +57,7 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -40.0
+margin_top = -24.0
 texture = ExtResource( 2 )
 stretch_mode = 1
 __meta__ = {
@@ -62,9 +68,10 @@ __meta__ = {
 anchor_left = 0.2
 anchor_right = 0.2
 anchor_bottom = 0.5
-margin_left = -64.0
-margin_top = 4.0
-margin_right = 64.0
+margin_left = -36.0
+margin_top = 2.0
+margin_right = 28.0
+margin_bottom = -2.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HAT KID:"
@@ -77,11 +84,10 @@ __meta__ = {
 anchor_left = 0.2
 anchor_right = 0.2
 anchor_bottom = 0.5
-margin_left = 64.0
-margin_top = 4.0
-margin_right = 95.0
-margin_bottom = -10.0
-rect_scale = Vector2( 2, 2 )
+margin_left = 28.0
+margin_top = 3.0
+margin_right = 59.0
+margin_bottom = -3.0
 max_value = 4.0
 value = 4.0
 texture_under = ExtResource( 3 )
@@ -94,9 +100,10 @@ __meta__ = {
 anchor_left = 0.8
 anchor_right = 0.8
 anchor_bottom = 0.5
-margin_left = -54.0
-margin_top = 4.0
-margin_right = 10.0
+margin_left = -20.0
+margin_top = 2.0
+margin_right = 12.0
+margin_bottom = -2.0
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "LV.1"
@@ -109,11 +116,10 @@ anchor_left = 0.8
 anchor_top = 0.5
 anchor_right = 0.8
 anchor_bottom = 1.0
-margin_left = -42.0
-margin_top = 3.0
-margin_right = -35.0
-margin_bottom = -8.0
-rect_scale = Vector2( 2, 2 )
+margin_left = -14.0
+margin_top = 2.0
+margin_right = -0.999985
+margin_bottom = -2.0
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -124,8 +130,10 @@ anchor_left = 0.8
 anchor_top = 0.5
 anchor_right = 0.8
 anchor_bottom = 1.0
-margin_left = -16.0
-margin_top = 4.0
+margin_left = -1.52588e-05
+margin_top = 2.0
+margin_right = 8.0
+margin_bottom = -2.0
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "3"
@@ -137,11 +145,10 @@ __meta__ = {
 anchor_left = 0.2
 anchor_right = 0.2
 anchor_bottom = 0.45
-margin_left = 166.0
-margin_top = 4.0
-margin_right = 180.0
-margin_bottom = -5.0
-rect_scale = Vector2( 2, 2 )
+margin_left = 82.0
+margin_top = 2.0
+margin_right = 96.0
+margin_bottom = -0.799999
 texture = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -151,10 +158,10 @@ __meta__ = {
 anchor_left = 0.2
 anchor_right = 0.2
 anchor_bottom = 0.45
-margin_left = 194.0
-margin_top = 4.0
-margin_right = 210.0
-margin_bottom = 2.0
+margin_left = 96.0
+margin_top = 2.0
+margin_right = 104.0
+margin_bottom = -0.799999
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "0"
@@ -167,17 +174,21 @@ anchor_left = 0.2
 anchor_top = 0.5
 anchor_right = 0.2
 anchor_bottom = 1.0
+margin_left = -28.0
+margin_right = -28.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Multiplicity" type="Label" parent="Player/ScoreArea"]
-visible = false
 anchor_left = 0.2
-anchor_top = 0.5
 anchor_right = 0.2
 anchor_bottom = 1.0
-margin_left = 17.0
-margin_top = -6.0
-margin_right = 50.0
-custom_fonts/font = SubResource( 6 )
+margin_left = 32.0
+margin_top = 2.0
+margin_right = 48.0
+margin_bottom = -2.0
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "x5"
 __meta__ = {
@@ -187,12 +198,28 @@ __meta__ = {
 [node name="Score" type="Label" parent="Player/ScoreArea"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -64.0
-margin_top = 4.0
-margin_right = 192.0
+margin_left = -8.0
+margin_top = 2.0
+margin_right = 32.0
+margin_bottom = -2.0
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "SCORE  :000000"
+text = "SCORE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreNum" type="Label" parent="Player/ScoreArea"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 2.0
+margin_right = 104.0
+margin_bottom = -2.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ":000000"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }

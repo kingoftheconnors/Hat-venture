@@ -94,6 +94,9 @@ position = Vector2( -1.04162, -344.528 )
 rotation = 4.46638e-06
 
 [node name="Camera" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, -300 )
+zoom = Vector2( 1, 1 )
+process_mode = 0
 drag_margin_v_enabled = true
 smoothing_speed = 12.0
 drag_margin_top = 0.25

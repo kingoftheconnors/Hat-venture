@@ -12,7 +12,6 @@
 [ext_resource path="res://Music/Game_Over.ogg" type="AudioStream" id=10]
 
 [sub_resource type="DynamicFont" id=1]
-size = 32
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
@@ -20,7 +19,7 @@ font_data = ExtResource( 2 )
 resource_name = "continue"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:anchor_top")
+tracks/0/path = NodePath(".:rect_position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -29,10 +28,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.724 ]
+"values": [ Vector2( 61, 171.56 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:anchor_bottom")
+tracks/1/path = NodePath(".:anchor_top")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -41,10 +40,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.79 ]
+"values": [ 0.724 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath(".:margin_top")
+tracks/2/path = NodePath(".:anchor_bottom")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -52,32 +51,8 @@ tracks/2/enabled = true
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ -4.57153 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath(".:margin_bottom")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 4.74847 ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath(".:rect_position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 163.66, 342.948 ) ]
+"values": [ 0.793 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -108,7 +83,7 @@ tracks/1/keys = {
 "values": [ 0.904 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath(".:margin_top")
+tracks/2/path = NodePath(".:rect_position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -116,32 +91,8 @@ tracks/2/enabled = true
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ -4.33099 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath(".:margin_bottom")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 4.74847 ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath(".:rect_position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 161.139, 396.949 ) ]
+"values": [ Vector2( 61, 198 ) ]
 }
 
 [node name="TextureRect" type="TextureRect"]
@@ -154,27 +105,30 @@ __meta__ = {
 }
 
 [node name="Continue" type="Label" parent="."]
-anchor_left = 0.547
+anchor_left = 0.5
 anchor_top = 0.725
-anchor_right = 0.547
+anchor_right = 0.5
 anchor_bottom = 0.792
-margin_left = -128.08
-margin_top = 0.193726
-margin_right = 127.92
-margin_bottom = 0.0336914
+margin_left = -65.0
+margin_top = -1.52588e-05
+margin_right = 63.0
+margin_bottom = -0.0800323
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "CONTINUE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Quit" type="Label" parent="."]
-anchor_left = 0.548
+anchor_left = 0.5
 anchor_top = 0.837
-anchor_right = 0.548
+anchor_right = 0.5
 anchor_bottom = 0.904
-margin_left = -126.72
-margin_top = 0.23999
-margin_right = 127.28
-margin_bottom = 0.0799866
+margin_left = -65.0
+margin_top = 0.12001
+margin_right = 63.0
+margin_bottom = 0.0400085
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "QUIT"
@@ -187,35 +141,38 @@ anchor_left = 0.503
 anchor_top = 0.26
 anchor_right = 0.503
 anchor_bottom = 0.348
-margin_left = -215.92
-margin_top = 0.199997
-margin_right = 216.08
-margin_bottom = -0.0400085
+margin_left = -107.96
+margin_top = 0.200005
+margin_right = 324.04
+margin_bottom = 21.08
+rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 6 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_left = 0.44
 anchor_top = 0.557
-anchor_right = 0.564
-anchor_bottom = 0.669
+anchor_right = 0.553
+anchor_bottom = 0.656
 margin_left = 0.212311
 margin_top = -0.227325
-margin_right = -0.147705
-margin_bottom = 0.0126648
+margin_right = 3.3723
+margin_bottom = 3.13268
+rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Selector" type="TextureRect" parent="."]
-anchor_left = 0.549
-anchor_top = 0.724
-anchor_right = 0.549
-anchor_bottom = 0.79
-margin_left = -187.7
-margin_top = -4.57199
-margin_right = -137.7
-margin_bottom = 4.74802
+anchor_left = 0.5
+anchor_top = 0.836
+anchor_right = 0.5
+anchor_bottom = 0.904
+margin_left = -99.0
+margin_top = -2.63998
+margin_right = -49.0
+margin_bottom = 5.96002
+rect_scale = Vector2( 0.5, 0.75 )
 texture = ExtResource( 3 )
 expand = true
 script = ExtResource( 5 )

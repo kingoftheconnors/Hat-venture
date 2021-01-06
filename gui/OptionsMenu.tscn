@@ -5,11 +5,13 @@
 [ext_resource path="res://gui/menu.png" type="Texture" id=3]
 [ext_resource path="res://gui/DebugModeItem.gd" type="Script" id=4]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=3]
+size = 8
+outline_size = 1
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
-outline_size = 1
+size = 8
 font_data = ExtResource( 1 )
 
 [node name="CanvasLayer" type="CanvasLayer"]
@@ -20,10 +22,10 @@ pause_mode = 2
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 152.0
-margin_top = 80.0
-margin_right = -152.0
-margin_bottom = -64.0
+margin_left = 100.0
+margin_top = 72.0
+margin_right = -85.0
+margin_bottom = -56.0
 texture = ExtResource( 3 )
 patch_margin_left = 13
 patch_margin_top = 10
@@ -34,16 +36,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="DebugModeControls" type="Label" parent="NinePatchRect"]
+margin_left = -98.0
+margin_top = -68.0
+margin_right = 54.0
+margin_bottom = 6.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "F12: Make gif
+0 (zero): +3 pons
++ : add score
+- : 0 score
+[ : -1 hp
+] : +1 hp
+1-5: powers"
+uppercase = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Volume" type="Label" parent="NinePatchRect"]
 anchor_left = 0.094
 anchor_top = 0.114
 anchor_right = 0.094
 anchor_bottom = 0.176
-margin_left = -0.0130024
-margin_top = -0.128002
-margin_right = 96.438
-margin_bottom = -4.32
-custom_fonts/font = SubResource( 1 )
+margin_left = 0.31
+margin_top = 1.76
+margin_right = 56.31
+margin_bottom = 2.816
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Volume:"
 uppercase = true
@@ -56,11 +78,11 @@ anchor_left = 0.094
 anchor_top = 0.219
 anchor_right = 0.094
 anchor_bottom = 0.281
-margin_left = -0.0640011
-margin_top = -0.064003
-margin_right = 95.936
-margin_bottom = 0.0639954
-custom_fonts/font = SubResource( 1 )
+margin_left = 0.31
+margin_top = 5.96
+margin_right = 50.31
+margin_bottom = 7.016
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Master"
 valign = 1
@@ -74,52 +96,14 @@ anchor_left = 0.094
 anchor_top = 0.219
 anchor_right = 0.937
 anchor_bottom = 0.281
-margin_left = 111.936
-margin_top = -0.064003
-margin_right = 0.127991
-margin_bottom = 0.0639954
+margin_left = 50.31
+margin_top = 2.96
+margin_right = -2.495
+margin_bottom = 12.016
 max_value = 50.0
 step = 5.0
 value = 50.0
 tick_count = 9
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="DebugModeControls" type="Label" parent="NinePatchRect"]
-anchor_left = 1.452
-anchor_top = -0.238
-anchor_right = 1.452
-anchor_bottom = -0.238
-margin_left = -143.872
-margin_top = 31.968
-margin_right = 0.127991
-margin_bottom = 351.968
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "F12
-Make gif
-
-0 (zero)
-+3 pons
-
-+ (plus)
-add score
-
-- (minus)
-0 score
-
-[
--1 hp
-
-]
-+1 hp
-
-1-5
-Change
-power"
-uppercase = true
-script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
