@@ -210,35 +210,28 @@ Running does not accelerate in air (but still feels good)
 0.2.7
 Score multiplicity medium decrease when on floor and slow decrease when in air
 
-Debug Mode:
-Options:
-  Framerate cap (DebugSettings -> Make sure it works fine at Framerate: 30-45?)
 Level Design:
   Fake walls
-Angus:
-  Explosion graphic
-  Hat Girl DANCE :3
-Replace witch hat with smash hat
-
-Unconfirmed glitches:
-  Spinning-back-and-force-against-wall-of-blocks (from right-to-left)
-  Eltun and player blocking each other (player seems to jump back at each hit)
-  Bashing/Spinning-into-camera-area fails capture
 
 Backlog:
 Level 1
-  * Find people for level design
   * Side tracks and secrets (pipes, areas under blocks, etc)
+  * Design first level with QP
   * Checkpoints
   * Music
   * SFX!
 Boss 1
   * Crab boi?
+Persistent Data (autosave system)
 Level Select
   * Ship and telescopes
 Level 2
   * Enemies and new mechanics
-Persistent Data (autosave system)
+
+After Angus becomes free:
+  Explosion graphic
+  Hat Girl DANCE :3
+  Talk about replacing witch hat with smash hat (propeller)
 
 Notes:
 * Different worlds with different color schemes

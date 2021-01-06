@@ -44,13 +44,17 @@ func die():
 	# Game over
 	if lives <= 0:
 		Gui.hide()
-		score = 0; Gui.set_score(score)
+		score = 0; Gui.set_score(score);
+		multiplicity = 1; Gui.set_score_mult(1)
+		multiplicity_decrease_time_left = -1
 		var _success = get_tree().change_scene("res://levelgameover/gameOver.tscn")
 		animationPlayer.play("reveal") # Starts with covering screen
 	else:
 		# Re-load level
 		var _success = get_tree().change_scene(levelName)
 		Gui.reset_energy()
+		multiplicity = 1; Gui.set_score_mult(1)
+		multiplicity_decrease_time_left = -1
 		#get_tree().change_scene("res://transitionScenes/death.tscn")
 		animationPlayer.play("reveal") # Uncover screen after loading level
 
