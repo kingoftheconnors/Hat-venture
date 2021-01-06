@@ -3,56 +3,10 @@
 [ext_resource path="res://common/PlayerGameManager.gd" type="Script" id=1]
 [ext_resource path="res://gui/white.png" type="Texture" id=2]
 [ext_resource path="res://common/Capture.PNG" type="Texture" id=3]
+[ext_resource path="res://common/PlayerGameManager.shader" type="Shader" id=4]
 
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-
-// Which color you want to change
-uniform vec4 game_white : hint_color;
-uniform vec4 game_light : hint_color;
-uniform vec4 game_dark : hint_color;
-uniform vec4 game_black : hint_color;
-
-uniform vec4 palette_white : hint_color;
-uniform vec4 palette_light : hint_color;
-uniform vec4 palette_dark : hint_color;
-uniform vec4 palette_black : hint_color;
-
-uniform int brightness_level;
-uniform float epsilon;
-
-int get_level_from_game_color(vec3 color) {
-	if (abs(length(color)-length(game_white.rgb)) <= epsilon)
-		return 3;
-	if (abs(length(color)-length(game_light.rgb)) <= epsilon)
-		return 2;
-	if (abs(length(color)-length(game_dark.rgb)) <= epsilon)
-		return 1;
-	if (abs(length(color)-length(game_black.rgb)) <= epsilon)
-		return 0;
-	return 0;
-}
-
-vec4 get_palette_color(int level) {
-	if (level >= 3)
-		return palette_white;
-	if (level == 2)
-		return palette_light;
-	if (level == 1)
-		return palette_dark;
-	if (level <= 0)
-		return palette_black;
-	return game_black;
-}
-
-void fragment() {
-	vec3 c = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0).rgb;
-	int level = get_level_from_game_color(c);
-	COLOR.rgb = get_palette_color(level+brightness_level).rgb;
-}"
-
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 4 )
 shader_param/game_white = Color( 1, 1, 1, 1 )
 shader_param/game_light = Color( 0.67451, 0.682353, 0.67451, 1 )
 shader_param/game_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
@@ -64,7 +18,7 @@ shader_param/palette_black = Color( 0, 0, 0, 1 )
 shader_param/brightness_level = 0
 shader_param/epsilon = 0.16
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("TextureRect:material:shader_param/brightness_level")
@@ -79,7 +33,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("TextureRect:modulate")
@@ -94,7 +48,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("TextureRect:material:shader_param/brightness_level")
@@ -109,7 +63,7 @@ tracks/0/keys = {
 "values": [ 4, 3, 2, 1, 0 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("TextureRect:modulate")
@@ -135,7 +89,7 @@ position = Vector2( 320, 240 )
 texture = ExtResource( 3 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
-material = SubResource( 2 )
+material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -148,7 +102,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/cover = SubResource( 3 )
-"anims/cover (instant)" = SubResource( 4 )
-anims/reveal = SubResource( 5 )
-"anims/reveal (instant)" = SubResource( 6 )
+anims/cover = SubResource( 2 )
+"anims/cover (instant)" = SubResource( 3 )
+anims/reveal = SubResource( 4 )
+"anims/reveal (instant)" = SubResource( 5 )
