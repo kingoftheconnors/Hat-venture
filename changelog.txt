@@ -201,21 +201,25 @@ Running does not accelerate in air (but still feels good)
   Fix Pushing-Pacing-Eltun-bug
   Turn off white-flash when level restarts
   Normalize player collision boxes in idle state
-
-Glitches:
-Mechanics:
-  Spinning - waeker gravity
-  Level design
-Debug Mode:
+  Spinning has weaker gravity while falling
+  Spin forward speedup
+  Spin-jumping thru ENEMIES that hit your head
+  Skid-perfect for spinning near off cliffs
   Debug mode how-to info
+
+0.2.7
+Score multiplicity medium decrease when on floor and slow decrease when in air
+
+Debug Mode:
 Options:
-  Framerate cap (DebugSettings -> Target Framerate: 30-45?)
+  Framerate cap (DebugSettings -> Make sure it works fine at Framerate: 30-45?)
 Level Design:
-  Find help
   Fake walls
 Angus:
   Explosion graphic
-  Should we really have score be on a timer? Encouraging players to get streaks by not landing would be a good way to encourage players to experiment with diving, bashing and spinning
+  Hat Girl DANCE :3
+Replace witch hat with smash hat
+
 Unconfirmed glitches:
   Spinning-back-and-force-against-wall-of-blocks (from right-to-left)
   Eltun and player blocking each other (player seems to jump back at each hit)
@@ -237,5 +241,4 @@ Level 2
 Persistent Data (autosave system)
 
 Notes:
-* Hat Girl DANCE :3
 * Different worlds with different color schemes

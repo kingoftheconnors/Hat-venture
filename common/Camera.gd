@@ -19,10 +19,19 @@ func _ready():
 
 func _process(delta):
 	if target_spot != Vector2.ZERO:
+		var prev_left = limit_left; var prev_right = limit_right;
+		var prev_top = limit_top; var prev_bottom = limit_bottom
 		limit_left = min(get_camera_screen_center().x-Constants.camera_radius.x, position.x-Constants.camera_radius.x)
 		limit_right = max(get_camera_screen_center().x+Constants.camera_radius.x, position.x+Constants.camera_radius.x)
 		limit_top = min(get_camera_screen_center().y-Constants.camera_radius.y, position.y-Constants.camera_radius.y)
 		limit_bottom = max(get_camera_screen_center().y+Constants.camera_radius.y, position.y+Constants.camera_radius.y)
+		if prev_left != limit_left or prev_right != limit_right \
+			or prev_bottom != limit_bottom or prev_top != limit_top:
+			left_body.set_collision_mask_bit(0, false)
+			right_body.set_collision_mask_bit(0, false)
+		else:
+			left_body.set_collision_mask_bit(0, true)
+			right_body.set_collision_mask_bit(0, true)
 	else:
 		position = target.position
 	if left_body.global_position.x != limit_left - 10:
