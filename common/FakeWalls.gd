@@ -9,22 +9,20 @@ extends TileMap
 # Final value of the process's tween
 var goal_opacity = 1
 # Rate of change of the tilemap's transparency
-const VISIBILITY_RATE = 0.075
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if modulate.a != goal_opacity:
-		if abs(modulate.a - goal_opacity) < .1:
-			modulate.a = goal_opacity
-		else:
-			modulate.a = lerp(modulate.a, goal_opacity, VISIBILITY_RATE)
+const VISIBILITY_RATE = 0.07
 
 ## Signal for making the tilemap invisible
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("player"):
-		goal_opacity = 0
+		tween.stop_all()
+		tween.interpolate_property(self, "modulate", self.modulate, Color(1, 1, 1, 0.5), 0.25, Tween.TRANS_CUBIC)
+		tween.start()
 
 ## Signal for making the tilemap visible
 func _on_Area2D_body_exited(body):
 	if body.is_in_group("player"):
-		goal_opacity = 1
+		tween.stop_all()
+		tween.interpolate_property(self, "modulate", self.modulate, Color(1, 1, 1, 1), 0.25, Tween.TRANS_CUBIC)
+		tween.start()
+
+onready var tween : Tween = $Tween
