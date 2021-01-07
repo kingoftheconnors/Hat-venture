@@ -212,17 +212,17 @@ Running does not accelerate in air (but still feels good)
   Fix sprite jitter by pushing camera rendering time later
   Add documentation
   Remove non-parametrized uses of get_node
+  Disable cannonball hitbox after it hits a wall
+  Add Pon as a placeable block in the tilemap
 
 Todo:
   Big Coyote Time for spinny power
-  Cannonball falling after hitting wall still does damage :(
   Enemy score points only being good for one kill
 
 Backlog:
 Level 1
   * Side tracks and secrets (pipes, areas under blocks, etc)
   * Design first level with QP
-  * Checkpoints
   * Music
   * SFX!
 Boss 1
