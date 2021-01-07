@@ -216,12 +216,9 @@ Running does not accelerate in air (but still feels good)
   Add Pon as a placeable block in the tilemap
   Increase Coyote Time while spinning
 
-Todo:
-  Enemy score points only being good for one kill
-
 Backlog:
 Level 1
-  * Side tracks and secrets (pipes, areas under blocks, etc)
+  * Side tracks and secrets (pipes, hidden areas, etc)
   * Design first level with QP
   * Music
   * SFX!
