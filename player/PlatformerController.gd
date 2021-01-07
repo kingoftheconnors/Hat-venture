@@ -14,6 +14,7 @@ const BASE_SPEED = 10 #25
 var base_speed = BASE_SPEED
 const ACCELERATION = 5
 const MAX_SPEED = 93
+const COYOTE_TIME = 5
 var BOUNCE_FORCE := 300
 var FALL_MULTIPLIER : float = 1.1
 var JUMP_STRENGTH := 275
@@ -51,6 +52,7 @@ const POST_SPIN_STUN = 20
 const SPIN_FALL_MULTIPLIER = 0.65
 const SPIN_TERMINAL_VELOCITY_MULTIPLIER = 0.25
 const SPIN_JUMP_DECELERATION = 0.89
+const SPIN_COYOTE_TIME = 15
 const SPIN_DECELERATION = 0.85
 const SPIN_ACCELERATION = 15
 
@@ -434,8 +436,11 @@ func manage_flags():
 			jump()
 
 func refresh_flags():
-	if coyoteTimer < 5:
-		coyoteTimer = 5
+	if coyoteTimer < SPIN_COYOTE_TIME:
+		if spinning:
+			coyoteTimer = SPIN_COYOTE_TIME
+		else:
+			coyoteTimer = COYOTE_TIME
 	if !can_dive:
 		can_dive = true
 

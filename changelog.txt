@@ -214,9 +214,9 @@ Running does not accelerate in air (but still feels good)
   Remove non-parametrized uses of get_node
   Disable cannonball hitbox after it hits a wall
   Add Pon as a placeable block in the tilemap
+  Increase Coyote Time while spinning
 
 Todo:
-  Big Coyote Time for spinny power
   Enemy score points only being good for one kill
 
 Backlog:
