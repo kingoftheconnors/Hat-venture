@@ -1,3 +1,4 @@
+# Song-starting functionality for using signals to affect music
 extends AudioStreamPlayer
 
 func start_music():

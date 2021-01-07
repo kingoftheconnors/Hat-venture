@@ -1,3 +1,11 @@
+# Singleton manager for the player. Keeps track of player variables
+# that would otherwise be destroyed when changing scenes
+# Manages:
+#    Death
+#    Score
+#    Score multipliers
+#    Lives
+#    Pausing
 extends Node
 
 onready var animationPlayer = $AnimationPlayer
@@ -23,6 +31,7 @@ func _process(delta):
 func set_multiplicity_fast_decrease(flag : bool):
 	fast_decrease = flag
 
+## Input method for debug mode effects
 func _unhandled_input(event):
 	if Constants.DEBUG_MODE:
 		if event is InputEventKey and event.pressed and event.scancode == KEY_EQUAL:
@@ -32,6 +41,8 @@ func _unhandled_input(event):
 		if event is InputEventKey and event.pressed and event.scancode == KEY_0:
 			add_pons(3)
 
+## Method for killing the player, and giving a gameover
+## if the players' lives decreases to 0
 func die():
 	# Get current levelname to return to after playing animation
 	var levelName = get_tree().get_current_scene().filename
@@ -58,9 +69,10 @@ func die():
 		#get_tree().change_scene("res://transitionScenes/death.tscn")
 		animationPlayer.play("reveal") # Uncover screen after loading level
 
-func start_level(levelNum):
+## Changes scene to start a level (called by number)
+func start_level(levelNum : String):
 	# Get levelname to return to after playing animation
-	var levelName = "res://level" + str(levelNum) + "/level" + str(levelNum) + ".tscn"
+	var levelName = "res://level" + levelNum + "/level" + levelNum + ".tscn"
 	# Fade to white
 	animationPlayer.play("cover")
 	yield(get_tree().create_timer(.6), "timeout")
@@ -74,6 +86,8 @@ func start_level(levelNum):
 	var _success = get_tree().change_scene(levelName)
 	animationPlayer.play("reveal")
 
+## Adds player score
+## If affects_multiplicity is true, it increments multiplicity
 func add_score(amo, affects_multiplicity = false):
 	score += amo*multiplicity
 	Gui.set_score(score)
@@ -83,6 +97,7 @@ func add_score(amo, affects_multiplicity = false):
 			Gui.set_score_mult(multiplicity)
 			multiplicity_decrease_time_left = MULTIPLICITY_TIME
 
+## Decreases multiplicity by 1 and resets multiplicity timer
 func reduce_multiplicity():
 	multiplicity -= 1
 	Gui.set_score_mult(multiplicity)
@@ -104,12 +119,14 @@ func one_up():
 	Gui.set_lives(lives)
 
 var active_bodies = []
+## Pauses entire game except for the specified nodes
 func pause_except(active_bodies_in_pause):
 	for body in active_bodies_in_pause:
 		body.set_pause_mode(PAUSE_MODE_PROCESS)
 	active_bodies = active_bodies_in_pause
 	get_tree().paused = true
 
+## Unpauses game
 func unpause():
 	for body in active_bodies:
 		if is_instance_valid(body):

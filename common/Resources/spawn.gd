@@ -1,3 +1,4 @@
+# Spawn script. Sets player at this position when level begins
 extends Node2D
 
 export(NodePath) var playerPath

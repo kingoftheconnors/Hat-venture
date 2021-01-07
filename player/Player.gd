@@ -1,3 +1,10 @@
+# Player core script.
+# Manages:
+#   Stomp Attacking
+#	Health
+#   Death
+# REQUIREMENT: All enemies should have a hurtbox with a radius
+# of at least radius 3
 extends Sprite
 
 #onready var jump_enem_sfx = get_node("SoundJumpEnmy")
@@ -46,7 +53,7 @@ func _on_hurtbox_area_entered(area):
 	elif area.is_in_group("ladder"):
 		controller.on_ladders += 1
 
-# Bash at body. If the object is destroyed, return true
+## Attacks given body if possible. If the object is destroyed, return true
 func attack(body):
 	if body.has_method("damage"):
 		# TODO: Play sound effect
@@ -54,6 +61,7 @@ func attack(body):
 		return destroyed
 	return false
 
+## Take damage when falling off cliff. Kills player INSTANTLY
 func cliff_damage():
 	health = 0
 	Gui.update_health(health, MAX_HEALTH)

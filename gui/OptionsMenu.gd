@@ -1,6 +1,8 @@
+# Script for using and saving changes to the options menu
 extends NinePatchRect
 
 func _unhandled_input(event):
+	# Open and close menu
 	if event.is_action_pressed("ui_menu"):
 		if !visible:
 			# Make this menu only active object while menu is open
@@ -19,17 +21,19 @@ func _unhandled_input(event):
 			# Close menu
 			hide()
 
-func _on_MasterVolSlider_value_changed(value):
-	master_volume = value
-	dirty = true
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value-50)
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), value == 0)
-
+## Save all game settings
 func save():
 	var settings = {
 		"master_vol": master_volume
 	}
 	save_system.save_settings(settings)
+
+## Signal function for updating the game's volume
+func _on_MasterVolSlider_value_changed(value):
+	master_volume = value
+	dirty = true
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value-50)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), value == 0)
 
 var save_system : SaveSystem
 var master_volume = 50

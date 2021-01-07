@@ -1,3 +1,6 @@
+# Tilemap script that instances block tiles when level starts.
+# This is required for blocks to give powers and be breakable,
+# but is not needed for horizon or cloud tilemaps.
 extends TileMap
 
 var node_PlaceholderReplacer = preload("res://common/Block.tscn")

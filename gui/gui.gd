@@ -1,4 +1,56 @@
+# Script for updating the gui
+# Manages:
+#    Dialog
+#    Visuals
 extends CanvasLayer
+
+signal textbox_end
+
+const MAX_ENERGY = 4
+
+## Hides all GUI elements
+func hide():
+	gui.visible = false
+## Shows all GUI elements
+func show():
+	gui.visible = true
+
+## Updates GUI for a clean reset for new level
+func start(stageNum):
+	stageName.text = "LV." + str(stageNum)
+	energy.value = 4
+
+# Health
+func update_health(value, max_value):
+	energy.set_max(max_value)
+	energy.set_value(value)
+func heal():
+	energy.value = energy.value + 1
+func reset_energy():
+	energy.value = MAX_ENERGY
+
+# Lives
+func set_lives(num_lives):
+	lives.text = str(num_lives)
+
+# Pons
+func set_pons(amo):
+	pons.text = str(amo)
+
+# Boss energy
+func startBossBattle(life):
+	bossEnergy.value = life
+	# TODO: Show boss health
+
+# Score
+func set_score(amo):
+	playerScore.set_text(":" + ("%06d" % amo))
+func set_score_mult(amo):
+	playerScoreMult.set_text("x%d" % amo)
+	if amo == 1:
+		playerScoreMult.visible = false
+	else:
+		playerScoreMult.visible = true
 
 onready var gui = $Player
 onready var energy = $Player/Energy
@@ -13,51 +65,10 @@ onready var pons = $Player/PonsNum
 onready var scoreArea = $Player/ScoreArea
 onready var bossArea = $Player/BossArea
 
-signal textbox_end
 
-const MAX_ENERGY = 4
-
-func hide():
-	gui.visible = false
-func show():
-	gui.visible = true
-
-func start(stageNum):
-	stageName.text = "LV." + str(stageNum)
-	energy.value = 4
-
-func update_health(value, max_value):
-	energy.set_max(max_value)
-	energy.set_value(value)
-func heal():
-	energy.value = energy.value + 1
-
-func reset_energy():
-	energy.value = MAX_ENERGY
-func set_lives(num_lives):
-	lives.text = str(num_lives)
-
-func set_pons(amo):
-	pons.text = str(amo)
-
-func startBossBattle(life):
-	bossEnergy.value = life
-	# TODO: Show boss health
-
-func set_score(amo):
-	playerScore.set_text(":" + ("%06d" % amo))
-
-func set_score_mult(amo):
-	playerScoreMult.set_text("x%d" % amo)
-	if amo == 1:
-		playerScoreMult.visible = false
-	else:
-		playerScoreMult.visible = true
-
-onready var dialog = $DialogBox
-onready var dialogName = $DialogBox/Name
-onready var dialogText = $DialogBox/Dialog
-onready var textboxes = game_dialog.new()
+### ------------------------------
+### DIALOG
+### -------------------------------
 
 const letters_per_sec = 20.0
 var text_to_run = []
@@ -124,9 +135,6 @@ func end_dialog():
 	gui.visible = true
 	dialog.visible = false
 
-func continue_scene():
-	emit_signal("continue_scene")
-
 func get_printed_lines(dialogText):
 	return dialogText.lines_skipped + dialogText.get_line_count() * dialogText.percent_visible
 
@@ -166,6 +174,9 @@ func crawl(text_length):
 		yield()
 	return
 
+## Sets score multiplicity to visible or invisible
+## based on the amount of time left. Visualizes the speed at
+## which multiplicity time is depleting
 func notify_multiplicity_time(time):
 	if time < 0.1:
 		playerScoreMult.visible = true
@@ -179,3 +190,8 @@ func notify_multiplicity_time(time):
 		playerScoreMult.visible = true
 	elif time < 0.85:
 		playerScoreMult.visible = false
+
+onready var dialog = $DialogBox
+onready var dialogName = $DialogBox/Name
+onready var dialogText = $DialogBox/Dialog
+onready var textboxes = game_dialog.new()

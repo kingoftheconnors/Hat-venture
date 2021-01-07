@@ -1,5 +1,12 @@
+# Template item script. Manages all basic item tasks, and defers
+# the item's effect to an exported script.
+# Manages:
+#    Item collection
+#    Movement
 extends Node2D
 
+## Item's effect script. Must have a power() function that is
+## called when the item is collected
 export(Resource) var itemCommand
 onready var wait_collect = 5
 

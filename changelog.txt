@@ -208,10 +208,13 @@ Running does not accelerate in air (but still feels good)
   Debug mode how-to info
 
 0.2.7
-Score multiplicity medium decrease when on floor and slow decrease when in air
+  Score multiplicity medium decrease when on floor and slow decrease when in air
+  Fix sprite jitter by pushing camera rendering time later
+  Add documentation
 
 Level Design:
-  Fake walls
+  Big Coyote Time for spinny power
+  Cannonball falling after hitting wall still does damage :(
 
 Backlog:
 Level 1
@@ -222,9 +225,9 @@ Level 1
   * SFX!
 Boss 1
   * Crab boi?
-Persistent Data (autosave system)
 Level Select
   * Ship and telescopes
+Persistent Data (autosave system)
 Level 2
   * Enemies and new mechanics
 

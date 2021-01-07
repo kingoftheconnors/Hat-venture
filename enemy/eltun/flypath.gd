@@ -3,13 +3,14 @@ class_name flypath
 
 var velo = Vector2()
 var move_speed = 60
+## Initial direction. Can be any left or right along an enemy's path
 export(int) var direction : int = 1
-
+## Path to a Path2D node the enemy follows
 export(NodePath) var flight_path
 var patrol_points : Array = []
 var patrol_index = -1
 
-# Called when the node enters the scene tree for the first time.
+# Frame process function. Moves body.
 func frame(body : KinematicBody2D, sprite : Sprite, delta):
 	# Set patrol baked points
 	if !flight_path.is_empty() and flight_path.get_name_count() > 0:

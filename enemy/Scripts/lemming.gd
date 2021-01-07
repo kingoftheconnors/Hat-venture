@@ -4,17 +4,19 @@ class_name lemming
 const ENEMY_GRAVITY = 9
 const DEFAULT_TURNAROUND_OFFSET = 8
 var velo = Vector2(30, 0)
-export(int) var direction : int = 1
+## Initial direction. Can be left, stationary, or right
+export(int, -1, 1) var direction : int = 1
 
-onready var floorchecker_obj : RayCast2D = get_node("RayCast2D")
+## Length beyond node to check for a cliff's edge.
+## Must be set to a high value for node to properly turn around
 export(int) var turnaround_offset= 8
+onready var floorchecker_obj : RayCast2D = get_node("RayCast2D")
 
 func _ready():
 	velo.x = velo.x * direction
 
-# Called when the node enters the scene tree for the first time.
+# Frame process function. Moves body.
 func frame(body : KinematicBody2D, sprite : Sprite, delta):
-	print(velo, " - ", frozen)
 	if !frozen:
 		var retVelo = body.move_and_slide(velo, Vector2.UP)
 		# Gravity

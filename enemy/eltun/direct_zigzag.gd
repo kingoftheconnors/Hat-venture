@@ -3,15 +3,17 @@ class_name direct_zigzag
 
 var velo = Vector2(40, 40)
 var DASH_FORCE = Vector2(40,40)
-export(Vector2) var direction = Vector2(1,0)
-var frame = 0
+## Initial direction. Can be any diagonal. Y value must be set
+export(Vector2) var direction = Vector2(1,-1)
 
+## Number of physics frames before node will invert its Y direction
 export(int) var turnaround_time = 100
+var frame = 0
 
 func _ready():
 	velo = DASH_FORCE * direction
 
-# Called when the node enters the scene tree for the first time.
+# Frame process function. Moves body.
 func frame(body : KinematicBody2D, sprite : Sprite, delta):
 	if !frozen:
 		body.move_and_slide(velo, Vector2.UP)

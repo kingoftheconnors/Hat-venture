@@ -1,20 +1,21 @@
+# Dialog Starter functionality for talking with NPCs
+# and scenery in-game. When the Area2D this is attached to
+# is intersecting with the player and the player presses "up"
+# the dialog will be queued in the GUI.
 extends Area2D
 
+## Dialog text box number from the gui/game_dialog file
 export(game_dialog.DIALOG_TYPE) var dialog_num
+## Array of bodies that should remain mobile during dialog
 export(Array, NodePath) var active_bodies_in_dialog
+## If true, this dialog will only happen once before destroying itself
 export(bool) var one_shot
 
-# Signals called by dialog system.
-# Connect using the Node tab while inspecting a dialogStarter node
-# 
-# Methods: you can connect using:
-# animate(string) set the object to animate using an animation
-#		in its animationTree
-# damage(bool) damage it. True for a stomp-style damage, and false
-#		for a blast-style
-signal action1
-signal action2
-signal action3
+## Signals called by dialog system.
+## Connect using the Node tab while inspecting a dialogStarter node
+## Can call any method on any other node in the scene
+signal action1; signal action2; signal action3
+
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_up"):

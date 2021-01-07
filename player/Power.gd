@@ -21,6 +21,8 @@ func set_power(powerType):
 	power_hp = POWER_BASE_HP
 	updatePowerValues()
 
+## Updates variables in animator that control which animation is played
+## based on the player's power
 func updatePowerValues():
 	animator["parameters/PlayerMovement/crouch/blend_position"] = int(power.blendValue)
 	animator["parameters/PlayerMovement/freefall/blend_position"] = int(power.blendValue)
@@ -73,6 +75,7 @@ func set_power_active(flag):
 	else:
 		power.deactivate(platformController, animator)
 
+## Taking damage. Removes player's ability after being hurt twice
 func hit():
 	power_hp -= 1
 	if power_hp <= 0 and power.name() != "DefaultHat":

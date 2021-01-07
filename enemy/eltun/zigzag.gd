@@ -1,3 +1,5 @@
+# Similar to direct_zigzag, but all zigzag movements are in
+# terms of DASHES. Enemy will DASH up-left, then DASH down-left
 extends "res://enemy/Scripts/EnemyController.gd"
 class_name zigzag
 
@@ -5,6 +7,7 @@ var velo = Vector2(40, 80)
 var DASH_FORCE = Vector2(40,80)
 var DASH_FRICTION = 0.985
 var DASH_TRESHHOLD = 30
+## Initial direction. Can be any diagonal. Y value must be set
 export(Vector2) var direction = Vector2(1,0)
 
 func _ready():
@@ -33,7 +36,3 @@ func frame(body : KinematicBody2D, sprite : Sprite, delta):
 
 func get_direction() -> Vector2:
 	return direction
-
-# reference methods for editor accessing flightPath
-func get_script_export_list():
-	return []

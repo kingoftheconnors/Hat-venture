@@ -28,14 +28,3 @@ func frame(body : KinematicBody2D, sprite : Sprite, delta):
 
 func get_direction() -> Vector2:
 	return Vector2(direction, 0)
-
-# reference methods for editor accessing turnaround time
-func get_script_export_list():
-	var property_list = [{
-		"hint": PROPERTY_HINT_NONE,
-		"usage": PROPERTY_USAGE_DEFAULT,
-		"name": "movement/is_turning",
-		"type": TYPE_BOOL,
-		"default": false
-	}]
-	return property_list

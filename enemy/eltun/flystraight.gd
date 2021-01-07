@@ -2,12 +2,13 @@ extends "res://enemy/Scripts/EnemyController.gd"
 class_name flystraight
 
 var velo = Vector2(40, 40)
+## Initial direction. Can be any direction or diagonal.
 export(Vector2) var direction = Vector2(1,0)
 
 func _ready():
 	velo = velo * direction
 
-# Called when the node enters the scene tree for the first time.
+# Frame process function. Moves body.
 func frame(body : KinematicBody2D, sprite : Sprite, delta):
 	if !frozen:
 		var retVelo = body.move_and_slide(velo, Vector2.UP)

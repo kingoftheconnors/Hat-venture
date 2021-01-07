@@ -4,12 +4,13 @@ class_name paraenemy
 const ENEMY_GRAVITY = 8
 var velo = Vector2(30, 0)
 var JUMP_FORCE = 170
-export(Vector2) var direction = Vector2(1,0)
+## Initial direction. Can be left, stationary, or right
+export(int, -1, 1) var direction : int = 1
 
 func _ready():
-	velo.x = velo.x * direction.x
+	velo.x = velo.x * direction
 
-# Called when the node enters the scene tree for the first time.
+# Frame process function. Moves body.
 func frame(body : KinematicBody2D, sprite : Sprite, delta):
 	if !frozen:
 		var retVelo = body.move_and_slide(velo, Vector2.UP)
@@ -24,13 +25,9 @@ func frame(body : KinematicBody2D, sprite : Sprite, delta):
 		if(velo.x * sprite.scale.x < 0):
 			sprite.scale = Vector2(-sprite.scale.x, sprite.scale.y)
 			if sprite.scale.x > 0:
-				direction.x = 1
+				direction = 1
 			else:
-				direction.x = -1
+				direction = -1
 
 func get_direction() -> Vector2:
-	return direction
-
-# reference methods for editor accessing flightPath
-func get_script_export_list():
-	return []
+	return Vector2(direction, 0)

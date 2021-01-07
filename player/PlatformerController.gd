@@ -1,9 +1,13 @@
+# Player movement script and node root. Handles all public-facing
+# methods, as well as all movement calculations.
+# REQUIREMENTS: Expects the PlayerCore script
+# as a child in the path: "ScaleChildren/PlayerCore"
 extends KinematicBody2D
 
 signal off_cliff
 signal dead
 
-# DEFAULT
+# BASIC MOVEMENT
 const PLAYER_GRAVITY = 10
 const TURNOFF_SPEED = 15
 const BASE_SPEED = 10 #25
@@ -13,9 +17,6 @@ const MAX_SPEED = 93
 var BOUNCE_FORCE := 300
 var FALL_MULTIPLIER : float = 1.1
 var JUMP_STRENGTH := 275
-
-# POWERS
-var can_use_power = true
 
 # DIVE
 var diving = false
@@ -31,6 +32,10 @@ const DIVE_OUT_SPEED = 140
 const SUPERDIVE_SPEED = 250
 const MINI_SUPERDIVE_SPEED = 205
 const DIVE_MERCY = 3
+
+# POWERS
+var power_stun = 0
+var can_use_power = true
 
 # RUN
 const MAX_RUNNING_SPEED = 212
@@ -57,7 +62,6 @@ const POST_CRASH_SPEED = 200
 const KNOCKBACK_MULTIPLIER = 140
 const POST_BASH_STUN = 38
 const BASH_CORRECTION_SIZE = 14
-var power_stun = 0
 const POST_BASH_JUMP_TIME = 10
 var post_bash_jump_timer = 0
 const BASH_OUT_STRENGTH = 180
@@ -105,19 +109,22 @@ var direction = 1
 
 var on_ladders = 0
 
+## Respawn hero at level spawn
 func reset_position():
 	position = cur_spawn
 	velo = Vector2()
 
+## Sets level spawn
 func set_spawn(pos):
 	position = pos
 	cur_spawn = pos
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every physics frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	move(delta)
 	manage_flags()
 
+## Calculates velocity and moves player
 func move(delta):
 	var horizontal = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"))
 	var vertical = (Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"))
@@ -252,7 +259,9 @@ func move(delta):
 	if position.y > camera.limit_bottom + 20:
 		emit_signal("off_cliff")
 
-func calc_direc(ui_direc, cur_speed, accel = ACCELERATION, speed = base_speed):
+## Calculates and returns the velocity of a single axis based on direction,
+## acceleration, and current speed.
+func calc_direc(ui_direc, cur_speed, accel = ACCELERATION, speed = base_speed) -> float:
 	if ui_direc > 0 and cur_speed >= ui_direc*base_speed*.9: # Accelerate right
 		return max(cur_speed, min(cur_speed + ui_direc*accel, max_velo))
 	elif ui_direc > 0 and cur_speed > -ui_direc*TURNOFF_SPEED: # On low speed, set to base speed instantly
@@ -264,7 +273,7 @@ func calc_direc(ui_direc, cur_speed, accel = ACCELERATION, speed = base_speed):
 	elif ui_direc != 0:  # Sliding for when velo is launched out of regular range (and attempting to turn back)
 		return cur_speed + ui_direc*accel
 	elif ui_direc == 0 and abs(cur_speed) <= TURNOFF_SPEED:  # Hard stop on release
-		return 0
+		return 0.0
 	else:
 		return cur_speed
 
@@ -375,6 +384,8 @@ func push(direc):
 	if ( velo.y * direc.y < 0 or abs(velo.y) < abs(direc.y) ):
 		velo.y = direc.y
 
+## Processing function called once per frame that tracks all bit timers
+## and state flags for the player
 func manage_flags():
 	power_stun_frame()
 	
@@ -472,6 +483,7 @@ func jump():
 	animator["parameters/PlayerMovement/conditions/jumping"] = true
 	animator["parameters/PlayerMovement/conditions/not_jumping"] = false
 
+## Bounces player upwards (used when stepping on enemy or spring)
 func bounce():
 	var direc = Vector2(0, -BOUNCE_FORCE)
 	if !holding_jump:
@@ -522,10 +534,6 @@ func suspend_movement(flag):
 # the player can be used. This is good for dialog, death scenes, etc
 func is_active():
 	return !frozen
-
-##############################
-# STATE METHODS
-####################
 
 func dive():
 	if can_dive and !diving:
