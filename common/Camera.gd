@@ -5,7 +5,7 @@
 extends Camera2D
 
 ## Object that the camera follows
-onready var target = get_node("../Player")
+onready var target = $"../Player"
 ## Default smoothing for when the smoothing (panning) speed
 ## is decreased
 onready var default_smoothing = smoothing_speed
@@ -16,13 +16,13 @@ const SLOW_SMOOTHING = 2
 var target_spot : Vector2
 
 ## Wall on left side of level. Moves when level limits move
-onready var left_body = get_node("LeftBody")
+onready var left_body = $LeftBody
 ## Wall on right side of level. Moves when level limits move
-onready var right_body = get_node("RightBody")
+onready var right_body = $RightBody
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var level = get_node("..")
+	var level = $".."
 	limit_top = level.up
 	limit_bottom = level.down
 	limit_left = level.left

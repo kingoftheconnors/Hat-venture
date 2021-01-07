@@ -10,7 +10,7 @@ export(int, -1, 1) var direction : int = 1
 ## Length beyond node to check for a cliff's edge.
 ## Must be set to a high value for node to properly turn around
 export(int) var turnaround_offset= 8
-onready var floorchecker_obj : RayCast2D = get_node("RayCast2D")
+onready var floorchecker_obj : RayCast2D = $RayCast2D
 
 func _ready():
 	velo.x = velo.x * direction

@@ -36,8 +36,8 @@ func _on_Area2D_area_entered(area):
 		collect(parent)
 
 func set_velo(_velo):
-	get_node("Body").velo = _velo
+	$Body.velo = _velo
 func set_velo_x(_velo):
-	get_node("Body").velo.x = _velo
+	$Body.velo.x = _velo
 func set_velo_y(_velo):
-	get_node("Body").velo.y = _velo
+	$Body.velo.y = _velo

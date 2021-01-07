@@ -5,7 +5,7 @@
 tool
 extends StaticBody2D
 
-onready var animator = get_node("AnimationTree")
+onready var animator = $AnimationTree
 onready var pon = load("res://items/Resources/Pon.tscn")
 onready var runnerhat = load("res://items/Resources/RunnerHat.tscn")
 

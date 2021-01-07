@@ -88,7 +88,7 @@ func create_spawner():
 	spawner.init(self)
 	get_parent().add_child(spawner)
 
-onready var sprite = get_node("EnemyCore")
+onready var sprite = $EnemyCore
 var is_active = false
 var frozen = false
 

@@ -211,10 +211,12 @@ Running does not accelerate in air (but still feels good)
   Score multiplicity medium decrease when on floor and slow decrease when in air
   Fix sprite jitter by pushing camera rendering time later
   Add documentation
+  Remove non-parametrized uses of get_node
 
-Level Design:
+Todo:
   Big Coyote Time for spinny power
   Cannonball falling after hitting wall still does damage :(
+  Enemy score points only being good for one kill
 
 Backlog:
 Level 1

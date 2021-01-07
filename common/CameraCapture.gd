@@ -7,7 +7,7 @@ export(NodePath) var camera = "../Camera"
 ## When level starts, gets the camera
 onready var cameraObj = get_node(camera)
 ## Size of screen that the player is allowed to adventure around
-onready var screen_radius = get_node("CollisionShape2D").shape.extents
+onready var screen_radius = $CollisionShape2D.shape.extents
 
 ## Captures the camera
 func capture_camera(body):

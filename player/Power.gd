@@ -1,7 +1,7 @@
 extends Node
 
-onready var platformController = get_node("../")
-onready var animator = get_node("../AnimationTree")
+onready var platformController = $".."
+onready var animator = $"../AnimationTree"
 
 export(Resource) var defaultPower
 onready var power = defaultPower.new()

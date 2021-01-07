@@ -7,12 +7,9 @@
 # of at least radius 3
 extends Sprite
 
-#onready var jump_enem_sfx = get_node("SoundJumpEnmy")
-#onready var hurt_sfx = get_node("SoundHurt")
-
 onready var controller = get_parent().get_parent()
-onready var hurtbox = get_node("../hurtbox")
-onready var animator = get_node("../../AnimationTree")
+onready var hurtbox = $"../hurtbox"
+onready var animator = $"../../AnimationTree"
 
 var MAX_HEALTH = 4
 var health = 4
@@ -86,7 +83,7 @@ func heal(amo = 1):
 	health = min(health + amo, MAX_HEALTH)
 	Gui.update_health(health, MAX_HEALTH)
 
-onready var uninvincible_timer = get_node("../../Uninvincible")
+onready var uninvincible_timer = $"../../Uninvincible"
 func turn_invincibilty(flag):
 	if flag == true:
 		uninvincible_timer.start()

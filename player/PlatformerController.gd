@@ -72,15 +72,14 @@ var WALL_CLIMBING_SPEED := 150
 var wall_climbing := false
 
 # Sound effects
-#onready var jump_sfx = get_node("SoundJump")
-onready var scale_manager = get_node("ScaleChildren")
-onready var animator = get_node("AnimationTree")
-onready var animatorPlayer = get_node("AnimationPlayer")
-onready var camera = get_node("../Camera")
-onready var core = get_node("ScaleChildren/PlayerCore")
+onready var scale_manager = $"ScaleChildren"
+onready var animator = $"AnimationTree"
+onready var animatorPlayer = $"AnimationPlayer"
+onready var camera = $"../Camera"
+onready var core = $"ScaleChildren/PlayerCore"
 
-onready var skidRayCast1 = get_node("SkidRay")
-onready var skidRayCast2 = get_node("SkidRay2")
+onready var skidRayCast1 = $"SkidRay"
+onready var skidRayCast2 = $"SkidRay2"
 
 # Movement vars
 var _stun = 0
@@ -277,7 +276,7 @@ func calc_direc(ui_direc, cur_speed, accel = ACCELERATION, speed = base_speed) -
 	else:
 		return cur_speed
 
-onready var feetCollider = get_node("FeetCollider")
+onready var feetCollider = $"FeetCollider"
 func move_player(v):
 	#var snap = Vector2.DOWN * 16 if is_on_floor() and !just_jumped else Vector2.ZERO
 	var prev_velo = v
@@ -319,7 +318,7 @@ func move_player(v):
 	#	new_velo.y = 0
 	return new_velo
 
-onready var bash_collider = get_node("ScaleChildren/bashbox/BashCollider")
+onready var bash_collider = $"ScaleChildren/bashbox/BashCollider"
 func bash_bounce(body):
 	# Special cases when bashing
 	if bashing:
@@ -679,7 +678,7 @@ func damage(isStomp, amount = 1):
 func heal(amount = 1):
 	core.heal(amount)
 
-onready var gravity_timer = get_node("GravityTimer")
+onready var gravity_timer = $"GravityTimer"
 func pause_gravity():
 	gravity = false
 	gravity_timer.start()
