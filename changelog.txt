@@ -216,12 +216,15 @@ Running does not accelerate in air (but still feels good)
   Add Pon as a placeable block in the tilemap
   Increase Coyote Time while spinning
   Add tileset Corners
+
+0.2.8
   Off-screen Secret areas
+  Added Ladders
 
 Backlog:
 Level 1
-  * Ladders
   * One-way platforms
+  * Spring
   * Design first level with QP
   * Music
   * SFX!
@@ -235,13 +238,15 @@ Level 2
   * Enemies and new mechanics
 
 After Angus becomes free:
-  Explosion graphic
-  Hat Girl DANCE :3
   Talk about replacing witch hat with smash hat (propeller)
   Graphics for:
-      Wall background
+      Wall background (upgrade what I made)
       One-way platforms
       Ladders
+      Hat Girl ladder-climbing
+      Explosion
+      Hat Girl DANCE :3
+      Spring
 
 Notes:
 * Different worlds with different color schemes

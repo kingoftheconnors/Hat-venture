@@ -69,9 +69,7 @@ var post_bash_jump_timer = 0
 const BASH_OUT_STRENGTH = 180
 
 # CLIMBING
-var CLIMBING_SPEED := 200
-var WALL_CLIMBING_SPEED := 150
-var wall_climbing := false
+var CLIMBING_SPEED := 150
 
 # Sound effects
 onready var scale_manager = $"ScaleChildren"
@@ -109,6 +107,7 @@ var release_jump_damp : float = 0.4
 var direction = 1
 
 var on_ladders = 0
+var ladder_x = 0
 
 ## Respawn hero at level spawn
 func reset_position():
@@ -244,14 +243,21 @@ func move(delta):
 				velo.y = Constants.terminalVelocity*SPIN_TERMINAL_VELOCITY_MULTIPLIER
 	
 	# Ladder climbing
-	if vertical != 0 and on_ladders > 0:
+	if vertical != 0 and on_ladders > 0 and !(is_on_floor() and vertical > 0):
 		velo.y = vertical * CLIMBING_SPEED
-		climbing = true
+		# Put player on center of ladder
+		position.x = ladder_x
+		# Save when player has used up/down to get ON a ladder
+		set_climb(true)
+	# When on a ladder
 	elif climbing:
+		velo.x = 0
+		# Stopping
 		if vertical == 0:
 			velo.y = 0
+		# Falling
 		if on_ladders == 0:
-			climbing = false
+			set_climb(false)
 	
 	# Apply Movement
 	if !suspended:
@@ -304,6 +310,9 @@ func move_player(v):
 						if collision.local_shape != feetCollider:
 							if collision and collision.collider.is_in_group("block"):
 								collision.collider.collide(collision, self)
+					# Touching floor
+					if climbing and v.y > 0:
+						set_climb(false)
 			# Spin turning around
 			if spinning and recognize_collision:
 				if abs(collision.normal.x) > abs(collision.normal.y):
@@ -482,7 +491,7 @@ func jump():
 	# Energy jump
 	coyoteTimer = 0
 	jump_timer = 0
-	climbing = false
+	set_climb(false)
 	#jump_sfx.play()
 	animator["parameters/PlayerMovement/conditions/jumping"] = true
 	animator["parameters/PlayerMovement/conditions/not_jumping"] = false
@@ -543,6 +552,7 @@ func dive():
 	if can_dive and !diving:
 		can_dive = false
 		diving = true
+		set_climb(false)
 		ignore_air_friction = true
 		max_velo = DIVE_SPEED
 		velo = Vector2(DIVE_SPEED * direction, -DIVE_SPEED*3/4)
@@ -584,6 +594,7 @@ func bash():
 	if !bashing and can_use_power and _stun <= 0:
 		can_use_power = false
 		bashing = true
+		set_climb(false)
 		ignore_air_friction = true
 		uncrouch()
 		max_velo = BASH_SPEED
@@ -620,13 +631,15 @@ func unbash():
 		else:
 			can_use_power = true
 		power_combo = false
-		post_bash_jump_timer = POST_BASH_JUMP_TIME
+		if !climbing:
+			post_bash_jump_timer = POST_BASH_JUMP_TIME
 		core.turn_invincibilty(true)
 
 func spin():
 	if !spinning and can_use_power and _stun <= 0:
 		can_use_power = false
 		spinning = true
+		set_climb(false)
 		ignore_air_friction = true
 		uncrouch()
 		max_velo = SPIN_HORIZONTAL_SPEED
@@ -642,6 +655,13 @@ func unspin():
 		max_velo = MAX_SPEED
 		spinning = false
 		power_stun(POST_SPIN_STUN)
+
+func set_climb(flag):
+	climbing = flag
+	animator["parameters/PlayerMovement/conditions/not_climbing"] = !flag
+	if flag:
+		animator["parameters/PlayerMovement/playback"].travel("climb")
+
 
 ##############################
 # EXTERNAL NODE METHODS
@@ -663,6 +683,12 @@ func set_velo_x(x):
 	velo.x = x
 func set_velo_y(y):
 	velo.y = y
+
+func on_ladder(ladder):
+	on_ladders += 1
+	ladder_x = ladder.position.x
+func off_ladder():
+	on_ladders -= 1
 
 func get_power_node():
 	return $Power
