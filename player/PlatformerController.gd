@@ -257,7 +257,7 @@ func move(delta):
 	if !suspended:
 		velo = move_player(velo)
 	
-	if position.y > camera.limit_bottom + 20:
+	if position.y > camera.lim_bottom + 20:
 		emit_signal("off_cliff")
 
 ## Calculates and returns the velocity of a single axis based on direction,

@@ -35,3 +35,5 @@ collision_mask = 3
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="RightBody"]
 shape = SubResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]
