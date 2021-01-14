@@ -497,8 +497,8 @@ func jump():
 	animator["parameters/PlayerMovement/conditions/not_jumping"] = false
 
 ## Bounces player upwards (used when stepping on enemy or spring)
-func bounce():
-	var direc = Vector2(0, -BOUNCE_FORCE)
+func bounce(multiplier = 1):
+	var direc = Vector2(0, -BOUNCE_FORCE * multiplier)
 	if !holding_jump:
 		direc *= release_jump_damp
 	push(direc)

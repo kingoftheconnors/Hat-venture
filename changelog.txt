@@ -221,10 +221,10 @@ Running does not accelerate in air (but still feels good)
   Off-screen Secret areas
   Added Ladders
   One-way platforms
+  Spring
 
 Backlog:
 Level 1
-  * Spring
   * Design first level with QP
   * Music
   * SFX!

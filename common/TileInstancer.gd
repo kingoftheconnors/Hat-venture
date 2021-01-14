@@ -41,6 +41,9 @@ func _ready():
 		elif "Ladder" in name:
 			var ladder = preload("res://common/Ladder.tscn")
 			node = ladder.instance()
+		elif "Spring" in name:
+			var ladder = preload("res://common/Spring.tscn")
+			node = ladder.instance()
 		
 		if node != null:
 			node.position = (Vector2( pos.x * sizex + (0.5*sizex), pos.y * sizey + (0.5*sizey)))
