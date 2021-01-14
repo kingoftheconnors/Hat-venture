@@ -298,7 +298,7 @@ func move_player(v):
 				if collision.collider.get_collision_layer_bit(1) == true:
 					# Corner correction
 					if collision.local_shape.get_name() == "HeadCollider":
-						if collision.position.y > collision.local_shape.global_position.y - collision.local_shape.shape.radius + .15:
+						if collision.position.y > collision.local_shape.global_position.y - collision.local_shape.shape.radius - collision.local_shape.shape.height/2 + 0.11:
 							# Push player vertically and set recognize_collision to false
 							recognize_collision = false
 							if collision.position.x < global_position.x:
