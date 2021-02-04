@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://level1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://level1/background1.tres" type="TileSet" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://camera/Camera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://enemy/poddle/Poddle.tscn" type="PackedScene" id=6]
 [ext_resource path="res://common/spawn.tscn" type="PackedScene" id=7]
+[ext_resource path="res://enemy/vanill/Vanill.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Music/startSong.gd" type="Script" id=10]
 [ext_resource path="res://enemy/eltun/eltun.tscn" type="PackedScene" id=11]
 [ext_resource path="res://enemy/eltun/flypath.gd" type="Script" id=12]
@@ -136,7 +137,6 @@ playerPath = NodePath("../Player")
 
 [node name="Poddle" parent="." instance=ExtResource( 6 )]
 position = Vector2( 446, 4 )
-is_turning = true
 
 [node name="Crow" parent="." instance=ExtResource( 18 )]
 position = Vector2( 1260.62, -25.4241 )
@@ -152,9 +152,6 @@ position = Vector2( 1775.99, -28.8208 )
 
 [node name="Crow4" parent="." instance=ExtResource( 18 )]
 position = Vector2( 1917.05, -28.8208 )
-
-[node name="Hen4" parent="." instance=ExtResource( 17 )]
-position = Vector2( 330.253, -72.4569 )
 
 [node name="Hen3" parent="." instance=ExtResource( 17 )]
 position = Vector2( 1224.54, -25.9964 )
@@ -203,7 +200,6 @@ script = ExtResource( 10 )
 
 [node name="Poddle2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2063.79, -29.4543 )
-is_turning = true
 
 [node name="TimePiece" parent="." instance=ExtResource( 21 )]
 position = Vector2( 2349.08, -114.113 )
@@ -219,10 +215,13 @@ walled = false
 [node name="CameraCapture4" parent="." instance=ExtResource( 24 )]
 position = Vector2( 266, 132 )
 walled = false
+
+[node name="Vanill" parent="." instance=ExtResource( 8 )]
+position = Vector2( 338.863, -72.0719 )
 [connection signal="body_entered" from="Area2D" to="Area2D/FakeWalls" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D/FakeWalls" method="_on_Area2D_body_exited"]
-[connection signal="dead" from="Player" to="GameOver" method="start_music"]
 [connection signal="dead" from="Player" to="Music" method="stop_music"]
+[connection signal="dead" from="Player" to="GameOver" method="start_music"]
 [connection signal="finished" from="MusicIntro" to="Music" method="start_music"]
 [connection signal="collected" from="TimePiece" to="Music" method="stop_music"]
 

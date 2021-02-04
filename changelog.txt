@@ -225,16 +225,17 @@ Running does not accelerate in air (but still feels good)
 
 Backlog:
 Level 1
-  * Design first level with QP
-  * Music
   * SFX!
+  * Vanills
+  * Design first level with QP
+  * Get on HatInTime Discord and start raising awareness
+  * Music
 Boss 1
   * Crab boi?
 Level Select
   * Ship and telescopes
 Persistent Data (autosave system)
 Level 2
-  * Springs
   * Enemies and new mechanics
 
 After Angus becomes free:

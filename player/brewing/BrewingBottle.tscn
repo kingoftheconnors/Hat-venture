@@ -33,7 +33,7 @@ radius = 5.502
 
 [sub_resource type="Animation" id=7]
 resource_name = "explode"
-length = 0.5
+length = 0.51
 step = 0.05
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -68,15 +68,15 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
+"times": PoolRealArray( 0, 0.3, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
+"update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.607843, 0.607843, 0.607843, 1 ), Color( 0.196078, 0.196078, 0.196078, 1 ) ]
 }
 
 [node name="BrewingBottle" type="AnimatedSprite"]
 frames = SubResource( 5 )
-frame = 1
+frame = 3
 playing = true
 script = ExtResource( 1 )
 

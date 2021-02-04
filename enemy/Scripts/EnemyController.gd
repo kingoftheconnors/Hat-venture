@@ -19,6 +19,11 @@ func _physics_process(delta):
 func frame(body : KinematicBody2D, sprite : Sprite, delta):
 	pass
 
+## Direction getter function. This method is overriden to create different
+## movement patterns
+func get_direction() -> Vector2:
+	return Vector2(0, 0)
+
 ## Attack method used by players and projectiles when attacking
 ## any other node. Passes request to enemy's core
 func damage(isStomp):
@@ -54,6 +59,9 @@ func _on_VisibilityNotifier2D_screen_exited():
 	if spawner != null and !spawner.is_on_screen():
 		respawn(spawner.position)
 
+func set_is_active(flag = true):
+	is_active = flag
+
 ## Getter for finding if the player can see this node
 func is_on_screen():
 	return is_active
@@ -87,6 +95,13 @@ func create_spawner():
 	spawner.position = self.position
 	spawner.init(self)
 	get_parent().add_child(spawner)
+
+## General object spawner for misc uses (such as spawning particles or fx)
+func gen_object(file_path, offset = Vector2.ZERO):
+	var obj = load(file_path)
+	var object_inst = obj.instance()
+	object_inst.set_position(position + offset)
+	get_parent().add_child(object_inst)
 
 onready var sprite = $EnemyCore
 var is_active = false
