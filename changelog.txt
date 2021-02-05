@@ -227,7 +227,6 @@ Running does not accelerate in air (but still feels good)
   Vanill
 
 Backlog:
-Vanill cone don't get player points for hitting it the second time (by reusing existing cone)
 Level 1
   * SFX!
   * Design first level with QP

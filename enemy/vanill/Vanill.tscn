@@ -730,7 +730,7 @@ states/trigger_nocone/node = SubResource( 13 )
 states/trigger_nocone/position = Vector2( 344, 195.444 )
 transitions = [ "default", "die", SubResource( 14 ), "die", "default", SubResource( 15 ), "default", "Throw", SubResource( 16 ), "Throw", "default", SubResource( 17 ), "nocone", "smash", SubResource( 18 ), "smash", "nocone", SubResource( 19 ), "default", "trigger_nocone", SubResource( 20 ), "trigger_nocone", "nocone", SubResource( 21 ), "nocone", "default", SubResource( 22 ) ]
 start_node = "default"
-graph_offset = Vector2( 0, 47.5642 )
+graph_offset = Vector2( 0, -17.9358 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=24]
 
@@ -755,8 +755,8 @@ position = Vector2( -2, 0 )
 texture = ExtResource( 4 )
 vframes = 4
 hframes = 2
-frame = 1
 script = ExtResource( 1 )
+death_score = 200
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyCore"]
 anims/Throw = SubResource( 1 )

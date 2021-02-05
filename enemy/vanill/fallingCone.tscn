@@ -165,6 +165,7 @@ vframes = 4
 hframes = 2
 frame = 7
 script = ExtResource( 4 )
+death_score = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyCore"]
 anims/die = SubResource( 1 )
