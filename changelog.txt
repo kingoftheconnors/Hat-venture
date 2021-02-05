@@ -223,10 +223,13 @@ Running does not accelerate in air (but still feels good)
   One-way platforms
   Spring
 
+0.2.9
+  Vanill
+
 Backlog:
+Vanill cone don't get player points for hitting it the second time (by reusing existing cone)
 Level 1
   * SFX!
-  * Vanills
   * Design first level with QP
   * Get on HatInTime Discord and start raising awareness
   * Music
