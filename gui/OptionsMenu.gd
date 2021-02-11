@@ -10,6 +10,7 @@ func _unhandled_input(event):
 			get_tree().paused = true
 			# Open menu
 			show()
+			$MusicSlider.grab_focus()
 		else:
 			# Save settings when menu closes
 			if dirty:
@@ -23,26 +24,42 @@ func _unhandled_input(event):
 
 ## Save all game settings
 func save():
+	print($PaletteController.get_cur_palette())
 	var settings = {
-		"master_vol": master_volume
+		"music_vol": AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")),
+		"sound_vol": AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SoundEffects")),
+		"palettes": $PaletteController.get_usable_palettes(),
+		"cur_palette": $PaletteController.get_cur_palette()
 	}
 	save_system.save_settings(settings)
 
 ## Signal function for updating the game's volume
 func _on_MasterVolSlider_value_changed(value):
-	master_volume = value
+	set_dirty()
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), value)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), value == -50)
+
+func _on_SoundSlider_value_changed(value):
+	set_dirty()
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SoundEffects"), value)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("SoundEffects"), value == -50)
+
+func set_dirty():
 	dirty = true
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value-50)
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), value == 0)
 
 var save_system : SaveSystem
-var master_volume = 50
 var dirty = false
 
 func _ready():
 	save_system = SaveSystem.new()
 	var settings = save_system.load_settings()
-	print(settings)
-	if settings.has("master_vol"):
-		master_volume = settings["master_vol"]
-		$MasterVolSlider.value = master_volume
+	if settings.has("music_vol"):
+		$MusicSlider.value = settings["music_vol"]
+	if settings.has("sound_vol"):
+		$SoundSlider.value = settings["sound_vol"]
+	if settings.has("palettes") and settings["palettes"] is Array:
+		var palettes = settings["palettes"]
+		$PaletteController.set_usable_palettes(palettes)
+	if settings.has("cur_palette"):
+		$PaletteController.set_cur_palette(settings["cur_palette"])
+

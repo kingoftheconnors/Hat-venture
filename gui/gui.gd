@@ -195,3 +195,12 @@ onready var dialog = $DialogBox
 onready var dialogName = $DialogBox/Name
 onready var dialogText = $DialogBox/Dialog
 onready var textboxes = game_dialog.new()
+
+### ------------------------------
+### Palette
+### -------------------------------
+
+func set_palette(palette_name):
+	palette_controller.set_palette(palette_name)
+
+onready var palette_controller = $PaletteFilter
