@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://font/PressStart2P-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://gui/OptionsMenu.gd" type="Script" id=2]
@@ -13,8 +13,160 @@ size = 8
 outline_size = 1
 font_data = ExtResource( 1 )
 
+[sub_resource type="Animation" id=5]
+resource_name = "large"
+tracks/0/type = "value"
+tracks/0/path = NodePath("NinePatchRect:margin_bottom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -32.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NinePatchRect:margin_left")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 39.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("NinePatchRect:margin_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -40.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NinePatchRect/Volume:custom_fonts/font:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 24 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "medium"
+tracks/0/type = "value"
+tracks/0/path = NodePath("NinePatchRect:margin_bottom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -48.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NinePatchRect:margin_left")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 55.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("NinePatchRect:margin_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -56.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NinePatchRect/Volume:custom_fonts/font:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 20 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "regular"
+tracks/0/type = "value"
+tracks/0/path = NodePath("NinePatchRect:margin_bottom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -64.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NinePatchRect:margin_left")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 71.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("NinePatchRect:margin_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -72.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NinePatchRect/Volume:custom_fonts/font:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 16 ]
+}
+
 [sub_resource type="DynamicFont" id=2]
-size = 8
 outline_size = 1
 font_data = ExtResource( 1 )
 
@@ -27,10 +179,10 @@ pause_mode = 2
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 48.0
+margin_left = 71.0
 margin_top = 16.0
-margin_right = -49.0
-margin_bottom = -16.0
+margin_right = -72.0
+margin_bottom = -64.0
 texture = ExtResource( 3 )
 patch_margin_left = 13
 patch_margin_top = 10
@@ -42,9 +194,11 @@ __meta__ = {
 }
 
 [node name="DebugModeControls" type="Label" parent="NinePatchRect"]
-margin_left = 231.0
+anchor_left = 0.503
+anchor_right = 0.503
+margin_left = 118.969
 margin_top = 8.0
-margin_right = 279.0
+margin_right = 159.969
 margin_bottom = 115.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -64,32 +218,40 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NinePatchRect"]
+root_node = NodePath("../..")
+anims/large = SubResource( 5 )
+anims/medium = SubResource( 4 )
+anims/regular = SubResource( 3 )
+
 [node name="Volume" type="Label" parent="NinePatchRect"]
-anchor_left = 0.094
-anchor_top = 0.114
-anchor_right = 0.094
-anchor_bottom = 0.176
-margin_left = 0.31
-margin_top = 1.76
-margin_right = 56.31
-margin_bottom = 2.816
+anchor_left = 0.096
+anchor_top = 0.1
+anchor_right = 0.096
+anchor_bottom = 0.1
+margin_left = 0.00799942
+margin_right = 56.008
+margin_bottom = 14.0
+rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Volume:"
+valign = 1
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MusicVol" type="Label" parent="NinePatchRect"]
-anchor_left = 0.094
-anchor_top = 0.219
-anchor_right = 0.094
-anchor_bottom = 0.281
-margin_left = -4.962
-margin_top = -5.552
-margin_right = 59.038
-margin_bottom = -4.448
+anchor_left = 0.412
+anchor_top = 0.194
+anchor_right = 0.412
+anchor_bottom = 0.194
+margin_left = -63.924
+margin_top = -0.0400009
+margin_right = 64.076
+margin_bottom = 31.96
+rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "MUSIC"
@@ -101,14 +263,13 @@ __meta__ = {
 }
 
 [node name="MusicSlider" type="HSlider" parent="NinePatchRect"]
-anchor_left = 0.094
-anchor_top = 0.219
+anchor_left = 0.458
+anchor_top = 0.175
 anchor_right = 0.937
-anchor_bottom = 0.281
-margin_left = 67.038
-margin_top = -11.552
-margin_right = -1.95099
-margin_bottom = -2.448
+anchor_bottom = 0.175
+margin_left = -0.0660095
+margin_right = -1.849
+margin_bottom = 22.0
 focus_neighbour_bottom = NodePath("../SoundSlider")
 focus_next = NodePath("../SoundSlider")
 min_value = -50.0
@@ -120,14 +281,15 @@ __meta__ = {
 }
 
 [node name="SFXVol" type="Label" parent="NinePatchRect"]
-anchor_left = 0.094
-anchor_top = 0.219
-anchor_right = 0.094
-anchor_bottom = 0.281
-margin_left = -4.962
-margin_top = 10.448
-margin_right = 59.038
-margin_bottom = 11.552
+anchor_left = 0.412
+anchor_top = 0.294
+anchor_right = 0.412
+anchor_bottom = 0.294
+margin_left = -63.924
+margin_top = -0.0400009
+margin_right = 64.076
+margin_bottom = 31.96
+rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "SFX"
@@ -139,14 +301,14 @@ __meta__ = {
 }
 
 [node name="SoundSlider" type="HSlider" parent="NinePatchRect"]
-anchor_left = 0.094
-anchor_top = 0.219
+anchor_left = 0.458
+anchor_top = 0.288
 anchor_right = 0.937
-anchor_bottom = 0.281
-margin_left = 67.038
-margin_top = 6.448
-margin_right = -1.95099
-margin_bottom = 13.552
+anchor_bottom = 0.288
+margin_left = -0.0660095
+margin_top = -0.079998
+margin_right = -1.849
+margin_bottom = 19.92
 focus_neighbour_top = NodePath("../MusicSlider")
 focus_neighbour_bottom = NodePath("../PaletteController")
 focus_next = NodePath("../PaletteController")
@@ -160,18 +322,37 @@ __meta__ = {
 }
 
 [node name="Palette" type="Label" parent="NinePatchRect"]
-anchor_left = 0.094
-anchor_top = 0.219
-anchor_right = 0.094
-anchor_bottom = 0.281
-margin_left = -4.962
-margin_top = 26.448
-margin_right = 59.038
-margin_bottom = 27.552
+anchor_left = 0.096
+anchor_top = 0.5
+anchor_right = 0.096
+anchor_bottom = 0.5
+margin_left = 0.00799942
+margin_top = 1.00001
+margin_right = 168.008
+margin_bottom = 33.0
+rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Palette"
-align = 2
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Controls" type="Label" parent="NinePatchRect"]
+anchor_left = 0.096
+anchor_top = 0.4
+anchor_right = 0.096
+anchor_bottom = 0.4
+margin_left = 0.00799942
+margin_top = 1.0
+margin_right = 312.008
+margin_bottom = 33.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Edit Controls"
 valign = 1
 uppercase = true
 __meta__ = {
@@ -179,14 +360,14 @@ __meta__ = {
 }
 
 [node name="PaletteController" type="Control" parent="NinePatchRect"]
-anchor_left = 0.094
-anchor_top = 0.219
-anchor_right = 0.094
-anchor_bottom = 0.281
-margin_left = 67.038
-margin_top = 26.448
-margin_right = 187.038
-margin_bottom = 27.552
+anchor_left = 0.458
+anchor_top = 0.475
+anchor_right = 0.955
+anchor_bottom = 0.5
+margin_left = -0.0660095
+margin_top = 5.0
+margin_right = -0.0350037
+margin_bottom = 15.0
 focus_neighbour_top = NodePath("../SoundSlider")
 focus_previous = NodePath("../SoundSlider")
 focus_mode = 2
@@ -196,10 +377,12 @@ __meta__ = {
 }
 
 [node name="Current" type="Label" parent="NinePatchRect/PaletteController"]
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_right = 104.0
-margin_bottom = 2.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -60.0
+margin_right = 180.0
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Classic"
@@ -212,10 +395,10 @@ __meta__ = {
 
 [node name="L" type="Label" parent="NinePatchRect/PaletteController"]
 visible = false
-anchor_bottom = 1.0
-margin_left = 8.0
-margin_right = 16.0
-margin_bottom = 2.0
+anchor_right = 0.114
+margin_right = 9.968
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "<"
@@ -227,31 +410,15 @@ __meta__ = {
 
 [node name="R" type="Label" parent="NinePatchRect/PaletteController"]
 visible = false
-anchor_bottom = 1.0
-margin_left = 104.0
-margin_right = 112.0
-margin_bottom = 2.0
+anchor_left = 0.909
+anchor_right = 1.002
+margin_left = -79.992
+margin_right = 88.224
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="FontSize" type="Label" parent="NinePatchRect"]
-anchor_left = 0.094
-anchor_top = 0.219
-anchor_right = 0.094
-anchor_bottom = 0.281
-margin_left = -4.962
-margin_top = 42.448
-margin_right = 59.038
-margin_bottom = 43.552
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "HUD size"
 align = 2
 valign = 1
 uppercase = true
@@ -259,15 +426,34 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="FontSize" type="Label" parent="NinePatchRect"]
+anchor_left = 0.096
+anchor_top = 0.6
+anchor_right = 0.096
+anchor_bottom = 0.6
+margin_left = 0.00799942
+margin_top = 1.0
+margin_right = 168.008
+margin_bottom = 33.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "HUDsize"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="HudSizeController" type="Control" parent="NinePatchRect"]
-anchor_left = 0.094
-anchor_top = 0.219
-anchor_right = 0.094
-anchor_bottom = 0.281
-margin_left = 67.038
-margin_top = 41.448
-margin_right = 187.038
-margin_bottom = 42.552
+anchor_left = 0.458
+anchor_top = 0.6
+anchor_right = 0.955
+anchor_bottom = 0.6
+margin_left = -0.0660095
+margin_top = 0.999992
+margin_right = -0.0350037
+margin_bottom = 15.0
 focus_neighbour_top = NodePath("../SoundSlider")
 focus_previous = NodePath("../SoundSlider")
 focus_mode = 2
@@ -277,10 +463,12 @@ __meta__ = {
 }
 
 [node name="Current" type="Label" parent="NinePatchRect/HudSizeController"]
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_right = 104.0
-margin_bottom = 2.0
+anchor_left = 0.5
+anchor_right = 0.501
+margin_left = -60.0
+margin_right = 179.912
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Regular"
@@ -293,10 +481,13 @@ __meta__ = {
 
 [node name="L" type="Label" parent="NinePatchRect/HudSizeController"]
 visible = false
-anchor_bottom = 1.0
-margin_left = 8.0
-margin_right = 16.0
-margin_bottom = 2.0
+anchor_top = 0.071
+anchor_right = 0.114
+anchor_bottom = 0.071
+margin_top = 0.00599998
+margin_right = 9.968
+margin_bottom = 30.006
+rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "<"
@@ -308,13 +499,57 @@ __meta__ = {
 
 [node name="R" type="Label" parent="NinePatchRect/HudSizeController"]
 visible = false
-anchor_bottom = 1.0
-margin_left = 104.0
-margin_right = 112.0
-margin_bottom = 2.0
+anchor_left = 0.909
+anchor_top = 0.071
+anchor_right = 1.0
+anchor_bottom = 0.071
+margin_left = -79.992
+margin_top = 0.00599998
+margin_right = 88.4
+margin_bottom = 30.006
+rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
+align = 2
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitToMain" type="Label" parent="NinePatchRect"]
+anchor_left = 0.096
+anchor_top = 0.725
+anchor_right = 0.096
+anchor_bottom = 0.725
+margin_left = 0.00799942
+margin_top = 2.0
+margin_right = 192.008
+margin_bottom = 26.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Quit to main"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitGame" type="Label" parent="NinePatchRect"]
+anchor_left = 0.096
+anchor_top = 0.825
+anchor_right = 0.096
+anchor_bottom = 0.825
+margin_left = 0.00799942
+margin_top = 2.0
+margin_right = 144.008
+margin_bottom = 26.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Quit game"
 valign = 1
 uppercase = true
 __meta__ = {

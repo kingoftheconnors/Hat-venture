@@ -228,16 +228,13 @@ Running does not accelerate in air (but still feels good)
 
 Backlog:
 Menu:
-   1. Music Volume
-   2. SFX Volume
-   3. Set controls
-   4. Palette (Defaults: Regular, Muted, Classic)
-   5. Font/HUD size (Options menu)
+   4. Font/HUD size (Options menu)
+   5. Set controls
    A. Quit to Main
    B. Quit Game
 Set up code for controlling Speed, Invincibility, Infinite Lives, Power-speed, Infinite-dashes, and Frame-Forgiveness
 Last enemy (Gelato)
-Bashing in camera-capture consider being outside it
+BUG: Bashing in camera-capture considered as leaving it
 Level 1
   * SFX!
   * Design first level with QP
