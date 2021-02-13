@@ -187,6 +187,7 @@ anims/quit = SubResource( 3 )
 [node name="GameOverTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
 autoplay = true
+bus = "Music"
 
 [node name="Timer" type="Timer" parent="GameOverTheme"]
 wait_time = 0.5
@@ -196,6 +197,7 @@ script = ExtResource( 9 )
 [node name="GameOverTheme2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 volume_db = -12.0
+bus = "Music"
 script = ExtResource( 8 )
 [connection signal="finished" from="GameOverTheme" to="GameOverTheme/Timer" method="start_timer"]
 [connection signal="timeout" from="GameOverTheme/Timer" to="GameOverTheme2" method="start_music"]

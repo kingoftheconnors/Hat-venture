@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://font/PressStart2P-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://gui/OptionsMenu.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://gui/DebugModeItem.gd" type="Script" id=4]
 [ext_resource path="res://gui/PaletteController.gd" type="Script" id=5]
 [ext_resource path="res://gui/OptionsRoot.gd" type="Script" id=6]
+[ext_resource path="res://gui/HudSizeController.gd" type="Script" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 8
@@ -194,7 +195,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CurrentPalette" type="Label" parent="NinePatchRect/PaletteController"]
+[node name="Current" type="Label" parent="NinePatchRect/PaletteController"]
 anchor_bottom = 1.0
 margin_left = 16.0
 margin_right = 104.0
@@ -258,94 +259,62 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PhotosensitiveMode" type="Label" parent="NinePatchRect"]
+[node name="HudSizeController" type="Control" parent="NinePatchRect"]
 anchor_left = 0.094
 anchor_top = 0.219
 anchor_right = 0.094
 anchor_bottom = 0.281
-margin_left = -4.962
-margin_top = 58.448
-margin_right = 147.038
-margin_bottom = 59.552
+margin_left = 67.038
+margin_top = 41.448
+margin_right = 187.038
+margin_bottom = 42.552
+focus_neighbour_top = NodePath("../SoundSlider")
+focus_previous = NodePath("../SoundSlider")
+focus_mode = 2
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Current" type="Label" parent="NinePatchRect/HudSizeController"]
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_right = 104.0
+margin_bottom = 2.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "PhotoSensitive Mode"
-align = 2
+text = "Regular"
+align = 1
 valign = 1
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SpecialRunMode" type="Label" parent="NinePatchRect"]
-anchor_left = 0.094
-anchor_top = 0.219
-anchor_right = 0.094
-anchor_bottom = 0.281
-margin_left = 3.038
-margin_top = 82.448
-margin_right = 131.038
-margin_bottom = 83.552
+[node name="L" type="Label" parent="NinePatchRect/HudSizeController"]
+visible = false
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_right = 16.0
+margin_bottom = 2.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Special Run Mode"
-align = 2
+text = "<"
 valign = 1
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AssistMode" type="Label" parent="NinePatchRect"]
-anchor_left = 0.094
-anchor_top = 0.219
-anchor_right = 0.094
-anchor_bottom = 0.281
-margin_left = 3.038
-margin_top = 98.448
-margin_right = 91.038
-margin_bottom = 99.552
+[node name="R" type="Label" parent="NinePatchRect/HudSizeController"]
+visible = false
+anchor_bottom = 1.0
+margin_left = 104.0
+margin_right = 112.0
+margin_bottom = 2.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Assist Mode"
-align = 2
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Audio Cues" type="Label" parent="NinePatchRect"]
-anchor_left = 0.094
-anchor_top = 0.219
-anchor_right = 0.094
-anchor_bottom = 0.281
-margin_left = 3.038
-margin_top = 114.448
-margin_right = 131.038
-margin_bottom = 115.552
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "EDIT Audio Cues"
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="SpeedrunClock" type="Label" parent="NinePatchRect"]
-anchor_left = 0.094
-anchor_top = 0.219
-anchor_right = 0.094
-anchor_bottom = 0.281
-margin_left = -4.962
-margin_top = 130.448
-margin_right = 115.038
-margin_bottom = 133.552
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "SPEEDRUN CLOCK"
-align = 2
+text = ">"
 valign = 1
 uppercase = true
 __meta__ = {
@@ -356,3 +325,6 @@ __meta__ = {
 [connection signal="changed" from="NinePatchRect/PaletteController" to="NinePatchRect" method="set_dirty"]
 [connection signal="focus_entered" from="NinePatchRect/PaletteController" to="NinePatchRect/PaletteController" method="_on_focus_entered"]
 [connection signal="focus_exited" from="NinePatchRect/PaletteController" to="NinePatchRect/PaletteController" method="_on_focus_exited"]
+[connection signal="changed" from="NinePatchRect/HudSizeController" to="NinePatchRect" method="set_dirty"]
+[connection signal="focus_entered" from="NinePatchRect/HudSizeController" to="NinePatchRect/HudSizeController" method="_on_focus_entered"]
+[connection signal="focus_exited" from="NinePatchRect/HudSizeController" to="NinePatchRect/HudSizeController" method="_on_focus_exited"]

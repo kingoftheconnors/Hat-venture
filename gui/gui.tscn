@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://gui/lives.png" type="Texture" id=1]
 [ext_resource path="res://gui/white.png" type="Texture" id=2]
@@ -13,29 +13,9 @@
 [ext_resource path="res://gui/DebugMode.gd" type="Script" id=11]
 [ext_resource path="res://common/PlayerGameManager.shader" type="Shader" id=12]
 [ext_resource path="res://gui/PaletteFilter.gd" type="Script" id=13]
+[ext_resource path="res://gui/gui_font.tres" type="DynamicFont" id=14]
 
-[sub_resource type="DynamicFont" id=1]
-size = 8
-font_data = ExtResource( 5 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 8
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 5 )
-
-[sub_resource type="DynamicFont" id=3]
-size = 8
-font_data = ExtResource( 5 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 8
-font_data = ExtResource( 5 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 24
-font_data = ExtResource( 5 )
-
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 12 )
 shader_param/game_white = Color( 1, 1, 1, 1 )
 shader_param/game_light = Color( 0.67451, 0.682353, 0.67451, 1 )
@@ -48,17 +28,372 @@ shader_param/palette_black = Color( 0, 0, 0, 1 )
 shader_param/brightness_level = 0
 shader_param/epsilon = 0.16
 
+[sub_resource type="DynamicFont" id=2]
+size = 8
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 24
+font_data = ExtResource( 5 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "large"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player/EnergyText:custom_fonts/font:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 24 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Player/Pons:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 2, 2 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Player/LivesHat:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 2, 2 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Player/Energy:rect_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 2, 2 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Player:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 208 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Player:rect_size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 320, 32 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("DialogBox/Dialog:custom_fonts/font:size")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 32 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("DialogBox:margin_top")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -64.0 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Player/BossArea/BossEnergy:rect_scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 2, 2 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "medium"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player/EnergyText:custom_fonts/font:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 20 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Player/Pons:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1.5, 1.5 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Player/LivesHat:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1.5, 1.5 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Player/Energy:rect_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1.5, 1.5 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Player:rect_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 320, 28 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Player:rect_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 212 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("DialogBox:margin_top")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -56.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("DialogBox/Dialog:custom_fonts/font:size")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 28 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Player/BossArea/BossEnergy:rect_scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1.5, 1.5 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "regular"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player/EnergyText:custom_fonts/font:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 16 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Player/Pons:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Player/LivesHat:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Player/Energy:rect_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Player:rect_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 320, 24 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Player:rect_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 216 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("DialogBox:margin_top")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -48.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("DialogBox/Dialog:custom_fonts/font:size")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 24 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Player/BossArea/BossEnergy:rect_scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
 [node name="Gui" type="CanvasLayer"]
 pause_mode = 2
 layer = 3
 script = ExtResource( 8 )
+
+[node name="PaletteFilter" type="TextureRect" parent="."]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Name2" type="Label" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -104.0
 margin_bottom = 8.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "DEBUG MODE ON"
 align = 2
@@ -73,21 +408,24 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -24.0
+margin_bottom = 1.52588e-05
 texture = ExtResource( 2 )
-stretch_mode = 1
+stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="EnergyText" type="Label" parent="Player"]
-anchor_left = 0.2
-anchor_right = 0.2
-anchor_bottom = 0.5
-margin_left = -36.0
+anchor_left = 0.287
+anchor_right = 0.287
+anchor_bottom = 0.417
+margin_left = -51.84
 margin_top = 2.0
-margin_right = 28.0
-margin_bottom = -2.0
-custom_fonts/font = SubResource( 2 )
+margin_right = 82.16
+margin_bottom = 7.992
+grow_horizontal = 2
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HAT KID:"
 align = 2
@@ -98,15 +436,18 @@ __meta__ = {
 [node name="Energy" type="TextureProgress" parent="Player"]
 anchor_left = 0.2
 anchor_right = 0.2
-anchor_bottom = 0.5
-margin_left = 28.0
+margin_left = 43.0
 margin_top = 3.0
-margin_right = 59.0
-margin_bottom = -3.0
+margin_right = 74.0
+margin_bottom = 9.0
+rect_pivot_offset = Vector2( 0, 2 )
 max_value = 4.0
 value = 4.0
 texture_under = ExtResource( 3 )
 texture_progress = ExtResource( 4 )
+nine_patch_stretch = true
+stretch_margin_top = 1
+stretch_margin_bottom = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -115,13 +456,16 @@ __meta__ = {
 anchor_left = 0.8
 anchor_right = 0.8
 anchor_bottom = 0.5
-margin_left = -20.0
+margin_left = -1.0
 margin_top = 2.0
-margin_right = 12.0
-margin_bottom = -2.0
-custom_fonts/font = SubResource( 3 )
+margin_right = 63.0
+margin_bottom = 6.0
+grow_horizontal = 2
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "LV.1"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -131,10 +475,11 @@ anchor_left = 0.8
 anchor_top = 0.5
 anchor_right = 0.8
 anchor_bottom = 1.0
-margin_left = -14.0
+margin_left = 2.0
 margin_top = 2.0
-margin_right = -0.999985
+margin_right = 15.0
 margin_bottom = -2.0
+rect_pivot_offset = Vector2( 13, 4 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -145,11 +490,12 @@ anchor_left = 0.8
 anchor_top = 0.5
 anchor_right = 0.8
 anchor_bottom = 1.0
-margin_left = -1.52588e-05
+margin_left = 15.0
 margin_top = 2.0
-margin_right = 8.0
-margin_bottom = -2.0
-custom_fonts/font = SubResource( 3 )
+margin_right = 31.0
+margin_bottom = 6.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "3"
 __meta__ = {
@@ -157,69 +503,82 @@ __meta__ = {
 }
 
 [node name="Pons" type="TextureRect" parent="Player"]
-anchor_left = 0.2
-anchor_right = 0.2
-anchor_bottom = 0.45
-margin_left = 82.0
+anchor_left = 0.475
+anchor_right = 0.475
+anchor_bottom = 1.0
+margin_left = 26.0
 margin_top = 2.0
-margin_right = 96.0
-margin_bottom = -0.799999
+margin_right = 42.0
+margin_bottom = -14.0
+grow_horizontal = 0
+rect_pivot_offset = Vector2( 0, 2 )
 texture = ExtResource( 10 )
+expand = true
+stretch_mode = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PonsNum" type="Label" parent="Player"]
-anchor_left = 0.2
-anchor_right = 0.2
-anchor_bottom = 0.45
-margin_left = 96.0
-margin_top = 2.0
-margin_right = 104.0
-margin_bottom = -0.799999
-custom_fonts/font = SubResource( 3 )
+anchor_left = 0.578
+anchor_top = 0.083
+anchor_right = 0.578
+anchor_bottom = 0.333
+margin_left = -24.96
+margin_top = 2.008
+margin_right = 55.04
+margin_bottom = 20.008
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 0, -4 )
+custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "0"
+text = "    0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ScoreArea" type="Control" parent="Player"]
-anchor_left = 0.2
+anchor_left = 0.112
 anchor_top = 0.5
-anchor_right = 0.2
+anchor_right = 0.112
 anchor_bottom = 1.0
-margin_left = -28.0
-margin_right = -28.0
+margin_left = 15.16
+margin_right = 15.16
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Multiplicity" type="Label" parent="Player/ScoreArea"]
+visible = false
 anchor_left = 0.2
 anchor_right = 0.2
 anchor_bottom = 1.0
-margin_left = 32.0
+margin_left = 30.0
 margin_top = 2.0
-margin_right = 48.0
-margin_bottom = -2.0
-custom_fonts/font = SubResource( 4 )
+margin_right = 78.0
+margin_bottom = 14.0
+grow_horizontal = 2
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 4, 0 )
+custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "x5"
+text = "x5:"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Score" type="Label" parent="Player/ScoreArea"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -8.0
+margin_left = -40.0
 margin_top = 2.0
-margin_right = 32.0
-margin_bottom = -2.0
-custom_fonts/font = SubResource( 3 )
+margin_right = 152.0
+margin_bottom = 26.0
+grow_horizontal = 2
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "SCORE"
+text = "SCORE  :"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -227,39 +586,39 @@ __meta__ = {
 [node name="ScoreNum" type="Label" parent="Player/ScoreArea"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 48.0
+margin_left = 56.0
 margin_top = 2.0
-margin_right = 104.0
-margin_bottom = -2.0
-custom_fonts/font = SubResource( 3 )
+margin_right = 168.0
+margin_bottom = 6.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = ":000000"
-align = 2
+text = "000000"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BossArea" type="Control" parent="Player"]
 visible = false
-anchor_left = 0.2
+anchor_left = 0.112
 anchor_top = 0.5
-anchor_right = 0.2
+anchor_right = 0.112
 anchor_bottom = 1.0
-margin_left = -28.0
+margin_left = 0.16
 margin_top = 9.53674e-07
-margin_right = -28.0
+margin_right = 0.16
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BossEnergyText" type="Label" parent="Player/BossArea"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 8.0
+margin_left = 31.0
 margin_top = 2.0
-margin_right = 56.0
-margin_bottom = -2.0
-custom_fonts/font = SubResource( 3 )
+margin_right = 111.0
+margin_bottom = 18.0
+grow_horizontal = 2
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "BOSS:"
 align = 2
@@ -268,12 +627,11 @@ __meta__ = {
 }
 
 [node name="BossEnergy" type="TextureProgress" parent="Player/BossArea"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 56.0
-margin_top = 4.0
-margin_right = 104.0
-margin_bottom = -2.0
+margin_left = 71.0
+margin_top = 3.0
+margin_right = 119.0
+margin_bottom = 9.00001
+rect_pivot_offset = Vector2( 0, 2 )
 max_value = 6.0
 value = 6.0
 texture_under = ExtResource( 6 )
@@ -287,7 +645,7 @@ visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -88.0
+margin_top = -48.0
 texture = ExtResource( 9 )
 patch_margin_left = 233
 patch_margin_top = 20
@@ -298,28 +656,29 @@ __meta__ = {
 }
 
 [node name="Name" type="Label" parent="DialogBox"]
-anchor_left = 0.025
-anchor_right = 0.175
-anchor_bottom = 0.312
-margin_top = 4.0
-margin_right = -8.00001
-margin_bottom = -7.456
-custom_fonts/font = SubResource( 1 )
+anchor_left = 0.05
+anchor_right = 0.525
+anchor_bottom = 0.333
+margin_bottom = 0.0159998
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Timmy"
+valign = 1
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Dialog" type="Label" parent="DialogBox"]
-anchor_left = 0.025
-anchor_top = 0.25
+anchor_left = 0.05
+anchor_top = 0.333
 anchor_right = 0.975
-anchor_bottom = 0.844
-margin_right = -24.0
-margin_bottom = -1.272
-custom_fonts/font = SubResource( 5 )
+anchor_bottom = 0.865
+margin_top = 0.0159998
+margin_right = 296.0
+margin_bottom = 25.48
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Are you looking for your umbrella? I saw it land near the market area when you, you know..."
 autowrap = true
@@ -328,16 +687,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PaletteFilter" type="TextureRect" parent="."]
-material = SubResource( 6 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 1
-script = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/large = SubResource( 7 )
+anims/medium = SubResource( 9 )
+anims/regular = SubResource( 8 )

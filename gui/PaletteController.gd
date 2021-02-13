@@ -24,9 +24,11 @@ func _input(event):
 func move_left():
 	palette_index = wrapi(palette_index-1, 0, usable_palettes.size())
 	update_palette()
+	emit_signal("changed")
 func move_right():
 	palette_index = wrapi(palette_index+1, 0, usable_palettes.size())
 	update_palette()
+	emit_signal("changed")
 
 func update_palette():
 	current_label.text = usable_palettes[palette_index]
@@ -55,4 +57,4 @@ var usable_palettes : Array = GLOBAL_PALETTES
 var palette_index = 0
 onready var l_arrow : Label = $L
 onready var r_arrow : Label = $R
-onready var current_label : Label = $CurrentPalette
+onready var current_label : Label = $Current

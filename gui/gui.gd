@@ -35,7 +35,7 @@ func set_lives(num_lives):
 
 # Pons
 func set_pons(amo):
-	pons.text = str(amo)
+	pons.text = "    " + str(amo)
 
 # Boss energy
 func startBossBattle(life):
@@ -44,19 +44,29 @@ func startBossBattle(life):
 
 # Score
 func set_score(amo):
-	playerScore.set_text(":" + ("%06d" % amo))
+	playerScore.set_text("%06d" % amo)
 func set_score_mult(amo):
-	playerScoreMult.set_text("x%d" % amo)
+	playerScoreMult.set_text("x%d:" % amo)
 	if amo == 1:
 		playerScoreMult.visible = false
 	else:
 		playerScoreMult.visible = true
+
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_page_up"):
+		set_gui_size(4)
+	if event.is_action_pressed("ui_page_down"):
+		set_gui_size(-4)
+
+func set_gui_size(size):
+	sizeAnimator.play(size)
 
 onready var gui = $Player
 onready var energy = $Player/Energy
 onready var bossEnergy = $Player/BossArea/BossEnergy
 onready var playerScore = $Player/ScoreArea/ScoreNum
 onready var playerScoreMult = $Player/ScoreArea/Multiplicity
+onready var sizeAnimator = $AnimationPlayer
 
 onready var stageName = $Player/StageName
 onready var lives = $Player/LiveNum
@@ -64,7 +74,6 @@ onready var pons = $Player/PonsNum
 
 onready var scoreArea = $Player/ScoreArea
 onready var bossArea = $Player/BossArea
-
 
 ### ------------------------------
 ### DIALOG

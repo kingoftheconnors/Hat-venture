@@ -232,11 +232,9 @@ Menu:
    2. SFX Volume
    3. Set controls
    4. Palette (Defaults: Regular, Muted, Classic)
-   5. Font/HUD size
-   6. Photo-sensitive mode (Power-flash, gain-power-flash, hat-disappear-flash)
-   7. Speedrun Clock (None, Chapter, File)
-   8. Quit to Main
-   9. Quit Game
+   5. Font/HUD size (Options menu)
+   A. Quit to Main
+   B. Quit Game
 Set up code for controlling Speed, Invincibility, Infinite Lives, Power-speed, Infinite-dashes, and Frame-Forgiveness
 Last enemy (Gelato)
 Bashing in camera-capture consider being outside it
@@ -250,11 +248,14 @@ Boss 1
   * Cutscenes
   * Skip-cutscene button (press twice)
 Main Menu
-   2. Audio Cues
-   3. Assist Mode (Speed, Invincibility (bounce up from cliffs and don't lose HP), Infinite Lives, SuperPowers)
+   6. Audio Cues
+   7. Assist Mode (Speed, Invincibility (bounce up from cliffs and don't lose HP), Infinite Lives, SuperPowers)
        Frame-Forgiveness: Kind, Regular, Frame-Perfect (Coyote Time, JumpTime, SlideForgiveness)
-   4. Special Run Mode:
+   8. Special Run Mode:
        Gravity
+       All-powers
+   9. Photo-sensitive mode (Power-flash, gain-power-flash, hat-disappear-flash)
+   10. Speedrun Clock (None, Chapter, File)
 Level Select
   * Ship and telescopes
 Persistent Data (autosave system)
