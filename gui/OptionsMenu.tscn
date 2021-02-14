@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://font/PressStart2P-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://gui/OptionsMenu.gd" type="Script" id=2]
@@ -7,13 +7,19 @@
 [ext_resource path="res://gui/PaletteController.gd" type="Script" id=5]
 [ext_resource path="res://gui/OptionsRoot.gd" type="Script" id=6]
 [ext_resource path="res://gui/HudSizeController.gd" type="Script" id=7]
+[ext_resource path="res://gui/ControlsMenu.gd" type="Script" id=8]
+[ext_resource path="res://gui/KeyController.gd" type="Script" id=9]
+[ext_resource path="res://gui/KeytypeController.gd" type="Script" id=10]
+[ext_resource path="res://gui/SaveKeyController.gd" type="Script" id=11]
+[ext_resource path="res://gui/DefaultKeyController.gd" type="Script" id=12]
+[ext_resource path="res://gui/ControlMenuController.gd" type="Script" id=13]
 
 [sub_resource type="DynamicFont" id=1]
 size = 8
 outline_size = 1
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 resource_name = "large"
 tracks/0/type = "value"
 tracks/0/path = NodePath("NinePatchRect:margin_bottom")
@@ -64,7 +70,7 @@ tracks/3/keys = {
 "values": [ 24 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "medium"
 tracks/0/type = "value"
 tracks/0/path = NodePath("NinePatchRect:margin_bottom")
@@ -115,8 +121,7 @@ tracks/3/keys = {
 "values": [ 20 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "regular"
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath("NinePatchRect:margin_bottom")
 tracks/0/interp = 1
@@ -166,9 +171,602 @@ tracks/3/keys = {
 "values": [ 16 ]
 }
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=5]
 outline_size = 1
 font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "large"
+tracks/0/type = "value"
+tracks/0/path = NodePath("KeyboardKeys/ui_up:custom_fonts/font:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 24 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:margin_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -16.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:margin_left")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 17.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("KeyboardKeys/ui_up:margin_right")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 240.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("KeyboardKeys/ui_down:margin_right")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 240 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("KeyboardKeys/ui_left:margin_right")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 240.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("KeyboardKeys/ui_right:margin_right")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 240 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("KeyboardKeys/ui_A:margin_right")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 240 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("KeyboardKeys/ui_B:margin_right")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 240 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("KeyboardKeys/ui_release:margin_right")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 240 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("KeyboardKeys/ui_menu:margin_right")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 240 ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Controller:margin_left")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -118.206 ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Controller:margin_right")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 118.794 ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Keyboard:margin_left")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.205999 ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Keyboard:margin_right")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 235.206 ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath(".:margin_bottom")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -32.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "medium"
+tracks/0/type = "value"
+tracks/0/path = NodePath("KeyboardKeys/ui_up:custom_fonts/font:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 20 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:margin_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -31.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:margin_left")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 32.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("KeyboardKeys/ui_up:margin_right")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 220 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("KeyboardKeys/ui_down:margin_right")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 220 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("KeyboardKeys/ui_left:margin_right")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 220 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("KeyboardKeys/ui_right:margin_right")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 220 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("KeyboardKeys/ui_A:margin_right")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 220 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("KeyboardKeys/ui_B:margin_right")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 220 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("KeyboardKeys/ui_release:margin_right")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 220 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("KeyboardKeys/ui_menu:margin_right")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 220 ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Controller:margin_left")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -118.206 ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Controller:margin_right")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 118.794 ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Keyboard:margin_left")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.205999 ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Keyboard:margin_right")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 235.206 ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath(".:margin_bottom")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -48.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "regular"
+tracks/0/type = "value"
+tracks/0/path = NodePath("KeyboardKeys/ui_up:custom_fonts/font:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 16 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:margin_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -64.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:margin_left")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 64.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("KeyboardKeys/ui_up:margin_right")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 159.929 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("KeyboardKeys/ui_down:margin_right")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 159.921 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("KeyboardKeys/ui_left:margin_right")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 159.929 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("KeyboardKeys/ui_right:margin_right")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 159.921 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("KeyboardKeys/ui_A:margin_right")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 159.929 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("KeyboardKeys/ui_B:margin_right")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 159.921 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("KeyboardKeys/ui_release:margin_right")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 159.929 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("KeyboardKeys/ui_menu:margin_right")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 159.921 ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Keyboard:margin_left")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -0.0640011 ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Keyboard:margin_right")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 175.936 ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Controller:margin_left")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -87.936 ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Controller:margin_right")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 88.064 ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath(".:margin_bottom")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -64.0 ]
+}
+
+[sub_resource type="StyleBoxFlat" id=9]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
 
 [node name="OptionsMenu" type="CanvasLayer"]
 layer = 5
@@ -176,7 +774,6 @@ script = ExtResource( 6 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 pause_mode = 2
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 71.0
@@ -220,9 +817,9 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NinePatchRect"]
 root_node = NodePath("../..")
-anims/large = SubResource( 5 )
-anims/medium = SubResource( 4 )
-anims/regular = SubResource( 3 )
+anims/large = SubResource( 2 )
+anims/medium = SubResource( 3 )
+anims/regular = SubResource( 4 )
 
 [node name="Volume" type="Label" parent="NinePatchRect"]
 anchor_left = 0.096
@@ -233,7 +830,7 @@ margin_left = 0.00799942
 margin_right = 56.008
 margin_bottom = 14.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Volume:"
 valign = 1
@@ -252,7 +849,7 @@ margin_top = -0.0400009
 margin_right = 64.076
 margin_bottom = 31.96
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "MUSIC"
 align = 2
@@ -290,7 +887,7 @@ margin_top = -0.0400009
 margin_right = 64.076
 margin_bottom = 31.96
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "SFX"
 align = 2
@@ -310,13 +907,49 @@ margin_top = -0.079998
 margin_right = -1.849
 margin_bottom = 19.92
 focus_neighbour_top = NodePath("../MusicSlider")
-focus_neighbour_bottom = NodePath("../PaletteController")
-focus_next = NodePath("../PaletteController")
+focus_neighbour_bottom = NodePath("../Controls")
+focus_next = NodePath("../Controls")
 focus_previous = NodePath("../MusicSlider")
 min_value = -50.0
 max_value = 0.0
 step = 5.0
 tick_count = 11
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Controls" type="Label" parent="NinePatchRect"]
+anchor_left = 0.051
+anchor_top = 0.4
+anchor_right = 0.051
+anchor_bottom = 0.406
+margin_left = -0.0270004
+margin_top = 1.0
+margin_right = 327.973
+margin_bottom = 32.04
+rect_scale = Vector2( 0.5, 0.5 )
+focus_neighbour_top = NodePath("../SoundSlider")
+focus_neighbour_bottom = NodePath("../PaletteController")
+focus_mode = 2
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = " Edit Controls"
+valign = 1
+uppercase = true
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="L" type="Label" parent="NinePatchRect/Controls"]
+visible = false
+margin_right = 16.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
+valign = 1
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -331,28 +964,9 @@ margin_top = 1.00001
 margin_right = 168.008
 margin_bottom = 33.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Palette"
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Controls" type="Label" parent="NinePatchRect"]
-anchor_left = 0.096
-anchor_top = 0.4
-anchor_right = 0.096
-anchor_bottom = 0.4
-margin_left = 0.00799942
-margin_top = 1.0
-margin_right = 312.008
-margin_bottom = 33.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Edit Controls"
 valign = 1
 uppercase = true
 __meta__ = {
@@ -368,7 +982,9 @@ margin_left = -0.0660095
 margin_top = 5.0
 margin_right = -0.0350037
 margin_bottom = 15.0
-focus_neighbour_top = NodePath("../SoundSlider")
+focus_neighbour_top = NodePath("../Controls")
+focus_neighbour_bottom = NodePath("../HudSizeController")
+focus_next = NodePath("../HudSizeController")
 focus_previous = NodePath("../SoundSlider")
 focus_mode = 2
 script = ExtResource( 5 )
@@ -383,7 +999,7 @@ margin_left = -60.0
 margin_right = 180.0
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Classic"
 align = 1
@@ -399,7 +1015,7 @@ anchor_right = 0.114
 margin_right = 9.968
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "<"
 valign = 1
@@ -416,7 +1032,7 @@ margin_left = -79.992
 margin_right = 88.224
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 align = 2
@@ -436,7 +1052,7 @@ margin_top = 1.0
 margin_right = 168.008
 margin_bottom = 33.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HUDsize"
 valign = 1
@@ -454,8 +1070,8 @@ margin_left = -0.0660095
 margin_top = 0.999992
 margin_right = -0.0350037
 margin_bottom = 15.0
-focus_neighbour_top = NodePath("../SoundSlider")
-focus_previous = NodePath("../SoundSlider")
+focus_neighbour_top = NodePath("../PaletteController")
+focus_previous = NodePath("../PaletteController")
 focus_mode = 2
 script = ExtResource( 7 )
 __meta__ = {
@@ -469,7 +1085,7 @@ margin_left = -60.0
 margin_right = 179.912
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Regular"
 align = 1
@@ -488,7 +1104,7 @@ margin_top = 0.00599998
 margin_right = 9.968
 margin_bottom = 30.006
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "<"
 valign = 1
@@ -508,7 +1124,7 @@ margin_top = 0.00599998
 margin_right = 88.4
 margin_bottom = 30.006
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 align = 2
@@ -528,7 +1144,7 @@ margin_top = 2.0
 margin_right = 192.008
 margin_bottom = 26.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Quit to main"
 valign = 1
@@ -547,7 +1163,7 @@ margin_top = 2.0
 margin_right = 144.008
 margin_bottom = 26.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Quit game"
 valign = 1
@@ -555,11 +1171,609 @@ uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ControlsMenu" type="NinePatchRect" parent="."]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = 16.0
+margin_right = -64.0
+margin_bottom = -64.0
+texture = ExtResource( 3 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ControlsMenu"]
+anims/large = SubResource( 6 )
+anims/medium = SubResource( 7 )
+anims/regular = SubResource( 8 )
+
+[node name="Header" type="Label" parent="ControlsMenu"]
+anchor_left = 0.503
+anchor_top = 0.1
+anchor_right = 0.503
+anchor_bottom = 0.1
+margin_left = -80.576
+margin_right = 239.424
+margin_bottom = 32.0
+grow_horizontal = 2
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Controls"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Keyboard" type="Label" parent="ControlsMenu"]
+anchor_left = 0.042
+anchor_top = 0.2
+anchor_right = 0.042
+anchor_bottom = 0.2
+margin_left = -0.0640011
+margin_right = 175.936
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+focus_neighbour_right = NodePath("../Controller")
+focus_neighbour_bottom = NodePath("../KeyboardKeys/ui_up")
+focus_mode = 2
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Keyboard"
+align = 1
+valign = 1
+clip_text = true
+uppercase = true
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="Label" parent="ControlsMenu/Keyboard"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -144.0
+focus_neighbour_right = NodePath("../Down")
+focus_neighbour_bottom = NodePath("../Left")
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="Panel" parent="ControlsMenu/Keyboard"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Controller" type="Label" parent="ControlsMenu"]
+anchor_left = 0.958
+anchor_top = 0.2
+anchor_right = 0.958
+anchor_bottom = 0.2
+margin_left = -87.936
+margin_right = 88.064
+margin_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.5, 0.5 )
+focus_neighbour_left = NodePath("../Keyboard")
+focus_neighbour_bottom = NodePath("../KeyboardKeys/ui_down")
+focus_mode = 2
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Controller"
+align = 1
+valign = 1
+clip_text = true
+uppercase = true
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="Label" parent="ControlsMenu/Controller"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -144.0
+focus_neighbour_right = NodePath("../Down")
+focus_neighbour_bottom = NodePath("../Left")
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="Panel" parent="ControlsMenu/Controller"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeyboardKeys" type="Control" parent="ControlsMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ui_up" type="Label" parent="ControlsMenu/KeyboardKeys"]
+anchor_left = 0.047
+anchor_top = 0.35
+anchor_right = 0.047
+anchor_bottom = 0.35
+margin_left = -0.489
+margin_top = -3.8147e-06
+margin_right = 159.929
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+focus_neighbour_top = NodePath("../../Keyboard")
+focus_neighbour_right = NodePath("../ui_down")
+focus_neighbour_bottom = NodePath("../ui_left")
+focus_mode = 2
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = " Up:Up"
+valign = 1
+clip_text = true
+uppercase = true
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="Label" parent="ControlsMenu/KeyboardKeys/ui_up"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -144.0
+focus_neighbour_right = NodePath("../Down")
+focus_neighbour_bottom = NodePath("../Left")
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ui_down" type="Label" parent="ControlsMenu/KeyboardKeys"]
+anchor_left = 0.503
+anchor_top = 0.35
+anchor_right = 0.503
+anchor_bottom = 0.35
+margin_left = -0.0790024
+margin_top = -3.8147e-06
+margin_right = 159.921
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+focus_neighbour_left = NodePath("../ui_up")
+focus_neighbour_top = NodePath("../../Controller")
+focus_neighbour_bottom = NodePath("../ui_right")
+focus_mode = 2
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = " Down:down"
+valign = 1
+clip_text = true
+uppercase = true
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+keyname = "Down"
+keybind = "ui_down"
+cur_key = "Down"
+
+[node name="Arrow" type="Label" parent="ControlsMenu/KeyboardKeys/ui_down"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -144.0
+focus_neighbour_right = NodePath("../Down")
+focus_neighbour_bottom = NodePath("../Left")
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ui_left" type="Label" parent="ControlsMenu/KeyboardKeys"]
+anchor_left = 0.047
+anchor_top = 0.45
+anchor_right = 0.047
+anchor_bottom = 0.45
+margin_left = -0.489
+margin_right = 159.929
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+focus_neighbour_top = NodePath("../ui_up")
+focus_neighbour_right = NodePath("../ui_right")
+focus_neighbour_bottom = NodePath("../ui_A")
+focus_mode = 2
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = " left:left"
+valign = 1
+clip_text = true
+uppercase = true
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+keyname = "Left"
+keybind = "ui_left"
+cur_key = "Left"
+
+[node name="Arrow" type="Label" parent="ControlsMenu/KeyboardKeys/ui_left"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -144.0
+focus_neighbour_right = NodePath("../Down")
+focus_neighbour_bottom = NodePath("../Left")
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ui_right" type="Label" parent="ControlsMenu/KeyboardKeys"]
+anchor_left = 0.503
+anchor_top = 0.45
+anchor_right = 0.503
+anchor_bottom = 0.45
+margin_left = -0.0790024
+margin_right = 159.921
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+focus_neighbour_left = NodePath("../ui_left")
+focus_neighbour_top = NodePath("../ui_down")
+focus_neighbour_bottom = NodePath("../ui_B")
+focus_mode = 2
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = " Right:right"
+valign = 1
+clip_text = true
+uppercase = true
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+keyname = "Right"
+keybind = "ui_right"
+cur_key = "Right"
+
+[node name="Arrow" type="Label" parent="ControlsMenu/KeyboardKeys/ui_right"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -144.0
+focus_neighbour_right = NodePath("../Down")
+focus_neighbour_bottom = NodePath("../Left")
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ui_A" type="Label" parent="ControlsMenu/KeyboardKeys"]
+anchor_left = 0.047
+anchor_top = 0.55
+anchor_right = 0.047
+anchor_bottom = 0.55
+margin_left = -0.0790005
+margin_right = 159.929
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+focus_neighbour_top = NodePath("../ui_left")
+focus_neighbour_right = NodePath("../ui_B")
+focus_neighbour_bottom = NodePath("../ui_release")
+focus_mode = 2
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = " Jump:Z"
+valign = 1
+clip_text = true
+uppercase = true
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+keyname = "Jump"
+keybind = "ui_A"
+cur_key = "Z"
+
+[node name="Arrow" type="Label" parent="ControlsMenu/KeyboardKeys/ui_A"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -144.0
+focus_neighbour_right = NodePath("../Down")
+focus_neighbour_bottom = NodePath("../Left")
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ui_B" type="Label" parent="ControlsMenu/KeyboardKeys"]
+anchor_left = 0.503
+anchor_top = 0.55
+anchor_right = 0.503
+anchor_bottom = 0.55
+margin_left = -0.271011
+margin_right = 159.921
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+focus_neighbour_left = NodePath("../ui_A")
+focus_neighbour_top = NodePath("../ui_right")
+focus_neighbour_bottom = NodePath("../ui_menu")
+focus_mode = 2
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = " Power:X"
+valign = 1
+clip_text = true
+uppercase = true
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+keyname = "Power"
+keybind = "ui_B"
+cur_key = "X"
+
+[node name="Arrow" type="Label" parent="ControlsMenu/KeyboardKeys/ui_B"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -144.0
+focus_neighbour_right = NodePath("../Down")
+focus_neighbour_bottom = NodePath("../Left")
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ui_release" type="Label" parent="ControlsMenu/KeyboardKeys"]
+anchor_left = 0.047
+anchor_top = 0.65
+anchor_right = 0.047
+anchor_bottom = 0.65
+margin_left = -0.0710001
+margin_top = -7.62939e-06
+margin_right = 159.929
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+focus_neighbour_top = NodePath("../ui_A")
+focus_neighbour_right = NodePath("../ui_menu")
+focus_neighbour_bottom = NodePath("../../Save")
+focus_mode = 2
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = " Drop:C"
+valign = 1
+clip_text = true
+uppercase = true
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+keyname = "Drop"
+keybind = "ui_release"
+cur_key = "C"
+
+[node name="Arrow" type="Label" parent="ControlsMenu/KeyboardKeys/ui_release"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -144.0
+focus_neighbour_right = NodePath("../Down")
+focus_neighbour_bottom = NodePath("../Left")
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ui_menu" type="Label" parent="ControlsMenu/KeyboardKeys"]
+anchor_left = 0.503
+anchor_top = 0.65
+anchor_right = 0.503
+anchor_bottom = 0.65
+margin_left = -0.0790024
+margin_top = -7.62939e-06
+margin_right = 159.921
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+focus_neighbour_left = NodePath("../ui_release")
+focus_neighbour_top = NodePath("../ui_B")
+focus_neighbour_bottom = NodePath("../../Defaults")
+focus_mode = 2
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = " Menu:escape"
+valign = 1
+clip_text = true
+uppercase = true
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+keyname = "Menu"
+keybind = "ui_menu"
+cur_key = "Escape"
+
+[node name="Arrow" type="Label" parent="ControlsMenu/KeyboardKeys/ui_menu"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -144.0
+focus_neighbour_right = NodePath("../Down")
+focus_neighbour_bottom = NodePath("../Left")
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Defaults" type="Label" parent="ControlsMenu"]
+anchor_left = 0.5
+anchor_top = 0.85
+anchor_right = 0.501
+anchor_bottom = 0.85
+margin_right = 158.808
+margin_bottom = 24.0
+rect_scale = Vector2( 0.5, 0.5 )
+focus_neighbour_left = NodePath("../Save")
+focus_neighbour_top = NodePath("../KeyboardKeys/ui_menu")
+focus_mode = 2
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = " Defaults"
+valign = 1
+uppercase = true
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="Label" parent="ControlsMenu/Defaults"]
+visible = false
+anchor_right = 0.088
+anchor_bottom = 1.0
+margin_right = 0.512
+focus_neighbour_right = NodePath("../Down")
+focus_neighbour_bottom = NodePath("../Left")
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Save" type="Label" parent="ControlsMenu"]
+anchor_left = 0.042
+anchor_top = 0.85
+anchor_right = 0.042
+anchor_bottom = 0.85
+margin_left = -0.0640049
+margin_right = 175.936
+margin_bottom = 24.0
+rect_scale = Vector2( 0.5, 0.5 )
+focus_neighbour_top = NodePath("../KeyboardKeys/ui_release")
+focus_neighbour_right = NodePath("../Defaults")
+focus_mode = 2
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = " Save"
+valign = 1
+uppercase = true
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="Label" parent="ControlsMenu/Save"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 16, 0 )
+focus_neighbour_right = NodePath("../Down")
+focus_neighbour_bottom = NodePath("../Left")
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="value_changed" from="NinePatchRect/MusicSlider" to="NinePatchRect" method="_on_MasterVolSlider_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/SoundSlider" to="NinePatchRect" method="_on_SoundSlider_value_changed"]
+[connection signal="focus_entered" from="NinePatchRect/Controls" to="NinePatchRect/Controls" method="_on_focus_entered"]
+[connection signal="focus_exited" from="NinePatchRect/Controls" to="NinePatchRect/Controls" method="_on_focus_exited"]
 [connection signal="changed" from="NinePatchRect/PaletteController" to="NinePatchRect" method="set_dirty"]
 [connection signal="focus_entered" from="NinePatchRect/PaletteController" to="NinePatchRect/PaletteController" method="_on_focus_entered"]
 [connection signal="focus_exited" from="NinePatchRect/PaletteController" to="NinePatchRect/PaletteController" method="_on_focus_exited"]
 [connection signal="changed" from="NinePatchRect/HudSizeController" to="NinePatchRect" method="set_dirty"]
 [connection signal="focus_entered" from="NinePatchRect/HudSizeController" to="NinePatchRect/HudSizeController" method="_on_focus_entered"]
 [connection signal="focus_exited" from="NinePatchRect/HudSizeController" to="NinePatchRect/HudSizeController" method="_on_focus_exited"]
+[connection signal="focus_entered" from="ControlsMenu/Keyboard" to="ControlsMenu/Keyboard" method="_on_focus_entered"]
+[connection signal="focus_exited" from="ControlsMenu/Keyboard" to="ControlsMenu/Keyboard" method="_on_focus_exited"]
+[connection signal="focus_entered" from="ControlsMenu/Controller" to="ControlsMenu/Controller" method="_on_focus_entered"]
+[connection signal="focus_exited" from="ControlsMenu/Controller" to="ControlsMenu/Controller" method="_on_focus_exited"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_up" to="ControlsMenu/KeyboardKeys/ui_up" method="_on_focus_entered"]
+[connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_up" to="ControlsMenu/KeyboardKeys/ui_up" method="_on_focus_exited"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_down" to="ControlsMenu/KeyboardKeys/ui_down" method="_on_focus_entered"]
+[connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_down" to="ControlsMenu/KeyboardKeys/ui_down" method="_on_focus_exited"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_left" to="ControlsMenu/KeyboardKeys/ui_left" method="_on_focus_entered"]
+[connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_left" to="ControlsMenu/KeyboardKeys/ui_left" method="_on_focus_exited"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_right" to="ControlsMenu/KeyboardKeys/ui_right" method="_on_focus_entered"]
+[connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_right" to="ControlsMenu/KeyboardKeys/ui_right" method="_on_focus_exited"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_A" to="ControlsMenu/KeyboardKeys/ui_A" method="_on_focus_entered"]
+[connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_A" to="ControlsMenu/KeyboardKeys/ui_A" method="_on_focus_exited"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_B" to="ControlsMenu/KeyboardKeys/ui_B" method="_on_focus_entered"]
+[connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_B" to="ControlsMenu/KeyboardKeys/ui_B" method="_on_focus_exited"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_release" to="ControlsMenu/KeyboardKeys/ui_release" method="_on_focus_entered"]
+[connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_release" to="ControlsMenu/KeyboardKeys/ui_release" method="_on_focus_exited"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_menu" to="ControlsMenu/KeyboardKeys/ui_menu" method="_on_focus_entered"]
+[connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_menu" to="ControlsMenu/KeyboardKeys/ui_menu" method="_on_focus_exited"]
+[connection signal="focus_entered" from="ControlsMenu/Defaults" to="ControlsMenu/Defaults" method="_on_focus_entered"]
+[connection signal="focus_exited" from="ControlsMenu/Defaults" to="ControlsMenu/Defaults" method="_on_focus_exited"]
+[connection signal="focus_entered" from="ControlsMenu/Save" to="ControlsMenu/Save" method="_on_focus_entered"]
+[connection signal="focus_exited" from="ControlsMenu/Save" to="ControlsMenu/Save" method="_on_focus_exited"]
+[connection signal="selected" from="ControlsMenu/Save" to="ControlsMenu" method="close" flags=3 binds= [ true ]]
+[connection signal="selected" from="ControlsMenu/Save" to="ControlsMenu" method="save"]

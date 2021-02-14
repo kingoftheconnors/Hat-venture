@@ -34,8 +34,9 @@ func update_gui():
 	current_label.text = usable_sizes[size_index]
 	Gui.set_gui_size(usable_sizes[size_index])
 	size_animator.play(usable_sizes[size_index])
+	control_menu_size_animator.play(usable_sizes[size_index])
 
-func set_cur_size(size : float):
+func set_cur_size(size : String):
 	var new_size_index = usable_sizes.find(size)
 	if new_size_index >= 0:
 		size_index = new_size_index
@@ -49,3 +50,4 @@ onready var l_arrow : Label = $L
 onready var r_arrow : Label = $R
 onready var current_label : Label = $Current
 onready var size_animator : AnimationPlayer = $"../AnimationPlayer"
+onready var control_menu_size_animator : AnimationPlayer = $"../../ControlsMenu/AnimationPlayer"

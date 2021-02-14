@@ -10,7 +10,7 @@ func _unhandled_input(event):
 			get_tree().paused = true
 			# Open menu
 			show()
-			$MusicSlider.grab_focus()
+			reset_focus()
 		else:
 			# Save settings when menu closes
 			if dirty:
@@ -22,6 +22,13 @@ func _unhandled_input(event):
 			# Close menu
 			hide()
 
+func reset_focus(type : String = "default"):
+	match type:
+		"controls":
+			$Controls.grab_focus()
+		_:
+			$MusicSlider.grab_focus()
+
 ## Save all game settings
 func save():
 	print($PaletteController.get_cur_palette())
@@ -29,7 +36,8 @@ func save():
 		"music_vol": AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")),
 		"sound_vol": AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SoundEffects")),
 		"palettes": $PaletteController.get_usable_palettes(),
-		"cur_palette": $PaletteController.get_cur_palette()
+		"cur_palette": $PaletteController.get_cur_palette(),
+		"hud_size": $HudSizeController.get_cur_size()
 	}
 	save_system.save_settings(settings)
 
@@ -62,4 +70,6 @@ func _ready():
 		$PaletteController.set_usable_palettes(palettes)
 	if settings.has("cur_palette"):
 		$PaletteController.set_cur_palette(settings["cur_palette"])
+	if settings.has("hud_size"):
+		$HudSizeController.set_cur_size(settings["hud_size"])
 
