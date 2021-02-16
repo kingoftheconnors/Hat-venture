@@ -13,6 +13,9 @@ onready var animator = get_node_or_null("AnimationTree")
 export(int) var damage = 1
 ## Score-points player gets for defeating this enemy
 export(int) var death_score = 100
+## Invincibility. Useful for making an enemy
+## bounce-off-able but still unkillable
+export(bool) var invincible = false
 
 ## Gets damage this enemy does to the player
 func get_damage():
@@ -21,14 +24,17 @@ func get_damage():
 ## Attack method used by players and projectiles when attacking
 ## any other node.
 func damage(isStomp):
-	emit_signal("hurt")
-	if animator:
-		if isStomp:
-			animator["parameters/playback"].travel("smash")
-		else:
-			animator["parameters/playback"].travel("die")
-	# Always die, so always true
-	return true
+	if !invincible:
+		emit_signal("hurt")
+		if animator:
+			if isStomp:
+				animator["parameters/playback"].travel("smash")
+			else:
+				animator["parameters/playback"].travel("die")
+		# Dead, so always true
+		return true
+	# If invincible, return false
+	return false
 
 ## Processes required ceremony after an enemy is first killed
 func register_death():
