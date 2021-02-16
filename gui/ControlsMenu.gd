@@ -12,6 +12,7 @@ func _unhandled_input(event):
 func open():
 	# Open menu
 	show()
+	reset_to_keybinds()
 	$KeyboardKeys/ui_up.grab_focus()
 
 func close():
@@ -40,14 +41,7 @@ func set_to_defaults():
 		key.reset_to_default()
 	save()
 
-
-func set_dirty():
-	dirty = true
-
-var save_system : SaveSystem
-var dirty = false
-
-func _ready():
+func reset_to_keybinds():
 	save_system = SaveSystem.new()
 	var settings = save_system.load_keybinds()
 	for action in InputMap.get_actions():
@@ -61,6 +55,16 @@ func _ready():
 				# Change text of KeyboardKeys
 				var key_node = key_controller.get_node(action)
 				key_node.set_key(settings[action][i])
+
+
+func set_dirty():
+	dirty = true
+
+var save_system : SaveSystem
+var dirty = false
+
+func _ready():
+	reset_to_keybinds()
 
 onready var key_controller = $KeyboardKeys
 onready var settings_menu = $"../NinePatchRect"

@@ -233,8 +233,6 @@ Running does not accelerate in air (but still feels good)
 
 Backlog:
 Menu:
-   5. Set controls
-        7. Reload keybinds and set values to when opening controls menu (for when closing without save)
    A. Quit to Main
    B. Quit Game
 Set up code for controlling Speed, Invincibility, Infinite Lives, Power-speed, Infinite-dashes, and Frame-Forgiveness
