@@ -3,15 +3,15 @@ extends NinePatchRect
 
 func _unhandled_input(event):
 	# Open and close menu
-	if event.is_action_pressed("ui_menu"):
-		if !visible:
+	if event.is_action_pressed("ui_menu") or event.is_action_pressed("ui_B"):
+		if !visible and event.is_action_pressed("ui_menu"):
 			# Make this menu only active object while menu is open
 			pause_mode = PAUSE_MODE_PROCESS
 			get_tree().paused = true
 			# Open menu
 			show()
 			reset_focus()
-		else:
+		elif visible:
 			# Save settings when menu closes
 			if dirty:
 				save()
@@ -21,6 +21,7 @@ func _unhandled_input(event):
 			pause_mode = PAUSE_MODE_INHERIT
 			# Close menu
 			hide()
+		get_tree().set_input_as_handled()
 
 func reset_focus(type : String = "default"):
 	match type:
