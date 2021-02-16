@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://font/PressStart2P-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://gui/OptionsMenu.gd" type="Script" id=2]
@@ -9,9 +9,11 @@
 [ext_resource path="res://gui/HudSizeController.gd" type="Script" id=7]
 [ext_resource path="res://gui/ControlsMenu.gd" type="Script" id=8]
 [ext_resource path="res://gui/KeyController.gd" type="Script" id=9]
+[ext_resource path="res://gui/QuitToMainController.gd" type="Script" id=10]
 [ext_resource path="res://gui/SaveKeyController.gd" type="Script" id=11]
 [ext_resource path="res://gui/DefaultKeyController.gd" type="Script" id=12]
 [ext_resource path="res://gui/ControlMenuController.gd" type="Script" id=13]
+[ext_resource path="res://gui/QuitGameController.gd" type="Script" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 8
@@ -919,6 +921,8 @@ margin_top = 0.999992
 margin_right = -0.0350037
 margin_bottom = 15.0
 focus_neighbour_top = NodePath("../PaletteController")
+focus_neighbour_bottom = NodePath("../QuitToMain")
+focus_next = NodePath("../QuitToMain")
 focus_previous = NodePath("../PaletteController")
 focus_mode = 2
 script = ExtResource( 7 )
@@ -987,14 +991,36 @@ anchor_left = 0.096
 anchor_top = 0.725
 anchor_right = 0.096
 anchor_bottom = 0.725
-margin_left = 0.00799942
+margin_left = -7.992
 margin_top = 2.0
-margin_right = 192.008
+margin_right = 200.008
 margin_bottom = 26.0
 rect_scale = Vector2( 0.5, 0.5 )
+focus_neighbour_top = NodePath("../HudSizeController")
+focus_neighbour_bottom = NodePath("../QuitGame")
+focus_next = NodePath("../QuitGame")
+focus_previous = NodePath("../HudSizeController")
+focus_mode = 2
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Quit to main"
+text = " Quit to main"
+valign = 1
+uppercase = true
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="Label" parent="NinePatchRect/QuitToMain"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -192.0
+focus_neighbour_right = NodePath("../Down")
+focus_neighbour_bottom = NodePath("../Left")
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
 valign = 1
 uppercase = true
 __meta__ = {
@@ -1006,14 +1032,32 @@ anchor_left = 0.096
 anchor_top = 0.825
 anchor_right = 0.096
 anchor_bottom = 0.825
-margin_left = 0.00799942
+margin_left = -7.992
 margin_top = 2.0
-margin_right = 144.008
+margin_right = 152.008
 margin_bottom = 26.0
 rect_scale = Vector2( 0.5, 0.5 )
+focus_mode = 2
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Quit game"
+text = " Quit game"
+valign = 1
+uppercase = true
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="Label" parent="NinePatchRect/QuitGame"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -144.0
+focus_neighbour_right = NodePath("../Down")
+focus_neighbour_bottom = NodePath("../Left")
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
 valign = 1
 uppercase = true
 __meta__ = {
@@ -1022,7 +1066,6 @@ __meta__ = {
 
 [node name="ControlsMenu" type="NinePatchRect" parent="."]
 pause_mode = 2
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 64.0
@@ -1102,7 +1145,10 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -144.0
+margin_left = -1.07001
+margin_top = -0.799988
+margin_right = -145.07
+margin_bottom = -0.799988
 focus_neighbour_right = NodePath("../Down")
 focus_neighbour_bottom = NodePath("../Left")
 custom_fonts/font = SubResource( 5 )
@@ -1163,14 +1209,14 @@ __meta__ = {
 [node name="ui_left" type="Label" parent="ControlsMenu/KeyboardKeys" groups=[
 "key",
 ]]
-anchor_left = 0.047
-anchor_top = 0.325
+anchor_left = 0.042
+anchor_top = 0.353
 anchor_right = 0.047
-anchor_bottom = 0.325
-margin_left = -0.489
-margin_top = 4.0
+anchor_bottom = 0.353
+margin_left = 0.470999
+margin_top = -0.0320015
 margin_right = 159.929
-margin_bottom = 36.0
+margin_bottom = 31.968
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_top = NodePath("../ui_up")
 focus_neighbour_right = NodePath("../ui_right")
@@ -1210,13 +1256,13 @@ __meta__ = {
 "key",
 ]]
 anchor_left = 0.503
-anchor_top = 0.325
+anchor_top = 0.353
 anchor_right = 0.503
-anchor_bottom = 0.325
+anchor_bottom = 0.353
 margin_left = -0.0790024
-margin_top = 4.0
+margin_top = -0.0320015
 margin_right = 159.921
-margin_bottom = 36.0
+margin_bottom = 31.968
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_left = NodePath("../ui_left")
 focus_neighbour_top = NodePath("../ui_down")
@@ -1256,13 +1302,13 @@ __meta__ = {
 "key",
 ]]
 anchor_left = 0.047
-anchor_top = 0.425
+anchor_top = 0.481
 anchor_right = 0.047
-anchor_bottom = 0.425
+anchor_bottom = 0.481
 margin_left = -0.0790005
-margin_top = 8.0
+margin_top = -0.0640106
 margin_right = 159.929
-margin_bottom = 40.0
+margin_bottom = 31.936
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_top = NodePath("../ui_left")
 focus_neighbour_right = NodePath("../ui_B")
@@ -1302,13 +1348,13 @@ __meta__ = {
 "key",
 ]]
 anchor_left = 0.503
-anchor_top = 0.425
+anchor_top = 0.481
 anchor_right = 0.503
-anchor_bottom = 0.425
+anchor_bottom = 0.481
 margin_left = -0.271011
-margin_top = 8.0
+margin_top = -0.0640106
 margin_right = 159.921
-margin_bottom = 40.0
+margin_bottom = 31.936
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_left = NodePath("../ui_A")
 focus_neighbour_top = NodePath("../ui_right")
@@ -1348,13 +1394,13 @@ __meta__ = {
 "key",
 ]]
 anchor_left = 0.047
-anchor_top = 0.525
+anchor_top = 0.608
 anchor_right = 0.047
-anchor_bottom = 0.525
+anchor_bottom = 0.608
 margin_left = -0.0710011
-margin_top = 12.0
+margin_top = 0.0480042
 margin_right = 159.929
-margin_bottom = 44.0
+margin_bottom = 32.048
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_top = NodePath("../ui_A")
 focus_neighbour_right = NodePath("../ui_menu")
@@ -1394,13 +1440,13 @@ __meta__ = {
 "key",
 ]]
 anchor_left = 0.503
-anchor_top = 0.525
+anchor_top = 0.608
 anchor_right = 0.503
-anchor_bottom = 0.525
+anchor_bottom = 0.611
 margin_left = -0.0790024
-margin_top = 12.0
+margin_top = 0.0480042
 margin_right = 159.921
-margin_bottom = 44.0
+margin_bottom = 31.616
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_left = NodePath("../ui_release")
 focus_neighbour_top = NodePath("../ui_B")
@@ -1438,12 +1484,12 @@ __meta__ = {
 
 [node name="Defaults" type="Label" parent="ControlsMenu"]
 anchor_left = 0.5
-anchor_top = 0.725
+anchor_top = 0.808
 anchor_right = 0.5
-anchor_bottom = 0.725
-margin_top = 12.0
+anchor_bottom = 0.808
+margin_top = 0.0480042
 margin_right = 159.0
-margin_bottom = 36.0
+margin_bottom = 24.048
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_left = NodePath("../Save")
 focus_neighbour_top = NodePath("../KeyboardKeys/ui_menu")
@@ -1476,13 +1522,13 @@ __meta__ = {
 
 [node name="Save" type="Label" parent="ControlsMenu"]
 anchor_left = 0.042
-anchor_top = 0.725
+anchor_top = 0.808
 anchor_right = 0.042
-anchor_bottom = 0.725
+anchor_bottom = 0.808
 margin_left = -0.0640039
-margin_top = 12.0
+margin_top = 0.0480042
 margin_right = 175.936
-margin_bottom = 36.0
+margin_bottom = 24.048
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_top = NodePath("../KeyboardKeys/ui_release")
 focus_neighbour_right = NodePath("../Defaults")
@@ -1522,6 +1568,10 @@ __meta__ = {
 [connection signal="changed" from="NinePatchRect/HudSizeController" to="NinePatchRect" method="set_dirty"]
 [connection signal="focus_entered" from="NinePatchRect/HudSizeController" to="NinePatchRect/HudSizeController" method="_on_focus_entered"]
 [connection signal="focus_exited" from="NinePatchRect/HudSizeController" to="NinePatchRect/HudSizeController" method="_on_focus_exited"]
+[connection signal="focus_entered" from="NinePatchRect/QuitToMain" to="NinePatchRect/QuitToMain" method="_on_focus_entered"]
+[connection signal="focus_exited" from="NinePatchRect/QuitToMain" to="NinePatchRect/QuitToMain" method="_on_focus_exited"]
+[connection signal="focus_entered" from="NinePatchRect/QuitGame" to="NinePatchRect/QuitGame" method="_on_focus_entered"]
+[connection signal="focus_exited" from="NinePatchRect/QuitGame" to="NinePatchRect/QuitGame" method="_on_focus_exited"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_up" to="ControlsMenu/KeyboardKeys/ui_up" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_up" to="ControlsMenu/KeyboardKeys/ui_up" method="_on_focus_exited"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_down" to="ControlsMenu/KeyboardKeys/ui_down" method="_on_focus_entered"]
