@@ -6,17 +6,8 @@
 #    Score multipliers
 #    Lives
 #    Pausing
+#    Player-specific buffs (Special runs, Assist mode)
 extends Node
-
-onready var animationPlayer = $AnimationPlayer
-
-var lives = 3
-var pons = 0
-var score = 0
-var multiplicity = 1
-const MULTIPLICITY_TIME = 2
-var fast_decrease := false
-var multiplicity_decrease_time_left = -1
 
 func _process(delta):
 	if multiplicity_decrease_time_left >= 0:
@@ -132,3 +123,43 @@ func unpause():
 		if is_instance_valid(body):
 			body.set_pause_mode(PAUSE_MODE_INHERIT)
 	get_tree().paused = false
+
+func set_invinciblity():
+	invincibility = true
+
+# Player variables
+var lives = 3
+var pons = 0
+var score = 0
+var multiplicity = 1
+const MULTIPLICITY_TIME = 2
+var fast_decrease := false
+var multiplicity_decrease_time_left = -1
+
+# Player buffs
+enum InvincibilityType {
+	NONE,
+	INVINCIBLE,
+	INFINITE_LIVES,
+	INFINITE_HP
+}
+var invincibility : int = InvincibilityType.NONE
+
+enum PowerDelay {
+	REGULAR,
+	FAST,
+	INSTANT
+}
+var power_speed : int = PowerDelay.REGULAR
+
+enum FrameForgiveness {
+	REGULAR,
+	EMPATHETIC,
+	NINJA_MASTER,
+	NONE
+}
+var frame_forgiveness : int = FrameForgiveness.REGULAR
+
+var dive_num : int = 1
+
+onready var animationPlayer = $AnimationPlayer

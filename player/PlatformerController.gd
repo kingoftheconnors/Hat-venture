@@ -22,7 +22,7 @@ var JUMP_STRENGTH := 275
 # DIVE
 var diving = false
 var can_superdive = false
-var can_dive = true
+var can_dive : int = 1
 const SUPERDIVE_TIME = 7
 var superdive_timer = 0
 var mini_superdive_timer = 0
@@ -453,8 +453,8 @@ func refresh_flags():
 			coyoteTimer = SPIN_COYOTE_TIME
 		else:
 			coyoteTimer = COYOTE_TIME
-	if !can_dive:
-		can_dive = true
+	if can_dive < PlayerGameManager.dive_num:
+		can_dive = PlayerGameManager.dive_num
 
 var holding_jump = false
 
@@ -533,7 +533,13 @@ func power_stun(amo):
 	
 func power_stun_frame():
 	if power_stun > 0:
-		power_stun -= 1
+		match PlayerGameManager.power_speed:
+			PlayerGameManager.PowerDelay.FAST:
+				power_stun -= 2
+			PlayerGameManager.PowerDelay.INSTANT:
+				power_stun = 0
+			_:
+				power_stun -= 1
 		if power_stun <= 0:
 			animator["parameters/PlayerEffect/playback"].travel("powerlessOff")
 			can_use_power = true
@@ -552,8 +558,8 @@ func is_active():
 	return !frozen
 
 func dive():
-	if can_dive and !diving:
-		can_dive = false
+	if can_dive > 0 and !diving:
+		can_dive -= 1
 		diving = true
 		set_climb(false)
 		ignore_air_friction = true

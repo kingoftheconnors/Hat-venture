@@ -232,11 +232,7 @@ Running does not accelerate in air (but still feels good)
     HUD Size
 
 Backlog:
-Menu:
-   A. Quit to Main
-   B. Quit Game
-Set up code for controlling Speed, Invincibility, Infinite Lives, Power-speed, Infinite-dashes, and Frame-Forgiveness
-BUG: Vanill not immediately fixing
+BUG: Vanill not immediately dying when jumped
 Last enemy (Gelato)
 BUG: Bashing in camera-capture considered as leaving it
 NPC "press up" notifier
@@ -251,7 +247,7 @@ Boss 1
   * Skip-cutscene button (press twice)
 Main Menu
    6. Audio Cues
-   7. Assist Mode (Speed, Invincibility (bounce up from cliffs and don't lose HP), Infinite Lives, SuperPowers)
+   7. Assist Mode (Speed [OS.set_time_scale], Invincibility (bounce up from cliffs and don't lose HP), Infinite Lives, SuperPowers)
        Frame-Forgiveness: Kind, Regular, Frame-Perfect (Coyote Time, JumpTime, SlideForgiveness)
    8. Special Run Mode:
        Gravity
