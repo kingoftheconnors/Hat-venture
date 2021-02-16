@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=1]
 [ext_resource path="res://enemy/Scripts/Hitbox.gd" type="Script" id=2]
@@ -715,7 +715,9 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=22]
 
-[sub_resource type="AnimationNodeStateMachine" id=23]
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachine" id=24]
 states/Throw/node = SubResource( 8 )
 states/Throw/position = Vector2( 431, 118 )
 states/default/node = SubResource( 9 )
@@ -728,21 +730,21 @@ states/smash/node = SubResource( 12 )
 states/smash/position = Vector2( 548, 269.444 )
 states/trigger_nocone/node = SubResource( 13 )
 states/trigger_nocone/position = Vector2( 344, 195.444 )
-transitions = [ "default", "die", SubResource( 14 ), "die", "default", SubResource( 15 ), "default", "Throw", SubResource( 16 ), "Throw", "default", SubResource( 17 ), "nocone", "smash", SubResource( 18 ), "smash", "nocone", SubResource( 19 ), "default", "trigger_nocone", SubResource( 20 ), "trigger_nocone", "nocone", SubResource( 21 ), "nocone", "default", SubResource( 22 ) ]
+transitions = [ "default", "die", SubResource( 14 ), "die", "default", SubResource( 15 ), "default", "Throw", SubResource( 16 ), "Throw", "default", SubResource( 17 ), "nocone", "smash", SubResource( 18 ), "smash", "nocone", SubResource( 19 ), "default", "trigger_nocone", SubResource( 20 ), "trigger_nocone", "nocone", SubResource( 21 ), "nocone", "default", SubResource( 22 ), "Throw", "trigger_nocone", SubResource( 23 ) ]
 start_node = "default"
-graph_offset = Vector2( 0, -17.9358 )
+graph_offset = Vector2( 0, 14.7042 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=25]
 
-[sub_resource type="CapsuleShape2D" id=25]
+[sub_resource type="CapsuleShape2D" id=26]
 radius = 3.0
 height = 14.3208
 
-[sub_resource type="CapsuleShape2D" id=26]
+[sub_resource type="CapsuleShape2D" id=27]
 radius = 6.0
 height = 3.0
 
-[sub_resource type="CapsuleShape2D" id=27]
+[sub_resource type="CapsuleShape2D" id=28]
 radius = 6.5
 height = 0.0
 
@@ -755,6 +757,7 @@ position = Vector2( -2, 0 )
 texture = ExtResource( 4 )
 vframes = 4
 hframes = 2
+frame = 1
 script = ExtResource( 1 )
 death_score = 200
 
@@ -768,10 +771,10 @@ anims/smash = SubResource( 6 )
 anims/trigger_nocone = SubResource( 7 )
 
 [node name="AnimationTree" type="AnimationTree" parent="EnemyCore"]
-tree_root = SubResource( 23 )
+tree_root = SubResource( 24 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 24 )
+parameters/playback = SubResource( 25 )
 
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
@@ -780,7 +783,7 @@ position = Vector2( 0, -5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 rotation = 1.5708
-shape = SubResource( 25 )
+shape = SubResource( 26 )
 
 [node name="HitBox" type="Area2D" parent="." groups=[
 "hitbox",
@@ -790,12 +793,12 @@ script = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 0, 2 )
 rotation = 1.5708
-shape = SubResource( 26 )
+shape = SubResource( 27 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1.5 )
 rotation = 1.5708
-shape = SubResource( 27 )
+shape = SubResource( 28 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
@@ -806,7 +809,7 @@ collision_mask = 2
 
 [node name="CherryThrower" type="Node" parent="."]
 script = ExtResource( 5 )
-[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="CherryThrower" method="_on_VisibilityNotifier2D_screen_entered"]
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="CherryThrower" method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
