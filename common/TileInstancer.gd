@@ -38,12 +38,15 @@ func _ready():
 			elif "Pon" in name:
 				var ponItem = preload("res://items/Resources/Pon.tscn")
 				node = ponItem.instance()
+		elif "LadderTop" in name:
+			var ladder = preload("res://common/LadderTop.tscn")
+			node = ladder.instance()
 		elif "Ladder" in name:
 			var ladder = preload("res://common/Ladder.tscn")
 			node = ladder.instance()
 		elif "Spring" in name:
-			var ladder = preload("res://common/Spring.tscn")
-			node = ladder.instance()
+			var spring = preload("res://common/Spring.tscn")
+			node = spring.instance()
 		
 		if node != null:
 			node.position = (Vector2( pos.x * sizex + (0.5*sizex), pos.y * sizey + (0.5*sizey)))

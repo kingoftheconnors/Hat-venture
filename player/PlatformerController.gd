@@ -69,7 +69,7 @@ var post_bash_jump_timer = 0
 const BASH_OUT_STRENGTH = 180
 
 # CLIMBING
-var CLIMBING_SPEED := 150
+var CLIMBING_SPEED := 80
 
 # Sound effects
 onready var scale_manager = $"ScaleChildren"
@@ -106,7 +106,8 @@ var release_jump_damp : float = 0.4
 
 var direction = 1
 
-var on_ladders = 0
+var on_ladders : int = 0
+var on_ladders_top : Array = []
 var ladder_x = 0
 
 ## Respawn hero at level spawn
@@ -243,21 +244,33 @@ func move(delta):
 				velo.y = Constants.terminalVelocity*SPIN_TERMINAL_VELOCITY_MULTIPLIER
 	
 	# Ladder climbing
-	if vertical != 0 and on_ladders > 0 and !(is_on_floor() and vertical > 0):
-		velo.y = vertical * CLIMBING_SPEED
-		# Put player on center of ladder
-		position.x = ladder_x
-		# Save when player has used up/down to get ON a ladder
-		set_climb(true)
+	if vertical != 0 and (on_ladders > 0 or on_ladders_top.size() > 0):
+		# Basic climb on ladders
+		var can_climb = on_ladders > 0 and !(is_on_floor() and vertical > 0)
+		# Climbing down through top-ladder
+		if is_on_floor() and vertical > 0 and on_ladders_top.size() > 0:
+			can_climb = false
+			for ladder in on_ladders_top:
+				can_climb = can_climb or ladder.climb_down()
+		if can_climb:
+			velo.y = vertical * CLIMBING_SPEED
+			# Put player on center of ladder
+			position.x = ladder_x
+			# Save when player has used up/down to get ON a ladder
+			set_climb(true)
 	# When on a ladder
 	elif climbing:
 		velo.x = 0
-		# Stopping
-		if vertical == 0:
-			velo.y = 0
 		# Falling
-		if on_ladders == 0:
+		if on_ladders <= 0:
 			set_climb(false)
+		# Hitting floor
+		elif (is_on_floor() and vertical > 0):
+			set_climb(false)
+		# Stopping while still on ladder
+		elif vertical == 0:
+			velo.y = 0
+			set_climb_speed(false)
 	
 	# Apply Movement
 	if !suspended:
@@ -288,6 +301,7 @@ onready var feetCollider = $"FeetCollider"
 func move_player(v):
 	#var snap = Vector2.DOWN * 16 if is_on_floor() and !just_jumped else Vector2.ZERO
 	var prev_velo = v
+	print(v)
 	var new_velo = move_and_slide(v, Vector2.UP)#_with_snap(velo, snap, Vector2.UP, true)
 	var recognize_collision = true
 	for i in get_slide_count():
@@ -665,11 +679,25 @@ func unspin():
 		spinning = false
 		power_stun(POST_SPIN_STUN)
 
-func set_climb(flag):
-	climbing = flag
+func set_climb(flag : bool):
+	if on_ladders_top.size() > 0 and climbing:
+		animator["parameters/PlayerMovement/conditions/climbing_over"] = true
+		animator["parameters/PlayerMovement/conditions/not_climbing_over"] = false
+	else:
+		animator["parameters/PlayerMovement/conditions/climbing_over"] = false
+		animator["parameters/PlayerMovement/conditions/not_climbing_over"] = true
 	animator["parameters/PlayerMovement/conditions/not_climbing"] = !flag
 	if flag:
-		animator["parameters/PlayerMovement/playback"].travel("climb")
+		if not "climb" in animator["parameters/PlayerMovement/playback"].get_current_node():
+			animator["parameters/PlayerMovement/playback"].travel("climb")
+		set_climb_speed(true)
+	climbing = flag
+
+func set_climb_speed(flag : bool):
+	if flag:
+		animator["parameters/PlayerMovement/climb/rate/scale"] = 1
+	else:
+		animator["parameters/PlayerMovement/climb/rate/scale"] = 0
 
 
 ##############################
@@ -695,9 +723,14 @@ func set_velo_y(y):
 
 func on_ladder(ladder):
 	on_ladders += 1
-	ladder_x = ladder.position.x
+	ladder_x = ladder.global_position.x
 func off_ladder():
 	on_ladders -= 1
+func on_ladder_top(ladder):
+	ladder_x = ladder.global_position.x
+	on_ladders_top.append(ladder)
+func off_ladder_top(ladder):
+	on_ladders_top.erase(ladder)
 
 func get_power_node():
 	return $Power

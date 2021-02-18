@@ -231,13 +231,27 @@ Running does not accelerate in air (but still feels good)
     Palette
     HUD Size
 
+0.3
+  Ladder tops
+  Ladder climbing animation
+
 Backlog:
-BUG: Vanill not immediately dying when jumped
-Last enemy (Gelato)
+Animate time piece
 BUG: Bashing in camera-capture considered as leaving it
 NPC "press up" notifier
+Eltun sinusoidal pattern
+Slow down ladder climbing speed
+Spring speed-up/cling-to-player/jump-on-spring-causes-BIG
+BUG: Move during timepiece-get-anim
+GameOver-up-jitter
+Take-damage-freeze-frame (DKCR)
+SFX
+HardHat-bouncing-on-wall-gives-extra-bounce
+Linear-Screen-Transitions (MegaMan, Zelda)
+Gelato spikes not based on distance, done in PATTERN (like Hammer Guy)
+Propeller Power?
+Fix underground design for jumping
 Level 1
-  * SFX!
   * Design first level with QP
   * Get on HatInTime Discord and start raising awareness
   * Music
@@ -265,7 +279,6 @@ After Angus becomes free:
   Graphics for:
       Wall background (upgrade what I made)
       One-way platforms
-      Ladders
       Hat Girl ladder-climbing
       Explosion
       Hat Girl DANCE :3
