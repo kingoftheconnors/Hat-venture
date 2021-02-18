@@ -8,11 +8,10 @@ extents = Vector2( 10, 250 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 250 )
 
-[node name="Camera2D" type="Camera2D"]
+[node name="Camera" type="Camera2D"]
 pause_mode = 2
 position = Vector2( -3.3824, -342.089 )
 current = true
-zoom = Vector2( 0.5, 0.5 )
 limit_right = 10000542
 smoothing_enabled = true
 smoothing_speed = 18.0
