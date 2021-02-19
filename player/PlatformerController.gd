@@ -731,6 +731,7 @@ func on_ladder_top(ladder):
 	on_ladders_top.append(ladder)
 func off_ladder_top(ladder):
 	on_ladders_top.erase(ladder)
+	set_velo_y(0)
 
 func get_power_node():
 	return $Power
