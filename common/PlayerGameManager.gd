@@ -38,7 +38,7 @@ func die():
 	# Get current levelname to return to after playing animation
 	var levelName = get_tree().get_current_scene().filename
 	# Fade to white
-	animationPlayer.play("cover")
+	Gui.cover()
 	yield(get_tree().create_timer(.6), "timeout")
 	unpause()
 	pons = 0; Gui.set_pons(pons)
@@ -50,7 +50,7 @@ func die():
 		multiplicity = 1; Gui.set_score_mult(1)
 		multiplicity_decrease_time_left = -1
 		var _success = get_tree().change_scene("res://levelgameover/gameOver.tscn")
-		animationPlayer.play("reveal") # Starts with covering screen
+		Gui.reveal()
 	else:
 		# Re-load level
 		var _success = get_tree().change_scene(levelName)
@@ -58,14 +58,14 @@ func die():
 		multiplicity = 1; Gui.set_score_mult(1)
 		multiplicity_decrease_time_left = -1
 		#get_tree().change_scene("res://transitionScenes/death.tscn")
-		animationPlayer.play("reveal") # Uncover screen after loading level
+		Gui.reveal()
 
 ## Changes scene to start a level (called by number)
 func start_level(levelNum : String):
 	# Get levelname to return to after playing animation
 	var levelName = "res://level" + levelNum + "/level" + levelNum + ".tscn"
 	# Fade to white
-	animationPlayer.play("cover")
+	Gui.cover()
 	yield(get_tree().create_timer(.6), "timeout")
 	unpause()
 	pons = 0; Gui.set_pons(pons)
@@ -75,7 +75,7 @@ func start_level(levelNum : String):
 	Gui.show()
 	# Load level
 	var _success = get_tree().change_scene(levelName)
-	animationPlayer.play("reveal")
+	Gui.reveal()
 
 ## Adds player score
 ## If affects_multiplicity is true, it increments multiplicity

@@ -213,3 +213,10 @@ func set_palette(palette_name):
 	palette_controller.set_palette(palette_name)
 
 onready var palette_controller = $PaletteFilter
+
+func cover():
+	cover_animator.play("cover")
+func reveal():
+	cover_animator.play("reveal")
+
+onready var cover_animator = $CoverAnimator
