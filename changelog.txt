@@ -234,17 +234,17 @@ Running does not accelerate in air (but still feels good)
 0.3
   Ladder tops
   Ladder climbing animation
+  Animate time piece spinning
+  BUGFIX: Player can no longer move after timepiece-get-dance (between end of dance and level-unload)
+
 
 Backlog:
-Animate time piece
 BUG: Bashing in camera-capture considered as leaving it
 NPC "press up" notifier
 Eltun sinusoidal pattern
-Slow down ladder climbing speed
 Spring speed-up/cling-to-player/jump-on-spring-causes-BIG
-BUG: Move during timepiece-get-anim
-GameOver-up-jitter
-Take-damage-freeze-frame (DKCR)
+GameOver-menu-hand-up-jitter
+Add-freeze-frame-when-taking-damage (like DKCR)
 SFX
 HardHat-bouncing-on-wall-gives-extra-bounce
 Linear-Screen-Transitions (MegaMan, Zelda)

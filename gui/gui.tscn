@@ -371,7 +371,7 @@ tracks/8/keys = {
 
 [node name="Gui" type="CanvasLayer"]
 pause_mode = 2
-layer = 3
+layer = 4
 script = ExtResource( 8 )
 
 [node name="PaletteFilter" type="TextureRect" parent="."]
