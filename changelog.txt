@@ -236,10 +236,12 @@ Running does not accelerate in air (but still feels good)
   Ladder climbing animation
   Animate time piece spinning
   BUGFIX: Player can no longer move after timepiece-get-dance (between end of dance and level-unload)
+  BUGFIX: Bashing in camera-capture no longer considered as leaving it
+  BUGFIX: Support bashing at a wall from point-blank
+  Remove bash-stun after bouncing off walls
 
 
 Backlog:
-BUG: Bashing in camera-capture considered as leaving it
 NPC "press up" notifier
 Eltun sinusoidal pattern
 Spring speed-up/cling-to-player/jump-on-spring-causes-BIG

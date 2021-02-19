@@ -301,7 +301,6 @@ onready var feetCollider = $"FeetCollider"
 func move_player(v):
 	#var snap = Vector2.DOWN * 16 if is_on_floor() and !just_jumped else Vector2.ZERO
 	var prev_velo = v
-	print(v)
 	var new_velo = move_and_slide(v, Vector2.UP)#_with_snap(velo, snap, Vector2.UP, true)
 	var recognize_collision = true
 	for i in get_slide_count():
@@ -352,7 +351,6 @@ func bash_bounce(body):
 	if bashing:
 		if !body.is_in_group("player"):
 			var destroyedBody = core.attack(body)
-			print("Destroyed: ", destroyedBody)
 			# Smashing through an object (disabling its collision)
 			if destroyedBody:
 				# Move towards center
@@ -361,6 +359,9 @@ func bash_bounce(body):
 				body.set_collision_mask(0)
 				#recognize_collision = false
 			else:
+				# No power stun for bouncing off blocks
+				if body.get_collision_layer_bit(1) == true:
+					power_combo = true
 				# Bash Corner Correction
 				var recognize_collision = true
 				var space_state = get_world_2d().direct_space_state
@@ -388,8 +389,8 @@ func bash_bounce(body):
 							break
 				if recognize_collision:
 					# No corner correction, bounce off
-					bounce_back()
-					print("Bouncing")
+					animator["parameters/PlayerMovement/playback"].start("end_bash")
+					call_deferred("bounce_back")
 					unbash()
 
 func bounce_back():
@@ -626,7 +627,6 @@ func bash():
 		animator["parameters/PlayerMovement/playback"].travel("bash")
 
 func upgrade_smash():
-	print("Upgrading: ", bashing)
 	if bashing:
 		suspend_movement(true)
 		animator["parameters/PlayerMovement/playback"].start("pre-bash")
@@ -640,7 +640,6 @@ func upgrade_smash_rush():
 	pause_gravity()
 
 func unbash():
-	print("Unbashing: ", bashing)
 	resume_gravity()
 	if bashing:
 		if velo.x > max_velo:
