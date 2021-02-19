@@ -248,7 +248,6 @@ Spring speed-up/cling-to-player/jump-on-spring-causes-BIG
 GameOver-menu-hand-up-jitter
 Add-freeze-frame-when-taking-damage (like DKCR)
 SFX
-HardHat-bouncing-on-wall-gives-extra-bounce
 Linear-Screen-Transitions (MegaMan, Zelda)
 Gelato spikes not based on distance, done in PATTERN (like Hammer Guy)
 Propeller Power?

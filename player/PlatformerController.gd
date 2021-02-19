@@ -57,12 +57,18 @@ const SPIN_DECELERATION = 0.85
 const SPIN_ACCELERATION = 15
 
 # BASH
-var power_combo = false
+enum POWER_COMBO {
+	COMBO,
+	SEMI,
+	STUN
+}
+var power_combo = POWER_COMBO.STUN
 var bashing = false
 const BASH_SPEED = 180
 const POST_CRASH_SPEED = 200
 const KNOCKBACK_MULTIPLIER = 140
 const POST_BASH_STUN = 38
+const SEMI_POST_BASH_STUN = 18
 const BASH_CORRECTION_SIZE = 14
 const POST_BASH_JUMP_TIME = 10
 var post_bash_jump_timer = 0
@@ -361,7 +367,7 @@ func bash_bounce(body):
 			else:
 				# No power stun for bouncing off blocks
 				if body.get_collision_layer_bit(1) == true:
-					power_combo = true
+					power_combo = POWER_COMBO.SEMI
 				# Bash Corner Correction
 				var recognize_collision = true
 				var space_state = get_world_2d().direct_space_state
@@ -394,7 +400,7 @@ func bash_bounce(body):
 					unbash()
 
 func bounce_back():
-	var direc = Vector2(-direction, -0.5) * KNOCKBACK_MULTIPLIER
+	var direc = Vector2(-direction, -1) * KNOCKBACK_MULTIPLIER
 	push(direc)
 
 func spin_bounce(body):
@@ -542,8 +548,10 @@ func stun(amo, stun_mult = 3):
 	_stun = amo * stun_mult
 	release_all_powers()
 
-func power_stun(amo):
-	animator["parameters/PlayerEffect/playback"].travel("powerlessFlash")
+func power_stun(amo, animate = true):
+	if animate:
+		animator["parameters/PlayerEffect/playback"].travel("powerlessFlash")
+		animator["parameters/PlayerEffect/conditions/powerless_off"] = false
 	power_stun = amo
 	
 func power_stun_frame():
@@ -556,7 +564,7 @@ func power_stun_frame():
 			_:
 				power_stun -= 1
 		if power_stun <= 0:
-			animator["parameters/PlayerEffect/playback"].travel("powerlessOff")
+			animator["parameters/PlayerEffect/conditions/powerless_off"] = true
 			can_use_power = true
 
 func set_freeze(flag):
@@ -630,7 +638,7 @@ func upgrade_smash():
 	if bashing:
 		suspend_movement(true)
 		animator["parameters/PlayerMovement/playback"].start("pre-bash")
-		power_combo = true
+		power_combo = POWER_COMBO.COMBO
 
 func upgrade_smash_rush():
 	suspend_movement(false)
@@ -648,11 +656,13 @@ func unbash():
 			velo.x = min(-MAX_SPEED, velo.x + (max_velo - MAX_SPEED))
 		max_velo = MAX_SPEED
 		bashing = false
-		if power_combo == false:
+		if power_combo == POWER_COMBO.STUN:
 			power_stun(POST_BASH_STUN)
+		elif power_combo == POWER_COMBO.SEMI:
+			power_stun(SEMI_POST_BASH_STUN, false)
 		else:
 			can_use_power = true
-		power_combo = false
+		power_combo = POWER_COMBO.STUN
 		if !climbing:
 			post_bash_jump_timer = POST_BASH_JUMP_TIME
 		core.turn_invincibilty(true)
