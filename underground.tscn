@@ -1,0 +1,260 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://Music/startSong.gd" type="Script" id=1]
+[ext_resource path="res://common/Camera.gd" type="Script" id=2]
+[ext_resource path="res://common/TileInstancer.gd" type="Script" id=3]
+[ext_resource path="res://enemy/Scripts/lemming.gd" type="Script" id=4]
+[ext_resource path="res://level.gd" type="Script" id=5]
+[ext_resource path="res://player/PlatformerController.gd" type="Script" id=6]
+[ext_resource path="res://common/MovingPlatform.gd" type="Script" id=7]
+[ext_resource path="res://common/CameraCapture.gd" type="Script" id=8]
+[ext_resource path="res://enemy/poddle/Poddle.tscn" type="PackedScene" id=9]
+[ext_resource path="res://items/Resources/getItem.gd" type="Script" id=10]
+[ext_resource path="res://common/Spring.tscn" type="PackedScene" id=11]
+[ext_resource path="res://common/Resources/spawn.gd" type="Script" id=12]
+[ext_resource path="res://enemy/crow/paraenemy.gd" type="Script" id=13]
+[ext_resource path="res://items/timePiece.gd" type="Script" id=14]
+[ext_resource path="res://common/FakeWalls.gd" type="Script" id=15]
+[ext_resource path="res://enemy/poddle/watcher.gd" type="Script" id=16]
+[ext_resource path="res://Music/lvl1intro.ogg" type="AudioStream" id=17]
+[ext_resource path="res://enemy/crow/Crow.tscn" type="PackedScene" id=18]
+[ext_resource path="res://enemy/eltun/flypath.gd" type="Script" id=19]
+[ext_resource path="res://items/Resources/TimePiece.tscn" type="PackedScene" id=20]
+[ext_resource path="res://common/MovingPlatform.tscn" type="PackedScene" id=21]
+[ext_resource path="res://common/spawn.tscn" type="PackedScene" id=22]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=23]
+[ext_resource path="res://enemy/hen/Hen.tscn" type="PackedScene" id=24]
+[ext_resource path="res://enemy/eltun/eltun.tscn" type="PackedScene" id=25]
+[ext_resource path="res://level1/background1.tres" type="TileSet" id=26]
+[ext_resource path="res://level1/level1.tres" type="TileSet" id=27]
+[ext_resource path="res://camera/Camera.tscn" type="PackedScene" id=28]
+[ext_resource path="res://common/CameraCapture.tscn" type="PackedScene" id=29]
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -21.5, 40, 0, 0, 0, 0, -83.7258, 176.753, 0, 0, 0, 0, -144.202, 171.713, 0, 0, 0, 0, -234.286, 176.753, 0, 0, 0, 0, -287.203, 179.272, 0, 0, 0, 0, -340.75, 180.532 )
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Level" type="Node2D" parent="."]
+script = ExtResource( 5 )
+left = -112
+right = 2607
+up = -250
+down = 64
+col = Color( 0.67451, 0.682353, 0.67451, 1 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Level"]
+layer = -3
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Level/ParallaxBackground"]
+motion_scale = Vector2( 0.3, 1 )
+motion_offset = Vector2( 100, 0 )
+motion_mirroring = Vector2( 608, 0 )
+
+[node name="Horizon" type="TileMap" parent="Level/ParallaxBackground/ParallaxLayer"]
+z_index = -2
+tile_set = ExtResource( 26 )
+cell_size = Vector2( 8, 8 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Level/ParallaxBackground"]
+motion_scale = Vector2( 0.1, 1 )
+motion_mirroring = Vector2( 680, 0 )
+
+[node name="Sky" type="TileMap" parent="Level/ParallaxBackground/ParallaxLayer2"]
+position = Vector2( 0, -1 )
+z_index = -3
+tile_set = ExtResource( 26 )
+cell_size = Vector2( 8, 8 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 262121, 16, 0 )
+
+[node name="BackTree" type="TileMap" parent="Level"]
+z_index = -2
+tile_set = ExtResource( 26 )
+cell_size = Vector2( 8, 8 )
+cell_quadrant_size = 4
+collision_layer = 0
+collision_mask = 0
+format = 1
+
+[node name="Hill" type="TileMap" parent="Level"]
+z_index = -1
+tile_set = ExtResource( 26 )
+cell_size = Vector2( 8, 8 )
+cell_quadrant_size = 4
+collision_layer = 0
+collision_mask = 0
+format = 1
+
+[node name="BackgroundTiles" type="TileMap" parent="Level"]
+tile_set = ExtResource( 27 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 4
+collision_layer = 2
+collision_mask = 3
+format = 1
+script = ExtResource( 3 )
+
+[node name="LevelTiles" type="TileMap" parent="Level"]
+z_index = 1
+tile_set = ExtResource( 27 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 4
+collision_layer = 2
+collision_mask = 3
+format = 1
+tile_data = PoolIntArray( -917512, 3, 0, -917511, 3, 0, -917510, 3, 0, -917509, 3, 0, -917508, 3, 0, -917507, 3, 0, -917506, 3, 0, -983039, 3, 0, -983038, 3, 0, -983037, 3, 0, -983036, 3, 0, -851976, 3, 0, -851975, 3, 0, -851974, 3, 0, -851973, 3, 0, -851972, 3, 0, -851971, 3, 0, -851970, 3, 0, -917503, 3, 0, -917502, 3, 0, -917501, 3, 0, -917500, 3, 0, -786440, 3, 0, -786439, 3, 0, -786438, 3, 0, -786437, 3, 0, -786436, 3, 0, -786435, 3, 0, -786434, 3, 0, -851967, 3, 0, -851966, 3, 0, -851965, 3, 0, -851964, 3, 0, -720904, 3, 0, -720903, 3, 0, -720902, 3, 0, -720901, 3, 0, -720900, 3, 0, -720899, 3, 0, -720898, 3, 0, -786431, 3, 0, -786430, 3, 0, -786429, 3, 0, -786428, 3, 0, -655368, 3, 0, -655367, 3, 0, -655366, 3, 0, -655365, 3, 0, -655364, 3, 0, -655363, 3, 0, -655362, 3, 0, -720895, 3, 0, -720894, 3, 0, -720893, 3, 0, -720892, 3, 0, -589832, 3, 0, -589831, 3, 0, -589830, 3, 0, -589829, 3, 0, -589828, 3, 0, -589827, 3, 0, -589826, 3, 0, -655359, 3, 0, -655358, 3, 0, -655357, 3, 0, -655356, 3, 0, -524296, 3, 0, -524295, 3, 0, -524294, 3, 0, -524293, 3, 0, -524292, 3, 0, -524291, 3, 0, -524290, 3, 0, -589823, 3, 0, -589822, 3, 0, -589821, 3, 0, -589820, 3, 0, -458760, 3, 0, -458759, 3, 0, -458758, 3, 0, -458757, 3, 0, -458756, 3, 0, -458755, 3, 0, -458754, 3, 0, -524287, 3, 0, -524286, 3, 0, -524285, 3, 0, -524284, 3, 0, -393224, 3, 0, -393223, 3, 0, -393222, 3, 0, -393221, 3, 0, -393220, 3, 0, -393219, 3, 0, -393218, 3, 0, -458751, 3, 0, -458750, 3, 0, -458749, 3, 0, -458748, 3, 0, -327688, 3, 0, -327687, 3, 0, -327686, 3, 0, -327685, 3, 0, -327684, 3, 0, -327683, 3, 0, -327682, 3, 0, -262152, 3, 0, -262151, 3, 0, -262150, 3, 0, -262149, 3, 0, -262148, 3, 0, -262147, 3, 0, -262146, 3, 0, -196616, 3, 0, -196615, 3, 0, -196614, 3, 0, -196613, 3, 0, -196612, 3, 0, -196611, 3, 0, -196610, 3, 0, -131080, 3, 0, -131079, 3, 0, -131078, 3, 0, -131077, 3, 0, -131076, 3, 0, -131075, 3, 0, -131074, 3, 0, -65544, 3, 0, -65543, 3, 0, -65542, 3, 0, -65541, 3, 0, -65540, 3, 0, -65539, 3, 0, -65538, 3, 0, -8, 3, 0, -7, 3, 0, -6, 3, 0, -5, 3, 0, -4, 3, 0, -3, 3, 0, -2, 3, 0, 65528, 3, 0, 65529, 3, 0, 65530, 3, 0, 65531, 3, 0, 65532, 3, 0, 65533, 3, 0, 65534, 3, 0, 131064, 3, 0, 131065, 3, 0, 131066, 3, 0, 131067, 3, 0, 131068, 3, 0, 131069, 3, 0, 131070, 3, 0, 196600, 3, 0, 196601, 3, 0, 196602, 3, 0, 196603, 3, 0, 196604, 3, 0, 196605, 3, 0, 196606, 3, 0, 196607, 3, 0, 131072, 3, 0, 131073, 3, 0, 131074, 3, 0, 131075, 3, 0, 131076, 3, 0, 131077, 3, 0, 131078, 3, 0, 262136, 3, 0, 262137, 3, 0, 262138, 3, 0, 262139, 3, 0, 262140, 3, 0, 262141, 3, 0, 262142, 3, 0, 262143, 3, 0, 196608, 3, 0, 196609, 3, 0, 196610, 3, 0, 196611, 3, 0, 196612, 3, 0, 196613, 3, 0, 196614, 3, 0, 327672, 3, 0, 327673, 3, 0, 327674, 3, 0, 327675, 3, 0, 327676, 3, 0, 327677, 3, 0, 327678, 3, 0, 327679, 3, 0, 262144, 3, 0, 262145, 3, 0, 262146, 3, 0, 262147, 3, 0, 262148, 3, 0, 262149, 3, 0, 262150, 3, 0, 393208, 3, 0, 393209, 3, 0, 393210, 3, 0, 393211, 3, 0, 393212, 3, 0, 393213, 3, 0, 393214, 3, 0, 393215, 3, 0, 327680, 3, 0, 327681, 3, 0, 327682, 3, 0, 327683, 3, 0, 327684, 3, 0, 327685, 3, 0, 327686, 3, 0, 458744, 3, 0, 458745, 3, 0, 458746, 3, 0, 458747, 3, 0, 458748, 3, 0, 458749, 3, 0, 458750, 3, 0, 458751, 3, 0, 393216, 3, 0, 393217, 3, 0, 393218, 3, 0, 393219, 3, 0, 393220, 3, 0, 393221, 3, 0, 393222, 3, 0 )
+script = ExtResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="Level"]
+collision_layer = 2
+collision_mask = 3
+
+[node name="FakeWalls" type="TileMap" parent="Level/Area2D"]
+z_index = 4
+tile_set = ExtResource( 27 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 4
+collision_use_parent = true
+collision_layer = 0
+collision_mask = 0
+format = 1
+script = ExtResource( 15 )
+
+[node name="Tween" type="Tween" parent="Level/Area2D/FakeWalls"]
+
+[node name="Player" type="KinematicBody2D" parent="Level" groups=[
+"all",
+"player",
+"player_root",
+] instance=ExtResource( 23 )]
+position = Vector2( 0, -336 )
+rotation = 4.46638e-06
+z_index = 2
+collision_mask = 3
+script = ExtResource( 6 )
+
+[node name="Camera" type="Camera2D" parent="Level" instance=ExtResource( 28 )]
+pause_mode = 2
+position = Vector2( 0, -300 )
+current = true
+process_mode = 0
+limit_left = -10000126
+limit_right = 10000542
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 12.0
+drag_margin_left = 0.0
+drag_margin_top = 0.25
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+script = ExtResource( 2 )
+
+[node name="Node2D" type="Node2D" parent="Level" instance=ExtResource( 22 )]
+position = Vector2( 0, -336 )
+script = ExtResource( 12 )
+playerPath = NodePath("../Player")
+
+[node name="Node" type="Node" parent="Level"]
+
+[node name="Crow" type="KinematicBody2D" parent="Level" groups=[
+"shadow",
+] instance=ExtResource( 18 )]
+position = Vector2( 1260.62, -25.4241 )
+script = ExtResource( 13 )
+
+[node name="Crow2" type="KinematicBody2D" parent="Level" groups=[
+"shadow",
+] instance=ExtResource( 18 )]
+position = Vector2( 1642.61, -27.4241 )
+script = ExtResource( 13 )
+
+[node name="Eltun5" type="KinematicBody2D" parent="Level" instance=ExtResource( 25 )]
+position = Vector2( 64.5886, -87.4941 )
+script = ExtResource( 19 )
+
+[node name="Hen2" type="KinematicBody2D" parent="Level" instance=ExtResource( 24 )]
+position = Vector2( 617.978, -9.50763 )
+script = ExtResource( 4 )
+
+[node name="CameraCapture" type="Area2D" parent="Level" instance=ExtResource( 29 )]
+visible = false
+position = Vector2( 2280, -72 )
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 8 )
+release_on_exit = false
+
+[node name="MusicIntro" type="AudioStreamPlayer" parent="Level"]
+pause_mode = 2
+stream = ExtResource( 17 )
+autoplay = true
+bus = "Music"
+
+[node name="Music" type="Node" parent="Level"]
+pause_mode = 2
+script = ExtResource( 1 )
+music = 2
+
+[node name="Poddle2" type="KinematicBody2D" parent="Level" instance=ExtResource( 9 )]
+position = Vector2( 2063.79, -29.4543 )
+script = ExtResource( 16 )
+is_turning = true
+
+[node name="TimePiece" type="Node2D" parent="Level" instance=ExtResource( 20 )]
+pause_mode = 2
+position = Vector2( 2349.08, -114.113 )
+script = ExtResource( 10 )
+itemCommand = ExtResource( 14 )
+
+[node name="CameraCapture2" type="Area2D" parent="Level" instance=ExtResource( 29 )]
+position = Vector2( 598, -352.106 )
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 8 )
+walled = false
+
+[node name="CameraCapture3" type="Area2D" parent="Level" instance=ExtResource( 29 )]
+position = Vector2( -250, -84 )
+scale = Vector2( 1, 1.5 )
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 8 )
+walled = false
+
+[node name="CameraCapture4" type="Area2D" parent="Level" instance=ExtResource( 29 )]
+position = Vector2( 266, 132 )
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 8 )
+walled = false
+
+[node name="MovingPlatform" type="Path2D" parent="Level" instance=ExtResource( 21 )]
+position = Vector2( 500.989, -277.26 )
+curve = SubResource( 3 )
+script = ExtResource( 7 )
+move_speed = 30
+
+[node name="Spring" type="RigidBody2D" parent="Level" instance=ExtResource( 11 )]
+position = Vector2( 137.491, 36.9882 )
+collision_mask = 3
+mode = 2
+gravity_scale = 10.0
+continuous_cd = 2
+linear_damp = 4.0
+[connection signal="body_entered" from="Level/Area2D" to="Level/Area2D/FakeWalls" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Level/Area2D" to="Level/Area2D/FakeWalls" method="_on_Area2D_body_exited"]
+[connection signal="off_cliff" from="Level/Player" to="Level/Player/ScaleChildren/PlayerCore" method="cliff_damage"]
+[connection signal="body_exited" from="Level/CameraCapture" to="Level/CameraCapture" method="_on_CameraCapture_body_exited"]
+[connection signal="finished" from="Level/MusicIntro" to="Level/Music" method="start_music"]
+[connection signal="collected" from="Level/TimePiece" to="Level/Music" method="stop_music"]
+[connection signal="body_exited" from="Level/CameraCapture2" to="Level/CameraCapture2" method="_on_CameraCapture_body_exited"]
+[connection signal="body_exited" from="Level/CameraCapture3" to="Level/CameraCapture3" method="_on_CameraCapture_body_exited"]
+[connection signal="body_exited" from="Level/CameraCapture4" to="Level/CameraCapture4" method="_on_CameraCapture_body_exited"]
