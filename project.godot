@@ -94,6 +94,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://enemy/poddle/watcher.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "sinusoidal",
+"language": "GDScript",
+"path": "res://enemy/eltun/sinusoidal.gd"
+}, {
 "base": "Reference",
 "class": "thorPower",
 "language": "GDScript",
@@ -127,6 +132,7 @@ _global_script_class_icons={
 "pon": "",
 "runningPower": "",
 "shooter": "",
+"sinusoidal": "",
 "thorPower": "",
 "timePiece": "",
 "zigzag": ""

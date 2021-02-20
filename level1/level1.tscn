@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://level1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://level1/background1.tres" type="TileSet" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://NPCs/TemplateNPC.tscn" type="PackedScene" id=20]
 [ext_resource path="res://items/Resources/TimePiece.tscn" type="PackedScene" id=21]
 [ext_resource path="res://enemy/gelato/Gelato.tscn" type="PackedScene" id=22]
+[ext_resource path="res://enemy/eltun/pace.gd" type="Script" id=23]
 [ext_resource path="res://common/CameraCapture.tscn" type="PackedScene" id=24]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
@@ -147,6 +148,9 @@ position = Vector2( 1260.62, -25.4241 )
 [node name="Crow2" parent="." instance=ExtResource( 18 )]
 position = Vector2( 1642.61, -27.4241 )
 
+[node name="EnemyCore" parent="Crow2" index="0"]
+frame = 0
+
 [node name="AnimationTree" parent="Crow2/EnemyCore" index="1"]
 parameters/playback = SubResource( 1 )
 
@@ -164,12 +168,16 @@ position = Vector2( 786.592, -7.8586 )
 
 [node name="Eltun" parent="." instance=ExtResource( 11 )]
 position = Vector2( 955.638, -46.35 )
+script = ExtResource( 23 )
+direction = Vector2( 0, -1 )
 
 [node name="Eltun2" parent="." instance=ExtResource( 11 )]
 position = Vector2( 1042.11, -60.2723 )
+script = ExtResource( 23 )
+direction = Vector2( 0, -1 )
 
-[node name="Eltun4" parent="." instance=ExtResource( 11 )]
-position = Vector2( 1484.61, -144.056 )
+[node name="Eltun3" parent="." instance=ExtResource( 11 )]
+position = Vector2( 1456, -160 )
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource( 2 )
@@ -230,7 +238,6 @@ position = Vector2( 568, -168 )
 position = Vector2( 200, -16 )
 
 [node name="DialogBox" parent="NPC" instance=ExtResource( 9 )]
-visible = true
 position = Vector2( 0, -8 )
 
 [node name="Gelato" parent="." instance=ExtResource( 22 )]
