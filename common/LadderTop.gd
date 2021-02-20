@@ -22,5 +22,4 @@ func _on_Ladder_body_exited(body):
 		body.off_ladder_top(self)
 		# Re-enable floor after player goes past ladder
 		if can_go_down and floor_body:
-			print("Enabled")
 			floor_body.call_deferred("set_disabled", false)
