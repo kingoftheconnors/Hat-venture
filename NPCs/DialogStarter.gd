@@ -35,3 +35,14 @@ func _process(delta):
 				Gui.queue_text(self, {"freeze": active_bodies})
 				if one_shot:
 					queue_free()
+
+
+func _on_DialogBox_body_entered(body):
+	if body.is_in_group("player"):
+		up_prompt.visible = true
+
+func _on_DialogBox_body_exited(body):
+	if body.is_in_group("player"):
+		up_prompt.visible = false
+
+onready var up_prompt = $UpPrompt

@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://enemy/poddle/watcher.gd" type="Script" id=1]
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=2]
-[ext_resource path="res://enemy/Scripts/EnemyController.gd" type="Script" id=4]
 [ext_resource path="res://NPCs/MustacheGirl.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
@@ -194,21 +193,15 @@ points = PoolVector2Array( -5, 0, -4, -0.1, 4, -0.1, 5, 0 )
 [node name="NPC" type="KinematicBody2D"]
 collision_layer = 0
 collision_mask = 2
-script = ExtResource( 4 )
-controller_variables = {
-"movement/is_turning": true
-}
-movement/controller = ExtResource( 1 )
-movement/is_turning = true
+script = ExtResource( 1 )
+is_turning = true
 
 [node name="EnemyCore" type="Sprite" parent="."]
-position = Vector2( -2, 0 )
 texture = ExtResource( 5 )
 hframes = 3
 frame = 2
 script = ExtResource( 2 )
 damage = 0
-deathScore = 1000
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyCore"]
 anims/default = SubResource( 1 )
