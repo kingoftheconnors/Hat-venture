@@ -400,7 +400,7 @@ func bash_bounce(body):
 					unbash()
 
 func bounce_back():
-	var direc = Vector2(-direction, -1) * KNOCKBACK_MULTIPLIER
+	var direc = Vector2(-direction, -1.1) * KNOCKBACK_MULTIPLIER
 	push(direc)
 
 func spin_bounce(body):
