@@ -4,118 +4,63 @@
 [ext_resource path="res://font/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://levelgameover/menuselector.png" type="Texture" id=3]
 [ext_resource path="res://levelgameover/ded.png" type="Texture" id=4]
-[ext_resource path="res://levelgameover/Selector.gd" type="Script" id=5]
+[ext_resource path="res://levelgameover/Quit.gd" type="Script" id=5]
 [ext_resource path="res://levelgameover/gameovertext.png" type="Texture" id=6]
 [ext_resource path="res://Music/Game_Over2.ogg" type="AudioStream" id=7]
 [ext_resource path="res://Music/startSong.gd" type="Script" id=8]
 [ext_resource path="res://Music/startTimer.gd" type="Script" id=9]
 [ext_resource path="res://Music/Game_Over.ogg" type="AudioStream" id=10]
+[ext_resource path="res://levelgameover/Continue.gd" type="Script" id=11]
+[ext_resource path="res://levelgameover/gameOver.gd" type="Script" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "continue"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 61, 171.56 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:anchor_top")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.724 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:anchor_bottom")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.793 ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "quit"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:anchor_top")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.836 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:anchor_bottom")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.904 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:rect_position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 61, 198 ) ]
-}
-
-[node name="TextureRect" type="TextureRect"]
+[node name="GameOver" type="TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 1 )
 expand = true
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Continue" type="Label" parent="."]
-anchor_left = 0.5
+anchor_left = 0.497
 anchor_top = 0.725
-anchor_right = 0.5
+anchor_right = 0.497
 anchor_bottom = 0.792
-margin_left = -65.0
+margin_left = -64.04
 margin_top = -1.52588e-05
-margin_right = 63.0
-margin_bottom = -0.0800323
+margin_right = 63.96
+margin_bottom = -0.0800476
+focus_neighbour_bottom = NodePath("../Quit")
+focus_next = NodePath("../Quit")
+focus_mode = 2
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "CONTINUE"
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+default_focus = true
+
+[node name="Selector" type="TextureRect" parent="Continue"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.02
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -94.0
+margin_top = -2.32
+margin_right = -44.0
+margin_bottom = 6.0
+rect_scale = Vector2( 0.5, 0.75 )
+texture = ExtResource( 3 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -129,9 +74,30 @@ margin_left = -65.0
 margin_top = 0.12001
 margin_right = 63.0
 margin_bottom = 0.0400085
+focus_neighbour_top = NodePath("../Continue")
+focus_previous = NodePath("../Continue")
+focus_mode = 2
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "QUIT"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Selector" type="TextureRect" parent="Quit"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.02
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -94.0
+margin_top = -2.32
+margin_right = -44.0
+margin_bottom = 6.0
+rect_scale = Vector2( 0.5, 0.75 )
+texture = ExtResource( 3 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -163,27 +129,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Selector" type="TextureRect" parent="."]
-anchor_left = 0.5
-anchor_top = 0.836
-anchor_right = 0.5
-anchor_bottom = 0.904
-margin_left = -99.0
-margin_top = -2.63998
-margin_right = -49.0
-margin_bottom = 5.96002
-rect_scale = Vector2( 0.5, 0.75 )
-texture = ExtResource( 3 )
-expand = true
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Selector"]
-anims/continue = SubResource( 2 )
-anims/quit = SubResource( 3 )
-
 [node name="GameOverTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
 autoplay = true
@@ -199,5 +144,9 @@ stream = ExtResource( 7 )
 volume_db = -12.0
 bus = "Music"
 script = ExtResource( 8 )
+[connection signal="focus_entered" from="Continue" to="Continue" method="_on_focus_entered"]
+[connection signal="focus_exited" from="Continue" to="Continue" method="_on_focus_exited"]
+[connection signal="focus_entered" from="Quit" to="Quit" method="_on_focus_entered"]
+[connection signal="focus_exited" from="Quit" to="Quit" method="_on_focus_exited"]
 [connection signal="finished" from="GameOverTheme" to="GameOverTheme/Timer" method="start_timer"]
 [connection signal="timeout" from="GameOverTheme/Timer" to="GameOverTheme2" method="start_music"]

@@ -243,13 +243,12 @@ Running does not accelerate in air (but still feels good)
   Eltun sinusoidal pattern
   Pause during camera capture transitions
   Make screen transition harder (less ease) and faster
+  Spring speed up
+  Gameover-menu-hand-up-jitter
 
 
 Backlog: 
-Research and improve use of bash-on-spring
 Visual glitch: Walking on blocks
-Spring sped/up/cling-to-player
-Gameover-menu-hand-up-jitter
 Add-freeze-frame-when-taking-damage
 Warnings
 Increase height of left camera capture

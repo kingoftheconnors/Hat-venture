@@ -52,12 +52,6 @@ func set_score_mult(amo):
 	else:
 		playerScoreMult.visible = true
 
-func _unhandled_input(event):
-	if event.is_action_pressed("ui_page_up"):
-		set_gui_size(4)
-	if event.is_action_pressed("ui_page_down"):
-		set_gui_size(-4)
-
 func set_gui_size(size):
 	sizeAnimator.play(size)
 
