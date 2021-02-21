@@ -239,19 +239,19 @@ Running does not accelerate in air (but still feels good)
   BUGFIX: Bashing in camera-capture no longer considered as leaving it
   BUGFIX: Support bashing at a wall from point-blank
   Remove bash-stun after bouncing off walls
+  NPC "press up" notifier
+  Eltun sinusoidal pattern
+  Pause during camera capture transitions
+  Make screen transition harder (less ease) and faster
 
 
-Backlog:
-NPC "press up" notifier
-Eltun sinusoidal pattern
-Spring speed-up/cling-to-player/jump-on-spring-causes-BIG
-GameOver-menu-hand-up-jitter
-Add-freeze-frame-when-taking-damage (like DKCR)
+Backlog: 
+Spring sped/up/cling-to-player
+Gameover-menu-hand-up-jitter
+Add-freeze-frame-when-taking-damage
 SFX
-Linear-Screen-Transitions (MegaMan, Zelda)
 Gelato spikes not based on distance, done in PATTERN (like Hammer Guy)
 Propeller Power?
-Fix underground design for jumping
 Level 1
   * Design first level with QP
   * Get on HatInTime Discord and start raising awareness

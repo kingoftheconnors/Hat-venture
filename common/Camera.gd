@@ -10,7 +10,7 @@ onready var target = $"../Player"
 ## is decreased
 onready var default_smoothing = smoothing_speed
 ## Smoothing speed for panning into a camera capture
-const SLOW_SMOOTHING = 2
+const SLOW_SMOOTHING = 1
 ## Panning target when camera is locked to a position
 ## (is set to Vector2.ZERO when not used)
 var target_spot : Vector2
@@ -52,15 +52,15 @@ func _process(delta):
 		else:
 			# Default behavior: move to player object
 			position = target.position
-			# Enforce limits
-			if position.y > lim_bottom - Constants.camera_radius.y:
-				position.y = lim_bottom - Constants.camera_radius.y
-			if position.y < lim_top + Constants.camera_radius.y:
-				position.y = lim_top + Constants.camera_radius.y
-			if position.x > lim_right - Constants.camera_radius.x:
-				position.x = lim_right - Constants.camera_radius.x
-			if position.x < lim_left + Constants.camera_radius.x:
-				position.x = lim_left + Constants.camera_radius.x
+		# Enforce limits
+		if position.y > lim_bottom - Constants.camera_radius.y:
+			position.y = lim_bottom - Constants.camera_radius.y
+		if position.y < lim_top + Constants.camera_radius.y:
+			position.y = lim_top + Constants.camera_radius.y
+		if position.x > lim_right - Constants.camera_radius.x:
+			position.x = lim_right - Constants.camera_radius.x
+		if position.x < lim_left + Constants.camera_radius.x:
+			position.x = lim_left + Constants.camera_radius.x
 		# Moving left and right walls when limit moves
 		if left_body.global_position.x != lim_left - 10:
 			left_body.global_position.x = lim_left - 10
@@ -70,21 +70,41 @@ func _process(delta):
 onready var tween = $Tween
 ## Overrides target player behavior with a set screen position
 func room_capture(spot, is_move_walls):
-	move_walls = is_move_walls
-	target_spot = spot
-	position = target_spot
-	tween.stop_all()
-	smoothing_speed = SLOW_SMOOTHING
-	lim_bottom = spot.y + Constants.camera_radius.y + Constants.camera_radius.y * drag_margin_bottom
+	if target_spot != spot:
+		move_walls = is_move_walls
+		target_spot = spot
+		tween.stop_all()
+		tween.interpolate_property(self, "position", self.position, spot, .5, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+		tween.start()
+		lim_bottom = spot.y + Constants.camera_radius.y + Constants.camera_radius.y * drag_margin_bottom
+		get_tree().paused = true
+		yield(get_tree().create_timer(1), "timeout")
+		get_tree().paused = false
 
 ## Releases room capture and resets camera to following the player
 func capture_release():
-	move_walls = true
-	target_spot = Vector2.ZERO
-	tween.stop_all()
-	tween.interpolate_property(self, "smoothing_speed", self.smoothing_speed, default_smoothing, 1, Tween.TRANS_LINEAR, Tween.EASE_IN, 1)
-	tween.start()
-	reset_limits()
+	if target_spot != Vector2.ZERO:
+		move_walls = true
+		tween.stop_all()
+		if target_spot.x < level.left:
+			target_spot.x = level.left + get_viewport().get_visible_rect().size.x/2
+			target_spot.y = target.position.y
+		if target_spot.x > level.right:
+			target_spot.x = level.right - get_viewport().get_visible_rect().size.x/2
+			target_spot.y = target.position.y
+		if target_spot.y < level.up:
+			target_spot.x = target.position.x
+			target_spot.y = level.up + get_viewport().get_visible_rect().size.y/2
+		if target_spot.y > level.down:
+			target_spot.x = target.position.x
+			target_spot.y = level.down - get_viewport().get_visible_rect().size.y/2
+		tween.interpolate_property(self, "position", self.position, target_spot, .5, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+		tween.start()
+		get_tree().paused = true
+		yield(get_tree().create_timer(1), "timeout")
+		get_tree().paused = false
+		target_spot = Vector2.ZERO
+		reset_limits()
 
 func reset_limits():
 	lim_top = level.up - Constants.camera_radius.y * drag_margin_top
