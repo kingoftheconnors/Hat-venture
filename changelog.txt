@@ -246,10 +246,15 @@ Running does not accelerate in air (but still feels good)
 
 
 Backlog: 
+Research and improve use of bash-on-spring
+Visual glitch: Walking on blocks
 Spring sped/up/cling-to-player
 Gameover-menu-hand-up-jitter
 Add-freeze-frame-when-taking-damage
+Warnings
+Increase height of left camera capture
 SFX
+BUGFIX: Bashing into camera capture bounces off
 Gelato spikes not based on distance, done in PATTERN (like Hammer Guy)
 Propeller Power?
 Level 1

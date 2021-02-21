@@ -161,5 +161,3 @@ enum FrameForgiveness {
 var frame_forgiveness : int = FrameForgiveness.REGULAR
 
 var dive_num : int = 1
-
-onready var animationPlayer = $AnimationPlayer
