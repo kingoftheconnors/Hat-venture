@@ -247,10 +247,10 @@ Running does not accelerate in air (but still feels good)
   Gameover-menu-hand-up-jitter
   Add-freeze-frame-when-taking-damage
   Fix Warnings
+  Increase height of left camera capture
 
 
 Backlog:
-Increase height of left camera capture
 SFX
 BUGFIX: Bashing into camera capture bounces off
 Gelato spikes not based on distance, done in PATTERN (like Hammer Guy)
