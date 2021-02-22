@@ -137,8 +137,9 @@ func end_dialog():
 	PlayerGameManager.unpause()
 	gui.visible = true
 	dialog.visible = false
+	emit_signal("textbox_end")
 
-func get_printed_lines(dialogText):
+func get_printed_lines():
 	return dialogText.lines_skipped + dialogText.get_line_count() * dialogText.percent_visible
 
 func delay(wait_time):
@@ -147,13 +148,12 @@ func delay(wait_time):
 		var delta = yield()
 		time_passed += delta
 
-func crawl(text_length):
+func crawl(_text_length):
 	# Text crawl
 	dialogText.percent_visible = 0
 	var lettersVisible = 0.0
-	var num_lines = ceil(dialogText.get_total_character_count()/20.0)
 	var speed = 1
-	while get_printed_lines(dialogText) < dialogText.get_line_count():
+	while get_printed_lines() < dialogText.get_line_count():
 		var delta = yield()
 		lettersVisible += delta * speed * letters_per_sec
 		if dialogText.visible_characters >= 39:

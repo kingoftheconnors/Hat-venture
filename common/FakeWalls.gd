@@ -11,16 +11,24 @@ const VISIBILITY_RATE = 0.07
 
 ## Signal for making the tilemap invisible
 func _on_Area2D_body_entered(body):
+	var success = true
 	if body.is_in_group("player"):
-		tween.stop_all()
-		tween.interpolate_property(self, "modulate", self.modulate, Color(1, 1, 1, 0.25), 0.5, Tween.TRANS_CUBIC)
-		tween.start()
+		success &= tween.stop_all()
+		success &= tween.interpolate_property(self, "modulate", self.modulate, Color(1, 1, 1, 0.25), 0.5, Tween.TRANS_CUBIC)
+		success &= tween.start()
+		# Test that tween succeeded
+		if !success:
+			print("ERROR: Start tween failed: FakeWalls - _on_Area2D_body_entered")
 
 ## Signal for making the tilemap visible
 func _on_Area2D_body_exited(body):
+	var success = true
 	if body.is_in_group("player"):
-		tween.stop_all()
-		tween.interpolate_property(self, "modulate", self.modulate, Color(1, 1, 1, 1), 0.5, Tween.TRANS_CUBIC)
-		tween.start()
+		success &= tween.stop_all()
+		success &= tween.interpolate_property(self, "modulate", self.modulate, Color(1, 1, 1, 1), 0.5, Tween.TRANS_CUBIC)
+		success &= tween.start()
+		# Test that tween succeeded
+		if !success:
+			print("ERROR: Start tween failed: FakeWalls - _on_Area2D_body_exited")
 
 onready var tween : Tween = $Tween

@@ -59,6 +59,7 @@ func initialize_color_code_table(colors: PoolByteArray) -> CodeTable:
 		result_code_table.add(CodeEntry.new([color_id]))
 	# move counter to the first available compression code index
 	var last_color_index: int = colors.size() - 1
+	# warning-ignore:narrowing_conversion
 	var clear_code_index: int = pow(2, get_bits_number_for(last_color_index))
 	result_code_table.counter = clear_code_index + 2
 	return result_code_table
@@ -67,7 +68,6 @@ func initialize_color_code_table(colors: PoolByteArray) -> CodeTable:
 # http://www.matthewflickinger.com/lab/whatsinagif/lzw_image_data.asp
 
 func compress_lzw(image: PoolByteArray, colors: PoolByteArray) -> Array:
-	var ms_start = OS.get_ticks_msec()
 	# Initialize code table
 	var code_table: CodeTable = initialize_color_code_table(colors)
 	# Clear Code index is 2**<code size>
@@ -77,6 +77,7 @@ func compress_lzw(image: PoolByteArray, colors: PoolByteArray) -> Array:
 	# Number 15 is in binary 0b1111, so we'll need 4 bits to write all
 	# colors down.
 	var last_color_index: int = colors.size() - 1
+	# warning-ignore:narrowing_conversion
 	var clear_code_index: int = pow(2, get_bits_number_for(last_color_index))
 	var index_stream: PoolByteArray = image
 	var current_code_size: int = get_bits_number_for(clear_code_index)

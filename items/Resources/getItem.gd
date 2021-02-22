@@ -12,7 +12,7 @@ onready var wait_collect = 5
 
 signal collected
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if wait_collect > 0:
 		wait_collect -= 1
 

@@ -11,7 +11,7 @@ var patrol_points : Array = []
 var patrol_index = -1
 
 # Frame process function. Moves body.
-func frame(body : KinematicBody2D, sprite : Sprite, delta):
+func frame(body : KinematicBody2D, sprite : Sprite, _delta):
 	# Set patrol baked points
 	if !flight_path.is_empty() and flight_path.get_name_count() > 0:
 		if patrol_points.size() == 0:

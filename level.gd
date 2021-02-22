@@ -41,7 +41,7 @@ func _ready():
 		Gui.start(stageNum)
 
 var time_passed := 0.0
-func _process(delta):
+func _process(_delta):
 	if prev_left != left or prev_right != right \
 		or prev_up != up or prev_down != down:
 		update()
@@ -66,7 +66,9 @@ func _physics_process(delta):
 func _unhandled_input(event):
 	if Constants.DEBUG_MODE:
 		if event is InputEventKey and event.pressed and event.scancode == KEY_BACKSPACE:
-			get_tree().reload_current_scene()
+			var success = get_tree().reload_current_scene()
+			if success != OK:
+				print("ERROR: Reloading current scene failed: ", success, ". level - _unhandled_input")
 		
 		if event is InputEventKey and event.pressed and event.scancode == KEY_E:
 			for thread_num in range(0, gif_threads.size()):
@@ -108,7 +110,9 @@ func create_gif(thread_num : int):
 				exporter.add_frame(frame)
 		var file: File = File.new()
 		# open new file with write privlige
-		file.open('res://gifs/' + str(OS.get_unix_time()) + '.gif', File.WRITE)
+		var _success = file.open('res://gifs/' + str(OS.get_unix_time()) + '.gif', File.WRITE)
+		if _success != OK:
+			print("ERROR: Cannot open file in create_gif(). Check if 'gifs' file exists in Hat-Venture directory")
 		# save data stream into file
 		file.store_buffer(exporter.export_file_data())
 		file.close()

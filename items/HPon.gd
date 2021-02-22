@@ -1,18 +1,18 @@
 class_name hpon
 
-func power(body, this):
+func power(body, _this):
 	body.heal(1)
 	return true
 
 # Pons are not equipped as abilities, so so this isn't called
-func activate(body, animator):
+func activate(_body, _animator):
 	pass
 
 # Pons are not equipped as abilities, so this isn't called
-func deactivate(body, animator):
+func deactivate(_body, _animator):
 	pass
 
-func spawnFromBox(collidingBody):
+func spawnFromBox(_collidingBody):
 	# Get pon
 	power(null, null)
 	# Spawn Pon Animation

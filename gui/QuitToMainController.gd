@@ -1,7 +1,5 @@
 extends Label
 
-signal changed
-
 # Change color to show focus
 func _on_focus_entered():
 	arrow.visible = true

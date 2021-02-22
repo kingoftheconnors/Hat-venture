@@ -14,10 +14,13 @@ export(bool) var one_shot
 ## Signals called by dialog system.
 ## Connect using the Node tab while inspecting a dialogStarter node
 ## Can call any method on any other node in the scene
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
 signal action1; signal action2; signal action3
 
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("ui_up"):
 		for body in get_overlapping_bodies():
 			if body.is_in_group("player") and body.is_active():

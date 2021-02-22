@@ -35,7 +35,7 @@ func _ready():
 	reset_limits()
 
 # Called every frame to update camera position
-func _process(delta):
+func _physics_process(_delta):
 	# Moving to a target-set position
 	if move_walls:
 		if target_spot != Vector2.ZERO:

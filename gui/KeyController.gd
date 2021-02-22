@@ -19,6 +19,7 @@ func _input(event):
 				if key_node != self and key_node.get_cur_key() == event.as_text():
 					key_node.set_key(cur_key)
 			set_key(event.as_text())
+			emit_signal("changed")
 			accepting_input = false
 			accept_event()
 		elif event.is_action_pressed("ui_A") or event.is_action_pressed("ui_accept"):

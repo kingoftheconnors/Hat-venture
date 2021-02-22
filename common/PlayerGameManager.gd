@@ -111,7 +111,7 @@ func one_up():
 
 var active_bodies = []
 ## Pauses entire game except for the specified nodes
-func pause_except(active_bodies_in_pause):
+func pause_except(active_bodies_in_pause : Array):
 	for body in active_bodies_in_pause:
 		body.set_pause_mode(PAUSE_MODE_PROCESS)
 	active_bodies = active_bodies_in_pause

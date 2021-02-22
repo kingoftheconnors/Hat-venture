@@ -35,7 +35,7 @@ const MINI_SUPERDIVE_SPEED = 205
 const DIVE_MERCY = 3
 
 # POWERS
-var power_stun = 0
+var power_stun_frames = 0
 var can_use_power = true
 
 # RUN
@@ -132,7 +132,7 @@ func _physics_process(delta):
 	manage_flags()
 
 ## Calculates velocity and moves player
-func move(delta):
+func move(_delta):
 	var horizontal = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"))
 	var vertical = (Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"))
 	
@@ -344,7 +344,7 @@ func move_player(v):
 			# Bash Hitting
 			if bashing and recognize_collision:
 				if abs(collision.normal.x) > abs(collision.normal.y):
-					var destroyedBody = bash_bounce(collision.collider)
+					var _destroyed_body = bash_bounce(collision.collider)
 	if !recognize_collision:
 		new_velo = prev_velo
 	#if bashing:
@@ -381,7 +381,7 @@ func bash_bounce(body):
 						var result = space_state.intersect_ray(topPos+Vector2(0, i), topPos+Vector2(5*direction, i), [], 2)
 						if !result:
 							recognize_collision = false
-							move_and_collide(Vector2(0, i+1))
+							var _collided = move_and_collide(Vector2(0, i+1))
 							pause_gravity()
 							break
 				# Test corner correction upwards
@@ -390,7 +390,7 @@ func bash_bounce(body):
 						var result = space_state.intersect_ray(bottomPos+Vector2(0, -i), bottomPos+Vector2(5*direction, -i), [], 2)
 						if !result:
 							recognize_collision = false
-							move_and_collide(Vector2(0, -(i+1)))
+							var _collided = move_and_collide(Vector2(0, -(i+1)))
 							pause_gravity()
 							break
 				if recognize_collision:
@@ -552,18 +552,18 @@ func power_stun(amo, animate = true):
 	if animate:
 		animator["parameters/PlayerEffect/playback"].travel("powerlessFlash")
 		animator["parameters/PlayerEffect/conditions/powerless_off"] = false
-	power_stun = amo
+	power_stun_frames = amo
 	
 func power_stun_frame():
-	if power_stun > 0:
+	if power_stun_frames > 0:
 		match PlayerGameManager.power_speed:
 			PlayerGameManager.PowerDelay.FAST:
-				power_stun -= 2
+				power_stun_frames -= 2
 			PlayerGameManager.PowerDelay.INSTANT:
-				power_stun = 0
+				power_stun_frames = 0
 			_:
-				power_stun -= 1
-		if power_stun <= 0:
+				power_stun_frames -= 1
+		if power_stun_frames <= 0:
 			animator["parameters/PlayerEffect/conditions/powerless_off"] = true
 			can_use_power = true
 
@@ -587,7 +587,7 @@ func dive():
 		set_climb(false)
 		ignore_air_friction = true
 		max_velo = DIVE_SPEED
-		velo = Vector2(DIVE_SPEED * direction, -DIVE_SPEED*3/4)
+		velo = Vector2(DIVE_SPEED * direction, -DIVE_SPEED*0.75)
 		animator["parameters/PlayerMovement/playback"].travel("dive")
 		animator["parameters/PlayerMovement/conditions/jumping"] = false
 		animator["parameters/PlayerMovement/conditions/not_jumping"] = true
@@ -759,6 +759,8 @@ func create_skid():
 
 func damage(isStomp, amount = 1):
 	core.damage(isStomp, amount)
+func signal_death():
+	emit_signal("dead")
 func heal(amount = 1):
 	core.heal(amount)
 

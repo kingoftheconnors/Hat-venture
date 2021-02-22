@@ -11,7 +11,7 @@ func _ready():
 	velo.x = velo.x * direction
 
 # Frame process function. Moves body.
-func frame(body : KinematicBody2D, sprite : Sprite, delta):
+func frame(body : KinematicBody2D, sprite : Sprite, _delta):
 	if !frozen:
 		var retVelo = body.move_and_slide(velo, Vector2.UP)
 		# Gravity

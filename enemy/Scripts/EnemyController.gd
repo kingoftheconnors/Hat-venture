@@ -16,7 +16,7 @@ func _physics_process(delta):
 
 ## Movement frame. This method is overriden to create different
 ## movement patterns
-func frame(body : KinematicBody2D, sprite : Sprite, delta):
+func frame(_body : KinematicBody2D, _sprite : Sprite, _delta):
 	pass
 
 ## Direction getter function. This method is overriden to create different
@@ -91,7 +91,7 @@ var spawner : Node
 ## to respawn when the screen leaves the enemy's spawn point
 func create_spawner():
 	var spawn_obj = preload("res://enemy/RespawnPoint.tscn")
-	var spawner = spawn_obj.instance()
+	spawner = spawn_obj.instance()
 	spawner.position = self.position
 	spawner.init(self)
 	get_parent().add_child(spawner)

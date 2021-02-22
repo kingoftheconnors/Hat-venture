@@ -3,16 +3,16 @@ class_name runningPower
 var blendValue = 1
 func name(): return "RunningHat"
 
-func power(body, this):
+func power(body, _this):
 	body.get_power_node().acquire_power(self)
 	return true
 
-func activate(body, animator):
+func activate(body, _animator):
 	#animator["parameters/walk/4/conditions/running"] = true
 	#animator["parameters/walk/4/conditions/not_running"] = false
 	body.start_run()
 
-func deactivate(body, animator):
+func deactivate(body, _animator):
 	#animator["parameters/walk/4/conditions/running"] = false
 	#animator["parameters/walk/4/conditions/not_running"] = true
 	body.stop_run()
@@ -26,7 +26,7 @@ func release():
 	hat.set_position(Vector2(0, -8))
 	return hat
 
-func spawnFromBox(collidingBody):
+func spawnFromBox(_collidingBody):
 	var runnerhat = load("res://items/Resources/RunnerHat.tscn")
 	var hat = runnerhat.instance()
 	hat.set_position(Vector2(0, -16))

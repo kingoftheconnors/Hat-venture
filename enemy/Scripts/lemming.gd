@@ -19,7 +19,7 @@ func _ready():
 	velo.x = horizontal_speed * direction
 
 # Frame process function. Moves body.
-func frame(body : KinematicBody2D, sprite : Sprite, delta):
+func frame(body : KinematicBody2D, sprite : Sprite, _delta):
 	if !frozen:
 		# Moving
 		if moving:

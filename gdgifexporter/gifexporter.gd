@@ -90,7 +90,7 @@ class LocalColorTable:
 			result.append(v[2])
 
 		if colors.size() != int(pow(2, get_size() + 1)):
-			for i in range(int(pow(2, get_size() + 1)) - colors.size()):
+			for _index in range(int(pow(2, get_size() + 1)) - colors.size()):
 				result += PoolByteArray([0, 0, 0])
 
 		return result
@@ -212,7 +212,7 @@ func color_table_to_indexes(colors: Array) -> PoolByteArray:
 	return result
 
 func change_colors_to_codes(image: Image,
-		transparency_color_index: int) -> Array:
+		_transparency_color_index: int) -> Array:
 	image.lock()
 	var image_data: PoolByteArray = image.get_data()
 	var image_converted_to_codes: PoolByteArray = PoolByteArray([])
@@ -230,7 +230,7 @@ func change_colors_to_codes(image: Image,
 func sum_color(color: Array) -> int:
 	return color[0] + color[1] + color[2] + color[3]
 
-func convert_image(image: Image, quantizator) -> ConvertionResult:
+func convert_image(image: Image) -> ConvertionResult:
 	var result := ConvertionResult.new()
 
 	# check if image is of good format
@@ -295,9 +295,9 @@ func write_frame_from_conv_image(converted_image: ConvertedImage,
 	frame_data += table_image_data_block.to_bytes()
 	return frame_data
 
-func create_frame(image: Image, frame_delay: float, quantizator) -> PoolByteArray:
+func create_frame(image: Image, frame_delay: float) -> PoolByteArray:
 	# Convert_image (1 sec)
-	var converted_image_result := convert_image(image, quantizator)
+	var converted_image_result := convert_image(image)
 	if converted_image_result.error != Error.OK:
 		return PoolByteArray([])
 	var converted_image := converted_image_result.converted_image
@@ -321,9 +321,9 @@ func scale_conv_image(converted_image: ConvertedImage, scale_factor: int) -> Con
 	for y in range(converted_image.height):
 		var row := PoolByteArray([])
 		for x in range(converted_image.width):
-			for i in range(scale_factor):
+			for _index in range(scale_factor):
 				row.append(converted_image.image_converted_to_codes[(y * converted_image.width) + x])
-		for i in range(scale_factor):
+		for _index in range(scale_factor):
 			result.image_converted_to_codes += row
 		row = PoolByteArray([])
 

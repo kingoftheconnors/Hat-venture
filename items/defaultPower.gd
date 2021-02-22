@@ -3,14 +3,14 @@ class_name defaultPower
 var blendValue = 0
 func name(): return "DefaultHat"
 
-func power(body, this):
+func power(body, _this):
 	body.get_power_node().acquire_power(self)
 	return true
 
-func activate(body, animator):
+func activate(body, _animator):
 	body.dive()
 
-func deactivate(body, animator):
+func deactivate(_body, _animator):
 	pass
 
 func force_deactivate(body, animator):
@@ -20,5 +20,5 @@ func force_deactivate(body, animator):
 func release():
 	pass
 
-func spawnFromBox(collidingBody):
+func spawnFromBox(_collidingBody):
 	pass

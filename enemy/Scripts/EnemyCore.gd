@@ -10,7 +10,7 @@ signal hurt
 onready var animator = get_node_or_null("AnimationTree")
 
 ## Damage enemy does to player
-export(int) var damage = 1
+export(int) var attack_damage = 1
 ## Score-points player gets for defeating this enemy
 export(int) var death_score = 100
 ## Invincibility. Useful for making an enemy
@@ -19,7 +19,7 @@ export(bool) var invincible = false
 
 ## Gets damage this enemy does to the player
 func get_damage():
-	return damage
+	return attack_damage
 
 ## Attack method used by players and projectiles when attacking
 ## any other node.

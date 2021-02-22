@@ -22,7 +22,7 @@ func get_colors(colors_count: int) -> Array:
 
 
 func change_colors(image: Image, average_colors: Array) -> PoolByteArray:
-	var result_image_data: PoolByteArray
+	var result_image_data: PoolByteArray = PoolByteArray([])
 	var image_data: PoolByteArray = image.get_data()
 	var table: Dictionary = {}
 
@@ -36,12 +36,11 @@ func change_colors(image: Image, average_colors: Array) -> PoolByteArray:
 				if v3.distance_squared_to(average_colors[ci][0]) < v3.distance_squared_to(average_colors[nearest_color][0]):
 					nearest_color = ci
 			table[v3] = nearest_color
-
 		result_image_data.append(nearest_color)
-
+	
 	return result_image_data
 
-func find_nearest_color(palette_color: Vector3, image_data: PoolByteArray, palette: Array) -> Array:
+func find_nearest_color(palette_color: Vector3, image_data: PoolByteArray, _palette: Array) -> Array:
 	var nearest_color = null
 	var nearest_alpha = null
 	for i in range(0, image_data.size(), 4):

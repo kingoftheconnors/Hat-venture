@@ -3,17 +3,17 @@ class_name hardPower
 var blendValue = 4
 func name(): return "HardHat"
 
-func power(body, this):
+func power(body, _this):
 	body.get_power_node().acquire_power(self)
 	return true
 
-func activate(body, animator):
+func activate(body, _animator):
 	body.bash()
 
-func deactivate(body, animator):
+func deactivate(_body, _animator):
 	pass
 
-func force_deactivate(body, animator):
+func force_deactivate(_body, _animator):
 	pass
 
 func release():
@@ -22,7 +22,7 @@ func release():
 	hat.set_position(Vector2(0, -8))
 	return hat
 
-func spawnFromBox(collidingBody):
+func spawnFromBox(_collidingBody):
 	var hardhat = load("res://items/Resources/HardHat.tscn")
 	var hat = hardhat.instance()
 	hat.set_position(Vector2(0, -16))

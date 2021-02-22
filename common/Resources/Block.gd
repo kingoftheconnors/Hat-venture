@@ -21,7 +21,7 @@ onready var power = boxedItem.new() if boxedItem != null else null
 # Score points received when block is destroyed
 const DEATH_SCORE = 10
 
-func _process(delta):
+func _process(_delta):
 	if prevBlockState != state:
 		match state:
 			BlockState.ITEM_HAT:
@@ -36,7 +36,7 @@ func _process(delta):
 
 ## Attack method used by players and projectiles when attacking
 ## any other node.
-func damage(isStomp):
+func damage(_isStomp):
 	return hit(null)
 
 ## Handles block being attacked by player

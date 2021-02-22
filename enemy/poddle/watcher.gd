@@ -10,7 +10,7 @@ export(bool) var is_turning = false
 const BASE_SPEED = 5.0
 
 # Called when the node enters the scene tree for the first time.
-func frame(body : KinematicBody2D, sprite : Sprite, delta):
+func frame(body : KinematicBody2D, sprite : Sprite, _delta):
 	if !frozen:
 		var retVelo = body.move_and_slide(velo, Vector2.UP)
 		# Gravity

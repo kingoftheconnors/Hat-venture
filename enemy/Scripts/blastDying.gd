@@ -9,7 +9,7 @@ func _init(direction):
 	velo.x = velo.x * -direction.x
 
 # Frame process function. Moves body.
-func frame(body, sprite, delta):
-	var retVelo = body.move_and_slide(velo, Vector2.UP)
+func frame(body, _sprite, _delta):
+	var ret_velo = body.move_and_slide(velo, Vector2.UP)
 	# Gravity
-	velo.y = retVelo.y + FALLING_BODY_GRAVITY
+	velo.y = ret_velo.y + FALLING_BODY_GRAVITY

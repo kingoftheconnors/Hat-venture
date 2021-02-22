@@ -1,7 +1,5 @@
 extends Control
 
-signal changed
-
 # Change color to show focus
 func _on_focus_entered():
 	l_arrow.visible = true

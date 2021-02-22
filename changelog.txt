@@ -245,12 +245,11 @@ Running does not accelerate in air (but still feels good)
   Make screen transition harder (less ease) and faster
   Spring speed up
   Gameover-menu-hand-up-jitter
+  Add-freeze-frame-when-taking-damage
+  Fix Warnings
 
 
-Backlog: 
-Visual glitch: Walking on blocks
-Add-freeze-frame-when-taking-damage
-Warnings
+Backlog:
 Increase height of left camera capture
 SFX
 BUGFIX: Bashing into camera capture bounces off

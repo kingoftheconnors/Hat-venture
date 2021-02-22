@@ -16,7 +16,7 @@ var health = 4
 
 signal hurt
 
-func _process(delta):
+func _process(_delta):
 	if dying:
 		controller.set_velo_x(0)
 		if animating_death:
@@ -64,7 +64,7 @@ func cliff_damage():
 	Gui.update_health(health, MAX_HEALTH)
 	player_die(false)
 
-func damage(isStomp, damage = 1):
+func damage(_isStomp, damage = 1):
 	controller.can_dive = true
 	controller.can_use_power = true
 	health -= damage
@@ -106,7 +106,7 @@ var dying = false
 var animating_death = false
 func player_die(animate = true):
 	if !dying:
-		controller.emit_signal("dead")
+		controller.signal_death()
 		animating_death = animate
 		controller.stun(40)
 		dying = true
