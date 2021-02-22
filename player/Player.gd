@@ -115,6 +115,9 @@ func die():
 	PlayerGameManager.die()
 
 func pause_game():
+	PlayerGameManager.pause_except([])
+	yield(get_tree().create_timer(0.5), "timeout")
+	PlayerGameManager.unpause()
 	PlayerGameManager.pause_except([controller])
-func resume_game():
+	yield(get_tree().create_timer(0.3), "timeout")
 	PlayerGameManager.unpause()

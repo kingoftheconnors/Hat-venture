@@ -292,7 +292,7 @@ tracks/6/keys = {
 "values": [ Vector2( 0, 6.5 ) ]
 }
 
-[sub_resource type="Animation" id=205]
+[sub_resource type="Animation" id=14]
 resource_name = "climb_over"
 length = 0.1
 step = 0.125
@@ -333,7 +333,7 @@ tracks/2/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=206]
+[sub_resource type="Animation" id=15]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -443,7 +443,7 @@ tracks/8/keys = {
 "values": [ 5.0 ]
 }
 
-[sub_resource type="Animation" id=207]
+[sub_resource type="Animation" id=16]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -553,7 +553,7 @@ tracks/8/keys = {
 "values": [ 5.0 ]
 }
 
-[sub_resource type="Animation" id=208]
+[sub_resource type="Animation" id=17]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -663,7 +663,7 @@ tracks/8/keys = {
 "values": [ 5.0 ]
 }
 
-[sub_resource type="Animation" id=209]
+[sub_resource type="Animation" id=18]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -773,7 +773,7 @@ tracks/8/keys = {
 "values": [ 5.0 ]
 }
 
-[sub_resource type="Animation" id=210]
+[sub_resource type="Animation" id=19]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -883,7 +883,7 @@ tracks/8/keys = {
 "values": [ 5.0 ]
 }
 
-[sub_resource type="Animation" id=211]
+[sub_resource type="Animation" id=20]
 length = 7.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
@@ -991,7 +991,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0, 1, 2, 2.3, 2.9, 3.5, 3.8, 5, 5.4, 5.9, 6.3 )
 }
 
-[sub_resource type="Animation" id=212]
+[sub_resource type="Animation" id=21]
 length = 2.5
 step = 0.01
 tracks/0/type = "value"
@@ -1119,7 +1119,7 @@ tracks/8/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=213]
+[sub_resource type="Animation" id=22]
 length = 2.5
 step = 0.01
 tracks/0/type = "value"
@@ -1230,7 +1230,7 @@ tracks/7/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=214]
+[sub_resource type="Animation" id=23]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -1366,7 +1366,7 @@ tracks/10/keys = {
 "values": [ 2.5 ]
 }
 
-[sub_resource type="Animation" id=215]
+[sub_resource type="Animation" id=24]
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
@@ -1406,7 +1406,7 @@ tracks/2/keys = {
 "values": [ 4 ]
 }
 
-[sub_resource type="Animation" id=216]
+[sub_resource type="Animation" id=25]
 length = 2.0
 step = 0.025
 tracks/0/type = "value"
@@ -1460,7 +1460,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=217]
+[sub_resource type="Animation" id=26]
 length = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/Sprite:visible")
@@ -1549,7 +1549,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=218]
+[sub_resource type="Animation" id=27]
 length = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/hurtbox/CollisionShape2D:position")
@@ -1626,7 +1626,7 @@ tracks/5/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=219]
+[sub_resource type="Animation" id=28]
 length = 0.001
 step = 0.005
 tracks/0/type = "value"
@@ -1719,7 +1719,7 @@ tracks/6/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=220]
+[sub_resource type="Animation" id=29]
 length = 0.001
 step = 0.005
 tracks/0/type = "method"
@@ -1737,7 +1737,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=221]
+[sub_resource type="Animation" id=30]
 length = 0.01
 loop = true
 step = 0.075
@@ -1828,7 +1828,7 @@ tracks/6/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=222]
+[sub_resource type="Animation" id=31]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -1866,7 +1866,7 @@ tracks/2/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=223]
+[sub_resource type="Animation" id=32]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -1904,7 +1904,7 @@ tracks/2/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=224]
+[sub_resource type="Animation" id=33]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -1942,7 +1942,7 @@ tracks/2/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=225]
+[sub_resource type="Animation" id=34]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -1980,7 +1980,7 @@ tracks/2/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=226]
+[sub_resource type="Animation" id=35]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -2018,8 +2018,8 @@ tracks/2/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=227]
-length = 0.4
+[sub_resource type="Animation" id=36]
+length = 0.8
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:texture")
@@ -2064,19 +2064,16 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.02, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.03 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "pause_game"
-}, {
-"args": [  ],
-"method": "resume_game"
 } ]
 }
 
-[sub_resource type="Animation" id=228]
-length = 0.4
+[sub_resource type="Animation" id=37]
+length = 0.8
 step = 0.02
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:texture")
@@ -2121,19 +2118,16 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.02, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.02 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "pause_game"
-}, {
-"args": [  ],
-"method": "resume_game"
 } ]
 }
 
-[sub_resource type="Animation" id=229]
-length = 0.4
+[sub_resource type="Animation" id=38]
+length = 0.8
 step = 0.02
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:texture")
@@ -2178,19 +2172,16 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.02, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.02 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "pause_game"
-}, {
-"args": [  ],
-"method": "resume_game"
 } ]
 }
 
-[sub_resource type="Animation" id=230]
-length = 0.4
+[sub_resource type="Animation" id=39]
+length = 0.8
 step = 0.02
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:texture")
@@ -2235,19 +2226,16 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.02, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.02 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "pause_game"
-}, {
-"args": [  ],
-"method": "resume_game"
 } ]
 }
 
-[sub_resource type="Animation" id=231]
-length = 0.4
+[sub_resource type="Animation" id=40]
+length = 0.8
 step = 0.02
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:texture")
@@ -2292,18 +2280,15 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.04, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.04 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "pause_game"
-}, {
-"args": [  ],
-"method": "resume_game"
 } ]
 }
 
-[sub_resource type="Animation" id=232]
+[sub_resource type="Animation" id=41]
 length = 1.6
 step = 0.05
 tracks/0/type = "value"
@@ -2336,7 +2321,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=233]
+[sub_resource type="Animation" id=42]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -2494,7 +2479,7 @@ tracks/12/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=234]
+[sub_resource type="Animation" id=43]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -2616,7 +2601,7 @@ tracks/9/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=235]
+[sub_resource type="Animation" id=44]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -2738,7 +2723,7 @@ tracks/9/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=236]
+[sub_resource type="Animation" id=45]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -2860,7 +2845,7 @@ tracks/9/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=237]
+[sub_resource type="Animation" id=46]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -2982,7 +2967,7 @@ tracks/9/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=238]
+[sub_resource type="Animation" id=47]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
@@ -3033,7 +3018,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=239]
+[sub_resource type="Animation" id=48]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
@@ -3084,7 +3069,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=240]
+[sub_resource type="Animation" id=49]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
@@ -3135,7 +3120,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=241]
+[sub_resource type="Animation" id=50]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
@@ -3186,7 +3171,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=242]
+[sub_resource type="Animation" id=51]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
@@ -3237,7 +3222,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=243]
+[sub_resource type="Animation" id=52]
 length = 0.6
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -3280,7 +3265,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=244]
+[sub_resource type="Animation" id=53]
 length = 0.75
 loop = true
 step = 0.05
@@ -3311,7 +3296,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=245]
+[sub_resource type="Animation" id=54]
 length = 0.1
 step = 0.05
 tracks/0/type = "value"
@@ -3353,7 +3338,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=246]
+[sub_resource type="Animation" id=55]
 length = 0.1
 step = 0.05
 tracks/0/type = "value"
@@ -3381,7 +3366,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=247]
+[sub_resource type="Animation" id=56]
 length = 0.05
 step = 0.038
 tracks/0/type = "method"
@@ -3411,10 +3396,10 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=248]
+[sub_resource type="Animation" id=57]
 length = 0.01
 
-[sub_resource type="Animation" id=249]
+[sub_resource type="Animation" id=58]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -3474,7 +3459,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=250]
+[sub_resource type="Animation" id=59]
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -3531,7 +3516,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=251]
+[sub_resource type="Animation" id=60]
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -3588,7 +3573,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=252]
+[sub_resource type="Animation" id=61]
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -3645,7 +3630,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=253]
+[sub_resource type="Animation" id=62]
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -3702,7 +3687,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=254]
+[sub_resource type="Animation" id=63]
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -3759,7 +3744,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=255]
+[sub_resource type="Animation" id=64]
 length = 0.225
 loop = true
 step = 0.075
@@ -3872,7 +3857,7 @@ tracks/8/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=256]
+[sub_resource type="Animation" id=65]
 length = 0.3
 step = 0.01
 tracks/0/type = "value"
@@ -3926,7 +3911,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=257]
+[sub_resource type="Animation" id=66]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -3966,7 +3951,7 @@ tracks/2/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=258]
+[sub_resource type="Animation" id=67]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -4006,7 +3991,7 @@ tracks/2/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=259]
+[sub_resource type="Animation" id=68]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -4046,7 +4031,7 @@ tracks/2/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=260]
+[sub_resource type="Animation" id=69]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -4086,7 +4071,7 @@ tracks/2/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=261]
+[sub_resource type="Animation" id=70]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -4716,8 +4701,7 @@ defaultPower = ExtResource( 37 )
 
 [node name="PlayerCore" type="Sprite" parent="ScaleChildren"]
 material = SubResource( 2 )
-texture = ExtResource( 1 )
-hframes = 2
+texture = ExtResource( 26 )
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="ScaleChildren"]
@@ -4826,63 +4810,63 @@ pause_mode = 2
 anims/aaaaa = SubResource( 11 )
 anims/bash = SubResource( 12 )
 anims/climb = SubResource( 13 )
-anims/climb_over = SubResource( 205 )
-anims/crouch = SubResource( 206 )
-"anims/crouch (brewing)" = SubResource( 207 )
-"anims/crouch (hard)" = SubResource( 208 )
-"anims/crouch (runner)" = SubResource( 209 )
-"anims/crouch (thor)" = SubResource( 210 )
-anims/dance = SubResource( 211 )
-anims/die = SubResource( 212 )
-anims/die_simple = SubResource( 213 )
-anims/dive = SubResource( 214 )
-anims/dive_boost = SubResource( 215 )
-anims/dive_rest = SubResource( 216 )
-anims/end_bash = SubResource( 217 )
-anims/end_crouch = SubResource( 218 )
-anims/end_dive = SubResource( 219 )
-anims/end_dive_call = SubResource( 220 )
-anims/end_spin = SubResource( 221 )
-anims/freefall = SubResource( 222 )
-"anims/freefall (brewing)" = SubResource( 223 )
-"anims/freefall (hard)" = SubResource( 224 )
-"anims/freefall (runner)" = SubResource( 225 )
-"anims/freefall (thor)" = SubResource( 226 )
-anims/hurt = SubResource( 227 )
-"anims/hurt (brewing)" = SubResource( 228 )
-"anims/hurt (hard)" = SubResource( 229 )
-"anims/hurt (runner)" = SubResource( 230 )
-"anims/hurt (thor)" = SubResource( 231 )
-anims/hurtFlash = SubResource( 232 )
-anims/idle = SubResource( 233 )
-"anims/idle (brewing)" = SubResource( 234 )
-"anims/idle (hard)" = SubResource( 235 )
-"anims/idle (runner)" = SubResource( 236 )
-"anims/idle (thor)" = SubResource( 237 )
-anims/jump = SubResource( 238 )
-"anims/jump (brewing)" = SubResource( 239 )
-"anims/jump (hard)" = SubResource( 240 )
-"anims/jump (runner)" = SubResource( 241 )
-"anims/jump (thor)" = SubResource( 242 )
-anims/power_get = SubResource( 243 )
-anims/powerlessActive = SubResource( 244 )
-anims/powerlessFlash = SubResource( 245 )
-anims/powerlessOff = SubResource( 246 )
-anims/pre-bash = SubResource( 247 )
-anims/refresh = SubResource( 248 )
-"anims/run (cycle)" = SubResource( 249 )
-anims/skid = SubResource( 250 )
-"anims/skid (brewing)" = SubResource( 251 )
-"anims/skid (hard)" = SubResource( 252 )
-"anims/skid (runner)" = SubResource( 253 )
-"anims/skid (thor)" = SubResource( 254 )
-anims/spin = SubResource( 255 )
-anims/throw = SubResource( 256 )
-anims/walk = SubResource( 257 )
-"anims/walk (brewing)" = SubResource( 258 )
-"anims/walk (hard)" = SubResource( 259 )
-"anims/walk (runner)" = SubResource( 260 )
-"anims/walk (thor)" = SubResource( 261 )
+anims/climb_over = SubResource( 14 )
+anims/crouch = SubResource( 15 )
+"anims/crouch (brewing)" = SubResource( 16 )
+"anims/crouch (hard)" = SubResource( 17 )
+"anims/crouch (runner)" = SubResource( 18 )
+"anims/crouch (thor)" = SubResource( 19 )
+anims/dance = SubResource( 20 )
+anims/die = SubResource( 21 )
+anims/die_simple = SubResource( 22 )
+anims/dive = SubResource( 23 )
+anims/dive_boost = SubResource( 24 )
+anims/dive_rest = SubResource( 25 )
+anims/end_bash = SubResource( 26 )
+anims/end_crouch = SubResource( 27 )
+anims/end_dive = SubResource( 28 )
+anims/end_dive_call = SubResource( 29 )
+anims/end_spin = SubResource( 30 )
+anims/freefall = SubResource( 31 )
+"anims/freefall (brewing)" = SubResource( 32 )
+"anims/freefall (hard)" = SubResource( 33 )
+"anims/freefall (runner)" = SubResource( 34 )
+"anims/freefall (thor)" = SubResource( 35 )
+anims/hurt = SubResource( 36 )
+"anims/hurt (brewing)" = SubResource( 37 )
+"anims/hurt (hard)" = SubResource( 38 )
+"anims/hurt (runner)" = SubResource( 39 )
+"anims/hurt (thor)" = SubResource( 40 )
+anims/hurtFlash = SubResource( 41 )
+anims/idle = SubResource( 42 )
+"anims/idle (brewing)" = SubResource( 43 )
+"anims/idle (hard)" = SubResource( 44 )
+"anims/idle (runner)" = SubResource( 45 )
+"anims/idle (thor)" = SubResource( 46 )
+anims/jump = SubResource( 47 )
+"anims/jump (brewing)" = SubResource( 48 )
+"anims/jump (hard)" = SubResource( 49 )
+"anims/jump (runner)" = SubResource( 50 )
+"anims/jump (thor)" = SubResource( 51 )
+anims/power_get = SubResource( 52 )
+anims/powerlessActive = SubResource( 53 )
+anims/powerlessFlash = SubResource( 54 )
+anims/powerlessOff = SubResource( 55 )
+anims/pre-bash = SubResource( 56 )
+anims/refresh = SubResource( 57 )
+"anims/run (cycle)" = SubResource( 58 )
+anims/skid = SubResource( 59 )
+"anims/skid (brewing)" = SubResource( 60 )
+"anims/skid (hard)" = SubResource( 61 )
+"anims/skid (runner)" = SubResource( 62 )
+"anims/skid (thor)" = SubResource( 63 )
+anims/spin = SubResource( 64 )
+anims/throw = SubResource( 65 )
+anims/walk = SubResource( 66 )
+"anims/walk (brewing)" = SubResource( 67 )
+"anims/walk (hard)" = SubResource( 68 )
+"anims/walk (runner)" = SubResource( 69 )
+"anims/walk (thor)" = SubResource( 70 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 pause_mode = 2
