@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=1]
 [ext_resource path="res://enemy/Scripts/Hitbox.gd" type="Script" id=2]
@@ -6,8 +6,10 @@
 [ext_resource path="res://enemy/gelato/Gelato.png" type="Texture" id=4]
 [ext_resource path="res://enemy/vanill/CherryThrower.gd" type="Script" id=5]
 [ext_resource path="res://enemy/gelato/DefendBox.gd" type="Script" id=6]
+[ext_resource path="res://Music/startSong.gd" type="Script" id=7]
+[ext_resource path="res://Music/sfx/impact1.wav" type="AudioStream" id=8]
 
-[sub_resource type="Animation" id=29]
+[sub_resource type="Animation" id=34]
 resource_name = "Shell"
 length = 0.5
 step = 0.05
@@ -59,8 +61,7 @@ tracks/3/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "Throw"
+[sub_resource type="Animation" id=35]
 length = 0.5
 loop = true
 step = 0.05
@@ -91,7 +92,7 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=36]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -285,8 +286,7 @@ tracks/15/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "default (nocherry)"
+[sub_resource type="Animation" id=37]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -360,7 +360,7 @@ tracks/5/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=38]
 length = 2.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -440,8 +440,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "nocone"
+[sub_resource type="Animation" id=39]
 length = 0.8
 loop = true
 step = 0.2
@@ -624,7 +623,7 @@ tracks/14/keys = {
 "values": [ Vector2( 0, 5 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=40]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -706,8 +705,7 @@ tracks/5/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "trigger_nocone"
+[sub_resource type="Animation" id=41]
 length = 0.1
 loop = true
 step = 0.2
@@ -740,91 +738,91 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=42]
 animation = "Throw"
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=43]
 animation = "default"
 
-[sub_resource type="AnimationNodeAnimation" id=30]
+[sub_resource type="AnimationNodeAnimation" id=44]
 animation = "Shell"
 
-[sub_resource type="AnimationNodeAnimation" id=10]
+[sub_resource type="AnimationNodeAnimation" id=45]
 animation = "die"
 
-[sub_resource type="AnimationNodeAnimation" id=11]
+[sub_resource type="AnimationNodeAnimation" id=46]
 animation = "nocone"
 
-[sub_resource type="AnimationNodeAnimation" id=12]
+[sub_resource type="AnimationNodeAnimation" id=47]
 animation = "smash"
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=48]
 animation = "trigger_nocone"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+[sub_resource type="AnimationNodeStateMachineTransition" id=50]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+[sub_resource type="AnimationNodeStateMachineTransition" id=52]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+[sub_resource type="AnimationNodeStateMachineTransition" id=53]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+[sub_resource type="AnimationNodeStateMachineTransition" id=54]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+[sub_resource type="AnimationNodeStateMachineTransition" id=56]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+[sub_resource type="AnimationNodeStateMachineTransition" id=57]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+[sub_resource type="AnimationNodeStateMachineTransition" id=58]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+[sub_resource type="AnimationNodeStateMachineTransition" id=59]
 advance_condition = "defend"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+[sub_resource type="AnimationNodeStateMachineTransition" id=60]
 advance_condition = "not_defend"
 
-[sub_resource type="AnimationNodeStateMachine" id=24]
-states/Throw/node = SubResource( 8 )
+[sub_resource type="AnimationNodeStateMachine" id=61]
+states/Throw/node = SubResource( 42 )
 states/Throw/position = Vector2( 431, 118 )
-states/default/node = SubResource( 9 )
+states/default/node = SubResource( 43 )
 states/default/position = Vector2( 205, 118 )
-states/defend/node = SubResource( 30 )
+states/defend/node = SubResource( 44 )
 states/defend/position = Vector2( 4.66417, 118 )
-states/die/node = SubResource( 10 )
+states/die/node = SubResource( 45 )
 states/die/position = Vector2( 313, 44 )
-states/nocone/node = SubResource( 11 )
+states/nocone/node = SubResource( 46 )
 states/nocone/position = Vector2( 205, 269.444 )
-states/smash/node = SubResource( 12 )
+states/smash/node = SubResource( 47 )
 states/smash/position = Vector2( 548, 269.444 )
-states/trigger_nocone/node = SubResource( 13 )
+states/trigger_nocone/node = SubResource( 48 )
 states/trigger_nocone/position = Vector2( 344, 195.444 )
-transitions = [ "default", "die", SubResource( 14 ), "die", "default", SubResource( 15 ), "default", "Throw", SubResource( 16 ), "Throw", "default", SubResource( 17 ), "nocone", "smash", SubResource( 18 ), "smash", "nocone", SubResource( 19 ), "default", "trigger_nocone", SubResource( 20 ), "trigger_nocone", "nocone", SubResource( 21 ), "nocone", "default", SubResource( 22 ), "Throw", "trigger_nocone", SubResource( 23 ), "default", "defend", SubResource( 31 ), "defend", "default", SubResource( 32 ) ]
+transitions = [ "default", "die", SubResource( 49 ), "die", "default", SubResource( 50 ), "default", "Throw", SubResource( 51 ), "Throw", "default", SubResource( 52 ), "nocone", "smash", SubResource( 53 ), "smash", "nocone", SubResource( 54 ), "default", "trigger_nocone", SubResource( 55 ), "trigger_nocone", "nocone", SubResource( 56 ), "nocone", "default", SubResource( 57 ), "Throw", "trigger_nocone", SubResource( 58 ), "default", "defend", SubResource( 59 ), "defend", "default", SubResource( 60 ) ]
 start_node = "default"
 graph_offset = Vector2( -146.336, -14.6718 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=25]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=29]
 
-[sub_resource type="CapsuleShape2D" id=26]
+[sub_resource type="CapsuleShape2D" id=30]
 radius = 3.0
 height = 14.3208
 
-[sub_resource type="CapsuleShape2D" id=27]
+[sub_resource type="CapsuleShape2D" id=31]
 radius = 6.0
 height = 3.0
 
-[sub_resource type="CapsuleShape2D" id=33]
+[sub_resource type="CapsuleShape2D" id=32]
 radius = 50.0
 height = 10.0
 
-[sub_resource type="CapsuleShape2D" id=28]
+[sub_resource type="CapsuleShape2D" id=33]
 radius = 6.5
 height = 0.0
 
@@ -837,25 +835,24 @@ position = Vector2( -2, 0 )
 texture = ExtResource( 4 )
 vframes = 5
 hframes = 2
-frame = 1
 script = ExtResource( 1 )
 death_score = 500
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyCore"]
-anims/Shell = SubResource( 29 )
-anims/Throw = SubResource( 1 )
-anims/default = SubResource( 2 )
-"anims/default (nocherry)" = SubResource( 3 )
-anims/die = SubResource( 4 )
-anims/nocone = SubResource( 5 )
-anims/smash = SubResource( 6 )
-anims/trigger_nocone = SubResource( 7 )
+anims/Shell = SubResource( 34 )
+anims/Throw = SubResource( 35 )
+anims/default = SubResource( 36 )
+"anims/default (nocherry)" = SubResource( 37 )
+anims/die = SubResource( 38 )
+anims/nocone = SubResource( 39 )
+anims/smash = SubResource( 40 )
+anims/trigger_nocone = SubResource( 41 )
 
 [node name="AnimationTree" type="AnimationTree" parent="EnemyCore"]
-tree_root = SubResource( 24 )
+tree_root = SubResource( 61 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 25 )
+parameters/playback = SubResource( 29 )
 parameters/conditions/defend = false
 parameters/conditions/not_defend = false
 
@@ -866,7 +863,7 @@ position = Vector2( 0, -5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 rotation = 1.5708
-shape = SubResource( 26 )
+shape = SubResource( 30 )
 
 [node name="HitBox" type="Area2D" parent="." groups=[
 "hitbox",
@@ -876,7 +873,7 @@ script = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 0, 2 )
 rotation = 1.5708
-shape = SubResource( 27 )
+shape = SubResource( 31 )
 
 [node name="DefendBox" type="Area2D" parent="."]
 script = ExtResource( 6 )
@@ -885,12 +882,12 @@ animation_tree = NodePath("../EnemyCore/AnimationTree")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DefendBox"]
 position = Vector2( 0, -12 )
 rotation = 1.5708
-shape = SubResource( 33 )
+shape = SubResource( 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1.5 )
 rotation = 1.5708
-shape = SubResource( 28 )
+shape = SubResource( 33 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
@@ -901,9 +898,15 @@ collision_mask = 2
 
 [node name="CherryThrower" type="Node" parent="."]
 script = ExtResource( 5 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 8 )
+script = ExtResource( 7 )
 [connection signal="body_entered" from="DefendBox" to="DefendBox" method="_on_DefendBox_body_entered"]
 [connection signal="body_exited" from="DefendBox" to="DefendBox" method="_on_DefendBox_body_exited"]
-[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="CherryThrower" method="_on_VisibilityNotifier2D_screen_entered"]
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="CherryThrower" method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="shoot" from="CherryThrower" to="AudioStreamPlayer" method="start_sound"]

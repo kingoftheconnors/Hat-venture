@@ -10,6 +10,7 @@ func shoot(path_to_root):
 		cherrybomb.set_position(root.position + Vector2(sprite.scale.x*8, -2))
 		cherrybomb.init(sprite.scale.x, root)
 		root.get_parent().add_child(cherrybomb)
+		emit_signal("shoot")
 
 func _on_VisibilityNotifier2D_screen_entered():
 	is_active = true
@@ -18,3 +19,5 @@ func _on_VisibilityNotifier2D_screen_exited():
 	is_active = false
 
 var is_active = false
+
+signal shoot

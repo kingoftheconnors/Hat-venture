@@ -24,7 +24,10 @@ func _on_Area2D_body_entered(body):
 	# Colliding with tiles
 	if body != creator:
 		animation_player.play("disable")
+		emit_signal("explode")
 		moving = false
 
 func _ready():
 	animation_player.play("fly")
+
+signal explode

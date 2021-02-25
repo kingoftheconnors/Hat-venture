@@ -9,6 +9,8 @@ extends Node2D
 ## called when the item is collected
 export(Resource) var itemCommand
 onready var wait_collect = 5
+onready var animation_player = $AnimationPlayer
+var collected = false
 
 signal collected
 
@@ -17,22 +19,26 @@ func _physics_process(_delta):
 		wait_collect -= 1
 
 func _on_Area2D_body_entered(body):
-	if body.is_in_group("player"):
+	if body.is_in_group("player") and !collected:
 		emit_signal("collected")
 		collect(body)
 
 func collect(body):
-	if wait_collect <= 0:
+	if wait_collect <= 0 and !collected:
+		collected = true
 		var destroy = itemCommand.new().power(body, self)
-		if destroy:
+		if destroy and animation_player != null and animation_player.has_animation("delayed_free"):
+			animation_player.play("delayed_free")
+		else:
 			queue_free()
+		emit_signal("collected")
+		print("Collected")
 
 func _on_Area2D_area_entered(area):
-	if area.is_in_group("player"):
+	if area.is_in_group("player") and !collected:
 		var parent = area.get_parent()
 		while parent.get_name() != "Player":
 			parent = parent.get_parent()
-		emit_signal("collected")
 		collect(parent)
 
 func set_velo(_velo):

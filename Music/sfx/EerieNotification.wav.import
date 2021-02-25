@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/EerieNotification.wav-30b4a3f91005ada503a1658397f8218f.sample"
+
+[deps]
+
+source_file="res://Music/sfx/EerieNotification.wav"
+dest_files=[ "res://.import/EerieNotification.wav-30b4a3f91005ada503a1658397f8218f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -87,6 +87,8 @@ onready var core = $"ScaleChildren/PlayerCore"
 onready var skidRayCast1 = $"SkidRay"
 onready var skidRayCast2 = $"SkidRay2"
 
+onready var sfx = $PlayerSfx
+
 # Movement vars
 var _stun = 0
 var frozen = false
@@ -516,7 +518,7 @@ func jump():
 	coyoteTimer = 0
 	jump_timer = 0
 	set_climb(false)
-	#jump_sfx.play()
+	sfx.play_jump()
 	animator["parameters/PlayerMovement/conditions/jumping"] = true
 	animator["parameters/PlayerMovement/conditions/not_jumping"] = false
 

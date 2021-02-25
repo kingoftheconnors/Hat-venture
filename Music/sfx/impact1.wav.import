@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/impact1.wav-b6c8aeddd25795726bf6e1383b629d96.sample"
+
+[deps]
+
+source_file="res://Music/sfx/impact1.wav"
+dest_files=[ "res://.import/impact1.wav-b6c8aeddd25795726bf6e1383b629d96.sample" ]
+
+[params]
+
+force/8_bit=true
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0
