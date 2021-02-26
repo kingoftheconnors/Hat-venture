@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://player/brewing/brewingbottle.gd" type="Script" id=1]
 [ext_resource path="res://player/brewing/brewingbottle.png" type="Texture" id=2]
 [ext_resource path="res://player/brewing/brewExplosion.png" type="Texture" id=3]
 [ext_resource path="res://Music/startSong.gd" type="Script" id=4]
-[ext_resource path="res://Music/sfx/explosion.wav" type="AudioStream" id=5]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -96,7 +95,6 @@ anims/explode = SubResource( 7 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
-stream = ExtResource( 5 )
 bus = "SoundEffects"
 script = ExtResource( 4 )
 [connection signal="explode" from="." to="AudioStreamPlayer" method="start_sound"]
