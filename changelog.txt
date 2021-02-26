@@ -251,15 +251,16 @@ Running does not accelerate in air (but still feels good)
 
 0.3.1
   Sfx
+  Gelato spikes based on PATTERN, rather than distance
   Bugfixes:
       Eltun blast death
       Jumping out of climb-over animation
       SFX for changing volume level
       Fix camera capture release level to be within camera-bounds
       Bashing into camera capture bounces off
+      Opening menu during timepiece dance stops level-end
 
 Backlog:
-Gelato spikes not based on distance, done in PATTERN (like Hammer Guy)
 Propeller Power?
 Level 1
   * Design first level with QP
@@ -286,13 +287,10 @@ Level 2
 
 After Angus becomes free:
   Talk about replacing witch hat with smash hat (propeller)
-  Graphics for:
-      Wall background (upgrade what I made)
+  Graphics/Ideas for:
+      Propeller Hat
+      Hat Girl ladder-climbing (other hats)
+      Wall background (review and upgrade what I made)
       One-way platforms
-      Hat Girl ladder-climbing
       Explosion
       Hat Girl DANCE :3
-      Spring
-
-Notes:
-* Different worlds with different color schemes

@@ -1,17 +1,16 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=1]
 [ext_resource path="res://enemy/Scripts/Hitbox.gd" type="Script" id=2]
 [ext_resource path="res://enemy/Scripts/lemming.gd" type="Script" id=3]
 [ext_resource path="res://enemy/gelato/Gelato.png" type="Texture" id=4]
 [ext_resource path="res://enemy/vanill/CherryThrower.gd" type="Script" id=5]
-[ext_resource path="res://enemy/gelato/DefendBox.gd" type="Script" id=6]
 [ext_resource path="res://Music/startSong.gd" type="Script" id=7]
 [ext_resource path="res://Music/sfx/impact1.wav" type="AudioStream" id=8]
 
-[sub_resource type="Animation" id=34]
+[sub_resource type="Animation" id=1]
 resource_name = "Shell"
-length = 0.5
+length = 2.0
 step = 0.05
 tracks/0/type = "method"
 tracks/0/path = NodePath("../CherryThrower")
@@ -43,10 +42,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 1.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 8, 9 ]
+"values": [ 8, 9, 8 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath(".:invincible")
@@ -61,7 +60,7 @@ tracks/3/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=35]
+[sub_resource type="Animation" id=2]
 length = 0.5
 loop = true
 step = 0.05
@@ -92,7 +91,7 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=36]
+[sub_resource type="Animation" id=3]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -286,7 +285,7 @@ tracks/15/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=37]
+[sub_resource type="Animation" id=4]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -360,7 +359,7 @@ tracks/5/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=38]
+[sub_resource type="Animation" id=5]
 length = 2.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -440,7 +439,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=39]
+[sub_resource type="Animation" id=6]
 length = 0.8
 loop = true
 step = 0.2
@@ -584,7 +583,7 @@ tracks/11/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 9.0 ]
+"values": [ 8.0 ]
 }
 tracks/12/type = "value"
 tracks/12/path = NodePath("../HitBox/CollisionShape2D:shape:radius")
@@ -596,7 +595,7 @@ tracks/12/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 3.0 ]
+"values": [ 4.0 ]
 }
 tracks/13/type = "value"
 tracks/13/path = NodePath("../HitBox/CollisionShape2D:position")
@@ -608,7 +607,7 @@ tracks/13/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 5 ) ]
+"values": [ Vector2( 0, 4 ) ]
 }
 tracks/14/type = "value"
 tracks/14/path = NodePath("../HurtBox/CollisionShape2D:position")
@@ -623,7 +622,7 @@ tracks/14/keys = {
 "values": [ Vector2( 0, 5 ) ]
 }
 
-[sub_resource type="Animation" id=40]
+[sub_resource type="Animation" id=7]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -705,7 +704,7 @@ tracks/5/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=41]
+[sub_resource type="Animation" id=8]
 length = 0.1
 loop = true
 step = 0.2
@@ -738,75 +737,75 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=42]
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "Throw"
 
-[sub_resource type="AnimationNodeAnimation" id=43]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "default"
 
-[sub_resource type="AnimationNodeAnimation" id=44]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "Shell"
 
-[sub_resource type="AnimationNodeAnimation" id=45]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "die"
 
-[sub_resource type="AnimationNodeAnimation" id=46]
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "nocone"
 
-[sub_resource type="AnimationNodeAnimation" id=47]
+[sub_resource type="AnimationNodeAnimation" id=14]
 animation = "smash"
 
-[sub_resource type="AnimationNodeAnimation" id=48]
+[sub_resource type="AnimationNodeAnimation" id=15]
 animation = "trigger_nocone"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=50]
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=51]
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=52]
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=53]
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+switch_mode = 2
+auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=54]
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=55]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=56]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=57]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=58]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=59]
-advance_condition = "defend"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=60]
-advance_condition = "not_defend"
-
-[sub_resource type="AnimationNodeStateMachine" id=61]
-states/Throw/node = SubResource( 42 )
+[sub_resource type="AnimationNodeStateMachine" id=28]
+states/Throw/node = SubResource( 9 )
 states/Throw/position = Vector2( 431, 118 )
-states/default/node = SubResource( 43 )
+states/default/node = SubResource( 10 )
 states/default/position = Vector2( 205, 118 )
-states/defend/node = SubResource( 44 )
-states/defend/position = Vector2( 4.66417, 118 )
-states/die/node = SubResource( 45 )
-states/die/position = Vector2( 313, 44 )
-states/nocone/node = SubResource( 46 )
+states/defend/node = SubResource( 11 )
+states/defend/position = Vector2( 311.664, 6 )
+states/die/node = SubResource( 12 )
+states/die/position = Vector2( 54, 19 )
+states/nocone/node = SubResource( 13 )
 states/nocone/position = Vector2( 205, 269.444 )
-states/smash/node = SubResource( 47 )
+states/smash/node = SubResource( 14 )
 states/smash/position = Vector2( 548, 269.444 )
-states/trigger_nocone/node = SubResource( 48 )
+states/trigger_nocone/node = SubResource( 15 )
 states/trigger_nocone/position = Vector2( 344, 195.444 )
-transitions = [ "default", "die", SubResource( 49 ), "die", "default", SubResource( 50 ), "default", "Throw", SubResource( 51 ), "Throw", "default", SubResource( 52 ), "nocone", "smash", SubResource( 53 ), "smash", "nocone", SubResource( 54 ), "default", "trigger_nocone", SubResource( 55 ), "trigger_nocone", "nocone", SubResource( 56 ), "nocone", "default", SubResource( 57 ), "Throw", "trigger_nocone", SubResource( 58 ), "default", "defend", SubResource( 59 ), "defend", "default", SubResource( 60 ) ]
+transitions = [ "default", "die", SubResource( 16 ), "die", "default", SubResource( 17 ), "default", "Throw", SubResource( 18 ), "Throw", "default", SubResource( 19 ), "nocone", "smash", SubResource( 20 ), "smash", "nocone", SubResource( 21 ), "default", "trigger_nocone", SubResource( 22 ), "trigger_nocone", "nocone", SubResource( 23 ), "nocone", "default", SubResource( 24 ), "Throw", "defend", SubResource( 33 ), "defend", "default", SubResource( 34 ), "defend", "Throw", SubResource( 35 ) ]
 start_node = "default"
-graph_offset = Vector2( -146.336, -14.6718 )
+graph_offset = Vector2( -146.336, 74.4682 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=29]
 
@@ -819,10 +818,6 @@ radius = 6.0
 height = 3.0
 
 [sub_resource type="CapsuleShape2D" id=32]
-radius = 50.0
-height = 10.0
-
-[sub_resource type="CapsuleShape2D" id=33]
 radius = 6.5
 height = 0.0
 
@@ -835,26 +830,25 @@ position = Vector2( -2, 0 )
 texture = ExtResource( 4 )
 vframes = 5
 hframes = 2
+frame = 8
 script = ExtResource( 1 )
 death_score = 500
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyCore"]
-anims/Shell = SubResource( 34 )
-anims/Throw = SubResource( 35 )
-anims/default = SubResource( 36 )
-"anims/default (nocherry)" = SubResource( 37 )
-anims/die = SubResource( 38 )
-anims/nocone = SubResource( 39 )
-anims/smash = SubResource( 40 )
-anims/trigger_nocone = SubResource( 41 )
+anims/Shell = SubResource( 1 )
+anims/Throw = SubResource( 2 )
+anims/default = SubResource( 3 )
+"anims/default (nocherry)" = SubResource( 4 )
+anims/die = SubResource( 5 )
+anims/nocone = SubResource( 6 )
+anims/smash = SubResource( 7 )
+anims/trigger_nocone = SubResource( 8 )
 
 [node name="AnimationTree" type="AnimationTree" parent="EnemyCore"]
-tree_root = SubResource( 61 )
+tree_root = SubResource( 28 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 29 )
-parameters/conditions/defend = false
-parameters/conditions/not_defend = false
 
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
@@ -875,19 +869,10 @@ position = Vector2( 0, 2 )
 rotation = 1.5708
 shape = SubResource( 31 )
 
-[node name="DefendBox" type="Area2D" parent="."]
-script = ExtResource( 6 )
-animation_tree = NodePath("../EnemyCore/AnimationTree")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DefendBox"]
-position = Vector2( 0, -12 )
-rotation = 1.5708
-shape = SubResource( 32 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1.5 )
 rotation = 1.5708
-shape = SubResource( 33 )
+shape = SubResource( 32 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
@@ -903,10 +888,8 @@ script = ExtResource( 5 )
 pause_mode = 2
 stream = ExtResource( 8 )
 script = ExtResource( 7 )
-[connection signal="body_entered" from="DefendBox" to="DefendBox" method="_on_DefendBox_body_entered"]
-[connection signal="body_exited" from="DefendBox" to="DefendBox" method="_on_DefendBox_body_exited"]
-[connection signal="screen_entered" from="VisibilityNotifier2D" to="CherryThrower" method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="CherryThrower" method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="CherryThrower" method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="CherryThrower" method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="shoot" from="CherryThrower" to="AudioStreamPlayer" method="start_sound"]
