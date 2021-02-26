@@ -13,9 +13,9 @@ const VISIBILITY_RATE = 0.07
 func _on_Area2D_body_entered(body):
 	var success = true
 	if body.is_in_group("player"):
-		success &= tween.stop_all()
-		success &= tween.interpolate_property(self, "modulate", self.modulate, Color(1, 1, 1, 0.25), 0.5, Tween.TRANS_CUBIC)
-		success &= tween.start()
+		success = success and tween.stop_all()
+		success = success and tween.interpolate_property(self, "modulate", self.modulate, Color(1, 1, 1, 0.25), 0.5, Tween.TRANS_CUBIC)
+		success = success and tween.start()
 		# Test that tween succeeded
 		if !success:
 			print("ERROR: Start tween failed: FakeWalls - _on_Area2D_body_entered")
@@ -24,9 +24,9 @@ func _on_Area2D_body_entered(body):
 func _on_Area2D_body_exited(body):
 	var success = true
 	if body.is_in_group("player"):
-		success &= tween.stop_all()
-		success &= tween.interpolate_property(self, "modulate", self.modulate, Color(1, 1, 1, 1), 0.5, Tween.TRANS_CUBIC)
-		success &= tween.start()
+		success = success and tween.stop_all()
+		success = success and tween.interpolate_property(self, "modulate", self.modulate, Color(1, 1, 1, 1), 0.5, Tween.TRANS_CUBIC)
+		success = success and tween.start()
 		# Test that tween succeeded
 		if !success:
 			print("ERROR: Start tween failed: FakeWalls - _on_Area2D_body_exited")
