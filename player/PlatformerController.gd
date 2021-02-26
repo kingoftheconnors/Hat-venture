@@ -691,7 +691,7 @@ func unspin():
 		power_stun(POST_SPIN_STUN)
 
 func set_climb(flag : bool):
-	if on_ladders_top.size() > 0 and climbing:
+	if on_ladders_top.size() > 0 and flag:
 		animator["parameters/PlayerMovement/conditions/climbing_over"] = true
 		animator["parameters/PlayerMovement/conditions/not_climbing_over"] = false
 	else:
