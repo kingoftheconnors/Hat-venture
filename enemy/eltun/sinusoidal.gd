@@ -18,7 +18,6 @@ func _ready():
 # Frame process function. Moves body.
 func frame(body : KinematicBody2D, sprite : Sprite, _delta):
 	if !frozen:
-		print(velo)
 		var _ret_velo = body.move_and_slide(velo, Vector2.UP)
 		# Zigzag
 		wave_frame += 1
