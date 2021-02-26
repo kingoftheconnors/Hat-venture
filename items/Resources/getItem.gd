@@ -9,7 +9,7 @@ extends Node2D
 ## called when the item is collected
 export(Resource) var itemCommand
 onready var wait_collect = 5
-onready var animation_player = $AnimationPlayer
+onready var animation_player = get_node_or_null("AnimationPlayer")
 var collected = false
 
 signal collected
@@ -29,7 +29,7 @@ func collect(body):
 		var destroy = itemCommand.new().power(body, self)
 		if destroy and animation_player != null and animation_player.has_animation("delayed_free"):
 			animation_player.play("delayed_free")
-		else:
+		elif destroy:
 			queue_free()
 		emit_signal("collected")
 		print("Collected")

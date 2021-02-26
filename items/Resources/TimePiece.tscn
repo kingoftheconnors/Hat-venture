@@ -184,9 +184,9 @@ active = true
 parameters/playback = SubResource( 8 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -7.03194 )
+position = Vector2( 0, -4.56229 )
 frames = SubResource( 17 )
-frame = 3
+frame = 7
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]

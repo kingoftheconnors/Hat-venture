@@ -4,7 +4,7 @@ extends NinePatchRect
 func _unhandled_input(event):
 	# Open and close menu
 	if event.is_action_pressed("ui_menu") or event.is_action_pressed("ui_B"):
-		if openable and !visible and event.is_action_pressed("ui_menu"):
+		if openable and !visible and event.is_action_pressed("ui_menu") and !get_tree().paused:
 			# Make this menu only active object while menu is open
 			pause_mode = PAUSE_MODE_PROCESS
 			get_tree().paused = true
