@@ -1,18 +1,17 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://common/Resources/spring.png" type="Texture" id=1]
 [ext_resource path="res://common/Spring.gd" type="Script" id=2]
-[ext_resource path="res://items/Resources/itemMovement.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 5 )
+extents = Vector2( 4, 5.5 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 7.5, 7 )
+extents = Vector2( 7.5, 8 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "boing"
-length = 0.06
+length = 0.07
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -21,50 +20,28 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.06 ),
+"times": PoolRealArray( 0, 0.07 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 2, 0 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 0, 3 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("CollisionShape2D:shape:extents")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 8, 5 ) ]
-}
 
-[node name="Spring" type="KinematicBody2D"]
-script = ExtResource( 3 )
-gravityMultiplier = 1.0
+[node name="Spring" type="RigidBody2D"]
+collision_mask = 3
+mode = 2
+gravity_scale = 10.0
+continuous_cd = 2
+linear_damp = 4.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 3 )
+position = Vector2( 0, 2.5 )
 shape = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

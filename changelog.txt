@@ -260,9 +260,9 @@ Running does not accelerate in air (but still feels good)
       Bashing into camera capture bounces off
       Opening menu during timepiece dance stops level-end
 Moving platforms
+Make spring thinner
 
 Backlog:
-BUGFIX: Pushing spring off platform (check if remainder value of collision gives anything)
 Moving platforms only activating when in Player view (but no respawning)
 Propeller Power?
 Level 1

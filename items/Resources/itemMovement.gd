@@ -7,6 +7,8 @@ onready var animator = get_node_or_null("AnimationPlayer")
 
 var velo = Vector2(0, -110)
 
+var prev_travel = Vector2.ZERO
+
 func _physics_process(_delta):
 	velo.y += ENEMY_GRAVITY * gravityMultiplier
 	# terminal velocity
