@@ -12,7 +12,7 @@ func _physics_process(_delta):
 	# terminal velocity
 	if velo.y > Constants.terminalVelocity:
 		velo.y = Constants.terminalVelocity
-	velo = move_and_slide(velo, Vector2.UP)
+	velo = move_and_slide_with_snap(velo, Vector2.DOWN, Vector2.UP)
 	if is_on_floor():
 		velo.x *= 0.93
 	# Despawning objects will die on hitting a brick

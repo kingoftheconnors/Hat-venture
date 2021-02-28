@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/powerblocks.png-eebff1a11d9e27f3dc2c4222426fcf58.stex"
+path="res://.import/Capture.PNG-5c2d424bd6da50dec36091e32f834020.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://common/powerblocks.png"
-dest_files=[ "res://.import/powerblocks.png-eebff1a11d9e27f3dc2c4222426fcf58.stex" ]
+source_file="res://common/Resources/Capture.PNG"
+dest_files=[ "res://.import/Capture.PNG-5c2d424bd6da50dec36091e32f834020.stex" ]
 
 [params]
 

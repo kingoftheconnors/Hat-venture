@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://level1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://level1/background1.tres" type="TileSet" id=2]
@@ -24,12 +24,24 @@
 [ext_resource path="res://enemy/gelato/Gelato.tscn" type="PackedScene" id=22]
 [ext_resource path="res://enemy/eltun/pace.gd" type="Script" id=23]
 [ext_resource path="res://common/CameraCapture.tscn" type="PackedScene" id=24]
+[ext_resource path="res://common/MovingPlatform.tscn" type="PackedScene" id=25]
+[ext_resource path="res://common/Spring.tscn" type="PackedScene" id=26]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
 [sub_resource type="Curve2D" id=2]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 72, -96, 0, 0, 0, 0, 112, -136, 0, 0, 0, 0, 176, -136, 0, 0, 0, 0, 216, -96, 0, 0, 0, 0, 216, -40, 0, 0, 0, 0, 176, -16, 0, 0, 0, 0, 87.5475, -15.8959, 0, 0, 0, 0, 71.4497, -50.4525 )
+}
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 8, -32, 0, 0, 0, 0, -16, 32, 0, 0, 0, 0, -48, -24, 0, 0, 0, 0, 48, -16, 0, 0, 0, 0, 32, 24 )
+}
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 8, -32, 0, 0, 0, 0, -16, 32, 0, 0, 0, 0, -128, 32, 0, 0, 0, 0, -216, -32 )
 }
 
 [node name="Level" type="Node2D"]
@@ -121,7 +133,7 @@ script = ExtResource( 19 )
 [node name="Tween" type="Tween" parent="Area2D/FakeWalls"]
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( -1.04162, -344.528 )
+position = Vector2( 0, -336 )
 rotation = 4.46638e-06
 
 [node name="Camera" parent="." instance=ExtResource( 5 )]
@@ -133,7 +145,7 @@ smoothing_speed = 12.0
 drag_margin_top = 0.25
 
 [node name="Node2D" parent="." instance=ExtResource( 7 )]
-position = Vector2( -3.56511, -341.033 )
+position = Vector2( 0, -336 )
 playerPath = NodePath("../Player")
 
 [node name="Node" type="Node" parent="."]
@@ -147,9 +159,6 @@ position = Vector2( 1260.62, -25.4241 )
 
 [node name="Crow2" parent="." instance=ExtResource( 18 )]
 position = Vector2( 1642.61, -27.4241 )
-
-[node name="EnemyCore" parent="Crow2" index="0"]
-frame = 0
 
 [node name="AnimationTree" parent="Crow2/EnemyCore" index="1"]
 parameters/playback = SubResource( 1 )
@@ -234,6 +243,7 @@ walled = false
 
 [node name="Vanill" parent="." instance=ExtResource( 8 )]
 position = Vector2( 568, -168 )
+moving = false
 
 [node name="NPC" parent="." instance=ExtResource( 20 )]
 position = Vector2( 200, -16 )
@@ -243,6 +253,19 @@ position = Vector2( 0, -8 )
 
 [node name="Gelato" parent="." instance=ExtResource( 22 )]
 position = Vector2( 344, -72 )
+moving = false
+
+[node name="MovingPlatform2" parent="." instance=ExtResource( 25 )]
+position = Vector2( 488, -48 )
+curve = SubResource( 3 )
+
+[node name="MovingPlatform" parent="." instance=ExtResource( 25 )]
+position = Vector2( 168, -152 )
+curve = SubResource( 4 )
+
+[node name="Spring" parent="." instance=ExtResource( 26 )]
+position = Vector2( 152, -168 )
+collision_mask = 3
 [connection signal="body_entered" from="Area2D" to="Area2D/FakeWalls" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D/FakeWalls" method="_on_Area2D_body_exited"]
 [connection signal="dead" from="Player" to="GameOver" method="start_music"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://common/spring.png" type="Texture" id=1]
+[ext_resource path="res://common/Resources/spring.png" type="Texture" id=1]
 [ext_resource path="res://common/Spring.gd" type="Script" id=2]
+[ext_resource path="res://items/Resources/itemMovement.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 7.5 )
+extents = Vector2( 8, 5 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 7.5, 7 )
@@ -32,10 +33,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.06 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ Vector2( 0, 3 ), Vector2( 0, 0.5 ) ]
+"values": [ Vector2( 0, 3 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("CollisionShape2D:shape:extents")
@@ -44,20 +45,22 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.06 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ Vector2( 8, 5 ), Vector2( 8, 7.5 ) ]
+"values": [ Vector2( 8, 5 ) ]
 }
 
-[node name="Spring" type="StaticBody2D"]
+[node name="Spring" type="KinematicBody2D"]
+script = ExtResource( 3 )
+gravityMultiplier = 1.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 0.5 )
+position = Vector2( 0, 3 )
 shape = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]

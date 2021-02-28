@@ -259,8 +259,11 @@ Running does not accelerate in air (but still feels good)
       Fix camera capture release level to be within camera-bounds
       Bashing into camera capture bounces off
       Opening menu during timepiece dance stops level-end
+Moving platforms
 
 Backlog:
+BUGFIX: Pushing spring off platform (check if remainder value of collision gives anything)
+Moving platforms only activating when in Player view (but no respawning)
 Propeller Power?
 Level 1
   * Design first level with QP

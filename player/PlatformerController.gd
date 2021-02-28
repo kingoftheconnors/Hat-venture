@@ -307,9 +307,9 @@ func calc_direc(ui_direc, cur_speed, accel = ACCELERATION, speed = base_speed) -
 
 onready var feetCollider = $"FeetCollider"
 func move_player(v):
-	#var snap = Vector2.DOWN * 16 if is_on_floor() and !just_jumped else Vector2.ZERO
+	var snap = Vector2.DOWN if is_on_floor() else Vector2.ZERO
 	var prev_velo = v
-	var new_velo = move_and_slide(v, Vector2.UP)#_with_snap(velo, snap, Vector2.UP, true)
+	var new_velo = move_and_slide_with_snap(v, snap, Vector2.UP) #(v, Vector2.UP)#
 	var recognize_collision = true
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
