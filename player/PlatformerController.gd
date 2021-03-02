@@ -309,7 +309,7 @@ onready var feetCollider = $"FeetCollider"
 func move_player(v):
 	var snap = Vector2.DOWN if is_on_floor() else Vector2.ZERO
 	var prev_velo = v
-	var new_velo = move_and_slide_with_snap(v, snap, Vector2.UP) #(v, Vector2.UP)#
+	var new_velo = move_and_slide_with_snap(v, snap, Vector2.UP, false, 4, 0.785, false) #(v, Vector2.UP)#
 	var recognize_collision = true
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)

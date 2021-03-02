@@ -27,12 +27,12 @@ func set_first_patrol_index():
 
 onready var platform = $PlatformBody
 
-func _on_VisibilityNotifier2D_screen_entered():
-	is_active = true
-
 var velo = Vector2()
 ## Platform speed
 export(int) var move_speed = 60
 var patrol_points : Array = []
 var patrol_index = -1
 var is_active = false
+
+func set_active():
+	is_active = true
