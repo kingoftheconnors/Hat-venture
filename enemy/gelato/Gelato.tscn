@@ -59,6 +59,42 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("../ShellHitBox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2, 1.85 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.2, 1.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -1, 0 ), Vector2( 0, 0 ), Vector2( -1, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("../HurtBox/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.2, 1.85 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
 
 [sub_resource type="Animation" id=2]
 length = 0.5
@@ -283,6 +319,18 @@ tracks/15/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath(".:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -2, 0 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -778,15 +826,15 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=24]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
 
 [sub_resource type="AnimationNodeStateMachine" id=28]
 states/Throw/node = SubResource( 9 )
@@ -803,9 +851,9 @@ states/smash/node = SubResource( 14 )
 states/smash/position = Vector2( 548, 269.444 )
 states/trigger_nocone/node = SubResource( 15 )
 states/trigger_nocone/position = Vector2( 344, 195.444 )
-transitions = [ "default", "die", SubResource( 16 ), "die", "default", SubResource( 17 ), "default", "Throw", SubResource( 18 ), "Throw", "default", SubResource( 19 ), "nocone", "smash", SubResource( 20 ), "smash", "nocone", SubResource( 21 ), "default", "trigger_nocone", SubResource( 22 ), "trigger_nocone", "nocone", SubResource( 23 ), "nocone", "default", SubResource( 24 ), "Throw", "defend", SubResource( 33 ), "defend", "default", SubResource( 34 ), "defend", "Throw", SubResource( 35 ) ]
+transitions = [ "default", "die", SubResource( 16 ), "die", "default", SubResource( 17 ), "default", "Throw", SubResource( 18 ), "Throw", "default", SubResource( 19 ), "nocone", "smash", SubResource( 20 ), "smash", "nocone", SubResource( 21 ), "default", "trigger_nocone", SubResource( 22 ), "trigger_nocone", "nocone", SubResource( 23 ), "nocone", "default", SubResource( 24 ), "Throw", "defend", SubResource( 25 ), "defend", "default", SubResource( 26 ), "defend", "Throw", SubResource( 27 ) ]
 start_node = "default"
-graph_offset = Vector2( -146.336, 74.4682 )
+graph_offset = Vector2( -146.336, -38.9558 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=29]
 
@@ -818,11 +866,16 @@ radius = 6.0
 height = 3.0
 
 [sub_resource type="CapsuleShape2D" id=32]
+radius = 5.0
+height = 0.0
+
+[sub_resource type="CapsuleShape2D" id=33]
 radius = 6.5
 height = 0.0
 
 [node name="Gelato" type="KinematicBody2D"]
 script = ExtResource( 3 )
+moving = false
 turnaround_offset = 10
 
 [node name="EnemyCore" type="Sprite" parent="."]
@@ -830,7 +883,7 @@ position = Vector2( -2, 0 )
 texture = ExtResource( 4 )
 vframes = 5
 hframes = 2
-frame = 8
+frame = 1
 script = ExtResource( 1 )
 death_score = 500
 
@@ -869,10 +922,22 @@ position = Vector2( 0, 2 )
 rotation = 1.5708
 shape = SubResource( 31 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 1.5 )
+[node name="ShellHitBox" type="Area2D" parent="." groups=[
+"hitbox",
+]]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShellHitBox"]
+position = Vector2( 0, -5 )
 rotation = 1.5708
 shape = SubResource( 32 )
+disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 1.5 )
+rotation = 1.5708
+shape = SubResource( 33 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
