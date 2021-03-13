@@ -728,7 +728,7 @@ focus_next = NodePath("../SoundSlider")
 min_value = 0.001
 max_value = 1.0
 step = 0.1
-value = 0.001
+value = 1.0
 tick_count = 11
 __meta__ = {
 "_edit_use_anchors_": false
@@ -770,7 +770,7 @@ focus_previous = NodePath("../MusicSlider")
 min_value = 0.001
 max_value = 1.0
 step = 0.1
-value = 0.001
+value = 1.0
 tick_count = 11
 __meta__ = {
 "_edit_use_anchors_": false

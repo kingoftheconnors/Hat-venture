@@ -34,8 +34,8 @@ func reset_focus(type : String = "default"):
 func save():
 	print($PaletteController.get_cur_palette())
 	var settings = {
-		"music_vol": AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")),
-		"sound_vol": AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SoundEffects")),
+		"music_vol": $MusicSlider.value,
+		"sound_vol": $SoundSlider.value,
 		"palettes": $PaletteController.get_usable_palettes(),
 		"cur_palette": $PaletteController.get_cur_palette(),
 		"hud_size": $HudSizeController.get_cur_size()
