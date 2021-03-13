@@ -42,10 +42,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.02 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.02, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ true, false, true ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("BOOM:visible")
@@ -124,10 +124,4 @@ disabled = true
 
 [node name="EnemyCore" type="Node2D" parent="."]
 script = ExtResource( 3 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-pause_mode = 2
-bus = "SoundEffects"
-script = ExtResource( 6 )
-[connection signal="explode" from="." to="AudioStreamPlayer" method="start_sound"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
