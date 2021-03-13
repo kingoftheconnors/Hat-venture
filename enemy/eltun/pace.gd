@@ -5,6 +5,7 @@ var velo = Vector2(40, 40)
 var DASH_FORCE = Vector2(40,40)
 ## Initial direction. Can be any diagonal.
 export(Vector2) var direction = Vector2(1,0)
+onready var default_direction = direction
 var pace_frame = 0
 
 ## Number of physics frames before node will turn around
@@ -42,3 +43,9 @@ func frame(body : KinematicBody2D, sprite : Sprite, _delta):
 
 func get_direction() -> Vector2:
 	return direction
+
+func respawn(pos):
+	.respawn(pos)
+	pace_frame = 0
+	direction = default_direction
+	velo = DASH_FORCE * direction
