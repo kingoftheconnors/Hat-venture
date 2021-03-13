@@ -73,6 +73,7 @@ func damage(_isStomp, damage = 1):
 		animator['parameters/PlayerMovement/playback'].travel('hurt')
 		animator['parameters/PlayerEffect/playback'].travel('hurtFlash')
 		emit_signal("hurt")
+		SoundSystem.start_sound(SoundSystem.SFX.HURT)
 	else:
 		player_die()
 		return true

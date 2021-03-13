@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=1]
 [ext_resource path="res://enemy/Scripts/Hitbox.gd" type="Script" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://enemy/vanill/Vanill.png" type="Texture" id=4]
 [ext_resource path="res://enemy/vanill/CherryThrower.gd" type="Script" id=5]
 [ext_resource path="res://Music/startSong.gd" type="Script" id=6]
-[ext_resource path="res://Music/sfx/impact1.wav" type="AudioStream" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Throw"
@@ -752,6 +751,7 @@ height = 0.0
 
 [node name="Vanill" type="KinematicBody2D"]
 script = ExtResource( 3 )
+moving = false
 turnaround_offset = 10
 
 [node name="EnemyCore" type="Sprite" parent="."]
@@ -812,11 +812,10 @@ collision_mask = 2
 [node name="CherryThrower" type="Node" parent="."]
 script = ExtResource( 5 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="Node" parent="."]
 pause_mode = 2
-stream = ExtResource( 7 )
-bus = "SoundEffects"
 script = ExtResource( 6 )
+sound = 4
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="CherryThrower" method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="CherryThrower" method="_on_VisibilityNotifier2D_screen_exited"]

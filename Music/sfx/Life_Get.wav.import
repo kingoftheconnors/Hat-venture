@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Life_Get.wav-0eb7f9bd2863c550fc1ae7fc3d978e5d.sample"
+
+[deps]
+
+source_file="res://Music/sfx/Life_Get.wav"
+dest_files=[ "res://.import/Life_Get.wav-0eb7f9bd2863c550fc1ae7fc3d978e5d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -99,6 +99,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://enemy/eltun/sinusoidal.gd"
 }, {
+"base": "Node",
+"class": "sound_system",
+"language": "GDScript",
+"path": "res://constants/SoundSystem.gd"
+}, {
 "base": "Reference",
 "class": "thorPower",
 "language": "GDScript",
@@ -133,6 +138,7 @@ _global_script_class_icons={
 "runningPower": "",
 "shooter": "",
 "sinusoidal": "",
+"sound_system": "",
 "thorPower": "",
 "timePiece": "",
 "zigzag": ""
@@ -150,6 +156,7 @@ Constants="*res://constants/GameConstants.tscn"
 Gui="*res://gui/gui.tscn"
 PlayerGameManager="*res://common/PlayerGameManager.tscn"
 OptionsMenu="*res://gui/OptionsMenu.tscn"
+SoundSystem="*res://constants/SoundSystem.tscn"
 
 [debug]
 

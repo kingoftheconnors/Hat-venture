@@ -24,6 +24,8 @@ func get_damage():
 ## Attack method used by players and projectiles when attacking
 ## any other node.
 func damage(isStomp):
+	if isStomp:
+		SoundSystem.start_sound(SoundSystem.SFX.STOMP)
 	if !invincible:
 		emit_signal("hurt")
 		if animator:

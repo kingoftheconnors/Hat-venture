@@ -14,6 +14,7 @@ func acquire_power(powerType):
 	if powerType.name() != power.name():
 		set_power(powerType)
 		animator["parameters/PlayerMovement/playback"].travel("power_get")
+		SoundSystem.start_sound(SoundSystem.SFX.POWERUP_GET)
 
 func set_power(powerType):
 	power.force_deactivate(platformController, animator)

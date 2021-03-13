@@ -87,8 +87,6 @@ onready var core = $"ScaleChildren/PlayerCore"
 onready var skidRayCast1 = $"SkidRay"
 onready var skidRayCast2 = $"SkidRay2"
 
-onready var sfx = $PlayerSfx
-
 # Movement vars
 var _stun = 0
 var frozen = false
@@ -501,6 +499,8 @@ func _unhandled_input(event):
 			uncrouch()
 
 func jump():
+	if velo.y >= 0:
+		SoundSystem.start_sound(SoundSystem.SFX.JUMP)
 	if post_bash_jump_timer > 0 and !is_on_floor():
 		push(Vector2(0, -BASH_OUT_STRENGTH))
 	elif !diving: # Basic Jump
@@ -518,7 +518,6 @@ func jump():
 	coyoteTimer = 0
 	jump_timer = 0
 	set_climb(false)
-	sfx.play_jump()
 	animator["parameters/PlayerMovement/conditions/jumping"] = true
 	animator["parameters/PlayerMovement/conditions/not_jumping"] = false
 
@@ -593,6 +592,7 @@ func dive():
 		animator["parameters/PlayerMovement/playback"].travel("dive")
 		animator["parameters/PlayerMovement/conditions/jumping"] = false
 		animator["parameters/PlayerMovement/conditions/not_jumping"] = true
+		SoundSystem.start_sound(SoundSystem.SFX.DIVE)
 func undive():
 	diving = false
 	max_velo = MAX_SPEED
@@ -763,6 +763,7 @@ func damage(isStomp, amount = 1):
 	core.damage(isStomp, amount)
 func signal_death():
 	emit_signal("dead")
+	SoundSystem.start_music(SoundSystem.MUSIC.GAMEOVER)
 func heal(amount = 1):
 	core.heal(amount)
 

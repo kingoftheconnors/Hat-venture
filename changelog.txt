@@ -259,20 +259,29 @@ Running does not accelerate in air (but still feels good)
       Fix camera capture release level to be within camera-bounds
       Bashing into camera capture bounces off
       Opening menu during timepiece dance stops level-end
-Moving platforms
-Make spring thinner
+  Moving platforms
+  Make spring thinner
+  Moving platforms only activating when in Player view (but no respawning)
+
+0.3.2
 
 Backlog:
-Moving platforms only activating when in Player view (but no respawning)
-Propeller Power?
-Level 1
-  * Design first level with QP
-  * Get on HatInTime Discord and start raising awareness
-  * Music
+Sfx
+Change volume sliders to be logarithmic
+
+Music
+Art:
+   Ladder-climbing
+   Boss 1
+Design first level with QP
 Boss 1
-  * Crab boi?
-  * Cutscenes
+  * Design
+  * Cutscene
   * Skip-cutscene button (press twice)
+
+RELEASE ON A HAT IN TIME DISCORD
+
+Propeller Power?
 Main Menu
    6. Audio Cues
    7. Assist Mode (Speed [OS.set_time_scale], Invincibility (bounce up from cliffs and don't lose HP), Infinite Lives, SuperPowers)

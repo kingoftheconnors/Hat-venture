@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://items/Resources/getItem.gd" type="Script" id=1]
 [ext_resource path="res://items/HPon.gd" type="Script" id=2]
 [ext_resource path="res://items/Resources/hpon.png" type="Texture" id=3]
 [ext_resource path="res://Music/startSong.gd" type="Script" id=4]
-[ext_resource path="res://Music/sfx/pickupCoin.wav" type="AudioStream" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "collect"
@@ -98,10 +97,9 @@ texture = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 3 )
 
-[node name="CollectPing" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
-bus = "SoundEffects"
+[node name="CollectPing" type="Node" parent="."]
 script = ExtResource( 4 )
+sound = 6
 [connection signal="collected" from="." to="CollectPing" method="start_sound"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

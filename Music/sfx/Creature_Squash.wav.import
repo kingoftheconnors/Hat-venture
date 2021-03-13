@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Creature_Squash.wav-11d5774cb0f93e38679a4f10cefa092c.sample"
+
+[deps]
+
+source_file="res://Music/sfx/Creature_Squash.wav"
+dest_files=[ "res://.import/Creature_Squash.wav-11d5774cb0f93e38679a4f10cefa092c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
