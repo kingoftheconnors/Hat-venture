@@ -479,24 +479,28 @@ func refresh_flags():
 
 var holding_jump = false
 
-func _unhandled_input(event):
+func _input(event):
 	if !frozen:
 		# This will run once on the frame when the action is first pressed
 		if event.is_action_pressed("ui_A"):
 			holding_jump = true
 			jump_timer = JUMP_TIME
 		
-		if event.is_action_released("ui_A"):
-			if holding_jump and !spinning and !diving and velo.y < 0:
-				velo.y *= release_jump_damp
-				#animator["parameters/playback"].travel("freefall")
-			holding_jump = false
-			jump_timer = 0
-		
 		if event.is_action_pressed("ui_crouch"):
 			crouch()
-		if event.is_action_released("ui_crouch"):
-			uncrouch()
+
+# Handle releasing player input in process function
+# This helps continuously poll for releasing, in case the
+# player is paused when the key is released
+func _process(delta):
+	if holding_jump and !Input.is_action_pressed("ui_A"):
+		if holding_jump and !spinning and !diving and velo.y < 0:
+			velo.y *= release_jump_damp
+			#animator["parameters/playback"].travel("freefall")
+		holding_jump = false
+		jump_timer = 0
+	if crouching and !Input.is_action_pressed("ui_crouch"):
+		uncrouch()
 
 func jump():
 	if velo.y >= 0:

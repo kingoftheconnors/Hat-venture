@@ -266,11 +266,10 @@ Running does not accelerate in air (but still feels good)
 0.3.2
 Sfx
 Change volume sliders to be logarithmic
+Fix player release keys to work even when released during pause section
 
 Backlog:
-Screen capture based on player level, not on actual capture position
-Screen capture releasing jump key not COUNTED as releasing for player_is_jumping_held flag
-
+Sfx
 Music
 Art:
    Ladder-climbing
