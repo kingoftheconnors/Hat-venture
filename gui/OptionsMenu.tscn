@@ -725,9 +725,10 @@ margin_right = -1.849
 margin_bottom = 22.0
 focus_neighbour_bottom = NodePath("../SoundSlider")
 focus_next = NodePath("../SoundSlider")
-min_value = -50.0
-max_value = 0.0
-step = 5.0
+min_value = 0.001
+max_value = 1.0
+step = 0.1
+value = 0.001
 tick_count = 11
 __meta__ = {
 "_edit_use_anchors_": false
@@ -766,9 +767,10 @@ focus_neighbour_top = NodePath("../MusicSlider")
 focus_neighbour_bottom = NodePath("../Controls")
 focus_next = NodePath("../Controls")
 focus_previous = NodePath("../MusicSlider")
-min_value = -50.0
-max_value = 0.0
-step = 5.0
+min_value = 0.001
+max_value = 1.0
+step = 0.1
+value = 0.001
 tick_count = 11
 __meta__ = {
 "_edit_use_anchors_": false

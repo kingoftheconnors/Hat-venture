@@ -45,13 +45,13 @@ func save():
 ## Signal function for updating the game's volume
 func _on_MasterVolSlider_value_changed(value):
 	set_dirty()
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), value)
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), value == -50)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), log(value)*20)
+	#AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), value == -50)
 
 func _on_SoundSlider_value_changed(value):
 	set_dirty()
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SoundEffects"), value)
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("SoundEffects"), value == -50)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SoundEffects"), log(value)*20)
+	#AudioServer.set_bus_mute(AudioServer.get_bus_index("SoundEffects"), value == -50)
 
 func set_dirty():
 	dirty = true

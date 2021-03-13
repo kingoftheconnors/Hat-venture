@@ -264,10 +264,12 @@ Running does not accelerate in air (but still feels good)
   Moving platforms only activating when in Player view (but no respawning)
 
 0.3.2
-
-Backlog:
 Sfx
 Change volume sliders to be logarithmic
+
+Backlog:
+Screen capture based on player level, not on actual capture position
+Screen capture releasing jump key not COUNTED as releasing for player_is_jumping_held flag
 
 Music
 Art:
