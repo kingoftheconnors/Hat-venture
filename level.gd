@@ -96,7 +96,7 @@ func _unhandled_input(event):
 					gif_threads[thread_num].start(self, "create_gif", thread_num, Thread.PRIORITY_LOW)
 
 func create_gif(thread_num : int):
-	gif_frames[thread_num] = exporter.create_frame(pics[thread_num], FRAME_LENGTH, quantization)
+	gif_frames[thread_num] = exporter.create_frame(pics[thread_num], FRAME_LENGTH)
 	# when you have exported all frames of animation, then you can save data into file
 	# Only the first thread is responsible for saving
 	if thread_num == 0:
