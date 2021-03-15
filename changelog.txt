@@ -267,14 +267,20 @@ Running does not accelerate in air (but still feels good)
 Sfx
 Change volume sliders to be logarithmic
 Fix player release keys to work even when released during pause section
+Tree tiles
+Flower tiles
+Add option to hide HUD elements in DEBUG MODE (F11)
 
 Backlog:
+Talk about QP's level
+Talk about Fox's music in drive
+Talk about block-break from Fox
+Talk about full sprint being one-off
 Sfx
 Music
 Art:
-   Ladder-climbing
+   Ladder-climbing (other powers)
    Boss 1
-Design first level with QP
 Boss 1
   * Design
   * Cutscene

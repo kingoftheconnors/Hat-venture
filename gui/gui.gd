@@ -87,6 +87,10 @@ func _process(delta):
 	elif dialog_active:
 		end_dialog()
 
+func _unhandled_input(event):
+	if event.is_action_pressed("toggle_hud"):
+		gui.visible = !gui.visible
+
 func queue_text(dialog_starter, textbox : Dictionary):
 	queue(dialog_starter, [textbox])
 
