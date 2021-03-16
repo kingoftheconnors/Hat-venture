@@ -272,6 +272,7 @@ Flower tiles
 Add option to hide HUD elements in DEBUG MODE (F11)
 Toggle pause button in DEBUG MODE (F10)
 Score multiplier in pause still going
+Handle multiplier label with multiplier over 10 (and set max multiplier to 99)
 
 Backlog:
 Talk about QP's level

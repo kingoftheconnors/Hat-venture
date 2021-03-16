@@ -16,7 +16,6 @@
 [ext_resource path="res://gui/gui_font.tres" type="DynamicFont" id=14]
 [ext_resource path="res://common/Resources/black.png" type="Texture" id=15]
 
-
 [sub_resource type="DynamicFont" id=1]
 size = 8
 font_data = ExtResource( 5 )
@@ -472,7 +471,7 @@ grow_horizontal = 2
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "HAT KID:"
+text = "HAT KID :"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -626,7 +625,7 @@ grow_horizontal = 2
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "SCORE  :"
+text = "SCORE   :"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
