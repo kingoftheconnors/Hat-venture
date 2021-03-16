@@ -10,14 +10,15 @@
 extends Node
 
 func _process(delta):
-	if multiplicity_decrease_time_left >= 0:
-		Gui.notify_multiplicity_time(multiplicity_decrease_time_left)
-		multiplicity_decrease_time_left -= delta
-		# Double multiplicity decrease speed when fast_decrease is on
-		if fast_decrease:
+	if !get_tree().paused:
+		if multiplicity_decrease_time_left >= 0:
+			Gui.notify_multiplicity_time(multiplicity_decrease_time_left)
 			multiplicity_decrease_time_left -= delta
-		if multiplicity_decrease_time_left <= 0:
-			reduce_multiplicity()
+			# Double multiplicity decrease speed when fast_decrease is on
+			if fast_decrease:
+				multiplicity_decrease_time_left -= delta
+			if multiplicity_decrease_time_left <= 0:
+				reduce_multiplicity()
 
 func set_multiplicity_fast_decrease(flag : bool):
 	fast_decrease = flag
@@ -31,6 +32,8 @@ func _unhandled_input(event):
 			score = 0; Gui.set_score(score)
 		if event is InputEventKey and event.pressed and event.scancode == KEY_0:
 			add_pons(3)
+		if event.is_action_pressed("toggle_pause"):
+			toggle_pause()
 
 ## Method for killing the player, and giving a gameover
 ## if the players' lives decreases to 0
@@ -123,6 +126,12 @@ func unpause():
 		if is_instance_valid(body):
 			body.set_pause_mode(PAUSE_MODE_INHERIT)
 	get_tree().paused = false
+
+func toggle_pause():
+	if get_tree().paused:
+		unpause()
+	else:
+		pause_except([])
 
 func set_invinciblity():
 	invincibility = true

@@ -47,6 +47,7 @@ func set_score(amo):
 	playerScore.set_text("%06d" % amo)
 func set_score_mult(amo):
 	playerScoreMult.set_text("x%d:" % amo)
+	playerScoreMultAmo = amo
 	if amo == 1:
 		playerScoreMult.visible = false
 	else:
@@ -60,6 +61,8 @@ onready var energy = $Player/Energy
 onready var bossEnergy = $Player/BossArea/BossEnergy
 onready var playerScore = $Player/ScoreArea/ScoreNum
 onready var playerScoreMult = $Player/ScoreArea/Multiplicity
+var playerScoreMultAmo = 1
+
 onready var sizeAnimator = $AnimationPlayer
 
 onready var stageName = $Player/StageName
@@ -86,6 +89,8 @@ func _process(delta):
 		start_dialog(next_box)
 	elif dialog_active:
 		end_dialog()
+	if get_tree().paused and playerScoreMultAmo > 1:
+		playerScoreMult.visible = true
 
 func _unhandled_input(event):
 	if event.is_action_pressed("toggle_hud"):
