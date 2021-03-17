@@ -27,6 +27,7 @@ tracks/0/keys = {
 }
 
 [node name="Spring" type="RigidBody2D"]
+collision_layer = 2
 collision_mask = 3
 mode = 2
 gravity_scale = 10.0
@@ -42,6 +43,8 @@ position = Vector2( 0, 2.5 )
 shape = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
