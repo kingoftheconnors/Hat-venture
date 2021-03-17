@@ -186,7 +186,7 @@ func move(_delta):
 	elif diving: # Diving friction
 		if is_on_floor():
 			velo.x *= 0.93
-	elif crouching:
+	elif crouching and is_on_floor():
 		velo.x *= 0.96
 	
 	# Basic movement
