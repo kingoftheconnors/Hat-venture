@@ -39,7 +39,7 @@ var power_stun_frames = 0
 var can_use_power = true
 
 # RUN
-const MAX_RUNNING_SPEED = 212
+const MAX_RUNNING_SPEED = 230
 var running
 
 # SPIN
@@ -237,7 +237,9 @@ func move(_delta):
 		if velo.y < 0:
 			velo.y += PLAYER_GRAVITY
 		else:
-			if diving:
+			if running and velo.x > MAX_RUNNING_SPEED*.75 and coyoteTimer > 0:
+				pass
+			elif diving:
 				velo.y += PLAYER_GRAVITY * DIVE_FALL_MULTIPLIER
 			elif spinning:
 				velo.y += PLAYER_GRAVITY * SPIN_FALL_MULTIPLIER
@@ -492,7 +494,7 @@ func _input(event):
 # Handle releasing player input in process function
 # This helps continuously poll for releasing, in case the
 # player is paused when the key is released
-func _process(delta):
+func _process(_delta):
 	if holding_jump and !Input.is_action_pressed("ui_A"):
 		if holding_jump and !spinning and !diving and velo.y < 0:
 			velo.y *= release_jump_damp

@@ -4903,14 +4903,14 @@ parameters/add/add_amount = 1.0
 
 [node name="SkidRay" type="RayCast2D" parent="."]
 visible = false
-position = Vector2( 5, 0 )
+position = Vector2( 10, 0 )
 enabled = true
 cast_to = Vector2( 0, 20 )
 collision_mask = 3
 
 [node name="SkidRay2" type="RayCast2D" parent="."]
 visible = false
-position = Vector2( -5, 0 )
+position = Vector2( -10, 0 )
 enabled = true
 cast_to = Vector2( 0, 20 )
 collision_mask = 3
