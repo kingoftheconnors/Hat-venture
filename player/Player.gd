@@ -88,14 +88,14 @@ onready var uninvincible_timer = $"../../Uninvincible"
 func turn_invincibilty(flag):
 	if flag == true:
 		uninvincible_timer.start()
-		controller.set_collision_layer_bit(0, false)
-		controller.set_collision_mask_bit(0, false)
+		#controller.set_collision_layer_bit(0, false)
+		#controller.set_collision_mask_bit(0, false)
 		hurtbox.set_collision_layer_bit(0, false)
 		hurtbox.set_collision_mask_bit(0, false)
 	else:
 		uninvincible_timer.stop()
-		controller.set_collision_layer_bit(0, true)
-		controller.set_collision_mask_bit(0, true)
+		#controller.set_collision_layer_bit(0, true)
+		#controller.set_collision_mask_bit(0, true)
 		hurtbox.set_collision_layer_bit(0, true)
 		hurtbox.set_collision_mask_bit(0, true)
 
