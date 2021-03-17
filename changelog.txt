@@ -273,12 +273,16 @@ Add option to hide HUD elements in DEBUG MODE (F11)
 Toggle pause button in DEBUG MODE (F10)
 Score multiplier in pause still going
 Handle multiplier label with multiplier over 10 (and set max multiplier to 99)
+Fix Gelato shell-invincibility lasting longer than intended
+Add running cartoon dash off cliff (weaken gravity)
+Tune up Level1 to be an actual first level
 
 Backlog:
+Bash invincibility allows going through springs (and causing push-around when uninvincible) and not picking up pons while invincible
+Trapped in air freefall but not moving left or right after bashing off a vanill, killing it, but getting hit by its small form while bouncing back
 Talk about QP's level
 Talk about Fox's music in drive
-Talk about block-break from Fox
-Talk about full sprint being one-off
+Talk about full sprint being one-off sfx
 Sfx
 Music
 Art:

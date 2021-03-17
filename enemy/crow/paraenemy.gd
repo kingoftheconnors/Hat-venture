@@ -3,7 +3,7 @@ class_name paraenemy
 
 const ENEMY_GRAVITY = 8
 var velo = Vector2(30, 0)
-var JUMP_FORCE = 170
+var JUMP_FORCE = 175
 ## Initial direction. Can be left, stationary, or right
 export(int, -1, 1) var direction : int = 1
 
