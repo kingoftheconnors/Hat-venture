@@ -733,25 +733,27 @@ states/trigger_nocone/node = SubResource( 13 )
 states/trigger_nocone/position = Vector2( 344, 195.444 )
 transitions = [ "default", "die", SubResource( 14 ), "die", "default", SubResource( 15 ), "default", "Throw", SubResource( 16 ), "Throw", "default", SubResource( 17 ), "nocone", "smash", SubResource( 18 ), "smash", "nocone", SubResource( 19 ), "default", "trigger_nocone", SubResource( 20 ), "trigger_nocone", "nocone", SubResource( 21 ), "nocone", "default", SubResource( 22 ), "Throw", "trigger_nocone", SubResource( 23 ) ]
 start_node = "default"
-graph_offset = Vector2( 0, 14.7042 )
+graph_offset = Vector2( 0, 80.2042 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=25]
 
 [sub_resource type="CapsuleShape2D" id=26]
+resource_local_to_scene = true
 radius = 3.0
 height = 14.3208
 
 [sub_resource type="CapsuleShape2D" id=27]
+resource_local_to_scene = true
 radius = 6.0
 height = 3.0
 
 [sub_resource type="CapsuleShape2D" id=28]
+resource_local_to_scene = true
 radius = 6.5
 height = 0.0
 
 [node name="Vanill" type="KinematicBody2D"]
 script = ExtResource( 3 )
-moving = false
 turnaround_offset = 10
 
 [node name="EnemyCore" type="Sprite" parent="."]
@@ -816,8 +818,8 @@ script = ExtResource( 5 )
 pause_mode = 2
 script = ExtResource( 6 )
 sound = 4
-[connection signal="screen_entered" from="VisibilityNotifier2D" to="CherryThrower" method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="CherryThrower" method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="CherryThrower" method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="CherryThrower" method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="shoot" from="CherryThrower" to="AudioStreamPlayer" method="start_sound"]

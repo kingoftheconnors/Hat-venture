@@ -281,6 +281,7 @@ Fix pons to be interactible during bash invincibility
 Stop bash invincibility from disabling player body collision
 Allow to start duck from jump
 Remove slowing down crouching players in air
+Fix Vanill and Gelato intercrossing hitboxes
 
 Backlog:
 Trapped in air freefall but not moving left or right after bashing off a vanill, killing it, but getting hit by its small form while bouncing back
