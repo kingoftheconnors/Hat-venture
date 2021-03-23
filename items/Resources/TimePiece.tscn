@@ -32,39 +32,39 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ) ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath("Node2D")
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Sprite:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -12, -0.25, 0, 0.25, 0, 12, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 5, 5.4, 5.8, 6.2 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Sprite:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -30, -0.25, 0, 0.25, 0, -18, -0.25, 0, 0.25, 0, -6, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 5, 5.4, 5.8, 6.2 )
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
 "times": PoolRealArray( 6.9 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "end_level"
 } ]
-}
-tracks/3/type = "bezier"
-tracks/3/path = NodePath("Sprite:position:x")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -12, -0.25, 0, 0.25, 0, 12, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 5, 5.4, 5.8, 6.2 )
-}
-tracks/4/type = "bezier"
-tracks/4/path = NodePath("Sprite:position:y")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -30, -0.25, 0, 0.25, 0, -18, -0.25, 0, 0.25, 0, -6, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 5, 5.4, 5.8, 6.2 )
 }
 
 [sub_resource type="Animation" id=2]
@@ -168,33 +168,34 @@ animations = [ {
 radius = 9.5
 
 [node name="TimePiece" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="ItemRoot" type="Node2D" parent="."]
 pause_mode = 2
 position = Vector2( -12, 12 )
 script = ExtResource( 1 )
 itemCommand = ExtResource( 3 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ItemRoot"]
 anims/Collect = SubResource( 1 )
 anims/Idle = SubResource( 2 )
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="ItemRoot"]
 tree_root = SubResource( 7 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 8 )
 
-[node name="Sprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -4.56229 )
+[node name="Sprite" type="AnimatedSprite" parent="ItemRoot"]
+position = Vector2( 0, -0.190221 )
+scale = Vector2( -1, 1 )
 frames = SubResource( 17 )
 frame = 7
 playing = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="ItemRoot"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemRoot/Area2D"]
 shape = SubResource( 18 )
-
-[node name="Node2D" type="Node2D" parent="."]
-script = ExtResource( 5 )
-[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="area_entered" from="ItemRoot/Area2D" to="ItemRoot" method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="ItemRoot/Area2D" to="ItemRoot" method="_on_Area2D_body_entered"]

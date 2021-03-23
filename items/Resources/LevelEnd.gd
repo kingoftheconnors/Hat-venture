@@ -2,5 +2,7 @@
 # to the level select
 extends Node2D
 
+export(String) var next_level = "res://level1/level1.tscn"
+
 func end_level():
-	PlayerGameManager.start_level("1") # TODO: Change to levelSelect once it's made
+	PlayerGameManager.start_level(next_level)

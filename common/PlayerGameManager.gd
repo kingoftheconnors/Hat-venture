@@ -64,9 +64,7 @@ func die():
 		Gui.reveal()
 
 ## Changes scene to start a level (called by number)
-func start_level(levelNum : String):
-	# Get levelname to return to after playing animation
-	var levelName = "res://level" + levelNum + "/level" + levelNum + ".tscn"
+func start_level(levelName : String):
 	# Fade to white
 	Gui.cover()
 	yield(get_tree().create_timer(.6), "timeout")
