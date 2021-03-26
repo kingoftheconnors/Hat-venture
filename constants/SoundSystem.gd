@@ -10,7 +10,8 @@ enum SFX {
 	STOMP,
 	LIFE_GET,
 	POWERUP_GET,
-	HURT
+	HURT,
+	SPRINT
 }
 
 enum MUSIC {
@@ -37,6 +38,7 @@ func stop_music():
 	music_player.stop()
 
 onready var sfx_player : AudioStreamPlayer = $Sfx
+var cur_sound = SFX.NONE
 func start_sound(sfx : int):
 	if sfx_player:
 		sfx_player.stop()
@@ -78,7 +80,17 @@ func start_sound(sfx : int):
 				sfx_player.stream = preload("res://Music/sfx/Powerup_get.wav")
 			SFX.HURT:
 				sfx_player.stream = preload("res://Music/sfx/Character_hit.wav")
+			SFX.SPRINT:
+				sfx_player.stream = preload("res://Music/sfx/Sprint.wav")
 		sfx_player.play()
+		cur_sound = sfx
+func start_sound_if_silent(sfx : int):
+	print(sfx_player.is_playing())
+	if !sfx_player.is_playing():
+		start_sound(sfx)
+func stop_if_playing_sound(sfx : int):
+	if cur_sound == sfx:
+		sfx_player.stop()
 func stop_sound():
 	sfx_player.stop()
 

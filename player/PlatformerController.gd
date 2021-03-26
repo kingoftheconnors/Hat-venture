@@ -224,6 +224,13 @@ func move(_delta):
 		animator["parameters/PlayerMovement/conditions/skidding"] = false
 		animator["parameters/PlayerMovement/conditions/not_skidding"] = true
 	
+	# Running sound
+	if running:
+		if abs(velo.x) > MAX_RUNNING_SPEED * .95:
+			SoundSystem.start_sound_if_silent(SoundSystem.SFX.SPRINT)
+		else:
+			SoundSystem.stop_if_playing_sound(SoundSystem.SFX.SPRINT)
+	
 	if diving:
 		if is_on_floor():
 			animator["parameters/PlayerMovement/conditions/dive_resting"] = true
@@ -621,6 +628,7 @@ func start_run():
 	#base_speed = BASE_RUN_SPEED
 	running = true
 func stop_run():
+	SoundSystem.stop_if_playing_sound(SoundSystem.SFX.SPRINT)
 	max_velo = MAX_SPEED
 	#base_speed = BASE_SPEED
 	running = false

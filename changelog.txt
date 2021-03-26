@@ -282,12 +282,14 @@ Stop bash invincibility from disabling player body collision
 Allow to start duck from jump
 Remove slowing down crouching players in air
 Fix Vanill and Gelato intercrossing hitboxes
+Time piece level transitions
+Level 1-2 first draft
+Under-layer sfx
 
 Backlog:
 Trapped in air freefall but not moving left or right after bashing off a vanill, killing it, but getting hit by its small form while bouncing back
-Talk about QP's level
 Talk about Fox's music in drive
-Talk about full sprint being one-off sfx
+Talk about Save philosophy (I don't want permanent saves that players can return to. [Compromise on quicksaves])
 Sfx
 Music
 Art:
