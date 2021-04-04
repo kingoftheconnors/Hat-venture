@@ -35,6 +35,18 @@ func _unhandled_input(event):
 		if event.is_action_pressed("toggle_pause"):
 			toggle_pause()
 
+var checkpoint_level = -1
+var checkpoint_pos := Vector2.ZERO
+func checkpoint(level : int, pos : Vector2):
+	if level > checkpoint_level:
+		checkpoint_level = level
+		checkpoint_pos = pos
+
+func has_checkpoint() -> bool:
+	return checkpoint_level >= 0
+func get_checkpoint_position() -> Vector2:
+	return checkpoint_pos
+
 ## Method for killing the player, and giving a gameover
 ## if the players' lives decreases to 0
 func die():
@@ -50,6 +62,7 @@ func die():
 	if lives <= 0:
 		Gui.hide()
 		score = 0; Gui.set_score(score);
+		checkpoint_level = -1; checkpoint_pos = Vector2.ZERO
 		multiplicity = 1; Gui.set_score_mult(1)
 		multiplicity_decrease_time_left = -1
 		var _success = get_tree().change_scene("res://levelgameover/gameOver.tscn")
@@ -69,14 +82,18 @@ func start_level(levelName : String):
 	Gui.cover()
 	yield(get_tree().create_timer(.6), "timeout")
 	unpause()
-	pons = 0; Gui.set_pons(pons)
-	score = 0; Gui.set_score(score)
-	lives = 4; Gui.set_lives(lives)
+	checkpoint_level = -1; checkpoint_pos = Vector2.ZERO
 	Gui.reset_energy()
 	Gui.show()
 	# Load level
 	var _success = get_tree().change_scene(levelName)
 	Gui.reveal()
+
+## Resets score, pons, and lives after gameover
+func reset_stats():
+	pons = 0; Gui.set_pons(pons)
+	score = 0; Gui.set_score(score)
+	lives = 3; Gui.set_lives(lives)
 
 ## Adds player score
 ## If affects_multiplicity is true, it increments multiplicity

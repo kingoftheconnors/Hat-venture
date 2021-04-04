@@ -116,15 +116,19 @@ var on_ladders : int = 0
 var on_ladders_top : Array = []
 var ladder_x = 0
 
+## On first frame, set position at spawn/checkpoint
+func _ready():
+	if PlayerGameManager:
+		reset_position()
+
 ## Respawn hero at level spawn
 func reset_position():
-	position = cur_spawn
-	velo = Vector2()
+	if PlayerGameManager.has_checkpoint():
+		position = PlayerGameManager.get_checkpoint_position()
 
-## Sets level spawn
-func set_spawn(pos):
-	position = pos
-	cur_spawn = pos
+## DEPRECATED: Sets level spawn
+func set_spawn(_pos):
+	pass
 
 # Called every physics frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

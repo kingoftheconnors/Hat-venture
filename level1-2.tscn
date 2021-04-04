@@ -76,7 +76,6 @@ playerPath = NodePath("../Player")
 
 [node name="Poddle3" parent="." instance=ExtResource( 23 )]
 position = Vector2( 631.83, -158.197 )
-is_turning = false
 
 [node name="LevelTiles" type="TileMap" parent="."]
 z_index = 1
@@ -92,7 +91,6 @@ script = ExtResource( 16 )
 
 [node name="Vanill3" parent="." instance=ExtResource( 30 )]
 position = Vector2( 1227.99, -173.889 )
-moving = false
 turnaround_offset = 5
 
 [node name="Crow" parent="." instance=ExtResource( 24 )]
@@ -149,7 +147,6 @@ script = ExtResource( 12 )
 
 [node name="Poddle2" parent="." instance=ExtResource( 23 )]
 position = Vector2( 1946.19, -220.687 )
-is_turning = false
 
 [node name="Eltun3" parent="." instance=ExtResource( 26 )]
 position = Vector2( 240, -176 )
@@ -161,14 +158,12 @@ next_level = "res://levelgameover/gameOver.tscn"
 
 [node name="Vanill" parent="." instance=ExtResource( 30 )]
 position = Vector2( 570.087, -104.472 )
-moving = false
 
 [node name="Hen2" parent="." instance=ExtResource( 25 )]
 position = Vector2( 48.0149, -92.0332 )
 
 [node name="Poddle" parent="." instance=ExtResource( 23 )]
 position = Vector2( 137.32, 18.0659 )
-is_turning = false
 
 [node name="Spring5" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1451.35, -25.4316 )
@@ -215,37 +210,30 @@ tile_data = PoolIntArray( -3997234, 14, 0, -3997233, 14, 131072, -3997232, 14, 1
 
 [node name="Vanill2" parent="." instance=ExtResource( 30 )]
 position = Vector2( 336, -104 )
-moving = false
 
 [node name="Hen4" parent="." instance=ExtResource( 25 )]
 position = Vector2( 368, 8 )
 
 [node name="Vanill4" parent="." instance=ExtResource( 30 )]
 position = Vector2( 1065.06, -233.532 )
-moving = false
 
 [node name="Vanill5" parent="." instance=ExtResource( 30 )]
 position = Vector2( 1156.16, -136.5 )
-moving = false
 
 [node name="Vanill6" parent="." instance=ExtResource( 30 )]
 position = Vector2( 904.664, -203 )
-moving = false
 
 [node name="Hen5" parent="." instance=ExtResource( 25 )]
 position = Vector2( 1227.84, -90.0541 )
 
 [node name="Vanill7" parent="." instance=ExtResource( 30 )]
 position = Vector2( 1387.35, -185.829 )
-moving = false
 
 [node name="Vanill8" parent="." instance=ExtResource( 30 )]
 position = Vector2( 1577.91, -121.413 )
-moving = false
 
 [node name="Vanill9" parent="." instance=ExtResource( 30 )]
 position = Vector2( 1674.55, -152.877 )
-moving = false
 
 [node name="Eltun5" parent="." instance=ExtResource( 26 )]
 position = Vector2( 2022.84, -160.566 )
@@ -258,13 +246,7 @@ position = Vector2( 2325.06, -41.2186 )
 
 [node name="Vanill10" parent="." instance=ExtResource( 30 )]
 position = Vector2( 1904.14, -89.3137 )
-moving = false
 
 [node name="Spring7" parent="." instance=ExtResource( 4 )]
 position = Vector2( 504, 24 )
-
-[node name="Spawn" type="Node2D" parent="." instance=ExtResource( 27 )]
-position = Vector2( -64, -336 )
-script = ExtResource( 1 )
-playerPath = NodePath("../Player")
 [connection signal="finished" from="MusicIntro" to="Music" method="start_music"]

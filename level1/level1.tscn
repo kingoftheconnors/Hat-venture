@@ -5,7 +5,7 @@
 [ext_resource path="res://level.gd" type="Script" id=3]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://camera/Camera.tscn" type="PackedScene" id=5]
-[ext_resource path="res://common/spawn.tscn" type="PackedScene" id=7]
+[ext_resource path="res://common/Flag.tscn" type="PackedScene" id=6]
 [ext_resource path="res://enemy/vanill/Vanill.tscn" type="PackedScene" id=8]
 [ext_resource path="res://NPCs/DialogBox.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Music/startSong.gd" type="Script" id=10]
@@ -135,10 +135,6 @@ limit_left = -10000126
 drag_margin_v_enabled = true
 smoothing_speed = 12.0
 
-[node name="Node2D" parent="." instance=ExtResource( 7 )]
-position = Vector2( 0, -336 )
-playerPath = NodePath("../Player")
-
 [node name="Node" type="Node" parent="."]
 
 [node name="Crow3" parent="." instance=ExtResource( 18 )]
@@ -218,14 +214,14 @@ position = Vector2( 200, -16 )
 [node name="DialogBox" parent="NPC" instance=ExtResource( 9 )]
 position = Vector2( 0, -8 )
 
-[node name="Hen6" parent="." instance=ExtResource( 17 )]
-position = Vector2( 1144, -24 )
-
 [node name="Hen7" parent="." instance=ExtResource( 17 )]
 position = Vector2( 448, 8 )
 
 [node name="Vanill2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 328, -80 )
+
+[node name="Flag" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1200, -32 )
 [connection signal="body_entered" from="Area2D" to="Area2D/FakeWalls" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D/FakeWalls" method="_on_Area2D_body_exited"]
 [connection signal="finished" from="MusicIntro" to="Music" method="start_music"]
