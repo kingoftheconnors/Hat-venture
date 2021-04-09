@@ -4,6 +4,7 @@
 [ext_resource path="res://common/Resources/platform.png" type="Texture" id=2]
 
 [sub_resource type="Curve2D" id=1]
+resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 8, -32, 0, 0, 0, 0, -16, 32, 0, 0, 0, 0, -128, 32, 0, 0, 0, 0, -216, -32 )
 }
