@@ -32,7 +32,6 @@ func collect(body):
 		elif destroy:
 			queue_free()
 		emit_signal("collected")
-		print("Collected")
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("player") and !collected:
