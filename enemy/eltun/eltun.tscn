@@ -276,7 +276,7 @@ start_node = "default"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 
 [sub_resource type="CapsuleShape2D" id=13]
-radius = 6.84349
+radius = 6.0
 height = 0.0100565
 
 [sub_resource type="CapsuleShape2D" id=14]
@@ -294,6 +294,7 @@ script = ExtResource( 1 )
 position = Vector2( -2, 0 )
 texture = ExtResource( 3 )
 hframes = 3
+frame = 1
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyCore"]
@@ -308,7 +309,7 @@ active = true
 parameters/playback = SubResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 1.5 )
+position = Vector2( 0, 1 )
 rotation = 1.5708
 shape = SubResource( 13 )
 

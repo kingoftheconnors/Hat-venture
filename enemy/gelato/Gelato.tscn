@@ -270,7 +270,7 @@ tracks/12/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 6.5 ]
+"values": [ 6.0 ]
 }
 tracks/13/type = "value"
 tracks/13/path = NodePath("../CollisionShape2D:shape:height")
@@ -294,7 +294,7 @@ tracks/14/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 1.5 ) ]
+"values": [ Vector2( 0, 1 ) ]
 }
 tracks/15/type = "value"
 tracks/15/path = NodePath(".:invincible")
@@ -583,7 +583,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 4.5 ) ]
+"values": [ Vector2( 0, 4 ) ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("../CollisionShape2D:shape:height")
@@ -607,7 +607,7 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 3.5 ]
+"values": [ 3.0 ]
 }
 tracks/11/type = "value"
 tracks/11/path = NodePath("../HitBox/CollisionShape2D:shape:height")
@@ -862,20 +862,19 @@ height = 0.0
 
 [sub_resource type="CapsuleShape2D" id=33]
 resource_local_to_scene = true
-radius = 6.5
+radius = 6.0
 height = 0.0
 
 [node name="Gelato" type="KinematicBody2D"]
 script = ExtResource( 3 )
-moving = false
 turnaround_offset = 10
 
 [node name="EnemyCore" type="Sprite" parent="."]
-position = Vector2( -1, 0 )
+position = Vector2( -2, 0 )
 texture = ExtResource( 4 )
 vframes = 5
 hframes = 2
-frame = 8
+frame = 1
 script = ExtResource( 1 )
 death_score = 500
 
@@ -926,8 +925,7 @@ shape = SubResource( 32 )
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 0, 1.5 )
+position = Vector2( 0, 1 )
 rotation = 1.5708
 shape = SubResource( 33 )
 
@@ -945,8 +943,8 @@ script = ExtResource( 5 )
 pause_mode = 2
 script = ExtResource( 7 )
 sound = 4
-[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="CherryThrower" method="_on_VisibilityNotifier2D_screen_entered"]
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="CherryThrower" method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="shoot" from="CherryThrower" to="AudioStreamPlayer" method="start_sound"]

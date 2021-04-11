@@ -281,7 +281,7 @@ radius = 6.0
 height = 5.0
 
 [sub_resource type="CapsuleShape2D" id=15]
-radius = 6.84349
+radius = 6.0
 height = 0.0100565
 
 [node name="Hen" type="KinematicBody2D"]
@@ -324,7 +324,7 @@ rotation = 1.5708
 shape = SubResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 1.5 )
+position = Vector2( 0, 1 )
 rotation = 1.5708
 shape = SubResource( 15 )
 

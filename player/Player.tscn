@@ -102,10 +102,10 @@ extents = Vector2( 7, 11 )
 
 [sub_resource type="CapsuleShape2D" id=8]
 radius = 4.6
-height = 12.25
+height = 10.25
 
 [sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 4.75, 9 )
+extents = Vector2( 4.75, 8.5 )
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 7, 1 )
@@ -379,7 +379,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.449, 5.5 ) ]
+"values": [ Vector2( 0.449, 4.5 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("BodyCollider:shape:extents")
@@ -391,7 +391,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 4.545, 6 ) ]
+"values": [ Vector2( 4.545, 5.5 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("BodyCollider:position")
@@ -403,7 +403,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.454, 7 ) ]
+"values": [ Vector2( 0.454, 6.5 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("ScaleChildren/hurtbox/CollisionShape2D:position")
@@ -439,7 +439,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 5.0 ]
+"values": [ 3.0 ]
 }
 
 [sub_resource type="Animation" id=16]
@@ -489,7 +489,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.449, 5.5 ) ]
+"values": [ Vector2( 0.449, 4.5 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("BodyCollider:shape:extents")
@@ -501,7 +501,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 4.545, 6 ) ]
+"values": [ Vector2( 4.545, 5.5 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("BodyCollider:position")
@@ -513,7 +513,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.454, 7 ) ]
+"values": [ Vector2( 0.454, 6.5 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("ScaleChildren/hurtbox/CollisionShape2D:shape:height")
@@ -549,7 +549,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 5.0 ]
+"values": [ 3.0 ]
 }
 
 [sub_resource type="Animation" id=17]
@@ -599,7 +599,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.449, 5.5 ) ]
+"values": [ Vector2( 0.449, 4.5 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("BodyCollider:shape:extents")
@@ -611,7 +611,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 4.545, 6 ) ]
+"values": [ Vector2( 4.545, 5.5 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("BodyCollider:position")
@@ -623,7 +623,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.454, 7 ) ]
+"values": [ Vector2( 0.454, 6.5 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("ScaleChildren/hurtbox/CollisionShape2D:shape:height")
@@ -659,7 +659,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 5.0 ]
+"values": [ 3.0 ]
 }
 
 [sub_resource type="Animation" id=18]
@@ -709,7 +709,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.449, 5.5 ) ]
+"values": [ Vector2( 0.449, 4.5 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("BodyCollider:shape:extents")
@@ -721,7 +721,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 4.545, 6 ) ]
+"values": [ Vector2( 4.545, 5.5 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("BodyCollider:position")
@@ -733,7 +733,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.454, 7 ) ]
+"values": [ Vector2( 0.454, 6.5 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("ScaleChildren/hurtbox/CollisionShape2D:shape:height")
@@ -769,7 +769,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 5.0 ]
+"values": [ 3.0 ]
 }
 
 [sub_resource type="Animation" id=19]
@@ -819,7 +819,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.449, 5.5 ) ]
+"values": [ Vector2( 0.449, 4.5 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("BodyCollider:shape:extents")
@@ -831,7 +831,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 4.545, 6 ) ]
+"values": [ Vector2( 4.545, 5.5 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("BodyCollider:position")
@@ -843,7 +843,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.454, 7 ) ]
+"values": [ Vector2( 0.454, 6.5 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("ScaleChildren/hurtbox/CollisionShape2D:shape:height")
@@ -879,7 +879,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 5.0 ]
+"values": [ 3.0 ]
 }
 
 [sub_resource type="Animation" id=20]
@@ -1563,49 +1563,13 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 6.5 ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("HeadCollider:position")
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, -5.5 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("BodyCollider:shape:extents")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 4.75, 9 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("BodyCollider:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 4 ) ]
-}
-tracks/5/type = "method"
-tracks/5/path = NodePath(".")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -2414,7 +2378,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ Vector2( 4.75, 9 ) ]
+"values": [ Vector2( 4.75, 8.5 ) ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("BodyCollider:position")
@@ -2426,7 +2390,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ Vector2( 0, 4 ) ]
+"values": [ Vector2( 0, 3.5 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("HeadCollider:position")
@@ -2438,7 +2402,7 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ Vector2( 0, 2 ) ]
+"values": [ Vector2( 0, 1 ) ]
 }
 tracks/11/type = "value"
 tracks/11/path = NodePath("HeadCollider:shape:height")
@@ -2450,7 +2414,7 @@ tracks/11/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 12.25 ]
+"values": [ 10.25 ]
 }
 tracks/12/type = "value"
 tracks/12/path = NodePath("ScaleChildren/PlayerCore:scale")
@@ -2537,7 +2501,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 2 ) ]
+"values": [ Vector2( 0, 1 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("BodyCollider:shape:extents")
@@ -2549,7 +2513,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 4.75, 9 ) ]
+"values": [ Vector2( 4.75, 8.5 ) ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("BodyCollider:position")
@@ -2561,7 +2525,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 4 ) ]
+"values": [ Vector2( 0, 3.5 ) ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("HeadCollider:shape:height")
@@ -2573,7 +2537,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 12.25 ]
+"values": [ 10.25 ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("ScaleChildren/PlayerCore:scale")
@@ -2660,7 +2624,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 4.75, 9 ) ]
+"values": [ Vector2( 4.75, 8.5 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("BodyCollider:position")
@@ -2672,7 +2636,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 4 ) ]
+"values": [ Vector2( 0, 3.5 ) ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("HeadCollider:position")
@@ -2684,7 +2648,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 2 ) ]
+"values": [ Vector2( 0, 1 ) ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("HeadCollider:shape:height")
@@ -2696,7 +2660,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 12.25 ]
+"values": [ 10.25 ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("ScaleChildren/PlayerCore:scale")
@@ -2783,7 +2747,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 2 ) ]
+"values": [ Vector2( 0, 1 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("BodyCollider:position")
@@ -2795,7 +2759,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 4 ) ]
+"values": [ Vector2( 0, 3.5 ) ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("BodyCollider:shape:extents")
@@ -2807,7 +2771,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 4.75, 9 ) ]
+"values": [ Vector2( 4.75, 8.5 ) ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("HeadCollider:shape:height")
@@ -2819,7 +2783,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 12.25 ]
+"values": [ 10.25 ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("ScaleChildren/PlayerCore:scale")
@@ -2906,7 +2870,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 4.75, 9 ) ]
+"values": [ Vector2( 4.75, 8.5 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("BodyCollider:position")
@@ -2918,7 +2882,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 4 ) ]
+"values": [ Vector2( 0, 3.5 ) ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("HeadCollider:position")
@@ -2930,7 +2894,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 2 ) ]
+"values": [ Vector2( 0, 1 ) ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("HeadCollider:shape:height")
@@ -2942,7 +2906,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 12.25 ]
+"values": [ 10.25 ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("ScaleChildren/PlayerCore:scale")
@@ -4659,7 +4623,7 @@ states/walk/node = SubResource( 150 )
 states/walk/position = Vector2( 302, 238.184 )
 transitions = [ "idle", "walk", SubResource( 151 ), "walk", "idle", SubResource( 152 ), "walk", "skid", SubResource( 153 ), "skid", "end_crouch", SubResource( 154 ), "end_crouch", "walk", SubResource( 155 ), "walk", "jump", SubResource( 156 ), "jump", "freefall", SubResource( 157 ), "freefall", "idle", SubResource( 158 ), "idle", "jump", SubResource( 159 ), "jump", "idle", SubResource( 160 ), "idle", "dive", SubResource( 161 ), "dive", "dive_rest", SubResource( 162 ), "dive_rest", "dive", SubResource( 163 ), "dive_rest", "end_dive", SubResource( 164 ), "dive", "end_dive", SubResource( 165 ), "idle", "bash", SubResource( 166 ), "bash", "end_bash", SubResource( 167 ), "idle", "throw", SubResource( 168 ), "throw", "idle", SubResource( 169 ), "idle", "refresh", SubResource( 170 ), "refresh", "idle", SubResource( 171 ), "end_crouch 2", "idle", SubResource( 172 ), "idle", "power_get", SubResource( 173 ), "power_get", "idle", SubResource( 174 ), "idle", "crouch", SubResource( 175 ), "crouch", "end_crouch 2", SubResource( 176 ), "end_bash", "idle", SubResource( 177 ), "idle", "spin", SubResource( 178 ), "spin", "end_spin", SubResource( 179 ), "end_spin", "idle", SubResource( 180 ), "dive_rest", "end_dive 2", SubResource( 181 ), "end_dive 2", "dive_boost", SubResource( 182 ), "dive_boost", "jump", SubResource( 183 ), "idle", "die", SubResource( 184 ), "idle", "hurt", SubResource( 185 ), "hurt", "idle", SubResource( 186 ), "idle", "die_simple", SubResource( 187 ), "bash", "pre-bash", SubResource( 188 ), "pre-bash", "end_bash", SubResource( 189 ), "pre-bash", "bash", SubResource( 190 ), "end_dive", "end_dive_call", SubResource( 191 ), "end_dive_call", "idle", SubResource( 192 ), "end_dive_call", "jump", SubResource( 193 ), "idle", "dance", SubResource( 194 ), "idle", "climb", SubResource( 195 ), "climb", "idle", SubResource( 196 ), "climb", "climb_over", SubResource( 197 ), "climb_over", "climb", SubResource( 198 ), "climb_over", "idle", SubResource( 199 ), "jump", "crouch", SubResource( 200 ), "freefall", "crouch", SubResource( 201 ) ]
 start_node = "idle"
-graph_offset = Vector2( -227.359, -91.457 )
+graph_offset = Vector2( -53.895, 83.2812 )
 
 [sub_resource type="AnimationNodeAdd2" id=203]
 
@@ -4787,12 +4751,12 @@ shape = SubResource( 7 )
 disabled = true
 
 [node name="HeadCollider" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 2 )
+position = Vector2( 0, 1 )
 rotation = 3.14159
 shape = SubResource( 8 )
 
 [node name="BodyCollider" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 4 )
+position = Vector2( 0, 3.5 )
 shape = SubResource( 9 )
 
 [node name="FeetCollider" type="CollisionShape2D" parent="."]
