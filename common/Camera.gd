@@ -26,6 +26,8 @@ onready var right_collider = $RightBody/CollisionShape2D
 
 onready var level = $".."
 
+onready var timer = $Timer
+
 ## Smooth Limits (ignore regular limit system for more natural version)
 var lim_top = -100
 var lim_bottom = 100
@@ -80,10 +82,16 @@ func room_capture(spot, is_move_walls):
 		tween.start()
 		lim_bottom = spot.y + Constants.camera_radius.y + Constants.camera_radius.y * drag_margin_bottom
 		get_tree().paused = true
-		yield(get_tree().create_timer(1), "timeout")
-		get_tree().paused = false
-		left_collider.disabled = false
-		right_collider.disabled = false
+		if timer.is_connected("timeout", self, "finish_capture_release"):
+			timer.disconnect("timeout", self, "finish_capture_release")
+		timer.connect("timeout", self, "finish_room_capture")
+		timer.start()
+
+func finish_room_capture():
+	timer.disconnect("timeout", self, "finish_room_capture")
+	get_tree().paused = false
+	left_collider.disabled = false
+	right_collider.disabled = false
 
 ## Releases room capture and resets camera to following the player
 func capture_release():
@@ -106,15 +114,26 @@ func capture_release():
 		tween.start()
 		reset_limits()
 		get_tree().paused = true
-		yield(get_tree().create_timer(1), "timeout")
-		get_tree().paused = false
-		target_spot = Vector2.ZERO
-		reset_limits()
-		left_collider.disabled = true
-		right_collider.disabled = true
+		if timer.is_connected("timeout", self, "finish_room_capture"):
+			timer.disconnect("timeout", self, "finish_room_capture")
+		timer.connect("timeout", self, "finish_capture_release")
+		timer.start()
+
+func finish_capture_release():
+	get_tree().paused = false
+	timer.disconnect("timeout", self, "finish_capture_release")
+	target_spot = Vector2.ZERO
+	reset_limits()
+	left_collider.disabled = true
+	right_collider.disabled = true
 
 func reset_limits():
 	lim_top = level.up - Constants.camera_radius.y * drag_margin_top
 	lim_bottom = level.down + Constants.camera_radius.y * drag_margin_bottom
 	lim_left = level.left - Constants.camera_radius.x * drag_margin_left
 	lim_right = level.right + Constants.camera_radius.y * drag_margin_right
+
+# Unpause game if node is destroyed in the middle of a transition
+func _exit_tree():
+	if timer.time_left > 0:
+		get_tree().paused = false
