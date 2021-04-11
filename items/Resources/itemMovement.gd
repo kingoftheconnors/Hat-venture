@@ -9,6 +9,9 @@ var velo = Vector2(0, -110)
 
 var prev_travel = Vector2.ZERO
 
+func _ready():
+	$Sprite.speed_scale = .7 + randf()*.4
+
 func _physics_process(_delta):
 	velo.y += ENEMY_GRAVITY * gravityMultiplier
 	# terminal velocity
@@ -24,4 +27,3 @@ func _physics_process(_delta):
 			if collision.travel.y > 0.1:
 				if animator:
 					animator.play("fade")
-				$Sprite.speed_scale = .75 + randf()*1.5

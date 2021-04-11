@@ -8,7 +8,7 @@ extends Node2D
 ## Item's effect script. Must have a power() function that is
 ## called when the item is collected
 export(Resource) var itemCommand
-onready var wait_collect = 5
+onready var wait_collect = 20
 onready var animation_player = get_node_or_null("AnimationPlayer")
 var collected = false
 
