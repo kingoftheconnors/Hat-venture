@@ -28,5 +28,5 @@ func get_dialog(text_num):
 				{name = "Mustache Girl", text = "Are you looking for your umbrella? I saw it land near the market area when you, you know, FELL FROM THE SKY!"},
 				{name = "Mustache Girl", text = "Normally I'd question how you managed to fall that far, but I'm in a bit of a hurry."},
 				{name = "Mustache Girl", text = "I've got a... party to set up!"},
-				{signal = "action1", delay=1}
+				#{signal = "action1", delay=1}
 			]
