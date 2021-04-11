@@ -6,15 +6,18 @@
 # to get the required signals called and connected
 extends TileMap
 
-# Rate of change of the tilemap's transparency
-const VISIBILITY_RATE = 0.07
+# Length of transition of the tilemap's transparency
+export(float, 0, 1) var visibility_effect_time = 0.5
+
+## Final transparency percent for hidden area
+export(float, 0, 1) var residual_transparency = 0
 
 ## Signal for making the tilemap invisible
 func _on_Area2D_body_entered(body):
 	var success = true
 	if body.is_in_group("player"):
 		success = success and tween.stop_all()
-		success = success and tween.interpolate_property(self, "modulate", self.modulate, Color(1, 1, 1, 0.25), 0.5, Tween.TRANS_CUBIC)
+		success = success and tween.interpolate_property(self, "modulate", self.modulate, Color(1, 1, 1, residual_transparency), visibility_effect_time, Tween.TRANS_LINEAR)
 		success = success and tween.start()
 		# Test that tween succeeded
 		if !success:
@@ -25,7 +28,7 @@ func _on_Area2D_body_exited(body):
 	var success = true
 	if body.is_in_group("player"):
 		success = success and tween.stop_all()
-		success = success and tween.interpolate_property(self, "modulate", self.modulate, Color(1, 1, 1, 1), 0.5, Tween.TRANS_CUBIC)
+		success = success and tween.interpolate_property(self, "modulate", self.modulate, Color(1, 1, 1, 1), visibility_effect_time, Tween.TRANS_LINEAR)
 		success = success and tween.start()
 		# Test that tween succeeded
 		if !success:

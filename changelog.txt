@@ -291,22 +291,16 @@ Sprint pitch-up effect
 Checkpoints (with priority levels)
 Enforce power release for all powers
 Fix Pons texture misreference
+Use simpler gray background for level 1 secret areas
+Short-grass updated to be top 8 pixels of flowery grass
+Remove hidden area partial overlay
+Music should be muted in victory music
+Fix music in Level 1-2
 
 Backlog:
 Discuss level design with QP:
     Start out FORGIVING. By end of New Game+, you will be dealing with more difficult versions of the same levels, so start easy, get hard
     New Game+ allows configuring the default hat power, so all levels should be winnable with any hat
-
-Fix enemy animations causing levels to be re-saved
-Use simpler gray background in underground areas
-Use cave background in hidden area
-Decrease overlay in hidden area?
-Tree horizontal foliage tiles are pretty... bad
-Short-grass updated to be top 8 pixels of flowery grass
-
-Music should be muted in victory music
-Music overlay death sfx done after dying and continuing
-When dying, turn off music
 
 Keep hat, pons, lives, etc changing levels
 Don't focus TOO hard on diving in levels, since ALL levels should be able to beat level. We can tutorialize in spaceship
@@ -320,7 +314,8 @@ Move collision boxes down one pixel so bottom black pixels are INSIDE world tile
 
 Game freezes when resetting world with running hat on left side
 All grass in background (nothing walking behind it)
-Hat does not getting picked back up for a split second
+Make lost hats not pickable-back-up for a split second
+Fix enemy animations causing levels to be re-saved
 Ice Cap experimentation
 
 Sprint quieter than most sfx (put in BackgroundSfx)

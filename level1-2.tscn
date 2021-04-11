@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://level.gd" type="Script" id=2]
 [ext_resource path="res://level1/level1.tres" type="TileSet" id=3]
@@ -6,9 +6,7 @@
 [ext_resource path="res://level1/background1.tres" type="TileSet" id=5]
 [ext_resource path="res://Music/startSong.gd" type="Script" id=12]
 [ext_resource path="res://Music/lvl1intro.ogg" type="AudioStream" id=14]
-[ext_resource path="res://Music/lvl1.ogg" type="AudioStream" id=15]
 [ext_resource path="res://common/TileInstancer.gd" type="Script" id=16]
-[ext_resource path="res://Music/smb_mariodie.wav" type="AudioStream" id=19]
 [ext_resource path="res://enemy/poddle/Poddle.tscn" type="PackedScene" id=23]
 [ext_resource path="res://enemy/crow/Crow.tscn" type="PackedScene" id=24]
 [ext_resource path="res://enemy/hen/Hen.tscn" type="PackedScene" id=25]
@@ -133,17 +131,10 @@ stream = ExtResource( 14 )
 autoplay = true
 bus = "Music"
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="Node" parent="."]
 pause_mode = 2
-stream = ExtResource( 15 )
-bus = "Music"
 script = ExtResource( 12 )
-
-[node name="GameOver" type="AudioStreamPlayer" parent="."]
-pause_mode = 2
-stream = ExtResource( 19 )
-bus = "Music"
-script = ExtResource( 12 )
+music = 2
 
 [node name="Poddle2" parent="." instance=ExtResource( 23 )]
 position = Vector2( 1946.19, -220.687 )

@@ -792,3 +792,6 @@ func pause_gravity():
 func resume_gravity():
 	gravity = true
 	gravity_timer.stop()
+
+func dance_fx():
+	SoundSystem.start_music(SoundSystem.MUSIC.VICTORY)

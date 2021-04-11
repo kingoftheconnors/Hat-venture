@@ -24,7 +24,6 @@ enum MUSIC {
 
 onready var music_player : AudioStreamPlayer = $Music
 func start_music(music : int):
-	print(music)
 	music_player.stop()
 	match music:
 		MUSIC.GAMEOVER:
@@ -33,6 +32,8 @@ func start_music(music : int):
 			music_player.stream = preload("res://Music/Game_Over2.ogg")
 		MUSIC.GRASSLAND:
 			music_player.stream = preload("res://Music/lvl1.ogg")
+		MUSIC.VICTORY:
+			music_player.stream = preload("res://Music/Win.ogg")
 	music_player.play()
 func stop_music():
 	music_player.stop()

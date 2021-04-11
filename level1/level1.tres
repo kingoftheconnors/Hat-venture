@@ -184,11 +184,11 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 2, 0, 2 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
-1/name = "TallGrass"
+1/name = "Grass"
 1/texture = ExtResource( 1 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 80, 48, 48, 16 )
+1/region = Rect2( 80, 56, 48, 16 )
 1/tile_mode = 1
 1/autotile/bitmask_mode = 1
 1/autotile/bitmask_flags = [ Vector2( 0, 0 ), 48, Vector2( 1, 0 ), 56, Vector2( 2, 0 ), 24 ]
@@ -475,7 +475,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 2, 0, 2 )
 19/shape_one_way_margin = 0.0
 19/shapes = [  ]
 19/z_index = 0
-20/name = "tiles.png 20"
+20/name = "TallGrass"
 20/texture = ExtResource( 1 )
 20/tex_offset = Vector2( 0, 0 )
 20/modulate = Color( 1, 1, 1, 1 )
