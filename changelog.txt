@@ -296,26 +296,27 @@ Short-grass updated to be top 8 pixels of flowery grass
 Remove hidden area partial overlay
 Music should be muted in victory music
 Fix music in Level 1-2
+Move collision boxes down one pixel so bottom black pixels are INSIDE world tiles
+Give lost hats 1-second no-pickup period
+Place level tiles on layer BEHIND enemies
+Bugfix: Game freezes when level changes with active camera transition
+Remove pause event on dialog with Mustache girl
 
-Backlog:
+Backlog: 11:00 = 3hrs
 Discuss level design with QP:
     Start out FORGIVING. By end of New Game+, you will be dealing with more difficult versions of the same levels, so start easy, get hard
+    Game will start out with tutorial section (Hat Kid's Spaceship), so we don't need too much tutorialization
     New Game+ allows configuring the default hat power, so all levels should be winnable with any hat
+Add more bottom-area saves to level 1-2 (missing one jump and fulling straight down without any rescue ledges is too painful)
 
-Keep hat, pons, lives, etc changing levels
-Don't focus TOO hard on diving in levels, since ALL levels should be able to beat level. We can tutorialize in spaceship
-
-Add more bottom-area saves to level-2
 Add level 2 tilesets!
 
-HUD and Dialogue: Fix Mixling (when different pixel variants are used simulatenously)
-Remove pause event on dialog with Mustache girl
-Move collision boxes down one pixel so bottom black pixels are INSIDE world tiles
+Keep power between levels
 
-Game freezes when resetting world with running hat on left side
-All grass in background (nothing walking behind it)
-Make lost hats not pickable-back-up for a split second
-Fix enemy animations causing levels to be re-saved
+HUD and Dialogue: Fix Mixling (when different pixel variants are used simulatenously)
+Dialog progression system: A forces to end of 2-lines, or moves to next two lines if already there. B skips text box
+
+Fix enemy animations causing levels to be re-saved (Vanill: moving param, Poddle isTurning and enemy "frame" variables)
 Ice Cap experimentation
 
 Sprint quieter than most sfx (put in BackgroundSfx)

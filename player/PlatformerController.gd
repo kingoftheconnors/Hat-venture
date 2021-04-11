@@ -698,9 +698,6 @@ func spin():
 		if !is_on_floor():
 			push(Vector2(0, -SPIN_JUMP_SPEED))
 		animator["parameters/PlayerMovement/playback"].travel("spin")
-		yield(get_tree().create_timer(SPIN_LENGTH), "timeout")
-		if animator["parameters/PlayerMovement/playback"].get_current_node() == "spin":
-			animator["parameters/PlayerMovement/playback"].travel("end_spin")
 
 func unspin():
 	if spinning:
