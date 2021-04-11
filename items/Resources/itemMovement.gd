@@ -10,7 +10,9 @@ var velo = Vector2(0, -110)
 var prev_travel = Vector2.ZERO
 
 func _ready():
-	$Sprite.speed_scale = .7 + randf()*.4
+	var sprite = $Sprite
+	if sprite.has_method("set_speed_scale"):
+		sprite.set_speed_scale(.7 + randf()*.4)
 
 func _physics_process(_delta):
 	velo.y += ENEMY_GRAVITY * gravityMultiplier
