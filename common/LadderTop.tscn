@@ -1,8 +1,9 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://level1/tiles.png" type="Texture" id=1]
+[ext_resource path="res://level1/level1tiles.png" type="Texture" id=1]
 [ext_resource path="res://common/Ladder.gd" type="Script" id=2]
 [ext_resource path="res://common/LadderTop.gd" type="Script" id=3]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 8 )

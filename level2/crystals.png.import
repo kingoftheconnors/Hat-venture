@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tiles.png-bccfde20f06ce85937773639c03e7da0.stex"
+path="res://.import/crystals.png-56bf169492221d7b99891fc8f7bcdd19.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level1/tiles.png"
-dest_files=[ "res://.import/tiles.png-bccfde20f06ce85937773639c03e7da0.stex" ]
+source_file="res://level2/crystals.png"
+dest_files=[ "res://.import/crystals.png-56bf169492221d7b99891fc8f7bcdd19.stex" ]
 
 [params]
 

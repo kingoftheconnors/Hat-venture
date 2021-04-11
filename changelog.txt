@@ -301,33 +301,41 @@ Give lost hats 1-second no-pickup period
 Place level tiles on layer BEHIND enemies
 Bugfix: Game freezes when level changes with active camera transition
 Remove pause event on dialog with Mustache girl
+Add level 2 tilesets!
 
-Backlog: 11:00 = 3hrs
+Backlog:
 Discuss level design with QP:
     Start out FORGIVING. By end of New Game+, you will be dealing with more difficult versions of the same levels, so start easy, get hard
     Game will start out with tutorial section (Hat Kid's Spaceship), so we don't need too much tutorialization
     New Game+ allows configuring the default hat power, so all levels should be winnable with any hat
+    For underground levels, the absolute minimum level height is 240 (one screen size), so you can make a tight cavern at that height
 Add more bottom-area saves to level 1-2 (missing one jump and fulling straight down without any rescue ledges is too painful)
-
-Add level 2 tilesets!
+    Tilesets also can instance objects. Pons, Springs, and ladders are all placeable using tilesets
 
 Keep power between levels
 
-HUD and Dialogue: Fix Mixling (when different pixel variants are used simulatenously)
 Dialog progression system: A forces to end of 2-lines, or moves to next two lines if already there. B skips text box
 
 Fix enemy animations causing levels to be re-saved (Vanill: moving param, Poddle isTurning and enemy "frame" variables)
-Ice Cap experimentation
 
 Sprint quieter than most sfx (put in BackgroundSfx)
 Sprint sfx keep pitch-up even after small interruptions (as BackgroundSfx, only stops when StopBackgroundsound is called when Run is stopped)
 
 Glitch: Eltun flypath respawning (reset goal path piece)
-Music
+Poddle-allow crouching to dodge bullets (doublecheck with Brawlitup)
+Music:
+   Spaceship Music
+   Timmy Strikes! Music
+   Grassland Music
+   Boss 1 Music
+   Skid sfx
+   Block-break sfx
 Art:
    Checkpoint flag
    Ladder-climbing (other powers)
    Boss 1
+   Victory Dance animation
+   Decide best way to resize HUD a.k.a Fix Mixling (when different pixel variants for HUD is used than for level)
 Boss 1
   * Design
   * Cutscene
@@ -336,10 +344,11 @@ Spaceship tutorial
   * Tileset
   * Level Design
   * Cutscene
+  * Level Selecting
 
 RELEASE ON A HAT IN TIME DISCORD
 
-Propeller Power?
+Ice Cap experimentation
 Main Menu
    6. Audio Cues
    7. Assist Mode (Speed [OS.set_time_scale], Invincibility (bounce up from cliffs and don't lose HP), Infinite Lives, SuperPowers)
@@ -349,19 +358,14 @@ Main Menu
        All-powers
    9. Photo-sensitive mode (Power-flash, gain-power-flash, hat-disappear-flash)
    10. Speedrun Clock (None, Chapter, File)
-Level Select
-  * Ship and telescopes
 Persistent Data (autosave system)
 Level 2
   * Enemies and new mechanics
 
 After Angus becomes free:
-  Talk about replacing witch hat with smash hat (propeller)
+  Talk about replacing witch hat with smash/ice hat or propeller
   Graphics/Ideas for:
-      Propeller Hat
-      Hat Girl ladder-climbing (other hats)
+      New Hat
       Wall background (review and upgrade what I made)
-      One-way platforms
       Explosion
       Hat Girl DANCE :3
-      Victory animation

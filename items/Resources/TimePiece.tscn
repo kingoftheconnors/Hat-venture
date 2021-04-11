@@ -172,7 +172,6 @@ script = ExtResource( 5 )
 
 [node name="ItemRoot" type="Node2D" parent="."]
 pause_mode = 2
-position = Vector2( -12, 12 )
 script = ExtResource( 1 )
 itemCommand = ExtResource( 3 )
 
@@ -187,10 +186,8 @@ active = true
 parameters/playback = SubResource( 8 )
 
 [node name="Sprite" type="AnimatedSprite" parent="ItemRoot"]
-position = Vector2( 0, -0.190221 )
-scale = Vector2( -1, 1 )
+position = Vector2( 0, 1.7318 )
 frames = SubResource( 17 )
-frame = 7
 playing = true
 
 [node name="Area2D" type="Area2D" parent="ItemRoot"]
