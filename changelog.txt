@@ -303,6 +303,7 @@ Bugfix: Game freezes when level changes with active camera transition
 Remove pause event on dialog with Mustache girl
 Add level 2 tilesets!
 Improve sprint pitch-up effect with pre-made rev-up SFX
+Fix player power keys to work even when released during pause section
 
 Backlog:
 Discuss level design with QP:
@@ -319,10 +320,10 @@ Dialog progression system: A forces to end of 2-lines, or moves to next two line
 
 Fix enemy animations causing levels to be re-saved (Vanill: moving param, Poddle isTurning and enemy "frame" variables)
 
-Sprinting-when-hit keeps running active
 
 Glitch: Eltun flypath respawning (reset goal path piece)
 Poddle-allow crouching to dodge bullets (doublecheck with Brawlitup)
+Cherrybomb sometimes not hurting player if player moves away fast enough after it explodes
 Music:
    Spaceship Music
    Timmy Strikes! Music

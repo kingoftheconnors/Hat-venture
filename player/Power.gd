@@ -33,16 +33,21 @@ func updatePowerValues():
 	animator["parameters/PlayerMovement/walk/blend_position"] = int(power.blendValue)
 	animator["parameters/PlayerMovement/hurt/blend_position"] = int(power.blendValue)
 
-func _unhandled_input(event):
+var power_pressed = false
+func _process(_delta):
 	if platformController.is_active():
-		if event.is_action_pressed("ui_B"):
+		if !power_pressed and Input.is_action_pressed("ui_B"):
 			if platformController.get_stun() == 0:
+				power_pressed = true
 				set_power_active(true)
-		if event.is_action_released("ui_B"):
+		if power_pressed and !Input.is_action_pressed("ui_B"):
+			power_pressed = false
 			set_power_active(false)
-		if event.is_action_pressed("ui_release"):
-			if platformController.get_stun() == 0:
-				release_power()
+
+func _input(event):
+	if event.is_action_pressed("ui_release"):
+		if platformController.get_stun() == 0:
+			release_power()
 	
 	if Constants.DEBUG_MODE:
 		if event is InputEventKey and event.pressed and event.scancode == KEY_1:
