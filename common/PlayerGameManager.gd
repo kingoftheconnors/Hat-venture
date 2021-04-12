@@ -2,11 +2,13 @@
 # that would otherwise be destroyed when changing scenes
 # Manages:
 #    Death
+#    Changing levels
 #    Score
 #    Score multipliers
 #    Lives
 #    Pausing
 #    Player-specific buffs (Special runs, Assist mode)
+#    Player's current power
 extends Node
 
 func _process(delta):
@@ -94,6 +96,22 @@ func reset_stats():
 	pons = 0; Gui.set_pons(pons)
 	score = 0; Gui.set_score(score)
 	lives = 3; Gui.set_lives(lives)
+
+var default_power : Resource = preload("res://items/defaultPower.gd")
+var cur_power : Reference = null
+func set_default_power(power : Resource):
+	default_power = power
+
+func notify_power(power: Reference):
+	cur_power = power
+
+func get_power() -> Reference:
+	if cur_power != null:
+		return cur_power
+	return default_power.new()
+
+func get_default_power() -> Reference:
+	return default_power.new()
 
 ## Adds player score
 ## If affects_multiplicity is true, it increments multiplicity

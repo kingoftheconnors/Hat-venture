@@ -3,12 +3,17 @@ extends Node
 onready var platformController = $".."
 onready var animator = $"../AnimationTree"
 
-export(Resource) var defaultPower
-onready var power = defaultPower.new()
+onready var power
 
 const RELEASED_HAT_LAUNCH_SPEED = 60
 const POWER_BASE_HP = 2
 var power_hp = POWER_BASE_HP
+
+func _ready():
+	if PlayerGameManager:
+		set_power(PlayerGameManager.get_power())
+	else:
+		set_power(preload("res://items/defaultPower.gd").new())
 
 func acquire_power(powerType):
 	if powerType.name() != power.name():
@@ -17,10 +22,12 @@ func acquire_power(powerType):
 		SoundSystem.start_sound(SoundSystem.SFX.POWERUP_GET)
 
 func set_power(powerType):
-	power.force_deactivate(platformController, animator)
+	if power:
+		power.force_deactivate(platformController, animator)
 	power = powerType
 	power_hp = POWER_BASE_HP
 	updatePowerValues()
+	PlayerGameManager.notify_power(powerType)
 
 ## Updates variables in animator that control which animation is played
 ## based on the player's power
@@ -51,7 +58,8 @@ func _input(event):
 	
 	if Constants.DEBUG_MODE:
 		if event is InputEventKey and event.pressed and event.scancode == KEY_1:
-			acquire_power(defaultPower.new())
+			var script = preload("res://items/runningPower.gd")
+			acquire_power(script.new())
 			updatePowerValues()
 			animator["parameters/PlayerMovement/playback"].travel("power_get")
 		if event is InputEventKey and event.pressed and event.scancode == KEY_2:
@@ -93,7 +101,14 @@ func release_power():
 		releaseHat.position += get_parent().position
 		releaseHat.set_velo_x(-platformController.get_direction()*RELEASED_HAT_LAUNCH_SPEED)
 		get_parent().get_parent().add_child(releaseHat)
-	set_power(defaultPower.new())
+	set_power(PlayerGameManager.get_default_power())
+	updatePowerValues()
+	animator["parameters/PlayerMovement/playback"].travel("refresh")
+	platformController.release_all_powers()
+
+func silent_release_power():
+	power.release()
+	set_power(PlayerGameManager.get_default_power())
 	updatePowerValues()
 	animator["parameters/PlayerMovement/playback"].travel("refresh")
 	platformController.release_all_powers()

@@ -108,6 +108,7 @@ var animating_death = false
 func player_die(animate = true):
 	if !dying:
 		controller.signal_death()
+		controller.get_power_node().silent_release_power()
 		animating_death = animate
 		controller.stun(40)
 		dying = true

@@ -760,8 +760,9 @@ func off_ladder_top(ladder):
 	if climbing:
 		set_velo_y(0)
 
+onready var power = $Power
 func get_power_node():
-	return $Power
+	return power
 
 func animate(animation):
 	release_all_powers()

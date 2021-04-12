@@ -305,6 +305,9 @@ Add level 2 tilesets!
 Improve sprint pitch-up effect with pre-made rev-up SFX
 Fix player power keys to work even when released during pause section
 
+0.3.4
+Keep power between levels
+
 Backlog:
 Discuss level design with QP:
     Start out FORGIVING. By end of New Game+, you will be dealing with more difficult versions of the same levels, so start easy, get hard
@@ -313,8 +316,6 @@ Discuss level design with QP:
     For underground levels, the absolute minimum level height is 240 (one screen size), so you can make a tight cavern at that height
 Add more bottom-area saves to level 1-2 (missing one jump and fulling straight down without any rescue ledges is too painful)
     Tilesets also can instance objects. Pons, Springs, and ladders are all placeable using tilesets
-
-Keep power between levels
 
 Dialog progression system: A forces to end of 2-lines, or moves to next two lines if already there. B skips text box
 
