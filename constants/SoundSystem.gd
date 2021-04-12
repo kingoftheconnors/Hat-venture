@@ -42,10 +42,6 @@ onready var sfx_player : AudioStreamPlayer = $Sfx
 var cur_sound = SFX.NONE
 func start_sound(sfx : int):
 	if sfx_player:
-		if cur_sound != sfx:
-			sfx_player.stop()
-			if AudioServer.get_bus_effect_count(2) > 0:
-				AudioServer.remove_bus_effect(2, 0)
 		match sfx:
 			SFX.COLLECT:
 				collect_level += 1
@@ -85,10 +81,12 @@ func start_sound(sfx : int):
 			SFX.HURT:
 				sfx_player.stream = preload("res://Music/sfx/Character_hit.wav")
 			SFX.SPRINT:
-				sfx_player.stream = preload("res://Music/sfx/Sprint.wav")
-				var cur_shift_effect = AudioEffectPitchShift.new()
-				cur_shift_effect.pitch_scale = 0.8 # -1 pitch
-				AudioServer.add_bus_effect(2, cur_shift_effect, 0)
+				if sprint_active:
+					sfx_player.stream = preload("res://Music/sfx/Sprint.wav")
+				else:
+					sfx_player.stream = preload("res://Music/sfx/Sprint_start.wav")
+		if cur_sound != sfx:
+			sfx_player.stop()
 		sfx_player.play()
 		cur_sound = sfx
 func start_sound_if_silent(sfx : int):
@@ -102,18 +100,25 @@ func stop_sound():
 	cur_sound = SFX.NONE
 	sfx_player.stop()
 
+func _on_Sfx_finished():
+	if cur_sound == SFX.SPRINT:
+		sprint_timer = SPRINT_RESET_TIME
+		sprint_active = true
+
 func _physics_process(_delta):
 	if collect_timer > 0:
 		collect_timer -= 1
 		if collect_timer == 0:
 			collect_level = 0
 			print("Restart")
+	if sprint_timer > 0 and cur_sound != SFX.SPRINT:
+		sprint_timer -= 1
+		if sprint_timer == 0:
+			sprint_active = false
 
-func _process(delta):
-	if cur_sound == SFX.SPRINT and sfx_player.is_playing():
-		var effect = AudioServer.get_bus_effect(2, 0)
-		if effect and effect.pitch_scale < 1.5:
-			effect.pitch_scale += delta/2
+var sprint_active = false
+var sprint_timer = 0
+const SPRINT_RESET_TIME = 80
 
 var collect_level = 0
 var collect_timer = 0

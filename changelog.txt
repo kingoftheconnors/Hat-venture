@@ -302,6 +302,7 @@ Place level tiles on layer BEHIND enemies
 Bugfix: Game freezes when level changes with active camera transition
 Remove pause event on dialog with Mustache girl
 Add level 2 tilesets!
+Improve sprint pitch-up effect with pre-made rev-up SFX
 
 Backlog:
 Discuss level design with QP:
@@ -318,8 +319,7 @@ Dialog progression system: A forces to end of 2-lines, or moves to next two line
 
 Fix enemy animations causing levels to be re-saved (Vanill: moving param, Poddle isTurning and enemy "frame" variables)
 
-Sprint quieter than most sfx (put in BackgroundSfx)
-Sprint sfx keep pitch-up even after small interruptions (as BackgroundSfx, only stops when StopBackgroundsound is called when Run is stopped)
+Sprinting-when-hit keeps running active
 
 Glitch: Eltun flypath respawning (reset goal path piece)
 Poddle-allow crouching to dodge bullets (doublecheck with Brawlitup)
