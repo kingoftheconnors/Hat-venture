@@ -80,10 +80,29 @@ const letters_per_sec = 20.0
 var text_to_run = []
 var text_crawl_func
 var dialog_active = false
+var cur_speaking_name = ""
 
 func _process(delta):
 	if text_crawl_func is GDScriptFunctionState:
-		text_crawl_func = text_crawl_func.resume(delta)
+		# Pre-empt textboxes
+		if dialog.visible and Input.is_action_just_pressed("ui_B"):
+			text_crawl_func = null
+			# Don't run any more textboxes by the speaking character
+			while text_to_run.front() != null \
+				and text_to_run.front().has("name") \
+				and text_to_run.front().name == cur_speaking_name:
+				text_to_run.pop_front()
+			# After popping, add delay so player won't activate powers
+			# on accident
+			var text_queue_finished = true
+			for textbox in text_to_run:
+				if !textbox.has("freeze_player") and !textbox.has("unfreeze_player") \
+					and !textbox.has("enable") and !textbox.has("disable"):
+					text_queue_finished = false
+			if text_queue_finished:
+				text_to_run.push_front({delay=0.25})
+		else:
+			text_crawl_func = text_crawl_func.resume(delta)
 	elif text_to_run.size() > 0:
 		var next_box = text_to_run.pop_front()
 		start_dialog(next_box)
@@ -114,32 +133,37 @@ func queue(dialog_starter, textbox):
 func start_dialog(next_box):
 	dialog_active = true
 	PlayerGameManager.pause_except([])
+	cur_speaking_name = ""
 	if next_box.has("name"):
 		gui.visible = false
 		dialog.visible = true
 		dialogName.text = next_box.name
+		cur_speaking_name = next_box.name
 		dialogText.text = next_box.text
 		dialogText.lines_skipped = 0
 		# Start text crawl
 		text_crawl_func = crawl(next_box.text.length())
 	elif next_box.has("signal"):
-		print("Signalling: ", next_box)
 		next_box.starter.emit_signal(next_box.signal)
 		# Wait for program to return signal that we can continue scene
 		if next_box.has("delay"):
 			gui.visible = true
 			dialog.visible = false
 			text_crawl_func = delay(next_box['delay'])
-	elif next_box.has("unfreeze"):
-		for body in next_box['unfreeze']:
+	elif next_box.has("enable"):
+		for body in next_box['enable']:
 			body.set_pause_mode(PAUSE_MODE_PROCESS)
-	elif next_box.has("freeze"):
-		for body in next_box['freeze']:
+	elif next_box.has("disable"):
+		for body in next_box['disable']:
 			body.set_pause_mode(PAUSE_MODE_INHERIT)
 	elif next_box.has("unfreeze_player"):
 		next_box['unfreeze_player'].set_freeze(false)
 	elif next_box.has("freeze_player"):
 		next_box['freeze_player'].set_freeze(true)
+	elif next_box.has("delay"):
+		gui.visible = true
+		dialog.visible = false
+		text_crawl_func = delay(next_box['delay'])
 
 func end_dialog():
 	dialog_active = false
@@ -167,7 +191,7 @@ func crawl(_text_length):
 		lettersVisible += delta * speed * letters_per_sec
 		if dialogText.visible_characters >= 39:
 			# Wait for user input
-			while(!Input.is_action_just_pressed("ui_A") and !Input.is_action_just_pressed("ui_B")):
+			while(!Input.is_action_just_pressed("ui_A")):
 				yield()
 			dialogText.lines_skipped += 2
 			lettersVisible -= 40
@@ -175,14 +199,10 @@ func crawl(_text_length):
 			yield()
 		dialogText.set_visible_characters(int(lettersVisible))
 		if Input.is_action_just_pressed("ui_A"):
-			speed = 5
-		elif Input.is_action_just_released("ui_A"):
-			speed = 1
-		if Input.is_action_just_pressed("ui_B"):
 			lettersVisible = 38
 	yield()
 	# Wait for user input
-	while(!Input.is_action_just_pressed("ui_A") and !Input.is_action_pressed("ui_B")):
+	while(!Input.is_action_just_pressed("ui_A")):
 		yield()
 	return
 

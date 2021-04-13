@@ -29,13 +29,13 @@ func _process(_delta):
 				for path in active_bodies_in_dialog:
 					active_bodies.append(get_node(path))
 				# Add command to unfreeze active bodies in dialog
-				Gui.queue_text(self, {"unfreeze": active_bodies})
+				Gui.queue_text(self, {"enable": active_bodies})
 				Gui.queue_text(self, {"freeze_player": body})
 				# Queue dialog
 				Gui.queue_dialog(self, dialog_num)
 				# Re-freeze bodies so next dialog won't have them doing whatevs
 				Gui.queue_text(self, {"unfreeze_player": body})
-				Gui.queue_text(self, {"freeze": active_bodies})
+				Gui.queue_text(self, {"disable": active_bodies})
 				if one_shot:
 					queue_free()
 

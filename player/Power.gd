@@ -43,7 +43,7 @@ func updatePowerValues():
 var power_pressed = false
 func _process(_delta):
 	if platformController.is_active():
-		if !power_pressed and Input.is_action_pressed("ui_B"):
+		if !power_pressed and Input.is_action_just_pressed("ui_B"):
 			if platformController.get_stun() == 0:
 				power_pressed = true
 				set_power_active(true)

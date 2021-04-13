@@ -307,6 +307,7 @@ Fix player power keys to work even when released during pause section
 
 0.3.4
 Keep power between levels
+Dialog progression system: A forces to end of 2-lines, or moves to next two lines if already there. B ends all text by that person and skips to next speaker
 
 Backlog:
 Discuss level design with QP:
@@ -316,8 +317,6 @@ Discuss level design with QP:
     For underground levels, the absolute minimum level height is 240 (one screen size), so you can make a tight cavern at that height
 Add more bottom-area saves to level 1-2 (missing one jump and fulling straight down without any rescue ledges is too painful)
     Tilesets also can instance objects. Pons, Springs, and ladders are all placeable using tilesets
-
-Dialog progression system: A forces to end of 2-lines, or moves to next two lines if already there. B skips text box
 
 Fix enemy animations causing levels to be re-saved (Vanill: moving param, Poddle isTurning and enemy "frame" variables)
 
@@ -360,6 +359,7 @@ Main Menu
        All-powers
    9. Photo-sensitive mode (Power-flash, gain-power-flash, hat-disappear-flash)
    10. Speedrun Clock (None, Chapter, File)
+   11. Dialog safety delay (split second after dialog if skipping dialog with B)
 Persistent Data (autosave system)
 Level 2
   * Enemies and new mechanics
