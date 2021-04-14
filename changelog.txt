@@ -308,22 +308,13 @@ Fix player power keys to work even when released during pause section
 0.3.4
 Keep power between levels
 Dialog progression system: A forces to end of 2-lines, or moves to next two lines if already there. B ends all text by that person and skips to next speaker
+Fix enemy animations causing levels to be re-saved (Vanill: moving param, Poddle isTurning and enemy "frame" variables)
+Eltun: Reset flypath respawning (reset goal path piece)
+Poddle: Allow crouching to dodge bullets
+Fix collsion layer respawning for enemies killed by spinning and bashing
+Increase cherrybomb range-to-detonation-area ratio
 
 Backlog:
-Discuss level design with QP:
-    Start out FORGIVING. By end of New Game+, you will be dealing with more difficult versions of the same levels, so start easy, get hard
-    Game will start out with tutorial section (Hat Kid's Spaceship), so we don't need too much tutorialization
-    New Game+ allows configuring the default hat power, so all levels should be winnable with any hat
-    For underground levels, the absolute minimum level height is 240 (one screen size), so you can make a tight cavern at that height
-Add more bottom-area saves to level 1-2 (missing one jump and fulling straight down without any rescue ledges is too painful)
-    Tilesets also can instance objects. Pons, Springs, and ladders are all placeable using tilesets
-
-Fix enemy animations causing levels to be re-saved (Vanill: moving param, Poddle isTurning and enemy "frame" variables)
-
-
-Glitch: Eltun flypath respawning (reset goal path piece)
-Poddle-allow crouching to dodge bullets (doublecheck with Brawlitup)
-Cherrybomb sometimes not hurting player if player moves away fast enough after it explodes
 Music:
    Spaceship Music
    Timmy Strikes! Music
@@ -337,6 +328,10 @@ Art:
    Boss 1
    Victory Dance animation
    Decide best way to resize HUD a.k.a Fix Mixling (when different pixel variants for HUD is used than for level)
+Level 1-1 Work
+  * Level Design
+Level 1-2 Work
+  * Level Design
 Boss 1
   * Design
   * Cutscene

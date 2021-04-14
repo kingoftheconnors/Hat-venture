@@ -442,7 +442,8 @@ shape = SubResource( 26 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
-[node name="Shooter" type="Node" parent="."]
+[node name="Shooter" type="Node2D" parent="."]
+position = Vector2( 0, -3 )
 script = ExtResource( 5 )
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="Shooter" method="_on_VisibilityNotifier2D_screen_entered"]

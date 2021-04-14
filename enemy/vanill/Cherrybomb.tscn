@@ -90,9 +90,10 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 5.502
+radius = 3.0
 
 [sub_resource type="CircleShape2D" id=4]
+radius = 11.0
 
 [node name="Cherrybomb" type="Sprite"]
 texture = ExtResource( 2 )

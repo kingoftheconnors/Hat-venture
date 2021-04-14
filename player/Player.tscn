@@ -1,4 +1,4 @@
-[gd_scene load_steps=253 format=2]
+[gd_scene load_steps=252 format=2]
 
 [ext_resource path="res://player/regular/idle.png" type="Texture" id=1]
 [ext_resource path="res://player/PlatformerController.gd" type="Script" id=2]
@@ -36,7 +36,6 @@
 [ext_resource path="res://player/hard/jump.png" type="Texture" id=34]
 [ext_resource path="res://player/thor/crouch.png" type="Texture" id=35]
 [ext_resource path="res://player/hard/crouch.png" type="Texture" id=36]
-[ext_resource path="res://items/defaultPower.gd" type="Script" id=37]
 [ext_resource path="res://player/hard/bash.png" type="Texture" id=38]
 [ext_resource path="res://player/hard/dashfx.png" type="Texture" id=39]
 [ext_resource path="res://player/regular/lyingdown.png" type="Texture" id=40]
@@ -85,7 +84,7 @@ shader_param/outline_color = Color( 0.564706, 0.564706, 0.564706, 1 )
 
 [sub_resource type="CapsuleShape2D" id=3]
 radius = 6.5
-height = 6.5
+height = 1.0
 
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 3.0
@@ -102,10 +101,10 @@ extents = Vector2( 7, 11 )
 
 [sub_resource type="CapsuleShape2D" id=8]
 radius = 4.6
-height = 10.25
+height = 3.0
 
 [sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 4.75, 8.5 )
+extents = Vector2( 4.545, 5.5 )
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 7, 1 )
@@ -415,7 +414,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.5, 4 ) ]
+"values": [ Vector2( 0.5, 4.5 ) ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("ScaleChildren/hurtbox/CollisionShape2D:shape:height")
@@ -427,7 +426,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 3.0 ]
+"values": [ 1.0 ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("HeadCollider:shape:height")
@@ -525,7 +524,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 3.0 ]
+"values": [ 1.0 ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("ScaleChildren/hurtbox/CollisionShape2D:position")
@@ -537,7 +536,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.5, 4 ) ]
+"values": [ Vector2( 0.5, 4.5 ) ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("HeadCollider:shape:height")
@@ -635,7 +634,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 3.0 ]
+"values": [ 1.0 ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("ScaleChildren/hurtbox/CollisionShape2D:position")
@@ -647,7 +646,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.5, 4 ) ]
+"values": [ Vector2( 0.5, 4.5 ) ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("HeadCollider:shape:height")
@@ -745,7 +744,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 3.0 ]
+"values": [ 1.0 ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("ScaleChildren/hurtbox/CollisionShape2D:position")
@@ -757,7 +756,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.5, 4 ) ]
+"values": [ Vector2( 0.5, 4.5 ) ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("HeadCollider:shape:height")
@@ -855,7 +854,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 3.0 ]
+"values": [ 1.0 ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("ScaleChildren/hurtbox/CollisionShape2D:position")
@@ -867,7 +866,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.5, 4 ) ]
+"values": [ Vector2( 0.5, 4.5 ) ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("HeadCollider:shape:height")
@@ -4656,13 +4655,12 @@ script = ExtResource( 2 )
 
 [node name="Power" type="Node" parent="."]
 script = ExtResource( 15 )
-defaultPower = ExtResource( 37 )
 
 [node name="ScaleChildren" type="Node2D" parent="."]
 
 [node name="PlayerCore" type="Sprite" parent="ScaleChildren"]
 material = SubResource( 2 )
-texture = ExtResource( 1 )
+texture = ExtResource( 35 )
 hframes = 2
 script = ExtResource( 4 )
 
@@ -4688,7 +4686,7 @@ texture = ExtResource( 44 )
 ]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScaleChildren/hurtbox"]
-position = Vector2( 0.5, -1.5 )
+position = Vector2( 0.5, 4.5 )
 shape = SubResource( 3 )
 
 [node name="hitbox" type="Area2D" parent="ScaleChildren" groups=[
@@ -4753,12 +4751,12 @@ shape = SubResource( 7 )
 disabled = true
 
 [node name="HeadCollider" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 1 )
+position = Vector2( 0.449, 4.5 )
 rotation = 3.14159
 shape = SubResource( 8 )
 
 [node name="BodyCollider" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 3.5 )
+position = Vector2( 0.454, 6.5 )
 shape = SubResource( 9 )
 
 [node name="FeetCollider" type="CollisionShape2D" parent="."]

@@ -374,8 +374,6 @@ func bash_bounce(body):
 			if destroyedBody:
 				# Move towards center
 				upgrade_smash()
-				body.set_collision_layer(0)
-				body.set_collision_mask(0)
 				#recognize_collision = false
 			else:
 				# No power stun for bouncing off blocks
@@ -419,9 +417,6 @@ func bounce_back():
 func spin_bounce(body):
 	if !body.is_in_group("player"):
 		var destroyedBody = core.attack(body)
-		if destroyedBody:
-			body.set_collision_layer(0)
-			body.set_collision_mask(0)
 		return destroyedBody
 	return false
 

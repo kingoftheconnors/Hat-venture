@@ -42,3 +42,7 @@ func set_first_patrol_index(body):
 
 func get_direction() -> Vector2:
 	return Vector2(direction, 0)
+
+func respawn(pos):
+	.respawn(pos)
+	patrol_index = -1
