@@ -74,6 +74,11 @@ const POST_BASH_JUMP_TIME = 10
 var post_bash_jump_timer = 0
 const BASH_OUT_STRENGTH = 180
 
+# BASH2
+
+var airjump_charged = true
+var airbash_charged = true
+
 # CLIMBING
 var CLIMBING_SPEED := 80
 
@@ -356,6 +361,8 @@ func move_player(v):
 						direction = -direction
 			# Bash Hitting
 			if bashing and recognize_collision:
+				airjump_charged = true
+				airbash_charged = true
 				if abs(collision.normal.x) > abs(collision.normal.y):
 					var _destroyed_body = bash_bounce(collision.collider)
 	if !recognize_collision:
@@ -372,6 +379,8 @@ func bash_bounce(body):
 			var destroyedBody = core.attack(body)
 			# Smashing through an object (disabling its collision)
 			if destroyedBody:
+				airjump_charged = true
+				airbash_charged = true
 				# Move towards center
 				upgrade_smash()
 				#recognize_collision = false
@@ -468,15 +477,18 @@ func manage_flags():
 	
 	if jump_timer > 0:
 		jump_timer -= 1
-		if _stun <= 0 \
-			and (is_on_floor() \
-				or coyoteTimer > 0 \
-				or climbing \
-				or diving \
-				or (post_bash_jump_timer > 0)):
-			jump()
+		if _stun <= 0:
+			var able_to_jump = false
+			if (is_on_floor() or coyoteTimer > 0 or climbing or diving):
+				able_to_jump = true
+			if (!is_on_floor() and airjump_charged):
+				able_to_jump = true
+			if able_to_jump:
+				jump()
 
 func refresh_flags():
+	airjump_charged = true
+	airbash_charged = true
 	if coyoteTimer < SPIN_COYOTE_TIME:
 		if spinning:
 			coyoteTimer = SPIN_COYOTE_TIME
@@ -511,6 +523,10 @@ func _process(_delta):
 		uncrouch()
 
 func jump():
+	if !is_on_floor():
+		airjump_charged = false
+	if bashing:
+		bashing = false
 	if velo.y >= 0:
 		SoundSystem.start_sound(SoundSystem.SFX.JUMP)
 	if post_bash_jump_timer > 0 and !is_on_floor():
@@ -638,7 +654,7 @@ func stop_skid_perfect():
 	skid_perfect = false
 
 func bash():
-	if !bashing and can_use_power and _stun <= 0:
+	if !bashing and (airbash_charged or is_on_floor()) and _stun <= 0:
 		can_use_power = false
 		bashing = true
 		set_climb(false)
@@ -646,6 +662,7 @@ func bash():
 		uncrouch()
 		max_velo = BASH_SPEED
 		if !is_on_floor():
+			airbash_charged = false
 			velo.y = 0; pause_gravity()
 		animator["parameters/PlayerMovement/playback"].travel("bash")
 
