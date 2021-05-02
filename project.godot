@@ -52,7 +52,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "game_dialog",
 "language": "GDScript",
-"path": "res://gui/game_dialog.gd"
+"path": "res://constants/game_dialog.gd"
 }, {
 "base": "Reference",
 "class": "hardPower",
@@ -147,7 +147,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Hat- Venture"
-run/main_scene="res://level1/level1.tscn"
+run/main_scene="res://level-select/ship.tscn"
 config/icon="res://icon.png"
 
 [autoload]

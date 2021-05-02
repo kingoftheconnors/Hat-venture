@@ -1,7 +1,7 @@
 
 class_name game_dialog
 
-enum DIALOG_TYPE { TEMPLATE_1 = 1, TEMPLATE_2 = 2 }
+enum DIALOG_TYPE { TEMPLATE_1 = 1, TEMPLATE_2 = 2, GOTO_WORLD_1 = 3 }
 
 # Textbox Format:
 #
@@ -31,4 +31,8 @@ func get_dialog(text_num):
 				{name = "Mustache Girl", text = "I've got a... party to set up!"},
 				{name = "Hat Kid", text = "I'M NODDING AND SAYING NOTHING!"},
 				#{signal = "action1", delay=0.25}
+			]
+		DIALOG_TYPE.GOTO_WORLD_1:
+			return [
+				{level = "res://level1/level1.tscn"}
 			]

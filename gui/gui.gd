@@ -160,6 +160,8 @@ func start_dialog(next_box):
 		next_box['unfreeze_player'].set_freeze(false)
 	elif next_box.has("freeze_player"):
 		next_box['freeze_player'].set_freeze(true)
+	elif next_box.has("level"):
+		PlayerGameManager.start_level(next_box['level'])
 	elif next_box.has("delay"):
 		gui.visible = true
 		dialog.visible = false
