@@ -4,8 +4,8 @@ class_name pace
 var velo = Vector2(40, 40)
 var DASH_FORCE = Vector2(40,40)
 ## Initial direction. Can be any diagonal.
-export(Vector2) var direction = Vector2(1,0)
-onready var default_direction = direction
+export(Vector2) var direction
+onready var default_direction : Vector2 = direction
 var pace_frame = 0
 
 ## Number of physics frames before node will turn around
