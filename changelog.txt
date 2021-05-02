@@ -314,3 +314,8 @@ Poddle: Allow crouching to dodge bullets
 Fix collsion layer respawning for enemies killed by spinning and bashing
 Increase cherrybomb range-to-detonation-area ratio
 Extend Levels 1-1 and 1-2
+
+0.3.5
+Add background to 1-1, 1-2
+Make dialog starters able to change levels
+Add basic spaceship area w/ complete look

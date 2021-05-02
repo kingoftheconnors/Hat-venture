@@ -240,3 +240,4 @@ turnaround_time = 50
 [connection signal="body_entered" from="Area2D" to="Area2D/FakeWalls" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D/FakeWalls" method="_on_Area2D_body_exited"]
 [connection signal="finished" from="MusicIntro" to="Music" method="start_music"]
+[connection signal="ready" from="MusicIntro" to="Music" method="stop_music"]
