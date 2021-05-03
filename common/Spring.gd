@@ -8,3 +8,4 @@ func _on_Area2D_body_entered(body):
 		yield(get_tree().create_timer(0.05), "timeout")
 		if overlaps_body(body):
 			body.bounce(1.5)
+			body.animate_jump()

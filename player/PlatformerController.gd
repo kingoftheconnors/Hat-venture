@@ -530,8 +530,7 @@ func jump():
 	coyoteTimer = 0
 	jump_timer = 0
 	set_climb(false)
-	animator["parameters/PlayerMovement/conditions/jumping"] = true
-	animator["parameters/PlayerMovement/conditions/not_jumping"] = false
+	animate_jump()
 
 ## Bounces player upwards (used when stepping on enemy or spring)
 func bounce(multiplier = 1):
@@ -542,6 +541,11 @@ func bounce(multiplier = 1):
 	if diving and can_superdive:
 		superdive_timer = SUPERDIVE_TIME
 	refresh_flags()
+
+func animate_jump():
+	animator["parameters/PlayerMovement/conditions/jumping"] = true
+	animator["parameters/PlayerMovement/conditions/not_jumping"] = false
+
 
 func get_stun():
 	return _stun
