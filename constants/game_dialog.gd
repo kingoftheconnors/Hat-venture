@@ -34,5 +34,5 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.GOTO_WORLD_1:
 			return [
-				{level = "res://level1/level1.tscn"}
+				{level = "res://world1/level1.tscn"}
 			]

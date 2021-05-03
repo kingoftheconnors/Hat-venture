@@ -16,8 +16,8 @@
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=23]
 [ext_resource path="res://enemy/hen/Hen.tscn" type="PackedScene" id=24]
 [ext_resource path="res://enemy/eltun/eltun.tscn" type="PackedScene" id=25]
-[ext_resource path="res://level1/background1.tres" type="TileSet" id=26]
-[ext_resource path="res://level1/level1.tres" type="TileSet" id=27]
+[ext_resource path="res://world1/background1.tres" type="TileSet" id=26]
+[ext_resource path="res://world1/level1.tres" type="TileSet" id=27]
 [ext_resource path="res://camera/Camera.tscn" type="PackedScene" id=28]
 [ext_resource path="res://common/CameraCapture.tscn" type="PackedScene" id=29]
 
