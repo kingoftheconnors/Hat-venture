@@ -9,6 +9,8 @@ func power(body, _this):
 
 func activate(body, _animator):
 	body.dive()
+func activate_on_init(_body, _animator):
+	pass
 
 func deactivate(_body, _animator):
 	pass

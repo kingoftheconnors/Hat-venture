@@ -11,6 +11,8 @@ func activate(body, _animator):
 	#animator["parameters/walk/4/conditions/running"] = true
 	#animator["parameters/walk/4/conditions/not_running"] = false
 	body.start_run()
+func activate_on_init(body, _animator):
+	activate(body, _animator)
 
 func deactivate(body, _animator):
 	#animator["parameters/walk/4/conditions/running"] = false

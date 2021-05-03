@@ -9,6 +9,8 @@ func power(body, _this):
 
 func activate(_body, animator):
 	animator["parameters/PlayerMovement/playback"].travel("throw")
+func activate_on_init(body, _animator):
+	pass
 
 func deactivate(_body, _animator):
 	pass

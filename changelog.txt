@@ -319,3 +319,6 @@ Extend Levels 1-1 and 1-2
 Add background to 1-1, 1-2
 Make dialog starters able to change levels
 Add basic spaceship area w/ complete look
+The startup music now stops any running music so any running song won't run at the same time
+Holding the ability button when obtaining the first sprint cap doesn't have Hat sprint--it just has no ability present until you press it again
+Run jump animation when bouncing off a spring
