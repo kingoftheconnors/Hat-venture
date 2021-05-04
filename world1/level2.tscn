@@ -174,7 +174,7 @@ music = 2
 
 [node name="TimePiece" parent="." instance=ExtResource( 21 )]
 position = Vector2( 3840, -152 )
-next_level = "res://world1-2.tscn"
+next_level = "res://levelgameover/gameOver.tscn"
 
 [node name="CameraCapture2" parent="." instance=ExtResource( 24 )]
 position = Vector2( 504, -328 )
