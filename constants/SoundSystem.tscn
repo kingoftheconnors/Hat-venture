@@ -12,4 +12,3 @@ bus = "Music"
 [node name="Sfx" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 bus = "SoundEffects"
-[connection signal="finished" from="Sfx" to="." method="_on_Sfx_finished"]

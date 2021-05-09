@@ -100,11 +100,6 @@ func stop_sound():
 	cur_sound = SFX.NONE
 	sfx_player.stop()
 
-func _on_Sfx_finished():
-	if cur_sound == SFX.SPRINT:
-		sprint_timer = SPRINT_RESET_TIME
-		sprint_active = true
-
 func _physics_process(_delta):
 	if collect_timer > 0:
 		collect_timer -= 1
@@ -115,10 +110,13 @@ func _physics_process(_delta):
 		sprint_timer -= 1
 		if sprint_timer == 0:
 			sprint_active = false
+	elif cur_sound == SFX.SPRINT:
+		sprint_timer = SPRINT_RESET_TIME
+		sprint_active = true
 
 var sprint_active = false
 var sprint_timer = 0
-const SPRINT_RESET_TIME = 80
+const SPRINT_RESET_TIME = 60
 
 var collect_level = 0
 var collect_timer = 0
