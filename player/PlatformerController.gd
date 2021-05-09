@@ -667,6 +667,7 @@ func upgrade_smash_rush():
 	pause_gravity()
 
 func unbash():
+	suspend_movement(false)
 	resume_gravity()
 	if bashing:
 		if velo.x > max_velo:
