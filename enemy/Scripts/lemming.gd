@@ -17,6 +17,8 @@ onready var floorchecker_obj : RayCast2D = $RayCast2D
 
 func _ready():
 	velo.x = horizontal_speed * direction
+	# Move floor_checker
+	refresh_floorchecker_pos()
 
 # Frame process function. Moves body.
 func frame(body : KinematicBody2D, sprite : Sprite, _delta):
@@ -36,11 +38,14 @@ func frame(body : KinematicBody2D, sprite : Sprite, _delta):
 			velo = Vector2(-velo.x, velo.y)
 			direction = -direction
 			# Move floor_checker
-			if floorchecker_obj:
-				floorchecker_obj.position.x = turnaround_offset * direction
+			refresh_floorchecker_pos()
 		# Turn around sprite of enemies walking backwards
 		if(direction * sprite.scale.x < 0):
 			sprite.scale = Vector2(-sprite.scale.x, sprite.scale.y)
+
+func refresh_floorchecker_pos():
+	if floorchecker_obj:
+		floorchecker_obj.position.x = turnaround_offset * direction
 
 func get_direction() -> Vector2:
 	return Vector2(direction, 0)
