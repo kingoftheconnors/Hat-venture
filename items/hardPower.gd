@@ -3,7 +3,7 @@ class_name hardPower
 var blendValue = 4
 func name(): return "HardHat"
 
-func power(body, _this):
+func collect_as_item(body, _this):
 	body.get_power_node().acquire_power(self)
 	return true
 

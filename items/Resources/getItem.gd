@@ -26,7 +26,7 @@ func _on_Area2D_body_entered(body):
 func collect(body):
 	if wait_collect <= 0 and !collected:
 		collected = true
-		var destroy = itemCommand.new().power(body, self)
+		var destroy = itemCommand.new().collect_as_item(body, self)
 		if destroy and animation_player != null and animation_player.has_animation("delayed_free"):
 			animation_player.play("delayed_free")
 		elif destroy:

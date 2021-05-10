@@ -3,7 +3,7 @@ class_name runningPower
 var blendValue = 1
 func name(): return "RunningHat"
 
-func power(body, _this):
+func collect_as_item(body, _this):
 	body.get_power_node().acquire_power(self)
 	return true
 

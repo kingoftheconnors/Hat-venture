@@ -3,7 +3,7 @@ class_name thorPower
 var blendValue = 3
 func name(): return "ThorHat"
 
-func power(body, _this):
+func collect_as_item(body, _this):
 	body.get_power_node().acquire_power(self)
 	return true
 

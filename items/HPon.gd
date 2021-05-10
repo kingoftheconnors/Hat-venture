@@ -1,6 +1,6 @@
 class_name hpon
 
-func power(body, _this):
+func collect_as_item(body, _this):
 	body.heal(1)
 	return true
 
@@ -16,7 +16,7 @@ func deactivate(_body, _animator):
 
 func spawnFromBox(_collidingBody):
 	# Get pon
-	power(null, null)
+	collect_as_item(null, null)
 	# Spawn Pon Animation
 	var pon = load("res://items/Resources/Pon.tscn")
 	var instancedPon = pon.instance()

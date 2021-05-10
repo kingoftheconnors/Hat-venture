@@ -1,6 +1,6 @@
 class_name pon
 
-func power(_body, _this):
+func collect_as_item(_body, _this):
 	# Update GUI
 	PlayerGameManager.add_pons(1)
 	return true
@@ -17,7 +17,7 @@ func deactivate(_body, _animator):
 
 func spawnFromBox(_collidingBody):
 	# Get pon
-	power(null, null)
+	collect_as_item(null, null)
 	# Spawn Pon Animation
 	var pon = load("res://items/Resources/Pon.tscn")
 	var instancedPon = pon.instance()

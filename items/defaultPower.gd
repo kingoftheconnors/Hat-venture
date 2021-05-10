@@ -3,7 +3,7 @@ class_name defaultPower
 var blendValue = 0
 func name(): return "DefaultHat"
 
-func power(body, _this):
+func collect_as_item(body, _this):
 	body.get_power_node().acquire_power(self)
 	return true
 
