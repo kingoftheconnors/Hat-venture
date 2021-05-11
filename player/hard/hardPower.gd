@@ -3,15 +3,15 @@ class_name hardPower
 var blendValue = 4
 func name(): return "HardHat"
 
-func activate(body, _animator):
+func press_power_button(body, _animator):
 	body.bash()
-func activate_on_init(_body, _animator):
+func press_power_button_on_init(_body, _animator):
 	pass
 
-func deactivate(_body, _animator):
+func release_power_button(_body, _animator):
 	pass
 
-func force_deactivate(_body, _animator):
+func power_removed(_body, _animator):
 	pass
 
 func release():

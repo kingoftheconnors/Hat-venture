@@ -23,13 +23,13 @@ func acquire_power(powerType):
 
 func set_power(powerType):
 	if power:
-		power.force_deactivate(platformController, animator)
+		power.power_removed(platformController, animator)
 	power = powerType
 	power_hp = POWER_BASE_HP
 	updatePowerValues()
 	PlayerGameManager.notify_power(powerType)
 	if power_pressed:
-		power.activate_on_init(platformController, animator)
+		power.press_power_button(platformController, animator)
 
 ## Updates variables in animator that control which animation is played
 ## based on the player's power
@@ -87,9 +87,9 @@ func _input(event):
 
 func set_power_active(flag):
 	if flag:
-		power.activate(platformController, animator)
+		power.press_power_button(platformController, animator)
 	else:
-		power.deactivate(platformController, animator)
+		power.release_power_button(platformController, animator)
 
 ## Taking damage. Removes player's ability after being hurt twice
 func hit():

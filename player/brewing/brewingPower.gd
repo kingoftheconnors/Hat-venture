@@ -3,16 +3,16 @@ class_name brewingPower
 var blendValue = 2
 func name(): return "Pon"
 
-func activate(_body, animator):
+func press_power_button(_body, animator):
 	animator["parameters/PlayerMovement/playback"].travel("throw")
-func activate_on_init(body, _animator):
+func press_power_button_on_init(body, _animator):
 	pass
 
-func deactivate(_body, _animator):
+func release_power_button(_body, _animator):
 	pass
 
-func force_deactivate(body, animator):
-	deactivate(body, animator)
+func power_removed(body, animator):
+	release_power_button(body, animator)
 
 func release():
 	var brewhat = load("res://items/Resources/ReleasedBrewHat.tscn")
