@@ -13,7 +13,7 @@ func _ready():
 	if PlayerGameManager:
 		set_power(PlayerGameManager.get_power())
 	else:
-		set_power(preload("res://items/defaultPower.gd").new())
+		set_power(preload("res://player/regular/defaultPower.gd").new())
 
 func acquire_power(powerType):
 	if powerType.name() != power.name():
@@ -60,27 +60,27 @@ func _input(event):
 	
 	if Constants.DEBUG_MODE:
 		if event is InputEventKey and event.pressed and event.scancode == KEY_1:
-			var script = preload("res://items/runningPower.gd")
+			var script = preload("res://player/runner/runningPower.gd")
 			acquire_power(script.new())
 			updatePowerValues()
 			animator["parameters/PlayerMovement/playback"].travel("power_get")
 		if event is InputEventKey and event.pressed and event.scancode == KEY_2:
-			var script = preload("res://items/runningPower.gd")
+			var script = preload("res://player/runner/runningPower.gd")
 			acquire_power(script.new())
 			updatePowerValues()
 			animator["parameters/PlayerMovement/playback"].travel("power_get")
 		if event is InputEventKey and event.pressed and event.scancode == KEY_3:
-			var script = preload("res://items/brewingPower.gd")
+			var script = preload("res://player/brewing/brewingPower.gd")
 			acquire_power(script.new())
 			updatePowerValues()
 			animator["parameters/PlayerMovement/playback"].travel("power_get")
 		if event is InputEventKey and event.pressed and event.scancode == KEY_4:
-			var script = preload("res://items/thorPower.gd")
+			var script = preload("res://player/thor/thorPower.gd")
 			acquire_power(script.new())
 			updatePowerValues()
 			animator["parameters/PlayerMovement/playback"].travel("power_get")
 		if event is InputEventKey and event.pressed and event.scancode == KEY_5:
-			var script = preload("res://items/hardPower.gd")
+			var script = preload("res://player/hard/hardPower.gd")
 			acquire_power(script.new())
 			updatePowerValues()
 			animator["parameters/PlayerMovement/playback"].travel("power_get")

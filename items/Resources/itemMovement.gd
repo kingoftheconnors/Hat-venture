@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 const ENEMY_GRAVITY = 9
-export(float) var gravityMultiplier = 0
+export(float) var gravityMultiplier = 1
 export(bool) var is_despawn = false
 onready var animator = get_node_or_null("AnimationPlayer")
 
@@ -15,6 +15,7 @@ func _ready():
 		sprite.set_speed_scale(.7 + randf()*.4)
 
 func _physics_process(_delta):
+	print(velo)
 	velo.y += ENEMY_GRAVITY * gravityMultiplier
 	# terminal velocity
 	if velo.y > Constants.terminalVelocity:

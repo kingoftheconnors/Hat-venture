@@ -18,15 +18,15 @@ func _ready():
 			node = node_PlaceholderReplacer.instance()
 			# Fill with power
 			if "Running" in name:
-				node.boxedItem = preload("res://items/runningPower.gd")
+				node.boxedItem = preload("res://items/runningItem.gd")
 			elif "Brewing" in name:
-				node.boxedItem = preload("res://items/brewingPower.gd")
+				node.boxedItem = preload("res://items/brewingItem.gd")
 			elif "Hard" in name:
-				node.boxedItem = preload("res://items/hardPower.gd")
+				node.boxedItem = preload("res://items/hardItem.gd")
 			elif "Pon" in name:
 				node.boxedItem = preload("res://items/pon.gd")
 			elif "Spinning" in name:
-				node.boxedItem = preload("res://items/thorPower.gd")
+				node.boxedItem = preload("res://items/thorItem.gd")
 			# Make special or breakable
 			if "Breakable" in name:
 				node.state = node.BlockState.BREAKABLE

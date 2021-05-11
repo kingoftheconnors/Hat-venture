@@ -3,10 +3,6 @@ class_name thorPower
 var blendValue = 3
 func name(): return "ThorHat"
 
-func collect_as_item(body, _this):
-	body.get_power_node().acquire_power(self)
-	return true
-
 func activate(body, _animator):
 	body.spin()
 func activate_on_init(_body, _animator):
@@ -23,11 +19,3 @@ func release():
 	var hat = thorhat.instance()
 	hat.set_position(Vector2(0, -8))
 	return hat
-
-func spawnFromBox(_collidingBody):
-	var thorhat = load("res://items/Resources/ThorHat.tscn")
-	var hat = thorhat.instance()
-	hat.set_position(Vector2(0, -16))
-	hat.get_node("Body").velo.y = -150
-	return hat
-
