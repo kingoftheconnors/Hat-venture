@@ -15,7 +15,6 @@ func _ready():
 		sprite.set_speed_scale(.7 + randf()*.4)
 
 func _physics_process(_delta):
-	print(velo)
 	velo.y += ENEMY_GRAVITY * gravityMultiplier
 	# terminal velocity
 	if velo.y > Constants.terminalVelocity:
