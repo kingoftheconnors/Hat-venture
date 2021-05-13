@@ -40,6 +40,7 @@ var can_use_power = true
 
 # RUN
 const MAX_RUNNING_SPEED = 230
+const WALLJUMP_SPEED = 230
 var running
 
 # SPIN
@@ -92,6 +93,7 @@ var _stun = 0
 var frozen = false
 var suspended = false
 var ignore_air_friction = false
+var ignore_horizontal_timer = 0
 var crouching = false
 var gravity = true
 
@@ -139,6 +141,9 @@ func _physics_process(delta):
 func move(_delta):
 	var horizontal = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"))
 	var vertical = (Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"))
+	
+	if ignore_horizontal_timer > 0 and horizontal * direction < 0:
+		horizontal = -horizontal
 	
 	if _stun > 0:
 		horizontal = 0
@@ -465,6 +470,8 @@ func manage_flags():
 		mini_superdive_timer -= 1
 	if post_bash_jump_timer > 0:
 		post_bash_jump_timer -= 1
+	if ignore_horizontal_timer > 0:
+		ignore_horizontal_timer -= 1
 	
 	if jump_timer > 0:
 		jump_timer -= 1
@@ -473,7 +480,8 @@ func manage_flags():
 				or coyoteTimer > 0 \
 				or climbing \
 				or diving \
-				or (post_bash_jump_timer > 0)):
+				or post_bash_jump_timer > 0 \
+				or (running and wall_jump_checker.is_colliding())):
 			jump()
 
 func refresh_flags():
@@ -496,6 +504,8 @@ func _input(event):
 		
 		if event.is_action_pressed("ui_crouch"):
 			crouch()
+	if event.is_action_released("ui_right") or event.is_action_released("ui_left"):
+		ignore_horizontal_timer = 0
 
 # Handle releasing player input in process function
 # This helps continuously poll for releasing, in case the
@@ -510,11 +520,19 @@ func _process(_delta):
 	if crouching and !Input.is_action_pressed("ui_crouch"):
 		uncrouch()
 
+onready var wall_jump_checker : RayCast2D = $"ScaleChildren/WallJumpChecker"
 func jump():
 	if velo.y >= 0:
 		SoundSystem.start_sound(SoundSystem.SFX.JUMP)
 	if post_bash_jump_timer > 0 and !is_on_floor():
 		push(Vector2(0, -BASH_OUT_STRENGTH))
+	elif running and wall_jump_checker.is_colliding() and !is_on_floor():
+		# Walljump
+		direction = -direction
+		push(Vector2(direction * WALLJUMP_SPEED, -WALLJUMP_SPEED))
+		animator["parameters/PlayerMovement/playback"].travel("dive_boost")
+		ignore_air_friction = true
+		ignore_horizontal_timer = 10
 	elif !diving: # Basic Jump
 		push(Vector2(0, -JUMP_STRENGTH))
 	else: # Out-of-dive Jump

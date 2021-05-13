@@ -4658,6 +4658,11 @@ script = ExtResource( 15 )
 
 [node name="ScaleChildren" type="Node2D" parent="."]
 
+[node name="WallJumpChecker" type="RayCast2D" parent="ScaleChildren"]
+enabled = true
+cast_to = Vector2( 15, 0 )
+collision_mask = 2
+
 [node name="PlayerCore" type="Sprite" parent="ScaleChildren"]
 material = SubResource( 2 )
 texture = ExtResource( 1 )
