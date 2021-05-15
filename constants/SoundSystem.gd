@@ -11,7 +11,8 @@ enum SFX {
 	LIFE_GET,
 	POWERUP_GET,
 	HURT,
-	SPRINT
+	SPRINT,
+	BLOCK_BREAK
 }
 
 enum MUSIC {
@@ -85,6 +86,13 @@ func start_sound(sfx : int):
 					sfx_player.stream = preload("res://Music/sfx/Sprint.wav")
 				else:
 					sfx_player.stream = preload("res://Music/sfx/Sprint_start.wav")
+			SFX.BLOCK_BREAK:
+				var sounds = [
+					preload("res://Music/sfx/Block_break_1.wav"),
+					preload("res://Music/sfx/Block_break_2.wav"),
+				]
+				# Randomly use one of the block break sounds
+				sfx_player.stream = sounds[randi() % len(sounds)]
 		if cur_sound != sfx:
 			sfx_player.stop()
 		sfx_player.play()

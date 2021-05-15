@@ -58,6 +58,7 @@ func hit(collidingBody):
 func smash():
 	PlayerGameManager.add_score(DEATH_SCORE)
 	animator["parameters/playback"].travel("smash")
+	SoundSystem.start_sound(SoundSystem.SFX.BLOCK_BREAK)
 
 ## Signal function. Handles jumps by the player from below
 func collide(collision, collidingBody):
