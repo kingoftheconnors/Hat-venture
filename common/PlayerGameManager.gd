@@ -97,7 +97,7 @@ func reset_stats():
 	score = 0; Gui.set_score(score)
 	lives = 3; Gui.set_lives(lives)
 
-var default_power : Resource = preload("res://items/defaultPower.gd")
+var default_power : Resource = preload("res://player/regular/defaultPower.gd")
 var cur_power : Reference = null
 func set_default_power(power : Resource):
 	default_power = power

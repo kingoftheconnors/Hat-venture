@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://items/Resources/brewSpinning.png" type="Texture" id=1]
-[ext_resource path="res://items/brewingPower.gd" type="Script" id=2]
+[ext_resource path="res://items/brewingItem.gd" type="Script" id=2]
 [ext_resource path="res://items/Resources/itemMovement.gd" type="Script" id=3]
 [ext_resource path="res://items/Resources/getItem.gd" type="Script" id=4]
 
@@ -141,7 +141,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Body"]
 frames = SubResource( 10 )
-frame = 3
+frame = 7
 speed_scale = 0.6
 playing = true
 

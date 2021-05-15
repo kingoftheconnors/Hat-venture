@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 const ENEMY_GRAVITY = 9
-export(float) var gravityMultiplier = 0
+export(float) var gravityMultiplier = 1
 export(bool) var is_despawn = false
 onready var animator = get_node_or_null("AnimationPlayer")
 

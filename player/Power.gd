@@ -13,7 +13,7 @@ func _ready():
 	if PlayerGameManager:
 		set_power(PlayerGameManager.get_power())
 	else:
-		set_power(preload("res://items/defaultPower.gd").new())
+		set_power(preload("res://player/regular/defaultPower.gd").new())
 
 func acquire_power(powerType):
 	if powerType.name() != power.name():
@@ -23,13 +23,13 @@ func acquire_power(powerType):
 
 func set_power(powerType):
 	if power:
-		power.force_deactivate(platformController, animator)
+		power.power_removed(platformController, animator)
 	power = powerType
 	power_hp = POWER_BASE_HP
 	updatePowerValues()
 	PlayerGameManager.notify_power(powerType)
 	if power_pressed:
-		power.activate_on_init(platformController, animator)
+		power.press_power_button(platformController, animator)
 
 ## Updates variables in animator that control which animation is played
 ## based on the player's power
@@ -60,36 +60,36 @@ func _input(event):
 	
 	if Constants.DEBUG_MODE:
 		if event is InputEventKey and event.pressed and event.scancode == KEY_1:
-			var script = preload("res://items/runningPower.gd")
+			var script = preload("res://player/runner/runningPower.gd")
 			acquire_power(script.new())
 			updatePowerValues()
 			animator["parameters/PlayerMovement/playback"].travel("power_get")
 		if event is InputEventKey and event.pressed and event.scancode == KEY_2:
-			var script = preload("res://items/runningPower.gd")
+			var script = preload("res://player/runner/runningPower.gd")
 			acquire_power(script.new())
 			updatePowerValues()
 			animator["parameters/PlayerMovement/playback"].travel("power_get")
 		if event is InputEventKey and event.pressed and event.scancode == KEY_3:
-			var script = preload("res://items/brewingPower.gd")
+			var script = preload("res://player/brewing/brewingPower.gd")
 			acquire_power(script.new())
 			updatePowerValues()
 			animator["parameters/PlayerMovement/playback"].travel("power_get")
 		if event is InputEventKey and event.pressed and event.scancode == KEY_4:
-			var script = preload("res://items/thorPower.gd")
+			var script = preload("res://player/thor/thorPower.gd")
 			acquire_power(script.new())
 			updatePowerValues()
 			animator["parameters/PlayerMovement/playback"].travel("power_get")
 		if event is InputEventKey and event.pressed and event.scancode == KEY_5:
-			var script = preload("res://items/hardPower.gd")
+			var script = preload("res://player/hard/hardPower.gd")
 			acquire_power(script.new())
 			updatePowerValues()
 			animator["parameters/PlayerMovement/playback"].travel("power_get")
 
 func set_power_active(flag):
 	if flag:
-		power.activate(platformController, animator)
+		power.press_power_button(platformController, animator)
 	else:
-		power.deactivate(platformController, animator)
+		power.release_power_button(platformController, animator)
 
 ## Taking damage. Removes player's ability after being hurt twice
 func hit():
