@@ -43,7 +43,6 @@ const MAX_RUNNING_SPEED = 230
 const WALLJUMP_SPEED = 230
 const RUN_ACCELERATION = 17
 const RUN_SKID_ACCELERATION = 4
-const RUN_JUMP_STRENGTH := 290
 var running
 
 # SPIN
@@ -468,6 +467,10 @@ func manage_flags():
 		PlayerGameManager.set_multiplicity_fast_decrease(true)
 		animator["parameters/PlayerMovement/conditions/jumping"] = false
 		animator["parameters/PlayerMovement/conditions/not_jumping"] = true
+		if running:
+			create_skid(7)
+			create_skid(0)
+			create_skid(-7)
 	
 	if is_on_floor() and ignore_air_friction:
 		if !bashing and !diving and !spinning and abs(velo.x) < max_velo*.8:
@@ -542,7 +545,7 @@ func jump():
 		push(Vector2(0, -BASH_OUT_STRENGTH))
 	elif running and wall_jump_checker.is_colliding() and !is_on_floor():
 		# Walljump
-		direction = -direction
+		direction = wall_jump_checker.get_collision_normal().x
 		push(Vector2(direction * WALLJUMP_SPEED, -WALLJUMP_SPEED))
 		animator["parameters/PlayerMovement/playback"].travel("dive_boost")
 		ignore_air_friction = true
