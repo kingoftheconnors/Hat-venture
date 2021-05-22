@@ -41,6 +41,9 @@ var can_use_power = true
 # RUN
 const MAX_RUNNING_SPEED = 230
 const WALLJUMP_SPEED = 230
+const RUN_ACCELERATION = 17
+const RUN_SKID_ACCELERATION = 4
+const RUN_JUMP_STRENGTH := 290
 var running
 
 # SPIN
@@ -113,6 +116,7 @@ var cur_spawn = Vector2()
 var release_jump_damp : float = 0.4
 
 var direction = 1
+var prev_horizontal = 0
 
 var on_ladders : int = 0
 var on_ladders_top : Array = []
@@ -178,6 +182,13 @@ func move(_delta):
 	if crouching and is_on_floor():
 		horizontal = 0
 	
+	# Creating skid dash at beginning of sprint
+	if running and horizontal != 0 and is_on_floor() and prev_horizontal == 0:
+		create_skid(7)
+		create_skid(0)
+		create_skid(-7)
+	prev_horizontal = horizontal
+	
 	# Friction (before moving so friction only applies when player is
 	# standing still or going over conventional speeds)
 	if horizontal == 0 and spinning:
@@ -205,6 +216,11 @@ func move(_delta):
 		velo.x = direction * max_velo
 	elif spinning:
 		velo.x = calc_direc(direction, velo.x, SPIN_ACCELERATION)
+	elif running and horizontal != 0:
+		if direction * velo.x <= 0:
+			velo.x = calc_direc(direction, velo.x, RUN_SKID_ACCELERATION)
+		else:
+			velo.x = calc_direc(direction, velo.x, RUN_ACCELERATION)
 	else:
 		velo.x = calc_direc(horizontal, velo.x, ACCELERATION)
 	
@@ -235,7 +251,7 @@ func move(_delta):
 	
 	# Running sound
 	if running:
-		if abs(velo.x) > MAX_RUNNING_SPEED * .95:
+		if is_running_at_max():
 			SoundSystem.start_sound_if_silent(SoundSystem.SFX.SPRINT)
 		else:
 			SoundSystem.stop_if_playing_sound(SoundSystem.SFX.SPRINT)
@@ -504,8 +520,6 @@ func _input(event):
 		
 		if event.is_action_pressed("ui_crouch"):
 			crouch()
-	if event.is_action_released("ui_right") or event.is_action_released("ui_left"):
-		ignore_horizontal_timer = 0
 
 # Handle releasing player input in process function
 # This helps continuously poll for releasing, in case the
@@ -758,6 +772,9 @@ func spawn_bottle():
 func get_direction():
 	return direction
 
+func is_running_at_max():
+	return running and abs(velo.x) > MAX_RUNNING_SPEED * .95
+
 func set_velo(new_velo):
 	velo = new_velo
 func set_velo_x(x):
@@ -786,11 +803,12 @@ func animate(animation):
 	release_all_powers()
 	animator["parameters/PlayerMovement/playback"].travel(animation)
 
-func create_skid(play_sfx : bool = false):
+func create_skid(play_sfx : bool = false, x_offset = 0):
 	if is_on_floor():
 		var skid = preload("res://player/subscenes/skid.tscn").instance()
 		skid.init(direction)
 		skid.position += position + $ScaleChildren/hitbox/CollisionShape2D.position
+		skid.position.x += x_offset
 		get_parent().add_child(skid)
 		if play_sfx:
 			SoundSystem.start_sound(SoundSystem.SFX.SKID, abs(velo.x/max_velo))
