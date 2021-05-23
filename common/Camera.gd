@@ -74,10 +74,6 @@ func _physics_process(delta):
 			left_body.global_position.x = lim_left - 10
 		if right_body.global_position.x != lim_right + 10:
 			right_body.global_position.x = lim_right + 10
-	# Increase smoothing if below default
-	print(smoothing_speed)
-	if smoothing_speed < default_smoothing:
-		smoothing_speed += delta * SMOOTHING_EQUILIBRUM_RATE
 
 onready var tween = $Tween
 ## Overrides target player behavior with a set screen position
@@ -140,9 +136,6 @@ func reset_limits():
 	lim_bottom = level.down + Constants.camera_radius.y * drag_margin_bottom
 	lim_left = level.left - Constants.camera_radius.x * drag_margin_left
 	lim_right = level.right + Constants.camera_radius.y * drag_margin_right
-
-func delay_camera_smooth():
-	smoothing_speed = SLOW_SMOOTHING
 
 func set_lookahead(offset):
 	lookahead_offset = offset

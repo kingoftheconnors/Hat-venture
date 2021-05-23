@@ -828,8 +828,6 @@ func run_start_effect():
 	create_skid(7)
 	create_skid(0)
 	create_skid(-7)
-	if velo.x < RUN_DELAY_START_SPEED:
-		camera.delay_camera_smooth()
 
 func damage(isStomp, amount = 1):
 	core.damage(isStomp, amount)
