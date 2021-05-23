@@ -43,6 +43,7 @@ const MAX_RUNNING_SPEED = 230
 const WALLJUMP_SPEED = 230
 const RUN_ACCELERATION = 17
 const RUN_SKID_ACCELERATION = 4
+const RUN_START_CAMERA_DELAY : float = 0.25
 var running
 
 # SPIN
@@ -183,9 +184,7 @@ func move(_delta):
 	
 	# Creating skid dash at beginning of sprint
 	if running and horizontal != 0 and is_on_floor() and prev_horizontal == 0:
-		create_skid(7)
-		create_skid(0)
-		create_skid(-7)
+		run_start_effect()
 	prev_horizontal = horizontal
 	
 	# Friction (before moving so friction only applies when player is
@@ -468,9 +467,7 @@ func manage_flags():
 		animator["parameters/PlayerMovement/conditions/jumping"] = false
 		animator["parameters/PlayerMovement/conditions/not_jumping"] = true
 		if running:
-			create_skid(7)
-			create_skid(0)
-			create_skid(-7)
+			run_start_effect()
 	
 	if is_on_floor() and ignore_air_friction:
 		if !bashing and !diving and !spinning and abs(velo.x) < max_velo*.8:
@@ -816,6 +813,12 @@ func create_skid(play_sfx : bool = false, x_offset = 0):
 		if play_sfx:
 			SoundSystem.start_sound(SoundSystem.SFX.SKID, abs(velo.x/max_velo))
 			#SoundSystem.start_sound(SoundSystem.SFX.SKID)
+
+func run_start_effect():
+	create_skid(7)
+	create_skid(0)
+	create_skid(-7)
+	camera.delay_camera_smooth(RUN_START_CAMERA_DELAY)
 
 func damage(isStomp, amount = 1):
 	core.damage(isStomp, amount)

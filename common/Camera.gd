@@ -10,10 +10,14 @@ onready var target = $"../Player"
 ## is decreased
 onready var default_smoothing = smoothing_speed
 ## Smoothing speed for panning into a camera capture
-const SLOW_SMOOTHING = 1
+const SLOW_SMOOTHING = .25
+const SMOOTHING_EQUILIBRUM_RATE : float = 4.0
 ## Panning target when camera is locked to a position
 ## (is set to Vector2.ZERO when not used)
 var target_spot : Vector2
+## Lookahead amount for when the target is moving fast,
+## so the camera can still catch incoming objects
+var lookahead_offset : float
 
 ## Flag for moving left and right bodies when captured
 var move_walls := true
@@ -39,7 +43,7 @@ func _ready():
 	reset_limits()
 
 # Called every frame to update camera position
-func _physics_process(_delta):
+func _physics_process(delta):
 	# Moving to a target-set position
 	if move_walls:
 		if target_spot != Vector2.ZERO:
@@ -55,7 +59,7 @@ func _physics_process(_delta):
 				right_body.set_collision_mask_bit(0, true)
 		else:
 			# Default behavior: move to player object
-			position = target.position
+			position = target.position + Vector2(lookahead_offset, 0)
 		# Enforce limits
 		if position.y > lim_bottom - Constants.camera_radius.y:
 			position.y = lim_bottom - Constants.camera_radius.y
@@ -70,6 +74,10 @@ func _physics_process(_delta):
 			left_body.global_position.x = lim_left - 10
 		if right_body.global_position.x != lim_right + 10:
 			right_body.global_position.x = lim_right + 10
+	# Increase smoothing if below default
+	print(smoothing_speed)
+	if smoothing_speed < default_smoothing:
+		smoothing_speed += delta * SMOOTHING_EQUILIBRUM_RATE
 
 onready var tween = $Tween
 ## Overrides target player behavior with a set screen position
@@ -133,7 +141,14 @@ func reset_limits():
 	lim_left = level.left - Constants.camera_radius.x * drag_margin_left
 	lim_right = level.right + Constants.camera_radius.y * drag_margin_right
 
+func delay_camera_smooth():
+	smoothing_speed = SLOW_SMOOTHING
+
+func set_lookahead(offset):
+	lookahead_offset = offset
+
 # Unpause game if node is destroyed in the middle of a transition
 func _exit_tree():
 	if timer.time_left > 0:
 		get_tree().paused = false
+
