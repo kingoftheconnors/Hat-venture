@@ -43,7 +43,7 @@ const MAX_RUNNING_SPEED = 230
 const WALLJUMP_SPEED = 230
 const RUN_ACCELERATION = 17
 const RUN_SKID_ACCELERATION = 4
-const RUN_LOOKAHEAD = 40
+const RUN_LOOKAHEAD = 70
 const RUN_DELAY_START_SPEED = 30
 var running
 
@@ -143,7 +143,7 @@ func _physics_process(delta):
 	manage_flags()
 
 ## Calculates velocity and moves player
-func move(_delta):
+func move(delta):
 	var horizontal = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"))
 	var vertical = (Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"))
 	
@@ -232,12 +232,11 @@ func move(_delta):
 			velo.x *= 0.7
 	
 	# Look-ahead
-	if running and velo.x != 0:
-		# Don't have lookahead when wall jumping
-		if wall_jump_checker.is_colliding() or ignore_horizontal_timer > 0:
-			camera.set_lookahead(0)
-		else:
-			camera.set_lookahead(RUN_LOOKAHEAD * velo.x/max_velo)
+	# Don't have lookahead when wall jumping
+	if running and velo.x != 0 and !(wall_jump_checker.is_colliding() or ignore_horizontal_timer > 0):
+		camera.move_lookahead_toward(RUN_LOOKAHEAD * velo.x/max_velo, delta)
+	else:
+		camera.move_lookahead_toward(0, delta)
 	
 	# Animating
 	if horizontal != 0:
@@ -676,7 +675,6 @@ func stop_run():
 	max_velo = MAX_SPEED
 	#base_speed = BASE_SPEED
 	running = false
-	camera.set_lookahead(0)
 
 func start_skid_perfect():
 	skid_perfect = true

@@ -18,6 +18,7 @@ var target_spot : Vector2
 ## Lookahead amount for when the target is moving fast,
 ## so the camera can still catch incoming objects
 var lookahead_offset : float
+const LOOKAHEAD_CHANGE_RATE = 40
 
 ## Flag for moving left and right bodies when captured
 var move_walls := true
@@ -137,8 +138,14 @@ func reset_limits():
 	lim_left = level.left - Constants.camera_radius.x * drag_margin_left
 	lim_right = level.right + Constants.camera_radius.y * drag_margin_right
 
-func set_lookahead(offset):
-	lookahead_offset = offset
+func move_lookahead_toward(offset_goal, delta):
+	if target_spot:
+		lookahead_offset = 0
+		return
+	if(lookahead_offset > offset_goal):
+		lookahead_offset -= LOOKAHEAD_CHANGE_RATE * delta
+	elif(lookahead_offset < offset_goal):
+		lookahead_offset += LOOKAHEAD_CHANGE_RATE * delta
 
 # Unpause game if node is destroyed in the middle of a transition
 func _exit_tree():

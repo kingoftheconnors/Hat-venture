@@ -322,3 +322,10 @@ Add basic spaceship area w/ complete look
 The startup music now stops any running music so any running song won't run at the same time
 Holding the ability button when obtaining the first sprint cap doesn't have Hat sprint--it just has no ability present until you press it again
 Run jump animation when bouncing off a spring
+
+0.3.6
+Create new level 1-2 (old level 1-2 will be 3-1)
+Refactor powers
+Create tutorial ship
+Running walljumps
+Running lookahead
