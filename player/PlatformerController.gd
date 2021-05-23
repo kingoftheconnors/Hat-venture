@@ -43,7 +43,8 @@ const MAX_RUNNING_SPEED = 230
 const WALLJUMP_SPEED = 230
 const RUN_ACCELERATION = 17
 const RUN_SKID_ACCELERATION = 4
-const RUN_START_CAMERA_DELAY : float = 0.25
+const RUN_LOOKAHEAD = 40
+const RUN_DELAY_START_SPEED = 30
 var running
 
 # SPIN
@@ -229,6 +230,14 @@ func move(_delta):
 	if spinning and horizontal == 0 and is_on_floor():
 		if !skidRayCast1.is_colliding() or !skidRayCast2.is_colliding():
 			velo.x *= 0.7
+	
+	# Look-ahead
+	if running and velo.x != 0:
+		# Don't have lookahead when wall jumping
+		if wall_jump_checker.is_colliding() or ignore_horizontal_timer > 0:
+			camera.set_lookahead(0)
+		else:
+			camera.set_lookahead(RUN_LOOKAHEAD * velo.x/max_velo)
 	
 	# Animating
 	if horizontal != 0:
@@ -667,6 +676,7 @@ func stop_run():
 	max_velo = MAX_SPEED
 	#base_speed = BASE_SPEED
 	running = false
+	camera.set_lookahead(0)
 
 func start_skid_perfect():
 	skid_perfect = true
@@ -818,7 +828,8 @@ func run_start_effect():
 	create_skid(7)
 	create_skid(0)
 	create_skid(-7)
-	camera.delay_camera_smooth(RUN_START_CAMERA_DELAY)
+	if velo.x < RUN_DELAY_START_SPEED:
+		camera.delay_camera_smooth()
 
 func damage(isStomp, amount = 1):
 	core.damage(isStomp, amount)
