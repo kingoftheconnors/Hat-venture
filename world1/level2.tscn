@@ -142,7 +142,7 @@ turnaround_time = 300
 position = Vector2( 2512.39, -136.57 )
 
 [node name="Hen2" parent="PartE/EEnemies" instance=ExtResource( 17 )]
-position = Vector2( 2614.66, -104.461 )
+position = Vector2( 2524.01, -75.244 )
 
 [node name="PartD" type="Node2D" parent="."]
 
