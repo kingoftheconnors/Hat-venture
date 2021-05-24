@@ -42,7 +42,6 @@ var can_use_power = true
 const WALLJUMP_SPEED = 230
 const RUN_ACCELERATION = 17
 const RUN_SKID_ACCELERATION = 4
-const RUN_LOOKAHEAD = 50
 const RUN_DELAY_START_SPEED = 30
 var running
 
@@ -109,6 +108,7 @@ var coyoteTimer = 0
 var climbing = false
 var air_time = 0
 var skid_perfect = false
+var lookahead = 0
 
 # Initial spawn for players dying. An educated guess for a legal, safe position
 var cur_spawn = Vector2()
@@ -231,9 +231,8 @@ func move(delta):
 			velo.x *= 0.7
 	
 	# Look-ahead
-	# Don't have lookahead when wall jumping
-	if running and velo.x != 0 and !(wall_jump_checker.is_colliding() or ignore_horizontal_timer > 0):
-		camera.move_lookahead_toward(RUN_LOOKAHEAD * velo.x/max_velo, delta)
+	if lookahead != 0 and velo.x != 0 and ignore_horizontal_timer == 0:
+		camera.move_lookahead_toward(lookahead * velo.x/max_velo, delta)
 	else:
 		camera.move_lookahead_toward(0, delta)
 	
@@ -779,6 +778,9 @@ func get_direction():
 
 func is_running_at_max():
 	return running and abs(velo.x) > max_velo * .95
+
+func set_lookahead(new_lookahead = 0):
+	lookahead = new_lookahead
 
 func set_velo(new_velo):
 	velo = new_velo
