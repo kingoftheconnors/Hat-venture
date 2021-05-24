@@ -99,8 +99,15 @@ var ignore_horizontal_timer = 0
 var crouching = false
 var gravity = true
 
-var max_velo = MAX_SPEED
+## Current velo. Similar to other platformers, starts at 0 and ramps up
+## to max_velo
 var velo = Vector2()
+## The current goal velo ramps up to; the velo the player will usually
+## be at when moving
+var max_velo = MAX_SPEED
+## Max velo when player is moving without any other impulses or effects.
+## Can be walk-speed or run-speed based on equipped power
+var default_max_velo = MAX_SPEED
 
 var jump_timer = 0
 const JUMP_TIME = 10
@@ -653,7 +660,7 @@ func dive():
 		SoundSystem.start_sound(SoundSystem.SFX.DIVE)
 func undive():
 	diving = false
-	max_velo = MAX_SPEED
+	max_velo = default_max_velo
 	if velo.x > 0:
 		velo.x = min(DIVE_OUT_SPEED, velo.x)
 	else:
@@ -669,11 +676,13 @@ func uncrouch():
 	animator["parameters/PlayerMovement/conditions/not_crouching"] = true
 
 func start_run(running_speed):
-	max_velo = running_speed
+	default_max_velo = running_speed
+	max_velo = default_max_velo
 	running = true
 func stop_run():
 	SoundSystem.stop_if_playing_sound(SoundSystem.SFX.SPRINT)
-	max_velo = MAX_SPEED
+	default_max_velo = MAX_SPEED
+	max_velo = default_max_velo
 	running = false
 
 func start_skid_perfect():
@@ -714,7 +723,7 @@ func unbash():
 			velo.x = max(MAX_SPEED, velo.x - (max_velo - MAX_SPEED))
 		elif velo.x < -max_velo:
 			velo.x = min(-MAX_SPEED, velo.x + (max_velo - MAX_SPEED))
-		max_velo = MAX_SPEED
+		max_velo = default_max_velo
 		bashing = false
 		if power_combo == POWER_COMBO.STUN:
 			power_stun(POST_BASH_STUN)
@@ -741,7 +750,7 @@ func spin():
 
 func unspin():
 	if spinning:
-		max_velo = MAX_SPEED
+		max_velo = default_max_velo
 		spinning = false
 		power_stun(POST_SPIN_STUN)
 
