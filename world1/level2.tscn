@@ -387,19 +387,9 @@ scale = Vector2( 1, 0.75 )
 release_on_exit = false
 
 [node name="CameraCapture2" parent="." instance=ExtResource( 24 )]
-position = Vector2( 1774.35, -336.214 )
+position = Vector2( 1766.76, -350.152 )
 scale = Vector2( 0.85, 1.1 )
 walled = false
-
-[node name="CameraCapture5" parent="." instance=ExtResource( 24 )]
-position = Vector2( 2727.81, -384.621 )
-scale = Vector2( 0.2, 0.75 )
-walled = false
-
-[node name="CameraCapture4" parent="." instance=ExtResource( 24 )]
-position = Vector2( 3813.54, -0.317474 )
-scale = Vector2( 1, 0.4 )
-release_on_exit = false
 
 [node name="MusicIntro" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
