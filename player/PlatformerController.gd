@@ -512,6 +512,9 @@ func refresh_flags():
 			coyoteTimer = SPIN_COYOTE_TIME
 		else:
 			coyoteTimer = COYOTE_TIME
+	refresh_dive()
+
+func refresh_dive():
 	if can_dive < PlayerGameManager.dive_num:
 		can_dive = PlayerGameManager.dive_num
 
@@ -553,6 +556,7 @@ func jump():
 		animator["parameters/PlayerMovement/playback"].travel("dive_boost")
 		ignore_air_friction = true
 		ignore_horizontal_timer = 10
+		refresh_dive()
 	elif !diving: # Basic Jump
 		push(Vector2(0, -JUMP_STRENGTH))
 	else: # Out-of-dive Jump
