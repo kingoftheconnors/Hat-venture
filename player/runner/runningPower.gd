@@ -11,7 +11,7 @@ func power_equipped(body, _animator):
 	body.set_lookahead(LOOKAHEAD)
 
 func press_power_button(body, _animator):
-	pass
+	body.dive()
 func press_power_button_on_init(body, _animator):
 	pass
 
