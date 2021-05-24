@@ -39,11 +39,10 @@ var power_stun_frames = 0
 var can_use_power = true
 
 # RUN
-const MAX_RUNNING_SPEED = 230
 const WALLJUMP_SPEED = 230
 const RUN_ACCELERATION = 17
 const RUN_SKID_ACCELERATION = 4
-const RUN_LOOKAHEAD = 70
+const RUN_LOOKAHEAD = 50
 const RUN_DELAY_START_SPEED = 30
 var running
 
@@ -242,8 +241,8 @@ func move(delta):
 	if horizontal != 0:
 		animator["parameters/PlayerMovement/conditions/walking"] = true
 		animator["parameters/PlayerMovement/conditions/not_walking"] = false
-		animator["parameters/PlayerMovement/walk/4/blend_position"] = abs(velo.x)/MAX_RUNNING_SPEED
-		animator["parameters/PlayerMovement/walk/4/1/Speed/scale"] = .5 + abs(velo.x)/MAX_RUNNING_SPEED
+		animator["parameters/PlayerMovement/walk/4/blend_position"] = abs(velo.x)/max_velo
+		animator["parameters/PlayerMovement/walk/4/1/Speed/scale"] = .5 + abs(velo.x)/max_velo
 	else:
 		animator["parameters/PlayerMovement/conditions/walking"] = false
 		animator["parameters/PlayerMovement/conditions/not_walking"] = true
@@ -275,7 +274,7 @@ func move(delta):
 		if velo.y < 0:
 			velo.y += PLAYER_GRAVITY
 		else:
-			if running and velo.x > MAX_RUNNING_SPEED*.75 and coyoteTimer > 0:
+			if running and velo.x > max_velo*.75 and coyoteTimer > 0:
 				pass
 			elif diving:
 				velo.y += PLAYER_GRAVITY * DIVE_FALL_MULTIPLIER
@@ -666,14 +665,12 @@ func uncrouch():
 	animator["parameters/PlayerMovement/conditions/crouching"] = false
 	animator["parameters/PlayerMovement/conditions/not_crouching"] = true
 
-func start_run():
-	max_velo = MAX_RUNNING_SPEED
-	#base_speed = BASE_RUN_SPEED
+func start_run(running_speed):
+	max_velo = running_speed
 	running = true
 func stop_run():
 	SoundSystem.stop_if_playing_sound(SoundSystem.SFX.SPRINT)
 	max_velo = MAX_SPEED
-	#base_speed = BASE_SPEED
 	running = false
 
 func start_skid_perfect():
@@ -781,7 +778,7 @@ func get_direction():
 	return direction
 
 func is_running_at_max():
-	return running and abs(velo.x) > MAX_RUNNING_SPEED * .95
+	return running and abs(velo.x) > max_velo * .95
 
 func set_velo(new_velo):
 	velo = new_velo
