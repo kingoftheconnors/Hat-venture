@@ -18,7 +18,7 @@ var target_spot : Vector2
 ## Lookahead amount for when the target is moving fast,
 ## so the camera can still catch incoming objects
 var lookahead_offset : float
-const LOOKAHEAD_CHANGE_RATE = 40
+const LOOKAHEAD_CHANGE_RATE = 30
 
 ## Flag for moving left and right bodies when captured
 var move_walls := true
@@ -142,6 +142,9 @@ func move_lookahead_toward(offset_goal, delta):
 	if target_spot:
 		lookahead_offset = 0
 		return
+	# If we are turning around our offset, increase the offset change rate
+	if offset_goal * lookahead_offset < 0:
+		delta *= 2
 	if(lookahead_offset > offset_goal):
 		lookahead_offset -= LOOKAHEAD_CHANGE_RATE * delta
 	elif(lookahead_offset < offset_goal):
