@@ -3,8 +3,8 @@ class_name runningPower
 var blendValue = 1
 func name(): return "RunningHat"
 
-const RUN_SPEED = 200
-const LOOKAHEAD = 50
+const RUN_SPEED = 175
+const LOOKAHEAD = 40
 
 func power_equipped(body, _animator):
 	body.start_run(RUN_SPEED)

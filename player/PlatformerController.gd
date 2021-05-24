@@ -40,7 +40,7 @@ var can_use_power = true
 
 # RUN
 const WALLJUMP_SPEED = 230
-const RUN_ACCELERATION = 17
+const RUN_ACCELERATION = 12
 const RUN_SKID_ACCELERATION = 4
 const RUN_DELAY_START_SPEED = 30
 var running
@@ -552,8 +552,10 @@ func _process(_delta):
 
 onready var wall_jump_checker : RayCast2D = $"ScaleChildren/WallJumpChecker"
 func jump():
+	# Jump sfx
 	if velo.y >= 0:
 		SoundSystem.start_sound(SoundSystem.SFX.JUMP)
+	# Set jump speed
 	if post_bash_jump_timer > 0 and !is_on_floor():
 		push(Vector2(0, -BASH_OUT_STRENGTH))
 	elif running and wall_jump_checker.is_colliding() and !is_on_floor():
@@ -563,11 +565,17 @@ func jump():
 		animator["parameters/PlayerMovement/playback"].travel("dive_boost")
 		ignore_air_friction = true
 		ignore_horizontal_timer = 10
+		if diving:
+			undive()
 		refresh_dive()
 	elif !diving: # Basic Jump
 		push(Vector2(0, -JUMP_STRENGTH))
 	else: # Out-of-dive Jump
 		undive()
+		if velo.x > 0:
+			velo.x = min(DIVE_OUT_SPEED, velo.x)
+		else:
+			velo.x = max(-DIVE_OUT_SPEED, velo.x)
 		push(Vector2(0, -DIVE_OUT_STRENGTH))
 		if (superdive_timer > 0) or (!is_on_floor() and move_and_collide(Vector2(0, DIVE_MERCY), true, true, true)):
 			push(Vector2(direction * SUPERDIVE_SPEED, -SUPERDIVE_SPEED))
@@ -661,10 +669,6 @@ func dive():
 func undive():
 	diving = false
 	max_velo = default_max_velo
-	if velo.x > 0:
-		velo.x = min(DIVE_OUT_SPEED, velo.x)
-	else:
-		velo.x = max(-DIVE_OUT_SPEED, velo.x)
 
 func crouch():
 	crouching = true
