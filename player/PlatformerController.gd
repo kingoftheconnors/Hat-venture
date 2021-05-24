@@ -563,6 +563,7 @@ func jump():
 		direction = wall_jump_checker.get_collision_normal().x
 		push(Vector2(direction * WALLJUMP_SPEED, -WALLJUMP_SPEED))
 		animator["parameters/PlayerMovement/playback"].travel("dive_boost")
+		animator['parameters/PlayerEffect/playback'].travel('walljumpInvincibility')
 		ignore_air_friction = true
 		ignore_horizontal_timer = 10
 		if diving:

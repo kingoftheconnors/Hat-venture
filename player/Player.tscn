@@ -1,4 +1,4 @@
-[gd_scene load_steps=252 format=2]
+[gd_scene load_steps=258 format=2]
 
 [ext_resource path="res://player/regular/idle.png" type="Texture" id=1]
 [ext_resource path="res://player/PlatformerController.gd" type="Script" id=2]
@@ -4063,6 +4063,27 @@ tracks/2/keys = {
 "values": [ 3 ]
 }
 
+[sub_resource type="Animation" id=207]
+resource_name = "walljumpInvincibility"
+step = 0.05
+tracks/0/type = "method"
+tracks/0/path = NodePath("ScaleChildren/PlayerCore")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.05, 0.95 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ true ],
+"method": "turn_invincibilty"
+}, {
+"args": [ false ],
+"method": "turn_invincibilty"
+} ]
+}
+
 [sub_resource type="AnimationNodeAnimation" id=71]
 animation = "hurtFlash"
 
@@ -4074,6 +4095,9 @@ animation = "powerlessActive"
 
 [sub_resource type="AnimationNodeAnimation" id=74]
 animation = "powerlessOff"
+
+[sub_resource type="AnimationNodeAnimation" id=208]
+animation = "walljumpInvincibility"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=75]
 
@@ -4092,18 +4116,30 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=80]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=209]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=210]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=211]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=212]
+
 [sub_resource type="AnimationNodeStateMachine" id=81]
 states/hurtFlash/node = SubResource( 71 )
-states/hurtFlash/position = Vector2( 386, 204.448 )
+states/hurtFlash/position = Vector2( 389, 170.448 )
 states/powerlessFlash/node = SubResource( 73 )
 states/powerlessFlash/position = Vector2( 216, 112 )
 "states/powerlessFlash 2/node" = SubResource( 72 )
 "states/powerlessFlash 2/position" = Vector2( 372, 41.276 )
 states/powerlessOff/node = SubResource( 74 )
 states/powerlessOff/position = Vector2( 544, 112 )
-transitions = [ "powerlessOff", "powerlessFlash", SubResource( 75 ), "powerlessFlash", "powerlessFlash 2", SubResource( 76 ), "powerlessFlash 2", "powerlessOff", SubResource( 77 ), "powerlessFlash", "hurtFlash", SubResource( 78 ), "hurtFlash", "powerlessOff", SubResource( 79 ), "powerlessOff", "hurtFlash", SubResource( 80 ) ]
+states/walljumpInvincibility/node = SubResource( 208 )
+states/walljumpInvincibility/position = Vector2( 389, 289.512 )
+transitions = [ "powerlessOff", "powerlessFlash", SubResource( 75 ), "powerlessFlash", "powerlessFlash 2", SubResource( 76 ), "powerlessFlash 2", "powerlessOff", SubResource( 77 ), "powerlessFlash", "hurtFlash", SubResource( 78 ), "hurtFlash", "powerlessOff", SubResource( 79 ), "powerlessOff", "hurtFlash", SubResource( 80 ), "powerlessFlash", "walljumpInvincibility", SubResource( 209 ), "powerlessOff", "walljumpInvincibility", SubResource( 210 ), "walljumpInvincibility", "powerlessOff", SubResource( 211 ), "walljumpInvincibility", "hurtFlash", SubResource( 212 ) ]
 start_node = "powerlessOff"
-graph_offset = Vector2( 0, -6.624 )
+graph_offset = Vector2( 0, 68.872 )
 
 [sub_resource type="AnimationNodeAnimation" id=82]
 animation = "bash"
@@ -4832,6 +4868,7 @@ anims/walk = SubResource( 66 )
 "anims/walk (hard)" = SubResource( 68 )
 "anims/walk (runner)" = SubResource( 69 )
 "anims/walk (thor)" = SubResource( 70 )
+anims/walljumpInvincibility = SubResource( 207 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 pause_mode = 2
