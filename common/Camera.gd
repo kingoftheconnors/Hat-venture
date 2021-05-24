@@ -99,8 +99,8 @@ func finish_room_capture():
 	right_collider.disabled = false
 
 ## Releases room capture and resets camera to following the player
-func capture_release():
-	if target_spot != Vector2.ZERO:
+func capture_release(release_box_position):
+	if target_spot != Vector2.ZERO and target_spot == release_box_position:
 		move_walls = true
 		tween.stop_all()
 		if target_spot.x < level.left:

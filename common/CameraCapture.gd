@@ -20,7 +20,7 @@ func capture_camera(body):
 
 ## Releases the camera to follow the player again
 func capture_release():
-	cameraObj.capture_release()
+	cameraObj.capture_release(position)
 
 
 func _on_CameraCapture_body_exited(body):
