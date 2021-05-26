@@ -332,3 +332,4 @@ Running lookahead
 Making running active on default when run power is equipped
 Add dive action to run power
 Walljump invincibility
+Wall-sliding

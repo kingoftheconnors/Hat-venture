@@ -44,6 +44,10 @@ const RUN_ACCELERATION = 12
 const RUN_SKID_ACCELERATION = 4
 const RUN_DELAY_START_SPEED = 30
 var running
+var wallslide_friction_rate = 0
+const WALLSLIDE_FRICTION_START = 0.83
+const WALLSLIDE_FRICTION_END = 0.93
+const WALLSLIDE_CHANGE_RATE = 0.07
 
 # SPIN
 var spinning
@@ -214,6 +218,22 @@ func move(delta):
 	elif crouching and is_on_floor():
 		velo.x *= 0.96
 	
+	# Wall sliding while run power is active
+	if running and horizontal * prev_horizontal > 0 and is_on_wall() and velo.y > 0:
+		# On first wallslide frame, cut velo extra
+		if animator["parameters/PlayerMovement/conditions/wallsliding"] == false:
+			wallslide_friction_rate = WALLSLIDE_FRICTION_START
+			velo.y *= 0.1
+		elif wallslide_friction_rate < WALLSLIDE_FRICTION_END:
+			wallslide_friction_rate += WALLSLIDE_CHANGE_RATE * delta
+		velo.y *= wallslide_friction_rate
+		print(wallslide_friction_rate, " - ", delta)
+		animate("wallslide")
+		animator["parameters/PlayerMovement/conditions/wallsliding"] = true
+		animator["parameters/PlayerMovement/conditions/not_wallsliding"] = false
+	else:
+		animator["parameters/PlayerMovement/conditions/wallsliding"] = false
+		animator["parameters/PlayerMovement/conditions/not_wallsliding"] = true
 	# Basic movement
 	if bashing:
 	#	velo = Vector2(direction * max_velo, 0)
