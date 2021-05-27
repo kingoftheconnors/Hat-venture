@@ -685,7 +685,7 @@ func unbash():
 		power_combo = POWER_COMBO.STUN
 		if !climbing:
 			post_bash_jump_timer = POST_BASH_JUMP_TIME
-		core.turn_invincibilty(true)
+		core.turn_invincibilty(true, true)
 
 func spin():
 	if !spinning and can_use_power and _stun <= 0:
