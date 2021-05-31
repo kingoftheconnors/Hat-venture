@@ -39,8 +39,15 @@ var power_stun_frames = 0
 var can_use_power = true
 
 # RUN
-const MAX_RUNNING_SPEED = 230
+const WALLJUMP_SPEED = 230
+const RUN_ACCELERATION = 12
+const RUN_SKID_ACCELERATION = 4
+const RUN_DELAY_START_SPEED = 30
 var running
+var wallslide_friction_rate = 0
+const WALLSLIDE_FRICTION_START = 0.83
+const WALLSLIDE_FRICTION_END = 0.93
+const WALLSLIDE_CHANGE_RATE = 0.07
 
 # SPIN
 var spinning
@@ -92,11 +99,19 @@ var _stun = 0
 var frozen = false
 var suspended = false
 var ignore_air_friction = false
+var ignore_horizontal_timer = 0
 var crouching = false
 var gravity = true
 
-var max_velo = MAX_SPEED
+## Current velo. Similar to other platformers, starts at 0 and ramps up
+## to max_velo
 var velo = Vector2()
+## The current goal velo ramps up to; the velo the player will usually
+## be at when moving
+var max_velo = MAX_SPEED
+## Max velo when player is moving without any other impulses or effects.
+## Can be walk-speed or run-speed based on equipped power
+var default_max_velo = MAX_SPEED
 
 var jump_timer = 0
 const JUMP_TIME = 10
@@ -104,6 +119,7 @@ var coyoteTimer = 0
 var climbing = false
 var air_time = 0
 var skid_perfect = false
+var lookahead = 0
 
 # Initial spawn for players dying. An educated guess for a legal, safe position
 var cur_spawn = Vector2()
@@ -111,6 +127,7 @@ var cur_spawn = Vector2()
 var release_jump_damp : float = 0.4
 
 var direction = 1
+var prev_horizontal = 0
 
 var on_ladders : int = 0
 var on_ladders_top : Array = []
@@ -136,9 +153,12 @@ func _physics_process(delta):
 	manage_flags()
 
 ## Calculates velocity and moves player
-func move(_delta):
+func move(delta):
 	var horizontal = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"))
 	var vertical = (Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"))
+	
+	if ignore_horizontal_timer > 0 and horizontal * direction < 0:
+		horizontal = -horizontal
 	
 	if _stun > 0:
 		horizontal = 0
@@ -173,6 +193,11 @@ func move(_delta):
 	if crouching and is_on_floor():
 		horizontal = 0
 	
+	# Creating skid dash at beginning of sprint
+	if running and horizontal != 0 and is_on_floor() and prev_horizontal == 0:
+		run_start_effect()
+	prev_horizontal = horizontal
+	
 	# Friction (before moving so friction only applies when player is
 	# standing still or going over conventional speeds)
 	if horizontal == 0 and spinning:
@@ -193,6 +218,22 @@ func move(_delta):
 	elif crouching and is_on_floor():
 		velo.x *= 0.96
 	
+	# Wall sliding while run power is active
+	if running and horizontal * prev_horizontal > 0 and is_on_wall() and velo.y > 0:
+		# On first wallslide frame, cut velo extra
+		if animator["parameters/PlayerMovement/conditions/wallsliding"] == false:
+			wallslide_friction_rate = WALLSLIDE_FRICTION_START
+			velo.y *= 0.1
+		elif wallslide_friction_rate < WALLSLIDE_FRICTION_END:
+			wallslide_friction_rate += WALLSLIDE_CHANGE_RATE * delta
+		velo.y *= wallslide_friction_rate
+		print(wallslide_friction_rate, " - ", delta)
+		animate("wallslide")
+		animator["parameters/PlayerMovement/conditions/wallsliding"] = true
+		animator["parameters/PlayerMovement/conditions/not_wallsliding"] = false
+	else:
+		animator["parameters/PlayerMovement/conditions/wallsliding"] = false
+		animator["parameters/PlayerMovement/conditions/not_wallsliding"] = true
 	# Basic movement
 	if bashing:
 	#	velo = Vector2(direction * max_velo, 0)
@@ -200,6 +241,11 @@ func move(_delta):
 		velo.x = direction * max_velo
 	elif spinning:
 		velo.x = calc_direc(direction, velo.x, SPIN_ACCELERATION)
+	elif running and horizontal != 0:
+		if direction * velo.x <= 0:
+			velo.x = calc_direc(direction, velo.x, RUN_SKID_ACCELERATION)
+		else:
+			velo.x = calc_direc(direction, velo.x, RUN_ACCELERATION)
 	else:
 		velo.x = calc_direc(horizontal, velo.x, ACCELERATION)
 	
@@ -211,12 +257,18 @@ func move(_delta):
 		if !skidRayCast1.is_colliding() or !skidRayCast2.is_colliding():
 			velo.x *= 0.7
 	
+	# Look-ahead
+	if lookahead != 0 and velo.x != 0 and ignore_horizontal_timer == 0:
+		camera.move_lookahead_toward(lookahead * velo.x/max_velo, delta)
+	else:
+		camera.move_lookahead_toward(0, delta)
+	
 	# Animating
 	if horizontal != 0:
 		animator["parameters/PlayerMovement/conditions/walking"] = true
 		animator["parameters/PlayerMovement/conditions/not_walking"] = false
-		animator["parameters/PlayerMovement/walk/4/blend_position"] = abs(velo.x)/MAX_RUNNING_SPEED
-		animator["parameters/PlayerMovement/walk/4/1/Speed/scale"] = .5 + abs(velo.x)/MAX_RUNNING_SPEED
+		animator["parameters/PlayerMovement/walk/4/blend_position"] = abs(velo.x)/max_velo
+		animator["parameters/PlayerMovement/walk/4/1/Speed/scale"] = .5 + abs(velo.x)/max_velo
 	else:
 		animator["parameters/PlayerMovement/conditions/walking"] = false
 		animator["parameters/PlayerMovement/conditions/not_walking"] = true
@@ -230,7 +282,7 @@ func move(_delta):
 	
 	# Running sound
 	if running:
-		if abs(velo.x) > MAX_RUNNING_SPEED * .95:
+		if is_running_at_max():
 			SoundSystem.start_sound_if_silent(SoundSystem.SFX.SPRINT)
 		else:
 			SoundSystem.stop_if_playing_sound(SoundSystem.SFX.SPRINT)
@@ -248,7 +300,7 @@ func move(_delta):
 		if velo.y < 0:
 			velo.y += PLAYER_GRAVITY
 		else:
-			if running and velo.x > MAX_RUNNING_SPEED*.75 and coyoteTimer > 0:
+			if running and velo.x > max_velo*.75 and coyoteTimer > 0:
 				pass
 			elif diving:
 				velo.y += PLAYER_GRAVITY * DIVE_FALL_MULTIPLIER
@@ -447,6 +499,8 @@ func manage_flags():
 		PlayerGameManager.set_multiplicity_fast_decrease(true)
 		animator["parameters/PlayerMovement/conditions/jumping"] = false
 		animator["parameters/PlayerMovement/conditions/not_jumping"] = true
+		if running:
+			run_start_effect()
 	
 	if is_on_floor() and ignore_air_friction:
 		if !bashing and !diving and !spinning and abs(velo.x) < max_velo*.8:
@@ -465,6 +519,8 @@ func manage_flags():
 		mini_superdive_timer -= 1
 	if post_bash_jump_timer > 0:
 		post_bash_jump_timer -= 1
+	if ignore_horizontal_timer > 0:
+		ignore_horizontal_timer -= 1
 	
 	if jump_timer > 0:
 		jump_timer -= 1
@@ -473,7 +529,8 @@ func manage_flags():
 				or coyoteTimer > 0 \
 				or climbing \
 				or diving \
-				or (post_bash_jump_timer > 0)):
+				or post_bash_jump_timer > 0 \
+				or (running and wall_jump_checker.is_colliding())):
 			jump()
 
 func refresh_flags():
@@ -482,6 +539,9 @@ func refresh_flags():
 			coyoteTimer = SPIN_COYOTE_TIME
 		else:
 			coyoteTimer = COYOTE_TIME
+	refresh_dive()
+
+func refresh_dive():
 	if can_dive < PlayerGameManager.dive_num:
 		can_dive = PlayerGameManager.dive_num
 
@@ -510,15 +570,33 @@ func _process(_delta):
 	if crouching and !Input.is_action_pressed("ui_crouch"):
 		uncrouch()
 
+onready var wall_jump_checker : RayCast2D = $"ScaleChildren/WallJumpChecker"
 func jump():
+	# Jump sfx
 	if velo.y >= 0:
 		SoundSystem.start_sound(SoundSystem.SFX.JUMP)
+	# Set jump speed
 	if post_bash_jump_timer > 0 and !is_on_floor():
 		push(Vector2(0, -BASH_OUT_STRENGTH))
+	elif running and wall_jump_checker.is_colliding() and !is_on_floor():
+		# Walljump
+		direction = wall_jump_checker.get_collision_normal().x
+		push(Vector2(direction * WALLJUMP_SPEED, -WALLJUMP_SPEED))
+		animator["parameters/PlayerMovement/playback"].travel("dive_boost")
+		animator['parameters/PlayerEffect/playback'].travel('walljumpInvincibility')
+		ignore_air_friction = true
+		ignore_horizontal_timer = 10
+		if diving:
+			undive()
+		refresh_dive()
 	elif !diving: # Basic Jump
 		push(Vector2(0, -JUMP_STRENGTH))
 	else: # Out-of-dive Jump
 		undive()
+		if velo.x > 0:
+			velo.x = min(DIVE_OUT_SPEED, velo.x)
+		else:
+			velo.x = max(-DIVE_OUT_SPEED, velo.x)
 		push(Vector2(0, -DIVE_OUT_STRENGTH))
 		if (superdive_timer > 0) or (!is_on_floor() and move_and_collide(Vector2(0, DIVE_MERCY), true, true, true)):
 			push(Vector2(direction * SUPERDIVE_SPEED, -SUPERDIVE_SPEED))
@@ -611,11 +689,7 @@ func dive():
 		SoundSystem.start_sound(SoundSystem.SFX.DIVE)
 func undive():
 	diving = false
-	max_velo = MAX_SPEED
-	if velo.x > 0:
-		velo.x = min(DIVE_OUT_SPEED, velo.x)
-	else:
-		velo.x = max(-DIVE_OUT_SPEED, velo.x)
+	max_velo = default_max_velo
 
 func crouch():
 	crouching = true
@@ -626,14 +700,14 @@ func uncrouch():
 	animator["parameters/PlayerMovement/conditions/crouching"] = false
 	animator["parameters/PlayerMovement/conditions/not_crouching"] = true
 
-func start_run():
-	max_velo = MAX_RUNNING_SPEED
-	#base_speed = BASE_RUN_SPEED
+func start_run(running_speed):
+	default_max_velo = running_speed
+	max_velo = default_max_velo
 	running = true
 func stop_run():
 	SoundSystem.stop_if_playing_sound(SoundSystem.SFX.SPRINT)
-	max_velo = MAX_SPEED
-	#base_speed = BASE_SPEED
+	default_max_velo = MAX_SPEED
+	max_velo = default_max_velo
 	running = false
 
 func start_skid_perfect():
@@ -674,7 +748,7 @@ func unbash():
 			velo.x = max(MAX_SPEED, velo.x - (max_velo - MAX_SPEED))
 		elif velo.x < -max_velo:
 			velo.x = min(-MAX_SPEED, velo.x + (max_velo - MAX_SPEED))
-		max_velo = MAX_SPEED
+		max_velo = default_max_velo
 		bashing = false
 		if power_combo == POWER_COMBO.STUN:
 			power_stun(POST_BASH_STUN)
@@ -701,7 +775,7 @@ func spin():
 
 func unspin():
 	if spinning:
-		max_velo = MAX_SPEED
+		max_velo = default_max_velo
 		spinning = false
 		power_stun(POST_SPIN_STUN)
 
@@ -740,6 +814,12 @@ func spawn_bottle():
 func get_direction():
 	return direction
 
+func is_running_at_max():
+	return running and abs(velo.x) > max_velo * .95
+
+func set_lookahead(new_lookahead = 0):
+	lookahead = new_lookahead
+
 func set_velo(new_velo):
 	velo = new_velo
 func set_velo_x(x):
@@ -768,15 +848,21 @@ func animate(animation):
 	release_all_powers()
 	animator["parameters/PlayerMovement/playback"].travel(animation)
 
-func create_skid(play_sfx : bool = false):
+func create_skid(play_sfx : bool = false, x_offset = 0):
 	if is_on_floor():
 		var skid = preload("res://player/subscenes/skid.tscn").instance()
 		skid.init(direction)
 		skid.position += position + $ScaleChildren/hitbox/CollisionShape2D.position
+		skid.position.x += x_offset
 		get_parent().add_child(skid)
 		if play_sfx:
 			SoundSystem.start_sound(SoundSystem.SFX.SKID, abs(velo.x/max_velo))
 			#SoundSystem.start_sound(SoundSystem.SFX.SKID)
+
+func run_start_effect():
+	create_skid(false, 7)
+	create_skid(false, 0)
+	create_skid(false, -7)
 
 func damage(isStomp, amount = 1):
 	core.damage(isStomp, amount)

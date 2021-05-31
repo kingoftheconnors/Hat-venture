@@ -28,6 +28,7 @@ func set_power(powerType):
 	power_hp = POWER_BASE_HP
 	updatePowerValues()
 	PlayerGameManager.notify_power(powerType)
+	power.power_equipped(platformController, animator)
 	if power_pressed:
 		power.press_power_button(platformController, animator)
 

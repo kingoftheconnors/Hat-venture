@@ -3,6 +3,9 @@ class_name defaultPower
 var blendValue = 0
 func name(): return "DefaultHat"
 
+func power_equipped(body, _animator):
+	pass
+
 func press_power_button(body, _animator):
 	body.dive()
 func press_power_button_on_init(_body, _animator):

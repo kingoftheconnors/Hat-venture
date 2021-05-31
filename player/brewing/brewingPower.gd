@@ -3,6 +3,9 @@ class_name brewingPower
 var blendValue = 2
 func name(): return "Pon"
 
+func power_equipped(body, _animator):
+	pass
+
 func press_power_button(_body, animator):
 	animator["parameters/PlayerMovement/playback"].travel("throw")
 func press_power_button_on_init(body, _animator):

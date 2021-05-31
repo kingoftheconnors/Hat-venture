@@ -10,10 +10,15 @@ onready var target = $"../Player"
 ## is decreased
 onready var default_smoothing = smoothing_speed
 ## Smoothing speed for panning into a camera capture
-const SLOW_SMOOTHING = 1
+const SLOW_SMOOTHING = .25
+const SMOOTHING_EQUILIBRUM_RATE : float = 4.0
 ## Panning target when camera is locked to a position
 ## (is set to Vector2.ZERO when not used)
 var target_spot : Vector2
+## Lookahead amount for when the target is moving fast,
+## so the camera can still catch incoming objects
+var lookahead_offset : float
+const LOOKAHEAD_CHANGE_RATE = 30
 
 ## Flag for moving left and right bodies when captured
 var move_walls := true
@@ -39,7 +44,7 @@ func _ready():
 	reset_limits()
 
 # Called every frame to update camera position
-func _physics_process(_delta):
+func _physics_process(delta):
 	# Moving to a target-set position
 	if move_walls:
 		if target_spot != Vector2.ZERO:
@@ -55,7 +60,7 @@ func _physics_process(_delta):
 				right_body.set_collision_mask_bit(0, true)
 		else:
 			# Default behavior: move to player object
-			position = target.position
+			position = target.position + Vector2(lookahead_offset, 0)
 		# Enforce limits
 		if position.y > lim_bottom - Constants.camera_radius.y:
 			position.y = lim_bottom - Constants.camera_radius.y
@@ -94,8 +99,8 @@ func finish_room_capture():
 	right_collider.disabled = false
 
 ## Releases room capture and resets camera to following the player
-func capture_release():
-	if target_spot != Vector2.ZERO:
+func capture_release(release_box_position):
+	if target_spot != Vector2.ZERO and target_spot == release_box_position:
 		move_walls = true
 		tween.stop_all()
 		if target_spot.x < level.left:
@@ -133,7 +138,20 @@ func reset_limits():
 	lim_left = level.left - Constants.camera_radius.x * drag_margin_left
 	lim_right = level.right + Constants.camera_radius.y * drag_margin_right
 
+func move_lookahead_toward(offset_goal, delta):
+	if target_spot:
+		lookahead_offset = 0
+		return
+	# If we are turning around our offset, increase the offset change rate
+	if offset_goal * lookahead_offset < 0:
+		delta *= 2
+	if(lookahead_offset > offset_goal):
+		lookahead_offset -= LOOKAHEAD_CHANGE_RATE * delta
+	elif(lookahead_offset < offset_goal):
+		lookahead_offset += LOOKAHEAD_CHANGE_RATE * delta
+
 # Unpause game if node is destroyed in the middle of a transition
 func _exit_tree():
 	if timer.time_left > 0:
 		get_tree().paused = false
+

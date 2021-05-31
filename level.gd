@@ -35,8 +35,8 @@ var gif_frames := []
 #$Player/Camera2D.limit_bottom = map_limits.end.y * map_cellsize.y
 
 func _ready():
-	OptionsMenu.set_openable(true)
 	if !Engine.is_editor_hint():
+		OptionsMenu.set_openable(true)
 		VisualServer.set_default_clear_color(col)
 		Gui.start(stageNum)
 
