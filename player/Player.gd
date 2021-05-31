@@ -85,9 +85,10 @@ func heal(amo = 1):
 	Gui.update_health(health, MAX_HEALTH)
 
 onready var uninvincible_timer = $"../../Uninvincible"
-func turn_invincibilty(flag):
+func turn_invincibilty(flag, auto_end = false):
 	if flag == true:
-		uninvincible_timer.start()
+		if auto_end:
+			uninvincible_timer.start()
 		#controller.set_collision_layer_bit(0, false)
 		#controller.set_collision_mask_bit(0, false)
 		hurtbox.set_collision_layer_bit(0, false)
