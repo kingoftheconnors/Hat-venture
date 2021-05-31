@@ -3460,7 +3460,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.001 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [  ],
+"args": [ true ],
 "method": "create_skid"
 }, {
 "args": [  ],
@@ -3631,7 +3631,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.001 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [  ],
+"args": [ true ],
 "method": "create_skid"
 }, {
 "args": [  ],

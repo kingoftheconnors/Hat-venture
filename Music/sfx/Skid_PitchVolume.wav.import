@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Skid_PitchVolume.wav-5e3c38d831370ffab845cec448f75f1f.sample"
+
+[deps]
+
+source_file="res://Music/sfx/Skid_PitchVolume.wav"
+dest_files=[ "res://.import/Skid_PitchVolume.wav-5e3c38d831370ffab845cec448f75f1f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

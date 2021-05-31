@@ -768,12 +768,15 @@ func animate(animation):
 	release_all_powers()
 	animator["parameters/PlayerMovement/playback"].travel(animation)
 
-func create_skid():
+func create_skid(play_sfx : bool = false):
 	if is_on_floor():
 		var skid = preload("res://player/subscenes/skid.tscn").instance()
 		skid.init(direction)
 		skid.position += position + $ScaleChildren/hitbox/CollisionShape2D.position
 		get_parent().add_child(skid)
+		if play_sfx:
+			SoundSystem.start_sound(SoundSystem.SFX.SKID, abs(velo.x/max_velo))
+			#SoundSystem.start_sound(SoundSystem.SFX.SKID)
 
 func damage(isStomp, amount = 1):
 	core.damage(isStomp, amount)

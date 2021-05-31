@@ -12,7 +12,8 @@ enum SFX {
 	POWERUP_GET,
 	HURT,
 	SPRINT,
-	BLOCK_BREAK
+	BLOCK_BREAK,
+	SKID
 }
 
 enum MUSIC {
@@ -41,8 +42,12 @@ func stop_music():
 
 onready var sfx_player : AudioStreamPlayer = $Sfx
 var cur_sound = SFX.NONE
-func start_sound(sfx : int):
+func start_sound(sfx : int, sound_var = 0):
 	if sfx_player:
+		sfx_player.volume_db = 0
+		# Remove all bus effects
+		for i in AudioServer.get_bus_effect_count(2):
+			AudioServer.remove_bus_effect(2, 0)
 		match sfx:
 			SFX.COLLECT:
 				collect_level += 1
@@ -93,6 +98,13 @@ func start_sound(sfx : int):
 				]
 				# Randomly use one of the block break sounds
 				sfx_player.stream = sounds[randi() % len(sounds)]
+			SFX.SKID:
+				sfx_player.stream = preload("res://Music/sfx/Skid_2.wav")
+				# Add pitch shift
+				var effect = AudioEffectPitchShift.new()
+				effect.pitch_scale = sound_var/2 + 0.6
+				AudioServer.add_bus_effect(2, effect)
+				sfx_player.volume_db = -10
 		if cur_sound != sfx:
 			sfx_player.stop()
 		sfx_player.play()
