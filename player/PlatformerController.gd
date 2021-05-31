@@ -860,9 +860,9 @@ func create_skid(play_sfx : bool = false, x_offset = 0):
 			#SoundSystem.start_sound(SoundSystem.SFX.SKID)
 
 func run_start_effect():
-	create_skid(7)
-	create_skid(0)
-	create_skid(-7)
+	create_skid(false, 7)
+	create_skid(false, 0)
+	create_skid(false, -7)
 
 func damage(isStomp, amount = 1):
 	core.damage(isStomp, amount)
