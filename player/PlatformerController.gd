@@ -90,6 +90,7 @@ onready var animator = $"AnimationTree"
 onready var animatorPlayer = $"AnimationPlayer"
 onready var camera = $"../Camera"
 onready var core = $"ScaleChildren/PlayerCore"
+onready var superjump_particle = $SuperJumpParticle
 
 onready var skidRayCast1 = $"SkidRay"
 onready var skidRayCast2 = $"SkidRay2"
@@ -599,9 +600,11 @@ func jump():
 			velo.x = max(-DIVE_OUT_SPEED, velo.x)
 		push(Vector2(0, -DIVE_OUT_STRENGTH))
 		if (superdive_timer > 0) or (!is_on_floor() and move_and_collide(Vector2(0, DIVE_MERCY), true, true, true)):
+			superjump_particle.emitting = true
 			push(Vector2(direction * SUPERDIVE_SPEED, -SUPERDIVE_SPEED))
 			animator["parameters/PlayerMovement/playback"].travel("dive_boost")
 		if (mini_superdive_timer > 0):
+			superjump_particle.emitting = true
 			push(Vector2(direction * SUPERDIVE_SPEED, -SUPERDIVE_SPEED))
 			animator["parameters/PlayerMovement/playback"].travel("dive_boost")
 	# Energy jump

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://world1/background1.tres" type="TileSet" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://camera/Camera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://common/Flag.tscn" type="PackedScene" id=6]
+[ext_resource path="res://common/Resources/flagup.png" type="Texture" id=7]
 [ext_resource path="res://NPCs/DialogBox.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Music/startSong.gd" type="Script" id=10]
 [ext_resource path="res://enemy/eltun/eltun.tscn" type="PackedScene" id=11]
@@ -192,7 +193,10 @@ position = Vector2( 248, -16 )
 position = Vector2( 0, -8 )
 
 [node name="Flag" parent="." instance=ExtResource( 6 )]
-position = Vector2( 2104, -128 )
+position = Vector2( 2104, -120 )
+texture = ExtResource( 7 )
+hframes = 6
+frame = 0
 
 [node name="Hen" parent="." instance=ExtResource( 17 )]
 position = Vector2( 504, -8 )

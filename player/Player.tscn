@@ -1,4 +1,4 @@
-[gd_scene load_steps=268 format=2]
+[gd_scene load_steps=270 format=2]
 
 [ext_resource path="res://player/regular/idle.png" type="Texture" id=1]
 [ext_resource path="res://player/PlatformerController.gd" type="Script" id=2]
@@ -44,6 +44,7 @@
 [ext_resource path="res://player/regular/dive_boost.png" type="Texture" id=42]
 [ext_resource path="res://player/regular/dead.png" type="Texture" id=43]
 [ext_resource path="res://player/thor/spinfx.png" type="Texture" id=44]
+[ext_resource path="res://player/perfectjump.png" type="Texture" id=45]
 [ext_resource path="res://player/regular/win.png" type="Texture" id=46]
 [ext_resource path="res://player/regular/climb.png" type="Texture" id=47]
 
@@ -4776,6 +4777,12 @@ node_connections = [ "output", 0, "add", "add", 0, "PlayerMovement", "add", 1, "
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=221]
 
+[sub_resource type="CanvasItemMaterial" id=222]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
 [node name="Player" type="KinematicBody2D" groups=[
 "all",
 "player",
@@ -5034,6 +5041,20 @@ wait_time = 0.25
 
 [node name="Uninvincible" type="Timer" parent="."]
 wait_time = 0.75
+
+[node name="SuperJumpParticle" type="CPUParticles2D" parent="."]
+material = SubResource( 222 )
+position = Vector2( 0, 6 )
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+local_coords = false
+texture = ExtResource( 45 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity_random = 1.0
+anim_speed = 1.0
 [connection signal="off_cliff" from="." to="ScaleChildren/PlayerCore" method="cliff_damage"]
 [connection signal="hurt" from="ScaleChildren/PlayerCore" to="Power" method="hit"]
 [connection signal="area_entered" from="ScaleChildren/hurtbox" to="ScaleChildren/PlayerCore" method="_on_hurtbox_area_entered"]

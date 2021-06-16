@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://world1/background1.tres" type="TileSet" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://common/Flag.tscn" type="PackedScene" id=6]
 [ext_resource path="res://common/FakeWalls.gd" type="Script" id=7]
 [ext_resource path="res://common/Spring.tscn" type="PackedScene" id=8]
+[ext_resource path="res://common/Resources/flagup.png" type="Texture" id=9]
 [ext_resource path="res://Music/startSong.gd" type="Script" id=10]
 [ext_resource path="res://enemy/eltun/eltun.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Music/lvl1intro.ogg" type="AudioStream" id=13]
@@ -181,7 +182,10 @@ tile_data = PoolIntArray( -720813, 14, 0, -720810, 1, 0, -720809, 1, 2, -720808,
 script = ExtResource( 15 )
 
 [node name="Flag" parent="PartC/CTiles" instance=ExtResource( 6 )]
-position = Vector2( 1755.11, -46.8144 )
+position = Vector2( 1752, -40 )
+texture = ExtResource( 9 )
+hframes = 6
+frame = 0
 
 [node name="CEnemies" type="Node2D" parent="PartC"]
 
