@@ -35,6 +35,12 @@ func save():
 		InputMap.action_add_event(key.keybind, keybindEvent)
 	save_system.save_keybinds(keybinds)
 
+func get_keyname(keyname) -> String:
+	for key in key_controller.get_children():
+		if key.keybind == keyname:
+			return key.get_cur_key()
+	return ""
+
 func set_to_defaults():
 	# Get keys from option keys in menu
 	for key in key_controller.get_children():
