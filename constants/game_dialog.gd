@@ -1,7 +1,15 @@
 
 class_name game_dialog
 
-enum DIALOG_TYPE { TEMPLATE_1 = 1, TEMPLATE_2 = 2, GOTO_WORLD_1 = 3 }
+enum DIALOG_TYPE {
+	TEMPLATE_1,
+	TEMPLATE_2,
+	GOTO_TUTORIAL,
+	GOTO_SHIP,
+	GOTO_WORLD_1,
+	DIVE_TUTORIAL,
+	SATELLITE
+}
 
 # Textbox Format:
 #
@@ -31,6 +39,23 @@ func get_dialog(text_num):
 				{name = "Mustache Girl", text = "I've got a... party to set up!"},
 				{name = "Hat Kid", text = "I'M NODDING AND SAYING NOTHING!"},
 				#{signal = "action1", delay=0.25}
+			]
+		DIALOG_TYPE.DIVE_TUTORIAL:
+			return [
+				{name = "Sign", text = "Little girls can dive over large gaps using the " + OptionsMenu.get_keyname("ui_B") + " (action) button!"}
+			]
+		DIALOG_TYPE.SATELLITE:
+			return [
+				{name = "", text = "Satellite realigned!"},
+				{settag = "satellite_aligned", value = true},
+			]
+		DIALOG_TYPE.GOTO_TUTORIAL:
+			return [
+				{level = "res://level-select/tutorial.tscn"}
+			]
+		DIALOG_TYPE.GOTO_SHIP:
+			return [
+				{level = "res://level-select/ship.tscn"}
 			]
 		DIALOG_TYPE.GOTO_WORLD_1:
 			return [
