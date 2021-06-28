@@ -40,7 +40,7 @@ func save():
 		"cur_palette": $PaletteController.get_cur_palette(),
 		"hud_size": $HudSizeController.get_cur_size()
 	}
-	save_system.save_settings(settings)
+	SaveSystem.save_settings(settings)
 
 ## Signal function for updating the game's volume
 func _on_MasterVolSlider_value_changed(value):
@@ -56,7 +56,6 @@ func _on_SoundSlider_value_changed(value):
 func set_dirty():
 	dirty = true
 
-var save_system : SaveSystem
 var dirty = false
 var openable = false
 
@@ -64,8 +63,7 @@ func set_openable(flag):
 	openable = flag
 
 func _ready():
-	save_system = SaveSystem.new()
-	var settings = save_system.load_settings()
+	var settings = SaveSystem.load_settings()
 	if settings.has("music_vol"):
 		$MusicSlider.value = settings["music_vol"]
 	if settings.has("sound_vol"):
