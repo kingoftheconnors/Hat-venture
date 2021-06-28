@@ -2,13 +2,16 @@
 class_name game_dialog
 
 enum DIALOG_TYPE {
-	TEMPLATE_1,
-	TEMPLATE_2,
-	GOTO_TUTORIAL,
-	GOTO_SHIP,
-	GOTO_WORLD_1,
-	DIVE_TUTORIAL,
-	SATELLITE
+	SIGNAL_ACTION_1 = 0,
+	TEMPLATE_1 = 1,
+	TEMPLATE_2 = 2,
+	DIVE_TUTORIAL = 3,
+	SATELLITE = 4,
+	GOTO_TUTORIAL = 5,
+	GOTO_SHIP_FROM_OUTSIDE = 6,
+	GOTO_WORLD_1 = 7,
+	SHIP_SCREEN_1 = 8,
+	SHIP_SCREEN_2 = 9
 }
 
 # Textbox Format:
@@ -42,7 +45,9 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.DIVE_TUTORIAL:
 			return [
-				{name = "Sign", text = "Little girls can dive over large gaps using the " + OptionsMenu.get_keyname("ui_B") + " (action) button!"}
+				{name = "WARNING!", text = "Kids have been known to dive over large gaps using the " + OptionsMenu.get_keyname("ui_B") + " button!"},
+				{name = "WARNING!", text = "If you don't know what " + OptionsMenu.get_keyname("ui_B") + " buttons are, call up your radical overlord: Me!"},
+				{name = "...", text = "*A messy sketch of a kid and a bird is scrawled into the sign*"}
 			]
 		DIALOG_TYPE.SATELLITE:
 			return [
@@ -53,11 +58,50 @@ func get_dialog(text_num):
 			return [
 				{level = "res://level-select/tutorial.tscn"}
 			]
-		DIALOG_TYPE.GOTO_SHIP:
+		DIALOG_TYPE.GOTO_SHIP_FROM_OUTSIDE:
 			return [
-				{level = "res://level-select/ship.tscn"}
+				{level = "res://level-select/ship.tscn", spawn_point = 2}
 			]
 		DIALOG_TYPE.GOTO_WORLD_1:
 			return [
 				{level = "res://world1/level1.tscn"}
+			]
+		DIALOG_TYPE.SIGNAL_ACTION_1:
+			return [
+				{signal = "action1"}
+			]
+		DIALOG_TYPE.SHIP_SCREEN_1:
+			return [
+				# Bounce player back
+				{signal = "action7", delay=0.5},
+				{name = "ERROR", text = "SATELLITE NOT PROPERLY CONFIGURED."},
+				{name = "ERROR", text = "PLEASE RECONFIGURE THE SATELLITE MANUALLY."},
+				# Move camera
+				{signal = "action2", delay=1},
+				# Unlatch door
+				{signal = "action3", delay=0.5}, # TODO: unlatch SFX
+				# Reset camera
+				{signal = "action4", delay=0.75},
+				# Hide display (showing only exclamation point)
+				{signal = "action5"},
+			]
+		DIALOG_TYPE.SHIP_SCREEN_2:
+			return [
+				{signal = "action7", delay=0.5},
+				# Play knock sfx
+				# Hat Kid question mark
+				# Move camera
+				{signal = "action2", delay=1},
+				# Move hat kid to door
+				# Show Timmy and sfx (door becomes open black void)
+				# Start dialog options
+				# Timmy phychic lifting you
+				# Lil'ens entering
+				# "Get 'em lil'ens!"
+				# Player thrown into wall and blacking out (reset camera)
+				# Fade in with Lil'ens running through door
+				# Timmy throws timepiece back
+				# Timmy runs away
+				# Hat Kid runs through door
+				# Goto level1
 			]

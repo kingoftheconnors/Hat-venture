@@ -33,7 +33,7 @@ func save():
 		var keybindEvent = InputEventKey.new()
 		keybindEvent.scancode = OS.find_scancode_from_string(key.get_cur_key())
 		InputMap.action_add_event(key.keybind, keybindEvent)
-	save_system.save_keybinds(keybinds)
+	SaveSystem.save_keybinds(keybinds)
 
 func get_keyname(keyname) -> String:
 	for key in key_controller.get_children():
@@ -48,8 +48,7 @@ func set_to_defaults():
 	save()
 
 func reset_to_keybinds():
-	save_system = SaveSystem.new()
-	var settings = save_system.load_keybinds()
+	var settings = SaveSystem.load_keybinds()
 	for action in InputMap.get_actions():
 		if settings.has(action):
 			InputMap.action_erase_events(action)
@@ -66,7 +65,6 @@ func reset_to_keybinds():
 func set_dirty():
 	dirty = true
 
-var save_system : SaveSystem
 var dirty = false
 
 func _ready():
