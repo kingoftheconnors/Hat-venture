@@ -241,6 +241,13 @@ func set_palette(palette_name):
 
 onready var palette_controller = $PaletteFilter
 
+func unlock_palette(palette_name):
+	get_tree().paused = true
+	$UnlockPaletteBox.visible = true
+	$UnlockPaletteBox.grab_focus()
+	$UnlockPaletteBox.set_palette(palette_name)
+	SaveSystem.unlock_palette(palette_name)
+
 func cover():
 	cover_animator.play("cover")
 func reveal():

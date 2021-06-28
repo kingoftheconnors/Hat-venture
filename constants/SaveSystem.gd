@@ -73,5 +73,30 @@ func get_tag(tag_name):
 			return game_data['tags'][tag_name]
 	return null
 
+func unlock_palette(new_palette):
+	var settings = load_settings()
+	if !settings['palettes'].has(new_palette):
+		settings['palettes'].append(new_palette)
+	save_settings(settings)
+
+func is_palette_unlocked(palette_name):
+	var settings = load_settings()
+	return settings['palettes'].has(palette_name)
+
+enum STORYBOOK_PAGES {
+	KIRK_1,
+	KIRK_2,
+	KIRK_3,
+	KIRK_4,
+	KIRK_5
+}
+
+func add_storybook_page(page_num : int):
+	if !game_data.has("storybook_pages"):
+		game_data['storybook_pages'] = []
+	if !game_data['storybook_pages'].has(page_num):
+		game_data['storybook_pages'].append(page_num)
+	save_game()
+
 var game_data : Dictionary = {}
 var save_num : int = -1
