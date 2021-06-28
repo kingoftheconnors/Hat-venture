@@ -1,11 +1,12 @@
 extends TextureRect
 
 func set_palette(palette_name):
-	var new_palette = palettes[palette_name]
-	material.set_shader_param("palette_white", new_palette[0])
-	material.set_shader_param("palette_light", new_palette[1])
-	material.set_shader_param("palette_dark", new_palette[2])
-	material.set_shader_param("palette_black", new_palette[3])
+	if palettes.has(palette_name):
+		var new_palette = palettes[palette_name]
+		material.set_shader_param("palette_white", new_palette[0])
+		material.set_shader_param("palette_light", new_palette[1])
+		material.set_shader_param("palette_dark", new_palette[2])
+		material.set_shader_param("palette_black", new_palette[3])
 
 
 const palettes = {

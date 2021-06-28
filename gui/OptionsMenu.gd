@@ -9,6 +9,7 @@ func _unhandled_input(event):
 			pause_mode = PAUSE_MODE_PROCESS
 			get_tree().paused = true
 			# Open menu
+			load_settings()
 			show()
 			reset_focus()
 		elif visible:
@@ -63,6 +64,9 @@ func set_openable(flag):
 	openable = flag
 
 func _ready():
+	load_settings()
+
+func load_settings():
 	var settings = SaveSystem.load_settings()
 	if settings.has("music_vol"):
 		$MusicSlider.value = settings["music_vol"]

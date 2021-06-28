@@ -52,8 +52,8 @@ func get_cur_palette():
 func add_palette(palette_name):
 	usable_palettes.append(palette_name)
 
-const GLOBAL_PALETTES : Array = ["Classic", "Muted", "GBoy"]
-var usable_palettes : Array = GLOBAL_PALETTES
+const DEFAULT_PALETTES : Array = ["Classic", "Muted"]
+var usable_palettes : Array = DEFAULT_PALETTES
 var palette_index = 0
 onready var l_arrow : Label = $L
 onready var r_arrow : Label = $R
