@@ -143,6 +143,10 @@ func _ready():
 func reset_position():
 	if PlayerGameManager.has_checkpoint():
 		position = PlayerGameManager.get_checkpoint_position()
+	else:
+		for spawn_point in get_tree().get_nodes_in_group("spawn"):
+			if spawn_point.spawn_num == PlayerGameManager.get_spawn_num():
+				position = spawn_point.position
 
 ## DEPRECATED: Sets level spawn
 func set_spawn(_pos):

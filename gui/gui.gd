@@ -145,11 +145,8 @@ func start_dialog(next_box):
 		text_crawl_func = crawl(next_box.text.length())
 	elif next_box.has("signal"):
 		next_box.starter.emit_signal(next_box.signal)
-		# Wait for program to return signal that we can continue scene
-		if next_box.has("delay"):
-			gui.visible = true
-			dialog.visible = false
-			text_crawl_func = delay(next_box['delay'])
+	elif next_box.has("settag"):
+		SaveSystem.set_tag(next_box['settag'], next_box['value'])
 	elif next_box.has("enable"):
 		for body in next_box['enable']:
 			body.set_pause_mode(PAUSE_MODE_PROCESS)
@@ -161,8 +158,13 @@ func start_dialog(next_box):
 	elif next_box.has("freeze_player"):
 		next_box['freeze_player'].set_freeze(true)
 	elif next_box.has("level"):
-		PlayerGameManager.start_level(next_box['level'])
-	elif next_box.has("delay"):
+		var spawn_point = -1
+		if next_box.has('spawn_point'):
+			spawn_point = next_box['spawn_point']
+		PlayerGameManager.start_level(next_box['level'], spawn_point)
+	
+	# Wait for program to return signal that we can continue scene
+	if next_box.has("delay"):
 		gui.visible = true
 		dialog.visible = false
 		text_crawl_func = delay(next_box['delay'])

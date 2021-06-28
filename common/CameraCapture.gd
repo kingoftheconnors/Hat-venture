@@ -8,6 +8,9 @@ export(NodePath) var camera = "../Camera"
 export(bool) var release_on_exit = true
 ## If true, this camera capture will be released when the player leaves the area
 export(bool) var walled = true
+## If true, this camera capture will be activate when the player enters the area.
+## Set to false if the capture should be activated externally
+export(bool) var collision_enabled = true
 ## When level starts, gets the camera
 onready var cameraObj = get_node(camera)
 ## Size of screen that the player is allowed to adventure around
@@ -15,8 +18,11 @@ onready var screen_radius = $CollisionShape2D.shape.extents
 
 ## Captures the camera
 func capture_camera(body):
-	if body.is_in_group("player"):
-		cameraObj.room_capture(position, walled)
+	if body.is_in_group("player") and collision_enabled:
+		capture()
+
+func capture():
+	cameraObj.room_capture(position, walled)
 
 ## Releases the camera to follow the player again
 func capture_release():

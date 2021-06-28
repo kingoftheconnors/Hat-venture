@@ -10,11 +10,6 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
-"class": "SaveSystem",
-"language": "GDScript",
-"path": "res://constants/SaveSystem.gd"
-}, {
-"base": "Reference",
 "class": "blastDying",
 "language": "GDScript",
 "path": "res://enemy/Scripts/blastDying.gd"
@@ -150,7 +145,6 @@ _global_script_classes=[ {
 "path": "res://enemy/eltun/zigzag.gd"
 } ]
 _global_script_class_icons={
-"SaveSystem": "",
 "blastDying": "",
 "bouncy": "",
 "brewingItem": "",
@@ -193,6 +187,7 @@ Constants="*res://constants/GameConstants.tscn"
 PlayerGameManager="*res://common/PlayerGameManager.tscn"
 OptionsMenu="*res://gui/OptionsMenu.tscn"
 SoundSystem="*res://constants/SoundSystem.tscn"
+SaveSystem="*res://constants/SaveSystem.gd"
 
 [debug]
 
