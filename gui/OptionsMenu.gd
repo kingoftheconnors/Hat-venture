@@ -33,7 +33,6 @@ func reset_focus(type : String = "default"):
 
 ## Save all game settings
 func save():
-	print($PaletteController.get_cur_palette())
 	var settings = {
 		"music_vol": $MusicSlider.value,
 		"sound_vol": $SoundSlider.value,
