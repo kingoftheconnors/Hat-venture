@@ -85,24 +85,7 @@ var cur_speaking_name = ""
 func _process(delta):
 	if text_crawl_func is GDScriptFunctionState:
 		# Pre-empt textboxes
-		if dialog.visible and Input.is_action_just_pressed("ui_B"):
-			text_crawl_func = null
-			# Don't run any more textboxes by the speaking character
-			while text_to_run.front() != null \
-				and text_to_run.front().has("name") \
-				and text_to_run.front().name == cur_speaking_name:
-				text_to_run.pop_front()
-			# After popping, add delay so player won't activate powers
-			# on accident
-			var text_queue_finished = true
-			for textbox in text_to_run:
-				if !textbox.has("freeze_player") and !textbox.has("unfreeze_player") \
-					and !textbox.has("enable") and !textbox.has("disable"):
-					text_queue_finished = false
-			if text_queue_finished:
-				text_to_run.push_front({delay=0.25})
-		else:
-			text_crawl_func = text_crawl_func.resume(delta)
+		text_crawl_func = text_crawl_func.resume(delta)
 	elif text_to_run.size() > 0:
 		var next_box = text_to_run.pop_front()
 		start_dialog(next_box)
@@ -142,7 +125,7 @@ func start_dialog(next_box):
 		dialogText.text = next_box.text
 		dialogText.lines_skipped = 0
 		# Start text crawl
-		text_crawl_func = crawl(next_box.text.length())
+		text_crawl_func = crawl(next_box)
 	elif next_box.has("signal"):
 		next_box.starter.emit_signal(next_box.signal)
 	elif next_box.has("settag"):
@@ -185,7 +168,7 @@ func delay(wait_time):
 		var delta = yield()
 		time_passed += delta
 
-func crawl(_text_length):
+func crawl(text_box):
 	# Text crawl
 	dialogText.percent_visible = 0
 	var lettersVisible = 0.0
@@ -193,21 +176,45 @@ func crawl(_text_length):
 	while get_printed_lines() < dialogText.get_line_count():
 		var delta = yield()
 		lettersVisible += delta * speed * letters_per_sec
-		if dialogText.visible_characters >= 39:
+		if dialogText.visible_characters > 39:
 			# Wait for user input
-			while(!Input.is_action_just_pressed("ui_A")):
+			while(!Input.is_action_just_pressed("ui_A") and !Input.is_action_just_pressed("ui_B")):
 				yield()
 			dialogText.lines_skipped += 2
 			lettersVisible -= 40
 			dialogText.set_visible_characters(int(lettersVisible))
-			yield()
+		elif Input.is_action_just_pressed("ui_A") or Input.is_action_just_pressed("ui_B"):
+			# Set letters to fill if the user pressed A
+			# or if they pressed B and the textbox has options
+			lettersVisible = 40
+		if Input.is_action_just_pressed("ui_B") and !text_box.has("options"):
+			# Check if this is the last textbox.
+			# If it is, add delay so player won't activate powers on accident
+			var text_queue_finished = true
+			for textbox in text_to_run:
+				if !textbox.has("freeze_player") and !textbox.has("unfreeze_player") \
+					and !textbox.has("enable") and !textbox.has("disable"):
+					text_queue_finished = false
+			if text_queue_finished:
+				text_to_run.push_front({delay=0.25})
+			return
 		dialogText.set_visible_characters(int(lettersVisible))
-		if Input.is_action_just_pressed("ui_A"):
-			lettersVisible = 38
 	yield()
-	# Wait for user input
-	while(!Input.is_action_just_pressed("ui_A")):
-		yield()
+	if text_box.has("options"):
+		if dialogText.get_line_count() > 1:
+			dialogText.lines_skipped += 1
+			lettersVisible -= 20
+		dialogOptions.show_options(text_box.options)
+		var selected_option = -1
+		while selected_option < 0:
+			selected_option = dialogOptions.poll_user_selection()
+			yield()
+		dialogOptions.hide_options()
+		queue_dialog(text_box.starter, selected_option)
+	else:
+		# Wait for user input
+		while(!Input.is_action_just_pressed("ui_A") and !Input.is_action_just_pressed("ui_B")):
+			yield()
 	return
 
 ## Sets score multiplicity to visible or invisible
@@ -230,6 +237,7 @@ func notify_multiplicity_time(time):
 onready var dialog = $DialogBox
 onready var dialogName = $DialogBox/Name
 onready var dialogText = $DialogBox/Dialog
+onready var dialogOptions = $DialogBox/DialogOptions
 onready var textboxes = game_dialog.new()
 
 ### ------------------------------

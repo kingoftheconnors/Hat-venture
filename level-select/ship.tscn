@@ -165,7 +165,6 @@ playing = true
 [node name="DialogBox" parent="Display" instance=ExtResource( 9 )]
 position = Vector2( 0, -4 )
 dialog_num = 0
-active_bodies_in_dialog = [ NodePath("../../DialogBox/CPUParticles2D") ]
 
 [node name="CameraCapture" parent="." instance=ExtResource( 20 )]
 position = Vector2( 192, -40 )
@@ -179,7 +178,9 @@ collision_enabled = false
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_Area2D_body_exited"]
 [connection signal="action1" from="Display/DialogBox" to="Display" method="pressed"]
 [connection signal="action2" from="Display/DialogBox" to="CameraCapture" method="capture"]
-[connection signal="action3" from="Display/DialogBox" to="DialogBox" method="enable"]
+[connection signal="action3" from="Display/DialogBox" to="DoorDialog" method="enable"]
 [connection signal="action4" from="Display/DialogBox" to="CameraCapture" method="capture_release"]
 [connection signal="action5" from="Display/DialogBox" to="Display" method="set_to_exclamation"]
 [connection signal="action7" from="Display/DialogBox" to="Player" method="bounce_back"]
+[connection signal="action8" from="Display/DialogBox" to="DoorDialog" method="enable"]
+[connection signal="action8" from="Display/DialogBox" to="DoorDialog" method="set_dialog_option" binds= [ 10 ]]

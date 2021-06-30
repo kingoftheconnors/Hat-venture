@@ -11,7 +11,17 @@ enum DIALOG_TYPE {
 	GOTO_SHIP_FROM_OUTSIDE = 6,
 	GOTO_WORLD_1 = 7,
 	SHIP_SCREEN_1 = 8,
-	SHIP_SCREEN_2 = 9
+	SHIP_SCREEN_2 = 9,
+	TIMMY_SHIP = 10,
+	TIMMY_SHIP_2 = 11,
+	TIMMY_SHIP_3_THANKS = 12,
+	TIMMY_SHIP_3_RADICAL = 13,
+	TIMMY_SHIP_VAULT_YES = 14,
+	TIMMY_SHIP_VAULT_NO1 = 15,
+	TIMMY_SHIP_VAULT_NO2 = 16,
+	TIMMY_SHIP_VAULT_NO3 = 17,
+	TIMMY_SHIP_TIMMY_MAD = 18,
+	TIMMY_SHIP_HOMEWRECKING = 19,
 }
 
 # Textbox Format:
@@ -87,15 +97,56 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.SHIP_SCREEN_2:
 			return [
-				{signal = "action7", delay=0.5},
-				# Play knock sfx
-				# Hat Kid question mark
+				# Bounce player back
+				{signal = "action7", delay=1},
+				{name = "SHIP", text = "All systems operational. Hello master!"},
+				# Activate Timmy door action (TODO: Enable knock sfx)
+				{signal = "action8", delay=1},
 				# Move camera
 				{signal = "action2", delay=1},
-				# Move hat kid to door
-				# Show Timmy and sfx (door becomes open black void)
+				# Reset camera
+				{signal = "action4", delay=0.75},
+			]
+		DIALOG_TYPE.TIMMY_SHIP:
+			return [
+				# TODO: Show Timmy and sfx (door becomes open black void)
+				{signal = "action1", delay=1},
 				# Start dialog options
-				# Timmy phychic lifting you
+				{name = "Kid", text = "Yo! You the kid with the Time Pieces? Thought I'd pop in and check 'em out!"},
+				{name = "Kid", text = "This is my turf after all."},
+				{name = "Timmy", text = "My name's Timmy, and I'm one radical guy!"},
+				{name = "Timmy", text = "You mind if I drop in?", options = {"YES": DIALOG_TYPE.TIMMY_SHIP_2, "NO": DIALOG_TYPE.TIMMY_SHIP_2}},
+			]
+		DIALOG_TYPE.TIMMY_SHIP_2:
+			return [
+				{name = "Timmy", text = "Tubular!"},
+				# TODO: Move Timmy to the left and have him look around
+				{name = "Timmy", text = "Whoa!! This is your place?"},
+				{name = "Timmy", text = "It looks radical, man!", options = {"THANKS": DIALOG_TYPE.TIMMY_SHIP_3_THANKS, "RADICAL?": DIALOG_TYPE.TIMMY_SHIP_3_RADICAL}},
+			]
+		DIALOG_TYPE.TIMMY_SHIP_3_THANKS:
+			return [
+				{name = "Timmy", text = "Hey, no sweat! I'm just speaking the facts."},
+				# TODO: Walk over to time vault sequence
+			]
+		DIALOG_TYPE.TIMMY_SHIP_3_RADICAL:
+			return [
+				{name = "Timmy", text = "What? You've never heard anyone say radical before?"},
+				{name = "Timmy", text = "That's insulting, man. I'm gonna pretend I didn't hear that."},
+				# TODO: Walk over to time vault sequence
+			]
+		DIALOG_TYPE.TIMMY_SHIP_VAULT_YES:
+			return [
+				# Timmy phychic lifting
+				# Timmy psychic throwing you
+			]
+		DIALOG_TYPE.TIMMY_SHIP_VAULT_NO3:
+			return [
+				# Timmy phychic lifting
+				# Timmy psychic throwing you
+			]
+		DIALOG_TYPE.TIMMY_SHIP_HOMEWRECKING:
+			return [
 				# Lil'ens entering
 				# "Get 'em lil'ens!"
 				# Player thrown into wall and blacking out (reset camera)

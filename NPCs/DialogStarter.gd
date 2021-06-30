@@ -17,13 +17,8 @@ export(bool) var enabled = true
 ## Connect using the Node tab while inspecting a dialogStarter node
 ## Can call any method on any other node in the scene
 # warning-ignore:unused_signal
-# warning-ignore:unused_signal
-# warning-ignore:unused_signal
-# warning-ignore:unused_signal
-# warning-ignore:unused_signal
-# warning-ignore:unused_signal
-# warning-ignore:unused_signal
-signal action1; signal action2; signal action3; signal action4; signal action5; signal action6; signal action7
+signal action1; signal action2; signal action3; signal action4;
+signal action5; signal action6; signal action7; signal action8;
 
 
 func _process(_delta):
@@ -55,6 +50,9 @@ func queue_dialog_by_id(dialog_id, player_body = null):
 	Gui.queue_text(self, {"disable": active_bodies})
 	if one_shot:
 		queue_free()
+
+func set_dialog_option(dialog_id : int):
+	dialog_num = dialog_id
 
 func enable():
 	enabled = true
