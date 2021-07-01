@@ -120,20 +120,31 @@ func get_dialog(text_num):
 		DIALOG_TYPE.TIMMY_SHIP_2:
 			return [
 				{name = "Timmy", text = "Tubular!"},
-				# TODO: Move Timmy to the left and have him look around
+				# Move Timmy to the left and have him look around
+				{signal = "action2", delay=1},
 				{name = "Timmy", text = "Whoa!! This is your place?"},
 				{name = "Timmy", text = "It looks radical, man!", options = {"THANKS": DIALOG_TYPE.TIMMY_SHIP_3_THANKS, "RADICAL?": DIALOG_TYPE.TIMMY_SHIP_3_RADICAL}},
 			]
 		DIALOG_TYPE.TIMMY_SHIP_3_THANKS:
 			return [
 				{name = "Timmy", text = "Hey, no sweat! I'm just speaking the facts."},
+				{name = "Timmy", text = "One question, though."},
 				# TODO: Walk over to time vault sequence
+				{signal = "action3", delay=1},
+				{name = "Timmy", text = "What's that?"},
+				{signal = "action4", delay=1},
+				{name = "Timmy", text = "Whoa! Time Pieces??"},
 			]
 		DIALOG_TYPE.TIMMY_SHIP_3_RADICAL:
 			return [
 				{name = "Timmy", text = "What? You've never heard anyone say radical before?"},
 				{name = "Timmy", text = "That's insulting, man. I'm gonna pretend I didn't hear that."},
+				{name = "Timmy", text = "One question, though."},
 				# TODO: Walk over to time vault sequence
+				{signal = "action3", delay=1},
+				{name = "Timmy", text = "What's that?"},
+				{signal = "action4", delay=1},
+				{name = "Timmy", text = "Whoa! Time Pieces??"},
 			]
 		DIALOG_TYPE.TIMMY_SHIP_VAULT_YES:
 			return [

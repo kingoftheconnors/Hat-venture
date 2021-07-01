@@ -95,8 +95,9 @@ func room_capture(spot, is_move_walls):
 func finish_room_capture():
 	timer.disconnect("timeout", self, "finish_room_capture")
 	get_tree().paused = false
-	left_collider.disabled = false
-	right_collider.disabled = false
+	if move_walls:
+		left_collider.disabled = false
+		right_collider.disabled = false
 
 ## Releases room capture and resets camera to following the player
 func capture_release(release_box_position):

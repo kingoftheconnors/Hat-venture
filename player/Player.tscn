@@ -4805,8 +4805,8 @@ collision_mask = 2
 
 [node name="PlayerCore" type="Sprite" parent="ScaleChildren"]
 material = SubResource( 2 )
-texture = ExtResource( 1 )
-hframes = 2
+texture = ExtResource( 3 )
+hframes = 3
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="ScaleChildren"]

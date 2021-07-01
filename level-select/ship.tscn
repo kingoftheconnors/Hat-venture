@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://level-select/shiproom1.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://level-select/exclamation.png" type="Texture" id=18]
 [ext_resource path="res://level-select/timepiecesboard.png" type="Texture" id=19]
 [ext_resource path="res://common/CameraCapture.tscn" type="PackedScene" id=20]
+[ext_resource path="res://cutscenes/Timmy.tscn" type="PackedScene" id=21]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 2 )
@@ -136,10 +137,9 @@ foregroundSprite = NodePath("../shiproomForeground")
 position = Vector2( 108, -32 )
 shape = SubResource( 2 )
 
-[node name="DialogBox" parent="." instance=ExtResource( 9 )]
+[node name="DoorDialog" parent="." instance=ExtResource( 9 )]
 position = Vector2( 304, -40 )
-dialog_num = 5
-enabled = false
+dialog_num = 10
 
 [node name="Spawn" type="Node2D" parent="." groups=[
 "spawn",
@@ -166,9 +166,20 @@ playing = true
 position = Vector2( 0, -4 )
 dialog_num = 0
 
+[node name="Timmy" parent="." instance=ExtResource( 21 )]
+visible = false
+position = Vector2( 304, -32 )
+
 [node name="CameraCapture" parent="." instance=ExtResource( 20 )]
-position = Vector2( 192, -40 )
-z_index = -4
+position = Vector2( 200, -32 )
+scale = Vector2( 1e-05, 0.1 )
+release_on_exit = false
+walled = false
+collision_enabled = false
+
+[node name="CameraCapture2" parent="." instance=ExtResource( 20 )]
+position = Vector2( 64, -96 )
+scale = Vector2( 1e-05, 1e-05 )
 release_on_exit = false
 walled = false
 collision_enabled = false
@@ -176,6 +187,12 @@ collision_enabled = false
 [connection signal="ready" from="MusicIntro" to="Music" method="stop_music"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_Area2D_body_exited"]
+[connection signal="action1" from="DoorDialog" to="Timmy" method="make_visible"]
+[connection signal="action1" from="DoorDialog" to="Player" method="bounce_back"]
+[connection signal="action2" from="DoorDialog" to="Timmy" method="walk_to" binds= [ Vector2( 256, 0 ) ]]
+[connection signal="action3" from="DoorDialog" to="CameraCapture2" method="capture"]
+[connection signal="action4" from="DoorDialog" to="Timmy" method="walk_to" binds= [ Vector2( 68, 0 ), -1, 1 ]]
+[connection signal="action4" from="DoorDialog" to="Timmy" method="teleport_to" binds= [ Vector2( 256, -72 ) ]]
 [connection signal="action1" from="Display/DialogBox" to="Display" method="pressed"]
 [connection signal="action2" from="Display/DialogBox" to="CameraCapture" method="capture"]
 [connection signal="action3" from="Display/DialogBox" to="DoorDialog" method="enable"]
