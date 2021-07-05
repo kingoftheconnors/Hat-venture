@@ -132,8 +132,17 @@ func get_dialog(text_num):
 				# TODO: Walk over to time vault sequence
 				{signal = "action3", delay=1},
 				{name = "Timmy", text = "What's that?"},
-				{signal = "action4", delay=1},
+				{signal = "action4", delay=0.5},
+				{signal = "action5", delay=0.75},
 				{name = "Timmy", text = "Whoa! Time Pieces??"},
+				# Lift up
+				{signal = "action6", delay=1},
+				{name = "Timmy", text = "I'm stealing these, bye."},
+				# Camera release and throw
+				{signal = "action7", delay=2},
+				{name = "Timmy", text = "Alright Lil'ens! Come on in!"},
+				# Lil'ens enter
+				{signal = "action9", delay=1},
 			]
 		DIALOG_TYPE.TIMMY_SHIP_3_RADICAL:
 			return [
@@ -143,8 +152,33 @@ func get_dialog(text_num):
 				# TODO: Walk over to time vault sequence
 				{signal = "action3", delay=1},
 				{name = "Timmy", text = "What's that?"},
-				{signal = "action4", delay=1},
+				{signal = "action4", delay=0.5},
+				{signal = "action5", delay=0.75},
 				{name = "Timmy", text = "Whoa! Time Pieces??"},
+				# Lift up
+				{signal = "action6", delay=1},
+				{name = "Timmy", text = "I'm stealing these, bye."},
+				# Camera release and throw
+				{signal = "action7", delay=2},
+				{name = "Timmy", text = "Alright Lil'ens! Come on in!"},
+				# Lil'ens enter
+				{signal = "action9", delay=1},
+				# Fade out
+				{fadeout = true, delay=1},
+				{signal = "actionA", delay=1},
+				# Fade in with lil'en-holding-timepiece-generator-active
+				# Move Timmy towards door
+				{fadein = true, delay=1},
+				# Say words
+				{name = "Timmy", text = "Toss you later, dork!"},
+				# Timmy Leave
+				{signal = "actionB", delay=1},
+				# Hat Kid Jump up
+				{signal = "actionC", delay=1},
+				# Hat Kid walk towards door
+				{signal = "actionD", delay=0.5},
+				# Goto 1
+				{level = "res://world1/level1.tscn"}
 			]
 		DIALOG_TYPE.TIMMY_SHIP_VAULT_YES:
 			return [

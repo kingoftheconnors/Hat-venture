@@ -56,31 +56,31 @@ tracks/0/keys = {
 [sub_resource type="AnimationNodeAnimation" id=5]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=11]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "psychic"
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=8]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
 
-[sub_resource type="AnimationNodeStateMachine" id=9]
-states/Idle/node = SubResource( 5 )
-states/Idle/position = Vector2( 188, 51 )
-states/psychic/node = SubResource( 11 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+
+[sub_resource type="AnimationNodeStateMachine" id=12]
+states/idle/node = SubResource( 5 )
+states/idle/position = Vector2( 188, 51 )
+states/psychic/node = SubResource( 6 )
 states/psychic/position = Vector2( 329, 148 )
-states/walk/node = SubResource( 6 )
+states/walk/node = SubResource( 7 )
 states/walk/position = Vector2( 427, 51 )
-transitions = [ "walk", "Idle", SubResource( 7 ), "Idle", "walk", SubResource( 8 ), "Idle", "psychic", SubResource( 12 ), "psychic", "Idle", SubResource( 13 ) ]
-start_node = "Idle"
+transitions = [ "walk", "idle", SubResource( 8 ), "idle", "walk", SubResource( 9 ), "idle", "psychic", SubResource( 10 ), "psychic", "idle", SubResource( 11 ) ]
+start_node = "idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
 
 [node name="Timmy" type="KinematicBody2D"]
 pause_mode = 2
@@ -103,7 +103,7 @@ anims/psychic = SubResource( 3 )
 anims/walk = SubResource( 4 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 9 )
+tree_root = SubResource( 12 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 10 )
+parameters/playback = SubResource( 13 )

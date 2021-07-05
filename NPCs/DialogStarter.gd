@@ -13,14 +13,6 @@ export(bool) var one_shot
 ## If true, this dialog is currently active (set false if dialog will be activated later)
 export(bool) var enabled = true
 
-## Signals called by dialog system.
-## Connect using the Node tab while inspecting a dialogStarter node
-## Can call any method on any other node in the scene
-# warning-ignore:unused_signal
-signal action1; signal action2; signal action3; signal action4;
-signal action5; signal action6; signal action7; signal action8;
-
-
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_up"):
 		play_dialog()
@@ -66,3 +58,27 @@ func _on_DialogBox_body_exited(body):
 		up_prompt.visible = false
 
 onready var up_prompt = $UpPrompt
+
+## Signals called by dialog system.
+## Connect using the Node tab while inspecting a dialogStarter node
+## Can call any method on any other node in the scene
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+signal action1; signal action2; signal action3; signal action4;
+signal action5; signal action6; signal action7; signal action8;
+signal action9; signal actionA; signal actionB; signal actionC;
+signal actionD; signal actionE; signal actionF; signal actionG;

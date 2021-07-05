@@ -9,6 +9,7 @@ signal dead
 
 # BASIC MOVEMENT
 const PLAYER_GRAVITY = 10
+const FALL_UP_GRAVITY = 5
 const TURNOFF_SPEED = 15
 const BASE_SPEED = 10 #25
 var base_speed = BASE_SPEED
@@ -81,6 +82,10 @@ const POST_BASH_JUMP_TIME = 10
 var post_bash_jump_timer = 0
 const BASH_OUT_STRENGTH = 180
 
+# BLOWING BACK
+var blowing_back = false
+const BLOW_BACK_SPEED = 250
+
 # CLIMBING
 var CLIMBING_SPEED := 80
 
@@ -103,6 +108,12 @@ var ignore_air_friction = false
 var ignore_horizontal_timer = 0
 var crouching = false
 var gravity = true
+
+var goal_x = null
+var goal_y = null
+var direc_override = null
+var watch_override = null
+const WALK_EPSILON : float = 1.0
 
 ## Current velo. Similar to other platformers, starts at 0 and ramps up
 ## to max_velo
@@ -185,12 +196,36 @@ func move(delta):
 	if frozen or diving:
 		horizontal = 0; vertical = 0
 	
-	# Setting direction
-	if horizontal * direction < 0:
-		if horizontal > 0:
-			direction = 1
+	# Moving towards goal_x (supported-in-cutscene)
+	if goal_x != null:
+		if abs(position.x - goal_x) > WALK_EPSILON:
+			if position.x > goal_x:
+				horizontal = -1
+			else:
+				horizontal = 1
 		else:
+			goal_x = null
+			velo.x = 0
+			direc_override = null
+	
+	# Being launched backwards (supported-in-cutscene)
+	if blowing_back:
+		horizontal = -direction
+	
+	# Setting direction
+	if watch_override != null:
+		if position.x > watch_override.position.x:
 			direction = -1
+		else:
+			direction = 1
+	elif direc_override:
+		direction = direc_override
+	else:
+		if horizontal * direction < 0:
+			if horizontal > 0:
+				direction = 1
+			else:
+				direction = -1
 	if scale_manager.scale.x != direction:
 		scale_manager.scale = Vector2(direction, 1)
 	
@@ -302,22 +337,29 @@ func move(delta):
 	
 	#Gravity
 	if gravity and !climbing:
-		if velo.y < 0:
-			velo.y += PLAYER_GRAVITY
-		else:
-			if running and velo.x > max_velo*.75 and coyoteTimer > 0:
-				pass
-			elif diving:
-				velo.y += PLAYER_GRAVITY * DIVE_FALL_MULTIPLIER
-			elif spinning:
-				velo.y += PLAYER_GRAVITY * SPIN_FALL_MULTIPLIER
+		if goal_y != null:
+			velo.y *= .98
+			if position.y < goal_y:
+				velo.y += FALL_UP_GRAVITY
 			else:
-				velo.y += PLAYER_GRAVITY * FALL_MULTIPLIER
-			# terminal velocity
-			if velo.y > Constants.terminalVelocity:
-				velo.y = Constants.terminalVelocity
-			if spinning and velo.y > Constants.terminalVelocity*SPIN_TERMINAL_VELOCITY_MULTIPLIER:
-				velo.y = Constants.terminalVelocity*SPIN_TERMINAL_VELOCITY_MULTIPLIER
+				velo.y -= FALL_UP_GRAVITY
+		else:
+			if velo.y < 0:
+				velo.y += PLAYER_GRAVITY
+			else:
+				if running and velo.x > max_velo*.75 and coyoteTimer > 0:
+					pass
+				elif diving:
+					velo.y += PLAYER_GRAVITY * DIVE_FALL_MULTIPLIER
+				elif spinning:
+					velo.y += PLAYER_GRAVITY * SPIN_FALL_MULTIPLIER
+				else:
+					velo.y += PLAYER_GRAVITY * FALL_MULTIPLIER
+				# terminal velocity
+				if velo.y > Constants.terminalVelocity:
+					velo.y = Constants.terminalVelocity
+				if spinning and velo.y > Constants.terminalVelocity*SPIN_TERMINAL_VELOCITY_MULTIPLIER:
+					velo.y = Constants.terminalVelocity*SPIN_TERMINAL_VELOCITY_MULTIPLIER
 	
 	# Ladder climbing
 	if vertical != 0 and (on_ladders > 0 or on_ladders_top.size() > 0):
@@ -415,11 +457,46 @@ func move_player(v):
 			if bashing and recognize_collision:
 				if abs(collision.normal.x) > abs(collision.normal.y):
 					var _destroyed_body = bash_bounce(collision.collider)
+			# Blowing_back hitting wall
+			if blowing_back:
+				if abs(collision.normal.x) > abs(collision.normal.y):
+					new_velo.x = -velo.x * .1
+					unblow_back()
+					animate("dive")
+					diving = true
 	if !recognize_collision:
 		new_velo = prev_velo
 	#if bashing:
 	#	new_velo.y = 0
 	return new_velo
+
+func teleport_to(node_path : String):
+	position = get_node(node_path).position
+
+func walk_to(node_path : String, direction_override = null):
+	goal_x = get_node(node_path).position.x
+	if direction_override:
+		direc_override = direction_override
+func fly_to(node_path : String, direction_override = null):
+	goal_y = get_node(node_path).position.y
+func watch_node(node_path: String):
+	watch_override = get_node(node_path)
+func stop_watching():
+	watch_override = null
+	
+func blow_back(go_right: bool = 1):
+	blowing_back = true
+	ignore_air_friction = true
+	if go_right:
+		direction = -1
+	else:
+		direction = 1
+	max_velo = BLOW_BACK_SPEED
+	velo.x = BLOW_BACK_SPEED * -1 * direction
+func unblow_back():
+	blowing_back = false
+	max_velo = default_max_velo
+	goal_y = null
 
 onready var bash_collider = $"ScaleChildren/bashbox/BashCollider"
 func bash_bounce(body):
@@ -467,8 +544,13 @@ func bash_bounce(body):
 					call_deferred("bounce_back")
 					unbash()
 
-func bounce_back():
+func bounce_back(towards_x = null):
 	var direc = Vector2(-direction, -1.1) * KNOCKBACK_MULTIPLIER
+	if towards_x != null:
+		if (get_node(towards_x).position.x - position.x) * direc.x < 0:
+			direc.x = -direc.x
+		# Walk towards target area, with direction override opposite walk_direction
+		walk_to(towards_x, -direc.x/abs(direc.x))
 	push(direc)
 
 func spin_bounce(body):

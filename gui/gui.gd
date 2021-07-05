@@ -105,6 +105,12 @@ func queue_dialog(dialog_starter, textbox_num : int):
 	var textbox = textboxes.get_dialog(textbox_num)
 	queue(dialog_starter, textbox)
 
+func queue_dialog_at_front(dialog_starter, textbox_num : int):
+	var textbox = textboxes.get_dialog(textbox_num)
+	for textbox_dict in textbox:
+		textbox_dict.starter = dialog_starter
+	text_to_run = textbox + text_to_run
+
 func queue(dialog_starter, textbox):
 	for textbox_dict in textbox:
 		textbox_dict.starter = dialog_starter
@@ -145,6 +151,10 @@ func start_dialog(next_box):
 		if next_box.has('spawn_point'):
 			spawn_point = next_box['spawn_point']
 		PlayerGameManager.start_level(next_box['level'], spawn_point)
+	elif next_box.has("fadeout"):
+		Gui.cover()
+	elif next_box.has("fadein"):
+		Gui.reveal()
 	
 	# Wait for program to return signal that we can continue scene
 	if next_box.has("delay"):
@@ -210,7 +220,7 @@ func crawl(text_box):
 			selected_option = dialogOptions.poll_user_selection()
 			yield()
 		dialogOptions.hide_options()
-		queue_dialog(text_box.starter, selected_option)
+		queue_dialog_at_front(text_box.starter, selected_option)
 	else:
 		# Wait for user input
 		while(!Input.is_action_just_pressed("ui_A") and !Input.is_action_just_pressed("ui_B")):

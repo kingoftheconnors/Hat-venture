@@ -103,31 +103,37 @@ func finish_room_capture():
 func capture_release(release_box_position):
 	if target_spot != Vector2.ZERO and target_spot == release_box_position:
 		move_walls = true
-		tween.stop_all()
-		if target_spot.x < level.left:
-			target_spot.x = level.left + get_viewport().get_visible_rect().size.x/2
-			target_spot.y = min(level.down - get_viewport().get_visible_rect().size.y/2, max(level.up + get_viewport().get_visible_rect().size.y/2, target.position.y))
-		if target_spot.x > level.right:
-			target_spot.x = level.right - get_viewport().get_visible_rect().size.x/2
-			target_spot.y = min(level.down - get_viewport().get_visible_rect().size.y/2, max(level.up + get_viewport().get_visible_rect().size.y/2, target.position.y))
-		if target_spot.y < level.up:
-			target_spot.x = min(level.right - get_viewport().get_visible_rect().size.x/2, max(level.left + get_viewport().get_visible_rect().size.x/2, target.position.x))
-			target_spot.y = level.up + get_viewport().get_visible_rect().size.y/2
-		if target_spot.y > level.down:
-			target_spot.x = min(level.right - get_viewport().get_visible_rect().size.x/2, max(level.left + get_viewport().get_visible_rect().size.x/2, target.position.x))
-			target_spot.y = level.down - get_viewport().get_visible_rect().size.y/2
-		tween.interpolate_property(self, "position", self.position, target_spot, .5, Tween.TRANS_LINEAR, Tween.EASE_OUT)
-		tween.start()
-		reset_limits()
-		get_tree().paused = true
-		if timer.is_connected("timeout", self, "finish_room_capture"):
-			timer.disconnect("timeout", self, "finish_room_capture")
-		timer.connect("timeout", self, "finish_capture_release")
-		timer.start()
+		# Screen transition if area is off-screen:
+		if target.position.x > level.right or target.position.x < level.left \
+			or target.position.y > level.down or target.position.y < level.up:
+			tween.stop_all()
+			if target_spot.x < level.left:
+				target_spot.x = level.left + get_viewport().get_visible_rect().size.x/2
+				target_spot.y = min(level.down - get_viewport().get_visible_rect().size.y/2, max(level.up + get_viewport().get_visible_rect().size.y/2, target.position.y))
+			if target_spot.x > level.right:
+				target_spot.x = level.right - get_viewport().get_visible_rect().size.x/2
+				target_spot.y = min(level.down - get_viewport().get_visible_rect().size.y/2, max(level.up + get_viewport().get_visible_rect().size.y/2, target.position.y))
+			if target_spot.y < level.up:
+				target_spot.x = min(level.right - get_viewport().get_visible_rect().size.x/2, max(level.left + get_viewport().get_visible_rect().size.x/2, target.position.x))
+				target_spot.y = level.up + get_viewport().get_visible_rect().size.y/2
+			if target_spot.y > level.down:
+				target_spot.x = min(level.right - get_viewport().get_visible_rect().size.x/2, max(level.left + get_viewport().get_visible_rect().size.x/2, target.position.x))
+				target_spot.y = level.down - get_viewport().get_visible_rect().size.y/2
+			tween.interpolate_property(self, "position", self.position, target_spot, .5, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+			tween.start()
+			reset_limits()
+			get_tree().paused = true
+			if timer.is_connected("timeout", self, "finish_room_capture"):
+				timer.disconnect("timeout", self, "finish_room_capture")
+			timer.connect("timeout", self, "finish_capture_release")
+			timer.start()
+		else:
+			finish_capture_release()
 
 func finish_capture_release():
 	get_tree().paused = false
-	timer.disconnect("timeout", self, "finish_capture_release")
+	if timer.is_connected("timeout", self, "finish_capture_release"):
+		timer.disconnect("timeout", self, "finish_capture_release")
 	target_spot = Vector2.ZERO
 	reset_limits()
 	left_collider.disabled = true
