@@ -128,21 +128,7 @@ func get_dialog(text_num):
 		DIALOG_TYPE.TIMMY_SHIP_3_THANKS:
 			return [
 				{name = "Timmy", text = "Hey, no sweat! I'm just speaking the facts."},
-				{name = "Timmy", text = "One question, though."},
-				# TODO: Walk over to time vault sequence
-				{signal = "action3", delay=1},
-				{name = "Timmy", text = "What's that?"},
-				{signal = "action4", delay=0.5},
-				{signal = "action5", delay=0.75},
-				{name = "Timmy", text = "Whoa! Time Pieces??"},
-				# Lift up
-				{signal = "action6", delay=1},
-				{name = "Timmy", text = "I'm stealing these, bye."},
-				# Camera release and throw
-				{signal = "action7", delay=2},
-				{name = "Timmy", text = "Alright Lil'ens! Come on in!"},
-				# Lil'ens enter
-				{signal = "action9", delay=1},
+
 			]
 		DIALOG_TYPE.TIMMY_SHIP_3_RADICAL:
 			return [
@@ -161,14 +147,15 @@ func get_dialog(text_num):
 				# Camera release and throw
 				{signal = "action7", delay=2},
 				{name = "Timmy", text = "Alright Lil'ens! Come on in!"},
-				# Lil'ens enter
+				# Screen shake
+				{signal = "actionE", delay=1},
+				# Lil'ens enter and walk to vault
 				{signal = "action9", delay=1},
-				# Fade out
-				{fadeout = true, delay=1},
-				{signal = "actionA", delay=1},
-				# Fade in with lil'en-holding-timepiece-generator-active
+				# Dust cloud (turn off screen shake)
+				{signal = "actionF", delay=1},
+				# Turn off dust cloud and walk Eltuns (now carrying timepieces) to door
 				# Move Timmy towards door
-				{fadein = true, delay=1},
+				{signal = "actionA", delay=1},
 				# Say words
 				{name = "Timmy", text = "Toss you later, dork!"},
 				# Timmy Leave

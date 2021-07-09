@@ -18,6 +18,9 @@ var target_spot : Vector2
 ## Lookahead amount for when the target is moving fast,
 ## so the camera can still catch incoming objects
 var lookahead_offset : float
+## Value for screen shake. Set to 0 to turn off
+var shake_amount : int = 0
+var shake_direc_right : bool = false
 const LOOKAHEAD_CHANGE_RATE = 30
 
 ## Flag for moving left and right bodies when captured
@@ -43,6 +46,12 @@ var lim_right = 100
 func _ready():
 	reset_limits()
 
+func _process(delta):
+	if shake_direc_right:
+		position.x += shake_amount
+	else:
+		position.x -= shake_amount
+
 # Called every frame to update camera position
 func _physics_process(delta):
 	# Moving to a target-set position
@@ -61,6 +70,7 @@ func _physics_process(delta):
 		else:
 			# Default behavior: move to player object
 			position = target.position + Vector2(lookahead_offset, 0)
+			shake_direc_right = !shake_direc_right
 		# Enforce limits
 		if position.y > lim_bottom - Constants.camera_radius.y:
 			position.y = lim_bottom - Constants.camera_radius.y
@@ -162,3 +172,5 @@ func _exit_tree():
 	if timer.time_left > 0:
 		get_tree().paused = false
 
+func screen_shake(shake_amo : int = 0):
+	shake_amount = shake_amo
