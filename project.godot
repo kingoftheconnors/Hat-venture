@@ -94,6 +94,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://enemy/crow/paraenemy.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "path_follower",
+"language": "GDScript",
+"path": "res://cutscenes/PlatformerPathFollower.gd"
+}, {
 "base": "Reference",
 "class": "pon",
 "language": "GDScript",
@@ -162,6 +167,7 @@ _global_script_class_icons={
 "lemming": "",
 "pace": "",
 "paraenemy": "",
+"path_follower": "",
 "pon": "",
 "runningItem": "",
 "runningPower": "",

@@ -123,17 +123,6 @@ func get_dialog(text_num):
 				# Move Timmy to the left and have him look around
 				{signal = "action2", delay=1},
 				{name = "Timmy", text = "Whoa!! This is your place?"},
-				{name = "Timmy", text = "It looks radical, man!", options = {"THANKS": DIALOG_TYPE.TIMMY_SHIP_3_THANKS, "RADICAL?": DIALOG_TYPE.TIMMY_SHIP_3_RADICAL}},
-			]
-		DIALOG_TYPE.TIMMY_SHIP_3_THANKS:
-			return [
-				{name = "Timmy", text = "Hey, no sweat! I'm just speaking the facts."},
-
-			]
-		DIALOG_TYPE.TIMMY_SHIP_3_RADICAL:
-			return [
-				{name = "Timmy", text = "What? You've never heard anyone say radical before?"},
-				{name = "Timmy", text = "That's insulting, man. I'm gonna pretend I didn't hear that."},
 				{name = "Timmy", text = "One question, though."},
 				# TODO: Walk over to time vault sequence
 				{signal = "action3", delay=1},
@@ -150,9 +139,9 @@ func get_dialog(text_num):
 				# Screen shake
 				{signal = "actionE", delay=1},
 				# Lil'ens enter and walk to vault
-				{signal = "action9", delay=1},
-				# Dust cloud (turn off screen shake)
-				{signal = "actionF", delay=1},
+				{signal = "action9", delay=2},
+				# Dust cloud
+				{signal = "actionF", delay=3},
 				# Turn off dust cloud and walk Eltuns (now carrying timepieces) to door
 				# Move Timmy towards door
 				{signal = "actionA", delay=1},
@@ -166,6 +155,17 @@ func get_dialog(text_num):
 				{signal = "actionD", delay=0.5},
 				# Goto 1
 				{level = "res://world1/level1.tscn"}
+				#{name = "Timmy", text = "It looks radical, man!", options = {"THANKS": DIALOG_TYPE.TIMMY_SHIP_3_THANKS, "RADICAL?": DIALOG_TYPE.TIMMY_SHIP_3_RADICAL}},
+			]
+		DIALOG_TYPE.TIMMY_SHIP_3_THANKS:
+			return [
+				{name = "Timmy", text = "Hey, no sweat! I'm just speaking the facts."},
+
+			]
+		DIALOG_TYPE.TIMMY_SHIP_3_RADICAL:
+			return [
+				{name = "Timmy", text = "What? You've never heard anyone say radical before?"},
+				{name = "Timmy", text = "That's insulting, man. I'm gonna pretend I didn't hear that."},
 			]
 		DIALOG_TYPE.TIMMY_SHIP_VAULT_YES:
 			return [

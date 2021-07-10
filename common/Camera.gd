@@ -172,5 +172,6 @@ func _exit_tree():
 	if timer.time_left > 0:
 		get_tree().paused = false
 
-func screen_shake(shake_amo : int = 0):
-	shake_amount = shake_amo
+func screen_shake(shake_amo : int = 0, time_length : float = 1):
+	tween.interpolate_property(self, "shake_amount", self.shake_amount, shake_amo, time_length, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
