@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://font/PressStart2P-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://gui/OptionsMenu.gd" type="Script" id=2]
@@ -6,15 +6,16 @@
 [ext_resource path="res://gui/DebugModeItem.gd" type="Script" id=4]
 [ext_resource path="res://gui/PaletteController.gd" type="Script" id=5]
 [ext_resource path="res://gui/OptionsRoot.gd" type="Script" id=6]
-[ext_resource path="res://gui/HudSizeController.gd" type="Script" id=7]
-[ext_resource path="res://gui/ControlsMenu.gd" type="Script" id=8]
+[ext_resource path="res://gui/ResolutionController.gd" type="Script" id=7]
+[ext_resource path="res://gui/SubMenu.gd" type="Script" id=8]
 [ext_resource path="res://gui/KeyController.gd" type="Script" id=9]
 [ext_resource path="res://gui/QuitToMainController.gd" type="Script" id=10]
 [ext_resource path="res://gui/SaveKeyController.gd" type="Script" id=11]
 [ext_resource path="res://gui/DefaultKeyController.gd" type="Script" id=12]
-[ext_resource path="res://gui/ControlMenuController.gd" type="Script" id=13]
+[ext_resource path="res://gui/OpenMenuController.gd" type="Script" id=13]
 [ext_resource path="res://gui/QuitGameController.gd" type="Script" id=14]
 [ext_resource path="res://Music/startSong.gd" type="Script" id=15]
+[ext_resource path="res://gui/ControlsMenu.gd" type="Script" id=16]
 
 [sub_resource type="DynamicFont" id=1]
 size = 8
@@ -174,7 +175,6 @@ tracks/3/keys = {
 }
 
 [sub_resource type="DynamicFont" id=5]
-size = 24
 outline_size = 1
 font_data = ExtResource( 1 )
 
@@ -619,6 +619,15 @@ tracks/11/keys = {
 "values": [ -80.0 ]
 }
 
+[sub_resource type="Animation" id=9]
+resource_name = "large"
+
+[sub_resource type="Animation" id=10]
+resource_name = "medium"
+
+[sub_resource type="Animation" id=11]
+resource_name = "regular"
+
 [node name="OptionsMenu" type="CanvasLayer"]
 layer = 5
 script = ExtResource( 6 )
@@ -630,12 +639,14 @@ script = ExtResource( 15 )
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 pause_mode = 2
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 39.0
-margin_top = 16.0
-margin_right = -40.0
-margin_bottom = -32.0
+anchor_left = 0.498
+anchor_top = 0.056
+anchor_right = 0.498
+anchor_bottom = 0.778
+margin_left = -88.36
+margin_top = -0.128
+margin_right = 88.64
+margin_bottom = -0.0640106
 texture = ExtResource( 3 )
 patch_margin_left = 13
 patch_margin_top = 10
@@ -764,8 +775,8 @@ margin_top = -0.079998
 margin_right = -1.849
 margin_bottom = 19.92
 focus_neighbour_top = NodePath("../MusicSlider")
-focus_neighbour_bottom = NodePath("../Controls")
-focus_next = NodePath("../Controls")
+focus_neighbour_bottom = NodePath("../PaletteController")
+focus_next = NodePath("../PaletteController")
 focus_previous = NodePath("../MusicSlider")
 min_value = 0.001
 max_value = 1.0
@@ -776,51 +787,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Controls" type="Label" parent="NinePatchRect"]
-anchor_left = 0.051
-anchor_top = 0.4
-anchor_right = 0.051
-anchor_bottom = 0.406
-margin_left = -0.0270004
-margin_top = 1.0
-margin_right = 327.973
-margin_bottom = 32.04
-rect_scale = Vector2( 0.5, 0.5 )
-focus_neighbour_top = NodePath("../SoundSlider")
-focus_neighbour_bottom = NodePath("../PaletteController")
-focus_mode = 2
-custom_fonts/font = SubResource( 5 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = " Edit Controls"
-valign = 1
-uppercase = true
-script = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="L" type="Label" parent="NinePatchRect/Controls"]
-visible = false
-margin_right = 16.0
-margin_bottom = 32.0
-custom_fonts/font = SubResource( 5 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = ">"
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Palette" type="Label" parent="NinePatchRect"]
 anchor_left = 0.096
-anchor_top = 0.5
+anchor_top = 0.404
 anchor_right = 0.096
-anchor_bottom = 0.5
-margin_left = 0.00799942
-margin_top = 1.00001
+anchor_bottom = 0.404
+margin_left = 0.00800133
+margin_top = 0.0400009
 margin_right = 168.008
-margin_bottom = 33.0
+margin_bottom = 32.04
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -833,17 +808,15 @@ __meta__ = {
 
 [node name="PaletteController" type="Control" parent="NinePatchRect"]
 anchor_left = 0.458
-anchor_top = 0.475
+anchor_top = 0.404
 anchor_right = 0.955
-anchor_bottom = 0.5
-margin_left = -0.0660095
-margin_top = 5.0
-margin_right = -0.0350037
-margin_bottom = 15.0
-focus_neighbour_top = NodePath("../Controls")
-focus_neighbour_bottom = NodePath("../HudSizeController")
-focus_next = NodePath("../HudSizeController")
-focus_previous = NodePath("../SoundSlider")
+anchor_bottom = 0.404
+margin_left = -0.0660019
+margin_top = 0.0400009
+margin_right = -0.0349884
+margin_bottom = 16.04
+focus_neighbour_top = NodePath("../SoundSlider")
+focus_neighbour_bottom = NodePath("../Controls")
 focus_mode = 2
 script = ExtResource( 5 )
 __meta__ = {
@@ -900,94 +873,74 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FontSize" type="Label" parent="NinePatchRect"]
-anchor_left = 0.096
-anchor_top = 0.6
-anchor_right = 0.096
-anchor_bottom = 0.6
-margin_left = 0.00799942
-margin_top = 1.0
-margin_right = 168.008
-margin_bottom = 33.0
+[node name="Controls" type="Label" parent="NinePatchRect"]
+anchor_left = 0.051
+anchor_top = 0.5
+anchor_right = 0.051
+anchor_bottom = 0.5
+margin_left = -0.0269985
+margin_top = 7.62939e-06
+margin_right = 335.973
+margin_bottom = 32.48
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "HUDsize"
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HudSizeController" type="Control" parent="NinePatchRect"]
-anchor_left = 0.458
-anchor_top = 0.6
-anchor_right = 0.955
-anchor_bottom = 0.6
-margin_left = -0.0660095
-margin_top = 0.999992
-margin_right = -0.0350037
-margin_bottom = 15.0
 focus_neighbour_top = NodePath("../PaletteController")
-focus_neighbour_bottom = NodePath("../QuitToMain")
-focus_next = NodePath("../QuitToMain")
-focus_previous = NodePath("../PaletteController")
+focus_neighbour_bottom = NodePath("../Graphics")
 focus_mode = 2
-script = ExtResource( 7 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = " Edit Controls"
+valign = 1
+uppercase = true
+script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+menu_to_open = NodePath("../../ControlsMenu")
 
-[node name="Current" type="Label" parent="NinePatchRect/HudSizeController"]
-anchor_left = 0.5
-anchor_right = 0.501
-margin_left = -60.0
-margin_right = 179.912
+[node name="L" type="Label" parent="NinePatchRect/Controls"]
+visible = false
+margin_right = 16.0
 margin_bottom = 32.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Regular"
-align = 1
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="L" type="Label" parent="NinePatchRect/HudSizeController"]
-visible = false
-anchor_top = 0.071
-anchor_right = 0.114
-anchor_bottom = 0.071
-margin_top = 0.00599998
-margin_right = 9.968
-margin_bottom = 30.006
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "<"
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="R" type="Label" parent="NinePatchRect/HudSizeController"]
-visible = false
-anchor_left = 0.909
-anchor_top = 0.071
-anchor_right = 1.0
-anchor_bottom = 0.071
-margin_left = -79.992
-margin_top = 0.00599998
-margin_right = 88.4
-margin_bottom = 30.006
-rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
-align = 2
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Graphics" type="Label" parent="NinePatchRect"]
+anchor_left = 0.051
+anchor_top = 0.596
+anchor_right = 0.051
+anchor_bottom = 0.596
+margin_left = -0.0269985
+margin_top = -0.0400085
+margin_right = 335.973
+margin_bottom = 32.44
+rect_scale = Vector2( 0.5, 0.5 )
+focus_neighbour_top = NodePath("../Controls")
+focus_neighbour_bottom = NodePath("../QuitGame")
+focus_mode = 2
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = " Edit Graphics"
+valign = 1
+uppercase = true
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+menu_to_open = NodePath("../../GraphicsMenu")
+
+[node name="L" type="Label" parent="NinePatchRect/Graphics"]
+visible = false
+margin_right = 16.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
 valign = 1
 uppercase = true
 __meta__ = {
@@ -1004,10 +957,10 @@ margin_top = 2.0
 margin_right = 200.008
 margin_bottom = 26.0
 rect_scale = Vector2( 0.5, 0.5 )
-focus_neighbour_top = NodePath("../HudSizeController")
+focus_neighbour_top = NodePath("../Graphics")
 focus_neighbour_bottom = NodePath("../QuitGame")
 focus_next = NodePath("../QuitGame")
-focus_previous = NodePath("../HudSizeController")
+focus_previous = NodePath("../Graphics")
 focus_mode = 2
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1075,18 +1028,20 @@ __meta__ = {
 [node name="ControlsMenu" type="NinePatchRect" parent="."]
 pause_mode = 2
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 17.0
-margin_top = 16.0
-margin_right = -16.0
-margin_bottom = -48.0
+anchor_left = 0.5
+anchor_top = 0.056
+anchor_right = 0.5
+anchor_bottom = 0.722
+margin_left = -96.0
+margin_top = -0.128
+margin_right = 96.0
+margin_bottom = 0.0639801
 texture = ExtResource( 3 )
 patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
-script = ExtResource( 8 )
+script = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1132,7 +1087,7 @@ anchor_right = 0.047
 anchor_bottom = 0.225
 margin_left = -0.489
 margin_top = -7.62939e-06
-margin_right = 240.0
+margin_right = 159.929
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_top = NodePath("../../Keyboard")
@@ -1178,7 +1133,7 @@ anchor_right = 0.503
 anchor_bottom = 0.225
 margin_left = -0.0790024
 margin_top = -7.62939e-06
-margin_right = 240.0
+margin_right = 159.921
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_left = NodePath("../ui_up")
@@ -1224,7 +1179,7 @@ anchor_right = 0.047
 anchor_bottom = 0.353
 margin_left = 0.470999
 margin_top = -0.0320015
-margin_right = 240.0
+margin_right = 159.929
 margin_bottom = 31.968
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_top = NodePath("../ui_up")
@@ -1270,7 +1225,7 @@ anchor_right = 0.503
 anchor_bottom = 0.353
 margin_left = -0.0790024
 margin_top = -0.0320015
-margin_right = 240.0
+margin_right = 159.921
 margin_bottom = 31.968
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_left = NodePath("../ui_left")
@@ -1316,7 +1271,7 @@ anchor_right = 0.047
 anchor_bottom = 0.481
 margin_left = -0.0790005
 margin_top = -0.0640106
-margin_right = 240.0
+margin_right = 159.929
 margin_bottom = 31.936
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_top = NodePath("../ui_left")
@@ -1362,7 +1317,7 @@ anchor_right = 0.503
 anchor_bottom = 0.481
 margin_left = -0.271011
 margin_top = -0.0640106
-margin_right = 240.0
+margin_right = 159.921
 margin_bottom = 31.936
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_left = NodePath("../ui_A")
@@ -1408,7 +1363,7 @@ anchor_right = 0.047
 anchor_bottom = 0.608
 margin_left = -0.0710011
 margin_top = 0.0480042
-margin_right = 240.0
+margin_right = 159.929
 margin_bottom = 32.048
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_top = NodePath("../ui_A")
@@ -1454,7 +1409,7 @@ anchor_right = 0.503
 anchor_bottom = 0.611
 margin_left = -0.0790024
 margin_top = 0.0480042
-margin_right = 240.0
+margin_right = 159.921
 margin_bottom = 31.616
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_left = NodePath("../ui_release")
@@ -1567,23 +1522,270 @@ uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="GraphicsMenu" type="NinePatchRect" parent="."]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.056
+anchor_right = 0.5
+anchor_bottom = 0.722
+margin_left = -104.0
+margin_top = -0.128
+margin_right = 104.0
+margin_bottom = 0.0639801
+texture = ExtResource( 3 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+first_item = NodePath("ResolutionSelector")
+previous_menu = NodePath("../NinePatchRect")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GraphicsMenu"]
+anims/large = SubResource( 9 )
+anims/medium = SubResource( 10 )
+anims/regular = SubResource( 11 )
+
+[node name="Header" type="Label" parent="GraphicsMenu"]
+anchor_left = 0.503
+anchor_top = 0.1
+anchor_right = 0.503
+anchor_bottom = 0.1
+margin_left = -80.576
+margin_right = 239.424
+margin_bottom = 32.0
+grow_horizontal = 2
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Graphics"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resolution" type="Label" parent="GraphicsMenu"]
+anchor_left = 0.096
+anchor_top = 0.208
+anchor_right = 0.096
+anchor_bottom = 0.208
+margin_left = 0.0319996
+margin_top = 0.0639992
+margin_right = 168.032
+margin_bottom = 32.064
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Resolution"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResolutionSelector" type="Control" parent="GraphicsMenu"]
+anchor_left = 0.458
+anchor_top = 0.208
+anchor_right = 0.955
+anchor_bottom = 0.208
+margin_left = 0.064003
+margin_top = 0.0639992
+margin_right = 0.0950165
+margin_bottom = 16.064
+focus_neighbour_top = NodePath("../Save")
+focus_neighbour_bottom = NodePath("../BrightnessSlider")
+focus_mode = 2
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Current" type="Label" parent="GraphicsMenu/ResolutionSelector"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -50.7035
+margin_right = 153.296
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "320x288"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="L" type="Label" parent="GraphicsMenu/ResolutionSelector"]
+visible = false
+anchor_right = 0.114
+margin_right = 9.968
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "<"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="R" type="Label" parent="GraphicsMenu/ResolutionSelector"]
+visible = false
+anchor_left = 0.909
+anchor_right = 1.002
+margin_left = -79.992
+margin_right = 88.224
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
+align = 2
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Brightness" type="Label" parent="GraphicsMenu"]
+anchor_left = 0.096
+anchor_top = 0.328
+anchor_right = 0.096
+anchor_bottom = 0.328
+margin_left = 0.0319996
+margin_top = 0.0239983
+margin_right = 136.032
+margin_bottom = 32.024
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Brightness"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BrightnessSlider" type="HSlider" parent="GraphicsMenu"]
+anchor_left = 0.538
+anchor_top = 0.312
+anchor_right = 0.937
+anchor_bottom = 0.312
+margin_left = 0.095993
+margin_top = 0.0960007
+margin_right = -2.896
+margin_bottom = 22.096
+focus_neighbour_top = NodePath("../ResolutionSelector")
+focus_neighbour_bottom = NodePath("../Save")
+focus_next = NodePath("../Save")
+focus_previous = NodePath("../ResolutionSelector")
+min_value = -5.0
+max_value = 5.0
+step = 1.0
+tick_count = 11
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Defaults" type="Label" parent="GraphicsMenu"]
+anchor_left = 0.5
+anchor_top = 0.808
+anchor_right = 0.5
+anchor_bottom = 0.808
+margin_top = 0.0480042
+margin_right = 159.0
+margin_bottom = 24.048
+rect_scale = Vector2( 0.5, 0.5 )
+focus_neighbour_left = NodePath("../Save")
+focus_neighbour_top = NodePath("../KeyboardKeys/ui_menu")
+focus_mode = 2
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = " Defaults"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="Label" parent="GraphicsMenu/Defaults"]
+visible = false
+anchor_right = 0.088
+anchor_bottom = 1.0
+margin_right = 0.512
+focus_neighbour_right = NodePath("../Down")
+focus_neighbour_bottom = NodePath("../Left")
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Save" type="Label" parent="GraphicsMenu"]
+anchor_left = 0.042
+anchor_top = 0.808
+anchor_right = 0.042
+anchor_bottom = 0.808
+margin_left = -0.0640039
+margin_top = 0.0480042
+margin_right = 175.936
+margin_bottom = 24.048
+rect_scale = Vector2( 0.5, 0.5 )
+focus_neighbour_top = NodePath("../KeyboardKeys/ui_release")
+focus_neighbour_right = NodePath("../Defaults")
+focus_mode = 2
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = " Save"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="Label" parent="GraphicsMenu/Save"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 16, 0 )
+focus_neighbour_right = NodePath("../Down")
+focus_neighbour_bottom = NodePath("../Left")
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="focus_entered" from="NinePatchRect/MusicSlider" to="Blip" method="start_sound"]
 [connection signal="value_changed" from="NinePatchRect/MusicSlider" to="NinePatchRect" method="_on_MasterVolSlider_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/MusicSlider" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="NinePatchRect/SoundSlider" to="Blip" method="start_sound"]
 [connection signal="value_changed" from="NinePatchRect/SoundSlider" to="NinePatchRect" method="_on_SoundSlider_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/SoundSlider" to="Blip" method="start_sound"]
-[connection signal="focus_entered" from="NinePatchRect/Controls" to="NinePatchRect/Controls" method="_on_focus_entered"]
-[connection signal="focus_entered" from="NinePatchRect/Controls" to="Blip" method="start_sound"]
-[connection signal="focus_exited" from="NinePatchRect/Controls" to="NinePatchRect/Controls" method="_on_focus_exited"]
 [connection signal="changed" from="NinePatchRect/PaletteController" to="NinePatchRect" method="set_dirty"]
 [connection signal="focus_entered" from="NinePatchRect/PaletteController" to="NinePatchRect/PaletteController" method="_on_focus_entered"]
 [connection signal="focus_entered" from="NinePatchRect/PaletteController" to="Blip" method="start_sound"]
 [connection signal="focus_exited" from="NinePatchRect/PaletteController" to="NinePatchRect/PaletteController" method="_on_focus_exited"]
-[connection signal="changed" from="NinePatchRect/HudSizeController" to="NinePatchRect" method="set_dirty"]
-[connection signal="focus_entered" from="NinePatchRect/HudSizeController" to="NinePatchRect/HudSizeController" method="_on_focus_entered"]
-[connection signal="focus_entered" from="NinePatchRect/HudSizeController" to="Blip" method="start_sound"]
-[connection signal="focus_exited" from="NinePatchRect/HudSizeController" to="NinePatchRect/HudSizeController" method="_on_focus_exited"]
+[connection signal="focus_entered" from="NinePatchRect/Controls" to="NinePatchRect/Controls" method="_on_focus_entered"]
+[connection signal="focus_entered" from="NinePatchRect/Controls" to="Blip" method="start_sound"]
+[connection signal="focus_exited" from="NinePatchRect/Controls" to="NinePatchRect/Controls" method="_on_focus_exited"]
+[connection signal="focus_entered" from="NinePatchRect/Graphics" to="NinePatchRect/Graphics" method="_on_focus_entered"]
+[connection signal="focus_entered" from="NinePatchRect/Graphics" to="Blip" method="start_sound"]
+[connection signal="focus_exited" from="NinePatchRect/Graphics" to="NinePatchRect/Graphics" method="_on_focus_exited"]
 [connection signal="focus_entered" from="NinePatchRect/QuitToMain" to="NinePatchRect/QuitToMain" method="_on_focus_entered"]
 [connection signal="focus_entered" from="NinePatchRect/QuitToMain" to="Blip" method="start_sound"]
 [connection signal="focus_exited" from="NinePatchRect/QuitToMain" to="NinePatchRect/QuitToMain" method="_on_focus_exited"]
@@ -1623,3 +1825,16 @@ __meta__ = {
 [connection signal="focus_exited" from="ControlsMenu/Save" to="ControlsMenu/Save" method="_on_focus_exited"]
 [connection signal="selected" from="ControlsMenu/Save" to="ControlsMenu" method="close" flags=3]
 [connection signal="selected" from="ControlsMenu/Save" to="ControlsMenu" method="save"]
+[connection signal="changed" from="GraphicsMenu/ResolutionSelector" to="NinePatchRect" method="set_dirty"]
+[connection signal="focus_entered" from="GraphicsMenu/ResolutionSelector" to="GraphicsMenu/ResolutionSelector" method="_on_focus_entered"]
+[connection signal="focus_entered" from="GraphicsMenu/ResolutionSelector" to="Blip" method="start_sound"]
+[connection signal="focus_exited" from="GraphicsMenu/ResolutionSelector" to="GraphicsMenu/ResolutionSelector" method="_on_focus_exited"]
+[connection signal="focus_entered" from="GraphicsMenu/BrightnessSlider" to="Blip" method="start_sound"]
+[connection signal="value_changed" from="GraphicsMenu/BrightnessSlider" to="NinePatchRect" method="_on_MasterVolSlider_value_changed"]
+[connection signal="value_changed" from="GraphicsMenu/BrightnessSlider" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="GraphicsMenu/Defaults" to="GraphicsMenu/Defaults" method="_on_focus_entered"]
+[connection signal="focus_entered" from="GraphicsMenu/Defaults" to="Blip" method="start_sound"]
+[connection signal="focus_exited" from="GraphicsMenu/Defaults" to="GraphicsMenu/Defaults" method="_on_focus_exited"]
+[connection signal="focus_entered" from="GraphicsMenu/Save" to="GraphicsMenu/Save" method="_on_focus_entered"]
+[connection signal="focus_entered" from="GraphicsMenu/Save" to="Blip" method="start_sound"]
+[connection signal="focus_exited" from="GraphicsMenu/Save" to="GraphicsMenu/Save" method="_on_focus_exited"]

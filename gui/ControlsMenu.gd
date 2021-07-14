@@ -1,23 +1,19 @@
-# Script for using and saving changes to the options menu
-extends NinePatchRect
+extends "res://gui/SubMenu.gd"
 
-func _unhandled_input(event):
-	# Open and close menu
-	if visible:
-		if event.is_action_pressed("ui_menu") or event.is_action_pressed("ui_B"):
-			# Close menu
-			close()
-			get_tree().set_input_as_handled() 
-
-func open():
-	# Open menu
-	show()
-	reset_to_keybinds()
-	$KeyboardKeys/ui_up.grab_focus()
-
-func close():
-	hide()
-	settings_menu.reset_focus("controls")
+func reset_to_keybinds():
+	save_system = SaveSystem.new()
+	var settings = save_system.load_keybinds()
+	for action in InputMap.get_actions():
+		if settings.has(action):
+			InputMap.action_erase_events(action)
+			# Add all input keys to InputMap
+			for i in range(settings[action].size()):
+				var keybindEvent = InputEventKey.new()
+				keybindEvent.scancode = OS.find_scancode_from_string(settings[action][i])
+				InputMap.action_add_event(action, keybindEvent)
+				# Change text of KeyboardKeys
+				var key_node = key_controller.get_node(action)
+				key_node.set_key(settings[action][i])
 
 ## Save all keybind settings
 func save():
@@ -41,30 +37,8 @@ func set_to_defaults():
 		key.reset_to_default()
 	save()
 
-func reset_to_keybinds():
-	save_system = SaveSystem.new()
-	var settings = save_system.load_keybinds()
-	for action in InputMap.get_actions():
-		if settings.has(action):
-			InputMap.action_erase_events(action)
-			# Add all input keys to InputMap
-			for i in range(settings[action].size()):
-				var keybindEvent = InputEventKey.new()
-				keybindEvent.scancode = OS.find_scancode_from_string(settings[action][i])
-				InputMap.action_add_event(action, keybindEvent)
-				# Change text of KeyboardKeys
-				var key_node = key_controller.get_node(action)
-				key_node.set_key(settings[action][i])
-
-
-func set_dirty():
-	dirty = true
-
-var save_system : SaveSystem
-var dirty = false
-
 func _ready():
 	reset_to_keybinds()
 
 onready var key_controller = $KeyboardKeys
-onready var settings_menu = $"../NinePatchRect"
+var save_system : SaveSystem

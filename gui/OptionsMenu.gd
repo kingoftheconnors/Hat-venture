@@ -32,13 +32,12 @@ func reset_focus(type : String = "default"):
 
 ## Save all game settings
 func save():
-	print($PaletteController.get_cur_palette())
 	var settings = {
 		"music_vol": $MusicSlider.value,
 		"sound_vol": $SoundSlider.value,
 		"palettes": $PaletteController.get_usable_palettes(),
 		"cur_palette": $PaletteController.get_cur_palette(),
-		"hud_size": $HudSizeController.get_cur_size()
+		#"hud_size": $HudSizeController.get_cur_size()
 	}
 	save_system.save_settings(settings)
 
@@ -75,6 +74,6 @@ func _ready():
 		$PaletteController.set_usable_palettes(palettes)
 	if settings.has("cur_palette"):
 		$PaletteController.set_cur_palette(settings["cur_palette"])
-	if settings.has("hud_size"):
-		$HudSizeController.set_cur_size(settings["hud_size"])
+	#if settings.has("hud_size"):
+	#	$HudSizeController.set_cur_size(settings["hud_size"])
 

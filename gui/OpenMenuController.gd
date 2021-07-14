@@ -14,8 +14,7 @@ func _input(event):
 			open_menu()
 
 func open_menu():
-	controls_menu.open()
+	get_node(menu_to_open).open()
 
 onready var l_arrow : Label = $L
-onready var controls_menu = $"../../ControlsMenu"
-onready var settings_menu = $".."
+export(NodePath) var menu_to_open
