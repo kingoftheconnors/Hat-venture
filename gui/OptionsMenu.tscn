@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://font/PressStart2P-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://gui/OptionsMenu.gd" type="Script" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://gui/ControlsMenu.gd" type="Script" id=16]
 [ext_resource path="res://gui/FullscreenController.gd" type="Script" id=17]
 [ext_resource path="res://gui/BrightnessSlider.gd" type="Script" id=18]
+[ext_resource path="res://gui/ParallaxController.gd" type="Script" id=19]
 
 [sub_resource type="DynamicFont" id=1]
 size = 8
@@ -27,70 +28,19 @@ font_data = ExtResource( 1 )
 [sub_resource type="Animation" id=2]
 resource_name = "large"
 tracks/0/type = "value"
-tracks/0/path = NodePath("NinePatchRect:margin_bottom")
+tracks/0/path = NodePath("NinePatchRect/Volume:custom_fonts/font:size")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ -32.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("NinePatchRect:margin_left")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 39.0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("NinePatchRect:margin_right")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ -40.0 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("NinePatchRect/Volume:custom_fonts/font:size")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 24 ]
 }
-
-[sub_resource type="Animation" id=3]
-resource_name = "medium"
-tracks/0/type = "value"
-tracks/0/path = NodePath("NinePatchRect:margin_bottom")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ -48.0 ]
-}
 tracks/1/type = "value"
-tracks/1/path = NodePath("NinePatchRect:margin_left")
+tracks/1/path = NodePath("NinePatchRect:margin_bottom")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -99,7 +49,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 55.0 ]
+"values": [ -0.0960083 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("NinePatchRect:margin_right")
@@ -111,10 +61,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ -56.0 ]
+"values": [ 135.64 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("NinePatchRect/Volume:custom_fonts/font:size")
+tracks/3/path = NodePath("NinePatchRect:margin_left")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -123,7 +73,58 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
+"values": [ -135.36 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "medium"
+tracks/0/type = "value"
+tracks/0/path = NodePath("NinePatchRect/Volume:custom_fonts/font:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
 "values": [ 20 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NinePatchRect:margin_left")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -104.36 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("NinePatchRect:margin_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 104.64 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NinePatchRect:margin_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -24.096 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -137,7 +138,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ -64.0 ]
+"values": [ -48.096 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("NinePatchRect:margin_left")
@@ -149,7 +150,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 71.0 ]
+"values": [ -95.36 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("NinePatchRect:margin_right")
@@ -161,7 +162,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ -72.0 ]
+"values": [ 95.64 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("NinePatchRect/Volume:custom_fonts/font:size")
@@ -195,7 +196,7 @@ tracks/0/keys = {
 "values": [ 24 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:margin_right")
+tracks/1/path = NodePath("KeyboardKeys/ui_up:margin_right")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -204,10 +205,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ -16.0 ]
+"values": [ 240.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath(".:margin_left")
+tracks/2/path = NodePath("KeyboardKeys/ui_down:margin_right")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -216,10 +217,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 17.0 ]
+"values": [ 240 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("KeyboardKeys/ui_up:margin_right")
+tracks/3/path = NodePath("KeyboardKeys/ui_left:margin_right")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -231,7 +232,7 @@ tracks/3/keys = {
 "values": [ 240.0 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("KeyboardKeys/ui_down:margin_right")
+tracks/4/path = NodePath("KeyboardKeys/ui_right:margin_right")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -243,7 +244,7 @@ tracks/4/keys = {
 "values": [ 240 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("KeyboardKeys/ui_left:margin_right")
+tracks/5/path = NodePath("KeyboardKeys/ui_A:margin_right")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -252,10 +253,10 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 240.0 ]
+"values": [ 240 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("KeyboardKeys/ui_right:margin_right")
+tracks/6/path = NodePath("KeyboardKeys/ui_B:margin_right")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -267,7 +268,7 @@ tracks/6/keys = {
 "values": [ 240 ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("KeyboardKeys/ui_A:margin_right")
+tracks/7/path = NodePath("KeyboardKeys/ui_release:margin_right")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -279,7 +280,7 @@ tracks/7/keys = {
 "values": [ 240 ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("KeyboardKeys/ui_B:margin_right")
+tracks/8/path = NodePath("KeyboardKeys/ui_menu:margin_right")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -291,7 +292,7 @@ tracks/8/keys = {
 "values": [ 240 ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("KeyboardKeys/ui_release:margin_right")
+tracks/9/path = NodePath(".:margin_bottom")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -300,10 +301,10 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 240 ]
+"values": [ 0.0959778 ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("KeyboardKeys/ui_menu:margin_right")
+tracks/10/path = NodePath(".:margin_right")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -312,10 +313,10 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 240 ]
+"values": [ 136.0 ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath(".:margin_bottom")
+tracks/11/path = NodePath(".:margin_left")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -324,7 +325,7 @@ tracks/11/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ -48 ]
+"values": [ -136.0 ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -342,7 +343,7 @@ tracks/0/keys = {
 "values": [ 20 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:margin_right")
+tracks/1/path = NodePath("KeyboardKeys/ui_up:margin_right")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -351,10 +352,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ -31.0 ]
+"values": [ 220 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath(".:margin_left")
+tracks/2/path = NodePath("KeyboardKeys/ui_down:margin_right")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -363,10 +364,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 32.0 ]
+"values": [ 220 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("KeyboardKeys/ui_up:margin_right")
+tracks/3/path = NodePath("KeyboardKeys/ui_left:margin_right")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -378,7 +379,7 @@ tracks/3/keys = {
 "values": [ 220 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("KeyboardKeys/ui_down:margin_right")
+tracks/4/path = NodePath("KeyboardKeys/ui_right:margin_right")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -390,7 +391,7 @@ tracks/4/keys = {
 "values": [ 220 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("KeyboardKeys/ui_left:margin_right")
+tracks/5/path = NodePath("KeyboardKeys/ui_A:margin_right")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -402,7 +403,7 @@ tracks/5/keys = {
 "values": [ 220 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("KeyboardKeys/ui_right:margin_right")
+tracks/6/path = NodePath("KeyboardKeys/ui_B:margin_right")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -414,7 +415,7 @@ tracks/6/keys = {
 "values": [ 220 ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("KeyboardKeys/ui_A:margin_right")
+tracks/7/path = NodePath("KeyboardKeys/ui_release:margin_right")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -426,7 +427,7 @@ tracks/7/keys = {
 "values": [ 220 ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("KeyboardKeys/ui_B:margin_right")
+tracks/8/path = NodePath("KeyboardKeys/ui_menu:margin_right")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -438,7 +439,7 @@ tracks/8/keys = {
 "values": [ 220 ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("KeyboardKeys/ui_release:margin_right")
+tracks/9/path = NodePath(".:margin_bottom")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -447,10 +448,10 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 220 ]
+"values": [ -7.90402 ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("KeyboardKeys/ui_menu:margin_right")
+tracks/10/path = NodePath(".:margin_right")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -459,10 +460,10 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 220 ]
+"values": [ 120.0 ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath(".:margin_bottom")
+tracks/11/path = NodePath(".:margin_left")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -471,7 +472,7 @@ tracks/11/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ -64 ]
+"values": [ -120.0 ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -498,7 +499,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ -64.0 ]
+"values": [ 96.0 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath(".:margin_left")
@@ -510,7 +511,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 64.0 ]
+"values": [ -96.0 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("KeyboardKeys/ui_up:margin_right")
@@ -618,17 +619,89 @@ tracks/11/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ -80.0 ]
+"values": [ -15.904 ]
 }
 
 [sub_resource type="Animation" id=9]
 resource_name = "large"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:margin_right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 152.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:margin_left")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -152.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:margin_bottom")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -0.0320129 ]
+}
 
 [sub_resource type="Animation" id=10]
 resource_name = "medium"
 
 [sub_resource type="Animation" id=11]
 resource_name = "regular"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:margin_bottom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -24.128 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:margin_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 104.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:margin_left")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -104.0 ]
+}
 
 [node name="OptionsMenu" type="CanvasLayer"]
 layer = 5
@@ -640,15 +713,14 @@ script = ExtResource( 15 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 pause_mode = 2
-visible = false
 anchor_left = 0.498
 anchor_top = 0.056
 anchor_right = 0.498
-anchor_bottom = 0.778
-margin_left = -88.36
+anchor_bottom = 0.917
+margin_left = -95.36
 margin_top = -0.128
-margin_right = 88.64
-margin_bottom = -0.0640106
+margin_right = 95.64
+margin_bottom = -48.096
 texture = ExtResource( 3 )
 patch_margin_left = 13
 patch_margin_top = 10
@@ -1033,11 +1105,11 @@ visible = false
 anchor_left = 0.5
 anchor_top = 0.056
 anchor_right = 0.5
-anchor_bottom = 0.722
+anchor_bottom = 0.833
 margin_left = -96.0
 margin_top = -0.128
 margin_right = 96.0
-margin_bottom = 0.0639801
+margin_bottom = -15.904
 texture = ExtResource( 3 )
 patch_margin_left = 8
 patch_margin_top = 8
@@ -1532,11 +1604,11 @@ pause_mode = 2
 anchor_left = 0.5
 anchor_top = 0.056
 anchor_right = 0.5
-anchor_bottom = 0.722
+anchor_bottom = 0.889
 margin_left = -104.0
 margin_top = -0.128
 margin_right = 104.0
-margin_bottom = 0.0639801
+margin_bottom = -24.128
 texture = ExtResource( 3 )
 patch_margin_left = 8
 patch_margin_top = 8
@@ -1780,13 +1852,144 @@ margin_top = 0.0880051
 margin_right = 0.0160065
 margin_bottom = 20.936
 focus_neighbour_top = NodePath("../Fullscreen2")
-focus_neighbour_bottom = NodePath("../Save")
-focus_next = NodePath("../Save")
+focus_neighbour_bottom = NodePath("../HudSize")
+focus_next = NodePath("../HudSize")
 focus_previous = NodePath("../Fullscreen2")
 min_value = -5.0
 max_value = 5.0
 tick_count = 11
 script = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hudsize" type="Label" parent="GraphicsMenu"]
+anchor_left = 0.096
+anchor_top = 0.536
+anchor_right = 0.096
+anchor_bottom = 0.536
+margin_left = 0.0319996
+margin_top = 0.0880127
+margin_right = 240.032
+margin_bottom = 32.088
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Hudsize"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HudSize" type="Control" parent="GraphicsMenu"]
+anchor_left = 0.458
+anchor_top = 0.536
+anchor_right = 0.955
+anchor_bottom = 0.536
+margin_left = 0.0639954
+margin_top = 0.0880127
+margin_right = 0.0950165
+margin_bottom = 16.088
+focus_neighbour_top = NodePath("../BrightnessSlider")
+focus_neighbour_bottom = NodePath("../ParallaxSlider")
+focus_next = NodePath("../ParallaxSlider")
+focus_previous = NodePath("../BrightnessSlider")
+focus_mode = 2
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Current" type="Label" parent="GraphicsMenu/HudSize"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -50.7035
+margin_right = 153.296
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "regular"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="L" type="Label" parent="GraphicsMenu/HudSize"]
+visible = false
+anchor_left = 0.161
+anchor_right = 0.161
+margin_left = -7.64853
+margin_right = 8.35147
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "<"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="R" type="Label" parent="GraphicsMenu/HudSize"]
+visible = false
+anchor_left = 0.858
+anchor_right = 0.858
+margin_left = -74.7232
+margin_right = 90.2768
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
+align = 2
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Parallax" type="Label" parent="GraphicsMenu"]
+anchor_left = 0.096
+anchor_top = 0.645
+anchor_right = 0.096
+anchor_bottom = 0.645
+margin_left = 0.0319996
+margin_top = -0.258087
+margin_right = 184.032
+margin_bottom = 31.7419
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Parallax"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxSlider" type="HSlider" parent="GraphicsMenu"]
+anchor_left = 0.538
+anchor_top = 0.624
+anchor_right = 0.923
+anchor_bottom = 0.624
+margin_left = 0.095993
+margin_top = 0.100464
+margin_right = 0.0160065
+margin_bottom = 22.2439
+focus_neighbour_top = NodePath("../HudSize")
+focus_neighbour_bottom = NodePath("../Save")
+focus_next = NodePath("../Save")
+focus_previous = NodePath("../HudSize")
+max_value = 100.0
+step = 10.0
+value = 30.0
+tick_count = 11
+script = ExtResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1931,6 +2134,13 @@ __meta__ = {
 [connection signal="focus_entered" from="GraphicsMenu/BrightnessSlider" to="Blip" method="start_sound"]
 [connection signal="value_changed" from="GraphicsMenu/BrightnessSlider" to="Blip" method="start_sound"]
 [connection signal="value_changed" from="GraphicsMenu/BrightnessSlider" to="GraphicsMenu/BrightnessSlider" method="_on_BrightnessSlider_value_changed"]
+[connection signal="changed" from="GraphicsMenu/HudSize" to="NinePatchRect" method="set_dirty"]
+[connection signal="focus_entered" from="GraphicsMenu/HudSize" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="GraphicsMenu/HudSize" to="GraphicsMenu/HudSize" method="_on_focus_entered"]
+[connection signal="focus_exited" from="GraphicsMenu/HudSize" to="GraphicsMenu/HudSize" method="_on_focus_exited"]
+[connection signal="focus_entered" from="GraphicsMenu/ParallaxSlider" to="Blip" method="start_sound"]
+[connection signal="value_changed" from="GraphicsMenu/ParallaxSlider" to="Blip" method="start_sound"]
+[connection signal="value_changed" from="GraphicsMenu/ParallaxSlider" to="GraphicsMenu/ParallaxSlider" method="_on_ParallaxSlider_value_changed"]
 [connection signal="focus_entered" from="GraphicsMenu/Defaults" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="GraphicsMenu/Defaults" to="GraphicsMenu/Defaults" method="_on_focus_entered"]
 [connection signal="focus_exited" from="GraphicsMenu/Defaults" to="GraphicsMenu/Defaults" method="_on_focus_exited"]

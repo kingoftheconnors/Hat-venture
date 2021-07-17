@@ -6,7 +6,7 @@
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://camera/Camera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://common/Flag.tscn" type="PackedScene" id=6]
-[ext_resource path="res://common/Resources/flagup.png" type="Texture" id=7]
+[ext_resource path="res://common/ParallaxLayer.gd" type="Script" id=7]
 [ext_resource path="res://NPCs/DialogBox.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Music/startSong.gd" type="Script" id=10]
 [ext_resource path="res://enemy/eltun/eltun.tscn" type="PackedScene" id=11]
@@ -35,6 +35,7 @@ layer = -3
 motion_scale = Vector2( 0.3, 1 )
 motion_offset = Vector2( 100, 0 )
 motion_mirroring = Vector2( 608, 0 )
+script = ExtResource( 7 )
 
 [node name="Horizon" type="TileMap" parent="ParallaxBackground/ParallaxLayer"]
 z_index = -2
@@ -48,6 +49,8 @@ tile_data = PoolIntArray( -786411, 0, 0, -786407, 11, 0, -786376, 0, 0, -786372,
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.1, 1 )
 motion_mirroring = Vector2( 680, 0 )
+script = ExtResource( 7 )
+parallax_multiplier = 0.003
 
 [node name="Sky" type="TileMap" parent="ParallaxBackground/ParallaxLayer2"]
 position = Vector2( 0, -1 )
@@ -194,9 +197,6 @@ position = Vector2( 0, -8 )
 
 [node name="Flag" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2104, -120 )
-texture = ExtResource( 7 )
-hframes = 6
-frame = 0
 
 [node name="Hen" parent="." instance=ExtResource( 17 )]
 position = Vector2( 504, -8 )
