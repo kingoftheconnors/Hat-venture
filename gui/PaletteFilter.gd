@@ -1,12 +1,22 @@
 extends TextureRect
 
-func set_palette(palette_name):
-	var new_palette = palettes[palette_name]
-	material.set_shader_param("palette_white", new_palette[0])
-	material.set_shader_param("palette_light", new_palette[1])
-	material.set_shader_param("palette_dark", new_palette[2])
-	material.set_shader_param("palette_black", new_palette[3])
+var cur_palette : String = "Classic"
+var cur_brightness : int = 0
 
+func set_palette(palette_name : String):
+	cur_palette = palette_name
+	update_colors()
+
+func update_colors():
+	var palette = palettes[cur_palette]
+	material.set_shader_param("palette_white", palette[0] + Color(.1, .1, .1)*cur_brightness)
+	material.set_shader_param("palette_light", palette[1] + Color(.1, .1, .1)*cur_brightness)
+	material.set_shader_param("palette_dark", palette[2] + Color(.1, .1, .1)*cur_brightness)
+	material.set_shader_param("palette_black", palette[3] + Color(.1, .1, .1)*cur_brightness)
+
+func set_brightness(val : int):
+	cur_brightness = val
+	update_colors()
 
 const palettes = {
 	Classic = [

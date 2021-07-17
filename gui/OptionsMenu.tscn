@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://font/PressStart2P-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://gui/OptionsMenu.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Music/startSong.gd" type="Script" id=15]
 [ext_resource path="res://gui/ControlsMenu.gd" type="Script" id=16]
 [ext_resource path="res://gui/FullscreenController.gd" type="Script" id=17]
+[ext_resource path="res://gui/BrightnessSlider.gd" type="Script" id=18]
 
 [sub_resource type="DynamicFont" id=1]
 size = 8
@@ -1768,13 +1769,13 @@ __meta__ = {
 
 [node name="BrightnessSlider" type="HSlider" parent="GraphicsMenu"]
 anchor_left = 0.538
-anchor_top = 0.417
-anchor_right = 0.937
+anchor_top = 0.411
+anchor_right = 0.923
 anchor_bottom = 0.417
 margin_left = 0.0960007
-margin_top = -0.0639954
-margin_right = -2.89598
-margin_bottom = 21.936
+margin_top = 0.0880051
+margin_right = 0.0160065
+margin_bottom = 20.936
 focus_neighbour_top = NodePath("../Fullscreen2")
 focus_neighbour_bottom = NodePath("../Save")
 focus_next = NodePath("../Save")
@@ -1782,6 +1783,7 @@ focus_previous = NodePath("../Fullscreen2")
 min_value = -5.0
 max_value = 5.0
 tick_count = 11
+script = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1925,7 +1927,7 @@ __meta__ = {
 [connection signal="focus_exited" from="GraphicsMenu/Fullscreen2" to="GraphicsMenu/Fullscreen2" method="_on_focus_exited"]
 [connection signal="focus_entered" from="GraphicsMenu/BrightnessSlider" to="Blip" method="start_sound"]
 [connection signal="value_changed" from="GraphicsMenu/BrightnessSlider" to="Blip" method="start_sound"]
-[connection signal="value_changed" from="GraphicsMenu/BrightnessSlider" to="NinePatchRect" method="_on_MasterVolSlider_value_changed"]
+[connection signal="value_changed" from="GraphicsMenu/BrightnessSlider" to="GraphicsMenu/BrightnessSlider" method="_on_BrightnessSlider_value_changed"]
 [connection signal="focus_entered" from="GraphicsMenu/Defaults" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="GraphicsMenu/Defaults" to="GraphicsMenu/Defaults" method="_on_focus_entered"]
 [connection signal="focus_exited" from="GraphicsMenu/Defaults" to="GraphicsMenu/Defaults" method="_on_focus_exited"]

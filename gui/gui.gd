@@ -236,6 +236,8 @@ onready var textboxes = game_dialog.new()
 
 func set_palette(palette_name):
 	palette_controller.set_palette(palette_name)
+func set_brightness(val):
+	palette_controller.set_brightness(val)
 
 onready var palette_controller = $PaletteFilter
 
