@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://font/PressStart2P-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://gui/OptionsMenu.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://gui/QuitGameController.gd" type="Script" id=14]
 [ext_resource path="res://Music/startSong.gd" type="Script" id=15]
 [ext_resource path="res://gui/ControlsMenu.gd" type="Script" id=16]
+[ext_resource path="res://gui/FullscreenController.gd" type="Script" id=17]
 
 [sub_resource type="DynamicFont" id=1]
 size = 8
@@ -925,7 +926,7 @@ focus_neighbour_bottom = NodePath("../QuitGame")
 focus_mode = 2
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = " Edit Graphics"
+text = " Graphics settings"
 valign = 1
 uppercase = true
 script = ExtResource( 13 )
@@ -1599,7 +1600,7 @@ margin_top = 0.0639992
 margin_right = 0.0950165
 margin_bottom = 16.064
 focus_neighbour_top = NodePath("../Save")
-focus_neighbour_bottom = NodePath("../BrightnessSlider")
+focus_neighbour_bottom = NodePath("../Fullscreen2")
 focus_mode = 2
 script = ExtResource( 7 )
 __meta__ = {
@@ -1625,8 +1626,10 @@ __meta__ = {
 
 [node name="L" type="Label" parent="GraphicsMenu/ResolutionSelector"]
 visible = false
-anchor_right = 0.114
-margin_right = 9.968
+anchor_left = 0.161
+anchor_right = 0.161
+margin_left = -7.64853
+margin_right = 8.35147
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 5 )
@@ -1640,10 +1643,98 @@ __meta__ = {
 
 [node name="R" type="Label" parent="GraphicsMenu/ResolutionSelector"]
 visible = false
-anchor_left = 0.909
-anchor_right = 1.002
-margin_left = -79.992
-margin_right = 88.224
+anchor_left = 0.858
+anchor_right = 0.858
+margin_left = -74.7232
+margin_right = 90.2768
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
+align = 2
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fullscreen" type="Label" parent="GraphicsMenu"]
+anchor_left = 0.096
+anchor_top = 0.318
+anchor_right = 0.096
+anchor_bottom = 0.318
+margin_left = 0.0319996
+margin_top = -0.0559959
+margin_right = 168.032
+margin_bottom = 31.944
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Fullscreen"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fullscreen2" type="Control" parent="GraphicsMenu"]
+anchor_left = 0.458
+anchor_top = 0.318
+anchor_right = 0.955
+anchor_bottom = 0.318
+margin_left = 0.0639954
+margin_top = -0.0559959
+margin_right = 0.0950165
+margin_bottom = 15.944
+focus_neighbour_top = NodePath("../ResolutionSelector")
+focus_neighbour_bottom = NodePath("../BrightnessSlider")
+focus_mode = 2
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Current" type="Label" parent="GraphicsMenu/Fullscreen2"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -50.7035
+margin_right = 153.296
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "OFF"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="L" type="Label" parent="GraphicsMenu/Fullscreen2"]
+visible = false
+anchor_left = 0.161
+anchor_right = 0.161
+margin_left = -7.64853
+margin_right = 8.35147
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "<"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="R" type="Label" parent="GraphicsMenu/Fullscreen2"]
+visible = false
+anchor_left = 0.858
+anchor_right = 0.858
+margin_left = -74.7232
+margin_right = 90.2768
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 5 )
@@ -1658,13 +1749,13 @@ __meta__ = {
 
 [node name="Brightness" type="Label" parent="GraphicsMenu"]
 anchor_left = 0.096
-anchor_top = 0.328
+anchor_top = 0.427
 anchor_right = 0.096
-anchor_bottom = 0.328
+anchor_bottom = 0.427
 margin_left = 0.0319996
-margin_top = 0.0239983
-margin_right = 136.032
-margin_bottom = 32.024
+margin_top = 0.0160141
+margin_right = 160.032
+margin_bottom = 32.016
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1677,20 +1768,19 @@ __meta__ = {
 
 [node name="BrightnessSlider" type="HSlider" parent="GraphicsMenu"]
 anchor_left = 0.538
-anchor_top = 0.312
+anchor_top = 0.417
 anchor_right = 0.937
-anchor_bottom = 0.312
-margin_left = 0.095993
-margin_top = 0.0960007
-margin_right = -2.896
-margin_bottom = 22.096
-focus_neighbour_top = NodePath("../ResolutionSelector")
+anchor_bottom = 0.417
+margin_left = 0.0960007
+margin_top = -0.0639954
+margin_right = -2.89598
+margin_bottom = 21.936
+focus_neighbour_top = NodePath("../Fullscreen2")
 focus_neighbour_bottom = NodePath("../Save")
 focus_next = NodePath("../Save")
-focus_previous = NodePath("../ResolutionSelector")
+focus_previous = NodePath("../Fullscreen2")
 min_value = -5.0
 max_value = 5.0
-step = 1.0
 tick_count = 11
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1771,70 +1861,74 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="focus_entered" from="NinePatchRect/MusicSlider" to="Blip" method="start_sound"]
-[connection signal="value_changed" from="NinePatchRect/MusicSlider" to="NinePatchRect" method="_on_MasterVolSlider_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/MusicSlider" to="Blip" method="start_sound"]
+[connection signal="value_changed" from="NinePatchRect/MusicSlider" to="NinePatchRect" method="_on_MasterVolSlider_value_changed"]
 [connection signal="focus_entered" from="NinePatchRect/SoundSlider" to="Blip" method="start_sound"]
-[connection signal="value_changed" from="NinePatchRect/SoundSlider" to="NinePatchRect" method="_on_SoundSlider_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/SoundSlider" to="Blip" method="start_sound"]
+[connection signal="value_changed" from="NinePatchRect/SoundSlider" to="NinePatchRect" method="_on_SoundSlider_value_changed"]
 [connection signal="changed" from="NinePatchRect/PaletteController" to="NinePatchRect" method="set_dirty"]
-[connection signal="focus_entered" from="NinePatchRect/PaletteController" to="NinePatchRect/PaletteController" method="_on_focus_entered"]
 [connection signal="focus_entered" from="NinePatchRect/PaletteController" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="NinePatchRect/PaletteController" to="NinePatchRect/PaletteController" method="_on_focus_entered"]
 [connection signal="focus_exited" from="NinePatchRect/PaletteController" to="NinePatchRect/PaletteController" method="_on_focus_exited"]
-[connection signal="focus_entered" from="NinePatchRect/Controls" to="NinePatchRect/Controls" method="_on_focus_entered"]
 [connection signal="focus_entered" from="NinePatchRect/Controls" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="NinePatchRect/Controls" to="NinePatchRect/Controls" method="_on_focus_entered"]
 [connection signal="focus_exited" from="NinePatchRect/Controls" to="NinePatchRect/Controls" method="_on_focus_exited"]
-[connection signal="focus_entered" from="NinePatchRect/Graphics" to="NinePatchRect/Graphics" method="_on_focus_entered"]
 [connection signal="focus_entered" from="NinePatchRect/Graphics" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="NinePatchRect/Graphics" to="NinePatchRect/Graphics" method="_on_focus_entered"]
 [connection signal="focus_exited" from="NinePatchRect/Graphics" to="NinePatchRect/Graphics" method="_on_focus_exited"]
-[connection signal="focus_entered" from="NinePatchRect/QuitToMain" to="NinePatchRect/QuitToMain" method="_on_focus_entered"]
 [connection signal="focus_entered" from="NinePatchRect/QuitToMain" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="NinePatchRect/QuitToMain" to="NinePatchRect/QuitToMain" method="_on_focus_entered"]
 [connection signal="focus_exited" from="NinePatchRect/QuitToMain" to="NinePatchRect/QuitToMain" method="_on_focus_exited"]
-[connection signal="focus_entered" from="NinePatchRect/QuitGame" to="NinePatchRect/QuitGame" method="_on_focus_entered"]
 [connection signal="focus_entered" from="NinePatchRect/QuitGame" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="NinePatchRect/QuitGame" to="NinePatchRect/QuitGame" method="_on_focus_entered"]
 [connection signal="focus_exited" from="NinePatchRect/QuitGame" to="NinePatchRect/QuitGame" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_up" to="ControlsMenu/KeyboardKeys/ui_up" method="_on_focus_entered"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_up" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_up" to="ControlsMenu/KeyboardKeys/ui_up" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_up" to="ControlsMenu/KeyboardKeys/ui_up" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_down" to="ControlsMenu/KeyboardKeys/ui_down" method="_on_focus_entered"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_down" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_down" to="ControlsMenu/KeyboardKeys/ui_down" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_down" to="ControlsMenu/KeyboardKeys/ui_down" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_left" to="ControlsMenu/KeyboardKeys/ui_left" method="_on_focus_entered"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_left" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_left" to="ControlsMenu/KeyboardKeys/ui_left" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_left" to="ControlsMenu/KeyboardKeys/ui_left" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_right" to="ControlsMenu/KeyboardKeys/ui_right" method="_on_focus_entered"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_right" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_right" to="ControlsMenu/KeyboardKeys/ui_right" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_right" to="ControlsMenu/KeyboardKeys/ui_right" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_A" to="ControlsMenu/KeyboardKeys/ui_A" method="_on_focus_entered"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_A" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_A" to="ControlsMenu/KeyboardKeys/ui_A" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_A" to="ControlsMenu/KeyboardKeys/ui_A" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_B" to="ControlsMenu/KeyboardKeys/ui_B" method="_on_focus_entered"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_B" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_B" to="ControlsMenu/KeyboardKeys/ui_B" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_B" to="ControlsMenu/KeyboardKeys/ui_B" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_release" to="ControlsMenu/KeyboardKeys/ui_release" method="_on_focus_entered"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_release" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_release" to="ControlsMenu/KeyboardKeys/ui_release" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_release" to="ControlsMenu/KeyboardKeys/ui_release" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_menu" to="ControlsMenu/KeyboardKeys/ui_menu" method="_on_focus_entered"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_menu" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_menu" to="ControlsMenu/KeyboardKeys/ui_menu" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_menu" to="ControlsMenu/KeyboardKeys/ui_menu" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/Defaults" to="ControlsMenu/Defaults" method="_on_focus_entered"]
 [connection signal="focus_entered" from="ControlsMenu/Defaults" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="ControlsMenu/Defaults" to="ControlsMenu/Defaults" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/Defaults" to="ControlsMenu/Defaults" method="_on_focus_exited"]
 [connection signal="selected" from="ControlsMenu/Defaults" to="ControlsMenu" method="set_to_defaults"]
-[connection signal="focus_entered" from="ControlsMenu/Save" to="ControlsMenu/Save" method="_on_focus_entered"]
 [connection signal="focus_entered" from="ControlsMenu/Save" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="ControlsMenu/Save" to="ControlsMenu/Save" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/Save" to="ControlsMenu/Save" method="_on_focus_exited"]
 [connection signal="selected" from="ControlsMenu/Save" to="ControlsMenu" method="close" flags=3]
 [connection signal="selected" from="ControlsMenu/Save" to="ControlsMenu" method="save"]
 [connection signal="changed" from="GraphicsMenu/ResolutionSelector" to="NinePatchRect" method="set_dirty"]
-[connection signal="focus_entered" from="GraphicsMenu/ResolutionSelector" to="GraphicsMenu/ResolutionSelector" method="_on_focus_entered"]
 [connection signal="focus_entered" from="GraphicsMenu/ResolutionSelector" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="GraphicsMenu/ResolutionSelector" to="GraphicsMenu/ResolutionSelector" method="_on_focus_entered"]
 [connection signal="focus_exited" from="GraphicsMenu/ResolutionSelector" to="GraphicsMenu/ResolutionSelector" method="_on_focus_exited"]
+[connection signal="changed" from="GraphicsMenu/Fullscreen2" to="NinePatchRect" method="set_dirty"]
+[connection signal="focus_entered" from="GraphicsMenu/Fullscreen2" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="GraphicsMenu/Fullscreen2" to="GraphicsMenu/Fullscreen2" method="_on_focus_entered"]
+[connection signal="focus_exited" from="GraphicsMenu/Fullscreen2" to="GraphicsMenu/Fullscreen2" method="_on_focus_exited"]
 [connection signal="focus_entered" from="GraphicsMenu/BrightnessSlider" to="Blip" method="start_sound"]
-[connection signal="value_changed" from="GraphicsMenu/BrightnessSlider" to="NinePatchRect" method="_on_MasterVolSlider_value_changed"]
 [connection signal="value_changed" from="GraphicsMenu/BrightnessSlider" to="Blip" method="start_sound"]
-[connection signal="focus_entered" from="GraphicsMenu/Defaults" to="GraphicsMenu/Defaults" method="_on_focus_entered"]
+[connection signal="value_changed" from="GraphicsMenu/BrightnessSlider" to="NinePatchRect" method="_on_MasterVolSlider_value_changed"]
 [connection signal="focus_entered" from="GraphicsMenu/Defaults" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="GraphicsMenu/Defaults" to="GraphicsMenu/Defaults" method="_on_focus_entered"]
 [connection signal="focus_exited" from="GraphicsMenu/Defaults" to="GraphicsMenu/Defaults" method="_on_focus_exited"]
-[connection signal="focus_entered" from="GraphicsMenu/Save" to="GraphicsMenu/Save" method="_on_focus_entered"]
 [connection signal="focus_entered" from="GraphicsMenu/Save" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="GraphicsMenu/Save" to="GraphicsMenu/Save" method="_on_focus_entered"]
 [connection signal="focus_exited" from="GraphicsMenu/Save" to="GraphicsMenu/Save" method="_on_focus_exited"]

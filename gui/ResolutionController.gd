@@ -38,7 +38,8 @@ func update_resolution():
 	var dist_to_cur_size = OS.get_window_size().distance_to(new_size)
 	var multiplier : int = 1
 	for mult in range(2, 5):
-		if OS.get_window_size().distance_to(new_size*mult) < dist_to_cur_size:
+		if OS.get_window_size().distance_to(new_size*mult) < dist_to_cur_size \
+			and new_size.x*mult < OS.get_screen_size().x and new_size.y*mult < OS.get_screen_size().y:
 			multiplier = mult
 	if !OS.window_maximized:
 		OS.set_window_size(new_size * multiplier)
