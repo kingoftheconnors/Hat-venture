@@ -1047,6 +1047,8 @@ script = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+first_item = NodePath("KeyboardKeys/ui_up")
+previous_menu = NodePath("../NinePatchRect")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ControlsMenu"]
 anims/large = SubResource( 6 )
@@ -1546,6 +1548,7 @@ __meta__ = {
 }
 first_item = NodePath("ResolutionSelector")
 previous_menu = NodePath("../NinePatchRect")
+menu_name = "graphics"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GraphicsMenu"]
 anims/large = SubResource( 9 )

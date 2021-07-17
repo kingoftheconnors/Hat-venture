@@ -27,6 +27,8 @@ func reset_focus(type : String = "default"):
 	match type:
 		"controls":
 			$Controls.grab_focus()
+		"graphics":
+			$Graphics.grab_focus()
 		_:
 			$MusicSlider.grab_focus()
 
