@@ -44,6 +44,10 @@ func set_cur_size(size : String):
 func get_cur_size():
 	return usable_sizes[size_index]
 
+func set_to_default():
+	size_index = 0
+	update_gui()
+
 var usable_sizes : Array = ["regular", "medium", "large"]
 var size_index = 0
 onready var l_arrow : Label = $L

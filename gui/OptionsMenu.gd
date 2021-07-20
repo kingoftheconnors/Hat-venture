@@ -41,7 +41,7 @@ func save():
 		"cur_palette": $PaletteController.get_cur_palette(),
 		#"hud_size": $HudSizeController.get_cur_size()
 	}
-	save_system.save_settings(settings)
+	save_system.overwrite_settings(settings)
 
 ## Signal function for updating the game's volume
 func _on_MasterVolSlider_value_changed(value):

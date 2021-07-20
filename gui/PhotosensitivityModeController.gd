@@ -39,6 +39,10 @@ func set_photosensitivity_mode(flag : bool):
 func get_photosensitivity_mode() -> bool:
 	return photosensitivity_mode
 
+func set_to_default():
+	photosensitivity_mode = false
+	update_text()
+
 var photosensitivity_mode : bool = false
 onready var l_arrow : Label = $L
 onready var r_arrow : Label = $R

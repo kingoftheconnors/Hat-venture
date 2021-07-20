@@ -49,8 +49,14 @@ func set_cur_resolution(resolution : String):
 	if new_resolution_index >= 0:
 		resolution_index = new_resolution_index
 		update_resolution()
-func get_cur_resolution():
+func get_cur_resolution_name() -> String:
+	return RESOLUTION_SIZES.keys()[resolution_index]
+func get_cur_resolution() -> String:
 	return RESOLUTION_SIZES[RESOLUTION_SIZES.keys()[resolution_index]]
+
+func set_to_default():
+	resolution_index = 3
+	update_resolution()
 
 const RESOLUTION_SIZES : Dictionary = {
 	#"160x144": Vector2(160, 144), # Classic gameboy resolution

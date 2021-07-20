@@ -10,6 +10,13 @@ func save_settings(settings : Dictionary):
 	save_game.store_line(to_json(settings))
 	save_game.close()
 
+## Overrides existing settings file with input
+func overwrite_settings(settings : Dictionary):
+	var cur_settings = load_settings()
+	for setting in settings.keys():
+		cur_settings[setting] = settings[setting]
+	save_settings(cur_settings)
+
 ## Gets game settings from local machine
 func load_settings() -> Dictionary:
 	var load_game = File.new()

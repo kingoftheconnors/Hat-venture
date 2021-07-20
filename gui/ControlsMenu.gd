@@ -35,7 +35,6 @@ func set_to_defaults():
 	# Get keys from option keys in menu
 	for key in key_controller.get_children():
 		key.reset_to_default()
-	save()
 
 func _ready():
 	reset_to_keybinds()
