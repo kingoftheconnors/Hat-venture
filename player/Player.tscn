@@ -1,4 +1,4 @@
-[gd_scene load_steps=270 format=2]
+[gd_scene load_steps=274 format=2]
 
 [ext_resource path="res://player/regular/idle.png" type="Texture" id=1]
 [ext_resource path="res://player/PlatformerController.gd" type="Script" id=2]
@@ -3179,35 +3179,12 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=52]
 tracks/0/type = "method"
-tracks/0/path = NodePath(".")
+tracks/0/path = NodePath("Power")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"values": [  ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true, false, true, false, true, false, true, false, true ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath("Power")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
@@ -3217,6 +3194,21 @@ tracks/2/keys = {
 "args": [  ],
 "method": "resume_game"
 } ]
+}
+
+[sub_resource type="Animation" id=223]
+resource_name = "power_get_flash"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false, true, false, true ]
 }
 
 [sub_resource type="Animation" id=53]
@@ -4159,6 +4151,9 @@ tracks/0/keys = {
 [sub_resource type="AnimationNodeAnimation" id=74]
 animation = "hurtFlash"
 
+[sub_resource type="AnimationNodeAnimation" id=224]
+animation = "power_get_flash"
+
 [sub_resource type="AnimationNodeAnimation" id=75]
 animation = "powerlessFlash"
 
@@ -4198,9 +4193,17 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=88]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=225]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=226]
+switch_mode = 2
+auto_advance = true
+
 [sub_resource type="AnimationNodeStateMachine" id=89]
 states/hurtFlash/node = SubResource( 74 )
 states/hurtFlash/position = Vector2( 389, 170.448 )
+states/power_get_flash/node = SubResource( 224 )
+states/power_get_flash/position = Vector2( 544, 13.256 )
 states/powerlessFlash/node = SubResource( 76 )
 states/powerlessFlash/position = Vector2( 216, 112 )
 "states/powerlessFlash 2/node" = SubResource( 75 )
@@ -4209,9 +4212,9 @@ states/powerlessOff/node = SubResource( 77 )
 states/powerlessOff/position = Vector2( 544, 112 )
 states/walljumpInvincibility/node = SubResource( 78 )
 states/walljumpInvincibility/position = Vector2( 389, 289.512 )
-transitions = [ "powerlessOff", "powerlessFlash", SubResource( 79 ), "powerlessFlash", "powerlessFlash 2", SubResource( 80 ), "powerlessFlash 2", "powerlessOff", SubResource( 81 ), "powerlessFlash", "hurtFlash", SubResource( 82 ), "hurtFlash", "powerlessOff", SubResource( 83 ), "powerlessOff", "hurtFlash", SubResource( 84 ), "powerlessFlash", "walljumpInvincibility", SubResource( 85 ), "powerlessOff", "walljumpInvincibility", SubResource( 86 ), "walljumpInvincibility", "powerlessOff", SubResource( 87 ), "walljumpInvincibility", "hurtFlash", SubResource( 88 ) ]
+transitions = [ "powerlessOff", "powerlessFlash", SubResource( 79 ), "powerlessFlash", "powerlessFlash 2", SubResource( 80 ), "powerlessFlash 2", "powerlessOff", SubResource( 81 ), "powerlessFlash", "hurtFlash", SubResource( 82 ), "hurtFlash", "powerlessOff", SubResource( 83 ), "powerlessOff", "hurtFlash", SubResource( 84 ), "powerlessFlash", "walljumpInvincibility", SubResource( 85 ), "powerlessOff", "walljumpInvincibility", SubResource( 86 ), "walljumpInvincibility", "powerlessOff", SubResource( 87 ), "walljumpInvincibility", "hurtFlash", SubResource( 88 ), "powerlessOff", "power_get_flash", SubResource( 225 ), "power_get_flash", "powerlessOff", SubResource( 226 ) ]
 start_node = "powerlessOff"
-graph_offset = Vector2( 0, 68.872 )
+graph_offset = Vector2( 0, -26.112 )
 
 [sub_resource type="AnimationNodeAnimation" id=90]
 animation = "bash"
@@ -4763,7 +4766,6 @@ graph_offset = Vector2( -401.407, 78.243 )
 [sub_resource type="AnimationNodeAdd2" id=218]
 
 [sub_resource type="AnimationNodeBlendTree" id=219]
-graph_offset = Vector2( 0, 571.5 )
 nodes/PlayerEffect/node = SubResource( 89 )
 nodes/PlayerEffect/position = Vector2( 280, 80 )
 nodes/PlayerMovement/node = SubResource( 217 )
@@ -4965,6 +4967,7 @@ anims/jump = SubResource( 47 )
 "anims/jump (runner)" = SubResource( 50 )
 "anims/jump (thor)" = SubResource( 51 )
 anims/power_get = SubResource( 52 )
+anims/power_get_flash = SubResource( 223 )
 anims/powerlessActive = SubResource( 53 )
 anims/powerlessFlash = SubResource( 54 )
 anims/powerlessOff = SubResource( 55 )

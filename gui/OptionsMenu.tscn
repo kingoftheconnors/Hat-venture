@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://font/PressStart2P-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://gui/OptionsMenu.gd" type="Script" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://gui/FullscreenController.gd" type="Script" id=17]
 [ext_resource path="res://gui/BrightnessSlider.gd" type="Script" id=18]
 [ext_resource path="res://gui/ParallaxController.gd" type="Script" id=19]
+[ext_resource path="res://gui/PhotosensitivityModeController.gd" type="Script" id=20]
 
 [sub_resource type="DynamicFont" id=1]
 size = 8
@@ -1982,10 +1983,9 @@ margin_top = 0.100464
 margin_right = 0.0160065
 margin_bottom = 22.2439
 focus_neighbour_top = NodePath("../HudSize")
-focus_neighbour_bottom = NodePath("../Save")
-focus_next = NodePath("../Save")
+focus_neighbour_bottom = NodePath("../Photosensitivity2")
+focus_next = NodePath("../Photosensitivity2")
 focus_previous = NodePath("../HudSize")
-max_value = 100.0
 step = 10.0
 value = 30.0
 tick_count = 11
@@ -1994,37 +1994,89 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Defaults" type="Label" parent="GraphicsMenu"]
-anchor_left = 0.5
-anchor_top = 0.808
-anchor_right = 0.5
-anchor_bottom = 0.808
-margin_top = 0.0480042
-margin_right = 159.0
-margin_bottom = 24.048
+[node name="Photosensitivitymode" type="Label" parent="GraphicsMenu"]
+anchor_left = 0.096
+anchor_top = 0.748
+anchor_right = 0.096
+anchor_bottom = 0.748
+margin_left = 0.0319996
+margin_top = 0.503799
+margin_right = 200.032
+margin_bottom = 35.5038
 rect_scale = Vector2( 0.5, 0.5 )
-focus_neighbour_left = NodePath("../Save")
-focus_neighbour_top = NodePath("../KeyboardKeys/ui_menu")
-focus_mode = 2
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = " Defaults"
+text = "Photosensi
+tivity mode"
 valign = 1
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Arrow" type="Label" parent="GraphicsMenu/Defaults"]
+[node name="Photosensitivity2" type="Control" parent="GraphicsMenu"]
+anchor_left = 0.458
+anchor_top = 0.318
+anchor_right = 0.955
+anchor_bottom = 0.318
+margin_left = 6.736
+margin_top = 93.3425
+margin_right = -6.64
+margin_bottom = 109.343
+focus_neighbour_top = NodePath("../ParallaxSlider")
+focus_neighbour_bottom = NodePath("../../ControlsMenu/Save")
+focus_mode = 2
+script = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Current" type="Label" parent="GraphicsMenu/Photosensitivity2"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -50.7035
+margin_right = 153.296
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "OFF"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="L" type="Label" parent="GraphicsMenu/Photosensitivity2"]
 visible = false
-anchor_right = 0.088
-anchor_bottom = 1.0
-margin_right = 0.512
-focus_neighbour_right = NodePath("../Down")
-focus_neighbour_bottom = NodePath("../Left")
+anchor_left = 0.161
+anchor_right = 0.161
+margin_left = -7.64853
+margin_right = 8.35147
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "<"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="R" type="Label" parent="GraphicsMenu/Photosensitivity2"]
+visible = false
+anchor_left = 0.858
+anchor_right = 0.858
+margin_left = -74.7232
+margin_right = 90.2768
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
+align = 2
 valign = 1
 uppercase = true
 __meta__ = {
@@ -2032,14 +2084,14 @@ __meta__ = {
 }
 
 [node name="Save" type="Label" parent="GraphicsMenu"]
-anchor_left = 0.042
-anchor_top = 0.808
-anchor_right = 0.042
-anchor_bottom = 0.808
-margin_left = -0.0640039
-margin_top = 0.0480042
-margin_right = 175.936
-margin_bottom = 24.048
+anchor_left = 0.056
+anchor_top = 0.878
+anchor_right = 0.056
+anchor_bottom = 0.878
+margin_left = 0.0239964
+margin_top = -0.0652771
+margin_right = 176.024
+margin_bottom = 23.9347
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_top = NodePath("../KeyboardKeys/ui_release")
 focus_neighbour_right = NodePath("../Defaults")
@@ -2058,6 +2110,43 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 16, 0 )
+focus_neighbour_right = NodePath("../Down")
+focus_neighbour_bottom = NodePath("../Left")
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Defaults" type="Label" parent="GraphicsMenu"]
+anchor_left = 0.5
+anchor_top = 0.878
+anchor_right = 0.5
+anchor_bottom = 0.878
+margin_top = -0.0652771
+margin_right = 159.0
+margin_bottom = 23.9347
+rect_scale = Vector2( 0.5, 0.5 )
+focus_neighbour_left = NodePath("../Save")
+focus_neighbour_top = NodePath("../KeyboardKeys/ui_menu")
+focus_mode = 2
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = " Defaults"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="Label" parent="GraphicsMenu/Defaults"]
+visible = false
+anchor_right = 0.088
+anchor_bottom = 1.0
+margin_right = 0.512
 focus_neighbour_right = NodePath("../Down")
 focus_neighbour_bottom = NodePath("../Left")
 custom_fonts/font = SubResource( 5 )
@@ -2141,9 +2230,13 @@ __meta__ = {
 [connection signal="focus_entered" from="GraphicsMenu/ParallaxSlider" to="Blip" method="start_sound"]
 [connection signal="value_changed" from="GraphicsMenu/ParallaxSlider" to="Blip" method="start_sound"]
 [connection signal="value_changed" from="GraphicsMenu/ParallaxSlider" to="GraphicsMenu/ParallaxSlider" method="_on_ParallaxSlider_value_changed"]
-[connection signal="focus_entered" from="GraphicsMenu/Defaults" to="Blip" method="start_sound"]
-[connection signal="focus_entered" from="GraphicsMenu/Defaults" to="GraphicsMenu/Defaults" method="_on_focus_entered"]
-[connection signal="focus_exited" from="GraphicsMenu/Defaults" to="GraphicsMenu/Defaults" method="_on_focus_exited"]
+[connection signal="changed" from="GraphicsMenu/Photosensitivity2" to="NinePatchRect" method="set_dirty"]
+[connection signal="focus_entered" from="GraphicsMenu/Photosensitivity2" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="GraphicsMenu/Photosensitivity2" to="GraphicsMenu/Photosensitivity2" method="_on_focus_entered"]
+[connection signal="focus_exited" from="GraphicsMenu/Photosensitivity2" to="GraphicsMenu/Photosensitivity2" method="_on_focus_exited"]
 [connection signal="focus_entered" from="GraphicsMenu/Save" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="GraphicsMenu/Save" to="GraphicsMenu/Save" method="_on_focus_entered"]
 [connection signal="focus_exited" from="GraphicsMenu/Save" to="GraphicsMenu/Save" method="_on_focus_exited"]
+[connection signal="focus_entered" from="GraphicsMenu/Defaults" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="GraphicsMenu/Defaults" to="GraphicsMenu/Defaults" method="_on_focus_entered"]
+[connection signal="focus_exited" from="GraphicsMenu/Defaults" to="GraphicsMenu/Defaults" method="_on_focus_exited"]

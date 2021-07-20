@@ -251,9 +251,21 @@ func get_parallax() -> int:
 
 onready var palette_controller = $PaletteFilter
 
-func cover():
-	cover_animator.play("cover")
-func reveal():
-	cover_animator.play("reveal")
+func cover() -> float:
+	if !OptionsMenu.photosensitivity_mode():
+		cover_animator.play("cover")
+		return 0.6
+	else:
+		cover_animator.play("cover (slow)")
+		return 1.4
+	return 1.0
+func reveal() -> float:
+	if !OptionsMenu.photosensitivity_mode():
+		cover_animator.play("reveal")
+		return 0.6
+	else:
+		cover_animator.play("reveal (slow)")
+		return 1.4
+	return 1.0
 
 onready var cover_animator = $CoverAnimator

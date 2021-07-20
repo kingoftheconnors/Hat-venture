@@ -28,4 +28,7 @@ func _physics_process(_delta):
 			var collision = get_slide_collision(i)
 			if collision.travel.y > 0.1:
 				if animator:
-					animator.play("fade")
+					if !OptionsMenu.photosensitivity_mode():
+						animator.play("fade")
+					else:
+						animator.play("fade_without_flash")
