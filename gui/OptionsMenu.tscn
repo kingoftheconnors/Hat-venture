@@ -714,6 +714,7 @@ script = ExtResource( 15 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 pause_mode = 2
+visible = false
 anchor_left = 0.498
 anchor_top = 0.056
 anchor_right = 0.498
@@ -1602,6 +1603,7 @@ __meta__ = {
 
 [node name="GraphicsMenu" type="NinePatchRect" parent="."]
 pause_mode = 2
+visible = false
 anchor_left = 0.5
 anchor_top = 0.056
 anchor_right = 0.5
@@ -2229,7 +2231,6 @@ __meta__ = {
 [connection signal="focus_exited" from="GraphicsMenu/HudSize" to="GraphicsMenu/HudSize" method="_on_focus_exited"]
 [connection signal="focus_entered" from="GraphicsMenu/ParallaxSlider" to="Blip" method="start_sound"]
 [connection signal="value_changed" from="GraphicsMenu/ParallaxSlider" to="Blip" method="start_sound"]
-[connection signal="value_changed" from="GraphicsMenu/ParallaxSlider" to="GraphicsMenu/ParallaxSlider" method="_on_ParallaxSlider_value_changed"]
 [connection signal="changed" from="GraphicsMenu/Photosensitivity2" to="NinePatchRect" method="set_dirty"]
 [connection signal="focus_entered" from="GraphicsMenu/Photosensitivity2" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="GraphicsMenu/Photosensitivity2" to="GraphicsMenu/Photosensitivity2" method="_on_focus_entered"]

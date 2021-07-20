@@ -15,3 +15,7 @@ onready var resolution_controller = $GraphicsMenu/ResolutionSelector
 func photosensitivity_mode() -> bool:
 	return photosensitivity_controller.get_photosensitivity_mode()
 onready var photosensitivity_controller = $GraphicsMenu/Photosensitivity2
+
+func get_parallax() -> int:
+	return parallax_slider.value
+onready var parallax_slider = $GraphicsMenu/ParallaxSlider

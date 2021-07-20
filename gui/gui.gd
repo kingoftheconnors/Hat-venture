@@ -243,12 +243,6 @@ func set_brightness(val):
 ### Parallax
 ### -------------------------------
 
-var parallax : int = 30
-func set_parallax(value):
-	parallax = value
-func get_parallax() -> int:
-	return parallax
-
 onready var palette_controller = $PaletteFilter
 
 func cover() -> float:
