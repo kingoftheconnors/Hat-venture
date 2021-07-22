@@ -324,12 +324,11 @@ direction = -1
 [node name="Crow4" parent="PartA/AEnemies" instance=ExtResource( 18 )]
 position = Vector2( 1274.9, 17.3625 )
 
-[node name="Crow5" parent="PartA/AEnemies" instance=ExtResource( 18 )]
-position = Vector2( 82.4852, -71.2592 )
-direction = -1
-
 [node name="Hen3" parent="PartA/AEnemies" instance=ExtResource( 17 )]
 position = Vector2( -51.3225, -152.162 )
+
+[node name="Hen4" parent="PartA/AEnemies" instance=ExtResource( 17 )]
+position = Vector2( 5.47733, -71.9378 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 layer = -3
