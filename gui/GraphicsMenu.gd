@@ -8,7 +8,6 @@ func save():
 		"resolution": $ResolutionSelector.get_cur_resolution_name(),
 		"fullscreen": $Fullscreen2.is_fullscreen(),
 		"brightness": $BrightnessSlider.value,
-		"hudsize": $HudSize.get_cur_size(),
 		"parallax": $ParallaxSlider.value,
 		"photosensitivity": $Photosensitivity2.get_photosensitivity_mode()
 	}
@@ -30,8 +29,6 @@ func _ready():
 		$Fullscreen2.set_fullscreen(settings["fullscreen"])
 	if settings.has("brightness"):
 		$BrightnessSlider.value = settings["brightness"]
-	if settings.has("hudsize"):
-		$HudSize.set_cur_size(settings["hudsize"])
 	if settings.has("parallax"):
 		$ParallaxSlider.value = settings["parallax"]
 	if settings.has("photosensitivity"):

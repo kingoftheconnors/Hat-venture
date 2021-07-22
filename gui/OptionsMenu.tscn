@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://font/PressStart2P-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://gui/OptionsMenu.gd" type="Script" id=2]
@@ -19,7 +19,6 @@
 [ext_resource path="res://gui/BrightnessSlider.gd" type="Script" id=18]
 [ext_resource path="res://gui/ParallaxController.gd" type="Script" id=19]
 [ext_resource path="res://gui/PhotosensitivityModeController.gd" type="Script" id=20]
-[ext_resource path="res://gui/HudSizeController.gd" type="Script" id=21]
 
 [sub_resource type="DynamicFont" id=1]
 size = 8
@@ -62,7 +61,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 135.64 ]
+"values": [ 48.0 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("NinePatchRect:margin_left")
@@ -74,7 +73,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ -135.36 ]
+"values": [ -48.0 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -151,7 +150,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ -95.36 ]
+"values": [ 0.0 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("NinePatchRect:margin_right")
@@ -163,7 +162,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 95.64 ]
+"values": [ 6.99998 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("NinePatchRect/Volume:custom_fonts/font:size")
@@ -635,7 +634,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 152.0 ]
+"values": [ 40.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:margin_left")
@@ -647,7 +646,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ -152.0 ]
+"values": [ -40.0 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath(".:margin_bottom")
@@ -689,7 +688,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 104.0 ]
+"values": [ 0.0 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath(".:margin_left")
@@ -701,7 +700,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ -104.0 ]
+"values": [ -3.8147e-06 ]
 }
 
 [node name="OptionsMenu" type="CanvasLayer"]
@@ -718,11 +717,11 @@ visible = false
 anchor_left = 0.498
 anchor_top = 0.056
 anchor_right = 0.498
-anchor_bottom = 0.917
+anchor_bottom = 0.833
 margin_left = -95.36
 margin_top = -0.128
 margin_right = 95.64
-margin_bottom = -48.096
+margin_bottom = 0.0959778
 texture = ExtResource( 3 )
 patch_margin_left = 13
 patch_margin_top = 10
@@ -783,14 +782,14 @@ __meta__ = {
 }
 
 [node name="MusicVol" type="Label" parent="NinePatchRect"]
-anchor_left = 0.412
-anchor_top = 0.194
-anchor_right = 0.412
-anchor_bottom = 0.194
-margin_left = -63.924
-margin_top = -0.0400009
-margin_right = 64.076
-margin_bottom = 31.96
+anchor_left = 0.419
+anchor_top = 0.16
+anchor_right = 0.419
+anchor_bottom = 0.16
+margin_left = -64.029
+margin_top = 2.0
+margin_right = 63.971
+margin_bottom = 34.0
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -804,12 +803,13 @@ __meta__ = {
 
 [node name="MusicSlider" type="HSlider" parent="NinePatchRect"]
 anchor_left = 0.458
-anchor_top = 0.175
-anchor_right = 0.937
-anchor_bottom = 0.175
-margin_left = -0.0660095
-margin_right = -1.849
-margin_bottom = 22.0
+anchor_top = 0.145
+anchor_right = 0.927
+anchor_bottom = 0.145
+margin_left = -0.0660019
+margin_top = 2.0
+margin_right = 0.0610046
+margin_bottom = 24.0
 focus_neighbour_bottom = NodePath("../SoundSlider")
 focus_next = NodePath("../SoundSlider")
 min_value = 0.001
@@ -823,13 +823,13 @@ __meta__ = {
 
 [node name="SFXVol" type="Label" parent="NinePatchRect"]
 anchor_left = 0.412
-anchor_top = 0.294
+anchor_top = 0.24
 anchor_right = 0.412
-anchor_bottom = 0.294
-margin_left = -63.924
-margin_top = -0.0400009
-margin_right = 64.076
-margin_bottom = 31.96
+anchor_bottom = 0.24
+margin_left = -62.692
+margin_top = 4.00001
+margin_right = 65.308
+margin_bottom = 36.0
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -842,14 +842,14 @@ __meta__ = {
 }
 
 [node name="SoundSlider" type="HSlider" parent="NinePatchRect"]
-anchor_left = 0.458
-anchor_top = 0.288
+anchor_left = 0.461
+anchor_top = 0.24
 anchor_right = 0.937
-anchor_bottom = 0.288
-margin_left = -0.0660095
-margin_top = -0.079998
-margin_right = -1.849
-margin_bottom = 19.92
+anchor_bottom = 0.24
+margin_left = -0.639
+margin_top = 3.0
+margin_right = -1.84898
+margin_bottom = 23.0
 focus_neighbour_top = NodePath("../MusicSlider")
 focus_neighbour_bottom = NodePath("../PaletteController")
 focus_next = NodePath("../PaletteController")
@@ -865,9 +865,9 @@ __meta__ = {
 
 [node name="Palette" type="Label" parent="NinePatchRect"]
 anchor_left = 0.096
-anchor_top = 0.404
+anchor_top = 0.379
 anchor_right = 0.096
-anchor_bottom = 0.404
+anchor_bottom = 0.379
 margin_left = 0.00800133
 margin_top = 0.0400009
 margin_right = 168.008
@@ -884,9 +884,9 @@ __meta__ = {
 
 [node name="PaletteController" type="Control" parent="NinePatchRect"]
 anchor_left = 0.458
-anchor_top = 0.404
+anchor_top = 0.379
 anchor_right = 0.955
-anchor_bottom = 0.404
+anchor_bottom = 0.379
 margin_left = -0.0660019
 margin_top = 0.0400009
 margin_right = -0.0349884
@@ -951,13 +951,13 @@ __meta__ = {
 
 [node name="Controls" type="Label" parent="NinePatchRect"]
 anchor_left = 0.051
-anchor_top = 0.5
+anchor_top = 0.48
 anchor_right = 0.051
-anchor_bottom = 0.5
-margin_left = -0.0269985
-margin_top = 7.62939e-06
+anchor_bottom = 0.48
+margin_left = -0.0269995
+margin_top = -0.999992
 margin_right = 335.973
-margin_bottom = 32.48
+margin_bottom = 31.48
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_top = NodePath("../PaletteController")
 focus_neighbour_bottom = NodePath("../Graphics")
@@ -988,10 +988,10 @@ __meta__ = {
 
 [node name="Graphics" type="Label" parent="NinePatchRect"]
 anchor_left = 0.051
-anchor_top = 0.596
+anchor_top = 0.571
 anchor_right = 0.051
-anchor_bottom = 0.596
-margin_left = -0.0269985
+anchor_bottom = 0.571
+margin_left = -0.0269995
 margin_top = -0.0400085
 margin_right = 335.973
 margin_bottom = 32.44
@@ -1025,13 +1025,12 @@ __meta__ = {
 
 [node name="QuitToMain" type="Label" parent="NinePatchRect"]
 anchor_left = 0.096
-anchor_top = 0.725
+anchor_top = 0.735
 anchor_right = 0.096
-anchor_bottom = 0.725
+anchor_bottom = 0.735
 margin_left = -7.992
-margin_top = 2.0
 margin_right = 200.008
-margin_bottom = 26.0
+margin_bottom = 24.0
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_top = NodePath("../Graphics")
 focus_neighbour_bottom = NodePath("../QuitGame")
@@ -1066,13 +1065,12 @@ __meta__ = {
 
 [node name="QuitGame" type="Label" parent="NinePatchRect"]
 anchor_left = 0.096
-anchor_top = 0.825
+anchor_top = 0.835
 anchor_right = 0.096
-anchor_bottom = 0.825
+anchor_bottom = 0.835
 margin_left = -7.992
-margin_top = 2.0
 margin_right = 152.008
-margin_bottom = 26.0
+margin_bottom = 24.0
 rect_scale = Vector2( 0.5, 0.5 )
 focus_mode = 2
 custom_fonts/font = SubResource( 5 )
@@ -1111,7 +1109,7 @@ anchor_bottom = 0.833
 margin_left = -96.0
 margin_top = -0.128
 margin_right = 96.0
-margin_bottom = -15.904
+margin_bottom = -7.90401
 texture = ExtResource( 3 )
 patch_margin_left = 8
 patch_margin_top = 8
@@ -1607,11 +1605,11 @@ visible = false
 anchor_left = 0.5
 anchor_top = 0.056
 anchor_right = 0.5
-anchor_bottom = 0.889
+anchor_bottom = 0.833
 margin_left = -104.0
 margin_top = -0.128
 margin_right = 104.0
-margin_bottom = -24.128
+margin_bottom = -8.00002
 texture = ExtResource( 3 )
 patch_margin_left = 8
 patch_margin_top = 8
@@ -1663,20 +1661,20 @@ custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Resolution"
 valign = 1
+clip_text = true
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ResolutionSelector" type="Control" parent="GraphicsMenu"]
-anchor_left = 0.458
+anchor_left = 0.5
 anchor_top = 0.208
-anchor_right = 0.955
+anchor_right = 0.962
 anchor_bottom = 0.208
-margin_left = 0.064003
-margin_top = 0.0639992
-margin_right = 0.0950165
-margin_bottom = 16.064
+margin_top = 0.0919647
+margin_right = -0.0960083
+margin_bottom = 16.092
 focus_neighbour_top = NodePath("../Save")
 focus_neighbour_bottom = NodePath("../Fullscreen2")
 focus_mode = 2
@@ -1704,10 +1702,10 @@ __meta__ = {
 
 [node name="L" type="Label" parent="GraphicsMenu/ResolutionSelector"]
 visible = false
-anchor_left = 0.161
-anchor_right = 0.161
-margin_left = -7.64853
-margin_right = 8.35147
+anchor_left = 0.1
+anchor_right = 0.1
+margin_left = -8.0
+margin_right = 8.0
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 5 )
@@ -1721,10 +1719,10 @@ __meta__ = {
 
 [node name="R" type="Label" parent="GraphicsMenu/ResolutionSelector"]
 visible = false
-anchor_left = 0.858
-anchor_right = 0.858
-margin_left = -74.7232
-margin_right = 90.2768
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -8.0
+margin_right = 8.0
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 5 )
@@ -1739,32 +1737,33 @@ __meta__ = {
 
 [node name="Fullscreen" type="Label" parent="GraphicsMenu"]
 anchor_left = 0.096
-anchor_top = 0.318
+anchor_top = 0.322
 anchor_right = 0.096
-anchor_bottom = 0.318
+anchor_bottom = 0.322
 margin_left = 0.0319996
-margin_top = -0.0559959
+margin_top = 0.0803833
 margin_right = 168.032
-margin_bottom = 31.944
+margin_bottom = 32.0804
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Fullscreen"
 valign = 1
+clip_text = true
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Fullscreen2" type="Control" parent="GraphicsMenu"]
-anchor_left = 0.458
-anchor_top = 0.318
-anchor_right = 0.955
-anchor_bottom = 0.318
-margin_left = 0.0639954
-margin_top = -0.0559959
-margin_right = 0.0950165
-margin_bottom = 15.944
+anchor_left = 0.538
+anchor_top = 0.322
+anchor_right = 0.923
+anchor_bottom = 0.324
+margin_left = 0.095993
+margin_top = 0.478905
+margin_right = 0.0159912
+margin_bottom = 16.0471
 focus_neighbour_top = NodePath("../ResolutionSelector")
 focus_neighbour_bottom = NodePath("../BrightnessSlider")
 focus_mode = 2
@@ -1827,18 +1826,19 @@ __meta__ = {
 
 [node name="Brightness" type="Label" parent="GraphicsMenu"]
 anchor_left = 0.096
-anchor_top = 0.427
+anchor_top = 0.445
 anchor_right = 0.096
-anchor_bottom = 0.427
+anchor_bottom = 0.445
 margin_left = 0.0319996
-margin_top = 0.0160141
-margin_right = 160.032
-margin_bottom = 32.016
+margin_top = -0.0772858
+margin_right = 168.032
+margin_bottom = 31.9227
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Brightness"
 valign = 1
+clip_text = true
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1846,16 +1846,16 @@ __meta__ = {
 
 [node name="BrightnessSlider" type="HSlider" parent="GraphicsMenu"]
 anchor_left = 0.538
-anchor_top = 0.411
+anchor_top = 0.43
 anchor_right = 0.923
-anchor_bottom = 0.417
-margin_left = 0.0960007
-margin_top = 0.0880051
+anchor_bottom = 0.43
+margin_left = 0.095993
+margin_top = -0.0141754
 margin_right = 0.0160065
-margin_bottom = 20.936
+margin_bottom = 22.1292
 focus_neighbour_top = NodePath("../Fullscreen2")
-focus_neighbour_bottom = NodePath("../HudSize")
-focus_next = NodePath("../HudSize")
+focus_neighbour_bottom = NodePath("../ParallaxSlider")
+focus_next = NodePath("../ParallaxSlider")
 focus_previous = NodePath("../Fullscreen2")
 min_value = -5.0
 max_value = 5.0
@@ -1865,110 +1865,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Hudsize" type="Label" parent="GraphicsMenu"]
-anchor_left = 0.096
-anchor_top = 0.536
-anchor_right = 0.096
-anchor_bottom = 0.536
-margin_left = 0.0319996
-margin_top = 0.0880127
-margin_right = 240.032
-margin_bottom = 32.088
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Hudsize"
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HudSize" type="Control" parent="GraphicsMenu"]
-anchor_left = 0.458
-anchor_top = 0.536
-anchor_right = 0.955
-anchor_bottom = 0.536
-margin_left = 0.0639954
-margin_top = 0.0880127
-margin_right = 0.0950165
-margin_bottom = 16.088
-focus_neighbour_top = NodePath("../BrightnessSlider")
-focus_neighbour_bottom = NodePath("../ParallaxSlider")
-focus_next = NodePath("../ParallaxSlider")
-focus_previous = NodePath("../BrightnessSlider")
-focus_mode = 2
-script = ExtResource( 21 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Current" type="Label" parent="GraphicsMenu/HudSize"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -50.7035
-margin_right = 153.296
-margin_bottom = 32.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "regular"
-align = 1
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="L" type="Label" parent="GraphicsMenu/HudSize"]
-visible = false
-anchor_left = 0.161
-anchor_right = 0.161
-margin_left = -7.64853
-margin_right = 8.35147
-margin_bottom = 32.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "<"
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="R" type="Label" parent="GraphicsMenu/HudSize"]
-visible = false
-anchor_left = 0.858
-anchor_right = 0.858
-margin_left = -74.7232
-margin_right = 90.2768
-margin_bottom = 32.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = ">"
-align = 2
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Parallax" type="Label" parent="GraphicsMenu"]
 anchor_left = 0.096
-anchor_top = 0.645
+anchor_top = 0.56
 anchor_right = 0.096
-anchor_bottom = 0.645
+anchor_bottom = 0.56
 margin_left = 0.0319996
-margin_top = -0.258087
-margin_right = 184.032
-margin_bottom = 31.7419
+margin_top = 0.0937576
+margin_right = 168.032
+margin_bottom = 32.0938
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Parallax"
 valign = 1
+clip_text = true
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1976,14 +1887,14 @@ __meta__ = {
 
 [node name="ParallaxSlider" type="HSlider" parent="GraphicsMenu"]
 anchor_left = 0.538
-anchor_top = 0.624
+anchor_top = 0.541
 anchor_right = 0.923
-anchor_bottom = 0.624
-margin_left = 0.095993
-margin_top = 0.100464
-margin_right = 0.0160065
-margin_bottom = 22.2439
-focus_neighbour_top = NodePath("../HudSize")
+anchor_bottom = 0.541
+margin_left = 0.0959854
+margin_top = 0.0205078
+margin_right = 0.0159912
+margin_bottom = 22.1639
+focus_neighbour_top = NodePath("../BrightnessSlider")
 focus_neighbour_bottom = NodePath("../Photosensitivity2")
 focus_next = NodePath("../Photosensitivity2")
 focus_previous = NodePath("../HudSize")
@@ -1997,13 +1908,13 @@ __meta__ = {
 
 [node name="Photosensitivitymode" type="Label" parent="GraphicsMenu"]
 anchor_left = 0.096
-anchor_top = 0.748
+anchor_top = 0.69
 anchor_right = 0.096
-anchor_bottom = 0.748
+anchor_bottom = 0.69
 margin_left = 0.0319996
-margin_top = 0.503799
+margin_top = 0.0262604
 margin_right = 200.032
-margin_bottom = 35.5038
+margin_bottom = 35.0263
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -2016,14 +1927,14 @@ __meta__ = {
 }
 
 [node name="Photosensitivity2" type="Control" parent="GraphicsMenu"]
-anchor_left = 0.49
-anchor_top = 0.75
+anchor_left = 0.538
+anchor_top = 0.69
 anchor_right = 0.923
-anchor_bottom = 0.75
-margin_left = 0.0800018
-margin_top = 0.0719452
+anchor_bottom = 0.69
+margin_left = 0.095993
+margin_top = 0.0262299
 margin_right = 0.0159912
-margin_bottom = 16.0724
+margin_bottom = 16.0262
 focus_neighbour_top = NodePath("../ParallaxSlider")
 focus_neighbour_bottom = NodePath("../Save")
 focus_mode = 2
@@ -2086,13 +1997,13 @@ __meta__ = {
 
 [node name="Save" type="Label" parent="GraphicsMenu"]
 anchor_left = 0.056
-anchor_top = 0.878
+anchor_top = 0.864
 anchor_right = 0.056
-anchor_bottom = 0.878
+anchor_bottom = 0.864
 margin_left = 0.0239964
-margin_top = -0.0652771
+margin_top = -0.0426178
 margin_right = 176.024
-margin_bottom = 23.9347
+margin_bottom = 23.9574
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_top = NodePath("../Photosensitivity2")
 focus_neighbour_right = NodePath("../Defaults")
@@ -2126,12 +2037,12 @@ __meta__ = {
 
 [node name="Defaults" type="Label" parent="GraphicsMenu"]
 anchor_left = 0.5
-anchor_top = 0.878
+anchor_top = 0.864
 anchor_right = 0.5
-anchor_bottom = 0.878
-margin_top = -0.0652771
+anchor_bottom = 0.864
+margin_top = -0.0426178
 margin_right = 159.0
-margin_bottom = 23.9347
+margin_bottom = 23.9574
 rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_left = NodePath("../Save")
 focus_neighbour_top = NodePath("../Photosensitivity2")
@@ -2163,87 +2074,83 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="focus_entered" from="NinePatchRect/MusicSlider" to="Blip" method="start_sound"]
-[connection signal="value_changed" from="NinePatchRect/MusicSlider" to="NinePatchRect" method="_on_MasterVolSlider_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/MusicSlider" to="Blip" method="start_sound"]
+[connection signal="value_changed" from="NinePatchRect/MusicSlider" to="NinePatchRect" method="_on_MasterVolSlider_value_changed"]
 [connection signal="focus_entered" from="NinePatchRect/SoundSlider" to="Blip" method="start_sound"]
-[connection signal="value_changed" from="NinePatchRect/SoundSlider" to="NinePatchRect" method="_on_SoundSlider_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/SoundSlider" to="Blip" method="start_sound"]
+[connection signal="value_changed" from="NinePatchRect/SoundSlider" to="NinePatchRect" method="_on_SoundSlider_value_changed"]
 [connection signal="changed" from="NinePatchRect/PaletteController" to="NinePatchRect" method="set_dirty"]
-[connection signal="focus_entered" from="NinePatchRect/PaletteController" to="NinePatchRect/PaletteController" method="_on_focus_entered"]
 [connection signal="focus_entered" from="NinePatchRect/PaletteController" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="NinePatchRect/PaletteController" to="NinePatchRect/PaletteController" method="_on_focus_entered"]
 [connection signal="focus_exited" from="NinePatchRect/PaletteController" to="NinePatchRect/PaletteController" method="_on_focus_exited"]
-[connection signal="focus_entered" from="NinePatchRect/Controls" to="NinePatchRect/Controls" method="_on_focus_entered"]
 [connection signal="focus_entered" from="NinePatchRect/Controls" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="NinePatchRect/Controls" to="NinePatchRect/Controls" method="_on_focus_entered"]
 [connection signal="focus_exited" from="NinePatchRect/Controls" to="NinePatchRect/Controls" method="_on_focus_exited"]
-[connection signal="focus_entered" from="NinePatchRect/Graphics" to="NinePatchRect/Graphics" method="_on_focus_entered"]
 [connection signal="focus_entered" from="NinePatchRect/Graphics" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="NinePatchRect/Graphics" to="NinePatchRect/Graphics" method="_on_focus_entered"]
 [connection signal="focus_exited" from="NinePatchRect/Graphics" to="NinePatchRect/Graphics" method="_on_focus_exited"]
-[connection signal="focus_entered" from="NinePatchRect/QuitToMain" to="NinePatchRect/QuitToMain" method="_on_focus_entered"]
 [connection signal="focus_entered" from="NinePatchRect/QuitToMain" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="NinePatchRect/QuitToMain" to="NinePatchRect/QuitToMain" method="_on_focus_entered"]
 [connection signal="focus_exited" from="NinePatchRect/QuitToMain" to="NinePatchRect/QuitToMain" method="_on_focus_exited"]
-[connection signal="focus_entered" from="NinePatchRect/QuitGame" to="NinePatchRect/QuitGame" method="_on_focus_entered"]
 [connection signal="focus_entered" from="NinePatchRect/QuitGame" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="NinePatchRect/QuitGame" to="NinePatchRect/QuitGame" method="_on_focus_entered"]
 [connection signal="focus_exited" from="NinePatchRect/QuitGame" to="NinePatchRect/QuitGame" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_up" to="ControlsMenu/KeyboardKeys/ui_up" method="_on_focus_entered"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_up" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_up" to="ControlsMenu/KeyboardKeys/ui_up" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_up" to="ControlsMenu/KeyboardKeys/ui_up" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_down" to="ControlsMenu/KeyboardKeys/ui_down" method="_on_focus_entered"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_down" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_down" to="ControlsMenu/KeyboardKeys/ui_down" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_down" to="ControlsMenu/KeyboardKeys/ui_down" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_left" to="ControlsMenu/KeyboardKeys/ui_left" method="_on_focus_entered"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_left" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_left" to="ControlsMenu/KeyboardKeys/ui_left" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_left" to="ControlsMenu/KeyboardKeys/ui_left" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_right" to="ControlsMenu/KeyboardKeys/ui_right" method="_on_focus_entered"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_right" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_right" to="ControlsMenu/KeyboardKeys/ui_right" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_right" to="ControlsMenu/KeyboardKeys/ui_right" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_A" to="ControlsMenu/KeyboardKeys/ui_A" method="_on_focus_entered"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_A" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_A" to="ControlsMenu/KeyboardKeys/ui_A" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_A" to="ControlsMenu/KeyboardKeys/ui_A" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_B" to="ControlsMenu/KeyboardKeys/ui_B" method="_on_focus_entered"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_B" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_B" to="ControlsMenu/KeyboardKeys/ui_B" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_B" to="ControlsMenu/KeyboardKeys/ui_B" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_release" to="ControlsMenu/KeyboardKeys/ui_release" method="_on_focus_entered"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_release" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_release" to="ControlsMenu/KeyboardKeys/ui_release" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_release" to="ControlsMenu/KeyboardKeys/ui_release" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_menu" to="ControlsMenu/KeyboardKeys/ui_menu" method="_on_focus_entered"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_menu" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_menu" to="ControlsMenu/KeyboardKeys/ui_menu" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_menu" to="ControlsMenu/KeyboardKeys/ui_menu" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/Defaults" to="ControlsMenu/Defaults" method="_on_focus_entered"]
 [connection signal="focus_entered" from="ControlsMenu/Defaults" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="ControlsMenu/Defaults" to="ControlsMenu/Defaults" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/Defaults" to="ControlsMenu/Defaults" method="_on_focus_exited"]
 [connection signal="selected" from="ControlsMenu/Defaults" to="ControlsMenu" method="set_to_defaults"]
-[connection signal="focus_entered" from="ControlsMenu/Save" to="ControlsMenu/Save" method="_on_focus_entered"]
 [connection signal="focus_entered" from="ControlsMenu/Save" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="ControlsMenu/Save" to="ControlsMenu/Save" method="_on_focus_entered"]
 [connection signal="focus_exited" from="ControlsMenu/Save" to="ControlsMenu/Save" method="_on_focus_exited"]
 [connection signal="selected" from="ControlsMenu/Save" to="ControlsMenu" method="close" flags=3]
 [connection signal="selected" from="ControlsMenu/Save" to="ControlsMenu" method="save"]
 [connection signal="changed" from="GraphicsMenu/ResolutionSelector" to="NinePatchRect" method="set_dirty"]
-[connection signal="focus_entered" from="GraphicsMenu/ResolutionSelector" to="GraphicsMenu/ResolutionSelector" method="_on_focus_entered"]
 [connection signal="focus_entered" from="GraphicsMenu/ResolutionSelector" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="GraphicsMenu/ResolutionSelector" to="GraphicsMenu/ResolutionSelector" method="_on_focus_entered"]
 [connection signal="focus_exited" from="GraphicsMenu/ResolutionSelector" to="GraphicsMenu/ResolutionSelector" method="_on_focus_exited"]
 [connection signal="changed" from="GraphicsMenu/Fullscreen2" to="NinePatchRect" method="set_dirty"]
-[connection signal="focus_entered" from="GraphicsMenu/Fullscreen2" to="GraphicsMenu/Fullscreen2" method="_on_focus_entered"]
 [connection signal="focus_entered" from="GraphicsMenu/Fullscreen2" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="GraphicsMenu/Fullscreen2" to="GraphicsMenu/Fullscreen2" method="_on_focus_entered"]
 [connection signal="focus_exited" from="GraphicsMenu/Fullscreen2" to="GraphicsMenu/Fullscreen2" method="_on_focus_exited"]
 [connection signal="focus_entered" from="GraphicsMenu/BrightnessSlider" to="Blip" method="start_sound"]
-[connection signal="value_changed" from="GraphicsMenu/BrightnessSlider" to="GraphicsMenu/BrightnessSlider" method="_on_BrightnessSlider_value_changed"]
 [connection signal="value_changed" from="GraphicsMenu/BrightnessSlider" to="Blip" method="start_sound"]
-[connection signal="changed" from="GraphicsMenu/HudSize" to="NinePatchRect" method="set_dirty"]
-[connection signal="focus_entered" from="GraphicsMenu/HudSize" to="GraphicsMenu/HudSize" method="_on_focus_entered"]
-[connection signal="focus_entered" from="GraphicsMenu/HudSize" to="Blip" method="start_sound"]
-[connection signal="focus_exited" from="GraphicsMenu/HudSize" to="GraphicsMenu/HudSize" method="_on_focus_exited"]
+[connection signal="value_changed" from="GraphicsMenu/BrightnessSlider" to="GraphicsMenu/BrightnessSlider" method="_on_BrightnessSlider_value_changed"]
 [connection signal="focus_entered" from="GraphicsMenu/ParallaxSlider" to="Blip" method="start_sound"]
 [connection signal="value_changed" from="GraphicsMenu/ParallaxSlider" to="Blip" method="start_sound"]
 [connection signal="changed" from="GraphicsMenu/Photosensitivity2" to="NinePatchRect" method="set_dirty"]
-[connection signal="focus_entered" from="GraphicsMenu/Photosensitivity2" to="GraphicsMenu/Photosensitivity2" method="_on_focus_entered"]
 [connection signal="focus_entered" from="GraphicsMenu/Photosensitivity2" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="GraphicsMenu/Photosensitivity2" to="GraphicsMenu/Photosensitivity2" method="_on_focus_entered"]
 [connection signal="focus_exited" from="GraphicsMenu/Photosensitivity2" to="GraphicsMenu/Photosensitivity2" method="_on_focus_exited"]
-[connection signal="focus_entered" from="GraphicsMenu/Save" to="GraphicsMenu/Save" method="_on_focus_entered"]
 [connection signal="focus_entered" from="GraphicsMenu/Save" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="GraphicsMenu/Save" to="GraphicsMenu/Save" method="_on_focus_entered"]
 [connection signal="focus_exited" from="GraphicsMenu/Save" to="GraphicsMenu/Save" method="_on_focus_exited"]
 [connection signal="selected" from="GraphicsMenu/Save" to="GraphicsMenu" method="close" flags=3]
 [connection signal="selected" from="GraphicsMenu/Save" to="GraphicsMenu" method="save"]
-[connection signal="focus_entered" from="GraphicsMenu/Defaults" to="GraphicsMenu/Defaults" method="_on_focus_entered"]
 [connection signal="focus_entered" from="GraphicsMenu/Defaults" to="Blip" method="start_sound"]
+[connection signal="focus_entered" from="GraphicsMenu/Defaults" to="GraphicsMenu/Defaults" method="_on_focus_entered"]
 [connection signal="focus_exited" from="GraphicsMenu/Defaults" to="GraphicsMenu/Defaults" method="_on_focus_exited"]
 [connection signal="selected" from="GraphicsMenu/Defaults" to="GraphicsMenu" method="set_to_defaults"]

@@ -55,17 +55,17 @@ func get_cur_resolution() -> String:
 	return RESOLUTION_SIZES[RESOLUTION_SIZES.keys()[resolution_index]]
 
 func set_to_default():
-	resolution_index = 3
+	resolution_index = 2
 	update_resolution()
 
 const RESOLUTION_SIZES : Dictionary = {
 	#"160x144": Vector2(160, 144), # Classic gameboy resolution
-	"240x160": Vector2(240, 160),
+	#"240x160": Vector2(240, 160),
 	"256x192": Vector2(256, 192),
 	"256x256": Vector2(256, 256),
 	"320x288": Vector2(320, 288)
 }
-var resolution_index = 3
+var resolution_index = 2
 onready var l_arrow : Label = $L
 onready var r_arrow : Label = $R
 onready var current_label : Label = $Current
