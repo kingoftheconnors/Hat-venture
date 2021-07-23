@@ -477,7 +477,7 @@ func walk_to(node_path : String, direction_override = null):
 	goal_x = get_node(node_path).position.x
 	if direction_override:
 		direc_override = direction_override
-func fly_to(node_path : String, direction_override = null):
+func fly_to(node_path : String):
 	goal_y = get_node(node_path).position.y
 func watch_node(node_path: String):
 	watch_override = get_node(node_path)
@@ -552,6 +552,9 @@ func bounce_back(towards_x = null):
 		# Walk towards target area, with direction override opposite walk_direction
 		walk_to(towards_x, -direc.x/abs(direc.x))
 	push(direc)
+
+func bounce_towards(direc : int = direction):
+	push(Vector2(direc, -0.8) * KNOCKBACK_MULTIPLIER)
 
 func spin_bounce(body):
 	if !body.is_in_group("player"):

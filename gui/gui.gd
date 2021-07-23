@@ -134,8 +134,14 @@ func start_dialog(next_box):
 		text_crawl_func = crawl(next_box)
 	elif next_box.has("signal"):
 		next_box.starter.emit_signal(next_box.signal)
+	elif next_box.has("animate1"):
+		next_box.starter.animate1(next_box.animate1)
+	elif next_box.has("animate2"):
+		next_box.starter.animate1(next_box.animate2)
 	elif next_box.has("settag"):
 		SaveSystem.set_tag(next_box['settag'], next_box['value'])
+	elif next_box.has("queue"):
+		queue_dialog_at_front(next_box.starter, next_box['queue'])
 	elif next_box.has("enable"):
 		for body in next_box['enable']:
 			body.set_pause_mode(PAUSE_MODE_PROCESS)

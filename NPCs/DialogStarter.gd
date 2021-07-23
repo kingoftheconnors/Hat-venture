@@ -43,6 +43,11 @@ func queue_dialog_by_id(dialog_id, player_body = null):
 	if one_shot:
 		queue_free()
 
+func animate1(animation_name : String):
+	get_node(animate1).animate(animation_name)
+func animate2(animation_name : String):
+	get_node(animate2).animate(animation_name)
+
 func set_dialog_option(dialog_id : int):
 	dialog_num = dialog_id
 
@@ -78,7 +83,15 @@ onready var up_prompt = $UpPrompt
 # warning-ignore:unused_signal
 # warning-ignore:unused_signal
 # warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
 signal action1; signal action2; signal action3; signal action4;
 signal action5; signal action6; signal action7; signal action8;
 signal action9; signal actionA; signal actionB; signal actionC;
 signal actionD; signal actionE; signal actionF; signal actionG;
+signal actionH; signal actionJ; signal actionK; signal actionL;
+
+export(NodePath) var animate1
+export(NodePath) var animate2
