@@ -81,7 +81,10 @@ func unlock_palette(new_palette):
 
 func is_palette_unlocked(palette_name):
 	var settings = load_settings()
-	return settings['palettes'].has(palette_name)
+	if settings.has('palettes'):
+		return settings['palettes'].has(palette_name)
+	else:
+		return false
 
 enum STORYBOOK_PAGES {
 	KIRK_1,
