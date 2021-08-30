@@ -14,13 +14,13 @@ func save_game():
 		print("ERROR: No game is currently loaded!")
 
 func load_game(load_save_num : int):
+	save_num = load_save_num
 	var load_game_data = File.new()
 	if not load_game_data.file_exists("user://save" + str(load_save_num) + ".save"):
 		return {}
 	# Load the file by line and return dictionary
 	load_game_data.open("user://keybinds.save", File.READ)
 	game_data = parse_json(load_game_data.get_line())
-	save_num = load_save_num
 	load_game_data.close()
 	return game_data
 
