@@ -19,11 +19,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/GGS/_depedencies/json_beautifier/json_beautifier.gd"
 }, {
-"base": "Reference",
-"class": "SaveSystem",
-"language": "GDScript",
-"path": "res://constants/SaveSystem.gd"
-}, {
 "base": "Node",
 "class": "Utils",
 "language": "GDScript",
@@ -167,7 +162,6 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "BaseInput": "",
 "JSONBeautifier": "",
-"SaveSystem": "",
 "Utils": "",
 "blastDying": "",
 "bouncy": "",
@@ -211,6 +205,7 @@ Constants="*res://constants/GameConstants.tscn"
 PlayerGameManager="*res://common/PlayerGameManager.tscn"
 SoundSystem="*res://constants/SoundSystem.tscn"
 ggsManager="*res://addons/GGS/src/ggs_manager.gd"
+SaveSystem="*res://constants/SaveSystem.gd"
 
 [debug]
 

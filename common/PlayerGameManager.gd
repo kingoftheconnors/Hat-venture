@@ -48,6 +48,8 @@ func has_checkpoint() -> bool:
 	return checkpoint_level >= 0
 func get_checkpoint_position() -> Vector2:
 	return checkpoint_pos
+func get_spawn_num() -> int:
+	return spawn_num
 
 ## Method for killing the player, and giving a gameover
 ## if the players' lives decreases to 0
@@ -79,7 +81,8 @@ func die():
 		Gui.reveal()
 
 ## Changes scene to start a level (called by number)
-func start_level(levelName : String):
+func start_level(levelName : String, spawn_point : int = 0):
+	spawn_num = spawn_point
 	# Fade to white
 	var transition_length = Gui.cover()
 	yield(get_tree().create_timer(transition_length), "timeout")
@@ -203,3 +206,4 @@ enum FrameForgiveness {
 var frame_forgiveness : int = FrameForgiveness.REGULAR
 
 var dive_num : int = 1
+var spawn_num = 0
