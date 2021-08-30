@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://font/PressStart2P-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://addons/GGS/src/components/slider/ggsSlider.tscn" type="PackedScene" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://addons/GGS/assets/glyph/gamepad/left.png" type="Texture" id=7]
 [ext_resource path="res://addons/GGS/assets/glyph/gamepad/start.png" type="Texture" id=8]
 [ext_resource path="res://addons/GGS/src/components/reset/ggsReset.tscn" type="PackedScene" id=9]
-[ext_resource path="res://addons/GGS/src/components/arrow_list/ggs_arrow_list.gd" type="Script" id=10]
 [ext_resource path="res://addons/GGS/src/components/arrow_list/ggsArrowList.tscn" type="PackedScene" id=11]
 [ext_resource path="res://addons/GGS/assets/glyph/gamepad/R1.png" type="Texture" id=13]
 [ext_resource path="res://addons/GGS/assets/glyph/gamepad/y.png" type="Texture" id=14]
@@ -317,14 +316,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ArrowList" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/WindowScale" instance=ExtResource( 11 )]
+[node name="ArrowList" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/WindowScale" instance=ExtResource( 11 )]
 margin_left = 114.0
 margin_right = 178.0
 margin_bottom = 22.0
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 setting_index = 16
 list = [ "8x6", "8x8", "10x9" ]
 
