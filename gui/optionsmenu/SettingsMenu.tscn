@@ -244,7 +244,7 @@ scroll_horizontal_enabled = false
 
 [node name="Mrgn" type="MarginContainer" parent="Mrgn/MarginContainer/VBox/Settings"]
 margin_right = 188.0
-margin_bottom = 384.0
+margin_bottom = 424.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 5
@@ -253,7 +253,7 @@ custom_constants/margin_left = 5
 [node name="VBox" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn"]
 margin_left = 5.0
 margin_right = 183.0
-margin_bottom = 384.0
+margin_bottom = 424.0
 custom_constants/separation = 10
 
 [node name="Display" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox"]
@@ -646,7 +646,7 @@ setting_index = 15
 [node name="Accessibilty" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox"]
 margin_top = 328.0
 margin_right = 178.0
-margin_bottom = 384.0
+margin_bottom = 424.0
 
 [node name="HSep" type="HSeparator" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty"]
 margin_right = 178.0
@@ -668,12 +668,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="WindowMode2" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty"]
+[node name="PhotosensMode" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty"]
 margin_top = 16.0
 margin_right = 178.0
 margin_bottom = 56.0
 
-[node name="Label" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty/WindowMode2"]
+[node name="Label" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty/PhotosensMode"]
 margin_top = 5.0
 margin_right = 98.0
 margin_bottom = 35.0
@@ -690,10 +690,68 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Bool" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty/WindowMode2" instance=ExtResource( 5 )]
+[node name="Bool" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty/PhotosensMode" instance=ExtResource( 5 )]
 margin_left = 102.0
 margin_right = 178.0
 setting_index = 11
+
+[node name="Brightness" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty"]
+margin_top = 60.0
+margin_right = 178.0
+margin_bottom = 76.0
+
+[node name="Label" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty/Brightness"]
+margin_top = 4.0
+margin_right = 74.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Brightness"
+valign = 1
+clip_text = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty/Brightness" instance=ExtResource( 2 )]
+margin_left = 78.0
+margin_right = 178.0
+size_flags_vertical = 1
+min_value = -5.0
+max_value = 5.0
+step = 1.0
+setting_index = 17
+
+[node name="Parallax" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty"]
+margin_top = 80.0
+margin_right = 178.0
+margin_bottom = 96.0
+
+[node name="Label" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty/Parallax"]
+margin_top = 4.0
+margin_right = 74.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Parallax"
+valign = 1
+clip_text = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty/Parallax" instance=ExtResource( 2 )]
+margin_left = 78.0
+margin_right = 178.0
+size_flags_vertical = 1
+max_value = 100.0
+step = 10.0
+value = 30.0
+setting_index = 18
 
 [node name="Close" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox"]
 margin_top = 140.0
@@ -718,7 +776,7 @@ __meta__ = {
 [node name="ggsReset" parent="Mrgn/MarginContainer/VBox/Close/Reset" instance=ExtResource( 9 )]
 margin_left = 16.0
 margin_right = 184.0
-setting_nodes = [ NodePath("../../../Settings/Mrgn/VBox/Display/WindowMode/Bool"), NodePath("../../../Settings/Mrgn/VBox/Audio/Music/Volume"), NodePath("../../../Settings/Mrgn/VBox/Audio/Sfx/Volume"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/MoveRight/Keyboard"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/MoveRight/Gamepad"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/MoveLeft/Keyboard"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/MoveLeft/Gamepad"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/Move Up/Keyboard"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/Move Up/Gamepad"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/Move Down/Keyboard"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/Move Down/Gamepad"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/Jump/Keyboard"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/Jump/Gamepad"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/Action/Keyboard"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/Action/Gamepad"), NodePath("../../../Settings/Mrgn/VBox/Accessibilty/WindowMode2/Bool") ]
+setting_nodes = [ NodePath("../../../Settings/Mrgn/VBox/Display/WindowMode/Bool"), NodePath("../../../Settings/Mrgn/VBox/Audio/Music/Volume"), NodePath("../../../Settings/Mrgn/VBox/Audio/Sfx/Volume"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/MoveRight/Keyboard"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/MoveRight/Gamepad"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/MoveLeft/Keyboard"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/MoveLeft/Gamepad"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/Move Up/Keyboard"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/Move Up/Gamepad"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/Move Down/Keyboard"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/Move Down/Gamepad"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/Jump/Keyboard"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/Jump/Gamepad"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/Action/Keyboard"), NodePath("../../../Settings/Mrgn/VBox/Controls/Controls/Action/Gamepad"), NodePath("../../../Settings/Mrgn/VBox/Accessibilty/PhotosensMode/Bool"), NodePath("../../../Settings/Mrgn/VBox/Display/WindowScale/ArrowList"), NodePath("../../../Settings/Mrgn/VBox/Accessibilty/Brightness/Level"), NodePath("../../../Settings/Mrgn/VBox/Accessibilty/Parallax/Level") ]
 
 [node name="Save" type="MarginContainer" parent="Mrgn/MarginContainer/VBox/Close"]
 margin_top = 28.0

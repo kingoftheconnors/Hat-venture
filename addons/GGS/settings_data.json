@@ -200,5 +200,25 @@
 			"value": 2
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/window_scale.gd"
+	},
+	"17": {
+		"name": "brightness",
+		"default": {
+			"value": 0
+		},
+		"current": {
+			"value": 0
+		},
+		"logic": "res://gui/optionsmenu/setting_logic/brightness_slider.gd"
+	},
+	"18": {
+		"name": "parallax",
+		"default": {
+			"value": 30
+		},
+		"current": {
+			"value": 30
+		},
+		"logic": "res://gui/optionsmenu/setting_logic/parallax_slider.gd"
 	}
 }
