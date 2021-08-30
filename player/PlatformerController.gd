@@ -648,7 +648,7 @@ func stun(amo, stun_mult = 3):
 
 func power_stun(amo, animate = true):
 	if animate:
-		if !OptionsMenu.photosensitivity_mode():
+		if !Constants.PHOTOSENSITIVE_MODE:
 			animator["parameters/PlayerEffect/playback"].travel("powerlessFlash")
 		animator["parameters/PlayerEffect/conditions/powerless_off"] = false
 	power_stun_frames = amo

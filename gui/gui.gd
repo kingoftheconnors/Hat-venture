@@ -231,6 +231,28 @@ onready var dialogText = $DialogBox/Dialog
 onready var textboxes = game_dialog.new()
 
 ### ------------------------------
+### Screen Resolution
+### -------------------------------
+
+var cur_resolution : Vector2 = Vector2.ZERO
+func set_screen_resolution(new_size : Vector2) -> void:
+	cur_resolution = new_size
+	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_2D, SceneTree.STRETCH_ASPECT_KEEP, new_size)
+	# Resize window if not maximized
+	if !OS.window_maximized:
+		#Find closest multiple of new resolution near current window size
+		var dist_to_cur_size = OS.get_window_size().distance_to(new_size)
+		var multiplier : int = 1
+		for mult in range(2, 5):
+			if OS.get_window_size().distance_to(new_size*mult) < dist_to_cur_size \
+				and new_size.x*mult < OS.get_screen_size().x and new_size.y*mult < OS.get_screen_size().y:
+				multiplier = mult
+			OS.set_window_size(new_size * multiplier)
+
+func get_screen_resolution() -> Vector2:
+	return cur_resolution
+
+### ------------------------------
 ### Palette
 ### -------------------------------
 
@@ -246,7 +268,7 @@ func set_brightness(val):
 onready var palette_controller = $PaletteFilter
 
 func cover() -> float:
-	if !OptionsMenu.photosensitivity_mode():
+	if !Constants.PHOTOSENSITIVE_MODE:
 		cover_animator.play("cover")
 		return 0.6
 	else:
@@ -254,7 +276,7 @@ func cover() -> float:
 		return 1.4
 	return 1.0
 func reveal() -> float:
-	if !OptionsMenu.photosensitivity_mode():
+	if !Constants.PHOTOSENSITIVE_MODE:
 		cover_animator.play("reveal")
 		return 0.6
 	else:

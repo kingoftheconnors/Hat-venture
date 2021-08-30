@@ -71,7 +71,7 @@ func damage(_isStomp, damage = 1):
 	Gui.update_health(health, MAX_HEALTH)
 	if health > 0:
 		animator['parameters/PlayerMovement/playback'].travel('hurt')
-		if !OptionsMenu.photosensitivity_mode():
+		if !Constants.PHOTOSENSITIVE_MODE:
 			animator['parameters/PlayerEffect/playback'].travel('hurtFlash')
 		emit_signal("hurt")
 		SoundSystem.start_sound(SoundSystem.SFX.HURT)

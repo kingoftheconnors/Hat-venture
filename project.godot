@@ -9,10 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "LineEdit",
+"class": "BaseInput",
+"language": "GDScript",
+"path": "res://addons/GGS/src/base_classes/base_input.gd"
+}, {
+"base": "Reference",
+"class": "JSONBeautifier",
+"language": "GDScript",
+"path": "res://addons/GGS/_depedencies/json_beautifier/json_beautifier.gd"
+}, {
 "base": "Reference",
 "class": "SaveSystem",
 "language": "GDScript",
 "path": "res://constants/SaveSystem.gd"
+}, {
+"base": "Node",
+"class": "Utils",
+"language": "GDScript",
+"path": "res://addons/GGS/src/utils.gd"
 }, {
 "base": "Reference",
 "class": "blastDying",
@@ -150,7 +165,10 @@ _global_script_classes=[ {
 "path": "res://enemy/eltun/zigzag.gd"
 } ]
 _global_script_class_icons={
+"BaseInput": "",
+"JSONBeautifier": "",
 "SaveSystem": "",
+"Utils": "",
 "blastDying": "",
 "bouncy": "",
 "brewingItem": "",
@@ -191,8 +209,8 @@ config/icon="res://icon.png"
 Gui="*res://gui/gui.tscn"
 Constants="*res://constants/GameConstants.tscn"
 PlayerGameManager="*res://common/PlayerGameManager.tscn"
-OptionsMenu="*res://gui/OptionsMenu.tscn"
 SoundSystem="*res://constants/SoundSystem.tscn"
+ggsManager="*res://addons/GGS/src/ggs_manager.gd"
 
 [debug]
 
@@ -206,6 +224,10 @@ window/size/test_width=960
 window/size/test_height=864
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/GGS/plugin.cfg" )
 
 [input]
 
@@ -263,6 +285,7 @@ toggle_pause={
 
 [rendering]
 
-quality/2d/use_pixel_snap=true
+2d/snapping/use_gpu_pixel_snap=true
 environment/default_clear_color=Color( 0.67451, 0.67451, 0.67451, 1 )
 environment/default_environment="res://default_env.tres"
+quality/2d/use_pixel_snap=true
