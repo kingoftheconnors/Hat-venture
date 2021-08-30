@@ -10,6 +10,7 @@
 [ext_resource path="res://gui/GraphicsMenu.gd" type="Script" id=8]
 [ext_resource path="res://gui/KeyController.gd" type="Script" id=9]
 [ext_resource path="res://gui/QuitToMainController.gd" type="Script" id=10]
+[ext_resource path="res://font/GuiFont.tres" type="DynamicFont" id=11]
 [ext_resource path="res://gui/SignalEmittingController.gd" type="Script" id=12]
 [ext_resource path="res://gui/OpenMenuController.gd" type="Script" id=13]
 [ext_resource path="res://gui/QuitGameController.gd" type="Script" id=14]
@@ -176,10 +177,6 @@ tracks/3/keys = {
 "update": 1,
 "values": [ 16 ]
 }
-
-[sub_resource type="DynamicFont" id=5]
-outline_size = 1
-font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=6]
 resource_name = "large"
@@ -713,7 +710,6 @@ script = ExtResource( 15 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 pause_mode = 2
-visible = false
 anchor_left = 0.498
 anchor_top = 0.056
 anchor_right = 0.498
@@ -772,7 +768,7 @@ margin_left = 0.00799942
 margin_right = 56.008
 margin_bottom = 14.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Volume:"
 valign = 1
@@ -791,7 +787,7 @@ margin_top = 2.0
 margin_right = 63.971
 margin_bottom = 34.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "MUSIC"
 align = 2
@@ -831,7 +827,7 @@ margin_top = 4.00001
 margin_right = 65.308
 margin_bottom = 36.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "SFX"
 align = 2
@@ -873,7 +869,7 @@ margin_top = 0.0400009
 margin_right = 168.008
 margin_bottom = 32.04
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Palette"
 valign = 1
@@ -906,7 +902,7 @@ margin_left = -60.0
 margin_right = 180.0
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Classic"
 align = 1
@@ -922,7 +918,7 @@ anchor_right = 0.114
 margin_right = 9.968
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "<"
 valign = 1
@@ -939,7 +935,7 @@ margin_left = -79.992
 margin_right = 88.224
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 align = 2
@@ -962,7 +958,7 @@ rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_top = NodePath("../PaletteController")
 focus_neighbour_bottom = NodePath("../Graphics")
 focus_mode = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = " Edit Controls"
 valign = 1
@@ -977,7 +973,7 @@ menu_to_open = NodePath("../../ControlsMenu")
 visible = false
 margin_right = 16.0
 margin_bottom = 32.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 valign = 1
@@ -999,7 +995,7 @@ rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_top = NodePath("../Controls")
 focus_neighbour_bottom = NodePath("../QuitGame")
 focus_mode = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = " Graphics settings"
 valign = 1
@@ -1014,7 +1010,7 @@ menu_to_open = NodePath("../../GraphicsMenu")
 visible = false
 margin_right = 16.0
 margin_bottom = 32.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 valign = 1
@@ -1037,7 +1033,7 @@ focus_neighbour_bottom = NodePath("../QuitGame")
 focus_next = NodePath("../QuitGame")
 focus_previous = NodePath("../Graphics")
 focus_mode = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = " Quit to main"
 valign = 1
@@ -1054,7 +1050,7 @@ anchor_bottom = 1.0
 margin_right = -192.0
 focus_neighbour_right = NodePath("../Down")
 focus_neighbour_bottom = NodePath("../Left")
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 valign = 1
@@ -1073,7 +1069,7 @@ margin_right = 152.008
 margin_bottom = 24.0
 rect_scale = Vector2( 0.5, 0.5 )
 focus_mode = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = " Quit game"
 valign = 1
@@ -1090,7 +1086,7 @@ anchor_bottom = 1.0
 margin_right = -144.0
 focus_neighbour_right = NodePath("../Down")
 focus_neighbour_bottom = NodePath("../Left")
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 valign = 1
@@ -1101,7 +1097,6 @@ __meta__ = {
 
 [node name="ControlsMenu" type="NinePatchRect" parent="."]
 pause_mode = 2
-visible = false
 anchor_left = 0.5
 anchor_top = 0.056
 anchor_right = 0.5
@@ -1137,7 +1132,7 @@ margin_right = 239.424
 margin_bottom = 32.0
 grow_horizontal = 2
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Controls"
 align = 1
@@ -1170,7 +1165,7 @@ focus_neighbour_top = NodePath("../../Keyboard")
 focus_neighbour_right = NodePath("../ui_down")
 focus_neighbour_bottom = NodePath("../ui_left")
 focus_mode = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = " Up:Up"
 valign = 1
@@ -1191,7 +1186,7 @@ margin_right = -145.07
 margin_bottom = -0.799988
 focus_neighbour_right = NodePath("../Down")
 focus_neighbour_bottom = NodePath("../Left")
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 valign = 1
@@ -1216,7 +1211,7 @@ focus_neighbour_left = NodePath("../ui_up")
 focus_neighbour_top = NodePath("../../Controller")
 focus_neighbour_bottom = NodePath("../ui_right")
 focus_mode = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = " Down:down"
 valign = 1
@@ -1237,7 +1232,7 @@ anchor_bottom = 1.0
 margin_right = -144.0
 focus_neighbour_right = NodePath("../Down")
 focus_neighbour_bottom = NodePath("../Left")
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 valign = 1
@@ -1262,7 +1257,7 @@ focus_neighbour_top = NodePath("../ui_up")
 focus_neighbour_right = NodePath("../ui_right")
 focus_neighbour_bottom = NodePath("../ui_A")
 focus_mode = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = " left:left"
 valign = 1
@@ -1283,7 +1278,7 @@ anchor_bottom = 1.0
 margin_right = -144.0
 focus_neighbour_right = NodePath("../Down")
 focus_neighbour_bottom = NodePath("../Left")
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 valign = 1
@@ -1308,7 +1303,7 @@ focus_neighbour_left = NodePath("../ui_left")
 focus_neighbour_top = NodePath("../ui_down")
 focus_neighbour_bottom = NodePath("../ui_B")
 focus_mode = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = " Right:right"
 valign = 1
@@ -1329,7 +1324,7 @@ anchor_bottom = 1.0
 margin_right = -144.0
 focus_neighbour_right = NodePath("../Down")
 focus_neighbour_bottom = NodePath("../Left")
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 valign = 1
@@ -1354,7 +1349,7 @@ focus_neighbour_top = NodePath("../ui_left")
 focus_neighbour_right = NodePath("../ui_B")
 focus_neighbour_bottom = NodePath("../ui_release")
 focus_mode = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = " Jump:Z"
 valign = 1
@@ -1375,7 +1370,7 @@ anchor_bottom = 1.0
 margin_right = -144.0
 focus_neighbour_right = NodePath("../Down")
 focus_neighbour_bottom = NodePath("../Left")
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 valign = 1
@@ -1400,7 +1395,7 @@ focus_neighbour_left = NodePath("../ui_A")
 focus_neighbour_top = NodePath("../ui_right")
 focus_neighbour_bottom = NodePath("../ui_menu")
 focus_mode = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = " Power:X"
 valign = 1
@@ -1421,7 +1416,7 @@ anchor_bottom = 1.0
 margin_right = -144.0
 focus_neighbour_right = NodePath("../Down")
 focus_neighbour_bottom = NodePath("../Left")
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 valign = 1
@@ -1446,7 +1441,7 @@ focus_neighbour_top = NodePath("../ui_A")
 focus_neighbour_right = NodePath("../ui_menu")
 focus_neighbour_bottom = NodePath("../../Save")
 focus_mode = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = " Drop:C"
 valign = 1
@@ -1467,7 +1462,7 @@ anchor_bottom = 1.0
 margin_right = -144.0
 focus_neighbour_right = NodePath("../Down")
 focus_neighbour_bottom = NodePath("../Left")
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 valign = 1
@@ -1492,7 +1487,7 @@ focus_neighbour_left = NodePath("../ui_release")
 focus_neighbour_top = NodePath("../ui_B")
 focus_neighbour_bottom = NodePath("../../Defaults")
 focus_mode = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = " Menu:escape"
 valign = 1
@@ -1513,7 +1508,7 @@ anchor_bottom = 1.0
 margin_right = -144.0
 focus_neighbour_right = NodePath("../Down")
 focus_neighbour_bottom = NodePath("../Left")
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 valign = 1
@@ -1534,7 +1529,7 @@ rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_left = NodePath("../Save")
 focus_neighbour_top = NodePath("../KeyboardKeys/ui_menu")
 focus_mode = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = " Defaults"
 valign = 1
@@ -1551,7 +1546,7 @@ anchor_bottom = 1.0
 margin_right = 0.512
 focus_neighbour_right = NodePath("../Down")
 focus_neighbour_bottom = NodePath("../Left")
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 valign = 1
@@ -1573,7 +1568,7 @@ rect_scale = Vector2( 0.5, 0.5 )
 focus_neighbour_top = NodePath("../KeyboardKeys/ui_release")
 focus_neighbour_right = NodePath("../Defaults")
 focus_mode = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = " Save"
 valign = 1
@@ -1590,7 +1585,7 @@ anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 16, 0 )
 focus_neighbour_right = NodePath("../Down")
 focus_neighbour_bottom = NodePath("../Left")
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 valign = 1
@@ -1601,7 +1596,6 @@ __meta__ = {
 
 [node name="GraphicsMenu" type="NinePatchRect" parent="."]
 pause_mode = 2
-visible = false
 anchor_left = 0.5
 anchor_top = 0.056
 anchor_right = 0.5
@@ -1637,7 +1631,7 @@ margin_right = 239.424
 margin_bottom = 32.0
 grow_horizontal = 2
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Graphics"
 align = 1
@@ -1657,7 +1651,7 @@ margin_top = 0.0639992
 margin_right = 168.032
 margin_bottom = 32.064
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Resolution"
 valign = 1
@@ -1690,7 +1684,7 @@ margin_left = -50.7035
 margin_right = 153.296
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "320x288"
 align = 1
@@ -1708,7 +1702,7 @@ margin_left = -8.0
 margin_right = 8.0
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "<"
 valign = 1
@@ -1725,7 +1719,7 @@ margin_left = -8.0
 margin_right = 8.0
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 align = 2
@@ -1745,7 +1739,7 @@ margin_top = 0.0803833
 margin_right = 168.032
 margin_bottom = 32.0804
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Fullscreen"
 valign = 1
@@ -1779,7 +1773,7 @@ margin_left = -50.7035
 margin_right = 153.296
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "OFF"
 align = 1
@@ -1797,7 +1791,7 @@ margin_left = -7.64853
 margin_right = 8.35147
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "<"
 valign = 1
@@ -1814,7 +1808,7 @@ margin_left = -74.7232
 margin_right = 90.2768
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 align = 2
@@ -1834,7 +1828,7 @@ margin_top = -0.0772858
 margin_right = 168.032
 margin_bottom = 31.9227
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Brightness"
 valign = 1
@@ -1875,7 +1869,7 @@ margin_top = 0.0937576
 margin_right = 168.032
 margin_bottom = 32.0938
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Parallax"
 valign = 1
@@ -1916,7 +1910,7 @@ margin_top = 0.0262604
 margin_right = 200.032
 margin_bottom = 35.0263
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Photosensi
 tivity mode"
@@ -1950,7 +1944,7 @@ margin_left = -50.7035
 margin_right = 153.296
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "OFF"
 align = 1
@@ -1968,7 +1962,7 @@ margin_left = -7.64853
 margin_right = 8.35147
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "<"
 valign = 1
@@ -1985,7 +1979,7 @@ margin_left = -74.7232
 margin_right = 90.2768
 margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 align = 2
@@ -2009,7 +2003,7 @@ focus_neighbour_top = NodePath("../Photosensitivity2")
 focus_neighbour_right = NodePath("../Defaults")
 focus_neighbour_bottom = NodePath("../ResolutionSelector")
 focus_mode = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = " Save"
 valign = 1
@@ -2026,7 +2020,7 @@ anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 16, 0 )
 focus_neighbour_right = NodePath("../Down")
 focus_neighbour_bottom = NodePath("../Left")
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 valign = 1
@@ -2048,7 +2042,7 @@ focus_neighbour_left = NodePath("../Save")
 focus_neighbour_top = NodePath("../Photosensitivity2")
 focus_neighbour_bottom = NodePath("../ResolutionSelector")
 focus_mode = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = " Defaults"
 valign = 1
@@ -2065,7 +2059,7 @@ anchor_bottom = 1.0
 margin_right = 0.512
 focus_neighbour_right = NodePath("../Down")
 focus_neighbour_bottom = NodePath("../Left")
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 valign = 1
@@ -2073,58 +2067,59 @@ uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="focus_entered" from="NinePatchRect/MusicSlider" to="Blip" method="start_sound"]
-[connection signal="value_changed" from="NinePatchRect/MusicSlider" to="Blip" method="start_sound"]
 [connection signal="value_changed" from="NinePatchRect/MusicSlider" to="NinePatchRect" method="_on_MasterVolSlider_value_changed"]
+[connection signal="value_changed" from="NinePatchRect/MusicSlider" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="NinePatchRect/SoundSlider" to="Blip" method="start_sound"]
-[connection signal="value_changed" from="NinePatchRect/SoundSlider" to="Blip" method="start_sound"]
 [connection signal="value_changed" from="NinePatchRect/SoundSlider" to="NinePatchRect" method="_on_SoundSlider_value_changed"]
+[connection signal="value_changed" from="NinePatchRect/SoundSlider" to="Blip" method="start_sound"]
 [connection signal="changed" from="NinePatchRect/PaletteController" to="NinePatchRect" method="set_dirty"]
 [connection signal="focus_entered" from="NinePatchRect/PaletteController" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="NinePatchRect/PaletteController" to="NinePatchRect/PaletteController" method="_on_focus_entered"]
 [connection signal="focus_exited" from="NinePatchRect/PaletteController" to="NinePatchRect/PaletteController" method="_on_focus_exited"]
-[connection signal="focus_entered" from="NinePatchRect/Controls" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="NinePatchRect/Controls" to="NinePatchRect/Controls" method="_on_focus_entered"]
+[connection signal="focus_entered" from="NinePatchRect/Controls" to="Blip" method="start_sound"]
 [connection signal="focus_exited" from="NinePatchRect/Controls" to="NinePatchRect/Controls" method="_on_focus_exited"]
-[connection signal="focus_entered" from="NinePatchRect/Graphics" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="NinePatchRect/Graphics" to="NinePatchRect/Graphics" method="_on_focus_entered"]
+[connection signal="focus_entered" from="NinePatchRect/Graphics" to="Blip" method="start_sound"]
 [connection signal="focus_exited" from="NinePatchRect/Graphics" to="NinePatchRect/Graphics" method="_on_focus_exited"]
-[connection signal="focus_entered" from="NinePatchRect/QuitToMain" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="NinePatchRect/QuitToMain" to="NinePatchRect/QuitToMain" method="_on_focus_entered"]
+[connection signal="focus_entered" from="NinePatchRect/QuitToMain" to="Blip" method="start_sound"]
 [connection signal="focus_exited" from="NinePatchRect/QuitToMain" to="NinePatchRect/QuitToMain" method="_on_focus_exited"]
-[connection signal="focus_entered" from="NinePatchRect/QuitGame" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="NinePatchRect/QuitGame" to="NinePatchRect/QuitGame" method="_on_focus_entered"]
+[connection signal="focus_entered" from="NinePatchRect/QuitGame" to="Blip" method="start_sound"]
 [connection signal="focus_exited" from="NinePatchRect/QuitGame" to="NinePatchRect/QuitGame" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_up" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_up" to="ControlsMenu/KeyboardKeys/ui_up" method="_on_focus_entered"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_up" to="Blip" method="start_sound"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_up" to="ControlsMenu/KeyboardKeys/ui_up" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_down" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_down" to="ControlsMenu/KeyboardKeys/ui_down" method="_on_focus_entered"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_down" to="Blip" method="start_sound"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_down" to="ControlsMenu/KeyboardKeys/ui_down" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_left" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_left" to="ControlsMenu/KeyboardKeys/ui_left" method="_on_focus_entered"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_left" to="Blip" method="start_sound"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_left" to="ControlsMenu/KeyboardKeys/ui_left" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_right" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_right" to="ControlsMenu/KeyboardKeys/ui_right" method="_on_focus_entered"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_right" to="Blip" method="start_sound"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_right" to="ControlsMenu/KeyboardKeys/ui_right" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_A" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_A" to="ControlsMenu/KeyboardKeys/ui_A" method="_on_focus_entered"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_A" to="Blip" method="start_sound"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_A" to="ControlsMenu/KeyboardKeys/ui_A" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_B" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_B" to="ControlsMenu/KeyboardKeys/ui_B" method="_on_focus_entered"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_B" to="Blip" method="start_sound"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_B" to="ControlsMenu/KeyboardKeys/ui_B" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_release" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_release" to="ControlsMenu/KeyboardKeys/ui_release" method="_on_focus_entered"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_release" to="Blip" method="start_sound"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_release" to="ControlsMenu/KeyboardKeys/ui_release" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_menu" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_menu" to="ControlsMenu/KeyboardKeys/ui_menu" method="_on_focus_entered"]
+[connection signal="focus_entered" from="ControlsMenu/KeyboardKeys/ui_menu" to="Blip" method="start_sound"]
 [connection signal="focus_exited" from="ControlsMenu/KeyboardKeys/ui_menu" to="ControlsMenu/KeyboardKeys/ui_menu" method="_on_focus_exited"]
-[connection signal="focus_entered" from="ControlsMenu/Defaults" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="ControlsMenu/Defaults" to="ControlsMenu/Defaults" method="_on_focus_entered"]
+[connection signal="focus_entered" from="ControlsMenu/Defaults" to="Blip" method="start_sound"]
 [connection signal="focus_exited" from="ControlsMenu/Defaults" to="ControlsMenu/Defaults" method="_on_focus_exited"]
 [connection signal="selected" from="ControlsMenu/Defaults" to="ControlsMenu" method="set_to_defaults"]
-[connection signal="focus_entered" from="ControlsMenu/Save" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="ControlsMenu/Save" to="ControlsMenu/Save" method="_on_focus_entered"]
+[connection signal="focus_entered" from="ControlsMenu/Save" to="Blip" method="start_sound"]
 [connection signal="focus_exited" from="ControlsMenu/Save" to="ControlsMenu/Save" method="_on_focus_exited"]
 [connection signal="selected" from="ControlsMenu/Save" to="ControlsMenu" method="close" flags=3]
 [connection signal="selected" from="ControlsMenu/Save" to="ControlsMenu" method="save"]
@@ -2137,20 +2132,20 @@ __meta__ = {
 [connection signal="focus_entered" from="GraphicsMenu/Fullscreen2" to="GraphicsMenu/Fullscreen2" method="_on_focus_entered"]
 [connection signal="focus_exited" from="GraphicsMenu/Fullscreen2" to="GraphicsMenu/Fullscreen2" method="_on_focus_exited"]
 [connection signal="focus_entered" from="GraphicsMenu/BrightnessSlider" to="Blip" method="start_sound"]
-[connection signal="value_changed" from="GraphicsMenu/BrightnessSlider" to="Blip" method="start_sound"]
 [connection signal="value_changed" from="GraphicsMenu/BrightnessSlider" to="GraphicsMenu/BrightnessSlider" method="_on_BrightnessSlider_value_changed"]
+[connection signal="value_changed" from="GraphicsMenu/BrightnessSlider" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="GraphicsMenu/ParallaxSlider" to="Blip" method="start_sound"]
 [connection signal="value_changed" from="GraphicsMenu/ParallaxSlider" to="Blip" method="start_sound"]
 [connection signal="changed" from="GraphicsMenu/Photosensitivity2" to="NinePatchRect" method="set_dirty"]
 [connection signal="focus_entered" from="GraphicsMenu/Photosensitivity2" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="GraphicsMenu/Photosensitivity2" to="GraphicsMenu/Photosensitivity2" method="_on_focus_entered"]
 [connection signal="focus_exited" from="GraphicsMenu/Photosensitivity2" to="GraphicsMenu/Photosensitivity2" method="_on_focus_exited"]
-[connection signal="focus_entered" from="GraphicsMenu/Save" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="GraphicsMenu/Save" to="GraphicsMenu/Save" method="_on_focus_entered"]
+[connection signal="focus_entered" from="GraphicsMenu/Save" to="Blip" method="start_sound"]
 [connection signal="focus_exited" from="GraphicsMenu/Save" to="GraphicsMenu/Save" method="_on_focus_exited"]
 [connection signal="selected" from="GraphicsMenu/Save" to="GraphicsMenu" method="close" flags=3]
 [connection signal="selected" from="GraphicsMenu/Save" to="GraphicsMenu" method="save"]
-[connection signal="focus_entered" from="GraphicsMenu/Defaults" to="Blip" method="start_sound"]
 [connection signal="focus_entered" from="GraphicsMenu/Defaults" to="GraphicsMenu/Defaults" method="_on_focus_entered"]
+[connection signal="focus_entered" from="GraphicsMenu/Defaults" to="Blip" method="start_sound"]
 [connection signal="focus_exited" from="GraphicsMenu/Defaults" to="GraphicsMenu/Defaults" method="_on_focus_exited"]
 [connection signal="selected" from="GraphicsMenu/Defaults" to="GraphicsMenu" method="set_to_defaults"]

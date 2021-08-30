@@ -220,5 +220,15 @@
 			"value": 30
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/parallax_slider.gd"
+	},
+	"19": {
+		"name": "palette",
+		"default": {
+			"value": 0
+		},
+		"current": {
+			"value": 2
+		},
+		"logic": "res://gui/optionsmenu/setting_logic/palette_selector.gd"
 	}
 }

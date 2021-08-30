@@ -244,7 +244,7 @@ scroll_horizontal_enabled = false
 
 [node name="Mrgn" type="MarginContainer" parent="Mrgn/MarginContainer/VBox/Settings"]
 margin_right = 188.0
-margin_bottom = 424.0
+margin_bottom = 450.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 5
@@ -253,12 +253,12 @@ custom_constants/margin_left = 5
 [node name="VBox" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn"]
 margin_left = 5.0
 margin_right = 183.0
-margin_bottom = 424.0
+margin_bottom = 450.0
 custom_constants/separation = 10
 
 [node name="Display" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox"]
 margin_right = 178.0
-margin_bottom = 78.0
+margin_bottom = 104.0
 
 [node name="Title" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display"]
 margin_right = 178.0
@@ -326,13 +326,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 setting_index = 16
-list = [ "x1", "x2", "x3" ]
-wrap_value = false
+list = [ "8x6", "8x8", "10x9" ]
+
+[node name="Palette" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display"]
+margin_top = 82.0
+margin_right = 178.0
+margin_bottom = 104.0
+
+[node name="Label" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/Palette"]
+margin_top = 7.0
+margin_right = 110.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Palette"
+valign = 1
+clip_text = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PaletteList" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/Palette" instance=ExtResource( 11 )]
+margin_left = 114.0
+margin_right = 178.0
+margin_bottom = 22.0
+setting_index = 19
+list = [ "Classic", "Muted", "GBoy" ]
 
 [node name="Audio" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox"]
-margin_top = 88.0
+margin_top = 114.0
 margin_right = 178.0
-margin_bottom = 140.0
+margin_bottom = 166.0
 
 [node name="HSep" type="HSeparator" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Audio"]
 margin_right = 178.0
@@ -406,9 +432,9 @@ size_flags_vertical = 1
 setting_index = 2
 
 [node name="Controls" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox"]
-margin_top = 150.0
+margin_top = 176.0
 margin_right = 178.0
-margin_bottom = 318.0
+margin_bottom = 344.0
 
 [node name="HSep" type="HSeparator" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls"]
 margin_right = 178.0
@@ -644,9 +670,9 @@ icon = SubResource( 6 )
 setting_index = 15
 
 [node name="Accessibilty" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox"]
-margin_top = 328.0
+margin_top = 354.0
 margin_right = 178.0
-margin_bottom = 424.0
+margin_bottom = 450.0
 
 [node name="HSep" type="HSeparator" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty"]
 margin_right = 178.0
