@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://items/thorItem.gd" type="Script" id=1]
 [ext_resource path="res://items/Resources/thorSpinning.png" type="Texture" id=2]
 [ext_resource path="res://items/Resources/itemMovement.gd" type="Script" id=3]
 [ext_resource path="res://items/Resources/getItem.gd" type="Script" id=4]
+[ext_resource path="res://gui/PaletteSprite.tres" type="Material" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.22684
@@ -182,6 +183,7 @@ rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Body"]
+material = ExtResource( 5 )
 frames = SubResource( 10 )
 frame = 3
 speed_scale = 0.0
@@ -196,5 +198,6 @@ autoplay = "load"
 anims/fade = SubResource( 12 )
 anims/fade_without_flash = SubResource( 13 )
 anims/load = SubResource( 14 )
+
 [connection signal="area_entered" from="Body/Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Body/Area2D" to="." method="_on_Area2D_body_entered"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://items/Resources/getItem.gd" type="Script" id=1]
 [ext_resource path="res://items/HPon.gd" type="Script" id=2]
 [ext_resource path="res://items/Resources/hpon.png" type="Texture" id=3]
 [ext_resource path="res://Music/startSong.gd" type="Script" id=4]
+[ext_resource path="res://gui/PaletteSprite.tres" type="Material" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "collect"
@@ -90,6 +91,7 @@ anims/delayed_free = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.857143 )
+material = ExtResource( 5 )
 texture = ExtResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -102,6 +104,7 @@ shape = SubResource( 3 )
 [node name="CollectPing" type="Node" parent="."]
 script = ExtResource( 4 )
 sound = 6
+
 [connection signal="collected" from="." to="CollectPing" method="start_sound"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

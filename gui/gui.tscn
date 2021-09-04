@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://gui/lives.png" type="Texture" id=1]
 [ext_resource path="res://gui/white.png" type="Texture" id=2]
@@ -11,7 +11,7 @@
 [ext_resource path="res://gui/dialog.png" type="Texture" id=9]
 [ext_resource path="res://gui/pons.png" type="Texture" id=10]
 [ext_resource path="res://gui/DebugMode.gd" type="Script" id=11]
-[ext_resource path="res://gui/PaletteFilter.gd" type="Script" id=13]
+[ext_resource path="res://gui/PaletteFilter.tscn" type="PackedScene" id=12]
 [ext_resource path="res://gui/gui_font.tres" type="DynamicFont" id=14]
 [ext_resource path="res://common/Resources/black.png" type="Texture" id=15]
 [ext_resource path="res://gui/UnlockPaletteBox.gd" type="Script" id=16]
@@ -447,40 +447,40 @@ tracks/6/keys = {
 "values": [ Vector2( 304, 48 ) ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "enter"
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "exit"
 
-[sub_resource type="AnimationNodeAnimation" id=15]
+[sub_resource type="AnimationNodeAnimation" id=14]
 animation = "idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
 switch_mode = 2
 auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=17]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=18]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
 
-[sub_resource type="AnimationNodeStateMachine" id=20]
-states/enter/node = SubResource( 13 )
+[sub_resource type="AnimationNodeStateMachine" id=19]
+states/enter/node = SubResource( 12 )
 states/enter/position = Vector2( 251, 83 )
-states/exit/node = SubResource( 14 )
+states/exit/node = SubResource( 13 )
 states/exit/position = Vector2( 424, 83 )
-states/idle/node = SubResource( 15 )
+states/idle/node = SubResource( 14 )
 states/idle/position = Vector2( 331, 177 )
-transitions = [ "enter", "exit", SubResource( 16 ), "exit", "enter", SubResource( 17 ), "exit", "idle", SubResource( 18 ), "idle", "enter", SubResource( 19 ) ]
+transitions = [ "enter", "exit", SubResource( 15 ), "exit", "enter", SubResource( 16 ), "exit", "idle", SubResource( 17 ), "idle", "enter", SubResource( 18 ) ]
 start_node = "idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=25]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
 
-[sub_resource type="Animation" id=26]
+[sub_resource type="Animation" id=21]
 resource_name = "enter"
 length = 2.5
 tracks/0/type = "value"
@@ -496,7 +496,7 @@ tracks/0/keys = {
 "values": [ Vector2( 8, -90 ), Vector2( 8, 10 ) ]
 }
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=22]
 resource_name = "exit"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
@@ -511,7 +511,7 @@ tracks/0/keys = {
 "values": [ Vector2( 8, 10 ), Vector2( 8, -90 ) ]
 }
 
-[sub_resource type="Animation" id=28]
+[sub_resource type="Animation" id=23]
 resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
@@ -526,69 +526,10 @@ tracks/0/keys = {
 "values": [ Vector2( 8, -90 ) ]
 }
 
-[sub_resource type="Shader" id=22]
-code = "shader_type canvas_item;
-
-// Which color you want to change
-uniform vec4 game_white : hint_color;
-uniform vec4 game_light : hint_color;
-uniform vec4 game_dark : hint_color;
-uniform vec4 game_black : hint_color;
-
-uniform vec4 palette_white : hint_color;
-uniform vec4 palette_light : hint_color;
-uniform vec4 palette_dark : hint_color;
-uniform vec4 palette_black : hint_color;
-
-uniform int brightness_level;
-uniform float epsilon;
-
-int get_level_from_game_color(vec3 color) {
-	if (abs(length(color)-length(game_white.rgb)) <= abs(length(color)-length(game_light.rgb)))
-		return 3;
-	if (abs(length(color)-length(game_light.rgb)) <= abs(length(color)-length(game_dark.rgb)))
-		return 2;
-	if (abs(length(color)-length(game_dark.rgb)) <= abs(length(color)-length(game_black.rgb)))
-		return 1;
-	return 0;
-}
-
-vec4 get_palette_color(int level) {
-	if (level >= 3)
-		return palette_white;
-	if (level == 2)
-		return palette_light;
-	if (level == 1)
-		return palette_dark;
-	if (level <= 0)
-		return palette_black;
-	return game_black;
-}
-
-void fragment() {
-	vec3 c = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0).rgb;
-	int level = get_level_from_game_color(c);
-	COLOR.rgb = get_palette_color(level+brightness_level).rgb;
-}"
-
-[sub_resource type="ShaderMaterial" id=23]
-shader = SubResource( 22 )
-shader_param/game_white = Color( 1, 1, 1, 1 )
-shader_param/game_light = Color( 0.67451, 0.682353, 0.67451, 1 )
-shader_param/game_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
-shader_param/game_black = Color( 0, 0, 0, 1 )
-shader_param/palette_white = Color( 1, 1, 1, 1 )
-shader_param/palette_light = Color( 0.67451, 0.682353, 0.67451, 1 )
-shader_param/palette_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
-shader_param/palette_black = Color( 0, 0, 0, 1 )
-shader_param/brightness_level = 0
-shader_param/epsilon = 0.16
-
 [node name="Gui" type="CanvasLayer"]
 pause_mode = 2
 layer = 3
 script = ExtResource( 8 )
-rect_position = Vector2( 8, -90 )
 
 [node name="Name2" type="Label" parent="."]
 anchor_left = 1.0
@@ -994,26 +935,14 @@ __meta__ = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="UnlockPaletteBox"]
-tree_root = SubResource( 20 )
+tree_root = SubResource( 19 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 25 )
+parameters/playback = SubResource( 20 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UnlockPaletteBox"]
-anims/enter = SubResource( 26 )
-anims/exit = SubResource( 27 )
-anims/idle = SubResource( 28 )
+anims/enter = SubResource( 21 )
+anims/exit = SubResource( 22 )
+anims/idle = SubResource( 23 )
 
-[node name="PaletteFilter" type="TextureRect" parent="."]
-material = SubResource( 23 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 1
-script = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="PaletteFilter" parent="." instance=ExtResource( 12 )]

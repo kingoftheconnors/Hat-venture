@@ -8,11 +8,25 @@ func set_palette(palette_name : String):
 	update_colors()
 
 func update_colors():
-	var palette = palettes[cur_palette]
+	var palette : Array = palettes[cur_palette]
 	material.set_shader_param("palette_white", palette[0] + Color(.1, .1, .1)*cur_brightness)
 	material.set_shader_param("palette_light", palette[1] + Color(.1, .1, .1)*cur_brightness)
 	material.set_shader_param("palette_dark", palette[2] + Color(.1, .1, .1)*cur_brightness)
 	material.set_shader_param("palette_black", palette[3] + Color(.1, .1, .1)*cur_brightness)
+	if palette.size() > 4:
+		spriteFilter.material.set_shader_param("palette_white", palette[4] + Color(.1, .1, .1)*cur_brightness)
+		spriteFilter.material.set_shader_param("palette_light", palette[5] + Color(.1, .1, .1)*cur_brightness)
+		spriteFilter.material.set_shader_param("palette_dark", palette[6] + Color(.1, .1, .1)*cur_brightness)
+		playerFilter.material.set_shader_param("palette_white", palette[4] + Color(.1, .1, .1)*cur_brightness)
+		playerFilter.material.set_shader_param("palette_light", palette[5] + Color(.1, .1, .1)*cur_brightness)
+		playerFilter.material.set_shader_param("palette_dark", palette[6] + Color(.1, .1, .1)*cur_brightness)
+	else:
+		spriteFilter.material.set_shader_param("palette_white", spriteFilter.material.get_shader_param("game_white"))
+		spriteFilter.material.set_shader_param("palette_light", spriteFilter.material.get_shader_param("game_light"))
+		spriteFilter.material.set_shader_param("palette_dark", spriteFilter.material.get_shader_param("game_dark"))
+		playerFilter.material.set_shader_param("palette_white", playerFilter.material.get_shader_param("game_white"))
+		playerFilter.material.set_shader_param("palette_light", playerFilter.material.get_shader_param("game_light"))
+		playerFilter.material.set_shader_param("palette_dark", playerFilter.material.get_shader_param("game_dark"))
 
 func set_brightness(val : int):
 	cur_brightness = val
@@ -79,6 +93,14 @@ const palettes = {
 		Color(231.0/255, 134.0/255, 134.0/255, 1),
 		Color(119.0/255, 51.0/255, 231.0/255, 1),
 		Color(44.0/255, 44.0/255, 150.0/255, 1)],
+	Metroid = [
+		Color(1, 1, 1, 1),
+		Color(157.0/255, 221.0/255, 248.0/255, 1),
+		Color(53.0/255, 139.0/255, 241.0/255, 1),
+		Color(0, 0, 0, 1),
+		Color(249.0/255, 214.0/255, 83.0/255, 1),
+		Color(242.0/255, 77.0/255, 57.0/255, 1),
+		Color(138.0/255, 44.0/255, 32.0/255, 1)],
 	#Metroid = [ # Classic Metroid. Would use two sets of colors: One for tiles and one for sprites
 	#	Color(.83, .84, .83, 1),
 	#	Color(.67, .68, .67, 1),
@@ -90,3 +112,6 @@ const palettes = {
 	#	Color(.34, .35, .34, 1),
 	#	Color(.16, .17, .16, 1)],
 }
+
+onready var spriteFilter = $SpriteFilter
+onready var playerFilter = $PlayerFilter

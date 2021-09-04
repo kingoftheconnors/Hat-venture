@@ -15,11 +15,11 @@
 [ext_resource path="res://gui/optionsmenu/StyleData/checkbutton_hover.tres" type="StyleBox" id=13]
 [ext_resource path="res://gui/optionsmenu/StyleData/checkbutton_defaultoutline.tres" type="StyleBox" id=14]
 
-[sub_resource type="StyleBoxEmpty" id=7]
+[sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="StyleBoxEmpty" id=8]
+[sub_resource type="StyleBoxEmpty" id=2]
 
-[sub_resource type="StyleBoxFlat" id=9]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.305882, 0.305882, 0.305882, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -69,9 +69,9 @@ HSlider/icons/grabber = ExtResource( 10 )
 HSlider/icons/grabber_disabled = ExtResource( 8 )
 HSlider/icons/grabber_highlight = ExtResource( 9 )
 HSlider/icons/tick = null
-HSlider/styles/grabber_area = SubResource( 7 )
-HSlider/styles/grabber_area_highlight = SubResource( 8 )
-HSlider/styles/slider = SubResource( 9 )
+HSlider/styles/grabber_area = SubResource( 1 )
+HSlider/styles/grabber_area_highlight = SubResource( 2 )
+HSlider/styles/slider = SubResource( 3 )
 VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null
