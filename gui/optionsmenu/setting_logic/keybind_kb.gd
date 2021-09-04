@@ -8,7 +8,7 @@ extends Node
 func main(value: Dictionary) -> void:
 	var target_action: String = value["action_name"]
 	var action_list: Array = InputMap.get_action_list(target_action)
-	var prev_event: InputEventKey = Utils.array_find_type(action_list, "InputEventKey")
+	var prev_event: InputEventKey = GGSUtils.array_find_type(action_list, "InputEventKey")
 	var new_event: InputEventKey = InputEventKey.new()
 	new_event.scancode = value["value"]
 

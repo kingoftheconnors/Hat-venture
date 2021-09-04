@@ -21,6 +21,12 @@ func _ready() -> void:
 	# Load script
 	var script: Script = load(ggsManager.settings_data[str(setting_index)]["logic"])
 	script_instance = script.new()
+	
+	# Handle mouse filter and cursor
+	PrevBtn.mouse_filter = mouse_filter
+	NextBtn.mouse_filter = mouse_filter
+	PrevBtn.mouse_default_cursor_shape = mouse_default_cursor_shape
+	NextBtn.mouse_default_cursor_shape = mouse_default_cursor_shape
 
 
 func reset_to_default() -> void:
@@ -58,3 +64,27 @@ func _on_NextBtn_pressed() -> void:
 	else:
 		if current_index < list.size() - 1:
 			self.current_index += 1
+
+func _gui_input(event):
+	if has_focus():
+		if event.is_action_pressed("ui_left"):
+			accept_event()
+			PrevBtn.emit_signal("pressed")
+		elif event.is_action_pressed("ui_right"):
+			accept_event()
+			NextBtn.emit_signal("pressed")
+
+# Handle mouse focus
+func _on_PrevBtn_mouse_entered() -> void:
+	grab_focus()
+
+func _on_NextBtn_mouse_entered() -> void:
+	grab_focus()
+
+func _on_ggsArrowList_focus_entered():
+	DisplayLabel.add_color_override("font_color", Color.white)
+	DisplayLabel.add_color_override("font_color_shadow", Color.black)
+
+func _on_ggsArrowList_focus_exited():
+	DisplayLabel.add_color_override("font_color", Color.black)
+	DisplayLabel.add_color_override("font_color_shadow", Color.transparent)

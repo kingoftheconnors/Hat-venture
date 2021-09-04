@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=22 format=2]
+[gd_resource type="Theme" load_steps=18 format=2]
 
 [ext_resource path="res://gui/optionsmenu/StyleData/GuiFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://gui/optionsmenu/StyleData/MenuTextureRect.tres" type="StyleBox" id=2]
@@ -12,24 +12,14 @@
 [ext_resource path="res://gui/optionsmenu/StyleData/background_white.png" type="Texture" id=10]
 [ext_resource path="res://gui/optionsmenu/StyleData/checkbutton_on.png" type="Texture" id=11]
 [ext_resource path="res://gui/optionsmenu/StyleData/checkbutton_off.png" type="Texture" id=12]
-
-[sub_resource type="StyleBoxEmpty" id=4]
-
-[sub_resource type="StyleBoxEmpty" id=5]
-
-[sub_resource type="StyleBoxEmpty" id=6]
+[ext_resource path="res://gui/optionsmenu/StyleData/checkbutton_hover.tres" type="StyleBox" id=13]
+[ext_resource path="res://gui/optionsmenu/StyleData/checkbutton_defaultoutline.tres" type="StyleBox" id=14]
 
 [sub_resource type="StyleBoxEmpty" id=7]
 
 [sub_resource type="StyleBoxEmpty" id=8]
 
-[sub_resource type="StyleBoxEmpty" id=9]
-
-[sub_resource type="StyleBoxEmpty" id=1]
-
-[sub_resource type="StyleBoxEmpty" id=2]
-
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.305882, 0.305882, 0.305882, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -69,19 +59,19 @@ CheckButton/icons/off = ExtResource( 12 )
 CheckButton/icons/off_disabled = null
 CheckButton/icons/on = ExtResource( 11 )
 CheckButton/icons/on_disabled = null
-CheckButton/styles/disabled = SubResource( 4 )
-CheckButton/styles/focus = SubResource( 5 )
-CheckButton/styles/hover = SubResource( 6 )
-CheckButton/styles/hover_pressed = SubResource( 7 )
-CheckButton/styles/normal = SubResource( 8 )
-CheckButton/styles/pressed = SubResource( 9 )
+CheckButton/styles/disabled = ExtResource( 14 )
+CheckButton/styles/focus = ExtResource( 13 )
+CheckButton/styles/hover = ExtResource( 13 )
+CheckButton/styles/hover_pressed = ExtResource( 13 )
+CheckButton/styles/normal = ExtResource( 14 )
+CheckButton/styles/pressed = ExtResource( 14 )
 HSlider/icons/grabber = ExtResource( 10 )
 HSlider/icons/grabber_disabled = ExtResource( 8 )
 HSlider/icons/grabber_highlight = ExtResource( 9 )
 HSlider/icons/tick = null
-HSlider/styles/grabber_area = SubResource( 1 )
-HSlider/styles/grabber_area_highlight = SubResource( 2 )
-HSlider/styles/slider = SubResource( 3 )
+HSlider/styles/grabber_area = SubResource( 7 )
+HSlider/styles/grabber_area_highlight = SubResource( 8 )
+HSlider/styles/slider = SubResource( 9 )
 VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null

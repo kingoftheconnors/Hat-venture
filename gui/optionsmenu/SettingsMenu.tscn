@@ -191,6 +191,7 @@ script = ExtResource( 29 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+first_item = NodePath("Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/WindowMode/Bool")
 
 [node name="Mrgn" type="MarginContainer" parent="."]
 anchor_left = 0.132
@@ -299,6 +300,8 @@ __meta__ = {
 margin_left = 117.0
 margin_right = 181.0
 margin_bottom = 32.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_bottom = NodePath("../../WindowScale/ArrowList")
 
 [node name="WindowScale" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display"]
 margin_top = 48.0
@@ -323,7 +326,9 @@ __meta__ = {
 [node name="ArrowList" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/WindowScale" instance=ExtResource( 11 )]
 margin_left = 125.0
 margin_right = 181.0
-margin_bottom = 24.0
+focus_neighbour_top = NodePath("../../WindowMode/Bool")
+focus_neighbour_bottom = NodePath("../../Palette/PaletteList")
+focus_mode = 2
 setting_index = 16
 list = [ "8x6", "8x8", "10x9" ]
 
@@ -350,7 +355,9 @@ __meta__ = {
 [node name="PaletteList" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/Palette" instance=ExtResource( 11 )]
 margin_left = 125.0
 margin_right = 181.0
-margin_bottom = 24.0
+focus_neighbour_top = NodePath("../../WindowScale/ArrowList")
+focus_neighbour_bottom = NodePath("../../../Audio/Music/Volume")
+focus_mode = 2
 setting_index = 19
 list = [ "Classic", "Muted" ]
 
@@ -404,6 +411,8 @@ __meta__ = {
 [node name="Volume" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Audio/Music" instance=ExtResource( 2 )]
 margin_left = 81.0
 margin_right = 181.0
+focus_neighbour_top = NodePath("../../../Display/Palette/PaletteList")
+focus_neighbour_bottom = NodePath("../../Sfx/Volume")
 size_flags_vertical = 1
 setting_index = 1
 
@@ -430,6 +439,8 @@ __meta__ = {
 [node name="Volume" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Audio/Sfx" instance=ExtResource( 2 )]
 margin_left = 81.0
 margin_right = 181.0
+focus_neighbour_top = NodePath("../../Music/Volume")
+focus_neighbour_bottom = NodePath("../../../Controls/Controls/MoveRight/Keyboard")
 size_flags_vertical = 1
 setting_index = 2
 
@@ -470,7 +481,7 @@ custom_constants/separation = 15
 
 [node name="Label" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/MoveRight"]
 margin_top = 8.0
-margin_right = 97.0
+margin_right = 107.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
@@ -484,15 +495,22 @@ __meta__ = {
 }
 
 [node name="Keyboard" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/MoveRight" instance=ExtResource( 3 )]
-margin_left = 112.0
+margin_left = 122.0
 margin_right = 142.0
 margin_bottom = 24.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath("../../../../Audio/Sfx/Volume")
+focus_neighbour_right = NodePath("../Gamepad")
+focus_neighbour_bottom = NodePath("../../MoveLeft/Keyboard")
 setting_index = 3
 
 [node name="Gamepad" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/MoveRight" instance=ExtResource( 4 )]
 margin_left = 157.0
 margin_right = 181.0
 margin_bottom = 24.0
+focus_neighbour_left = NodePath("../Keyboard")
+focus_neighbour_top = NodePath("../../../../Audio/Sfx/Volume")
+focus_neighbour_bottom = NodePath("../../MoveLeft/Gamepad")
 icon = SubResource( 3 )
 setting_index = 7
 
@@ -505,7 +523,7 @@ custom_constants/separation = 15
 
 [node name="Label" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/MoveLeft"]
 margin_top = 8.0
-margin_right = 97.0
+margin_right = 107.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
@@ -519,9 +537,10 @@ __meta__ = {
 }
 
 [node name="Keyboard" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/MoveLeft" instance=ExtResource( 3 )]
-margin_left = 112.0
+margin_left = 122.0
 margin_right = 142.0
 margin_bottom = 24.0
+focus_neighbour_left = NodePath(".")
 setting_index = 4
 
 [node name="Gamepad" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/MoveLeft" instance=ExtResource( 4 )]
@@ -540,7 +559,7 @@ custom_constants/separation = 15
 
 [node name="Label" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Move Up"]
 margin_top = 8.0
-margin_right = 97.0
+margin_right = 107.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
@@ -554,9 +573,10 @@ __meta__ = {
 }
 
 [node name="Keyboard" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Move Up" instance=ExtResource( 3 )]
-margin_left = 112.0
+margin_left = 122.0
 margin_right = 142.0
 margin_bottom = 24.0
+focus_neighbour_left = NodePath(".")
 setting_index = 5
 
 [node name="Gamepad" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Move Up" instance=ExtResource( 4 )]
@@ -575,7 +595,7 @@ custom_constants/separation = 15
 
 [node name="Label" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Move Down"]
 margin_top = 8.0
-margin_right = 97.0
+margin_right = 107.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
@@ -589,9 +609,10 @@ __meta__ = {
 }
 
 [node name="Keyboard" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Move Down" instance=ExtResource( 3 )]
-margin_left = 112.0
+margin_left = 122.0
 margin_right = 142.0
 margin_bottom = 24.0
+focus_neighbour_left = NodePath(".")
 setting_index = 6
 
 [node name="Gamepad" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Move Down" instance=ExtResource( 4 )]
@@ -610,7 +631,7 @@ custom_constants/separation = 15
 
 [node name="Label" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Jump"]
 margin_top = 8.0
-margin_right = 97.0
+margin_right = 107.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
@@ -624,9 +645,10 @@ __meta__ = {
 }
 
 [node name="Keyboard" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Jump" instance=ExtResource( 3 )]
-margin_left = 112.0
+margin_left = 122.0
 margin_right = 142.0
 margin_bottom = 24.0
+focus_neighbour_left = NodePath(".")
 setting_index = 12
 
 [node name="Gamepad" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Jump" instance=ExtResource( 4 )]
@@ -645,7 +667,7 @@ custom_constants/separation = 15
 
 [node name="Label" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Action"]
 margin_top = 8.0
-margin_right = 97.0
+margin_right = 107.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
@@ -659,15 +681,18 @@ __meta__ = {
 }
 
 [node name="Keyboard" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Action" instance=ExtResource( 3 )]
-margin_left = 112.0
+margin_left = 122.0
 margin_right = 142.0
 margin_bottom = 24.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_bottom = NodePath("../../../../Accessibilty/PhotosensMode/Bool")
 setting_index = 13
 
 [node name="Gamepad" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Action" instance=ExtResource( 4 )]
 margin_left = 157.0
 margin_right = 181.0
 margin_bottom = 24.0
+focus_neighbour_bottom = NodePath("../../../../Accessibilty/PhotosensMode/Bool")
 icon = SubResource( 6 )
 setting_index = 15
 
@@ -722,6 +747,8 @@ __meta__ = {
 margin_left = 117.0
 margin_right = 181.0
 margin_bottom = 32.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath("../../../Controls/Controls/Action/Keyboard")
 setting_index = 11
 
 [node name="Brightness" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty"]

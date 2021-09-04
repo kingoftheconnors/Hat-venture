@@ -1,8 +1,11 @@
 extends Control
 
+export(NodePath) var first_item
+
 # You can use 'grab_focus()' to focus on the first element of the menu
 func _ready() -> void:
 	get_tree().paused = true
+	get_node(first_item).grab_focus()
 
 func _on_Close_pressed() -> void:
 	close()
