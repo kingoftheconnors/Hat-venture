@@ -101,16 +101,14 @@ const palettes = {
 		Color(249.0/255, 214.0/255, 83.0/255, 1),
 		Color(242.0/255, 77.0/255, 57.0/255, 1),
 		Color(138.0/255, 44.0/255, 32.0/255, 1)],
-	#Metroid = [ # Classic Metroid. Would use two sets of colors: One for tiles and one for sprites
-	#	Color(.83, .84, .83, 1),
-	#	Color(.67, .68, .67, 1),
-	#	Color(.34, .35, .34, 1),
-	#	Color(.16, .17, .16, 1)],
-	#MetroidGBC = [ # Metroid2 on the GameBoyColor. Would use two sets of colors: One for tiles and one for sprites
-	#	Color(.83, .84, .83, 1),
-	#	Color(.67, .68, .67, 1),
-	#	Color(.34, .35, .34, 1),
-	#	Color(.16, .17, .16, 1)],
+	HOT = [
+		Color(1, 1, 1, 1),
+		Color(182.0/255, 182.0/255, 182.0/255, 1),
+		Color(103.0/255, 103.0/255, 103.0/255, 1),
+		Color(0, 0, 0, 1),
+		Color(255.0/255, 80.0/255, 38.0/255, 1),
+		Color(220.0/255, 30.0/255, 30.0/255, 1),
+		Color(159.0/255, 20.0/255, 20.0/255, 1)],
 }
 
 onready var spriteFilter = $SpriteFilter
