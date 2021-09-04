@@ -32,7 +32,7 @@
 			"bus_name": "SoundEffects"
 		},
 		"current": {
-			"value": 0.5,
+			"value": 0.1,
 			"bus_name": "SoundEffects"
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/audio_slider.gd"
@@ -227,8 +227,32 @@
 			"value": 0
 		},
 		"current": {
-			"value": 0
+			"value": 10
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/palette_selector.gd"
+	},
+	"20": {
+		"name": "kb_release",
+		"default": {
+			"value": 67,
+			"action_name": "ui_release"
+		},
+		"current": {
+			"value": 67,
+			"action_name": "ui_release"
+		},
+		"logic": "res://gui/optionsmenu/setting_logic/keybind_kb.gd"
+	},
+	"21": {
+		"name": "gp_release",
+		"default": {
+			"value": 2,
+			"action_name": "ui_release"
+		},
+		"current": {
+			"value": 2,
+			"action_name": "ui_release"
+		},
+		"logic": "res://gui/optionsmenu/setting_logic/keybind_gp.gd"
 	}
 }
