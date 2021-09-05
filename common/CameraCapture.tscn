@@ -3,10 +3,10 @@
 [ext_resource path="res://common/CameraCapture.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 150, 100 )
+extents = Vector2( 140, 100 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 140, 100 )
+extents = Vector2( 130, 100 )
 
 [node name="CameraCapture" type="Area2D"]
 collision_layer = 2
@@ -20,5 +20,6 @@ shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="EntranceBox"]
 shape = SubResource( 2 )
+
 [connection signal="body_exited" from="." to="." method="_on_CameraCapture_body_exited"]
 [connection signal="body_entered" from="EntranceBox" to="." method="capture_camera"]
