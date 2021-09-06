@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://font/PressStart2P-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://addons/GGS/src/components/slider/ggsSlider.tscn" type="PackedScene" id=2]
@@ -180,6 +180,150 @@ frame_14/delay_sec = 0.0
 frame_15/texture = ExtResource( 16 )
 frame_15/delay_sec = 0.0
 
+[sub_resource type="AnimatedTexture" id=7]
+resource_local_to_scene = true
+frames = 16
+pause = true
+frame_0/texture = ExtResource( 17 )
+frame_1/texture = ExtResource( 24 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 22 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 14 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 15 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 13 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 21 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 20 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 25 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 19 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 23 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 8 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 6 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 18 )
+frame_13/delay_sec = 0.0
+frame_14/texture = ExtResource( 7 )
+frame_14/delay_sec = 0.0
+frame_15/texture = ExtResource( 16 )
+frame_15/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=8]
+resource_local_to_scene = true
+frames = 16
+pause = true
+frame_0/texture = ExtResource( 17 )
+frame_1/texture = ExtResource( 24 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 22 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 14 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 15 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 13 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 21 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 20 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 25 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 19 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 23 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 8 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 6 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 18 )
+frame_13/delay_sec = 0.0
+frame_14/texture = ExtResource( 7 )
+frame_14/delay_sec = 0.0
+frame_15/texture = ExtResource( 16 )
+frame_15/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=9]
+resource_local_to_scene = true
+frames = 16
+pause = true
+frame_0/texture = ExtResource( 17 )
+frame_1/texture = ExtResource( 24 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 22 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 14 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 15 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 13 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 21 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 20 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 25 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 19 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 23 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 8 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 6 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 18 )
+frame_13/delay_sec = 0.0
+frame_14/texture = ExtResource( 7 )
+frame_14/delay_sec = 0.0
+frame_15/texture = ExtResource( 16 )
+frame_15/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=10]
+resource_local_to_scene = true
+frames = 16
+pause = true
+frame_0/texture = ExtResource( 17 )
+frame_1/texture = ExtResource( 24 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 22 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 14 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 15 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 13 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 21 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 20 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 25 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 19 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 23 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 8 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 6 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 18 )
+frame_13/delay_sec = 0.0
+frame_14/texture = ExtResource( 7 )
+frame_14/delay_sec = 0.0
+frame_15/texture = ExtResource( 16 )
+frame_15/delay_sec = 0.0
+
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -244,12 +388,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
 scroll_horizontal_enabled = false
-scroll_vertical = 270
+scroll_vertical = 344
 
 [node name="Mrgn" type="MarginContainer" parent="Mrgn/MarginContainer/VBox/Settings"]
-margin_top = -270.0
+margin_top = -344.0
 margin_right = 191.0
-margin_bottom = 208.0
+margin_bottom = 162.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 5
@@ -258,7 +402,7 @@ custom_constants/margin_left = 5
 [node name="VBox" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn"]
 margin_left = 5.0
 margin_right = 186.0
-margin_bottom = 478.0
+margin_bottom = 506.0
 custom_constants/separation = 10
 
 [node name="Display" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox"]
@@ -449,7 +593,7 @@ setting_index = 2
 [node name="Controls" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox"]
 margin_top = 172.0
 margin_right = 181.0
-margin_bottom = 380.0
+margin_bottom = 408.0
 
 [node name="HSep" type="HSeparator" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls"]
 margin_right = 181.0
@@ -473,7 +617,7 @@ __meta__ = {
 [node name="Controls" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls"]
 margin_top = 16.0
 margin_right = 181.0
-margin_bottom = 208.0
+margin_bottom = 236.0
 
 [node name="MoveRight" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls"]
 margin_right = 181.0
@@ -657,7 +801,7 @@ setting_index = 12
 margin_left = 157.0
 margin_right = 181.0
 margin_bottom = 24.0
-icon = SubResource( 6 )
+icon = SubResource( 7 )
 setting_index = 14
 
 [node name="Action" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls"]
@@ -693,7 +837,7 @@ setting_index = 13
 margin_left = 157.0
 margin_right = 181.0
 margin_bottom = 24.0
-icon = SubResource( 6 )
+icon = SubResource( 8 )
 setting_index = 15
 
 [node name="Release" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls"]
@@ -723,21 +867,57 @@ margin_left = 122.0
 margin_right = 142.0
 margin_bottom = 24.0
 focus_neighbour_left = NodePath(".")
-focus_neighbour_bottom = NodePath("../../../../Accessibilty/PhotosensMode/Bool")
 setting_index = 20
 
 [node name="Gamepad" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Release" instance=ExtResource( 4 )]
 margin_left = 157.0
 margin_right = 181.0
 margin_bottom = 24.0
-focus_neighbour_bottom = NodePath("../../../../Accessibilty/PhotosensMode/Bool")
-icon = SubResource( 6 )
+icon = SubResource( 9 )
 setting_index = 21
 
-[node name="Accessibilty" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox"]
-margin_top = 390.0
+[node name="Menu" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls"]
+margin_top = 196.0
 margin_right = 181.0
-margin_bottom = 478.0
+margin_bottom = 220.0
+size_flags_horizontal = 3
+custom_constants/separation = 15
+
+[node name="Label" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Menu"]
+margin_top = 8.0
+margin_right = 107.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Menu"
+valign = 1
+clip_text = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Keyboard" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Menu" instance=ExtResource( 3 )]
+margin_left = 122.0
+margin_right = 142.0
+margin_bottom = 24.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_bottom = NodePath("../../../../Accessibilty/PhotosensMode/Bool")
+setting_index = 22
+
+[node name="Gamepad" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Menu" instance=ExtResource( 4 )]
+margin_left = 157.0
+margin_right = 181.0
+margin_bottom = 24.0
+focus_neighbour_bottom = NodePath("../../../../Accessibilty/PhotosensMode/Bool")
+icon = SubResource( 10 )
+setting_index = 23
+
+[node name="Accessibilty" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox"]
+margin_top = 418.0
+margin_right = 181.0
+margin_bottom = 506.0
 
 [node name="HSep" type="HSeparator" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty"]
 margin_right = 181.0
@@ -786,7 +966,7 @@ margin_left = 117.0
 margin_right = 181.0
 margin_bottom = 32.0
 focus_neighbour_left = NodePath(".")
-focus_neighbour_top = NodePath("../../../Controls/Controls/Release/Keyboard")
+focus_neighbour_top = NodePath("../../../Controls/Controls/Menu/Keyboard")
 setting_index = 11
 
 [node name="Brightness" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty"]

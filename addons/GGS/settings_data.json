@@ -32,7 +32,7 @@
 			"bus_name": "SoundEffects"
 		},
 		"current": {
-			"value": 0.1,
+			"value": 0,
 			"bus_name": "SoundEffects"
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/audio_slider.gd"
@@ -182,11 +182,11 @@
 	"15": {
 		"name": "gp_action",
 		"default": {
-			"value": 1,
+			"value": 3,
 			"action_name": "ui_B"
 		},
 		"current": {
-			"value": 1,
+			"value": 3,
 			"action_name": "ui_B"
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/keybind_gp.gd"
@@ -197,7 +197,7 @@
 			"value": 2
 		},
 		"current": {
-			"value": 1
+			"value": 2
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/window_scale.gd"
 	},
@@ -227,7 +227,7 @@
 			"value": 0
 		},
 		"current": {
-			"value": 10
+			"value": 0
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/palette_selector.gd"
 	},
@@ -246,12 +246,36 @@
 	"21": {
 		"name": "gp_release",
 		"default": {
-			"value": 2,
+			"value": 1,
 			"action_name": "ui_release"
 		},
 		"current": {
-			"value": 2,
+			"value": 1,
 			"action_name": "ui_release"
+		},
+		"logic": "res://gui/optionsmenu/setting_logic/keybind_gp.gd"
+	},
+	"22": {
+		"name": "kb_menu",
+		"default": {
+			"value": 16777217,
+			"action_name": "ui_menu"
+		},
+		"current": {
+			"value": 16777217,
+			"action_name": "ui_menu"
+		},
+		"logic": "res://gui/optionsmenu/setting_logic/keybind_kb.gd"
+	},
+	"23": {
+		"name": "gp_menu",
+		"default": {
+			"value": 9,
+			"action_name": "ui_menu"
+		},
+		"current": {
+			"value": 9,
+			"action_name": "ui_menu"
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/keybind_gp.gd"
 	}
