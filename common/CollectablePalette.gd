@@ -4,7 +4,7 @@ export(String) var palette_name = "Classic"
 
 func _ready():
 	# if palette is already collected, delete this one
-	if SaveSystem.is_palette_unlocked(palette_name):
+	if SaveSystem.access_data().is_palette_unlocked(palette_name):
 		queue_free()
 	$Sprite/AnimationPlayer.play("float")
 

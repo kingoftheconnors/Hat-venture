@@ -19,7 +19,7 @@ func load_game(load_save_num : int):
 	if not load_game_data.file_exists("user://save" + str(load_save_num) + ".save"):
 		return {}
 	# Load the file by line and return dictionary
-	load_game_data.open("user://keybinds.save", File.READ)
+	load_game_data.open("user://save" + str(load_save_num) + ".save", File.READ)
 	game_data = parse_json(load_game_data.get_line())
 	load_game_data.close()
 	return game_data
@@ -74,6 +74,12 @@ func add_storybook_page(page_num : int):
 	if !game_data['storybook_pages'].has(page_num):
 		game_data['storybook_pages'].append(page_num)
 	save_game()
+
+func access_data() -> Node2D:
+	# Initialize to dummy info just in case
+	if game_data.size() == 0:
+		load_game(1)
+	return self
 
 var game_data : Dictionary = {}
 var save_num : int = -1
