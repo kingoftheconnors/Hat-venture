@@ -19,6 +19,8 @@ func acquire_power(powerType):
 	if powerType.name() != power.name():
 		set_power(powerType)
 		animator["parameters/PlayerMovement/playback"].travel("power_get")
+		if !Constants.PHOTOSENSITIVE_MODE:
+			animator["parameters/PlayerEffect/playback"].travel("power_get_flash")
 		SoundSystem.start_sound(SoundSystem.SFX.POWERUP_GET)
 
 func set_power(powerType):

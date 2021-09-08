@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=1]
 [ext_resource path="res://enemy/Scripts/Hitbox.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://enemy/vanill/CherryThrower.gd" type="Script" id=5]
 [ext_resource path="res://enemy/EnemyActivateOnStart.gd" type="Script" id=6]
 [ext_resource path="res://Music/startSong.gd" type="Script" id=7]
+[ext_resource path="res://gui/PaletteSprite.tres" type="Material" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Shell"
@@ -871,10 +872,11 @@ script = ExtResource( 3 )
 turnaround_offset = 10
 
 [node name="EnemyCore" type="Sprite" parent="."]
+material = ExtResource( 8 )
 position = Vector2( -2, 0 )
 texture = ExtResource( 4 )
-vframes = 5
 hframes = 2
+vframes = 5
 frame = 1
 script = ExtResource( 1 )
 death_score = 500
@@ -944,8 +946,9 @@ script = ExtResource( 5 )
 pause_mode = 2
 script = ExtResource( 7 )
 sound = 4
-[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="CherryThrower" method="_on_VisibilityNotifier2D_screen_entered"]
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="CherryThrower" method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="shoot" from="CherryThrower" to="AudioStreamPlayer" method="start_sound"]

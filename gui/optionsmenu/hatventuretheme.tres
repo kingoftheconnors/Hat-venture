@@ -1,0 +1,83 @@
+[gd_resource type="Theme" load_steps=18 format=2]
+
+[ext_resource path="res://gui/optionsmenu/StyleData/GuiFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://gui/optionsmenu/StyleData/MenuTextureRect.tres" type="StyleBox" id=2]
+[ext_resource path="res://gui/optionsmenu/StyleData/MenuTextureRect_press.tres" type="StyleBox" id=3]
+[ext_resource path="res://gui/optionsmenu/StyleData/MenuTextureRect_hover.tres" type="StyleBox" id=4]
+[ext_resource path="res://gui/optionsmenu/StyleData/ScrollGrabberDefault.tres" type="StyleBox" id=5]
+[ext_resource path="res://gui/optionsmenu/StyleData/ScrollbarDefault.tres" type="StyleBox" id=6]
+[ext_resource path="res://gui/optionsmenu/StyleData/ScrollGrabberHover.tres" type="StyleBox" id=7]
+[ext_resource path="res://gui/optionsmenu/StyleData/background_darkgray.png" type="Texture" id=8]
+[ext_resource path="res://gui/optionsmenu/StyleData/background_gray.png" type="Texture" id=9]
+[ext_resource path="res://gui/optionsmenu/StyleData/background_white.png" type="Texture" id=10]
+[ext_resource path="res://gui/optionsmenu/StyleData/checkbutton_on.png" type="Texture" id=11]
+[ext_resource path="res://gui/optionsmenu/StyleData/checkbutton_off.png" type="Texture" id=12]
+[ext_resource path="res://gui/optionsmenu/StyleData/checkbutton_hover.tres" type="StyleBox" id=13]
+[ext_resource path="res://gui/optionsmenu/StyleData/checkbutton_defaultoutline.tres" type="StyleBox" id=14]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.305882, 0.305882, 0.305882, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_top = 4.0
+expand_margin_bottom = 3.0
+anti_aliasing = false
+
+[resource]
+default_font = ExtResource( 1 )
+Button/colors/font_color = Color( 0, 0, 0, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_hover = Color( 0, 0, 0, 1 )
+Button/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = null
+Button/styles/focus = ExtResource( 4 )
+Button/styles/hover = ExtResource( 4 )
+Button/styles/normal = ExtResource( 2 )
+Button/styles/pressed = ExtResource( 3 )
+CheckButton/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+CheckButton/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+CheckButton/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
+CheckButton/colors/font_color_hover_pressed = Color( 1, 1, 1, 1 )
+CheckButton/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+CheckButton/constants/check_vadjust = 0
+CheckButton/constants/hseparation = 4
+CheckButton/fonts/font = null
+CheckButton/icons/off = ExtResource( 12 )
+CheckButton/icons/off_disabled = null
+CheckButton/icons/on = ExtResource( 11 )
+CheckButton/icons/on_disabled = null
+CheckButton/styles/disabled = ExtResource( 14 )
+CheckButton/styles/focus = ExtResource( 13 )
+CheckButton/styles/hover = ExtResource( 13 )
+CheckButton/styles/hover_pressed = ExtResource( 13 )
+CheckButton/styles/normal = ExtResource( 14 )
+CheckButton/styles/pressed = ExtResource( 14 )
+HSlider/icons/grabber = ExtResource( 10 )
+HSlider/icons/grabber_disabled = ExtResource( 8 )
+HSlider/icons/grabber_highlight = ExtResource( 9 )
+HSlider/icons/tick = null
+HSlider/styles/grabber_area = SubResource( 1 )
+HSlider/styles/grabber_area_highlight = SubResource( 2 )
+HSlider/styles/slider = SubResource( 3 )
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = ExtResource( 5 )
+VScrollBar/styles/grabber_highlight = ExtResource( 7 )
+VScrollBar/styles/grabber_pressed = null
+VScrollBar/styles/scroll = ExtResource( 6 )
+VScrollBar/styles/scroll_focus = null

@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://enemy/poddle/watcher.gd" type="Script" id=1]
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=2]
+[ext_resource path="res://gui/PaletteSprite.tres" type="Material" id=3]
 [ext_resource path="res://NPCs/MustacheGirl.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
@@ -197,11 +198,11 @@ script = ExtResource( 1 )
 is_turning = true
 
 [node name="EnemyCore" type="Sprite" parent="."]
+material = ExtResource( 3 )
 texture = ExtResource( 5 )
 hframes = 3
 frame = 2
 script = ExtResource( 2 )
-damage = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyCore"]
 anims/default = SubResource( 1 )
@@ -219,4 +220,5 @@ position = Vector2( 0, 13 )
 shape = SubResource( 11 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]

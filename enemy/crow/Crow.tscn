@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://enemy/crow/paraenemy.gd" type="Script" id=1]
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=2]
 [ext_resource path="res://enemy/crow/crow.png" type="Texture" id=3]
+[ext_resource path="res://gui/PaletteSprite.tres" type="Material" id=4]
 [ext_resource path="res://enemy/Scripts/Hitbox.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=1]
@@ -291,10 +292,10 @@ height = 14.3208
 script = ExtResource( 1 )
 
 [node name="EnemyCore" type="Sprite" parent="."]
+material = ExtResource( 4 )
 position = Vector2( -2, 0 )
 texture = ExtResource( 3 )
 hframes = 3
-frame = 1
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyCore"]
@@ -333,5 +334,6 @@ rotation = 1.5708
 shape = SubResource( 15 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

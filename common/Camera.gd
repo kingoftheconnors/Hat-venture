@@ -50,8 +50,8 @@ func _physics_process(delta):
 		if target_spot != Vector2.ZERO:
 			var prev_left = lim_left; var prev_right = lim_right
 			# Limits are changed to force player to stay near target_spot
-			lim_left = min(get_camera_screen_center().x-Constants.camera_radius.x, position.x-Constants.camera_radius.x)
-			lim_right = max(get_camera_screen_center().x+Constants.camera_radius.x, position.x+Constants.camera_radius.x)
+			lim_left = min(get_camera_screen_center().x-(Gui.get_screen_resolution().x/2), position.x-(Gui.get_screen_resolution().x/2))
+			lim_right = max(get_camera_screen_center().x+(Gui.get_screen_resolution().x/2), position.x+(Gui.get_screen_resolution().x/2))
 			if prev_left != lim_left or prev_right != lim_right:
 				left_body.set_collision_mask_bit(0, false)
 				right_body.set_collision_mask_bit(0, false)
@@ -62,14 +62,14 @@ func _physics_process(delta):
 			# Default behavior: move to player object
 			position = target.position + Vector2(lookahead_offset, 0)
 		# Enforce limits
-		if position.y > lim_bottom - Constants.camera_radius.y:
-			position.y = lim_bottom - Constants.camera_radius.y
-		if position.y < lim_top + Constants.camera_radius.y:
-			position.y = lim_top + Constants.camera_radius.y
-		if position.x > lim_right - Constants.camera_radius.x:
-			position.x = lim_right - Constants.camera_radius.x
-		if position.x < lim_left + Constants.camera_radius.x:
-			position.x = lim_left + Constants.camera_radius.x
+		if position.y > lim_bottom - Gui.get_screen_resolution().y/2:
+			position.y = lim_bottom - Gui.get_screen_resolution().y/2
+		if position.y < lim_top + Gui.get_screen_resolution().y/2:
+			position.y = lim_top + Gui.get_screen_resolution().y/2
+		if position.x > lim_right - (Gui.get_screen_resolution().x/2):
+			position.x = lim_right - (Gui.get_screen_resolution().x/2)
+		if position.x < lim_left + (Gui.get_screen_resolution().x/2):
+			position.x = lim_left + (Gui.get_screen_resolution().x/2)
 		# Moving left and right walls when limit moves
 		if left_body.global_position.x != lim_left - 10:
 			left_body.global_position.x = lim_left - 10
@@ -85,7 +85,7 @@ func room_capture(spot, is_move_walls):
 		tween.stop_all()
 		tween.interpolate_property(self, "position", self.position, spot, .5, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 		tween.start()
-		lim_bottom = spot.y + Constants.camera_radius.y + Constants.camera_radius.y * drag_margin_bottom
+		lim_bottom = spot.y + Gui.get_screen_resolution().y/2 + (Gui.get_screen_resolution().y/2) * drag_margin_bottom
 		get_tree().paused = true
 		if timer.is_connected("timeout", self, "finish_capture_release"):
 			timer.disconnect("timeout", self, "finish_capture_release")
@@ -133,10 +133,10 @@ func finish_capture_release():
 	right_collider.disabled = true
 
 func reset_limits():
-	lim_top = level.up - Constants.camera_radius.y * drag_margin_top
-	lim_bottom = level.down + Constants.camera_radius.y * drag_margin_bottom
-	lim_left = level.left - Constants.camera_radius.x * drag_margin_left
-	lim_right = level.right + Constants.camera_radius.y * drag_margin_right
+	lim_top = level.up - (Gui.get_screen_resolution().y/2) * drag_margin_top
+	lim_bottom = level.down + (Gui.get_screen_resolution().y/2) * drag_margin_bottom
+	lim_left = level.left - (Gui.get_screen_resolution().x/2) * drag_margin_left
+	lim_right = level.right + (Gui.get_screen_resolution().x/2) * drag_margin_right
 
 func move_lookahead_toward(offset_goal, delta):
 	if target_spot:

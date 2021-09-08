@@ -57,8 +57,8 @@ func die():
 	# Get current levelname to return to after playing animation
 	var levelName = get_tree().get_current_scene().filename
 	# Fade to white
-	Gui.cover()
-	yield(get_tree().create_timer(.6), "timeout")
+	var transition_length = Gui.cover()
+	yield(get_tree().create_timer(transition_length), "timeout")
 	unpause()
 	pons = 0; Gui.set_pons(pons)
 	lives -= 1; Gui.set_lives(lives)
@@ -84,8 +84,8 @@ func die():
 func start_level(levelName : String, spawn_point : int = 0):
 	spawn_num = spawn_point
 	# Fade to white
-	Gui.cover()
-	yield(get_tree().create_timer(.6), "timeout")
+	var transition_length = Gui.cover()
+	yield(get_tree().create_timer(transition_length), "timeout")
 	unpause()
 	checkpoint_level = -1; checkpoint_pos = Vector2.ZERO
 	Gui.reset_energy()

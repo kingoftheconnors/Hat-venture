@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://items/Resources/getItem.gd" type="Script" id=1]
 [ext_resource path="res://Music/startSong.gd" type="Script" id=2]
 [ext_resource path="res://items/pon.gd" type="Script" id=3]
 [ext_resource path="res://items/Resources/pon.png" type="Texture" id=4]
+[ext_resource path="res://gui/PaletteSprite.tres" type="Material" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "collect"
@@ -127,6 +128,7 @@ anims/collect = SubResource( 1 )
 anims/delayed_free = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+material = ExtResource( 5 )
 texture = ExtResource( 4 )
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -140,6 +142,7 @@ shape = SubResource( 3 )
 pause_mode = 2
 script = ExtResource( 2 )
 sound = 1
+
 [connection signal="collected" from="." to="AudioStreamPlayer" method="start_sound"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

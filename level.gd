@@ -36,7 +36,6 @@ var gif_frames := []
 
 func _ready():
 	if !Engine.is_editor_hint():
-		OptionsMenu.set_openable(true)
 		VisualServer.set_default_clear_color(col)
 		Gui.start(stageNum)
 
@@ -63,6 +62,7 @@ func _physics_process(delta):
 		if Constants.DEBUG_MODE and gif_threads.size() > 0 and !saving_gif:
 			join_threads()
 
+var menu_exists: bool = false
 func _unhandled_input(event):
 	if Constants.DEBUG_MODE:
 		if event is InputEventKey and event.pressed and event.scancode == KEY_BACKSPACE:
@@ -94,6 +94,25 @@ func _unhandled_input(event):
 					gif_threads.append(Thread.new())
 					gif_frames.append(null)
 					gif_threads[thread_num].start(self, "create_gif", thread_num, Thread.PRIORITY_LOW)
+	
+	if !Engine.is_editor_hint():
+		# Open and close menu
+		if event.is_action_pressed("ui_menu"):
+			if menu_exists == false:
+				var iOptionsMenu = preload("res://gui/optionsmenu/SettingsMenu.tscn").instance()
+				get_node("/root/Gui").add_child(iOptionsMenu)
+				iOptionsMenu.connect("tree_exited", self, "_on_menu_tree_exited")
+				
+				var palette = get_node("/root/Gui/PaletteFilter")
+				# Move palette_filter to bottom of scene list so it's OVER the menu
+				get_node("/root/Gui").remove_child(palette)
+				get_node("/root/Gui").add_child(palette)
+				
+				menu_exists = true
+				get_tree().set_input_as_handled()
+
+func _on_menu_tree_exited() -> void:
+	menu_exists = false
 
 func create_gif(thread_num : int):
 	gif_frames[thread_num] = exporter.create_frame(pics[thread_num], FRAME_LENGTH)
