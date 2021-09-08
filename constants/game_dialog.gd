@@ -52,8 +52,8 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.DIVE_TUTORIAL:
 			return [
-				{name = "WARNING!", text = "Kids have been known to dive over large gaps using the " + OptionsMenu.get_keyname("ui_B") + " button!"},
-				{name = "WARNING!", text = "If you don't know what " + OptionsMenu.get_keyname("ui_B") + " buttons are, call up your radical overlord: Me!"},
+				#{name = "WARNING!", text = "Kids have been known to dive over large gaps using the " + OptionsMenu.get_keyname("ui_B") + " button!"},
+				#{name = "WARNING!", text = "If you don't know what " + OptionsMenu.get_keyname("ui_B") + " buttons are, call up your radical overlord: Me!"},
 				{name = "...", text = "*A messy sketch of a kid and a bird is scrawled into the sign*"}
 			]
 		DIALOG_TYPE.SATELLITE:

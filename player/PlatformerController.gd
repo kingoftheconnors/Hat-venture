@@ -644,7 +644,7 @@ func _input(event):
 			holding_jump = true
 			jump_timer = JUMP_TIME
 		
-		if event.is_action_pressed("ui_crouch"):
+		if event.is_action_pressed("ui_down"):
 			crouch()
 
 # Handle releasing player input in process function
@@ -657,7 +657,7 @@ func _process(_delta):
 			#animator["parameters/playback"].travel("freefall")
 		holding_jump = false
 		jump_timer = 0
-	if crouching and !Input.is_action_pressed("ui_crouch"):
+	if crouching and !Input.is_action_pressed("ui_down"):
 		uncrouch()
 
 onready var wall_jump_checker : RayCast2D = $"ScaleChildren/WallJumpChecker"
@@ -737,7 +737,8 @@ func stun(amo, stun_mult = 3):
 
 func power_stun(amo, animate = true):
 	if animate:
-		animator["parameters/PlayerEffect/playback"].travel("powerlessFlash")
+		if !Constants.PHOTOSENSITIVE_MODE:
+			animator["parameters/PlayerEffect/playback"].travel("powerlessFlash")
 		animator["parameters/PlayerEffect/conditions/powerless_off"] = false
 	power_stun_frames = amo
 	

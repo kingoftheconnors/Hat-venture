@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://enemy/poddle/Poddleball.gd" type="Script" id=1]
 [ext_resource path="res://enemy/poddle/poddleball.png" type="Texture" id=2]
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=3]
 [ext_resource path="res://enemy/Scripts/Hitbox.gd" type="Script" id=4]
+[ext_resource path="res://gui/PaletteSprite.tres" type="Material" id=5]
 
 [sub_resource type="Animation" id=1]
 length = 3.0
@@ -53,6 +54,7 @@ radius = 5.502
 radius = 2.0
 
 [node name="Poddleball" type="Sprite"]
+material = ExtResource( 5 )
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
 
@@ -74,4 +76,5 @@ shape = SubResource( 3 )
 
 [node name="EnemyCore" type="Node2D" parent="."]
 script = ExtResource( 3 )
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

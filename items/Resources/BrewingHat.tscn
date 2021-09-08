@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://items/Resources/getItem.gd" type="Script" id=1]
 [ext_resource path="res://items/Resources/itemMovement.gd" type="Script" id=2]
 [ext_resource path="res://items/brewingItem.gd" type="Script" id=3]
 [ext_resource path="res://items/Resources/brewingCap.png" type="Texture" id=4]
+[ext_resource path="res://gui/PaletteSprite.tres" type="Material" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.22684
@@ -28,10 +29,12 @@ rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Body"]
+material = ExtResource( 5 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 position = Vector2( 0, 1 )
 shape = SubResource( 2 )
+
 [connection signal="area_entered" from="Body/Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Body/Area2D" to="." method="_on_Area2D_body_entered"]
