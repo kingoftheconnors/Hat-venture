@@ -47,10 +47,11 @@ func _ready():
 	reset_limits()
 
 func _process(delta):
-	if shake_direc_right:
-		position.x += shake_amount
-	else:
-		position.x -= shake_amount
+	if !Constants.PHOTOSENSITIVE_MODE:
+		if shake_direc_right:
+			position.x += shake_amount
+		else:
+			position.x -= shake_amount
 
 # Called every frame to update camera position
 func _physics_process(delta):

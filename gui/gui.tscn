@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://gui/lives.png" type="Texture" id=1]
 [ext_resource path="res://gui/white.png" type="Texture" id=2]
@@ -61,6 +61,22 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=13]
+resource_name = "cover (slow)"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cover:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [sub_resource type="Animation" id=6]
 length = 0.6
 tracks/0/type = "value"
@@ -89,6 +105,22 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "reveal (slow)"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cover:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -876,8 +908,10 @@ __meta__ = {
 [node name="CoverAnimator" type="AnimationPlayer" parent="."]
 anims/cover = SubResource( 4 )
 "anims/cover (instant)" = SubResource( 5 )
+"anims/cover (slow)" = SubResource( 13 )
 anims/reveal = SubResource( 6 )
 "anims/reveal (instant)" = SubResource( 7 )
+"anims/reveal (slow)" = SubResource( 14 )
 
 [node name="Cover" type="TextureRect" parent="."]
 modulate = Color( 1, 1, 1, 0 )
