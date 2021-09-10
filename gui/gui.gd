@@ -83,20 +83,46 @@ var dialog_active = false
 var cur_speaking_name = ""
 
 func _process(delta):
-	if text_crawl_func is GDScriptFunctionState:
-		# Pre-empt textboxes
-		text_crawl_func = text_crawl_func.resume(delta)
-	elif text_to_run.size() > 0:
-		var next_box = text_to_run.pop_front()
-		start_dialog(next_box)
-	elif dialog_active:
-		end_dialog()
+	if !menu_exists:
+		if text_crawl_func is GDScriptFunctionState:
+			# Pre-empt textboxes
+			text_crawl_func = text_crawl_func.resume(delta)
+		elif text_to_run.size() > 0:
+			var next_box = text_to_run.pop_front()
+			start_dialog(next_box)
+		elif dialog_active:
+			end_dialog()
 	if get_tree().paused and playerScoreMultAmo > 1:
 		playerScoreMult.visible = true
 
+var menu_exists: bool = false
 func _unhandled_input(event):
 	if event.is_action_pressed("toggle_hud"):
 		gui.visible = !gui.visible
+	# Open and close menu
+	if event.is_action_pressed("ui_menu"):
+		if menu_exists == false:
+			if dialog_active:
+				# skip cutscene menu
+				var iOptionsMenu = preload("res://gui/optionsmenu/SkipCutsceneMenu.tscn").instance()
+				get_node("/root/Gui").add_child(iOptionsMenu)
+				iOptionsMenu.connect("tree_exited", self, "_on_menu_tree_exited")
+				iOptionsMenu.connect("skip_cutscene", self, "skip_cutscene")
+			else:
+				var iOptionsMenu = preload("res://gui/optionsmenu/SettingsMenu.tscn").instance()
+				get_node("/root/Gui").add_child(iOptionsMenu)
+				iOptionsMenu.connect("tree_exited", self, "_on_menu_tree_exited")
+			menu_exists = true
+			
+			# Move palette_filter to bottom of scene list so it's OVER the menu
+			var palette = get_node("/root/Gui/PaletteFilter")
+			get_node("/root/Gui").remove_child(palette)
+			get_node("/root/Gui").add_child(palette)
+			
+			get_tree().set_input_as_handled()
+
+func _on_menu_tree_exited() -> void:
+	menu_exists = false
 
 func queue_text(dialog_starter, textbox : Dictionary):
 	queue(dialog_starter, [textbox])
@@ -119,25 +145,33 @@ func queue(dialog_starter, textbox):
 		var next_box = text_to_run.pop_front()
 		start_dialog(next_box)
 
-func start_dialog(next_box):
+func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 	dialog_active = true
 	PlayerGameManager.pause_except([])
 	cur_speaking_name = ""
 	if next_box.has("name"):
-		gui.visible = false
-		dialog.visible = true
-		dialogName.text = next_box.name
-		cur_speaking_name = next_box.name
-		dialogText.text = next_box.text
-		dialogText.lines_skipped = 0
-		# Start text crawl
-		text_crawl_func = crawl(next_box)
+		if skip_events == Constants.SKIP_TYPE.RUN:
+			gui.visible = false
+			dialog.visible = true
+			dialogName.text = next_box.name
+			cur_speaking_name = next_box.name
+			dialogText.text = next_box.text
+			dialogText.lines_skipped = 0
+			# Start text crawl
+			text_crawl_func = crawl(next_box)
+		elif next_box.has("options"):
+			var first_option = next_box.options.keys()[0]
+			var next_textbox_num = next_box.options[first_option]
+			queue_dialog_at_front(next_box.starter, next_textbox_num)
 	elif next_box.has("signal"):
-		next_box.starter.emit_signal(next_box.signal)
+		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS:
+			next_box.starter.emit_signal(next_box.signal)
 	elif next_box.has("animate1"):
-		next_box.starter.animate1(next_box.animate1)
+		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS:
+			next_box.starter.animate1(next_box.animate1)
 	elif next_box.has("animate2"):
-		next_box.starter.animate1(next_box.animate2)
+		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS:
+			next_box.starter.animate1(next_box.animate2)
 	elif next_box.has("settag"):
 		SaveSystem.set_tag(next_box['settag'], next_box['value'])
 	elif next_box.has("queue"):
@@ -164,9 +198,22 @@ func start_dialog(next_box):
 	
 	# Wait for program to return signal that we can continue scene
 	if next_box.has("delay"):
-		gui.visible = true
-		dialog.visible = false
-		text_crawl_func = delay(next_box['delay'])
+		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS:
+			gui.visible = true
+			dialog.visible = false
+			text_crawl_func = delay(next_box['delay'])
+
+func skip_cutscene():
+	text_crawl_func = null
+	if curbox.has('options'):
+		var first_option = curbox.options.keys()[0]
+		var next_textbox_num = curbox.options[first_option]
+		queue_dialog_at_front(curbox.starter, next_textbox_num)
+	while text_to_run.size() > 0:
+		var next_box = text_to_run.pop_front()
+		start_dialog(next_box, true)
+		if next_box.has('level'):
+			return
 
 func end_dialog():
 	dialog_active = false
@@ -184,7 +231,9 @@ func delay(wait_time):
 		var delta = yield()
 		time_passed += delta
 
+var curbox = null
 func crawl(text_box):
+	curbox = text_box
 	# Text crawl
 	dialogText.percent_visible = 0
 	var lettersVisible = 0.0

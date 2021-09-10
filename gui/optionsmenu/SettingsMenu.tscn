@@ -388,12 +388,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
 scroll_horizontal_enabled = false
-scroll_vertical = 344
+scroll_vertical = 373
 
 [node name="Mrgn" type="MarginContainer" parent="Mrgn/MarginContainer/VBox/Settings"]
-margin_top = -344.0
+margin_top = -373.0
 margin_right = 191.0
-margin_bottom = 162.0
+margin_bottom = 161.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 5
@@ -402,7 +402,7 @@ custom_constants/margin_left = 5
 [node name="VBox" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn"]
 margin_left = 5.0
 margin_right = 186.0
-margin_bottom = 506.0
+margin_bottom = 534.0
 custom_constants/separation = 10
 
 [node name="Display" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox"]
@@ -917,7 +917,7 @@ setting_index = 23
 [node name="Accessibilty" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox"]
 margin_top = 418.0
 margin_right = 181.0
-margin_bottom = 506.0
+margin_bottom = 534.0
 
 [node name="HSep" type="HSeparator" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty"]
 margin_right = 181.0
@@ -969,10 +969,37 @@ focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath("../../../Controls/Controls/Menu/Keyboard")
 setting_index = 11
 
-[node name="Brightness" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty"]
+[node name="Cutscenes" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty"]
 margin_top = 52.0
 margin_right = 181.0
-margin_bottom = 68.0
+margin_bottom = 76.0
+
+[node name="Label" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty/Cutscenes"]
+margin_top = 8.0
+margin_right = 121.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Cutscenes"
+valign = 1
+clip_text = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArrowList" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty/Cutscenes" instance=ExtResource( 11 )]
+margin_left = 125.0
+margin_right = 181.0
+focus_mode = 2
+setting_index = 24
+list = [ "Run", "Skip", "Word-less" ]
+
+[node name="Brightness" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty"]
+margin_top = 80.0
+margin_right = 181.0
+margin_bottom = 96.0
 
 [node name="Label" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty/Brightness"]
 margin_top = 4.0
@@ -999,9 +1026,9 @@ step = 1.0
 setting_index = 17
 
 [node name="Parallax" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty"]
-margin_top = 72.0
+margin_top = 100.0
 margin_right = 181.0
-margin_bottom = 88.0
+margin_bottom = 116.0
 
 [node name="Label" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty/Parallax"]
 margin_top = 4.0
