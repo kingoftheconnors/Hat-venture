@@ -337,3 +337,13 @@ Wall-sliding
 0.4.1
 Intro level
 Ship cutscene
+
+0.4.2
+Alpha Complete Settings menu
+New Palettes
+Fullscreening
+Brightness slider
+Parallax Silder
+Photosensitivity mode
+Keybinds (controller compatible)
+Skipping Cutscenes
