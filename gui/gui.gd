@@ -57,20 +57,20 @@ func set_gui_size(size):
 	sizeAnimator.play(size)
 
 onready var gui = $Player
-onready var energy = $Player/Energy
-onready var bossEnergy = $Player/BossArea/BossEnergy
-onready var playerScore = $Player/ScoreArea/ScoreNum
-onready var playerScoreMult = $Player/ScoreArea/Multiplicity
+onready var energy = $Player/MContainer/GuiInfo/Main/HatKid/Energy
+onready var bossEnergy = $Player/MContainer/GuiInfo/Main/Boss/BossEnergy
+onready var playerScore = $Player/MContainer/GuiInfo/Main/Score/ScoreNum
+onready var playerScoreMult = $Player/MContainer/GuiInfo/Main/Score/Multiplicity
 var playerScoreMultAmo = 1
 
 onready var sizeAnimator = $AnimationPlayer
 
-onready var stageName = $Player/StageName
-onready var lives = $Player/LiveNum
-onready var pons = $Player/PonsNum
+onready var stageName = $Player/MContainer/GuiInfo/Lives/StageName
+onready var lives = $Player/MContainer/GuiInfo/Lives/HBoxContainer/LiveNum
+onready var pons = $Player/MContainer/GuiInfo/Pons/HBoxContainer/PonsNum
 
-onready var scoreArea = $Player/ScoreArea
-onready var bossArea = $Player/BossArea
+onready var scoreArea = $Player/MContainer/GuiInfo/Main/Score
+onready var bossArea = $Player/MContainer/GuiInfo/Main/Boss
 
 ### ------------------------------
 ### DIALOG
@@ -81,6 +81,7 @@ var text_to_run = []
 var text_crawl_func
 var dialog_active = false
 var cur_speaking_name = ""
+const LINE_LENGTH = 30
 
 func _process(delta):
 	if !menu_exists:
@@ -241,17 +242,17 @@ func crawl(text_box):
 	while get_printed_lines() < dialogText.get_line_count():
 		var delta = yield()
 		lettersVisible += delta * speed * letters_per_sec
-		if dialogText.visible_characters > 39:
+		if dialogText.visible_characters > LINE_LENGTH*2-1:
 			# Wait for user input
 			while(!Input.is_action_just_pressed("ui_A") and !Input.is_action_just_pressed("ui_B")):
 				yield()
 			dialogText.lines_skipped += 2
-			lettersVisible -= 40
+			lettersVisible -= LINE_LENGTH*2
 			dialogText.set_visible_characters(int(lettersVisible))
 		elif Input.is_action_just_pressed("ui_A") or Input.is_action_just_pressed("ui_B"):
 			# Set letters to fill if the user pressed A
 			# or if they pressed B and the textbox has options
-			lettersVisible = 40
+			lettersVisible = LINE_LENGTH*2
 		if Input.is_action_just_pressed("ui_B") and !text_box.has("options"):
 			# Check if this is the last textbox.
 			# If it is, add delay so player won't activate powers on accident
@@ -268,7 +269,7 @@ func crawl(text_box):
 	if text_box.has("options"):
 		if dialogText.get_line_count() > 1:
 			dialogText.lines_skipped += 1
-			lettersVisible -= 20
+			lettersVisible -= LINE_LENGTH
 		dialogOptions.show_options(text_box.options)
 		var selected_option = -1
 		while selected_option < 0:
