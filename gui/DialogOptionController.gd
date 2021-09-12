@@ -12,7 +12,7 @@ func _on_focus_exited():
 func _input(event):
 	# Change keybind
 	if has_focus():
-		if event.is_action_pressed("ui_A") or event.is_action_pressed("ui_accept"):
+		if event.is_action_pressed("ui_accept"):
 			emit_signal("option_selected", option_value)
 
 # Textbox ID to run if this option is picked

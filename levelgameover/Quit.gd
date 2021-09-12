@@ -9,7 +9,7 @@ func _on_focus_exited():
 # Handle overridable Left and Right functions (and emit signal)
 func _unhandled_input(event):
 	# Change keybind
-	if has_focus() and event.is_action_pressed("ui_A"):
+	if has_focus() and event.is_action_pressed("ui_accept"):
 		get_tree().quit()
 
 onready var cursor : Control = $Selector

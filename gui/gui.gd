@@ -244,12 +244,12 @@ func crawl(text_box):
 		lettersVisible += delta * speed * letters_per_sec
 		if dialogText.visible_characters > LINE_LENGTH*2-1:
 			# Wait for user input
-			while(!Input.is_action_just_pressed("ui_A") and !Input.is_action_just_pressed("ui_B")):
+			while(!Input.is_action_just_pressed("ui_accept") and !Input.is_action_just_pressed("ui_B")):
 				yield()
 			dialogText.lines_skipped += 2
 			lettersVisible -= LINE_LENGTH*2
 			dialogText.set_visible_characters(int(lettersVisible))
-		elif Input.is_action_just_pressed("ui_A") or Input.is_action_just_pressed("ui_B"):
+		elif Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_B"):
 			# Set letters to fill if the user pressed A
 			# or if they pressed B and the textbox has options
 			lettersVisible = LINE_LENGTH*2
@@ -279,7 +279,7 @@ func crawl(text_box):
 		queue_dialog_at_front(text_box.starter, selected_option)
 	else:
 		# Wait for user input
-		while(!Input.is_action_just_pressed("ui_A") and !Input.is_action_just_pressed("ui_B")):
+		while(!Input.is_action_just_pressed("ui_accept") and !Input.is_action_just_pressed("ui_B")):
 			yield()
 	return
 

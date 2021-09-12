@@ -147,11 +147,11 @@
 		"name": "kb_jump",
 		"default": {
 			"value": 90,
-			"action_name": "ui_A"
+			"action_name": "ui_accept"
 		},
 		"current": {
 			"value": 90,
-			"action_name": "ui_A"
+			"action_name": "ui_accept"
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/keybind_kb.gd"
 	},
@@ -171,11 +171,11 @@
 		"name": "gp_jump",
 		"default": {
 			"value": 0,
-			"action_name": "ui_A"
+			"action_name": "ui_accept"
 		},
 		"current": {
 			"value": 0,
-			"action_name": "ui_A"
+			"action_name": "ui_accept"
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/keybind_gp.gd"
 	},

@@ -640,7 +640,7 @@ var holding_jump = false
 func _input(event):
 	if !frozen:
 		# This will run once on the frame when the action is first pressed
-		if event.is_action_pressed("ui_A"):
+		if event.is_action_pressed("ui_accept"):
 			holding_jump = true
 			jump_timer = JUMP_TIME
 		
@@ -651,7 +651,7 @@ func _input(event):
 # This helps continuously poll for releasing, in case the
 # player is paused when the key is released
 func _process(_delta):
-	if holding_jump and !Input.is_action_pressed("ui_A"):
+	if holding_jump and !Input.is_action_pressed("ui_accept"):
 		if holding_jump and !spinning and !diving and velo.y < 0:
 			velo.y *= release_jump_damp
 			#animator["parameters/playback"].travel("freefall")
