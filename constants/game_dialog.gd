@@ -120,7 +120,7 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.TIMMY_SHIP_NO:
 			return [
-				{name = "Timmy", text = "Okay, but I know you meant yes!"},
+				{name = "Timmy", text = "Okay, but I know you meant to say yes!"},
 				{queue = DIALOG_TYPE.TIMMY_SHIP_2},
 			]
 		DIALOG_TYPE.TIMMY_SHIP_2:
@@ -138,7 +138,7 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.TIMMY_SHIP_3_RADICAL:
 			return [
-				{name = "Timmy", text = "What? You've never heard anyone say radical before?"},
+				{name = "Timmy", text = "What? You've never heard anyone say 'radical' before?"},
 				{name = "Timmy", text = "That's insulting, man. I'm gonna pretend I didn't hear that."},
 				{queue = DIALOG_TYPE.TIMMY_SHIP_VAULT}
 			]
