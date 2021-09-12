@@ -388,12 +388,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
 scroll_horizontal_enabled = false
-scroll_vertical = 373
 
 [node name="Mrgn" type="MarginContainer" parent="Mrgn/MarginContainer/VBox/Settings"]
-margin_top = -373.0
 margin_right = 191.0
-margin_bottom = 161.0
+margin_bottom = 506.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 5
@@ -402,12 +400,12 @@ custom_constants/margin_left = 5
 [node name="VBox" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn"]
 margin_left = 5.0
 margin_right = 186.0
-margin_bottom = 534.0
+margin_bottom = 506.0
 custom_constants/separation = 10
 
 [node name="Display" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox"]
 margin_right = 181.0
-margin_bottom = 100.0
+margin_bottom = 72.0
 
 [node name="Title" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display"]
 margin_right = 181.0
@@ -447,9 +445,10 @@ margin_left = 117.0
 margin_right = 181.0
 margin_bottom = 32.0
 focus_neighbour_left = NodePath(".")
-focus_neighbour_bottom = NodePath("../../WindowScale/ArrowList")
+focus_neighbour_bottom = NodePath("../../Palette/PaletteList")
 
 [node name="WindowScale" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display"]
+visible = false
 margin_top = 48.0
 margin_right = 181.0
 margin_bottom = 72.0
@@ -479,9 +478,9 @@ setting_index = 16
 list = [ "8x6", "8x8", "10x9" ]
 
 [node name="Palette" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display"]
-margin_top = 76.0
+margin_top = 48.0
 margin_right = 181.0
-margin_bottom = 100.0
+margin_bottom = 72.0
 
 [node name="Label" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/Palette"]
 margin_top = 8.0
@@ -501,7 +500,7 @@ __meta__ = {
 [node name="PaletteList" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/Palette" instance=ExtResource( 11 )]
 margin_left = 125.0
 margin_right = 181.0
-focus_neighbour_top = NodePath("../../WindowScale/ArrowList")
+focus_neighbour_top = NodePath("../../WindowMode/Bool")
 focus_neighbour_bottom = NodePath("../../../Audio/Music/Volume")
 focus_mode = 2
 setting_index = 19
@@ -511,9 +510,9 @@ list = [ "Classic", "Muted" ]
 script = ExtResource( 10 )
 
 [node name="Audio" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox"]
-margin_top = 110.0
+margin_top = 82.0
 margin_right = 181.0
-margin_bottom = 162.0
+margin_bottom = 134.0
 
 [node name="HSep" type="HSeparator" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Audio"]
 margin_right = 181.0
@@ -591,9 +590,9 @@ size_flags_vertical = 1
 setting_index = 2
 
 [node name="Controls" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox"]
-margin_top = 172.0
+margin_top = 144.0
 margin_right = 181.0
-margin_bottom = 408.0
+margin_bottom = 380.0
 
 [node name="HSep" type="HSeparator" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls"]
 margin_right = 181.0
@@ -915,9 +914,9 @@ icon = SubResource( 10 )
 setting_index = 23
 
 [node name="Accessibilty" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox"]
-margin_top = 418.0
+margin_top = 390.0
 margin_right = 181.0
-margin_bottom = 534.0
+margin_bottom = 506.0
 
 [node name="HSep" type="HSeparator" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty"]
 margin_right = 181.0
