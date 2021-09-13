@@ -37,7 +37,7 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	# Check if the key is already assigned. Ignores UI actions.
-	var actions: Array = _get_non_ui_actions(InputMap.get_actions())
+	var actions: Array = InputMap.get_actions()
 	for action in actions:
 		if InputMap.action_has_event(action, event):
 			
@@ -72,6 +72,7 @@ func _get_non_ui_actions(actions: Array) -> Array:
 
 # Auto close the popup after a while to prevent the player from being stuck on the popup
 func _on_Timer_timeout() -> void:
-	get_tree().paused = false
+	if not tree_already_paused:
+		get_tree().paused = false
 	source.grab_focus()
 	queue_free()
