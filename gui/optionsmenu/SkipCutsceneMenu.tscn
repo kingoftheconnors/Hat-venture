@@ -82,28 +82,9 @@ margin_right = 200.0
 margin_bottom = 39.0
 alignment = 1
 
-[node name="Yes" type="MarginContainer" parent="Mrgn/MarginContainer/VBox/HBoxContainer"]
+[node name="No" type="MarginContainer" parent="Mrgn/MarginContainer/VBox/HBoxContainer"]
 margin_left = 18.0
 margin_right = 98.0
-margin_bottom = 16.0
-size_flags_horizontal = 0
-custom_constants/margin_right = 16
-custom_constants/margin_left = 16
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Close" type="Button" parent="Mrgn/MarginContainer/VBox/HBoxContainer/Yes"]
-margin_left = 16.0
-margin_right = 64.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 48, 0 )
-size_flags_horizontal = 0
-text = "Yes"
-
-[node name="No" type="MarginContainer" parent="Mrgn/MarginContainer/VBox/HBoxContainer"]
-margin_left = 102.0
-margin_right = 182.0
 margin_bottom = 16.0
 size_flags_horizontal = 0
 custom_constants/margin_right = 16
@@ -121,5 +102,24 @@ size_flags_horizontal = 0
 text = "No"
 script = null
 
-[connection signal="pressed" from="Mrgn/MarginContainer/VBox/HBoxContainer/Yes/Close" to="." method="_on_Confirm_pressed"]
+[node name="Yes" type="MarginContainer" parent="Mrgn/MarginContainer/VBox/HBoxContainer"]
+margin_left = 102.0
+margin_right = 182.0
+margin_bottom = 16.0
+size_flags_horizontal = 0
+custom_constants/margin_right = 16
+custom_constants/margin_left = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Close" type="Button" parent="Mrgn/MarginContainer/VBox/HBoxContainer/Yes"]
+margin_left = 16.0
+margin_right = 64.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 48, 0 )
+size_flags_horizontal = 0
+text = "Yes"
+
 [connection signal="pressed" from="Mrgn/MarginContainer/VBox/HBoxContainer/No/ggsReset" to="." method="_on_Close_pressed"]
+[connection signal="pressed" from="Mrgn/MarginContainer/VBox/HBoxContainer/Yes/Close" to="." method="_on_Confirm_pressed"]

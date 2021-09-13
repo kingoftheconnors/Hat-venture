@@ -109,18 +109,20 @@ func _unhandled_input(event):
 				get_node("/root/Gui").add_child(iOptionsMenu)
 				iOptionsMenu.connect("tree_exited", self, "_on_menu_tree_exited")
 				iOptionsMenu.connect("skip_cutscene", self, "skip_cutscene")
+				menu_exists = true
 			else:
-				var iOptionsMenu = preload("res://gui/optionsmenu/SettingsMenu.tscn").instance()
-				get_node("/root/Gui").add_child(iOptionsMenu)
-				iOptionsMenu.connect("tree_exited", self, "_on_menu_tree_exited")
-			menu_exists = true
+				if !get_tree().paused:
+					var iOptionsMenu = preload("res://gui/optionsmenu/SettingsMenu.tscn").instance()
+					get_node("/root/Gui").add_child(iOptionsMenu)
+					iOptionsMenu.connect("tree_exited", self, "_on_menu_tree_exited")
+					menu_exists = true
 			
-			# Move palette_filter to bottom of scene list so it's OVER the menu
-			var palette = get_node("/root/Gui/PaletteFilter")
-			get_node("/root/Gui").remove_child(palette)
-			get_node("/root/Gui").add_child(palette)
-			
-			get_tree().set_input_as_handled()
+			if menu_exists:
+				# Move palette_filter to bottom of scene list so it's OVER the menu
+				var palette = get_node("/root/Gui/PaletteFilter")
+				get_node("/root/Gui").remove_child(palette)
+				get_node("/root/Gui").add_child(palette)
+				get_tree().set_input_as_handled()
 
 func _on_menu_tree_exited() -> void:
 	menu_exists = false
