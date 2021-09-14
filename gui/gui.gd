@@ -35,7 +35,7 @@ func set_lives(num_lives):
 
 # Pons
 func set_pons(amo):
-	pons.text = "    " + str(amo)
+	pons.text = str(amo)
 
 # Boss energy
 func startBossBattle(life):
@@ -43,15 +43,21 @@ func startBossBattle(life):
 	# TODO: Show boss health
 
 # Score
+var multVisible = false
 func set_score(amo):
-	playerScore.set_text("%06d" % amo)
+	playerScore.set_text("%07d" % amo)
 func set_score_mult(amo):
-	playerScoreMult.set_text("x%d:" % amo)
 	playerScoreMultAmo = amo
-	if amo == 1:
-		playerScoreMult.visible = false
+	if playerScoreMultAmo == 1:
+		multVisible = false
 	else:
-		playerScoreMult.visible = true
+		multVisible = true
+	render_score_mult()
+func render_score_mult():
+	if multVisible:
+		playerScoreLabel.set_text("SCOREx%-2d:" % playerScoreMultAmo)
+	else:
+		playerScoreLabel.set_text("SCORE   :")
 
 func set_gui_size(size):
 	sizeAnimator.play(size)
@@ -59,8 +65,8 @@ func set_gui_size(size):
 onready var gui = $Player
 onready var energy = $Player/MContainer/GuiInfo/Main/HatKid/Energy
 onready var bossEnergy = $Player/MContainer/GuiInfo/Main/Boss/BossEnergy
+onready var playerScoreLabel = $Player/MContainer/GuiInfo/Main/Score/Score
 onready var playerScore = $Player/MContainer/GuiInfo/Main/Score/ScoreNum
-onready var playerScoreMult = $Player/MContainer/GuiInfo/Main/Score/Multiplicity
 var playerScoreMultAmo = 1
 
 onready var sizeAnimator = $AnimationPlayer
@@ -94,7 +100,8 @@ func _process(delta):
 		elif dialog_active:
 			end_dialog()
 	if get_tree().paused and playerScoreMultAmo > 1:
-		playerScoreMult.visible = true
+		multVisible = true
+		render_score_mult()
 
 var menu_exists: bool = false
 func _unhandled_input(event):
@@ -290,17 +297,23 @@ func crawl(text_box):
 ## which multiplicity time is depleting
 func notify_multiplicity_time(time):
 	if time < 0.1:
-		playerScoreMult.visible = true
+		multVisible = true
+		render_score_mult()
 	elif time < 0.25:
-		playerScoreMult.visible = false
+		multVisible = false
+		render_score_mult()
 	elif time < 0.4:
-		playerScoreMult.visible = true
+		multVisible = true
+		render_score_mult()
 	elif time < 0.55:
-		playerScoreMult.visible = false
+		multVisible = false
+		render_score_mult()
 	elif time < 0.7:
-		playerScoreMult.visible = true
+		multVisible = true
+		render_score_mult()
 	elif time < 0.85:
-		playerScoreMult.visible = false
+		multVisible = false
+		render_score_mult()
 
 onready var dialog = $DialogBox
 onready var dialogName = $DialogBox/Name

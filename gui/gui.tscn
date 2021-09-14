@@ -562,12 +562,12 @@ __meta__ = {
 }
 
 [node name="Main" type="VBoxContainer" parent="Player/MContainer/GuiInfo"]
-margin_left = 31.0
-margin_right = 155.0
+margin_left = 27.0
+margin_right = 159.0
 margin_bottom = 24.0
 
 [node name="HatKid" type="HBoxContainer" parent="Player/MContainer/GuiInfo/Main"]
-margin_right = 124.0
+margin_right = 132.0
 margin_bottom = 8.0
 
 [node name="EnergyText" type="Label" parent="Player/MContainer/GuiInfo/Main/HatKid"]
@@ -584,9 +584,9 @@ __meta__ = {
 
 [node name="Energy" type="TextureProgress" parent="Player/MContainer/GuiInfo/Main/HatKid"]
 margin_left = 76.0
-margin_right = 112.0
+margin_right = 118.0
 margin_bottom = 8.0
-rect_min_size = Vector2( 36, 0 )
+rect_min_size = Vector2( 42, 0 )
 max_value = 4.0
 value = 4.0
 texture_under = ExtResource( 3 )
@@ -600,7 +600,7 @@ __meta__ = {
 
 [node name="Score" type="HBoxContainer" parent="Player/MContainer/GuiInfo/Main"]
 margin_top = 12.0
-margin_right = 124.0
+margin_right = 132.0
 margin_bottom = 20.0
 
 [node name="Score" type="Label" parent="Player/MContainer/GuiInfo/Main/Score"]
@@ -632,18 +632,18 @@ __meta__ = {
 
 [node name="ScoreNum" type="Label" parent="Player/MContainer/GuiInfo/Main/Score"]
 margin_left = 76.0
-margin_right = 124.0
+margin_right = 132.0
 margin_bottom = 8.0
 custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "000000"
+text = "0000000"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Boss" type="HBoxContainer" parent="Player/MContainer/GuiInfo/Main"]
 margin_top = 24.0
-margin_right = 124.0
+margin_right = 132.0
 margin_bottom = 24.0
 
 [node name="BossEnergyText" type="Label" parent="Player/MContainer/GuiInfo/Main/Boss"]
@@ -674,8 +674,8 @@ __meta__ = {
 }
 
 [node name="Pons" type="VBoxContainer" parent="Player/MContainer/GuiInfo"]
-margin_left = 195.0
-margin_right = 217.0
+margin_left = 199.0
+margin_right = 221.0
 margin_bottom = 24.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Player/MContainer/GuiInfo/Pons"]
@@ -709,8 +709,8 @@ __meta__ = {
 }
 
 [node name="Lives" type="VBoxContainer" parent="Player/MContainer/GuiInfo"]
-margin_left = 257.0
-margin_right = 289.0
+margin_left = 261.0
+margin_right = 293.0
 margin_bottom = 24.0
 
 [node name="StageName" type="Label" parent="Player/MContainer/GuiInfo/Lives"]
@@ -790,7 +790,6 @@ custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Are you looking for your umbrella? I saw it land near the market area whe you, you know..."
 autowrap = true
-percent_visible = -0.0136986
 max_lines_visible = 2
 __meta__ = {
 "_edit_use_anchors_": false

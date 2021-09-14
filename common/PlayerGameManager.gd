@@ -123,6 +123,8 @@ func add_score(amo, affects_multiplicity = false):
 	Gui.set_score(score)
 	if affects_multiplicity:
 		multiplicity += 1
+		if multiplicity > 99:
+			multiplicity = 99
 		if multiplicity > 1:
 			Gui.set_score_mult(multiplicity)
 			multiplicity_decrease_time_left = MULTIPLICITY_TIME
