@@ -25,8 +25,8 @@ func capture():
 	cameraObj.room_capture(position, walled)
 
 ## Releases the camera to follow the player again
-func capture_release():
-	cameraObj.capture_release(position)
+func capture_release(animated_transition = true):
+	cameraObj.capture_release(position, animated_transition)
 
 
 func _on_CameraCapture_body_exited(body):
