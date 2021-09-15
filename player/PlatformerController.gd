@@ -692,10 +692,12 @@ func jump():
 			superjump_particle.emitting = true
 			push(Vector2(direction * SUPERDIVE_SPEED, -SUPERDIVE_SPEED))
 			animator["parameters/PlayerMovement/playback"].travel("dive_boost")
+			refresh_flags()
 		if (mini_superdive_timer > 0):
 			superjump_particle.emitting = true
 			push(Vector2(direction * SUPERDIVE_SPEED, -SUPERDIVE_SPEED))
 			animator["parameters/PlayerMovement/playback"].travel("dive_boost")
+			refresh_flags()
 	# Energy jump
 	coyoteTimer = 0
 	jump_timer = 0
