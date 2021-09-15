@@ -199,7 +199,7 @@
 		"current": {
 			"value": 2
 		},
-		"logic": "res://gui/optionsmenu/setting_logic/window_scale.gd"
+		"logic": "res://gui/optionsmenu/setting_logic/window_res.gd"
 	},
 	"17": {
 		"name": "brightness",
@@ -288,5 +288,15 @@
 			"value": 0
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/skip_cutscenes.gd"
+	},
+	"25": {
+		"name": "window_scale",
+		"default": {
+			"value": 0
+		},
+		"current": {
+			"value": 2
+		},
+		"logic": "res://gui/optionsmenu/setting_logic/window_scale.gd"
 	}
 }

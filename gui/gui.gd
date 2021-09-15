@@ -326,19 +326,26 @@ onready var textboxes = game_dialog.new()
 ### -------------------------------
 
 var cur_resolution : Vector2 = Vector2.ZERO
+var cur_multiplier : int = 1
 func set_screen_resolution(new_size : Vector2) -> void:
 	cur_resolution = new_size
-	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_2D, SceneTree.STRETCH_ASPECT_KEEP, new_size)
+	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_VIEWPORT, SceneTree.STRETCH_ASPECT_KEEP, new_size)
 	# Resize window if not maximized
-	if !OS.window_maximized:
-		#Find closest multiple of new resolution near current window size
-		var dist_to_cur_size = OS.get_window_size().distance_to(new_size)
-		var multiplier : int = 1
-		for mult in range(2, 5):
-			if OS.get_window_size().distance_to(new_size*mult) < dist_to_cur_size \
-				and new_size.x*mult < OS.get_screen_size().x and new_size.y*mult < OS.get_screen_size().y:
-				multiplier = mult
-			OS.set_window_size(new_size * multiplier)
+	#if !OS.window_maximized:
+	#	#Find closest multiple of new resolution near current window size
+	#	var dist_to_cur_size = OS.get_window_size().distance_to(new_size)
+	#	var multiplier : int = 1
+	#	for mult in range(2, 5):
+	#		if OS.get_window_size().distance_to(new_size*mult) < dist_to_cur_size \
+	#			and new_size.x*mult < OS.get_screen_size().x and new_size.y*mult < OS.get_screen_size().y:
+	#			multiplier = mult
+	OS.set_window_size(cur_resolution * cur_multiplier)
+	OS.center_window()
+
+func set_screen_multiplier(mult: int) -> void:
+	cur_multiplier = mult
+	OS.set_window_size(cur_resolution * cur_multiplier)
+	OS.center_window()
 
 func get_screen_resolution() -> Vector2:
 	return cur_resolution

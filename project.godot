@@ -221,6 +221,7 @@ settings/fps/force_fps=60
 
 window/size/width=320
 window/size/height=288
+window/size/resizable=false
 window/size/test_width=960
 window/size/test_height=864
 window/stretch/mode="2d"
@@ -304,4 +305,5 @@ toggle_pause={
 2d/snapping/use_gpu_pixel_snap=true
 environment/default_clear_color=Color( 0.67451, 0.67451, 0.67451, 1 )
 environment/default_environment="res://default_env.tres"
+quality/dynamic_fonts/use_oversampling=false
 quality/2d/use_pixel_snap=true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://font/PressStart2P-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://addons/GGS/src/components/slider/ggsSlider.tscn" type="PackedScene" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://addons/GGS/assets/glyph/gamepad/b.png" type="Texture" id=24]
 [ext_resource path="res://addons/GGS/assets/glyph/gamepad/L3.png" type="Texture" id=25]
 [ext_resource path="res://gui/optionsmenu/menu.png" type="Texture" id=26]
+[ext_resource path="res://gui/optionsmenu/HideOnFullscreen.gd" type="Script" id=27]
 [ext_resource path="res://gui/optionsmenu/options_menu.gd" type="Script" id=29]
 
 [sub_resource type="DynamicFont" id=1]
@@ -391,7 +392,7 @@ scroll_horizontal_enabled = false
 
 [node name="Mrgn" type="MarginContainer" parent="Mrgn/MarginContainer/VBox/Settings"]
 margin_right = 191.0
-margin_bottom = 506.0
+margin_bottom = 534.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 5
@@ -400,12 +401,12 @@ custom_constants/margin_left = 5
 [node name="VBox" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn"]
 margin_left = 5.0
 margin_right = 186.0
-margin_bottom = 506.0
+margin_bottom = 534.0
 custom_constants/separation = 10
 
 [node name="Display" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox"]
 margin_right = 181.0
-margin_bottom = 72.0
+margin_bottom = 100.0
 
 [node name="Title" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display"]
 margin_right = 181.0
@@ -445,15 +446,14 @@ margin_left = 117.0
 margin_right = 181.0
 margin_bottom = 32.0
 focus_neighbour_left = NodePath(".")
-focus_neighbour_bottom = NodePath("../../Palette/PaletteList")
 
-[node name="WindowScale" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display"]
+[node name="WindowRes" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display"]
 visible = false
 margin_top = 48.0
 margin_right = 181.0
 margin_bottom = 72.0
 
-[node name="Label" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/WindowScale"]
+[node name="Label" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/WindowRes"]
 margin_top = 8.0
 margin_right = 121.0
 margin_bottom = 16.0
@@ -468,7 +468,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ArrowList" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/WindowScale" instance=ExtResource( 11 )]
+[node name="ArrowList" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/WindowRes" instance=ExtResource( 11 )]
 margin_left = 125.0
 margin_right = 181.0
 focus_neighbour_top = NodePath("../../WindowMode/Bool")
@@ -477,10 +477,40 @@ focus_mode = 2
 setting_index = 16
 list = [ "8x6", "8x8", "10x9" ]
 
-[node name="Palette" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display"]
+[node name="WindowScale" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display"]
 margin_top = 48.0
 margin_right = 181.0
 margin_bottom = 72.0
+script = ExtResource( 27 )
+
+[node name="Label" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/WindowScale"]
+margin_top = 8.0
+margin_right = 121.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Window Scale"
+valign = 1
+clip_text = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArrowList" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/WindowScale" instance=ExtResource( 11 )]
+margin_left = 125.0
+margin_right = 181.0
+focus_neighbour_top = NodePath("../../WindowMode/Bool")
+focus_neighbour_bottom = NodePath("../../Palette/PaletteList")
+focus_mode = 2
+setting_index = 25
+list = [ "x1", "x2", "x3", "x4", "x5" ]
+
+[node name="Palette" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display"]
+margin_top = 76.0
+margin_right = 181.0
+margin_bottom = 100.0
 
 [node name="Label" type="Label" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/Palette"]
 margin_top = 8.0
@@ -500,7 +530,6 @@ __meta__ = {
 [node name="PaletteList" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/Palette" instance=ExtResource( 11 )]
 margin_left = 125.0
 margin_right = 181.0
-focus_neighbour_top = NodePath("../../WindowMode/Bool")
 focus_neighbour_bottom = NodePath("../../../Audio/Music/Volume")
 focus_mode = 2
 setting_index = 19
@@ -510,9 +539,9 @@ list = [ "Classic", "Muted" ]
 script = ExtResource( 10 )
 
 [node name="Audio" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox"]
-margin_top = 82.0
+margin_top = 110.0
 margin_right = 181.0
-margin_bottom = 134.0
+margin_bottom = 162.0
 
 [node name="HSep" type="HSeparator" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Audio"]
 margin_right = 181.0
@@ -590,9 +619,9 @@ size_flags_vertical = 1
 setting_index = 2
 
 [node name="Controls" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox"]
-margin_top = 144.0
+margin_top = 172.0
 margin_right = 181.0
-margin_bottom = 380.0
+margin_bottom = 408.0
 
 [node name="HSep" type="HSeparator" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls"]
 margin_right = 181.0
@@ -914,9 +943,9 @@ icon = SubResource( 10 )
 setting_index = 23
 
 [node name="Accessibilty" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox"]
-margin_top = 390.0
+margin_top = 418.0
 margin_right = 181.0
-margin_bottom = 506.0
+margin_bottom = 534.0
 
 [node name="HSep" type="HSeparator" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty"]
 margin_right = 181.0
