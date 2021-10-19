@@ -5,68 +5,67 @@
 [ext_resource path="res://cutscenes/CutsceneLilenPath.gd" type="Script" id=3]
 [ext_resource path="res://enemy/hen/hen-walkTP.png" type="Texture" id=4]
 
-[sub_resource type="Curve2D" id=5]
+[sub_resource type="Curve2D" id=17]
 _data = {
 "points": PoolVector2Array(  )
 }
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 9, 8 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 17, 16 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 1 )
 region = Rect2( 17, 0, 17, 16 )
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ SubResource( 6 ), SubResource( 7 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
 "name": "default",
 "speed": 7.0
 } ]
 
-[sub_resource type="AnimationNodeAnimation" id=16]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "timepiece"
 
-[sub_resource type="AnimationNodeAnimation" id=17]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=18]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
-
-[sub_resource type="AnimationNodeStateMachine" id=9]
-states/timepiece/node = SubResource( 16 )
+[sub_resource type="AnimationNodeStateMachine" id=19]
+states/timepiece/node = SubResource( 6 )
 states/timepiece/position = Vector2( 204, 72 )
-states/walk/node = SubResource( 17 )
+states/walk/node = SubResource( 7 )
 states/walk/position = Vector2( 430, 72 )
-transitions = [ "timepiece", "walk", SubResource( 18 ), "walk", "timepiece", SubResource( 19 ) ]
+transitions = [ "timepiece", "walk", SubResource( 8 ), "walk", "timepiece", SubResource( 18 ) ]
 start_node = "walk"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 17, 32 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 4 )
 region = Rect2( 17, 0, 17, 32 )
 
-[sub_resource type="SpriteFrames" id=13]
+[sub_resource type="SpriteFrames" id=23]
 animations = [ {
-"frames": [ SubResource( 11 ), SubResource( 12 ) ],
+"frames": [ SubResource( 21 ), SubResource( 22 ) ],
 "loop": true,
 "name": "default",
 "speed": 7.0
 } ]
 
-[sub_resource type="Animation" id=14]
-resource_name = "timepiece"
+[sub_resource type="Animation" id=24]
 tracks/0/type = "value"
 tracks/0/path = NodePath("EnemyCore:position")
 tracks/0/interp = 1
@@ -89,11 +88,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ SubResource( 13 ) ]
+"values": [ SubResource( 23 ) ]
 }
 
-[sub_resource type="Animation" id=15]
-resource_name = "walk"
+[sub_resource type="Animation" id=16]
 tracks/0/type = "value"
 tracks/0/path = NodePath("EnemyCore:position")
 tracks/0/interp = 1
@@ -116,12 +114,12 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ SubResource( 8 ) ]
+"values": [ SubResource( 5 ) ]
 }
 
 [node name="CutsceneLilen" type="Path2D"]
 pause_mode = 2
-curve = SubResource( 5 )
+curve = SubResource( 17 )
 script = ExtResource( 3 )
 
 [node name="Lilen" type="KinematicBody2D" parent="."]
@@ -132,19 +130,21 @@ horizontal_speed = 125
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lilen"]
 position = Vector2( 1, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="EnemyCore" type="AnimatedSprite" parent="Lilen"]
-frames = SubResource( 8 )
+frames = SubResource( 5 )
+frame = 1
 playing = true
 
 [node name="AnimationTree" type="AnimationTree" parent="Lilen"]
-tree_root = SubResource( 9 )
+tree_root = SubResource( 19 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 10 )
+parameters/playback = SubResource( 20 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Lilen"]
-anims/timepiece = SubResource( 14 )
-anims/walk = SubResource( 15 )
+anims/timepiece = SubResource( 24 )
+anims/walk = SubResource( 16 )
+
 [connection signal="reach_goal" from="Lilen" to="." method="_on_Lilen_reach_goal"]

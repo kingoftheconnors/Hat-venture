@@ -19,6 +19,7 @@ enum DIALOG_TYPE {
 	TIMMY_SHIP_3_THANKS = 14,
 	TIMMY_SHIP_3_RADICAL = 15,
 	TIMMY_SHIP_VAULT = 16,
+	LEVEL_1_CHASE_LILENS = 17,
 }
 
 # Textbox Format:
@@ -243,4 +244,10 @@ func get_dialog(text_num):
 				{signal = "actionD", delay=0.5},
 				# Goto 1
 				{level = "res://world1/level1.tscn"}
+			]
+		DIALOG_TYPE.LEVEL_1_CHASE_LILENS:
+			return [
+				{signal = "action1"},
+				{signal = "action2", delay=5},
+				{signal = "action3", delay=2},
 			]

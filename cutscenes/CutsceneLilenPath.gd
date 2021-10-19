@@ -23,6 +23,9 @@ func walk_to(pos : Vector2):
 func shuffle(shuffle_width : int):
 	$Lilen.position.x += (randf()*2-1) * shuffle_width
 
+func stop_jumping():
+	$Lilen.stop_jumping()
+
 func flag_hide():
 	hide_flag = true
 

@@ -14,11 +14,13 @@ var patrol_points : Array = []
 var patrol_index = 1
 
 onready var sprite = $EnemyCore
-var jump_sensitivity = 10
+var jumping = true
+var jump_wait_time = 0.1
 const JUMP_FORCE = 225
 
 func _ready():
-	jump_sensitivity = jump_sensitivity * rand_range(0.5, 1)
+	jump_wait_time = rand_range(0.1, .5)
+var jump_time_counter = 0
 
 func reset():
 	patrol_index = 1
@@ -49,8 +51,11 @@ func _physics_process(delta):
 					emit_signal("reach_goal")
 	else:
 		velo.x *= 0.8
-	if is_on_floor() and target.y < position.y - jump_sensitivity:
-		jump()
+	if is_on_floor():
+		jump_time_counter += delta
+		if (jump_time_counter > jump_wait_time and jumping) or is_on_wall():
+			jump()
+			jump_time_counter = 0
 	velo = move_and_slide(velo, Vector2.UP)
 	# Turn around sprite of enemies walking backwards
 	if(velo.x * sprite.scale.x < 0):
@@ -58,6 +63,9 @@ func _physics_process(delta):
 
 func jump():
 	velo.y = -JUMP_FORCE
+
+func stop_jumping():
+	jumping = false
 
 func get_timepieces():
 	$AnimationTree['parameters/playback'].travel('timepiece')
