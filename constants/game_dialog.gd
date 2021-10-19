@@ -53,8 +53,8 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.DIVE_TUTORIAL:
 			return [
-				#{name = "WARNING!", text = "Kids have been known to dive over large gaps using the " + OptionsMenu.get_keyname("ui_B") + " button!"},
-				#{name = "WARNING!", text = "If you don't know what " + OptionsMenu.get_keyname("ui_B") + " buttons are, call up your radical overlord: Me!"},
+				{name = "WARNING!", text = "To my subjects! Kids have been known to dive over large gaps using the " + OS.get_scancode_string(ggsManager.settings_data["13"].current.value) + " button!"},
+				{name = "WARNING!", text = "If you don't know what " + OS.get_scancode_string(ggsManager.settings_data["13"].current.value) + " buttons are, call up your radical overlord!"},
 				{name = "...", text = "*A messy sketch of a kid and a bird is scrawled into the sign*"}
 			]
 		DIALOG_TYPE.SATELLITE:
@@ -89,7 +89,8 @@ func get_dialog(text_num):
 				# Unlatch door
 				{signal = "action3", delay=0.5}, # TODO: unlatch SFX
 				# Reset camera
-				{signal = "action4", delay=0.75},
+				{signal = "action6", delay=1},
+				{signal = "action4"},
 				# Hide display (showing only exclamation point)
 				{signal = "action5"},
 			]
@@ -103,7 +104,8 @@ func get_dialog(text_num):
 				# Move camera
 				{signal = "action2", delay=1},
 				# Reset camera
-				{signal = "action4", delay=0.75},
+				{signal = "action6", delay=1},
+				{signal = "action4"},
 			]
 		DIALOG_TYPE.TIMMY_SHIP:
 			return [
@@ -170,7 +172,7 @@ func get_dialog(text_num):
 				{animate2 = "talk"},
 				{name = "Timmy", text = "Looks like some kinda big vault... what do ya keep in here, anyway?"},
 				{animate2 = "idle"},
-				{animate1 = "talk", delay=0.5},
+				{animate1 = "talk", delay=1},
 				{animate1 = "idle"},
 				{animate2 = "surprise"},
 				{name = "Timmy", text = "Woah! Time Pieces??"},
@@ -228,7 +230,7 @@ func get_dialog(text_num):
 				{signal = "actionF", delay=3},
 				# Turn off dust cloud and walk Eltuns (now carrying timepieces) to door
 				# Move Timmy towards door
-				{signal = "actionA", delay=2},
+				{signal = "actionA", delay=2.5},
 				# Say words
 				{animate2 = "sass"},
 				{name = "Timmy", text = "Keeping all these Time Pieces to yourself is mondo uncool."},

@@ -15,7 +15,9 @@ export(bool) var enabled = true
 ## If true, this dialog will automatically run when the scene is loaded
 export(bool) var start_on_load = false
 
-func queue_dialog_by_id(player_body = null):
+func queue_dialog(player_body = null):
+	queue_dialog_by_id(dialog_num, player_body)
+func queue_dialog_by_id(dialog_id, player_body = null):
 	# Setup bodies that should move in this dialog
 	var active_bodies := []
 	if player_body:
@@ -27,8 +29,7 @@ func queue_dialog_by_id(player_body = null):
 	if player_body:
 		Gui.queue_text(self, {"freeze_player": player_body})
 	# Queue dialog
-	print("Queueing ", dialog_num)
-	Gui.queue_dialog(self, dialog_num)
+	Gui.queue_dialog(self, dialog_id)
 	# Re-freeze bodies so next dialog won't have them doing whatevs
 	if player_body:
 		Gui.queue_text(self, {"unfreeze_player": player_body})
@@ -51,9 +52,9 @@ func _ready():
 	if start_on_load:
 		var players : Array = get_tree().get_nodes_in_group("player_root")
 		if players != null and players.size() > 0:
-			queue_dialog_by_id(players[0])
+			queue_dialog(players[0])
 		else:
-			queue_dialog_by_id(null)
+			queue_dialog(null)
 
 ## Signals called by dialog system.
 ## Connect using the Node tab while inspecting a dialogStarter node

@@ -28,9 +28,6 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 2 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 180, 24 )
-
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 18 )
 region = Rect2( 0, 0, 4, 18 )
@@ -46,6 +43,9 @@ animations = [ {
 "name": "default",
 "speed": 2.0
 } ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 180, 24 )
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 3 )
@@ -94,6 +94,24 @@ texture = ExtResource( 2 )
 position = Vector2( -60, -54 )
 shape = SubResource( 1 )
 one_way_collision = true
+
+[node name="Display" type="Node2D" parent="."]
+position = Vector2( 36, -80 )
+script = ExtResource( 17 )
+
+[node name="TimePieces" type="Sprite" parent="Display"]
+visible = false
+texture = ExtResource( 19 )
+
+[node name="Exclamation" type="AnimatedSprite" parent="Display"]
+visible = false
+z_index = -1
+frames = SubResource( 5 )
+frame = 1
+playing = true
+
+[node name="DialogBox" parent="Display" instance=ExtResource( 9 )]
+position = Vector2( 0, -4 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( -32, -80 )
@@ -146,7 +164,7 @@ shape = SubResource( 2 )
 
 [node name="DoorDialog" parent="." instance=ExtResource( 9 )]
 position = Vector2( 304, -40 )
-dialog_num = 10
+dialog_num = 5
 active_bodies_in_dialog = [ NodePath("../Player"), NodePath("../LilenController"), NodePath("../DustCloud") ]
 animate1 = NodePath("../Player")
 animate2 = NodePath("../Timmy")
@@ -158,35 +176,18 @@ position = Vector2( 304, -40 )
 script = ExtResource( 16 )
 spawn_num = 2
 
-[node name="Display" type="Node2D" parent="."]
-position = Vector2( 36, -80 )
-script = ExtResource( 17 )
-
-[node name="TimePieces" type="Sprite" parent="Display"]
-visible = false
-texture = ExtResource( 19 )
-
-[node name="Exclamation" type="AnimatedSprite" parent="Display"]
-visible = false
-z_index = -1
-frames = SubResource( 5 )
-playing = true
-
-[node name="DialogBox" parent="Display" instance=ExtResource( 9 )]
-position = Vector2( 0, -4 )
-
 [node name="WalkTo_DisplayTarget" type="Node2D" parent="."]
 position = Vector2( 8, -64 )
 
 [node name="CameraCapture" parent="." instance=ExtResource( 20 )]
-position = Vector2( 200, -64 )
+position = Vector2( 176, -96 )
 scale = Vector2( 1e-05, 0.1 )
 release_on_exit = false
 walled = false
 collision_enabled = false
 
 [node name="CameraCapture2" parent="." instance=ExtResource( 20 )]
-position = Vector2( 64, -96 )
+position = Vector2( 48, -104 )
 scale = Vector2( 1e-05, 1e-05 )
 release_on_exit = false
 walled = false
@@ -223,6 +224,15 @@ script = ExtResource( 24 )
 
 [node name="Tween" type="Tween" parent="DustCloud"]
 
+[connection signal="action1" from="Display/DialogBox" to="Display" method="pressed"]
+[connection signal="action2" from="Display/DialogBox" to="CameraCapture" method="capture"]
+[connection signal="action3" from="Display/DialogBox" to="DoorDialog" method="enable"]
+[connection signal="action4" from="Display/DialogBox" to="CameraCapture2" method="capture_release" binds= [ false ]]
+[connection signal="action5" from="Display/DialogBox" to="Display" method="set_to_exclamation"]
+[connection signal="action6" from="Display/DialogBox" to="CameraCapture2" method="capture"]
+[connection signal="action7" from="Display/DialogBox" to="Player" method="bounce_back" binds= [ "../WalkTo_DisplayTarget" ]]
+[connection signal="action8" from="Display/DialogBox" to="DoorDialog" method="enable"]
+[connection signal="action8" from="Display/DialogBox" to="DoorDialog" method="set_dialog_option" binds= [ 10 ]]
 [connection signal="finished" from="MusicIntro" to="Music" method="start_music"]
 [connection signal="ready" from="MusicIntro" to="Music" method="stop_music"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
@@ -237,8 +247,8 @@ script = ExtResource( 24 )
 [connection signal="action5" from="DoorDialog" to="Player" method="walk_to" binds= [ "../WalkTo_Target3" ]]
 [connection signal="action5" from="DoorDialog" to="Player" method="teleport_to" binds= [ "../Teleport_Target" ]]
 [connection signal="action6" from="DoorDialog" to="Player" method="fly_to" binds= [ "../WalkTo_Target2" ]]
-[connection signal="action7" from="DoorDialog" to="CameraCapture2" method="capture_release" binds= [ false ]]
 [connection signal="action7" from="DoorDialog" to="Player" method="blow_back" binds= [ true ]]
+[connection signal="action7" from="DoorDialog" to="CameraCapture2" method="capture_release" binds= [ false ]]
 [connection signal="action8" from="DoorDialog" to="Player" method="stop_watching"]
 [connection signal="action9" from="DoorDialog" to="Camera" method="screen_shake" binds= [ 0, 3.0 ]]
 [connection signal="action9" from="DoorDialog" to="LilenController" method="generate" binds= [ 16 ]]
@@ -257,12 +267,4 @@ script = ExtResource( 24 )
 [connection signal="actionJ" from="DoorDialog" to="Timmy" method="fly_to" binds= [ "../WalkTo_Target2" ]]
 [connection signal="actionK" from="DoorDialog" to="Timmy" method="fly_to"]
 [connection signal="actionL" from="DoorDialog" to="Timmy" method="look_at_node" binds= [ "../Timmy" ]]
-[connection signal="action1" from="Display/DialogBox" to="Display" method="pressed"]
-[connection signal="action2" from="Display/DialogBox" to="CameraCapture" method="capture"]
-[connection signal="action3" from="Display/DialogBox" to="DoorDialog" method="enable"]
-[connection signal="action4" from="Display/DialogBox" to="CameraCapture" method="capture_release"]
-[connection signal="action5" from="Display/DialogBox" to="Display" method="set_to_exclamation"]
-[connection signal="action7" from="Display/DialogBox" to="Player" method="bounce_back" binds= [ "../WalkTo_DisplayTarget" ]]
-[connection signal="action8" from="Display/DialogBox" to="DoorDialog" method="enable"]
-[connection signal="action8" from="Display/DialogBox" to="DoorDialog" method="set_dialog_option" binds= [ 10 ]]
 [connection signal="tween_all_completed" from="DustCloud/Tween" to="DustCloud" method="_on_Tween_tween_all_completed"]
