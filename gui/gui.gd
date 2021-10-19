@@ -181,7 +181,7 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 			next_box.starter.animate1(next_box.animate1)
 	elif next_box.has("animate2"):
 		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS:
-			next_box.starter.animate1(next_box.animate2)
+			next_box.starter.animate2(next_box.animate2)
 	elif next_box.has("settag"):
 		SaveSystem.set_tag(next_box['settag'], next_box['value'])
 	elif next_box.has("queue"):

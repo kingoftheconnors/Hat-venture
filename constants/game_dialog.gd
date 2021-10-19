@@ -109,54 +109,77 @@ func get_dialog(text_num):
 				# TODO: Show Timmy and sfx (door becomes open black void)
 				{signal = "action1", delay=1},
 				# Start dialog options
+				{animate2 = "talk"},
 				{name = "Kid", text = "Yo! You look like a new face!"},
 				{name = "Timmy", text = "My name's Timmy, and I'm the ruler of this world that you ended up on!"},
+				{animate2 = "idle"},
 				{name = "Timmy", text = "Mind if I drop in?", options = {"YES": DIALOG_TYPE.TIMMY_SHIP_YES, "NO": DIALOG_TYPE.TIMMY_SHIP_NO}},
 			]
 		DIALOG_TYPE.TIMMY_SHIP_YES:
 			return [
+				{animate2 = "talk"},
 				{name = "Timmy", text = "Tubular!"},
+				{animate2 = "idle"},
 				{queue = DIALOG_TYPE.TIMMY_SHIP_2},
 			]
 		DIALOG_TYPE.TIMMY_SHIP_NO:
 			return [
+				{animate2 = "sass"},
 				{name = "Timmy", text = "Okay, but I know you meant to say yes!"},
+				{animate2 = "idle"},
 				{queue = DIALOG_TYPE.TIMMY_SHIP_2},
 			]
 		DIALOG_TYPE.TIMMY_SHIP_2:
 			return [
 				# Move Timmy to the left and have him look around
 				{signal = "action2", delay=1},
+				{animate2 = "talk"},
 				{name = "Timmy", text = "Whoa!! This is your place?"},
-				# TODO: Trun Timmmy around and delay .5 seconds
+				{animate2 = "idle"},
+				{signal = "actionL", delay=0.3},
 				{name = "Timmy", text = "It looks radical, man!!", options = {"THANKS!": DIALOG_TYPE.TIMMY_SHIP_3_THANKS, "RADICAL?": DIALOG_TYPE.TIMMY_SHIP_3_RADICAL}}
 			]
 		DIALOG_TYPE.TIMMY_SHIP_3_THANKS:
 			return [
+				{animate2 = "talk"},
 				{name = "Timmy", text = "Hey, no sweat! I'm just speaking the facts."},
 				{queue = DIALOG_TYPE.TIMMY_SHIP_VAULT}
 			]
 		DIALOG_TYPE.TIMMY_SHIP_3_RADICAL:
 			return [
+				{animate2 = "talk"},
 				{name = "Timmy", text = "What? You've never heard anyone say 'radical' before?"},
+				{animate2 = "sass"},
 				{name = "Timmy", text = "That's insulting, man. I'm gonna pretend I didn't hear that."},
 				{queue = DIALOG_TYPE.TIMMY_SHIP_VAULT}
 			]
 		DIALOG_TYPE.TIMMY_SHIP_VAULT:
 			return [
+				{animate2 = "talk"},
 				{name = "Timmy", text = "One question, though."},
+				{animate2 = "idle"},
 				# Pan over to time vault sequence
 				{signal = "action3", delay=1},
+				{animate2 = "talk"},
 				{name = "Timmy", text = "What's that?"},
+				{animate2 = "idle"},
 				# Walk to Time Piece
 				{signal = "action4", delay=0.5},
-				{signal = "action5", delay=0.75},
+				{signal = "action5", delay=1.25},
+				{animate2 = "talk"},
 				{name = "Timmy", text = "Looks like some kinda big vault... what do ya keep in here, anyway?"},
-				# TODO: Hat Kid explaining animation
+				{animate2 = "idle"},
+				{animate1 = "talk", delay=0.5},
+				{animate1 = "idle"},
+				{animate2 = "surprise"},
 				{name = "Timmy", text = "Woah! Time Pieces??"},
+				{animate2 = "talk"},
 				{name = "Timmy", text = "I've heard so much about these! And you have a whole vault of them!?"},
+				{animate2 = "sass"},
 				{name = "Timmy", text = "I wanna have a peek!"},
-				# TODO: Open up vault and floats upwards
+				{animate2 = "psychic", delay=0.5},
+				# TODO: Open up vault and hat kid flies backward
+				{animate2 = "fly"},
 				{signal = "actionJ", delay=1},
 				# TODO: Float a timepiece to Timmy
 				{name = "Timmy", text = "Woahhhh.... sparkly."},
@@ -167,25 +190,35 @@ func get_dialog(text_num):
 				{name = "Timmy", text = "...you could have an infinite flapjack breakfast if you wanted to!"},
 				{delay=1},
 				# Look at Hat
+				{animate2 = "idle"},
 				{signal = "actionK", delay=0.1},
+				{animate2 = "talk"},
 				{name = "Timmy", text = "What? You've never seen someone use psychic powers before?"},
+				{animate2 = "idle"},
 				# Bounce Hat Kid towards Timmy, bounce Timmy away, holding back the TimePiece
 				{signal = "actionG", delay=0.1},
 				{signal = "actionH", delay=0.75},
+				{animate2 = "sass"},
 				{name = "Timmy", text = "Yo, what's the rush? You got a hot date with this Piece or something?"},
 				{name = "Timmy", text = "I'll take as much time as I wanna! Buzz off!"},
+				{animate2 = "idle"},
 				# Bounce Hat Kid towards Timmy
 				{signal = "actionG", delay=0.075},
 				{signal = "actionH", delay=0.1},
 				# Timmy lifts up Hat up
 				{signal = "action6", delay=0.2},
+				{animate2 = "psychic"},
 				{name = "Timmy", text = "Hey! Didn't your mom ever teach you that 'sharing is caring?'"},
+				{animate2 = "sass"},
 				{name = "Timmy", text = "If you're gonna be greedy, then I'll just steal all of them!"},
+				{animate2 = "psychic"},
 				# Camera release and throw
 				# Animate hat kid hurt animation
 				{animate1 = "hurt_basic"},
 				{signal = "action7", delay=2},
+				{animate2 = "sass"},
 				{name = "Timmy", text = "Alright Lil'ens! Come on in!"},
+				{animate2 = "idle"},
 				# Screen shake
 				{signal = "actionE", delay=1},
 				# Lil'ens enter and walk to vault
@@ -196,6 +229,7 @@ func get_dialog(text_num):
 				# Move Timmy towards door
 				{signal = "actionA", delay=2},
 				# Say words
+				{animate2 = "sass"},
 				{name = "Timmy", text = "Keeping all these Time Pieces to yourself is mondo uncool."},
 				{name = "Timmy", text = "So as the ruler of this world, I'll take them off your hands! It's only fair for trespassing."},
 				{name = "Timmy", text = "Smell ya later stinky!"},

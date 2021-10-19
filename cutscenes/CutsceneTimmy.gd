@@ -6,6 +6,13 @@ func walk_to(node_path : String, direc_during = null, direct_after = null):
 	direc_at_goal_override = direct_after
 	play_animation("walk")
 
+func look_at_node(node_path : String):
+	var target_x = get_node(node_path).position.x
+	if position.x > target_x:
+		sprite.scale.x = -1
+	else:
+		sprite.scale.x = 1
+
 func walk_to_then_leave(node_path : String):
 	goal_x = get_node(node_path).position.x
 	leave_after_reaching_goal = true
@@ -17,6 +24,8 @@ func teleport_to(node_path : String):
 func play_animation(animation_name):
 	print(animation_name)
 	$AnimationTree['parameters/playback'].travel(animation_name)
+func animate(animation_name):
+	play_animation(animation_name)
 
 func _physics_process(delta):
 	if goal_y != null:
@@ -42,7 +51,8 @@ func _physics_process(delta):
 		else:
 			goal_x = null
 			velo.x = 0
-			play_animation("idle")
+			if $AnimationTree['parameters/playback'].get_current_node() == 'walk':
+				play_animation("idle")
 			if direc_at_goal_override:
 				sprite.scale.x = direc_at_goal_override
 			if leave_after_reaching_goal:
