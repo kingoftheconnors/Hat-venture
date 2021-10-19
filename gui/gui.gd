@@ -153,6 +153,15 @@ func queue(dialog_starter, textbox):
 func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 	dialog_active = true
 	PlayerGameManager.pause_except([])
+	
+	if next_box.has("if_tag_false") \
+		and SaveSystem.access_data().get_tag(next_box['if_tag_false']) != null \
+		and SaveSystem.access_data().get_tag(next_box['if_tag_false']) != false:
+		return
+	if next_box.has("if_tag_true") \
+		and SaveSystem.access_data().get_tag(next_box['if_tag_false']) != true:
+		return
+	
 	cur_speaking_name = ""
 	if next_box.has("name"):
 		if skip_events == Constants.SKIP_TYPE.RUN:
@@ -178,7 +187,7 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS:
 			next_box.starter.animate2(next_box.animate2)
 	elif next_box.has("settag"):
-		SaveSystem.set_tag(next_box['settag'], next_box['value'])
+		SaveSystem.access_data().set_tag(next_box['settag'], next_box['value'])
 	elif next_box.has("queue"):
 		queue_dialog_at_front(next_box.starter, next_box['queue'])
 	elif next_box.has("enable"):
@@ -369,7 +378,7 @@ func unlock_palette(palette_name):
 	$UnlockPaletteBox.visible = true
 	$UnlockPaletteBox.grab_focus()
 	$UnlockPaletteBox.show_palette_get(palette_name)
-	SaveSystem.unlock_palette(palette_name)
+	SaveSystem.access_data().unlock_palette(palette_name)
 
 
 onready var cover_animator = $CoverAnimator

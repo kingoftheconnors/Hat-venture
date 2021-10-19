@@ -28,23 +28,23 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 2 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 18 )
 region = Rect2( 0, 0, 4, 18 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 18 )
 region = Rect2( 4, 0, 4, 18 )
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
 "loop": true,
 "name": "default",
 "speed": 2.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 180, 24 )
 
 [node name="Level" type="Node2D"]
@@ -106,7 +106,7 @@ texture = ExtResource( 19 )
 [node name="Exclamation" type="AnimatedSprite" parent="Display"]
 visible = false
 z_index = -1
-frames = SubResource( 5 )
+frames = SubResource( 4 )
 frame = 1
 playing = true
 
@@ -123,7 +123,7 @@ position = Vector2( 304, -32 )
 
 [node name="shiproomForeground" type="Sprite" parent="."]
 position = Vector2( 112, -80 )
-z_index = 2
+z_index = 3
 texture = ExtResource( 12 )
 
 [node name="Camera" parent="." instance=ExtResource( 5 )]
@@ -160,11 +160,11 @@ foregroundSprite = NodePath("../shiproomForeground")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 108, -32 )
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 
 [node name="DoorDialog" parent="." instance=ExtResource( 9 )]
 position = Vector2( 304, -40 )
-dialog_num = 5
+dialog_num = 10
 active_bodies_in_dialog = [ NodePath("../Player"), NodePath("../LilenController"), NodePath("../DustCloud") ]
 animate1 = NodePath("../Player")
 animate2 = NodePath("../Timmy")
@@ -237,26 +237,26 @@ script = ExtResource( 24 )
 [connection signal="ready" from="MusicIntro" to="Music" method="stop_music"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_Area2D_body_exited"]
-[connection signal="action1" from="DoorDialog" to="Player" method="bounce_back" binds= [ "../WalkTo_Target4" ]]
 [connection signal="action1" from="DoorDialog" to="Player" method="watch_node" binds= [ "../Timmy" ]]
+[connection signal="action1" from="DoorDialog" to="Player" method="bounce_back" binds= [ "../WalkTo_Target4" ]]
 [connection signal="action1" from="DoorDialog" to="Timmy" method="make_visible"]
 [connection signal="action2" from="DoorDialog" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target1" ]]
 [connection signal="action3" from="DoorDialog" to="CameraCapture2" method="capture"]
-[connection signal="action4" from="DoorDialog" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target2", -1, 1 ]]
 [connection signal="action4" from="DoorDialog" to="Timmy" method="teleport_to" binds= [ "../Teleport_Target" ]]
-[connection signal="action5" from="DoorDialog" to="Player" method="walk_to" binds= [ "../WalkTo_Target3" ]]
+[connection signal="action4" from="DoorDialog" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target2", -1, 1 ]]
 [connection signal="action5" from="DoorDialog" to="Player" method="teleport_to" binds= [ "../Teleport_Target" ]]
+[connection signal="action5" from="DoorDialog" to="Player" method="walk_to" binds= [ "../WalkTo_Target3" ]]
 [connection signal="action6" from="DoorDialog" to="Player" method="fly_to" binds= [ "../WalkTo_Target2" ]]
 [connection signal="action7" from="DoorDialog" to="Player" method="blow_back" binds= [ true ]]
 [connection signal="action7" from="DoorDialog" to="CameraCapture2" method="capture_release" binds= [ false ]]
 [connection signal="action8" from="DoorDialog" to="Player" method="stop_watching"]
-[connection signal="action9" from="DoorDialog" to="Camera" method="screen_shake" binds= [ 0, 3.0 ]]
 [connection signal="action9" from="DoorDialog" to="LilenController" method="generate" binds= [ 16 ]]
+[connection signal="action9" from="DoorDialog" to="Camera" method="screen_shake" binds= [ 0, 3.0 ]]
 [connection signal="actionA" from="DoorDialog" to="DustCloud" method="hide"]
-[connection signal="actionA" from="DoorDialog" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target4", 1, 1 ]]
 [connection signal="actionA" from="DoorDialog" to="LilenController" method="get_timepieces"]
-[connection signal="actionA" from="DoorDialog" to="LilenController" method="recall"]
 [connection signal="actionA" from="DoorDialog" to="LilenController" method="hide_after_reaching_pos"]
+[connection signal="actionA" from="DoorDialog" to="LilenController" method="recall"]
+[connection signal="actionA" from="DoorDialog" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target4", 1, 1 ]]
 [connection signal="actionB" from="DoorDialog" to="Timmy" method="walk_to_then_leave" binds= [ "../DoorDialog" ]]
 [connection signal="actionC" from="DoorDialog" to="Player" method="jump"]
 [connection signal="actionD" from="DoorDialog" to="Player" method="walk_to" binds= [ "../DoorDialog" ]]

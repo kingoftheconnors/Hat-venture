@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://world1/background1.tres" type="TileSet" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://common/Flag.tscn" type="PackedScene" id=6]
 [ext_resource path="res://common/ParallaxLayer.gd" type="Script" id=7]
 [ext_resource path="res://common/CollectablePalette.tscn" type="PackedScene" id=8]
-[ext_resource path="res://NPCs/DialogBox.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Music/startSong.gd" type="Script" id=10]
 [ext_resource path="res://enemy/eltun/eltun.tscn" type="PackedScene" id=11]
 [ext_resource path="res://NPCs/DialogOnLoad.tscn" type="PackedScene" id=12]
@@ -18,7 +17,6 @@
 [ext_resource path="res://enemy/hen/Hen.tscn" type="PackedScene" id=17]
 [ext_resource path="res://enemy/crow/Crow.tscn" type="PackedScene" id=18]
 [ext_resource path="res://common/FakeWalls.gd" type="Script" id=19]
-[ext_resource path="res://NPCs/TemplateNPC.tscn" type="PackedScene" id=20]
 [ext_resource path="res://items/Resources/TimePiece.tscn" type="PackedScene" id=21]
 [ext_resource path="res://enemy/eltun/pace.gd" type="Script" id=23]
 [ext_resource path="res://common/CameraCapture.tscn" type="PackedScene" id=24]
@@ -197,12 +195,6 @@ walled = false
 position = Vector2( -248, -88 )
 scale = Vector2( 1, 1.5 )
 walled = false
-
-[node name="NPC" parent="." instance=ExtResource( 20 )]
-position = Vector2( 248, -16 )
-
-[node name="DialogBox" parent="NPC" instance=ExtResource( 9 )]
-position = Vector2( 0, -8 )
 
 [node name="Flag" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2104, -120 )

@@ -29,8 +29,9 @@ func animate(animation_name):
 
 func _physics_process(delta):
 	if goal_y != null:
-			velo.y *= .98
-			if abs(position.y - goal_y) > 2:
+			if abs(position.y - goal_y) > 3:
+				if abs(velo.y) > 35:
+					velo.y *= .98
 				if position.y < goal_y:
 					velo.y += FALL_UP_GRAVITY
 				else:
@@ -74,7 +75,7 @@ func make_invisible():
 
 var velo : Vector2
 const GRAVITY = 10
-const FALL_UP_GRAVITY = 5
+const FALL_UP_GRAVITY = 4
 var goal_x = null
 var goal_y = null
 var direc_override = null

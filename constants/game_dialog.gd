@@ -85,14 +85,15 @@ func get_dialog(text_num):
 				{name = "ERROR", text = "SATELLITE NOT PROPERLY CONFIGURED."},
 				{name = "ERROR", text = "PLEASE RECONFIGURE THE SATELLITE MANUALLY."},
 				# Move camera
-				{signal = "action2", delay=1},
+				{signal = "action2", delay=1, if_tag_false = "screen_seen_1"},
 				# Unlatch door
-				{signal = "action3", delay=0.5}, # TODO: unlatch SFX
+				{signal = "action3", delay=0.5, if_tag_false = "screen_seen_1"}, # TODO: unlatch SFX
 				# Reset camera
-				{signal = "action6", delay=1},
-				{signal = "action4"},
+				{signal = "action6", delay=1, if_tag_false = "screen_seen_1"},
+				{signal = "action4", if_tag_false = "screen_seen_1"},
 				# Hide display (showing only exclamation point)
 				{signal = "action5"},
+				{settag = "screen_seen_1", value = true},
 			]
 		DIALOG_TYPE.SHIP_SCREEN_2:
 			return [
@@ -100,12 +101,13 @@ func get_dialog(text_num):
 				{signal = "action7", delay=1},
 				{name = "SHIP", text = "All systems operational. Hello master!"},
 				# Activate Timmy door action (TODO: Enable knock sfx)
-				{signal = "action8", delay=1},
+				{signal = "action8", delay=1, if_tag_false = "screen_seen_2"},
 				# Move camera
-				{signal = "action2", delay=1},
+				{signal = "action2", delay=1, if_tag_false = "screen_seen_2"},
 				# Reset camera
-				{signal = "action6", delay=1},
-				{signal = "action4"},
+				{signal = "action6", delay=1, if_tag_false = "screen_seen_2"},
+				{signal = "action4", if_tag_false = "screen_seen_2"},
+				{settag = "screen_seen_2", value = true},
 			]
 		DIALOG_TYPE.TIMMY_SHIP:
 			return [
