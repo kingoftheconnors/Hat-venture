@@ -29,10 +29,6 @@ func heal():
 func reset_energy():
 	energy.value = MAX_ENERGY
 
-# Lives
-func set_lives(num_lives):
-	lives.text = str(num_lives)
-
 # Pons
 func set_pons(amo):
 	pons.text = str(amo)
@@ -71,8 +67,7 @@ var playerScoreMultAmo = 1
 
 onready var sizeAnimator = $AnimationPlayer
 
-onready var stageName = $Player/MContainer/GuiInfo/Lives/StageName
-onready var lives = $Player/MContainer/GuiInfo/Lives/HBoxContainer/LiveNum
+onready var stageName = $Player/MContainer/GuiInfo/Pons/StageName
 onready var pons = $Player/MContainer/GuiInfo/Pons/HBoxContainer/PonsNum
 
 onready var scoreArea = $Player/MContainer/GuiInfo/Main/Score
@@ -200,6 +195,7 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 		var spawn_point = -1
 		if next_box.has('spawn_point'):
 			spawn_point = next_box['spawn_point']
+		PlayerGameManager.level_complete()
 		PlayerGameManager.start_level(next_box['level'], spawn_point)
 	elif next_box.has("fadeout"):
 		Gui.cover()
@@ -215,7 +211,7 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 
 func skip_cutscene():
 	text_crawl_func = null
-	if curbox.has('options'):
+	if curbox != null and curbox.has('options'):
 		var first_option = curbox.options.keys()[0]
 		var next_textbox_num = curbox.options[first_option]
 		queue_dialog_at_front(curbox.starter, next_textbox_num)
