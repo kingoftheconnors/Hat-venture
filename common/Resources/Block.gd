@@ -6,10 +6,11 @@ tool
 extends StaticBody2D
 
 onready var animator = $AnimationTree
+onready var collider = $CollisionShape2D
 onready var pon = load("res://items/Resources/Pon.tscn")
 onready var runnerhat = load("res://items/Resources/RunnerHat.tscn")
 
-enum BlockState {BREAKABLE, BREAKABLE2, SOLID, ITEM_HAT}
+enum BlockState {BREAKABLE, BREAKABLE2, SOLID, ITEM_HAT, HIDDEN}
 var prevBlockState
 ## Block state. Used to set a block's graphic and state
 export(BlockState) var state
@@ -20,9 +21,12 @@ export(Resource) var boxedItem = null
 onready var power = boxedItem.new() if boxedItem != null else null
 # Score points received when block is destroyed
 const DEATH_SCORE = 10
+export(int) var death_score = DEATH_SCORE
 
 func _process(_delta):
 	if prevBlockState != state:
+		if !Engine.is_editor_hint():
+			collider.disabled = false
 		match state:
 			BlockState.ITEM_HAT:
 				$Sprite.frame = 0
@@ -32,6 +36,10 @@ func _process(_delta):
 				$Sprite.frame = 2
 			BlockState.BREAKABLE2:
 				$Sprite.frame = 2
+			BlockState.HIDDEN:
+				$Sprite.frame = 5
+				if !Engine.is_editor_hint():
+					collider.disabled = true
 		prevBlockState = state
 
 ## Attack method used by players and projectiles when attacking
@@ -56,7 +64,7 @@ func hit(collidingBody):
 
 ## Destroys block
 func smash():
-	PlayerGameManager.add_score(DEATH_SCORE)
+	PlayerGameManager.add_score(death_score)
 	animator["parameters/playback"].travel("smash")
 	SoundSystem.start_sound(SoundSystem.SFX.BLOCK_BREAK)
 
@@ -67,3 +75,8 @@ func collide(collision, collidingBody):
 		and collision.travel.y < -0.15 \
 		and collision.position.y >= global_position.y + 7.9:
 		hit(collidingBody)
+
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("player") and state == BlockState.HIDDEN:
+		if body.is_velo_up():
+			hit(body)

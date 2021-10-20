@@ -921,6 +921,8 @@ func set_velo_x(x):
 	velo.x = x
 func set_velo_y(y):
 	velo.y = y
+func is_velo_up() -> bool:
+	return velo.y < 0
 
 func on_ladder(ladder):
 	on_ladders += 1

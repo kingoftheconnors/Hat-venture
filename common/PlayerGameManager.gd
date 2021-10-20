@@ -132,7 +132,6 @@ func reduce_multiplicity():
 
 func add_pons(amo):
 	pons = pons + amo
-	add_score(amo*25)
 	Gui.set_pons(pons)
 
 var active_bodies = []
