@@ -21,8 +21,8 @@ var quantization = preload("res://gdgifexporter/quantization/enhanced_uniform_qu
 var saving_gif := false
 var pics = []
 const FRAME_LENGTH = .08
-const GIF_WIDTH = 440
-const GIF_HEIGHT = 352
+const GIF_WIDTH = 240
+const GIF_HEIGHT = 240
 var gif_threads := []
 var gif_frames := []
 
@@ -55,7 +55,7 @@ func _physics_process(delta):
 		if Constants.DEBUG_MODE and time_passed > FRAME_LENGTH and !saving_gif:
 			# write image using quantization quantizator and with one second animation delay
 			pics.append(get_viewport().get_texture().get_data())
-			if pics.size() > 5/FRAME_LENGTH:
+			if pics.size() > 7/FRAME_LENGTH:
 				pics.pop_front()
 			time_passed -= FRAME_LENGTH
 		# Cleaning save-gif threads
@@ -89,7 +89,7 @@ func _unhandled_input(event):
 				gif_threads = []; gif_frames = []
 				# Make one thread for each frame we need to generate
 				# We're not including the last five frames
-				for thread_num in range(pics.size()-10):
+				for thread_num in range(pics.size()):
 					gif_threads.append(Thread.new())
 					gif_frames.append(null)
 					gif_threads[thread_num].start(self, "create_gif", thread_num, Thread.PRIORITY_LOW)
