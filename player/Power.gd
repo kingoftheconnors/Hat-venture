@@ -57,7 +57,7 @@ func _process(_delta):
 			set_power_active(false)
 
 func _input(event):
-	if event.is_action_pressed("ui_release"):
+	if event.is_action_pressed("ui_release") and can_release_powers:
 		if platformController.get_stun() == 0:
 			release_power()
 	
@@ -123,3 +123,4 @@ func pause_game():
 func resume_game():
 	get_tree().paused = false
 
+export(bool) var can_release_powers = true
