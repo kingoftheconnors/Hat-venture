@@ -462,6 +462,7 @@ func move_player(v):
 				if abs(collision.normal.x) > abs(collision.normal.y):
 					new_velo.x = -velo.x * .1
 					unblow_back()
+					power.release_power()
 					animate("dive")
 					diving = true
 	if !recognize_collision:

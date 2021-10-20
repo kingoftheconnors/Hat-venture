@@ -20,8 +20,10 @@ animations = [ {
 } ]
 
 [node name="AnimatedSprite" type="AnimatedSprite"]
+pause_mode = 2
 position = Vector2( 0, -3 )
 z_index = 1
 frames = SubResource( 3 )
 script = ExtResource( 2 )
+
 [connection signal="animation_finished" from="." to="." method="_on_AnimatedSprite_animation_finished"]

@@ -169,6 +169,7 @@ animations = [ {
 radius = 9.5
 
 [node name="TimePiece" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 5 )
 
 [node name="ItemRoot" type="Node2D" parent="."]
