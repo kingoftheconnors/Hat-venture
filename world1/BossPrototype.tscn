@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
+[ext_resource path="res://enemy/RoboKurt/RoboKurt.tscn" type="PackedScene" id=2]
+[ext_resource path="res://level.gd" type="Script" id=3]
+[ext_resource path="res://common/TileInstancer.gd" type="Script" id=4]
+[ext_resource path="res://camera/Camera.tscn" type="PackedScene" id=6]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=7]
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 3 )
+left = -128
+right = 192
+up = -224
+down = 64
+col = Color( 1, 1, 1, 1 )
+
+[node name="LevelTiles" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 4
+collision_layer = 2
+collision_mask = 3
+format = 1
+tile_data = PoolIntArray( 131063, 0, 0, 131064, 0, 1, 131065, 0, 1, 131066, 0, 1, 131067, 0, 1, 131068, 0, 1, 131069, 0, 1, 131070, 0, 1, 131071, 0, 1, 65536, 0, 1, 65537, 0, 1, 65538, 0, 1, 65539, 0, 1, 65540, 0, 1, 65541, 0, 1, 65542, 0, 1, 65543, 0, 1, 65544, 0, 1, 65545, 0, 1, 65546, 0, 1, 65547, 0, 1, 65548, 0, 2, 196599, 0, 65536, 196600, 0, 65537, 196601, 0, 65537, 196602, 0, 65537, 196603, 0, 65537, 196604, 0, 65537, 196605, 0, 65537, 196606, 0, 65537, 196607, 0, 65537, 131072, 0, 65537, 131073, 0, 65537, 131074, 0, 65537, 131075, 0, 65537, 131076, 0, 65537, 131077, 0, 65537, 131078, 0, 65537, 131079, 0, 65537, 131080, 0, 65537, 131081, 0, 65537, 131082, 0, 65537, 131083, 0, 65537, 131084, 0, 65538, 262135, 0, 65536, 262136, 0, 65537, 262137, 0, 65537, 262138, 0, 65537, 262139, 0, 65537, 262140, 0, 65537, 262141, 0, 65537, 262142, 0, 65537, 262143, 0, 65537, 196608, 0, 65537, 196609, 0, 65537, 196610, 0, 65537, 196611, 0, 65537, 196612, 0, 65537, 196613, 0, 65537, 196614, 0, 65537, 196615, 0, 65537, 196616, 0, 65537, 196617, 0, 65537, 196618, 0, 65537, 196619, 0, 65537, 196620, 0, 65538, 327671, 0, 131072, 327672, 0, 131073, 327673, 0, 131073, 327674, 0, 131073, 327675, 0, 131073, 327676, 0, 131073, 327677, 0, 131073, 327678, 0, 131073, 327679, 0, 131073, 262144, 0, 131073, 262145, 0, 131073, 262146, 0, 131073, 262147, 0, 131073, 262148, 0, 131073, 262149, 0, 131073, 262150, 0, 131073, 262151, 0, 131073, 262152, 0, 131073, 262153, 0, 131073, 262154, 0, 131073, 262155, 0, 131073, 262156, 0, 131074 )
+script = ExtResource( 4 )
+
+[node name="Player" parent="." instance=ExtResource( 7 )]
+position = Vector2( 0, -72 )
+rotation = 4.46638e-06
+
+[node name="Camera" parent="." instance=ExtResource( 6 )]
+position = Vector2( 32, -80 )
+process_mode = 0
+limit_left = -10000126
+drag_margin_v_enabled = true
+smoothing_speed = 12.0
+
+[node name="Boss" type="Node2D" parent="."]
+position = Vector2( 152, -8 )
+
+[node name="RoboKurt" parent="Boss" instance=ExtResource( 2 )]
+left_side = NodePath("../Left")
+right_side = NodePath("../Right")
+
+[node name="Left" type="Node2D" parent="Boss"]
+position = Vector2( -240, 8 )
+
+[node name="Right" type="Node2D" parent="Boss"]
+position = Vector2( 0, 8 )

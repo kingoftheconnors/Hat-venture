@@ -9,6 +9,8 @@ extends Node
 signal hurt
 onready var animator = get_node_or_null("AnimationTree")
 
+## Enemy's HP
+export(int) var enemy_hp = 1
 ## Damage enemy does to player
 export(int) var attack_damage = 1
 ## Score-points player gets for defeating this enemy
@@ -27,14 +29,18 @@ func damage(isStomp):
 	if isStomp:
 		SoundSystem.start_sound(SoundSystem.SFX.STOMP)
 	if !invincible:
+		enemy_hp -= 1
 		emit_signal("hurt")
-		if animator:
-			if isStomp:
-				animator["parameters/playback"].travel("smash")
-			else:
-				animator["parameters/playback"].travel("die")
-		# Dead, so always true
-		return true
+		if enemy_hp <= 0:
+			if animator:
+				if isStomp:
+					animator["parameters/playback"].travel("smash")
+				else:
+					animator["parameters/playback"].travel("die")
+			# Dead, so always true
+			return true
+		else:
+			animator["parameters/playback"].travel("hurt")
 	# If invincible, return false
 	return false
 
