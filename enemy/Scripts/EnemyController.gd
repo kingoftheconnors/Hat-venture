@@ -104,7 +104,7 @@ func gen_object(file_path, offset = Vector2.ZERO):
 	get_parent().add_child(object_inst)
 
 onready var sprite = $EnemyCore
-var is_active = false
+export(bool) var is_active = false
 var frozen = false
 
 # Movement script to define the enemy's movement pattern.

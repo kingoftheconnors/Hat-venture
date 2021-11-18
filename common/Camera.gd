@@ -41,6 +41,7 @@ var lim_right = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	reset_limits()
 
 # Called every frame to update camera position
@@ -149,6 +150,23 @@ func move_lookahead_toward(offset_goal, delta):
 		lookahead_offset -= LOOKAHEAD_CHANGE_RATE * delta
 	elif(lookahead_offset < offset_goal):
 		lookahead_offset += LOOKAHEAD_CHANGE_RATE * delta
+
+var shake_intensity : int = 0
+var shake_duration : float = 0
+var shake_amount : Vector2
+func shake_screen(amount : int, duration : float):
+	shake_intensity = amount
+	shake_duration = duration
+
+func _process(delta):
+	if shake_duration > 0.0:
+		position -= shake_amount
+		shake_duration -= delta
+		if shake_duration > 0.0:
+			var x_amo = randi() % (shake_intensity*2) - shake_intensity
+			var y_amo = 0.0 #randi() % (shake_intensity*2) - shake_intensity
+			shake_amount = Vector2(x_amo, y_amo)
+			position += shake_amount
 
 # Unpause game if node is destroyed in the middle of a transition
 func _exit_tree():

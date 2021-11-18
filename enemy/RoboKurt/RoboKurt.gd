@@ -9,6 +9,8 @@ extends "res://enemy/Scripts/EnemyController.gd"
 
 var idle_count : int = 0
 const ATTACK_THRESHOLD = 2
+const SCREEN_SHAKE_INTENSITY = 4
+const SCREEN_SHAKE_DURATION = 1.0
 
 export(NodePath) var left_side
 export(NodePath) var right_side
@@ -24,6 +26,12 @@ const ATTACK_TYPES = ["jump", "pound"]
 func attack():
 	var attack = ATTACK_TYPES[randi() % ATTACK_TYPES.size()]
 	animator.set_condition(attack, true)
+
+func ground_pound():
+	# Drop apples
+	emit_signal("ground_pound")
+	# Shake screen
+	get_tree().call_group("camera", "shake_screen", SCREEN_SHAKE_INTENSITY, SCREEN_SHAKE_DURATION)
 
 func damage(isStomp):
 	.damage(isStomp)
@@ -67,3 +75,5 @@ onready var animator = $EnemyCore/AnimationTree
 func _ready():
 	randomize()
 	is_active = true
+
+signal ground_pound
