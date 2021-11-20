@@ -40,6 +40,7 @@ func damage(isStomp):
 	else:
 		animator.set_parameter("hurt/IsFlashing/add_amount", 1)
 	animator.set_condition("hurt", true)
+	emit_signal("hurt")
 
 func fly_to_other_side(duration : float):
 	swap_side()
@@ -77,3 +78,4 @@ func _ready():
 	is_active = true
 
 signal ground_pound
+signal hurt

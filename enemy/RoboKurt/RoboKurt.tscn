@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://gui/PaletteSprite.tres" type="Material" id=1]
+[ext_resource path="res://gui/EnemyPalette.tres" type="Material" id=1]
 [ext_resource path="res://enemy/RoboKurt/RobokurtStateMachine.tres" type="AnimationNodeStateMachine" id=2]
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=3]
 [ext_resource path="res://enemy/Scripts/Hitbox.gd" type="Script" id=4]

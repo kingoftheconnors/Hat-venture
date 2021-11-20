@@ -96,6 +96,7 @@ advance_condition = "hurt"
 [sub_resource type="AnimationNodeStateMachineTransition" id=28]
 switch_mode = 2
 auto_advance = true
+xfade_time = 2.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=29]
 switch_mode = 2
