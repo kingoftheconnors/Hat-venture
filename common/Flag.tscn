@@ -1,13 +1,14 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://common/checkpoint.gd" type="Script" id=1]
 [ext_resource path="res://common/Resources/flagup.png" type="Texture" id=2]
 [ext_resource path="res://common/Resources/flagloop.png" type="Texture" id=3]
+[ext_resource path="res://gui/PlayerPalette.tres" type="Material" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 12 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "checkpoint"
 length = 0.6
 tracks/0/type = "value"
@@ -47,7 +48,7 @@ tracks/2/keys = {
 "values": [ 6 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "flagUp"
 length = 0.3
 loop = true
@@ -88,8 +89,7 @@ tracks/2/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "idle"
+[sub_resource type="Animation" id=4]
 length = 0.07
 step = 0.01
 tracks/0/type = "value"
@@ -157,6 +157,7 @@ start_node = "idle"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=11]
 
 [node name="Flag" type="Sprite"]
+material = ExtResource( 4 )
 texture = ExtResource( 2 )
 hframes = 6
 script = ExtResource( 1 )
@@ -170,13 +171,14 @@ position = Vector2( 0, -4 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/checkpoint = SubResource( 3 )
-anims/flagUp = SubResource( 4 )
-anims/idle = SubResource( 2 )
+anims/checkpoint = SubResource( 2 )
+anims/flagUp = SubResource( 3 )
+anims/idle = SubResource( 4 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 10 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 11 )
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

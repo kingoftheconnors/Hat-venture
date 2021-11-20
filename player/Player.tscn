@@ -47,8 +47,7 @@
 [ext_resource path="res://player/perfectjump.png" type="Texture" id=45]
 [ext_resource path="res://player/regular/win.png" type="Texture" id=46]
 [ext_resource path="res://player/regular/climb.png" type="Texture" id=47]
-[ext_resource path="res://gui/PaletteSprite.tres" type="Material" id=48]
-[ext_resource path="res://player/PlayerOutline.tres" type="Material" id=49]
+[ext_resource path="res://gui/PlayerPalette.tres" type="Material" id=49]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.5
@@ -4177,7 +4176,7 @@ states/walljumpInvincibility/node = SubResource( 78 )
 states/walljumpInvincibility/position = Vector2( 389, 289.512 )
 transitions = [ "powerlessOff", "powerlessFlash", SubResource( 79 ), "powerlessFlash", "powerlessFlash 2", SubResource( 80 ), "powerlessFlash 2", "powerlessOff", SubResource( 81 ), "powerlessFlash", "hurtFlash", SubResource( 82 ), "hurtFlash", "powerlessOff", SubResource( 83 ), "powerlessOff", "hurtFlash", SubResource( 84 ), "powerlessFlash", "walljumpInvincibility", SubResource( 85 ), "powerlessOff", "walljumpInvincibility", SubResource( 86 ), "walljumpInvincibility", "powerlessOff", SubResource( 87 ), "walljumpInvincibility", "hurtFlash", SubResource( 88 ), "powerlessOff", "power_get_flash", SubResource( 89 ), "power_get_flash", "powerlessOff", SubResource( 90 ) ]
 start_node = "powerlessOff"
-graph_offset = Vector2( 0, -26.112 )
+graph_offset = Vector2( 0, 68.864 )
 
 [sub_resource type="AnimationNodeAnimation" id=92]
 animation = "bash"
@@ -4729,10 +4728,11 @@ graph_offset = Vector2( -401.407, 78.243 )
 [sub_resource type="AnimationNodeAdd2" id=220]
 
 [sub_resource type="AnimationNodeBlendTree" id=221]
+graph_offset = Vector2( 0, 51.521 )
 nodes/PlayerEffect/node = SubResource( 91 )
 nodes/PlayerEffect/position = Vector2( 280, 80 )
 nodes/PlayerMovement/node = SubResource( 219 )
-nodes/PlayerMovement/position = Vector2( 280, 200 )
+nodes/PlayerMovement/position = Vector2( 280, 220 )
 nodes/add/node = SubResource( 220 )
 nodes/add/position = Vector2( 500, 100 )
 nodes/output/position = Vector2( 680, 100 )
@@ -4776,19 +4776,19 @@ script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="ScaleChildren"]
 visible = false
-material = ExtResource( 48 )
+material = ExtResource( 49 )
 position = Vector2( 8, 1 )
 texture = ExtResource( 39 )
 
 [node name="Spinfx" type="Sprite" parent="ScaleChildren"]
 visible = false
-material = ExtResource( 48 )
+material = ExtResource( 49 )
 position = Vector2( -15, 1 )
 texture = ExtResource( 44 )
 
 [node name="Spinfx2" type="Sprite" parent="ScaleChildren"]
 visible = false
-material = ExtResource( 48 )
+material = ExtResource( 49 )
 position = Vector2( 14, 1 )
 scale = Vector2( -1, 1 )
 texture = ExtResource( 44 )

@@ -13,13 +13,24 @@ func update_colors():
 	material.set_shader_param("palette_light", palette[1] + Color(.1, .1, .1)*cur_brightness)
 	material.set_shader_param("palette_dark", palette[2] + Color(.1, .1, .1)*cur_brightness)
 	material.set_shader_param("palette_black", palette[3] + Color(.1, .1, .1)*cur_brightness)
-	if palette.size() > 4:
+	if palette.size() > 8:
 		spriteFilter.material.set_shader_param("palette_white", palette[4] + Color(.1, .1, .1)*cur_brightness)
 		spriteFilter.material.set_shader_param("palette_light", palette[5] + Color(.1, .1, .1)*cur_brightness)
 		spriteFilter.material.set_shader_param("palette_dark", palette[6] + Color(.1, .1, .1)*cur_brightness)
+		spriteFilter.material.set_shader_param("palette_black", palette[7] + Color(.1, .1, .1)*cur_brightness)
+		playerFilter.material.set_shader_param("palette_white", palette[8] + Color(.1, .1, .1)*cur_brightness)
+		playerFilter.material.set_shader_param("palette_light", palette[9] + Color(.1, .1, .1)*cur_brightness)
+		playerFilter.material.set_shader_param("palette_dark", palette[10] + Color(.1, .1, .1)*cur_brightness)
+		playerFilter.material.set_shader_param("palette_black", palette[11] + Color(.1, .1, .1)*cur_brightness)
+	elif palette.size() > 4:
+		spriteFilter.material.set_shader_param("palette_white", palette[4] + Color(.1, .1, .1)*cur_brightness)
+		spriteFilter.material.set_shader_param("palette_light", palette[5] + Color(.1, .1, .1)*cur_brightness)
+		spriteFilter.material.set_shader_param("palette_dark", palette[6] + Color(.1, .1, .1)*cur_brightness)
+		spriteFilter.material.set_shader_param("palette_black", palette[7] + Color(.1, .1, .1)*cur_brightness)
 		playerFilter.material.set_shader_param("palette_white", palette[4] + Color(.1, .1, .1)*cur_brightness)
 		playerFilter.material.set_shader_param("palette_light", palette[5] + Color(.1, .1, .1)*cur_brightness)
 		playerFilter.material.set_shader_param("palette_dark", palette[6] + Color(.1, .1, .1)*cur_brightness)
+		playerFilter.material.set_shader_param("palette_black", palette[7] + Color(.1, .1, .1)*cur_brightness)
 	else:
 		spriteFilter.material.set_shader_param("palette_white", spriteFilter.material.get_shader_param("game_white"))
 		spriteFilter.material.set_shader_param("palette_light", spriteFilter.material.get_shader_param("game_light"))
@@ -100,7 +111,8 @@ const palettes = {
 		Color(0, 0, 0, 1),
 		Color(249.0/255, 214.0/255, 83.0/255, 1),
 		Color(242.0/255, 77.0/255, 57.0/255, 1),
-		Color(138.0/255, 44.0/255, 32.0/255, 1)],
+		Color(138.0/255, 44.0/255, 32.0/255, 1),
+		Color(0, 0, 0, 1)],
 	"SYSTEM": [
 		Color(1, 1, 1, 1),
 		Color(210.0/255, 210.0/255, 210.0/255, 1),
@@ -108,7 +120,22 @@ const palettes = {
 		Color(30.0/255, 0, 0, 1),
 		Color(255.0/255, 140.0/255, 0.0/255, 1),
 		Color(255.0/255, 30.0/255, 0.0/255, 1),
-		Color(135.0/255, 0.0/255, 0.0/255, 1)],
+		Color(135.0/255, 0.0/255, 0.0/255, 1),
+		Color(30.0/255, 0, 0, 1)],
+	"RBY": [
+		Color(235.0/255, 249.0/255, 243.0/255, 1),
+		Color(102.0/255, 209.0/255, 207.0/255, 1),
+		Color(54.0/255, 137.0/255, 181.0/255, 1),
+		#Color(59.0/255, 35.0/255, 123.0/255, 1),
+		Color(0.0/255, 0.0/255, 0.0/255, 1),
+		Color(255.0/255, 255.0/255, 255.0/255, 1),
+		Color(253.0/255, 104.0/255, 104.0/255, 1),
+		Color(126.0/255, 48.0/255, 48.0/255, 1),
+		Color(76.0/255, 21.0/255, 45.0/255, 1),
+		Color(255.0/255, 255.0/255, 255.0/255, 1),
+		Color(249.0/255, 183.0/255, 26.0/255, 1),
+		Color(183.0/255, 102.0/255, 16.0/255, 1),
+		Color(59.0/255, 35.0/255, 123.0/255, 1)],
 }
 
 onready var spriteFilter = $SpriteFilter

@@ -3,7 +3,7 @@
 [ext_resource path="res://enemy/Scripts/lemming.gd" type="Script" id=1]
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=2]
 [ext_resource path="res://enemy/hen/hen.png" type="Texture" id=3]
-[ext_resource path="res://gui/PaletteSprite.tres" type="Material" id=4]
+[ext_resource path="res://gui/EnemyPalette.tres" type="Material" id=4]
 [ext_resource path="res://enemy/Scripts/Hitbox.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=1]
@@ -293,7 +293,6 @@ material = ExtResource( 4 )
 position = Vector2( -2, 0 )
 texture = ExtResource( 3 )
 hframes = 3
-frame = 1
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyCore"]

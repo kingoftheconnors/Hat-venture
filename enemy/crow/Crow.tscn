@@ -3,8 +3,9 @@
 [ext_resource path="res://enemy/crow/paraenemy.gd" type="Script" id=1]
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=2]
 [ext_resource path="res://enemy/crow/crow.png" type="Texture" id=3]
-[ext_resource path="res://gui/PaletteSprite.tres" type="Material" id=4]
+[ext_resource path="res://gui/EnemyPalette.tres" type="Material" id=4]
 [ext_resource path="res://enemy/Scripts/Hitbox.gd" type="Script" id=5]
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
