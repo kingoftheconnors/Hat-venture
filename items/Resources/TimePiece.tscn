@@ -3,9 +3,8 @@
 [ext_resource path="res://items/Resources/getItem.gd" type="Script" id=1]
 [ext_resource path="res://items/Resources/timePiece.png" type="Texture" id=2]
 [ext_resource path="res://items/timePiece.gd" type="Script" id=3]
-[ext_resource path="res://gui/EnemyPalette.tres" type="Material" id=4]
+[ext_resource path="res://gui/PlayerPalette.tres" type="Material" id=4]
 [ext_resource path="res://items/Resources/LevelEnd.gd" type="Script" id=5]
-
 
 [sub_resource type="Animation" id=1]
 resource_name = "Collect"
@@ -189,8 +188,9 @@ parameters/playback = SubResource( 8 )
 
 [node name="Sprite" type="AnimatedSprite" parent="ItemRoot"]
 material = ExtResource( 4 )
-position = Vector2( 0, -3.38721 )
+position = Vector2( 0, 7.77974 )
 frames = SubResource( 17 )
+frame = 6
 playing = true
 
 [node name="Area2D" type="Area2D" parent="ItemRoot"]

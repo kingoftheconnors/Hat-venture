@@ -35,9 +35,11 @@ func update_colors():
 		spriteFilter.material.set_shader_param("palette_white", spriteFilter.material.get_shader_param("game_white"))
 		spriteFilter.material.set_shader_param("palette_light", spriteFilter.material.get_shader_param("game_light"))
 		spriteFilter.material.set_shader_param("palette_dark", spriteFilter.material.get_shader_param("game_dark"))
+		spriteFilter.material.set_shader_param("palette_black", spriteFilter.material.get_shader_param("game_black"))
 		playerFilter.material.set_shader_param("palette_white", playerFilter.material.get_shader_param("game_white"))
 		playerFilter.material.set_shader_param("palette_light", playerFilter.material.get_shader_param("game_light"))
 		playerFilter.material.set_shader_param("palette_dark", playerFilter.material.get_shader_param("game_dark"))
+		playerFilter.material.set_shader_param("palette_black", playerFilter.material.get_shader_param("game_black"))
 
 func set_brightness(val : int):
 	cur_brightness = val
@@ -122,20 +124,63 @@ const palettes = {
 		Color(255.0/255, 30.0/255, 0.0/255, 1),
 		Color(135.0/255, 0.0/255, 0.0/255, 1),
 		Color(30.0/255, 0, 0, 1)],
-	"RBY": [
-		Color(235.0/255, 249.0/255, 243.0/255, 1),
-		Color(102.0/255, 209.0/255, 207.0/255, 1),
-		Color(54.0/255, 137.0/255, 181.0/255, 1),
-		#Color(59.0/255, 35.0/255, 123.0/255, 1),
+	"Morning": [
+		Color(235.0/255, 249.0/255, 238.0/255, 1),
+		Color(118.0/255, 214.0/255, 183.0/255, 1),
+		Color(48.0/255, 161.0/255, 139.0/255, 1),
 		Color(0.0/255, 0.0/255, 0.0/255, 1),
 		Color(255.0/255, 255.0/255, 255.0/255, 1),
 		Color(253.0/255, 104.0/255, 104.0/255, 1),
-		Color(126.0/255, 48.0/255, 48.0/255, 1),
+		Color(144.0/255, 55.0/255, 55.0/255, 1),
 		Color(76.0/255, 21.0/255, 45.0/255, 1),
 		Color(255.0/255, 255.0/255, 255.0/255, 1),
 		Color(249.0/255, 183.0/255, 26.0/255, 1),
 		Color(183.0/255, 102.0/255, 16.0/255, 1),
 		Color(59.0/255, 35.0/255, 123.0/255, 1)],
+	"Blueberry": [
+		Color(235.0/255, 249.0/255, 243.0/255, 1),
+		Color(102.0/255, 209.0/255, 207.0/255, 1),
+		Color(54.0/255, 137.0/255, 181.0/255, 1),
+		Color(0.0/255, 0.0/255, 0.0/255, 1),
+		Color(255.0/255, 255.0/255, 255.0/255, 1),
+		Color(180.0/255, 104.0/255, 253.0/255, 1),
+		Color(105.0/255, 66.0/255, 174.0/255, 1),
+		Color(76.0/255, 26.0/255, 96.0/255, 1),
+		Color(255.0/255, 255.0/255, 255.0/255, 1),
+		Color(250.0/255, 194.0/255, 41.0/255, 1),
+		Color(172.0/255, 108.0/255, 154.0/255, 1),
+		Color(30.0/255, 54.0/255, 159.0/255, 1)],
+	"Forest": [
+		Color(249.0/255, 249.0/255, 235.0/255, 1),
+		Color(188.0/255, 214.0/255, 118.0/255, 1),
+		Color(123.0/255, 161.0/255, 48.0/255, 1),
+		Color(0.0/255, 0.0/255, 0.0/255, 1),
+		Color(255.0/255, 255.0/255, 255.0/255, 1),
+		Color(104.0/255, 175.0/255, 253.0/255, 1),
+		Color(48.0/255, 79.0/255, 126.0/255, 1),
+		Color(21.0/255, 43.0/255, 76.0/255, 1),
+		Color(239.0/255, 242.0/255, 238.0/255, 1),
+		Color(138.0/255, 216.0/255, 136.0/255, 1),
+		Color(41.0/255, 174.0/255, 55.0/255, 1),
+		Color(28.0/255, 99.0/255, 56.0/255, 1)],
+	"Margin Night": [
+		Color(73.0/255, 77.0/255, 156.0/255, 1),
+		Color(44.0/255, 50.0/255, 73.0/255, 1),
+		Color(21.0/255, 24.0/255, 30.0/255, 1),
+		Color(0.0/255, 0.0/255, 0.0/255, 1),
+		Color(220.0/255, 111.0/255, 111.0/255, 1),
+		Color(194.0/255, 56.0/255, 56.0/255, 1),
+		Color(126.0/255, 48.0/255, 48.0/255, 1),
+		Color(62.0/255, 30.0/255, 30.0/255, 1),
+		Color(216.0/255, 201.0/255, 242.0/255, 1),
+		Color(174.0/255, 139.0/255, 208.0/255, 1),
+		Color(180.0/255, 49.0/255, 180.0/255, 1),
+		Color(100.0/255, 27.0/255, 69.0/255, 1)],
+	"Snatcher-Vision": [
+		Color(0.0/255, 0.0/255, 0.0/255, 1),
+		Color(62.0/255, 39.0/255, 79.0/255, 1),
+		Color(130.0/255, 70.0/255, 175.0/255, 1),
+		Color(214.0/255, 161.0/255, 0.0/255, 1)],
 }
 
 onready var spriteFilter = $SpriteFilter
