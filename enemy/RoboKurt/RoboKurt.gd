@@ -11,6 +11,8 @@ var idle_count : int = 0
 const ATTACK_THRESHOLD = 2
 const SCREEN_SHAKE_INTENSITY = 4
 const SCREEN_SHAKE_DURATION = 1.0
+const SCREAM_SHAKE_INTENSITY = 8
+const SCREAM_SHAKE_DURATION = 2.0
 
 export(NodePath) var left_side
 export(NodePath) var right_side
@@ -32,6 +34,8 @@ func ground_pound():
 	emit_signal("ground_pound")
 	# Shake screen
 	get_tree().call_group("camera", "shake_screen", SCREEN_SHAKE_INTENSITY, SCREEN_SHAKE_DURATION)
+func scream():
+	get_tree().call_group("camera", "shake_screen", SCREAM_SHAKE_INTENSITY, SCREAM_SHAKE_DURATION)
 
 func damage(isStomp):
 	.damage(isStomp)
