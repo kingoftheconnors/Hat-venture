@@ -37,6 +37,27 @@ func ground_pound():
 func scream():
 	get_tree().call_group("camera", "shake_screen", SCREAM_SHAKE_INTENSITY, SCREAM_SHAKE_DURATION)
 
+var velo : Vector2 = Vector2.ZERO
+var falling : bool = false
+const GRAVITY = 13
+func fall():
+	velo = Vector2($EnemyCore.scale.x*100, -200)
+	falling = true
+func end_fall():
+	falling = false
+func _physics_process(delta):
+	if falling:
+		print(velo)
+		velo += Vector2.DOWN*GRAVITY
+		move_and_slide(velo, Vector2.UP)
+		if get_slide_count() > 0:
+			for i in get_slide_count():
+				var collision = get_slide_collision(i)
+				if abs(collision.normal.y) > abs(collision.normal.x) \
+					and collision.collider.get_collision_layer_bit(1):
+					animator.set_parameter("hurt/HurtState/conditions/fall_complete", true)
+					break
+
 func damage(isStomp):
 	.damage(isStomp)
 	if Constants.PHOTOSENSITIVE_MODE:
@@ -48,15 +69,40 @@ func damage(isStomp):
 
 func fly_to_other_side(duration : float):
 	swap_side()
+	fly_to_current_side(duration)
+func fly_to_current_side(duration : float):
 	var tween = $Tween
 	tween.interpolate_property(self, "position:x", position.x, cur_side.position.x, duration)
 	tween.start()
+
+func fly_to_player(duration : float):
+	var tween = $Tween
+	var player_nodes = get_tree().get_nodes_in_group("player_root")
+	if player_nodes.size() > 0:
+		tween.interpolate_property(self, "global_position:x", global_position.x, player_nodes[0].global_position.x, duration)
+		set_side_to_closest_to(player_nodes[0].global_position.x)
+		tween.start()
+	else:
+		fly_to_other_side(duration)
+
+func set_side_to_closest_to_current_pos():
+	set_side_to_closest_to(global_position.x)
+func set_side_to_closest_to(position_x : float):
+	if abs(position_x - left.global_position.x) < abs(position_x - right.global_position.x):
+		is_left_side = true
+		cur_side = left
+	else:
+		is_left_side = false
+		cur_side = right
 
 func teleport_to_other_side():
 	swap_side()
 	$Tween.stop(self)
 	position.x = cur_side.position.x
 	update_direction()
+
+func stop_moving_to_any_side():
+	$Tween.stop(self)
 
 func update_direction():
 	if is_left_side:
@@ -79,7 +125,6 @@ func swap_side():
 onready var animator = $EnemyCore/AnimationTree
 func _ready():
 	randomize()
-	is_active = true
 
 signal ground_pound
 signal hurt

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://gui/EnemyPalette.tres" type="Material" id=1]
 [ext_resource path="res://enemy/RoboKurt/RobokurtStateMachine.tres" type="AnimationNodeStateMachine" id=2]
@@ -22,6 +22,54 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HurtBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:collision_mask")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:collision_layer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -149,23 +197,103 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=5]
-length = 1.75
-loop = true
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("HurtBox/CollisionShape2D:disabled")
+resource_name = "hop_to_other_side"
+length = 0.02
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0, 0.01 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ 1.5 ],
+"method": "fly_to_other_side"
+}, {
+"args": [  ],
+"method": "update_direction"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("EnemyCore/AnimationTree:parameters/hurt/HurtState/conditions/fall_complete")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.01 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
 }
+
+[sub_resource type="Animation" id=6]
+length = 1.75
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.45, 0.65, 0.85, 0.9, 1.3, 1.7 ),
+"transitions": PoolRealArray( 0.5, 2, 0.5, 0.5, 2, 0.5, 0.5, 2, 0.5 ),
+"update": 0,
+"values": [ 0.0, -16.0, 0.0, 0.0, -16.0, 0.0, 0.0, -48.0, 0.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "increase_idle_count"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EnemyCore:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.25, 0.4, 0.5, 0.7, 0.85, 0.95, 1.35, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 4, 2, 3, 4, 2, 3, 4, 2 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 4.0
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "stop_moving_to_any_side"
+}, {
+"args": [  ],
+"method": "fall"
+} ]
+}
 tracks/1/type = "value"
-tracks/1/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/1/path = NodePath("EnemyCore/AnimationTree:parameters/conditions/hurt")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -177,7 +305,49 @@ tracks/1/keys = {
 "values": [ false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CollisionShape2D2:disabled")
+tracks/2/path = NodePath("EnemyCore:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "hurt_bounce"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 0.5, 2, 0.5, 2, 0.5 ),
+"update": 0,
+"values": [ 0.0, -32.0, 0.0, -16.0, 0.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "end_fall"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EnemyCore:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -186,19 +356,19 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ 6 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath(".:position:y")
+tracks/3/path = NodePath("EnemyCore/AnimationTree:parameters/hurt/HurtState/conditions/fall_complete")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.45, 0.65, 0.85, 0.9, 1.3, 1.7 ),
-"transitions": PoolRealArray( 0.5, 2, 0.5, 0.5, 2, 0.5, 0.5, 2, 0.5 ),
-"update": 0,
-"values": [ 0.0, -16.0, 0.0, 0.0, -16.0, 0.0, 0.0, -48.0, 0.0 ]
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 tracks/4/type = "method"
 tracks/4/path = NodePath(".")
@@ -207,88 +377,15 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 1.7 ),
+"times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "increase_idle_count"
+"method": "set_side_to_closest_to_current_pos"
 } ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("EnemyCore:frame")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 0.25, 0.4, 0.5, 0.7, 0.85, 0.95, 1.35, 1.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 3, 4, 2, 3, 4, 2, 3, 4, 2 ]
-}
 
-[sub_resource type="Animation" id=6]
-tracks/0/type = "value"
-tracks/0/path = NodePath("CollisionShape2D2:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("HitBox/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("HurtBox/CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"values": [  ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("EnemyCore/AnimationTree:parameters/conditions/hurt")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0.9 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=9]
 length = 0.6
 loop = true
 step = 0.05
@@ -304,8 +401,56 @@ tracks/0/keys = {
 "update": 1,
 "values": [ true, false, true, false, true ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("HurtBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:collision_mask")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:collision_layer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=10]
 length = 1.2
 step = 0.05
 tracks/0/type = "value"
@@ -362,60 +507,68 @@ tracks/3/keys = {
 "values": [ 1, 2, 3, 4, 2 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=11]
+resource_name = "pound_fall"
+length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:position:y")
+tracks/0/path = NodePath("EnemyCore:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 3, 1 ),
-"update": 0,
-"values": [ -136.0, 0.0 ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("EnemyCore/AnimationTree:parameters/conditions/pound")
+tracks/1/path = NodePath(".:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.9 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 3, 1 ),
+"update": 0,
+"values": [ -136.0, 0.0 ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.5 ),
-"transitions": PoolRealArray( 1 ),
+
+[sub_resource type="Animation" id=12]
+length = 0.2
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "ground_pound"
+}, {
+"args": [ 1.0 ],
+"method": "fly_to_current_side"
 } ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("EnemyCore:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.5, 0.7, 0.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+tracks/1/type = "value"
+tracks/1/path = NodePath("EnemyCore:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 5, 2, 1, 0 ]
+"values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=10]
-length = 2.3
+[sub_resource type="Animation" id=13]
+length = 2.4
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position:y")
 tracks/0/interp = 1
@@ -439,7 +592,7 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [ 1.6 ],
-"method": "fly_to_other_side"
+"method": "fly_to_player"
 }, {
 "args": [  ],
 "method": "update_direction"
@@ -457,8 +610,85 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 1, 3, 4, 3, 4, 3 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("EnemyCore/AnimationTree:parameters/conditions/pound")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=14]
+length = 0.1
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("HurtBox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EnemyCore:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:collision_layer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:collision_mask")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=15]
 length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("EnemyCore:frame")
@@ -487,29 +717,36 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=16]
 
-[sub_resource type="CapsuleShape2D" id=13]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=17]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
+
+[sub_resource type="CapsuleShape2D" id=19]
 radius = 5.0
 height = 34.0
 
-[sub_resource type="CapsuleShape2D" id=14]
+[sub_resource type="CapsuleShape2D" id=20]
 radius = 18.0
 height = 6.0
 
-[sub_resource type="CapsuleShape2D" id=15]
+[sub_resource type="CapsuleShape2D" id=21]
 radius = 18.0
 height = 3.99999
 
 [node name="RoboKurt" type="KinematicBody2D"]
+collision_mask = 3
 script = ExtResource( 5 )
+is_active = true
+enemy_respawns = false
 
 [node name="EnemyCore" type="Sprite" parent="."]
 material = ExtResource( 1 )
 position = Vector2( 2, -7 )
 texture = ExtResource( 7 )
 hframes = 9
-frame = 8
+frame = 1
 script = ExtResource( 3 )
 enemy_hp = 3
 
@@ -519,22 +756,29 @@ anims/aaauto-setup = SubResource( 1 )
 anims/die = SubResource( 2 )
 anims/fly = SubResource( 3 )
 anims/fly_smash = SubResource( 4 )
-anims/hopping = SubResource( 5 )
-anims/hurt = SubResource( 6 )
-anims/hurtflash = SubResource( 7 )
-anims/jump = SubResource( 8 )
-anims/pound_smash = SubResource( 9 )
-anims/pound_windup = SubResource( 10 )
-anims/turn_on = SubResource( 11 )
+anims/hop_to_other_side = SubResource( 5 )
+anims/hopping = SubResource( 6 )
+anims/hurt = SubResource( 7 )
+anims/hurt_bounce = SubResource( 8 )
+anims/hurtflash = SubResource( 9 )
+anims/jump = SubResource( 10 )
+anims/pound_fall = SubResource( 11 )
+anims/pound_smash = SubResource( 12 )
+anims/pound_windup = SubResource( 13 )
+anims/reactive_hitboxes = SubResource( 14 )
+anims/turn_on = SubResource( 15 )
 
 [node name="AnimationTree" type="AnimationTree" parent="EnemyCore"]
 tree_root = ExtResource( 2 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 12 )
+parameters/playback = SubResource( 16 )
 parameters/conditions/hurt = false
 parameters/conditions/jump = false
 parameters/conditions/pound = false
+parameters/hurt/HurtState/playback = SubResource( 17 )
+parameters/hurt/HurtState/conditions/fall_complete = false
 parameters/hurt/IsFlashing/add_amount = 1.0
+parameters/pound/playback = SubResource( 18 )
 script = ExtResource( 6 )
 
 [node name="HurtBox" type="Area2D" parent="." groups=[
@@ -545,7 +789,7 @@ position = Vector2( 0, 8 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2( 0, -21 )
 rotation = 1.5708
-shape = SubResource( 13 )
+shape = SubResource( 19 )
 
 [node name="HitBox" type="Area2D" parent="." groups=[
 "hitbox",
@@ -555,11 +799,11 @@ script = ExtResource( 4 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 0, 6 )
 rotation = 1.5708
-shape = SubResource( 14 )
+shape = SubResource( 20 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 4 )
-shape = SubResource( 15 )
+shape = SubResource( 21 )
 
 [node name="Node2D" type="Node2D" parent="."]
 

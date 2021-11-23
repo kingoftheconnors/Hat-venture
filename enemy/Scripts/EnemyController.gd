@@ -82,7 +82,7 @@ func animate(animation_name):
 	sprite.animate(animation_name)
 
 func _ready():
-	if !Engine.is_editor_hint():
+	if !Engine.is_editor_hint() and enemy_respawns:
 		call_deferred("create_spawner")
 
 ## This enemy's spawner
@@ -105,6 +105,7 @@ func gen_object(file_path, offset = Vector2.ZERO):
 
 onready var sprite = $EnemyCore
 export(bool) var is_active = false
+export(bool) var enemy_respawns = true
 var frozen = false
 
 # Movement script to define the enemy's movement pattern.
