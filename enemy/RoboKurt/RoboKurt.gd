@@ -47,7 +47,6 @@ func end_fall():
 	falling = false
 func _physics_process(delta):
 	if falling:
-		print(velo)
 		velo += Vector2.DOWN*GRAVITY
 		move_and_slide(velo, Vector2.UP)
 		if get_slide_count() > 0:

@@ -85,7 +85,7 @@ start_node = "pound_windup"
 end_node = "hopping"
 graph_offset = Vector2( -148.66, 26.6702 )
 
-[sub_resource type="AnimationNodeAnimation" id=38]
+[sub_resource type="AnimationNodeAnimation" id=20]
 animation = "reactive_hitboxes"
 
 [sub_resource type="AnimationNodeAnimation" id=21]
@@ -119,30 +119,30 @@ advance_condition = "hurt"
 [sub_resource type="AnimationNodeStateMachineTransition" id=30]
 advance_condition = "hurt"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+switch_mode = 2
+auto_advance = true
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=33]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=34]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=35]
 switch_mode = 2
 advance_condition = "pound"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
 advance_condition = "hurt"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+switch_mode = 2
+auto_advance = true
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=37]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=39]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=40]
 switch_mode = 2
 auto_advance = true
 
@@ -159,7 +159,7 @@ states/jump/node = SubResource( 11 )
 states/jump/position = Vector2( -80, 68 )
 states/pound/node = SubResource( 19 )
 states/pound/position = Vector2( 223, 191.939 )
-states/reactive_hitboxes/node = SubResource( 38 )
+states/reactive_hitboxes/node = SubResource( 20 )
 states/reactive_hitboxes/position = Vector2( -129.753, 191.939 )
 states/setup/node = SubResource( 21 )
 states/setup/position = Vector2( 223, -160 )
@@ -167,6 +167,6 @@ states/smash/node = SubResource( 22 )
 states/smash/position = Vector2( 479.729, 62.028 )
 states/turn_on/node = SubResource( 23 )
 states/turn_on/position = Vector2( 223, -87 )
-transitions = [ "hopping", "jump", SubResource( 24 ), "jump", "hopping", SubResource( 25 ), "setup", "turn_on", SubResource( 26 ), "hopping", "die", SubResource( 27 ), "hopping", "smash", SubResource( 28 ), "hopping", "hurt", SubResource( 29 ), "jump", "hurt", SubResource( 30 ), "turn_on", "activate_hitboxes", SubResource( 33 ), "activate_hitboxes", "hopping", SubResource( 34 ), "hopping", "pound", SubResource( 35 ), "pound", "hurt", SubResource( 36 ), "pound", "hopping", SubResource( 37 ), "hurt", "reactive_hitboxes", SubResource( 39 ), "reactive_hitboxes", "jump", SubResource( 40 ) ]
+transitions = [ "hopping", "jump", SubResource( 24 ), "jump", "hopping", SubResource( 25 ), "setup", "turn_on", SubResource( 26 ), "hopping", "die", SubResource( 27 ), "hopping", "smash", SubResource( 28 ), "hopping", "hurt", SubResource( 29 ), "jump", "hurt", SubResource( 30 ), "turn_on", "activate_hitboxes", SubResource( 31 ), "activate_hitboxes", "hopping", SubResource( 32 ), "hopping", "pound", SubResource( 33 ), "pound", "hurt", SubResource( 34 ), "pound", "hopping", SubResource( 35 ), "hurt", "reactive_hitboxes", SubResource( 36 ), "reactive_hitboxes", "jump", SubResource( 37 ) ]
 start_node = "setup"
 graph_offset = Vector2( -246.753, 79.0214 )

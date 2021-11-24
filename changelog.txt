@@ -337,3 +337,8 @@ Wall-sliding
 0.4.1
 Intro level
 Ship cutscene
+
+0.4.2
+RoboKurt boss
+3-color-palettes
+Viewing all palettes in DEBUG mode
