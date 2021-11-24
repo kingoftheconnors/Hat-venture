@@ -272,18 +272,18 @@ onready var palette_controller = $PaletteFilter
 func cover() -> float:
 	if !Constants.PHOTOSENSITIVE_MODE:
 		cover_animator.play("cover")
-		return 0.6
+		return 0.7
 	else:
 		cover_animator.play("cover (slow)")
-		return 1.4
+		return 1.5
 	return 1.0
 func reveal() -> float:
 	if !Constants.PHOTOSENSITIVE_MODE:
 		cover_animator.play("reveal")
-		return 0.6
+		return 0.7
 	else:
 		cover_animator.play("reveal (slow)")
-		return 1.4
+		return 1.5
 	return 1.0
 func unlock_palette(palette_name):
 	$UnlockPaletteBox.visible = true

@@ -31,6 +31,8 @@ vec4 get_palette_color(int level) {
 	vec4 replace_colors[4] = vec4[4] (palette_black, palette_dark, palette_light, palette_white);
 	if (level > replace_colors.length()-1)
 		level = replace_colors.length()-1;
+	if (level < 0)
+		level = 0;
 	return replace_colors[level];
 }
 

@@ -51,6 +51,7 @@ func get_checkpoint_position() -> Vector2:
 func get_spawn_num() -> int:
 	return spawn_num
 
+const BLACK_SCREEN_TIME = 0.3
 ## Method for killing the player, and giving a gameover
 ## if the players' lives decreases to 0
 func die():
@@ -70,6 +71,7 @@ func die():
 		multiplicity = 1; Gui.set_score_mult(1)
 		multiplicity_decrease_time_left = -1
 		var _success = get_tree().change_scene("res://levelgameover/gameOver.tscn")
+		yield(get_tree().create_timer(BLACK_SCREEN_TIME), "timeout")
 		Gui.reveal()
 	else:
 		# Re-load level
@@ -78,6 +80,7 @@ func die():
 		multiplicity = 1; Gui.set_score_mult(1)
 		multiplicity_decrease_time_left = -1
 		#get_tree().change_scene("res://transitionScenes/death.tscn")
+		yield(get_tree().create_timer(BLACK_SCREEN_TIME), "timeout")
 		Gui.reveal()
 
 ## Changes scene to start a level (called by number)

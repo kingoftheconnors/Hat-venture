@@ -29,22 +29,58 @@ font_data = ExtResource( 5 )
 [sub_resource type="Animation" id=3]
 length = 0.6
 tracks/0/type = "value"
-tracks/0/path = NodePath("Cover:modulate")
+tracks/0/path = NodePath("PaletteFilter:material:shader_param/brightness_level")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, -1, -2, -3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PaletteFilter/SpriteFilter:material:shader_param/brightness_level")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, -1, -2, -3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PaletteFilter/PlayerFilter:material:shader_param/brightness_level")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, -1, -2, -3 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Cover:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 0, 0.6 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"update": 1,
+"values": [ false, true ]
 }
 
 [sub_resource type="Animation" id=4]
 length = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("Cover:modulate")
+tracks/0/path = NodePath("PaletteFilter:material:shader_param/brightness_level")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -52,45 +88,153 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"update": 1,
+"values": [ -3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PaletteFilter/SpriteFilter:material:shader_param/brightness_level")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PaletteFilter/PlayerFilter:material:shader_param/brightness_level")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -3 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Cover:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=5]
 resource_name = "cover (slow)"
 length = 1.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("Cover:modulate")
+tracks/0/path = NodePath("PaletteFilter:material:shader_param/brightness_level")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, -1, -2, -3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PaletteFilter/SpriteFilter:material:shader_param/brightness_level")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, -1, -2, -3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PaletteFilter/PlayerFilter:material:shader_param/brightness_level")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, -1, -2, -3 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Cover:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 0, 1.2 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"update": 1,
+"values": [ false, true ]
 }
 
 [sub_resource type="Animation" id=6]
 length = 0.6
 tracks/0/type = "value"
-tracks/0/path = NodePath("Cover:modulate")
+tracks/0/path = NodePath("PaletteFilter:material:shader_param/brightness_level")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.6 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ -3, -2, -1, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PaletteFilter/SpriteFilter:material:shader_param/brightness_level")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ -3, -2, -1, 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PaletteFilter/PlayerFilter:material:shader_param/brightness_level")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ -3, -2, -1, 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Cover:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=7]
 length = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("Cover:modulate")
+tracks/0/path = NodePath("PaletteFilter:material:shader_param/brightness_level")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -98,24 +242,96 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PaletteFilter/SpriteFilter:material:shader_param/brightness_level")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PaletteFilter/PlayerFilter:material:shader_param/brightness_level")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Cover:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=8]
 resource_name = "reveal (slow)"
 length = 1.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("Cover:modulate")
+tracks/0/path = NodePath("PaletteFilter:material:shader_param/brightness_level")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.2 ),
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ -3, -2, -1, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PaletteFilter/SpriteFilter:material:shader_param/brightness_level")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ -3, -2, -1, 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PaletteFilter/PlayerFilter:material:shader_param/brightness_level")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ -3, -2, -1, 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Cover:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -479,7 +695,7 @@ states/idle/position = Vector2( 331, 177 )
 transitions = [ "enter", "exit", SubResource( 15 ), "exit", "enter", SubResource( 16 ), "exit", "idle", SubResource( 17 ), "idle", "enter", SubResource( 18 ) ]
 start_node = "idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=25]
 
 [sub_resource type="Animation" id=21]
 resource_name = "enter"
@@ -558,6 +774,8 @@ vec4 get_palette_color(int level) {
 	vec4 replace_colors[4] = vec4[4] (palette_black, palette_dark, palette_light, palette_white);
 	if (level > replace_colors.length()-1)
 		level = replace_colors.length()-1;
+	if (level < 0)
+		level = 0;
 	return replace_colors[level];
 }
 
@@ -570,7 +788,7 @@ void fragment() {
 		COLOR.rgb = c;
 }"
 
-[sub_resource type="ShaderMaterial" id=25]
+[sub_resource type="ShaderMaterial" id=26]
 resource_local_to_scene = true
 shader = SubResource( 24 )
 shader_param/game_white = Color( 1, 1, 1, 1 )
@@ -902,7 +1120,7 @@ anims/reveal = SubResource( 6 )
 "anims/reveal (slow)" = SubResource( 8 )
 
 [node name="Cover" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0 )
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 15 )
@@ -995,7 +1213,7 @@ __meta__ = {
 tree_root = SubResource( 19 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 20 )
+parameters/playback = SubResource( 25 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UnlockPaletteBox"]
 anims/enter = SubResource( 21 )
@@ -1003,4 +1221,6 @@ anims/exit = SubResource( 22 )
 anims/idle = SubResource( 23 )
 
 [node name="PaletteFilter" parent="." instance=ExtResource( 12 )]
-material = SubResource( 25 )
+material = SubResource( 26 )
+
+[editable path="PaletteFilter"]
