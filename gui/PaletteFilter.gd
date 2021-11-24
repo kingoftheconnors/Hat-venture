@@ -1,3 +1,4 @@
+class_name Palettes
 extends TextureRect
 
 var cur_palette : String = "Classic"
@@ -56,12 +57,12 @@ const palettes = {
 		Color(.67, .68, .67, 1),
 		Color(.34, .35, .34, 1),
 		Color(.16, .17, .16, 1)],
-	"GBoy": [
+	"GBoy2": [
 		Color(0.79, 0.86, 0.62, 1),
 		Color(.54, .67, .06, 1),
 		Color(.19, .38, .19, 1),
 		Color(.06, .22, .06, 1)],
-	"GBoy2": [
+	"GBoy": [
 		Color(224.0/255, 248.0/255, 208.0/255, 1),
 		Color(136.0/255, 192.0/255, 112.0/255, 1),
 		Color(52.0/255, 104.0/255, 86.0/255, 1),
