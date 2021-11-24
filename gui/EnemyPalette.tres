@@ -56,4 +56,4 @@ shader_param/palette_light = Color( 0.67451, 0.682353, 0.67451, 1 )
 shader_param/palette_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
 shader_param/palette_black = null
 shader_param/brightness_level = 0
-shader_param/precision = 0.1
+shader_param/precision = 0.27
