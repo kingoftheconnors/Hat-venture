@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://gui/EnemyPalette.tres" type="Material" id=1]
 [ext_resource path="res://enemy/RoboKurt/RobokurtStateMachine.tres" type="AnimationNodeStateMachine" id=2]
@@ -70,6 +70,18 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CollisionShape2D2:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -231,8 +243,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=6]
-length = 1.75
-loop = true
+length = 1.7
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position:y")
@@ -246,31 +257,17 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0.0, -16.0, 0.0, 0.0, -16.0, 0.0, 0.0, -48.0, 0.0 ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
+tracks/1/type = "value"
+tracks/1/path = NodePath("EnemyCore:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 1.7 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "increase_idle_count"
-} ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("EnemyCore:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0, 0.25, 0.4, 0.5, 0.7, 0.85, 0.95, 1.35, 1.7 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 3, 4, 2, 3, 4, 2, 3, 4, 2 ]
+"values": [ 3, 4, 2, 3, 4, 2, 3, 4, 0 ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -315,6 +312,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CollisionShape2D2:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -384,6 +393,18 @@ tracks/4/keys = {
 "method": "set_side_to_closest_to_current_pos"
 } ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("CollisionShape2D2:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=9]
 length = 0.6
@@ -448,6 +469,37 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "idle"
+length = 0.7
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "increase_idle_count"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("EnemyCore:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 1, 0 ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -721,6 +773,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=17]
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=23]
+
 [sub_resource type="AnimationNodeStateMachinePlayback" id=18]
 
 [sub_resource type="CapsuleShape2D" id=19]
@@ -746,7 +800,6 @@ material = ExtResource( 1 )
 position = Vector2( 2, -7 )
 texture = ExtResource( 7 )
 hframes = 9
-frame = 1
 script = ExtResource( 3 )
 enemy_hp = 6
 
@@ -761,6 +814,7 @@ anims/hopping = SubResource( 6 )
 anims/hurt = SubResource( 7 )
 anims/hurt_bounce = SubResource( 8 )
 anims/hurtflash = SubResource( 9 )
+anims/idle = SubResource( 22 )
 anims/jump = SubResource( 10 )
 anims/pound_fall = SubResource( 11 )
 anims/pound_smash = SubResource( 12 )
@@ -778,6 +832,7 @@ parameters/conditions/pound = false
 parameters/hurt/HurtState/playback = SubResource( 17 )
 parameters/hurt/HurtState/conditions/fall_complete = false
 parameters/hurt/IsFlashing/add_amount = 1.0
+parameters/jump/playback = SubResource( 23 )
 parameters/pound/playback = SubResource( 18 )
 script = ExtResource( 6 )
 
@@ -804,6 +859,7 @@ shape = SubResource( 20 )
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 4 )
 shape = SubResource( 21 )
+disabled = true
 
 [node name="Node2D" type="Node2D" parent="."]
 
