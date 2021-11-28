@@ -207,7 +207,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Hat- Venture"
-run/main_scene="res://level-select/ship.tscn"
+run/main_scene="res://level-select/bedroom.tscn"
 config/icon="res://icon.png"
 
 [autoload]

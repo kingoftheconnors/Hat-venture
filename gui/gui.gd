@@ -210,6 +210,8 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 		Gui.cover()
 	elif next_box.has("fadein"):
 		Gui.reveal()
+	elif next_box.has("addpon"):
+		PlayerGameManager.add_pons(next_box["addpon"])
 	
 	# Wait for program to return signal that we can continue scene
 	if next_box.has("delay"):

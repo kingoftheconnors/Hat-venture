@@ -223,6 +223,17 @@ script = ExtResource( 24 )
 
 [node name="Tween" type="Tween" parent="DustCloud"]
 
+[node name="HatKidRoom" parent="." instance=ExtResource( 9 )]
+position = Vector2( -30, -40 )
+dialog_num = 18
+
+[node name="Spawn2" type="Node2D" parent="." groups=[
+"spawn",
+]]
+position = Vector2( -30, -40 )
+script = ExtResource( 16 )
+spawn_num = 3
+
 [connection signal="action1" from="Display/DialogBox" to="Display" method="pressed"]
 [connection signal="action2" from="Display/DialogBox" to="CameraCapture" method="capture"]
 [connection signal="action3" from="Display/DialogBox" to="DoorDialog" method="enable"]
@@ -251,8 +262,8 @@ script = ExtResource( 24 )
 [connection signal="action8" from="DoorDialog" to="Player" method="stop_watching"]
 [connection signal="action9" from="DoorDialog" to="Camera" method="screen_shake" binds= [ 0, 3.0 ]]
 [connection signal="action9" from="DoorDialog" to="LilenController" method="generate" binds= [ 16 ]]
-[connection signal="actionA" from="DoorDialog" to="DustCloud" method="hide"]
 [connection signal="actionA" from="DoorDialog" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target4", 1, 1 ]]
+[connection signal="actionA" from="DoorDialog" to="DustCloud" method="hide"]
 [connection signal="actionA" from="DoorDialog" to="LilenController" method="get_timepieces"]
 [connection signal="actionA" from="DoorDialog" to="LilenController" method="hide_after_reaching_pos"]
 [connection signal="actionA" from="DoorDialog" to="LilenController" method="recall"]
@@ -267,3 +278,33 @@ script = ExtResource( 24 )
 [connection signal="actionK" from="DoorDialog" to="Timmy" method="fly_to"]
 [connection signal="actionL" from="DoorDialog" to="Timmy" method="look_at_node" binds= [ "../Timmy" ]]
 [connection signal="tween_all_completed" from="DustCloud/Tween" to="DustCloud" method="_on_Tween_tween_all_completed"]
+[connection signal="action1" from="HatKidRoom" to="Player" method="watch_node" binds= [ "../Timmy" ]]
+[connection signal="action1" from="HatKidRoom" to="Player" method="bounce_back" binds= [ "../WalkTo_Target4" ]]
+[connection signal="action1" from="HatKidRoom" to="Timmy" method="make_visible"]
+[connection signal="action2" from="HatKidRoom" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target1" ]]
+[connection signal="action3" from="HatKidRoom" to="CameraCapture2" method="capture"]
+[connection signal="action4" from="HatKidRoom" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target2", -1, 1 ]]
+[connection signal="action4" from="HatKidRoom" to="Timmy" method="teleport_to" binds= [ "../Teleport_Target" ]]
+[connection signal="action5" from="HatKidRoom" to="Player" method="walk_to" binds= [ "../WalkTo_Target3" ]]
+[connection signal="action5" from="HatKidRoom" to="Player" method="teleport_to" binds= [ "../Teleport_Target" ]]
+[connection signal="action6" from="HatKidRoom" to="Player" method="fly_to" binds= [ "../WalkTo_Target2" ]]
+[connection signal="action7" from="HatKidRoom" to="Player" method="blow_back" binds= [ true ]]
+[connection signal="action7" from="HatKidRoom" to="CameraCapture2" method="capture_release" binds= [ false ]]
+[connection signal="action8" from="HatKidRoom" to="Player" method="stop_watching"]
+[connection signal="action9" from="HatKidRoom" to="Camera" method="screen_shake" binds= [ 0, 3.0 ]]
+[connection signal="action9" from="HatKidRoom" to="LilenController" method="generate" binds= [ 16 ]]
+[connection signal="actionA" from="HatKidRoom" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target4", 1, 1 ]]
+[connection signal="actionA" from="HatKidRoom" to="DustCloud" method="hide"]
+[connection signal="actionA" from="HatKidRoom" to="LilenController" method="get_timepieces"]
+[connection signal="actionA" from="HatKidRoom" to="LilenController" method="hide_after_reaching_pos"]
+[connection signal="actionA" from="HatKidRoom" to="LilenController" method="recall"]
+[connection signal="actionB" from="HatKidRoom" to="Timmy" method="walk_to_then_leave" binds= [ "../DoorDialog" ]]
+[connection signal="actionC" from="HatKidRoom" to="Player" method="jump"]
+[connection signal="actionD" from="HatKidRoom" to="Player" method="walk_to" binds= [ "../DoorDialog" ]]
+[connection signal="actionE" from="HatKidRoom" to="Camera" method="screen_shake" binds= [ 12 ]]
+[connection signal="actionF" from="HatKidRoom" to="DustCloud" method="show"]
+[connection signal="actionG" from="HatKidRoom" to="Player" method="bounce_towards" binds= [ -2 ]]
+[connection signal="actionH" from="HatKidRoom" to="Timmy" method="bounce_towards" binds= [ -1 ]]
+[connection signal="actionJ" from="HatKidRoom" to="Timmy" method="fly_to" binds= [ "../WalkTo_Target2" ]]
+[connection signal="actionK" from="HatKidRoom" to="Timmy" method="fly_to"]
+[connection signal="actionL" from="HatKidRoom" to="Timmy" method="look_at_node" binds= [ "../Timmy" ]]

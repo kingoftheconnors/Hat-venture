@@ -20,6 +20,13 @@ enum DIALOG_TYPE {
 	TIMMY_SHIP_3_RADICAL = 15,
 	TIMMY_SHIP_VAULT = 16,
 	LEVEL_1_CHASE_LILENS = 17,
+	GOTO_BEDROOM = 18,
+	GOTO_SHIP_FROM_BEDROOM = 19,
+	BED = 20,
+	CLOSET = 21,
+	CHEST = 22,
+	CHEST_YES = 23,
+	CHEST_NO = 24,
 }
 
 # Textbox Format:
@@ -254,4 +261,37 @@ func get_dialog(text_num):
 				{signal = "action1"},
 				{signal = "action2", delay=5},
 				{signal = "action3", delay=2},
+			]
+		DIALOG_TYPE.GOTO_BEDROOM:
+			return [
+				{level = "res://level-select/bedroom.tscn", spawn_point = 2}
+			]
+		DIALOG_TYPE.GOTO_SHIP_FROM_BEDROOM:
+			return [
+				{level = "res://level-select/ship.tscn", spawn_point = 3}
+			]
+		DIALOG_TYPE.BED:
+			return [
+				{name = "", text = "Your bed. It's very comfy!"},
+				{name = "", text = "Unfortunately, there’s exploring to do. No time for sleeping!"},
+			]
+		DIALOG_TYPE.CLOSET:
+			return [
+				{name = "", text = "A closet! You only wear one outfit, so there’s plenty of room for skeletons."},
+			]
+		DIALOG_TYPE.CHEST:
+			return [
+				{name = "", text = "It's a chest. Open it?", options = {"YES": DIALOG_TYPE.CHEST_YES, "NO": DIALOG_TYPE.CHEST_NO}}
+			]
+		DIALOG_TYPE.CHEST_YES:
+			return [
+				{name = "", text = "There’s a few stuffed animals you keep based on people you’ve met in the past."},
+				{name = "", text = "You’re a big fan of the noodle-y fellow, but you’ve never met someone like that before..."},
+				{name = "", text = "Regardless, there’s also a pon in here!", if_tag_false = "get_chest_pon"},
+				{addpon = 1},
+				{settag = "get_chest_pon", value = true},
+			]
+		DIALOG_TYPE.CHEST_NO:
+			return [
+				{name = "", text = "You decide to keep the chest’s contents a secret."},
 			]
