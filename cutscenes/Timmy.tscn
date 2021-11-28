@@ -21,7 +21,7 @@ tracks/0/keys = {
 "values": [ 10 ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=3]
 resource_name = "fly"
 length = 0.3
 tracks/0/type = "value"
@@ -37,7 +37,7 @@ tracks/0/keys = {
 "values": [ 9 ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=4]
 resource_name = "mean_idle"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -52,8 +52,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "psychic"
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -67,7 +66,7 @@ tracks/0/keys = {
 "values": [ 4 ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=6]
 resource_name = "sass"
 length = 0.4
 loop = true
@@ -84,7 +83,7 @@ tracks/0/keys = {
 "values": [ 0, 12 ]
 }
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=7]
 resource_name = "surprise"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -99,7 +98,7 @@ tracks/0/keys = {
 "values": [ 7 ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=8]
 resource_name = "talk"
 length = 0.4
 loop = true
@@ -116,8 +115,7 @@ tracks/0/keys = {
 "values": [ 10, 11 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "walk"
+[sub_resource type="Animation" id=9]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -133,34 +131,34 @@ tracks/0/keys = {
 "values": [ 1, 2, 3 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "fly"
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "psychic"
 
-[sub_resource type="AnimationNodeAnimation" id=19]
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "sass"
 
-[sub_resource type="AnimationNodeAnimation" id=28]
+[sub_resource type="AnimationNodeAnimation" id=14]
 animation = "surprise"
 
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id=15]
 animation = "talk"
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "walk"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=21]
 
@@ -174,30 +172,30 @@ animation = "walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=26]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
 
-[sub_resource type="AnimationNodeStateMachine" id=12]
-states/fly/node = SubResource( 18 )
+[sub_resource type="AnimationNodeStateMachine" id=29]
+states/fly/node = SubResource( 10 )
 states/fly/position = Vector2( 40, 51 )
-states/idle/node = SubResource( 5 )
+states/idle/node = SubResource( 11 )
 states/idle/position = Vector2( 188, 51 )
-states/psychic/node = SubResource( 6 )
+states/psychic/node = SubResource( 12 )
 states/psychic/position = Vector2( 308, 154 )
-states/sass/node = SubResource( 19 )
+states/sass/node = SubResource( 13 )
 states/sass/position = Vector2( 70, 154 )
-states/surprise/node = SubResource( 28 )
+states/surprise/node = SubResource( 14 )
 states/surprise/position = Vector2( 188, -31.9686 )
-states/talk/node = SubResource( 20 )
+states/talk/node = SubResource( 15 )
 states/talk/position = Vector2( 188, 201 )
-states/walk/node = SubResource( 7 )
+states/walk/node = SubResource( 16 )
 states/walk/position = Vector2( 347, 51 )
-transitions = [ "walk", "idle", SubResource( 8 ), "idle", "walk", SubResource( 9 ), "idle", "psychic", SubResource( 10 ), "psychic", "idle", SubResource( 11 ), "idle", "fly", SubResource( 21 ), "fly", "idle", SubResource( 22 ), "idle", "sass", SubResource( 23 ), "sass", "idle", SubResource( 24 ), "idle", "talk", SubResource( 25 ), "talk", "idle", SubResource( 26 ), "idle", "surprise", SubResource( 29 ), "surprise", "idle", SubResource( 30 ) ]
+transitions = [ "walk", "idle", SubResource( 17 ), "idle", "walk", SubResource( 18 ), "idle", "psychic", SubResource( 19 ), "psychic", "idle", SubResource( 20 ), "idle", "fly", SubResource( 21 ), "fly", "idle", SubResource( 22 ), "idle", "sass", SubResource( 23 ), "sass", "idle", SubResource( 24 ), "idle", "talk", SubResource( 25 ), "talk", "idle", SubResource( 26 ), "idle", "surprise", SubResource( 27 ), "surprise", "idle", SubResource( 28 ) ]
 start_node = "idle"
 graph_offset = Vector2( -206.195, -31.3926 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=30]
 
 [node name="Timmy" type="KinematicBody2D"]
 pause_mode = 2
@@ -217,16 +215,16 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 2 )
-anims/fly = SubResource( 14 )
-anims/mean_idle = SubResource( 17 )
-anims/psychic = SubResource( 3 )
-anims/sass = SubResource( 15 )
-anims/surprise = SubResource( 27 )
-anims/talk = SubResource( 16 )
-anims/walk = SubResource( 4 )
+anims/fly = SubResource( 3 )
+anims/mean_idle = SubResource( 4 )
+anims/psychic = SubResource( 5 )
+anims/sass = SubResource( 6 )
+anims/surprise = SubResource( 7 )
+anims/talk = SubResource( 8 )
+anims/walk = SubResource( 9 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 12 )
+tree_root = SubResource( 29 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 13 )
+parameters/playback = SubResource( 30 )
