@@ -83,6 +83,7 @@ var text_crawl_func
 var dialog_active = false
 var cur_speaking_name = ""
 const LINE_LENGTH = 30
+const DIALOG_AUTOSCROLL_NEXTBOX_DELAY : float = 1.0
 
 func _process(delta):
 	if !menu_exists:
@@ -190,6 +191,10 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 		SaveSystem.access_data().set_tag(next_box['settag'], next_box['value'])
 	elif next_box.has("queue"):
 		queue_dialog_at_front(next_box.starter, next_box['queue'])
+	elif next_box.has("delaytil_animate1_method_true"):
+		text_crawl_func = wait_for_method_true(next_box.starter, "animate1_method_true", next_box['delaytil_animate1_method_true'])
+	elif next_box.has("delaytil_animate2_method_true"):
+		text_crawl_func = wait_for_method_true(next_box.starter, "animate2_method_true", next_box['delaytil_animate2_method_true'])
 	elif next_box.has("enable"):
 		for body in next_box['enable']:
 			body.set_pause_mode(PAUSE_MODE_PROCESS)
@@ -200,6 +205,8 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 		next_box['unfreeze_player'].set_freeze(false)
 	elif next_box.has("freeze_player"):
 		next_box['freeze_player'].set_freeze(true)
+	elif next_box.has("brightness"):
+		set_brightness_param(next_box['brightness'])
 	elif next_box.has("level"):
 		var spawn_point = -1
 		if next_box.has('spawn_point'):
@@ -212,6 +219,8 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 		Gui.reveal()
 	elif next_box.has("addpon"):
 		PlayerGameManager.add_pons(next_box["addpon"])
+	elif next_box.has("queue_free"):
+		next_box['queue_free'].queue_free()
 	
 	# Wait for program to return signal that we can continue scene
 	if next_box.has("delay"):
@@ -260,16 +269,21 @@ func crawl(text_box):
 		lettersVisible += delta * speed * letters_per_sec
 		if dialogText.visible_characters > LINE_LENGTH*2-1:
 			# Wait for user input
-			while(!Input.is_action_just_pressed("ui_accept") and !Input.is_action_just_pressed("ui_B")):
-				yield()
+			if text_box.has("autoscroll") and text_box.autoscroll:
+				var time_passed = 0
+				while time_passed < DIALOG_AUTOSCROLL_NEXTBOX_DELAY:
+					time_passed += yield()
+			else:
+				while(!Input.is_action_just_pressed("ui_accept") and !Input.is_action_just_pressed("ui_B")):
+					yield()
 			dialogText.lines_skipped += 2
 			lettersVisible -= LINE_LENGTH*2
 			dialogText.set_visible_characters(int(lettersVisible))
-		elif Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_B"):
+		elif (!text_box.has("autoscroll") or !text_box.autoscroll) and (Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_B")):
 			# Set letters to fill if the user pressed A
 			# or if they pressed B and the textbox has options
 			lettersVisible = LINE_LENGTH*2
-		if Input.is_action_just_pressed("ui_B") and !text_box.has("options"):
+		if (!text_box.has("autoscroll") or !text_box.autoscroll) and Input.is_action_just_pressed("ui_B") and !text_box.has("options"):
 			# Check if this is the last textbox.
 			# If it is, add delay so player won't activate powers on accident
 			var text_queue_finished = true
@@ -295,9 +309,18 @@ func crawl(text_box):
 		queue_dialog_at_front(text_box.starter, selected_option)
 	else:
 		# Wait for user input
-		while(!Input.is_action_just_pressed("ui_accept") and !Input.is_action_just_pressed("ui_B")):
-			yield()
+		if text_box.has("autoscroll") and text_box.autoscroll:
+			var time_passed = 0
+			while time_passed < DIALOG_AUTOSCROLL_NEXTBOX_DELAY:
+				time_passed += yield()
+		else:
+			while(!Input.is_action_just_pressed("ui_accept") and !Input.is_action_just_pressed("ui_B")):
+				yield()
 	return
+
+func wait_for_method_true(object : Node, function_name : String, param):
+	while object.call(function_name, param) == false:
+		yield()
 
 ## Sets score multiplicity to visible or invisible
 ## based on the amount of time left. Visualizes the speed at
@@ -365,6 +388,8 @@ func set_palette(palette_name):
 	$PaletteFilter.set_palette(palette_name)
 func set_brightness(val):
 	$PaletteFilter.set_brightness(val)
+func set_brightness_param(val):
+	$PaletteFilter.set_brightness_param(val)
 
 ### ------------------------------
 ### Parallax

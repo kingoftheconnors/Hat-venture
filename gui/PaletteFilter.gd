@@ -35,6 +35,13 @@ func set_brightness(val : int):
 	cur_brightness = val
 	update_colors()
 
+func set_brightness_param(val : int):
+	var spriteFilter = $SpriteFilter
+	var playerFilter = $PlayerFilter
+	material.set_shader_param("brightness_level", val)
+	#spriteFilter.material.set_shader_param("brightness_level", val)
+	#playerFilter.material.set_shader_param("brightness_level", val)
+
 const palettes = {
 	Classic = [
 		Color(1, 1, 1, 1),

@@ -6,6 +6,7 @@ extends KinematicBody2D
 
 signal off_cliff
 signal dead
+signal landed_on_ground
 
 # BASIC MOVEMENT
 const PLAYER_GRAVITY = 10
@@ -586,6 +587,7 @@ func manage_flags():
 	
 	# First frame on ground
 	if is_on_floor() and air_time:
+		emit_signal("landed_on_ground")
 		air_time = false
 		PlayerGameManager.set_multiplicity_fast_decrease(true)
 		animator["parameters/PlayerMovement/conditions/jumping"] = false
@@ -662,7 +664,7 @@ func _process(_delta):
 		uncrouch()
 
 onready var wall_jump_checker : RayCast2D = $"ScaleChildren/WallJumpChecker"
-func jump():
+func jump(minijump : bool = false):
 	# Jump sfx
 	if velo.y >= 0:
 		SoundSystem.start_sound(SoundSystem.SFX.JUMP)
@@ -680,6 +682,8 @@ func jump():
 		if diving:
 			undive()
 		refresh_dive()
+	elif minijump:
+		push(Vector2(0, -DIVE_OUT_STRENGTH))
 	elif !diving: # Basic Jump
 		push(Vector2(0, -JUMP_STRENGTH))
 	else: # Out-of-dive Jump

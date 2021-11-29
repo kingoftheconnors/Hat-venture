@@ -27,6 +27,7 @@ enum DIALOG_TYPE {
 	CHEST = 22,
 	CHEST_YES = 23,
 	CHEST_NO = 24,
+	GOOD_MORNING_HATKID = 25,
 }
 
 # Textbox Format:
@@ -272,26 +273,51 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.BED:
 			return [
-				{name = "", text = "Your bed. It's very comfy!"},
-				{name = "", text = "Unfortunately, there’s exploring to do. No time for sleeping!"},
+				{name = "XD", text = "Your bed. It's very comfy!"},
+				{name = ":T", text = "Unfortunately, there’s exploring to do. No time for sleeping!"},
 			]
 		DIALOG_TYPE.CLOSET:
 			return [
-				{name = "", text = "A closet! You only wear one outfit, so there’s plenty of room for skeletons."},
+				{name = ":]", text = "A closet! You only wear one outfit, so there’s plenty of room for skeletons."},
 			]
 		DIALOG_TYPE.CHEST:
 			return [
-				{name = "", text = "It's a chest. Open it?", options = {"YES": DIALOG_TYPE.CHEST_YES, "NO": DIALOG_TYPE.CHEST_NO}}
+				{name = ":o", text = "It's a chest. Open it?", options = {"YES": DIALOG_TYPE.CHEST_YES, "NO": DIALOG_TYPE.CHEST_NO}}
 			]
 		DIALOG_TYPE.CHEST_YES:
 			return [
-				{name = "", text = "There’s a few stuffed animals you keep based on people you’ve met in the past."},
-				{name = "", text = "You’re a big fan of the noodle-y fellow, but you’ve never met someone like that before..."},
-				{name = "", text = "Regardless, there’s also a pon in here!", if_tag_false = "get_chest_pon"},
+				{name = ":D", text = "There’s a few stuffed animals you keep based on people you’ve met in the past."},
+				{name = ":T", text = "You’re a big fan of the noodle-y fellow, but you’ve never met someone like that before..."},
+				{name = ":D", text = "Regardless, there’s also a pon in here!", if_tag_false = "get_chest_pon"},
 				{addpon = 1},
 				{settag = "get_chest_pon", value = true},
 			]
 		DIALOG_TYPE.CHEST_NO:
 			return [
-				{name = "", text = "You decide to keep the chest’s contents a secret."},
+				{name = ":X", text = "You decide to keep the chest’s contents a secret."},
+			]
+		DIALOG_TYPE.GOOD_MORNING_HATKID:
+			return [
+				# Teleport
+				{signal = "action1", if_tag_false = "goodmorning_complete"},
+				# Start sleeping animations
+				{animate1 = "sleep", if_tag_false = "goodmorning_complete"},
+				{animate2 = "sleep", if_tag_false = "goodmorning_complete"},
+				# Brightness
+				{brightness = -1, delay = 5, if_tag_false = "goodmorning_complete"},
+				# Start JUMP animation
+				{brightness = 0, if_tag_false = "goodmorning_complete"},
+				{signal = "actionJ", if_tag_false = "goodmorning_complete"},
+				#{animate1 = "fall_out_bed", if_tag_false = "goodmorning_complete"},
+				# Start speaker (TODO: SLOW TEXT DOWN ON "GOOOOOOD")
+				{name = "Speaker", text = "Goooood morning! And welcome to yet another day of adventure!!", if_tag_false = "goodmorning_complete", autoscroll = true},
+				{name = "Speaker", text = "You are currently situated in: GRASSY-LANDS. All systems are operational!", if_tag_false = "goodmorning_complete", autoscroll = true},
+				# Hat Kid stands up
+				# TODO: Wait for Hat Kid's condition "not_jumping" to be true and hat to be on Hat Kid
+				{delaytil_animate2_method_true = "is_hat_fall_finished", if_tag_false = "goodmorning_complete"},
+				{animate2 = "invisible", if_tag_false = "goodmorning_complete"},
+				{signal = "actionK", if_tag_false = "goodmorning_complete"},
+				#{animate1 = "get_up", if_tag_false = "goodmorning_complete"},
+				{name = "Speaker", text = "Today’s to-do list includes: waking up, adjusting to your surroundings, and exploring!", if_tag_false = "goodmorning_complete", autoscroll = true},
+				{settag = "goodmorning_complete", value = true},
 			]

@@ -35,12 +35,17 @@ func queue_dialog_by_id(dialog_id, player_body = null):
 		Gui.queue_text(self, {"unfreeze_player": player_body})
 	Gui.queue_text(self, {"disable": active_bodies})
 	if one_shot:
-		queue_free()
+		Gui.queue_text(self, {"queue_free": self})
 
 func animate1(animation_name : String):
 	get_node(animate1).animate(animation_name)
 func animate2(animation_name : String):
 	get_node(animate2).animate(animation_name)
+
+func animate1_method_true(function_name : String):
+	return get_node(animate1).call(function_name)
+func animate2_method_true(function_name : String):
+	return get_node(animate2).call(function_name)
 
 func set_dialog_option(dialog_id : int):
 	dialog_num = dialog_id
@@ -49,7 +54,7 @@ func enable():
 	enabled = true
 
 func _ready():
-	if start_on_load:
+	if start_on_load and enabled:
 		var players : Array = get_tree().get_nodes_in_group("player_root")
 		if players != null and players.size() > 0:
 			queue_dialog(players[0])

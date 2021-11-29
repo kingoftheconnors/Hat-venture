@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://level-select/background2.png" type="Texture" id=2]
 [ext_resource path="res://level.gd" type="Script" id=3]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
@@ -9,8 +8,220 @@
 [ext_resource path="res://level-select/shiproom2.png" type="Texture" id=7]
 [ext_resource path="res://NPCs/DialogBox.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Music/startSong.gd" type="Script" id=10]
+[ext_resource path="res://player/regular/askew_hat.png" type="Texture" id=11]
+[ext_resource path="res://player/regular/hat.png" type="Texture" id=12]
 [ext_resource path="res://common/TileInstancer.gd" type="Script" id=15]
 [ext_resource path="res://common/SpawnPoint.gd" type="Script" id=16]
+
+[sub_resource type="Animation" id=70]
+resource_name = "hat_fall"
+length = 2.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScaleChildren/Hat:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ScaleChildren/Hat:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15, 0.25, 0.35, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0.0, 90.0, 180.0, 270.0, 0.0 ]
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("ScaleChildren/Hat:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( -34, -0.25, 0, 0.125587, 1, -8.00011, -0.202317, -1.33323, 0.137165, 0.350934, 16, -0.370913, 0.46348, 0.271405, -0.742152, -8.05105, -0.369917, 1.60751, 0.202074, 5.13581, 6, -0.296716, -1.19097, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4, 1, 1.65, 2.2 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("ScaleChildren/Hat:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( -10.1787, -0.25, 0, 0.0837245, -1, -14.3333, -0.337207, -11.3334, 0.0472666, 7.48788, -9.33333, -0.376008, 3.69355, 0.0495264, 0.0766506, -4.33333, -0.338784, 2.71232, 0.0196379, 3.91796, 1.66667, -0.381459, -0.474533, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4, 1, 1.65, 2.2 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ScaleChildren/Hat:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1, 1.65 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ScaleChildren/Hat:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=71]
+resource_name = "hat_invisible"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ScaleChildren/PlayerCore:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 11 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ScaleChildren/PlayerCore:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ScaleChildren/PlayerCore:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ScaleChildren/Hat:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=73]
+resource_name = "invisible"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScaleChildren/Hat:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=69]
+resource_name = "sleep"
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScaleChildren/Hat:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ScaleChildren/Hat:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -34, -8 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ScaleChildren/Hat:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="GDScript" id=72]
+script/source = "extends AnimationPlayer
+
+func animate(animation_name : String):
+	play(animation_name)
+
+var hat_fall_started := false
+func _on_Player_landed_on_ground():
+	if current_animation == \"sleep\":
+		play(\"hat_fall\")
+		hat_fall_started = true
+
+func is_hat_fall_finished():
+	return hat_fall_started and current_animation != \"hat_fall\"
+"
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 3 )
@@ -37,26 +248,17 @@ position = Vector2( 72, -48 )
 z_index = -2
 texture = ExtResource( 2 )
 
-[node name="BackgroundTiles" type="TileMap" parent="."]
-position = Vector2( 8, 8 )
-z_index = -1
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 16, 16 )
-cell_quadrant_size = 4
-collision_layer = 2
-collision_mask = 3
-format = 1
-tile_data = PoolIntArray( -196611, 17, 0, -196610, 17, 0, -196609, 17, 0 )
-script = ExtResource( 15 )
-
 [node name="shiproom1" type="Sprite" parent="."]
 position = Vector2( 72, -64 )
 z_index = -1
 texture = ExtResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( -16, -32 )
+position = Vector2( -24, -20 )
 rotation = 4.46638e-06
+
+[node name="Teleport_Target" type="Node2D" parent="."]
+position = Vector2( -24, -20 )
 
 [node name="Camera" parent="." instance=ExtResource( 5 )]
 position = Vector2( 72, -80 )
@@ -64,6 +266,34 @@ process_mode = 0
 limit_left = -10000126
 drag_margin_v_enabled = true
 smoothing_speed = 12.0
+
+[node name="ScaleChildren" type="Node2D" parent="."]
+position = Vector2( -24, -20 )
+rotation = 4.46638e-06
+
+[node name="Hat" type="Sprite" parent="ScaleChildren"]
+visible = false
+position = Vector2( -34, -8 )
+z_index = 2
+texture = ExtResource( 12 )
+hframes = 2
+
+[node name="HatAnimator" type="AnimationPlayer" parent="ScaleChildren"]
+pause_mode = 2
+root_node = NodePath("../..")
+anims/hat_fall = SubResource( 70 )
+anims/hat_invisible = SubResource( 71 )
+anims/invisible = SubResource( 73 )
+anims/sleep = SubResource( 69 )
+script = SubResource( 72 )
+
+[node name="HatKidOpeningCutscene" parent="." instance=ExtResource( 9 )]
+position = Vector2( 200, -32 )
+dialog_num = 25
+one_shot = true
+start_on_load = true
+animate1 = NodePath("../Player")
+animate2 = NodePath("../ScaleChildren/HatAnimator")
 
 [node name="Music" type="Node" parent="."]
 pause_mode = 2
@@ -92,3 +322,8 @@ dialog_num = 21
 [node name="Bed" parent="." instance=ExtResource( 9 )]
 position = Vector2( -16, -32 )
 dialog_num = 20
+
+[connection signal="landed_on_ground" from="Player" to="ScaleChildren/HatAnimator" method="_on_Player_landed_on_ground"]
+[connection signal="action1" from="HatKidOpeningCutscene" to="Player" method="teleport_to" binds= [ "../Teleport_Target" ]]
+[connection signal="actionJ" from="HatKidOpeningCutscene" to="Player" method="jump"]
+[connection signal="actionK" from="HatKidOpeningCutscene" to="Player" method="jump" binds= [ true ]]
