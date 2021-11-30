@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
+[ext_resource path="res://level-select/Door.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level-select/background2.png" type="Texture" id=2]
 [ext_resource path="res://level.gd" type="Script" id=3]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
@@ -13,7 +14,7 @@
 [ext_resource path="res://common/TileInstancer.gd" type="Script" id=15]
 [ext_resource path="res://common/SpawnPoint.gd" type="Script" id=16]
 
-[sub_resource type="Animation" id=70]
+[sub_resource type="Animation" id=1]
 resource_name = "hat_fall"
 length = 2.2
 step = 0.05
@@ -86,7 +87,7 @@ tracks/5/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=71]
+[sub_resource type="Animation" id=2]
 resource_name = "hat_invisible"
 length = 0.3
 step = 0.05
@@ -151,7 +152,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=73]
+[sub_resource type="Animation" id=3]
 resource_name = "invisible"
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/Hat:visible")
@@ -166,7 +167,7 @@ tracks/0/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=69]
+[sub_resource type="Animation" id=4]
 resource_name = "sleep"
 loop = true
 step = 0.05
@@ -207,8 +208,11 @@ tracks/2/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="GDScript" id=72]
+[sub_resource type="GDScript" id=5]
 script/source = "extends AnimationPlayer
+
+signal hat_kid_fell
+signal hat_fall_finished
 
 func animate(animation_name : String):
 	play(animation_name)
@@ -218,8 +222,10 @@ func _on_Player_landed_on_ground():
 	if current_animation == \"sleep\":
 		play(\"hat_fall\")
 		hat_fall_started = true
+		emit_signal(\"hat_kid_fell\")
 
 func is_hat_fall_finished():
+	emit_signal(\"hat_fall_finished\")
 	return hat_fall_started and current_animation != \"hat_fall\"
 "
 
@@ -281,11 +287,11 @@ hframes = 2
 [node name="HatAnimator" type="AnimationPlayer" parent="ScaleChildren"]
 pause_mode = 2
 root_node = NodePath("../..")
-anims/hat_fall = SubResource( 70 )
-anims/hat_invisible = SubResource( 71 )
-anims/invisible = SubResource( 73 )
-anims/sleep = SubResource( 69 )
-script = SubResource( 72 )
+anims/hat_fall = SubResource( 1 )
+anims/hat_invisible = SubResource( 2 )
+anims/invisible = SubResource( 3 )
+anims/sleep = SubResource( 4 )
+script = SubResource( 5 )
 
 [node name="HatKidOpeningCutscene" parent="." instance=ExtResource( 9 )]
 position = Vector2( 200, -32 )
@@ -311,6 +317,10 @@ spawn_num = 2
 position = Vector2( 200, -32 )
 dialog_num = 19
 
+[node name="Door" parent="HatKidRoom" instance=ExtResource( 1 )]
+position = Vector2( 0, 8 )
+scale = Vector2( -1, 1 )
+
 [node name="ToyChest" parent="." instance=ExtResource( 9 )]
 position = Vector2( 104, -32 )
 dialog_num = 22
@@ -327,3 +337,7 @@ dialog_num = 20
 [connection signal="action1" from="HatKidOpeningCutscene" to="Player" method="teleport_to" binds= [ "../Teleport_Target" ]]
 [connection signal="actionJ" from="HatKidOpeningCutscene" to="Player" method="jump"]
 [connection signal="actionK" from="HatKidOpeningCutscene" to="Player" method="jump" binds= [ true ]]
+[connection signal="body_entered" from="HatKidRoom/DialogBox" to="HatKidRoom/Door" method="play_if_player" binds= [ "open" ]]
+[connection signal="body_exited" from="HatKidRoom/DialogBox" to="HatKidRoom/Door" method="play_if_player" binds= [ "close" ]]
+
+[editable path="HatKidRoom"]
