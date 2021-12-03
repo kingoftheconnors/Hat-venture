@@ -100,6 +100,7 @@ func _process(delta):
 		render_score_mult()
 
 var menu_exists: bool = false
+var can_skip_cutscene : bool = true
 func _unhandled_input(event):
 	if event.is_action_pressed("toggle_hud"):
 		gui.visible = !gui.visible
@@ -107,12 +108,13 @@ func _unhandled_input(event):
 	if event.is_action_pressed("ui_menu"):
 		if menu_exists == false:
 			if dialog_active:
-				# skip cutscene menu
-				var iOptionsMenu = preload("res://gui/optionsmenu/SkipCutsceneMenu.tscn").instance()
-				get_node("/root/Gui").add_child(iOptionsMenu)
-				iOptionsMenu.connect("tree_exited", self, "_on_menu_tree_exited")
-				iOptionsMenu.connect("skip_cutscene", self, "skip_cutscene")
-				menu_exists = true
+				if can_skip_cutscene:
+					# skip cutscene menu
+					var iOptionsMenu = preload("res://gui/optionsmenu/SkipCutsceneMenu.tscn").instance()
+					get_node("/root/Gui").add_child(iOptionsMenu)
+					iOptionsMenu.connect("tree_exited", self, "_on_menu_tree_exited")
+					iOptionsMenu.connect("skip_cutscene", self, "skip_cutscene")
+					menu_exists = true
 			else:
 				if !get_tree().paused:
 					var iOptionsMenu = preload("res://gui/optionsmenu/SettingsMenu.tscn").instance()
@@ -160,12 +162,12 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 		and SaveSystem.access_data().get_tag(next_box['if_tag_false']) != false:
 		return
 	if next_box.has("if_tag_true") \
-		and SaveSystem.access_data().get_tag(next_box['if_tag_false']) != true:
+		and SaveSystem.access_data().get_tag(next_box['if_tag_true']) != true:
 		return
 	
 	cur_speaking_name = ""
 	if next_box.has("name"):
-		if skip_events == Constants.SKIP_TYPE.RUN:
+		if skip_events == Constants.SKIP_TYPE.RUN or next_box.has("unskippable"):
 			gui.visible = false
 			dialog.visible = true
 			dialogName.text = next_box.name
@@ -179,28 +181,34 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 			var next_textbox_num = next_box.options[first_option]
 			queue_dialog_at_front(next_box.starter, next_textbox_num)
 	elif next_box.has("signal"):
-		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS:
+		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS or next_box.has("unskippable"):
 			next_box.starter.emit_signal(next_box.signal)
 	elif next_box.has("animate1"):
-		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS:
+		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS or next_box.has("unskippable"):
 			next_box.starter.animate1(next_box.animate1)
 	elif next_box.has("animate2"):
-		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS:
+		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS or next_box.has("unskippable"):
 			next_box.starter.animate2(next_box.animate2)
 	elif next_box.has("settag"):
 		SaveSystem.access_data().set_tag(next_box['settag'], next_box['value'])
 	elif next_box.has("queue"):
 		queue_dialog_at_front(next_box.starter, next_box['queue'])
 	elif next_box.has("delaytil_animate1_method_true"):
-		text_crawl_func = wait_for_method_true(next_box.starter, "animate1_method_true", next_box['delaytil_animate1_method_true'])
+		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS or next_box.has("unskippable"):
+			text_crawl_func = wait_for_method_true(next_box.starter, "animate1_method_true", next_box['delaytil_animate1_method_true'])
 	elif next_box.has("delaytil_animate2_method_true"):
-		text_crawl_func = wait_for_method_true(next_box.starter, "animate2_method_true", next_box['delaytil_animate2_method_true'])
+		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS or next_box.has("unskippable"):
+			text_crawl_func = wait_for_method_true(next_box.starter, "animate2_method_true", next_box['delaytil_animate2_method_true'])
 	elif next_box.has("enable"):
 		for body in next_box['enable']:
 			body.set_pause_mode(PAUSE_MODE_PROCESS)
 	elif next_box.has("disable"):
 		for body in next_box['disable']:
 			body.set_pause_mode(PAUSE_MODE_INHERIT)
+	elif next_box.has("enable_skipping"):
+		can_skip_cutscene = true
+	elif next_box.has("disable_skipping"):
+		can_skip_cutscene = false
 	elif next_box.has("unfreeze_player"):
 		next_box['unfreeze_player'].set_freeze(false)
 	elif next_box.has("freeze_player"):
@@ -224,7 +232,7 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 	
 	# Wait for program to return signal that we can continue scene
 	if next_box.has("delay"):
-		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS:
+		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS or next_box.has("unskippable"):
 			gui.visible = true
 			dialog.visible = false
 			text_crawl_func = delay(next_box['delay'])

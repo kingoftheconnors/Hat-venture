@@ -116,7 +116,7 @@ position = Vector2( 0, -4 )
 
 [node name="DoorDialog" parent="." instance=ExtResource( 9 )]
 position = Vector2( 304, -40 )
-dialog_num = 5
+dialog_num = 26
 active_bodies_in_dialog = [ NodePath("../Player"), NodePath("../LilenController"), NodePath("../DustCloud") ]
 animate1 = NodePath("../Player")
 animate2 = NodePath("../Timmy")
@@ -250,8 +250,6 @@ spawn_num = 3
 [connection signal="action5" from="Display/DialogBox" to="Display" method="set_to_exclamation"]
 [connection signal="action6" from="Display/DialogBox" to="CameraCapture2" method="capture"]
 [connection signal="action7" from="Display/DialogBox" to="Player" method="bounce_back" binds= [ "../WalkTo_DisplayTarget" ]]
-[connection signal="action8" from="Display/DialogBox" to="DoorDialog" method="enable"]
-[connection signal="action8" from="Display/DialogBox" to="DoorDialog" method="set_dialog_option" binds= [ 10 ]]
 [connection signal="action1" from="DoorDialog" to="Player" method="watch_node" binds= [ "../Timmy" ]]
 [connection signal="action1" from="DoorDialog" to="Player" method="bounce_back" binds= [ "../WalkTo_Target4" ]]
 [connection signal="action1" from="DoorDialog" to="Timmy" method="make_visible"]
@@ -265,13 +263,13 @@ spawn_num = 3
 [connection signal="action7" from="DoorDialog" to="Player" method="blow_back" binds= [ true ]]
 [connection signal="action7" from="DoorDialog" to="CameraCapture2" method="capture_release" binds= [ false ]]
 [connection signal="action8" from="DoorDialog" to="Player" method="stop_watching"]
-[connection signal="action9" from="DoorDialog" to="Camera" method="screen_shake" binds= [ 0, 3.0 ]]
 [connection signal="action9" from="DoorDialog" to="LilenController" method="generate" binds= [ 16 ]]
-[connection signal="actionA" from="DoorDialog" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target4", 1, 1 ]]
-[connection signal="actionA" from="DoorDialog" to="DustCloud" method="hide"]
+[connection signal="action9" from="DoorDialog" to="Camera" method="screen_shake" binds= [ 0, 3.0 ]]
+[connection signal="actionA" from="DoorDialog" to="LilenController" method="get_timepieces"]
 [connection signal="actionA" from="DoorDialog" to="LilenController" method="hide_after_reaching_pos"]
 [connection signal="actionA" from="DoorDialog" to="LilenController" method="recall"]
-[connection signal="actionA" from="DoorDialog" to="LilenController" method="get_timepieces"]
+[connection signal="actionA" from="DoorDialog" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target4", 1, 1 ]]
+[connection signal="actionA" from="DoorDialog" to="DustCloud" method="hide"]
 [connection signal="actionB" from="DoorDialog" to="Timmy" method="walk_to_then_leave" binds= [ "../DoorDialog" ]]
 [connection signal="actionC" from="DoorDialog" to="Player" method="jump"]
 [connection signal="actionD" from="DoorDialog" to="Player" method="walk_to" binds= [ "../DoorDialog" ]]
@@ -302,13 +300,13 @@ spawn_num = 3
 [connection signal="action7" from="HatKidRoom" to="Player" method="blow_back" binds= [ true ]]
 [connection signal="action7" from="HatKidRoom" to="CameraCapture2" method="capture_release" binds= [ false ]]
 [connection signal="action8" from="HatKidRoom" to="Player" method="stop_watching"]
-[connection signal="action9" from="HatKidRoom" to="Camera" method="screen_shake" binds= [ 0, 3.0 ]]
 [connection signal="action9" from="HatKidRoom" to="LilenController" method="generate" binds= [ 16 ]]
-[connection signal="actionA" from="HatKidRoom" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target4", 1, 1 ]]
-[connection signal="actionA" from="HatKidRoom" to="DustCloud" method="hide"]
+[connection signal="action9" from="HatKidRoom" to="Camera" method="screen_shake" binds= [ 0, 3.0 ]]
+[connection signal="actionA" from="HatKidRoom" to="LilenController" method="get_timepieces"]
 [connection signal="actionA" from="HatKidRoom" to="LilenController" method="hide_after_reaching_pos"]
 [connection signal="actionA" from="HatKidRoom" to="LilenController" method="recall"]
-[connection signal="actionA" from="HatKidRoom" to="LilenController" method="get_timepieces"]
+[connection signal="actionA" from="HatKidRoom" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target4", 1, 1 ]]
+[connection signal="actionA" from="HatKidRoom" to="DustCloud" method="hide"]
 [connection signal="actionB" from="HatKidRoom" to="Timmy" method="walk_to_then_leave" binds= [ "../DoorDialog" ]]
 [connection signal="actionC" from="HatKidRoom" to="Player" method="jump"]
 [connection signal="actionD" from="HatKidRoom" to="Player" method="walk_to" binds= [ "../DoorDialog" ]]

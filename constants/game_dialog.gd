@@ -28,6 +28,7 @@ enum DIALOG_TYPE {
 	CHEST_YES = 23,
 	CHEST_NO = 24,
 	GOOD_MORNING_HATKID = 25,
+	SHIP_DOOR_DIALOG_SELECTOR = 26
 }
 
 # Textbox Format:
@@ -108,8 +109,8 @@ func get_dialog(text_num):
 				# Bounce player back
 				{signal = "action7", delay=1},
 				{name = "SHIP", text = "All systems operational. Hello master!"},
-				# Activate Timmy door action (TODO: Enable knock sfx)
-				{signal = "action8", delay=1, if_tag_false = "screen_seen_2"},
+				# TODO: Enable knock sfx
+				#{signal = "action8", delay=1},
 				# Move camera
 				{signal = "action2", delay=1, if_tag_false = "screen_seen_2"},
 				# Reset camera
@@ -259,9 +260,11 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.LEVEL_1_CHASE_LILENS:
 			return [
+				{disable_skipping = true},
 				{signal = "action1"},
 				{signal = "action2", delay=5},
 				{signal = "action3", delay=2},
+				{enable_skipping = true},
 			]
 		DIALOG_TYPE.GOTO_BEDROOM:
 			return [
@@ -319,5 +322,12 @@ func get_dialog(text_num):
 				{signal = "actionK", if_tag_false = "goodmorning_complete"},
 				#{animate1 = "get_up", if_tag_false = "goodmorning_complete"},
 				{name = "Speaker", text = "Today’s to-do list includes: waking up, adjusting to your surroundings, and exploring!", if_tag_false = "goodmorning_complete", autoscroll = true},
+				{animate1 = "idle", if_tag_false = "goodmorning_complete", unskippable = true},
+				{animate2 = "invisible", if_tag_false = "goodmorning_complete", unskippable = true},
 				{settag = "goodmorning_complete", value = true},
+			]
+		DIALOG_TYPE.SHIP_DOOR_DIALOG_SELECTOR:
+			return [
+				{queue = DIALOG_TYPE.GOTO_TUTORIAL, if_tag_false = "screen_seen_2"},
+				{queue = DIALOG_TYPE.TIMMY_SHIP, if_tag_true = "screen_seen_2"}
 			]
