@@ -367,7 +367,7 @@ var cur_resolution : Vector2 = Vector2.ZERO
 var cur_multiplier : int = 1
 func set_screen_resolution(new_size : Vector2) -> void:
 	cur_resolution = new_size
-	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_VIEWPORT, SceneTree.STRETCH_ASPECT_KEEP, new_size)
+	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_VIEWPORT, SceneTree.STRETCH_ASPECT_KEEP_HEIGHT, new_size)
 	# Resize window if not maximized
 	#if !OS.window_maximized:
 	#	#Find closest multiple of new resolution near current window size

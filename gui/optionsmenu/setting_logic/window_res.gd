@@ -6,7 +6,8 @@ extends Node
 var resolution_list: Array = [
 	Vector2(256, 192),
 	Vector2(256, 256),
-	Vector2(320, 288)
+	#Vector2(320, 288)
+	Vector2(320, 256)
 ]
 
 func main(value: Dictionary) -> void:
