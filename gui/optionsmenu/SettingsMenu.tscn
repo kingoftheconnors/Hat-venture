@@ -356,7 +356,7 @@ __meta__ = {
 [node name="NinePatchRect" type="NinePatchRect" parent="Mrgn"]
 margin_top = 10.0
 margin_right = 223.0
-margin_bottom = 222.0
+margin_bottom = 206.0
 texture = ExtResource( 26 )
 patch_margin_left = 8
 patch_margin_top = 8
@@ -366,7 +366,7 @@ patch_margin_bottom = 8
 [node name="MarginContainer" type="MarginContainer" parent="Mrgn"]
 margin_top = 10.0
 margin_right = 223.0
-margin_bottom = 222.0
+margin_bottom = 206.0
 custom_constants/margin_right = 12
 custom_constants/margin_top = 12
 custom_constants/margin_left = 12
@@ -376,7 +376,7 @@ custom_constants/margin_bottom = 12
 margin_left = 12.0
 margin_top = 12.0
 margin_right = 211.0
-margin_bottom = 200.0
+margin_bottom = 184.0
 custom_constants/separation = 15
 __meta__ = {
 "_edit_use_anchors_": false
@@ -384,7 +384,7 @@ __meta__ = {
 
 [node name="Settings" type="ScrollContainer" parent="Mrgn/MarginContainer/VBox"]
 margin_right = 199.0
-margin_bottom = 133.0
+margin_bottom = 117.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
@@ -1083,9 +1083,9 @@ value = 30.0
 setting_index = 18
 
 [node name="Close" type="VBoxContainer" parent="Mrgn/MarginContainer/VBox"]
-margin_top = 148.0
+margin_top = 132.0
 margin_right = 199.0
-margin_bottom = 188.0
+margin_bottom = 172.0
 
 [node name="HSep" type="HSeparator" parent="Mrgn/MarginContainer/VBox/Close"]
 margin_right = 199.0
