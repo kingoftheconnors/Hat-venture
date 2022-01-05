@@ -99,7 +99,7 @@ func get_dialog(text_num):
 				{signal = "action3", delay=0.5, if_tag_false = "screen_seen_1"}, # TODO: unlatch SFX
 				# Reset camera
 				{signal = "action6", delay=1, if_tag_false = "screen_seen_1"},
-				{signal = "action4", if_tag_false = "screen_seen_1"},
+				{signal = "action4", if_tag_false = "screen_seen_1", unskippable = true},
 				# Hide display (showing only exclamation point)
 				{signal = "action5"},
 				{settag = "screen_seen_1", value = true},
@@ -115,7 +115,7 @@ func get_dialog(text_num):
 				{signal = "action2", delay=1, if_tag_false = "screen_seen_2"},
 				# Reset camera
 				{signal = "action6", delay=1, if_tag_false = "screen_seen_2"},
-				{signal = "action4", if_tag_false = "screen_seen_2"},
+				{signal = "action4", if_tag_false = "screen_seen_2", unskippable = true},
 				{settag = "screen_seen_2", value = true},
 			]
 		DIALOG_TYPE.TIMMY_SHIP:
