@@ -35,6 +35,7 @@ func set_tag(tag_name, tag_value):
 	if !game_data.has("tags"):
 		game_data['tags'] = {}
 	game_data['tags'][tag_name] = tag_value
+	save_game()
 
 func get_tag(tag_name):
 	if game_data.has("tags"):

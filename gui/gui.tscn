@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://gui/white.png" type="Texture" id=2]
 [ext_resource path="res://gui/emptyHealth.png" type="Texture" id=3]
@@ -17,96 +17,20 @@
 [ext_resource path="res://gui/DialogOptions.gd" type="Script" id=16]
 [ext_resource path="res://gui/DialogOptionController.gd" type="Script" id=17]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=24]
 size = 8
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=25]
 size = 8
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=26]
 size = 8
 outline_size = 1
 font_data = ExtResource( 5 )
 
-[sub_resource type="Animation" id=4]
-length = 0.6
-tracks/0/type = "value"
-tracks/0/path = NodePath("Cover:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=5]
-length = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Cover:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "cover (slow)"
-length = 1.4
-tracks/0/type = "value"
-tracks/0/path = NodePath("Cover:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=7]
-length = 0.6
-tracks/0/type = "value"
-tracks/0/path = NodePath("Cover:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-
-[sub_resource type="Animation" id=8]
-length = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Cover:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
-}
-
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=27]
 resource_name = "reveal (slow)"
 length = 1.4
 tracks/0/type = "value"
@@ -122,7 +46,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=28]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Player/MContainer/GuiInfo/Main/HatKid/EnergyText:custom_fonts/font:size")
 tracks/0/interp = 1
@@ -220,7 +144,7 @@ tracks/7/keys = {
 "values": [ Vector2( 2, 2 ) ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=29]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Player/MContainer/GuiInfo/Main/HatKid/EnergyText:custom_fonts/font:size")
 tracks/0/interp = 1
@@ -318,7 +242,82 @@ tracks/7/keys = {
 "values": [ Vector2( 1.5, 1.5 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=16]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cover:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cover:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+length = 1.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cover:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=19]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cover:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=20]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cover:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=21]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Player/MContainer/GuiInfo/Main/HatKid/EnergyText:custom_fonts/font:size")
 tracks/0/interp = 1
@@ -413,8 +412,65 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [ Vector2( 304, 48 ) ]
 }
+
+[sub_resource type="Shader" id=23]
+code = "shader_type canvas_item;
+
+// Which color you want to change
+uniform vec4 game_white : hint_color;
+uniform vec4 game_light : hint_color;
+uniform vec4 game_dark : hint_color;
+uniform vec4 game_black : hint_color;
+
+uniform vec4 palette_white : hint_color;
+uniform vec4 palette_light : hint_color;
+uniform vec4 palette_dark : hint_color;
+uniform vec4 palette_black : hint_color;
+
+uniform int brightness_level;
+uniform float precision;
+
+int get_level_from_game_color(vec3 color) {
+	vec4 original_colors[4] = vec4[4] (game_black, game_dark, game_light, game_white);
+	for (int i = 0; i < 3; i ++) {
+		if (distance(color, original_colors[i].rgb) <= precision){
+			return i;
+		}
+	}
+	return -1;
+}
+
+vec4 get_palette_color(int level) {
+	vec4 replace_colors[4] = vec4[4] (palette_black, palette_dark, palette_light, palette_white);
+	if (level > replace_colors.length()-1)
+		level = replace_colors.length()-1;
+	return replace_colors[level];
+}
+
+void fragment() {
+	vec3 c = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0).rgb;
+	int level = get_level_from_game_color(c);
+	if (level >= 0)
+		COLOR.rgb = get_palette_color(level+brightness_level).rgb;
+	else
+		COLOR.rgb = c;
+}"
+
+[sub_resource type="ShaderMaterial" id=32]
+resource_local_to_scene = true
+shader = SubResource( 23 )
+shader_param/game_white = Color( 1, 1, 1, 1 )
+shader_param/game_light = Color( 0.67451, 0.682353, 0.67451, 1 )
+shader_param/game_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
+shader_param/game_black = Color( 0, 0, 0, 1 )
+shader_param/palette_white = Color( 1, 1, 1, 1 )
+shader_param/palette_light = Color( 0.67451, 0.682353, 0.67451, 1 )
+shader_param/palette_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
+shader_param/palette_black = Color( 0, 0, 0, 1 )
+shader_param/brightness_level = 0
+shader_param/precision = 0.27
 
 [node name="Gui" type="CanvasLayer"]
 pause_mode = 2
@@ -426,7 +482,7 @@ anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -104.0
 margin_bottom = 8.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 24 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "DEBUG MODE ON"
 align = 2
@@ -644,7 +700,7 @@ anchor_left = 0.05
 anchor_right = 0.525
 anchor_bottom = 0.333
 margin_bottom = 0.0159998
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 24 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Timmy"
 valign = 1
@@ -657,10 +713,12 @@ __meta__ = {
 anchor_left = 0.05
 anchor_top = 0.354
 anchor_right = 0.975
-anchor_bottom = 0.854
-margin_top = 0.00799942
-margin_bottom = 0.00799942
-custom_fonts/font = SubResource( 2 )
+anchor_bottom = 0.865
+margin_top = 0.0159998
+margin_right = 296.0
+margin_bottom = 25.48
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 25 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Are you looking for your umbrella? I saw it land near the market area whe you, you know..."
 autowrap = true
@@ -690,7 +748,7 @@ margin_right = 90.0
 margin_bottom = 10.0
 focus_neighbour_right = NodePath("../Option2")
 focus_mode = 2
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 25 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "THANKS"
 align = 1
@@ -707,7 +765,7 @@ margin_right = -4.0
 margin_bottom = 9.0
 focus_neighbour_right = NodePath("../Down")
 focus_neighbour_bottom = NodePath("../Left")
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 26 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 align = 2
@@ -731,7 +789,7 @@ margin_right = 262.0
 margin_bottom = 10.0
 focus_neighbour_left = NodePath("../Option1")
 focus_mode = 2
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 25 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "RADICAL?"
 align = 1
@@ -748,7 +806,7 @@ margin_right = -4.0
 margin_bottom = 9.0
 focus_neighbour_right = NodePath("../Down")
 focus_neighbour_bottom = NodePath("../Left")
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 26 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ">"
 align = 2
@@ -758,13 +816,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/large = SubResource( 27 )
+anims/medium = SubResource( 28 )
+anims/regular = SubResource( 29 )
+
 [node name="CoverAnimator" type="AnimationPlayer" parent="."]
-anims/cover = SubResource( 4 )
-"anims/cover (instant)" = SubResource( 5 )
-"anims/cover (slow)" = SubResource( 6 )
-anims/reveal = SubResource( 7 )
-"anims/reveal (instant)" = SubResource( 8 )
-"anims/reveal (slow)" = SubResource( 9 )
+anims/cover = SubResource( 16 )
+"anims/cover (instant)" = SubResource( 17 )
+"anims/cover (slow)" = SubResource( 18 )
+anims/reveal = SubResource( 19 )
+"anims/reveal (instant)" = SubResource( 20 )
+"anims/reveal (slow)" = SubResource( 27 )
 
 [node name="Cover" type="TextureRect" parent="."]
 modulate = Color( 1, 1, 1, 0 )
@@ -777,11 +840,12 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/large = SubResource( 10 )
-anims/medium = SubResource( 11 )
-anims/regular = SubResource( 12 )
+anims/large = SubResource( 28 )
+anims/medium = SubResource( 29 )
+anims/regular = SubResource( 21 )
 
 [node name="PaletteFilter" parent="." instance=ExtResource( 12 )]
+material = SubResource( 32 )
 
 [node name="UnlockPaletteBox" parent="." instance=ExtResource( 13 )]
 

@@ -422,6 +422,10 @@ func unlock_palette(palette_name):
 	$UnlockPaletteBox.grab_focus()
 	$UnlockPaletteBox.show_palette_get(palette_name)
 	SaveSystem.access_data().unlock_palette(palette_name)
+func unlock_storybook_page(num_pages : int):
+	$UnlockPaletteBox.visible = true
+	$UnlockPaletteBox.grab_focus()
+	$UnlockPaletteBox.show_storybook_get(num_pages)
 
 
 onready var cover_animator = $CoverAnimator

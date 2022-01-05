@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=2]
 
-[sub_resource type="Shader" id=13]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
 // Which color you want to change
@@ -47,7 +47,7 @@ void fragment() {
 
 [resource]
 resource_local_to_scene = true
-shader = SubResource( 13 )
+shader = SubResource( 1 )
 shader_param/game_white = Color( 1, 1, 1, 1 )
 shader_param/game_light = Color( 0.67451, 0.682353, 0.67451, 1 )
 shader_param/game_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
