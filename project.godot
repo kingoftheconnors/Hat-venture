@@ -227,6 +227,7 @@ settings/fps/force_fps=60
 
 window/size/width=320
 window/size/height=256
+window/size/resizable=false
 window/size/test_width=960
 window/size/test_height=864
 window/stretch/mode="viewport"
