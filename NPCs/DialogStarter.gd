@@ -84,11 +84,16 @@ func _ready():
 # warning-ignore:unused_signal
 # warning-ignore:unused_signal
 # warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
 signal action1; signal action2; signal action3; signal action4;
 signal action5; signal action6; signal action7; signal action8;
 signal action9; signal actionA; signal actionB; signal actionC;
 signal actionD; signal actionE; signal actionF; signal actionG;
 signal actionH; signal actionJ; signal actionK; signal actionL;
+signal actionM; signal actionN; signal actionO; signal actionP;
 
 export(NodePath) var animate1
 export(NodePath) var animate2

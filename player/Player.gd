@@ -74,7 +74,7 @@ func damage(_isStomp, damage = 1):
 		if !Constants.PHOTOSENSITIVE_MODE:
 			animator['parameters/PlayerEffect/playback'].travel('hurtFlash')
 		emit_signal("hurt")
-		SoundSystem.start_sound(SoundSystem.SFX.HURT)
+		SoundSystem.start_sound(sound_system.SFX.HURT)
 	else:
 		player_die()
 		return true

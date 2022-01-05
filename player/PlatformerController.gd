@@ -324,9 +324,9 @@ func move(delta):
 	# Running sound
 	if running:
 		if is_running_at_max():
-			SoundSystem.start_sound_if_silent(SoundSystem.SFX.SPRINT)
+			SoundSystem.start_sound_if_silent(sound_system.SFX.SPRINT)
 		else:
-			SoundSystem.stop_if_playing_sound(SoundSystem.SFX.SPRINT)
+			SoundSystem.stop_if_playing_sound(sound_system.SFX.SPRINT)
 	
 	if diving:
 		if is_on_floor():
@@ -667,7 +667,7 @@ onready var wall_jump_checker : RayCast2D = $"ScaleChildren/WallJumpChecker"
 func jump(minijump : bool = false):
 	# Jump sfx
 	if velo.y >= 0:
-		SoundSystem.start_sound(SoundSystem.SFX.JUMP)
+		SoundSystem.start_sound(sound_system.SFX.JUMP)
 	# Set jump speed
 	if post_bash_jump_timer > 0 and !is_on_floor():
 		push(Vector2(0, -BASH_OUT_STRENGTH))
@@ -786,7 +786,7 @@ func dive():
 		animator["parameters/PlayerMovement/playback"].travel("dive")
 		animator["parameters/PlayerMovement/conditions/jumping"] = false
 		animator["parameters/PlayerMovement/conditions/not_jumping"] = true
-		SoundSystem.start_sound(SoundSystem.SFX.DIVE)
+		SoundSystem.start_sound(sound_system.SFX.DIVE)
 func undive():
 	diving = false
 	max_velo = default_max_velo
@@ -805,7 +805,7 @@ func start_run(running_speed):
 	max_velo = default_max_velo
 	running = true
 func stop_run():
-	SoundSystem.stop_if_playing_sound(SoundSystem.SFX.SPRINT)
+	SoundSystem.stop_if_playing_sound(sound_system.SFX.SPRINT)
 	default_max_velo = MAX_SPEED
 	max_velo = default_max_velo
 	running = false
@@ -958,8 +958,8 @@ func create_skid(play_sfx : bool = false, x_offset = 0):
 		skid.position.x += x_offset
 		get_parent().add_child(skid)
 		if play_sfx:
-			SoundSystem.start_sound(SoundSystem.SFX.SKID, abs(velo.x/max_velo))
-			#SoundSystem.start_sound(SoundSystem.SFX.SKID)
+			SoundSystem.start_sound(sound_system.SFX.SKID, abs(velo.x/max_velo))
+			#SoundSystem.start_sound(sound_system.SFX.SKID)
 
 func run_start_effect():
 	create_skid(false, 7)
@@ -970,7 +970,7 @@ func damage(isStomp, amount = 1):
 	core.damage(isStomp, amount)
 func signal_death():
 	emit_signal("dead")
-	SoundSystem.start_music(SoundSystem.MUSIC.GAMEOVER)
+	SoundSystem.start_music(sound_system.MUSIC.GAMEOVER)
 func heal(amount = 1):
 	core.heal(amount)
 
@@ -983,4 +983,4 @@ func resume_gravity():
 	gravity_timer.stop()
 
 func dance_fx():
-	SoundSystem.start_music(SoundSystem.MUSIC.VICTORY)
+	SoundSystem.start_music(sound_system.MUSIC.VICTORY)

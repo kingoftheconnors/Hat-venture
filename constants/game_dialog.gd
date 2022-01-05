@@ -120,8 +120,11 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.TIMMY_SHIP:
 			return [
-				# TODO: Show Timmy and sfx (door becomes open black void)
-				{signal = "action1", delay=1},
+				{signal = "actionN", delay=1.75},
+				{fadeout_music_fast = true, delay=.5},
+				{music = sound_system.MUSIC.TIMMY},
+				{signal = "action1", delay=4.5},
+				{signal = "actionM", delay=.5},
 				# Start dialog options
 				{animate2 = "talk"},
 				{name = "Kid", text = "Yo! You look like a new face!"},
@@ -250,7 +253,8 @@ func get_dialog(text_num):
 				# Timmy Leave
 				{signal = "actionB"},
 				{name = "Timmy", text = "Hahahahahahahahahaha!!"},
-				{delay=1},
+				{fadeout_music = true},
+				{delay=2},
 				# Hat Kid Jump up
 				{signal = "actionC", delay=1},
 				# Hat Kid walk towards door
@@ -301,6 +305,7 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.GOOD_MORNING_HATKID:
 			return [
+				# TODO: Lullaby song?
 				# Teleport
 				{signal = "action1", if_tag_false = "goodmorning_complete"},
 				# Start sleeping animations
@@ -311,8 +316,9 @@ func get_dialog(text_num):
 				# Start JUMP animation
 				{brightness = 0, if_tag_false = "goodmorning_complete"},
 				{signal = "actionJ", if_tag_false = "goodmorning_complete"},
-				#{animate1 = "fall_out_bed", if_tag_false = "goodmorning_complete"},
+				# TODO: Sound effect waking Hat Kid up
 				# Start speaker (TODO: SLOW TEXT DOWN ON "GOOOOOOD")
+				{music = sound_system.MUSIC.SHIP},
 				{name = "Speaker", text = "Goooood morning! And welcome to yet another day of adventure!!", if_tag_false = "goodmorning_complete", autoscroll = true},
 				{name = "Speaker", text = "You are currently situated in: GRASSY-LANDS. All systems are operational!", if_tag_false = "goodmorning_complete", autoscroll = true},
 				# Hat Kid stands up

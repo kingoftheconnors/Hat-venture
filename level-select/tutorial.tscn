@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://world1/background1.tres" type="TileSet" id=2]
@@ -9,19 +9,19 @@
 [ext_resource path="res://level-select/Satellite.tscn" type="PackedScene" id=7]
 [ext_resource path="res://level-select/shipdoor.png" type="Texture" id=8]
 [ext_resource path="res://NPCs/DialogBox.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Music/startSong.gd" type="Script" id=10]
+[ext_resource path="res://common/LevelMusic.gd" type="Script" id=10]
 [ext_resource path="res://level-select/house.png" type="Texture" id=11]
 [ext_resource path="res://items/Resources/Pon.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Music/lvl1intro.ogg" type="AudioStream" id=13]
 [ext_resource path="res://common/Block.tscn" type="PackedScene" id=14]
 [ext_resource path="res://common/TileInstancer.gd" type="Script" id=15]
 [ext_resource path="res://items/ponScoreless.gd" type="Script" id=16]
-[ext_resource path="res://player/regular/idle.png" type="Texture" id=17]
 [ext_resource path="res://level-select/Door.tscn" type="PackedScene" id=18]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 3 )
@@ -188,14 +188,10 @@ rotation = 4.46638e-06
 [node name="Power" parent="Player" index="0"]
 can_release_powers = false
 
-[node name="PlayerCore" parent="Player/ScaleChildren" index="1"]
-texture = ExtResource( 17 )
-hframes = 2
-frame = 0
-
 [node name="AnimationTree" parent="Player" index="8"]
 parameters/PlayerEffect/playback = SubResource( 1 )
 parameters/PlayerMovement/playback = SubResource( 2 )
+parameters/PlayerMovement/spin/playback = SubResource( 3 )
 
 [node name="Camera" parent="." instance=ExtResource( 5 )]
 visible = false
@@ -205,21 +201,12 @@ limit_left = -10000126
 drag_margin_v_enabled = true
 smoothing_speed = 12.0
 
-[node name="MusicIntro" type="AudioStreamPlayer" parent="."]
-pause_mode = 2
-stream = ExtResource( 13 )
-autoplay = true
-bus = "Music"
-
 [node name="Music" type="Node" parent="."]
-pause_mode = 2
 script = ExtResource( 10 )
-music = 2
+level_music = 6
 
 [connection signal="body_entered" from="House/Door/DialogBox/DialogBox" to="House/Door/DialogBox/Door" method="play_if_player" binds= [ "open" ]]
 [connection signal="body_exited" from="House/Door/DialogBox/DialogBox" to="House/Door/DialogBox/Door" method="play_if_player" binds= [ "close" ]]
-[connection signal="finished" from="MusicIntro" to="Music" method="start_music"]
-[connection signal="ready" from="MusicIntro" to="Music" method="stop_music"]
 
 [editable path="House/Door/DialogBox"]
 [editable path="Player"]

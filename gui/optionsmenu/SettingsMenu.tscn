@@ -588,6 +588,8 @@ margin_right = 181.0
 focus_neighbour_top = NodePath("../../../Display/Palette/PaletteList")
 focus_neighbour_bottom = NodePath("../../Sfx/Volume")
 size_flags_vertical = 1
+max_value = 0.75
+step = 0.075
 setting_index = 1
 
 [node name="Sfx" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Audio"]

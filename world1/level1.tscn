@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://world1/background1.tres" type="TileSet" id=2]
@@ -8,10 +8,9 @@
 [ext_resource path="res://common/Flag.tscn" type="PackedScene" id=6]
 [ext_resource path="res://common/ParallaxLayer.gd" type="Script" id=7]
 [ext_resource path="res://common/CollectablePalette.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Music/startSong.gd" type="Script" id=10]
+[ext_resource path="res://common/LevelMusic.gd" type="Script" id=9]
 [ext_resource path="res://enemy/eltun/eltun.tscn" type="PackedScene" id=11]
 [ext_resource path="res://NPCs/DialogOnLoad.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Music/lvl1intro.ogg" type="AudioStream" id=13]
 [ext_resource path="res://cutscenes/LilenController.tscn" type="PackedScene" id=14]
 [ext_resource path="res://common/TileInstancer.gd" type="Script" id=15]
 [ext_resource path="res://enemy/hen/Hen.tscn" type="PackedScene" id=17]
@@ -167,17 +166,6 @@ position = Vector2( 3840, 40 )
 scale = Vector2( 0.85, 0.85 )
 walled = false
 
-[node name="MusicIntro" type="AudioStreamPlayer" parent="."]
-pause_mode = 2
-stream = ExtResource( 13 )
-autoplay = true
-bus = "Music"
-
-[node name="Music" type="Node" parent="."]
-pause_mode = 2
-script = ExtResource( 10 )
-music = 2
-
 [node name="TimePiece" parent="." instance=ExtResource( 21 )]
 position = Vector2( 3840, -152 )
 next_level = "res://world1/level2.tscn"
@@ -262,10 +250,12 @@ position = Vector2( -40, -16 )
 position = Vector2( -144, -16 )
 goal = Vector2( 288, -16 )
 
+[node name="Music" type="Node" parent="."]
+script = ExtResource( 9 )
+level_music = 2
+
 [connection signal="body_entered" from="Area2D" to="Area2D/FakeWalls" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D/FakeWalls" method="_on_Area2D_body_exited"]
-[connection signal="finished" from="MusicIntro" to="Music" method="start_music"]
-[connection signal="ready" from="MusicIntro" to="Music" method="stop_music"]
 [connection signal="action1" from="DialogBox" to="Player" method="teleport_to" binds= [ "../Teleport_Target" ]]
 [connection signal="action2" from="DialogBox" to="LilenController" method="generate" binds= [ 0, 0.2 ]]
 [connection signal="action2" from="DialogBox" to="LilenController" method="get_timepieces"]
