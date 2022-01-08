@@ -30,6 +30,8 @@ func _ready():
 			# Make special or breakable
 			if "Breakable" in name:
 				node.state = node.BlockState.BREAKABLE
+			if "Invisible" in name:
+				node.state = node.BlockState.HIDDEN
 		elif "Item" in name:
 			# Fill with power
 			if "hPon" in name:

@@ -5,7 +5,6 @@
 #    Changing levels
 #    Score
 #    Score multipliers
-#    Lives
 #    Pausing
 #    Player-specific buffs (Special runs, Assist mode)
 #    Player's current power
@@ -51,34 +50,22 @@ func get_checkpoint_position() -> Vector2:
 func get_spawn_num() -> int:
 	return spawn_num
 
-## Method for killing the player, and giving a gameover
-## if the players' lives decreases to 0
+## Method for killing the player, and restarting
 func die():
 	# Get current levelname to return to after playing animation
 	var levelName = get_tree().get_current_scene().filename
 	# Fade to white
 	var transition_length = Gui.cover()
 	yield(get_tree().create_timer(transition_length), "timeout")
+	reset_stats()
+	# Re-load level
 	unpause()
-	pons = 0; Gui.set_pons(pons)
-	lives -= 1; Gui.set_lives(lives)
-	# Game over
-	if lives <= 0:
-		Gui.hide()
-		score = 0; Gui.set_score(score);
-		checkpoint_level = -1; checkpoint_pos = Vector2.ZERO
-		multiplicity = 1; Gui.set_score_mult(1)
-		multiplicity_decrease_time_left = -1
-		var _success = get_tree().change_scene("res://levelgameover/gameOver.tscn")
-		Gui.reveal()
-	else:
-		# Re-load level
-		var _success = get_tree().change_scene(levelName)
-		Gui.reset_energy()
-		multiplicity = 1; Gui.set_score_mult(1)
-		multiplicity_decrease_time_left = -1
-		#get_tree().change_scene("res://transitionScenes/death.tscn")
-		Gui.reveal()
+	var _success = get_tree().change_scene(levelName)
+	Gui.reset_energy()
+	multiplicity = 1; Gui.set_score_mult(1)
+	multiplicity_decrease_time_left = -1
+	#get_tree().change_scene("res://transitionScenes/death.tscn")
+	Gui.reveal()
 
 ## Changes scene to start a level (called by number)
 func start_level(levelName : String, spawn_point : int = 0):
@@ -94,11 +81,16 @@ func start_level(levelName : String, spawn_point : int = 0):
 	var _success = get_tree().change_scene(levelName)
 	Gui.reveal()
 
-## Resets score, pons, and lives after gameover
+func level_complete():
+	if pons != 0:
+		SaveSystem.access_data().set_pons(pons)
+
+## Resets score and pons after a GameOver
 func reset_stats():
-	pons = 0; Gui.set_pons(pons)
-	score = 0; Gui.set_score(score)
-	lives = 3; Gui.set_lives(lives)
+	pons = SaveSystem.access_data().get_pons()
+	Gui.set_pons(pons)
+	score = 0
+	Gui.set_score(score)
 
 var default_power : Resource = preload("res://player/regular/defaultPower.gd")
 var cur_power : Reference = null
@@ -123,6 +115,8 @@ func add_score(amo, affects_multiplicity = false):
 	Gui.set_score(score)
 	if affects_multiplicity:
 		multiplicity += 1
+		if multiplicity > 99:
+			multiplicity = 99
 		if multiplicity > 1:
 			Gui.set_score_mult(multiplicity)
 			multiplicity_decrease_time_left = MULTIPLICITY_TIME
@@ -138,15 +132,7 @@ func reduce_multiplicity():
 
 func add_pons(amo):
 	pons = pons + amo
-	add_score(amo*25)
-	if pons >= 100:
-		pons = pons - 100
-		PlayerGameManager.one_up()
 	Gui.set_pons(pons)
-
-func one_up():
-	lives += 1
-	Gui.set_lives(lives)
 
 var active_bodies = []
 ## Pauses entire game except for the specified nodes
@@ -173,7 +159,6 @@ func set_invinciblity():
 	invincibility = true
 
 # Player variables
-var lives = 3
 var pons = 0
 var score = 0
 var multiplicity = 1
@@ -185,7 +170,6 @@ var multiplicity_decrease_time_left = -1
 enum InvincibilityType {
 	NONE,
 	INVINCIBLE,
-	INFINITE_LIVES,
 	INFINITE_HP
 }
 var invincibility : int = InvincibilityType.NONE

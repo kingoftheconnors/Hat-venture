@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Timmys_Theme.ogg-8dd24e9030168d4ea562f1c6fec826ae.oggstr"
+
+[deps]
+
+source_file="res://Music/Timmys_Theme.ogg"
+dest_files=[ "res://.import/Timmys_Theme.ogg-8dd24e9030168d4ea562f1c6fec826ae.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=44.725

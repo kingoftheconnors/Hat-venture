@@ -8,6 +8,9 @@ func set_palette(palette_name : String):
 	update_colors()
 
 func update_colors():
+	var spriteFilter = $SpriteFilter
+	var playerFilter = $PlayerFilter
+	
 	var palette : Array = palettes[cur_palette]
 	material.set_shader_param("palette_white", palette[0] + Color(.1, .1, .1)*cur_brightness)
 	material.set_shader_param("palette_light", palette[1] + Color(.1, .1, .1)*cur_brightness)
@@ -31,6 +34,13 @@ func update_colors():
 func set_brightness(val : int):
 	cur_brightness = val
 	update_colors()
+
+func set_brightness_param(val : int):
+	var spriteFilter = $SpriteFilter
+	var playerFilter = $PlayerFilter
+	material.set_shader_param("brightness_level", val)
+	#spriteFilter.material.set_shader_param("brightness_level", val)
+	#playerFilter.material.set_shader_param("brightness_level", val)
 
 const palettes = {
 	Classic = [
@@ -110,6 +120,3 @@ const palettes = {
 		Color(255.0/255, 30.0/255, 0.0/255, 1),
 		Color(135.0/255, 0.0/255, 0.0/255, 1)],
 }
-
-onready var spriteFilter = $SpriteFilter
-onready var playerFilter = $PlayerFilter

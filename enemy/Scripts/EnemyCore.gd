@@ -25,7 +25,7 @@ func get_damage():
 ## any other node.
 func damage(isStomp):
 	if isStomp:
-		SoundSystem.start_sound(SoundSystem.SFX.STOMP)
+		SoundSystem.start_sound(sound_system.SFX.STOMP)
 	if !invincible:
 		emit_signal("hurt")
 		if animator:

@@ -1,15 +1,8 @@
 extends Node
 # value: int
-#	Index of one of the items in the 'resolution_list'.
+#	Index of one of the items in the 'scale_list'.
 
-# 'resolution_list' should be defined manually. Vector2(width, height).
-var resolution_list: Array = [
-	Vector2(256, 192),
-	Vector2(256, 256),
-	Vector2(320, 288)
-]
+var scale_list: Array = [1,2,3,4,5]
 
 func main(value: Dictionary) -> void:
-	Gui.set_screen_resolution(resolution_list[value["value"]])
-	if !OS.window_maximized:
-		OS.center_window()
+	Gui.set_screen_multiplier(scale_list[value["value"]])

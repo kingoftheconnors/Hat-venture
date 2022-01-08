@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://world1/background1.tres" type="TileSet" id=2]
@@ -8,9 +8,8 @@
 [ext_resource path="res://common/Flag.tscn" type="PackedScene" id=6]
 [ext_resource path="res://common/FakeWalls.gd" type="Script" id=7]
 [ext_resource path="res://common/Spring.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Music/startSong.gd" type="Script" id=10]
+[ext_resource path="res://common/LevelMusic.gd" type="Script" id=9]
 [ext_resource path="res://enemy/eltun/eltun.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Music/lvl1intro.ogg" type="AudioStream" id=13]
 [ext_resource path="res://common/TileInstancer.gd" type="Script" id=15]
 [ext_resource path="res://enemy/hen/Hen.tscn" type="PackedScene" id=17]
 [ext_resource path="res://enemy/crow/Crow.tscn" type="PackedScene" id=18]
@@ -414,17 +413,6 @@ position = Vector2( 1766.76, -350.152 )
 scale = Vector2( 0.85, 1.1 )
 walled = false
 
-[node name="MusicIntro" type="AudioStreamPlayer" parent="."]
-pause_mode = 2
-stream = ExtResource( 13 )
-autoplay = true
-bus = "Music"
-
-[node name="Music" type="Node" parent="."]
-pause_mode = 2
-script = ExtResource( 10 )
-music = 2
-
 [node name="TimePiece" parent="." instance=ExtResource( 21 )]
 position = Vector2( 3840, -152 )
 next_level = "res://levelgameover/gameOver.tscn"
@@ -518,7 +506,10 @@ position = Vector2( 2472.31, -87.2956 )
 
 [node name="SecretNode2Tiles" type="TileMap" parent="SecretNode2"]
 format = 1
+
+[node name="Music" type="Node" parent="."]
+script = ExtResource( 9 )
+level_music = 2
+
 [connection signal="body_entered" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeWalls" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeWalls" method="_on_Area2D_body_exited"]
-[connection signal="finished" from="MusicIntro" to="Music" method="start_music"]
-[connection signal="ready" from="MusicIntro" to="Music" method="stop_music"]

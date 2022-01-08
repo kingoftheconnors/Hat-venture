@@ -163,6 +163,7 @@ tracks/0/keys = {
 }
 
 [node name="BrewingCap" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 4 )
 itemCommand = ExtResource( 1 )
 

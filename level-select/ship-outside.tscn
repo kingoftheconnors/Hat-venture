@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://world1/background1.tres" type="TileSet" id=2]
@@ -7,9 +7,7 @@
 [ext_resource path="res://camera/Camera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://common/Flag.tscn" type="PackedScene" id=6]
 [ext_resource path="res://NPCs/DialogBox.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Music/startSong.gd" type="Script" id=10]
 [ext_resource path="res://enemy/eltun/eltun.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Music/lvl1intro.ogg" type="AudioStream" id=13]
 [ext_resource path="res://common/TileInstancer.gd" type="Script" id=15]
 [ext_resource path="res://enemy/hen/Hen.tscn" type="PackedScene" id=17]
 [ext_resource path="res://enemy/crow/Crow.tscn" type="PackedScene" id=18]
@@ -26,6 +24,7 @@ right = 4000
 up = -224
 down = 64
 col = Color( 0.67451, 0.682353, 0.67451, 1 )
+level_music = 2
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 layer = -3
@@ -161,20 +160,8 @@ position = Vector2( 3840, 40 )
 scale = Vector2( 1, 0.4 )
 release_on_exit = false
 
-[node name="MusicIntro" type="AudioStreamPlayer" parent="."]
-pause_mode = 2
-stream = ExtResource( 13 )
-autoplay = true
-bus = "Music"
-
-[node name="Music" type="Node" parent="."]
-pause_mode = 2
-script = ExtResource( 10 )
-music = 2
-
 [node name="TimePiece" parent="." instance=ExtResource( 21 )]
 position = Vector2( 3840, -152 )
-next_level = "res://world1/level1.tscn"
 
 [node name="CameraCapture2" parent="." instance=ExtResource( 24 )]
 position = Vector2( 504, -328 )
@@ -237,6 +224,6 @@ position = Vector2( 2464, -24 )
 script = ExtResource( 23 )
 direction = Vector2( 0, -1 )
 turnaround_time = 50
+
 [connection signal="body_entered" from="Area2D" to="Area2D/FakeWalls" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D/FakeWalls" method="_on_Area2D_body_exited"]
-[connection signal="finished" from="MusicIntro" to="Music" method="start_music"]

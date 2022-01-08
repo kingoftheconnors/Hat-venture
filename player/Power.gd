@@ -21,7 +21,7 @@ func acquire_power(powerType):
 		animator["parameters/PlayerMovement/playback"].travel("power_get")
 		if !Constants.PHOTOSENSITIVE_MODE:
 			animator["parameters/PlayerEffect/playback"].travel("power_get_flash")
-		SoundSystem.start_sound(SoundSystem.SFX.POWERUP_GET)
+		SoundSystem.start_sound(sound_system.SFX.POWERUP_GET)
 
 func set_power(powerType):
 	if power:
@@ -44,6 +44,10 @@ func updatePowerValues():
 	animator["parameters/PlayerMovement/skid/blend_position"] = int(power.blendValue)
 	animator["parameters/PlayerMovement/walk/blend_position"] = int(power.blendValue)
 	animator["parameters/PlayerMovement/hurt/blend_position"] = int(power.blendValue)
+	animator["parameters/PlayerMovement/hurt_basic/blend_position"] = int(power.blendValue)
+	animator["parameters/PlayerMovement/talk/blend_position"] = int(power.blendValue)
+	animator["parameters/PlayerMovement/dive/blend_position"] = int(power.blendValue)
+	animator["parameters/PlayerMovement/dive_boost/blend_position"] = int(power.blendValue)
 
 var power_pressed = false
 func _process(_delta):
@@ -57,7 +61,7 @@ func _process(_delta):
 			set_power_active(false)
 
 func _input(event):
-	if event.is_action_pressed("ui_release"):
+	if event.is_action_pressed("ui_release") and can_release_powers:
 		if platformController.get_stun() == 0:
 			release_power()
 	
@@ -123,3 +127,4 @@ func pause_game():
 func resume_game():
 	get_tree().paused = false
 
+export(bool) var can_release_powers = true

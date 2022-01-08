@@ -166,6 +166,7 @@ tracks/0/keys = {
 }
 
 [node name="RunnersCap" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 2 )
 itemCommand = ExtResource( 4 )
 
