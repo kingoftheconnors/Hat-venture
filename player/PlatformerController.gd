@@ -6,9 +6,11 @@ extends KinematicBody2D
 
 signal off_cliff
 signal dead
+signal landed_on_ground
 
 # BASIC MOVEMENT
 const PLAYER_GRAVITY = 10
+const FALL_UP_GRAVITY = 5
 const TURNOFF_SPEED = 15
 const BASE_SPEED = 10 #25
 var base_speed = BASE_SPEED
@@ -81,6 +83,10 @@ const POST_BASH_JUMP_TIME = 10
 var post_bash_jump_timer = 0
 const BASH_OUT_STRENGTH = 180
 
+# BLOWING BACK
+var blowing_back = false
+const BLOW_BACK_SPEED = 250
+
 # CLIMBING
 var CLIMBING_SPEED := 80
 
@@ -103,6 +109,12 @@ var ignore_air_friction = false
 var ignore_horizontal_timer = 0
 var crouching = false
 var gravity = true
+
+var goal_x = null
+var goal_y = null
+var direc_override = null
+var watch_override = null
+const WALK_EPSILON : float = 1.0
 
 ## Current velo. Similar to other platformers, starts at 0 and ramps up
 ## to max_velo
@@ -185,12 +197,36 @@ func move(delta):
 	if frozen or diving:
 		horizontal = 0; vertical = 0
 	
-	# Setting direction
-	if horizontal * direction < 0:
-		if horizontal > 0:
-			direction = 1
+	# Moving towards goal_x (supported-in-cutscene)
+	if goal_x != null:
+		if abs(position.x - goal_x) > WALK_EPSILON:
+			if position.x > goal_x:
+				horizontal = -1
+			else:
+				horizontal = 1
 		else:
+			goal_x = null
+			velo.x = 0
+			direc_override = null
+	
+	# Being launched backwards (supported-in-cutscene)
+	if blowing_back:
+		horizontal = -direction
+	
+	# Setting direction
+	if watch_override != null:
+		if position.x > watch_override.position.x:
 			direction = -1
+		else:
+			direction = 1
+	elif direc_override:
+		direction = direc_override
+	else:
+		if horizontal * direction < 0:
+			if horizontal > 0:
+				direction = 1
+			else:
+				direction = -1
 	if scale_manager.scale.x != direction:
 		scale_manager.scale = Vector2(direction, 1)
 	
@@ -288,9 +324,9 @@ func move(delta):
 	# Running sound
 	if running:
 		if is_running_at_max():
-			SoundSystem.start_sound_if_silent(SoundSystem.SFX.SPRINT)
+			SoundSystem.start_sound_if_silent(sound_system.SFX.SPRINT)
 		else:
-			SoundSystem.stop_if_playing_sound(SoundSystem.SFX.SPRINT)
+			SoundSystem.stop_if_playing_sound(sound_system.SFX.SPRINT)
 	
 	if diving:
 		if is_on_floor():
@@ -302,22 +338,29 @@ func move(delta):
 	
 	#Gravity
 	if gravity and !climbing:
-		if velo.y < 0:
-			velo.y += PLAYER_GRAVITY
-		else:
-			if running and velo.x > max_velo*.75 and coyoteTimer > 0:
-				pass
-			elif diving:
-				velo.y += PLAYER_GRAVITY * DIVE_FALL_MULTIPLIER
-			elif spinning:
-				velo.y += PLAYER_GRAVITY * SPIN_FALL_MULTIPLIER
+		if goal_y != null:
+			velo.y *= .98
+			if position.y < goal_y:
+				velo.y += FALL_UP_GRAVITY
 			else:
-				velo.y += PLAYER_GRAVITY * FALL_MULTIPLIER
-			# terminal velocity
-			if velo.y > Constants.terminalVelocity:
-				velo.y = Constants.terminalVelocity
-			if spinning and velo.y > Constants.terminalVelocity*SPIN_TERMINAL_VELOCITY_MULTIPLIER:
-				velo.y = Constants.terminalVelocity*SPIN_TERMINAL_VELOCITY_MULTIPLIER
+				velo.y -= FALL_UP_GRAVITY
+		else:
+			if velo.y < 0:
+				velo.y += PLAYER_GRAVITY
+			else:
+				if running and velo.x > max_velo*.75 and coyoteTimer > 0:
+					pass
+				elif diving:
+					velo.y += PLAYER_GRAVITY * DIVE_FALL_MULTIPLIER
+				elif spinning:
+					velo.y += PLAYER_GRAVITY * SPIN_FALL_MULTIPLIER
+				else:
+					velo.y += PLAYER_GRAVITY * FALL_MULTIPLIER
+				# terminal velocity
+				if velo.y > Constants.terminalVelocity:
+					velo.y = Constants.terminalVelocity
+				if spinning and velo.y > Constants.terminalVelocity*SPIN_TERMINAL_VELOCITY_MULTIPLIER:
+					velo.y = Constants.terminalVelocity*SPIN_TERMINAL_VELOCITY_MULTIPLIER
 	
 	# Ladder climbing
 	if vertical != 0 and (on_ladders > 0 or on_ladders_top.size() > 0):
@@ -415,11 +458,47 @@ func move_player(v):
 			if bashing and recognize_collision:
 				if abs(collision.normal.x) > abs(collision.normal.y):
 					var _destroyed_body = bash_bounce(collision.collider)
+			# Blowing_back hitting wall
+			if blowing_back:
+				if abs(collision.normal.x) > abs(collision.normal.y):
+					new_velo.x = -velo.x * .1
+					unblow_back()
+					power.release_power()
+					animate("dive")
+					diving = true
 	if !recognize_collision:
 		new_velo = prev_velo
 	#if bashing:
 	#	new_velo.y = 0
 	return new_velo
+
+func teleport_to(node_path : String):
+	position = get_node(node_path).position
+
+func walk_to(node_path : String, direction_override = null):
+	goal_x = get_node(node_path).position.x
+	if direction_override:
+		direc_override = direction_override
+func fly_to(node_path : String):
+	goal_y = get_node(node_path).position.y
+func watch_node(node_path: String):
+	watch_override = get_node(node_path)
+func stop_watching():
+	watch_override = null
+	
+func blow_back(go_right: bool = 1):
+	blowing_back = true
+	ignore_air_friction = true
+	if go_right:
+		direction = -1
+	else:
+		direction = 1
+	max_velo = BLOW_BACK_SPEED
+	velo.x = BLOW_BACK_SPEED * -1 * direction
+func unblow_back():
+	blowing_back = false
+	max_velo = default_max_velo
+	goal_y = null
 
 onready var bash_collider = $"ScaleChildren/bashbox/BashCollider"
 func bash_bounce(body):
@@ -467,9 +546,17 @@ func bash_bounce(body):
 					call_deferred("bounce_back")
 					unbash()
 
-func bounce_back():
+func bounce_back(towards_x = null):
 	var direc = Vector2(-direction, -1.1) * KNOCKBACK_MULTIPLIER
+	if towards_x != null:
+		if (get_node(towards_x).position.x - position.x) * direc.x < 0:
+			direc.x = -direc.x
+		# Walk towards target area, with direction override opposite walk_direction
+		walk_to(towards_x, -direc.x/abs(direc.x))
 	push(direc)
+
+func bounce_towards(direc : int = direction):
+	push(Vector2(direc, -0.8) * KNOCKBACK_MULTIPLIER)
 
 func spin_bounce(body):
 	if !body.is_in_group("player"):
@@ -500,6 +587,7 @@ func manage_flags():
 	
 	# First frame on ground
 	if is_on_floor() and air_time:
+		emit_signal("landed_on_ground")
 		air_time = false
 		PlayerGameManager.set_multiplicity_fast_decrease(true)
 		animator["parameters/PlayerMovement/conditions/jumping"] = false
@@ -555,7 +643,7 @@ var holding_jump = false
 func _input(event):
 	if !frozen:
 		# This will run once on the frame when the action is first pressed
-		if event.is_action_pressed("ui_A"):
+		if event.is_action_pressed("ui_accept"):
 			holding_jump = true
 			jump_timer = JUMP_TIME
 		if event.is_action_pressed("ui_down"):
@@ -572,7 +660,7 @@ func _input(event):
 # This helps continuously poll for releasing, in case the
 # player is paused when the key is released
 func _process(_delta):
-	if holding_jump and !Input.is_action_pressed("ui_A"):
+	if holding_jump and !Input.is_action_pressed("ui_accept"):
 		if holding_jump and !spinning and !diving and velo.y < 0:
 			velo.y *= release_jump_damp
 			#animator["parameters/playback"].travel("freefall")
@@ -582,10 +670,10 @@ func _process(_delta):
 		uncrouch()
 
 onready var wall_jump_checker : RayCast2D = $"ScaleChildren/WallJumpChecker"
-func jump():
+func jump(minijump : bool = false):
 	# Jump sfx
 	if velo.y >= 0:
-		SoundSystem.start_sound(SoundSystem.SFX.JUMP)
+		SoundSystem.start_sound(sound_system.SFX.JUMP)
 	# Set jump speed
 	if post_bash_jump_timer > 0 and !is_on_floor():
 		push(Vector2(0, -BASH_OUT_STRENGTH))
@@ -600,6 +688,8 @@ func jump():
 		if diving:
 			undive()
 		refresh_dive()
+	elif minijump:
+		push(Vector2(0, -DIVE_OUT_STRENGTH))
 	elif !diving: # Basic Jump
 		push(Vector2(0, -JUMP_STRENGTH))
 	else: # Out-of-dive Jump
@@ -613,10 +703,12 @@ func jump():
 			superjump_particle.emitting = true
 			push(Vector2(direction * SUPERDIVE_SPEED, -SUPERDIVE_SPEED))
 			animator["parameters/PlayerMovement/playback"].travel("dive_boost")
+			refresh_flags()
 		if (mini_superdive_timer > 0):
 			superjump_particle.emitting = true
 			push(Vector2(direction * SUPERDIVE_SPEED, -SUPERDIVE_SPEED))
 			animator["parameters/PlayerMovement/playback"].travel("dive_boost")
+			refresh_flags()
 	# Energy jump
 	coyoteTimer = 0
 	jump_timer = 0
@@ -700,7 +792,7 @@ func dive():
 		animator["parameters/PlayerMovement/playback"].travel("dive")
 		animator["parameters/PlayerMovement/conditions/jumping"] = false
 		animator["parameters/PlayerMovement/conditions/not_jumping"] = true
-		SoundSystem.start_sound(SoundSystem.SFX.DIVE)
+		SoundSystem.start_sound(sound_system.SFX.DIVE)
 func undive():
 	diving = false
 	max_velo = default_max_velo
@@ -719,7 +811,7 @@ func start_run(running_speed):
 	max_velo = default_max_velo
 	running = true
 func stop_run():
-	SoundSystem.stop_if_playing_sound(SoundSystem.SFX.SPRINT)
+	SoundSystem.stop_if_playing_sound(sound_system.SFX.SPRINT)
 	default_max_velo = MAX_SPEED
 	max_velo = default_max_velo
 	running = false
@@ -840,6 +932,8 @@ func set_velo_x(x):
 	velo.x = x
 func set_velo_y(y):
 	velo.y = y
+func is_velo_up() -> bool:
+	return velo.y < 0
 
 func on_ladder(ladder):
 	on_ladders += 1
@@ -870,8 +964,8 @@ func create_skid(play_sfx : bool = false, x_offset = 0):
 		skid.position.x += x_offset
 		get_parent().add_child(skid)
 		if play_sfx:
-			SoundSystem.start_sound(SoundSystem.SFX.SKID, abs(velo.x/max_velo))
-			#SoundSystem.start_sound(SoundSystem.SFX.SKID)
+			SoundSystem.start_sound(sound_system.SFX.SKID, abs(velo.x/max_velo))
+			#SoundSystem.start_sound(sound_system.SFX.SKID)
 
 func run_start_effect():
 	create_skid(false, 7)
@@ -882,7 +976,7 @@ func damage(isStomp, amount = 1):
 	core.damage(isStomp, amount)
 func signal_death():
 	emit_signal("dead")
-	SoundSystem.start_music(SoundSystem.MUSIC.GAMEOVER)
+	SoundSystem.start_music(sound_system.MUSIC.GAMEOVER)
 func heal(amount = 1):
 	core.heal(amount)
 
@@ -895,4 +989,4 @@ func resume_gravity():
 	gravity_timer.stop()
 
 func dance_fx():
-	SoundSystem.start_music(SoundSystem.MUSIC.VICTORY)
+	SoundSystem.start_music(sound_system.MUSIC.VICTORY)

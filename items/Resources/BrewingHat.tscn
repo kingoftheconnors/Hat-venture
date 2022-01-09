@@ -15,6 +15,7 @@ height = 7.36611
 extents = Vector2( 2, 4.00033 )
 
 [node name="RunnersCap" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 1 )
 itemCommand = ExtResource( 3 )
 

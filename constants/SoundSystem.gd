@@ -21,24 +21,41 @@ enum MUSIC {
 	VICTORY,
 	GRASSLAND,
 	GAMEOVER,
-	GAMEOVER_SCREEN
+	GAMEOVER_SCREEN,
+	TIMMY,
+	SHIP
 }
 
 onready var music_player : AudioStreamPlayer = $Music
+var cur_music = MUSIC.NONE
 func start_music(music : int):
-	music_player.stop()
-	match music:
-		MUSIC.GAMEOVER:
-			music_player.stream = preload("res://Music/Character_Death_Jingle.wav")
-		MUSIC.GAMEOVER_SCREEN:
-			music_player.stream = preload("res://Music/Game_Over2.ogg")
-		MUSIC.GRASSLAND:
-			music_player.stream = preload("res://Music/lvl1.ogg")
-		MUSIC.VICTORY:
-			music_player.stream = preload("res://Music/Win.ogg")
-	music_player.play()
+	if music_player:
+		music_player.volume_db = 0
+		if cur_music != music:
+			music_player.stop()
+			match music:
+				MUSIC.GAMEOVER:
+					music_player.stream = preload("res://Music/Character_Death_Jingle.wav")
+				MUSIC.GAMEOVER_SCREEN:
+					music_player.stream = preload("res://Music/Game_Over2.ogg")
+				MUSIC.GRASSLAND:
+					music_player.stream = preload("res://Music/Grass_World.ogg")
+				MUSIC.VICTORY:
+					music_player.stream = preload("res://Music/Time_Piece_Get.ogg")
+				MUSIC.TIMMY:
+					music_player.stream = preload("res://Music/Timmys_Theme.ogg")
+				MUSIC.SHIP:
+					music_player.stream = preload("res://Music/Ship.ogg")
+			music_player.play(0)
+		cur_music = music
 func stop_music():
 	music_player.stop()
+func fadeout_music():
+	$AnimationPlayer.play("FadeOut")
+func fadeout_music_fast():
+	$AnimationPlayer.play("FadeOutFast")
+func fadein_music():
+	$AnimationPlayer.play("FadeIn")
 
 onready var sfx_player : AudioStreamPlayer = $Sfx
 var cur_sound = SFX.NONE

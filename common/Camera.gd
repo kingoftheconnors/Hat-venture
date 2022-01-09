@@ -44,6 +44,13 @@ func _ready():
 	randomize()
 	reset_limits()
 
+#func _process(delta):
+#	if !Constants.PHOTOSENSITIVE_MODE:
+#		if shake_direc_right:
+#			position.x += shake_amount
+#		else:
+#			position.x -= shake_amount
+
 # Called every frame to update camera position
 func _physics_process(delta):
 	# Moving to a target-set position
@@ -62,6 +69,7 @@ func _physics_process(delta):
 		else:
 			# Default behavior: move to player object
 			position = target.position + Vector2(lookahead_offset, 0)
+			#shake_direc_right = !shake_direc_right
 		# Enforce limits
 		if position.y > lim_bottom - Gui.get_screen_resolution().y/2:
 			position.y = lim_bottom - Gui.get_screen_resolution().y/2
@@ -96,38 +104,44 @@ func room_capture(spot, is_move_walls):
 func finish_room_capture():
 	timer.disconnect("timeout", self, "finish_room_capture")
 	get_tree().paused = false
-	left_collider.disabled = false
-	right_collider.disabled = false
+	if move_walls:
+		left_collider.disabled = false
+		right_collider.disabled = false
 
 ## Releases room capture and resets camera to following the player
-func capture_release(release_box_position):
+func capture_release(release_box_position, animated_transition = true):
 	if target_spot != Vector2.ZERO and target_spot == release_box_position:
 		move_walls = true
-		tween.stop_all()
-		if target_spot.x < level.left:
-			target_spot.x = level.left + get_viewport().get_visible_rect().size.x/2
-			target_spot.y = min(level.down - get_viewport().get_visible_rect().size.y/2, max(level.up + get_viewport().get_visible_rect().size.y/2, target.position.y))
-		if target_spot.x > level.right:
-			target_spot.x = level.right - get_viewport().get_visible_rect().size.x/2
-			target_spot.y = min(level.down - get_viewport().get_visible_rect().size.y/2, max(level.up + get_viewport().get_visible_rect().size.y/2, target.position.y))
-		if target_spot.y < level.up:
-			target_spot.x = min(level.right - get_viewport().get_visible_rect().size.x/2, max(level.left + get_viewport().get_visible_rect().size.x/2, target.position.x))
-			target_spot.y = level.up + get_viewport().get_visible_rect().size.y/2
-		if target_spot.y > level.down:
-			target_spot.x = min(level.right - get_viewport().get_visible_rect().size.x/2, max(level.left + get_viewport().get_visible_rect().size.x/2, target.position.x))
-			target_spot.y = level.down - get_viewport().get_visible_rect().size.y/2
-		tween.interpolate_property(self, "position", self.position, target_spot, .5, Tween.TRANS_LINEAR, Tween.EASE_OUT)
-		tween.start()
-		reset_limits()
-		get_tree().paused = true
-		if timer.is_connected("timeout", self, "finish_room_capture"):
-			timer.disconnect("timeout", self, "finish_room_capture")
-		timer.connect("timeout", self, "finish_capture_release")
-		timer.start()
+		# Screen transition if area is off-screen:
+		if animated_transition:
+			tween.stop_all()
+			if target_spot.x < level.left:
+				target_spot.x = level.left + get_viewport().get_visible_rect().size.x/2
+				target_spot.y = min(level.down - get_viewport().get_visible_rect().size.y/2, max(level.up + get_viewport().get_visible_rect().size.y/2, target.position.y))
+			if target_spot.x > level.right:
+				target_spot.x = level.right - get_viewport().get_visible_rect().size.x/2
+				target_spot.y = min(level.down - get_viewport().get_visible_rect().size.y/2, max(level.up + get_viewport().get_visible_rect().size.y/2, target.position.y))
+			if target_spot.y < level.up:
+				target_spot.x = min(level.right - get_viewport().get_visible_rect().size.x/2, max(level.left + get_viewport().get_visible_rect().size.x/2, target.position.x))
+				target_spot.y = level.up + get_viewport().get_visible_rect().size.y/2
+			if target_spot.y > level.down:
+				target_spot.x = min(level.right - get_viewport().get_visible_rect().size.x/2, max(level.left + get_viewport().get_visible_rect().size.x/2, target.position.x))
+				target_spot.y = level.down - get_viewport().get_visible_rect().size.y/2
+			tween.interpolate_property(self, "position", self.position, target_spot, .5, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+			tween.start()
+			reset_limits()
+			get_tree().paused = true
+			if timer.is_connected("timeout", self, "finish_room_capture"):
+				timer.disconnect("timeout", self, "finish_room_capture")
+			timer.connect("timeout", self, "finish_capture_release")
+			timer.start()
+		else:
+			finish_capture_release()
 
 func finish_capture_release():
 	get_tree().paused = false
-	timer.disconnect("timeout", self, "finish_capture_release")
+	if timer.is_connected("timeout", self, "finish_capture_release"):
+		timer.disconnect("timeout", self, "finish_capture_release")
 	target_spot = Vector2.ZERO
 	reset_limits()
 	left_collider.disabled = true
@@ -151,9 +165,11 @@ func move_lookahead_toward(offset_goal, delta):
 	elif(lookahead_offset < offset_goal):
 		lookahead_offset += LOOKAHEAD_CHANGE_RATE * delta
 
+## Value for screen shake. Set to 0 to turn off
+var shake_amount : Vector2
+#var shake_direc_right : bool = false
 var shake_intensity : int = 0
 var shake_duration : float = 0
-var shake_amount : Vector2
 func shake_screen(amount : int, duration : float):
 	shake_intensity = amount
 	shake_duration = duration
@@ -173,3 +189,10 @@ func _exit_tree():
 	if timer.time_left > 0:
 		get_tree().paused = false
 
+#func screen_shake(shake_amo : int = 0, time_length : float = 1):
+#	tween.interpolate_property(self, "shake_amount", self.shake_amount, shake_amo, time_length, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#	tween.start()
+
+
+func screen_shake(extra_arg_0, extra_arg_1):
+	pass # Replace with function body.

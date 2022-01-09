@@ -12,3 +12,6 @@ var PHOTOSENSITIVE_MODE : bool = false
 ## A multiplier used to affect the intensity of background
 ## parallax
 var PARALLAX_LEVEL : int = 30
+
+enum SKIP_TYPE { RUN, SKIP, WORDLESS }
+var SKIP_CUTSCENES : int = SKIP_TYPE.RUN

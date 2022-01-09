@@ -13,10 +13,7 @@ func _ready():
 
 func pressed():
 	if SaveSystem.access_data().get_tag("satellite_aligned") == null:
-		$Exclamation.visible = false
-		$TimePieces.visible = true
 		# TODO: Play sfx
-		print("Starting new dialog")
 		$DialogBox.queue_dialog_by_id(game_dialog.DIALOG_TYPE.SHIP_SCREEN_1)
 	elif SaveSystem.access_data().get_tag("timepieces_stolen") == null:
 		$Exclamation.visible = false

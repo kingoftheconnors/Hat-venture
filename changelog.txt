@@ -339,6 +339,27 @@ Intro level
 Ship cutscene
 
 0.4.2
+Alpha Complete Settings menu
+New Palettes
+Fullscreening
+Brightness slider
+Parallax Silder
+Photosensitivity mode
+Keybinds (controller compatible)
+Skipping Cutscenes
+Make dialog text 1:1 with main game's pixel size
+Options menu doesn't open during cutscenes or TimePieceGet animations
+Add Animations to Timmy Scene
+Remove Lives
+Lil'ens Running Cutscene in level 1
+
+0.4.3
+Bedroom with Cutscenes
+Animate Doors
+Create Robo-Kurt Boss
+
+0.4.4
+Add Music
 RoboKurt boss
 3-color-palettes
 Viewing all palettes in DEBUG mode

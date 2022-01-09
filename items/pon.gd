@@ -3,6 +3,7 @@ class_name pon
 func collect_as_item(_body, _this):
 	# Update GUI
 	PlayerGameManager.add_pons(1)
+	PlayerGameManager.add_score(25)
 	return true
 
 func spawnFromBox(_collidingBody):

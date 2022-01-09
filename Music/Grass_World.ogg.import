@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Grass_World.ogg-f9303fa8ff46f328b93e5de0b49f7124.oggstr"
+
+[deps]
+
+source_file="res://Music/Grass_World.ogg"
+dest_files=[ "res://.import/Grass_World.ogg-f9303fa8ff46f328b93e5de0b49f7124.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=2.992

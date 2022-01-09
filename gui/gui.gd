@@ -29,13 +29,9 @@ func heal():
 func reset_energy():
 	energy.value = MAX_ENERGY
 
-# Lives
-func set_lives(num_lives):
-	lives.text = str(num_lives)
-
 # Pons
 func set_pons(amo):
-	pons.text = "    " + str(amo)
+	pons.text = str(amo)
 
 # Boss energy
 func startBossBattle(life):
@@ -43,34 +39,39 @@ func startBossBattle(life):
 	# TODO: Show boss health
 
 # Score
+var multVisible = false
 func set_score(amo):
-	playerScore.set_text("%06d" % amo)
+	playerScore.set_text("%07d" % amo)
 func set_score_mult(amo):
-	playerScoreMult.set_text("x%d:" % amo)
 	playerScoreMultAmo = amo
-	if amo == 1:
-		playerScoreMult.visible = false
+	if playerScoreMultAmo == 1:
+		multVisible = false
 	else:
-		playerScoreMult.visible = true
+		multVisible = true
+	render_score_mult()
+func render_score_mult():
+	if multVisible:
+		playerScoreLabel.set_text("SCOREx%-2d:" % playerScoreMultAmo)
+	else:
+		playerScoreLabel.set_text("SCORE   :")
 
 func set_gui_size(size):
 	sizeAnimator.play(size)
 
 onready var gui = $Player
-onready var energy = $Player/Energy
-onready var bossEnergy = $Player/BossArea/BossEnergy
-onready var playerScore = $Player/ScoreArea/ScoreNum
-onready var playerScoreMult = $Player/ScoreArea/Multiplicity
+onready var energy = $Player/MContainer/GuiInfo/Main/HatKid/Energy
+onready var bossEnergy = $Player/MContainer/GuiInfo/Main/Boss/BossEnergy
+onready var playerScoreLabel = $Player/MContainer/GuiInfo/Main/Score/Score
+onready var playerScore = $Player/MContainer/GuiInfo/Main/Score/ScoreNum
 var playerScoreMultAmo = 1
 
 onready var sizeAnimator = $AnimationPlayer
 
-onready var stageName = $Player/StageName
-onready var lives = $Player/LiveNum
-onready var pons = $Player/PonsNum
+onready var stageName = $Player/MContainer/GuiInfo/Pons/StageName
+onready var pons = $Player/MContainer/GuiInfo/Pons/HBoxContainer/PonsNum
 
-onready var scoreArea = $Player/ScoreArea
-onready var bossArea = $Player/BossArea
+onready var scoreArea = $Player/MContainer/GuiInfo/Main/Score
+onready var bossArea = $Player/MContainer/GuiInfo/Main/Boss
 
 ### ------------------------------
 ### DIALOG
@@ -81,39 +82,55 @@ var text_to_run = []
 var text_crawl_func
 var dialog_active = false
 var cur_speaking_name = ""
+const LINE_LENGTH = 30
+const DIALOG_AUTOSCROLL_NEXTBOX_DELAY : float = 1.0
 
 func _process(delta):
-	if text_crawl_func is GDScriptFunctionState:
-		# Pre-empt textboxes
-		if dialog.visible and Input.is_action_just_pressed("ui_B"):
-			text_crawl_func = null
-			# Don't run any more textboxes by the speaking character
-			while text_to_run.front() != null \
-				and text_to_run.front().has("name") \
-				and text_to_run.front().name == cur_speaking_name:
-				text_to_run.pop_front()
-			# After popping, add delay so player won't activate powers
-			# on accident
-			var text_queue_finished = true
-			for textbox in text_to_run:
-				if !textbox.has("freeze_player") and !textbox.has("unfreeze_player") \
-					and !textbox.has("enable") and !textbox.has("disable"):
-					text_queue_finished = false
-			if text_queue_finished:
-				text_to_run.push_front({delay=0.25})
-		else:
+	if !menu_exists:
+		if text_crawl_func is GDScriptFunctionState:
+			# Pre-empt textboxes
 			text_crawl_func = text_crawl_func.resume(delta)
-	elif text_to_run.size() > 0:
-		var next_box = text_to_run.pop_front()
-		start_dialog(next_box)
-	elif dialog_active:
-		end_dialog()
+		elif text_to_run.size() > 0:
+			var next_box = text_to_run.pop_front()
+			start_dialog(next_box)
+		elif dialog_active:
+			end_dialog()
 	if get_tree().paused and playerScoreMultAmo > 1:
-		playerScoreMult.visible = true
+		multVisible = true
+		render_score_mult()
 
+var menu_exists: bool = false
+var can_skip_cutscene : bool = true
 func _unhandled_input(event):
 	if event.is_action_pressed("toggle_hud"):
 		gui.visible = !gui.visible
+	# Open and close menu
+	if event.is_action_pressed("ui_menu"):
+		if menu_exists == false:
+			if dialog_active:
+				if can_skip_cutscene:
+					# skip cutscene menu
+					var iOptionsMenu = preload("res://gui/optionsmenu/SkipCutsceneMenu.tscn").instance()
+					get_node("/root/Gui").add_child(iOptionsMenu)
+					iOptionsMenu.connect("tree_exited", self, "_on_menu_tree_exited")
+					iOptionsMenu.connect("skip_cutscene", self, "skip_cutscene")
+					menu_exists = true
+			else:
+				if !get_tree().paused:
+					var iOptionsMenu = preload("res://gui/optionsmenu/SettingsMenu.tscn").instance()
+					get_node("/root/Gui").add_child(iOptionsMenu)
+					iOptionsMenu.connect("tree_exited", self, "_on_menu_tree_exited")
+					menu_exists = true
+			
+			if menu_exists:
+				# Move palette_filter to bottom of scene list so it's OVER the menu
+				var palette = get_node("/root/Gui/PaletteFilter")
+				get_node("/root/Gui").remove_child(palette)
+				get_node("/root/Gui").add_child(palette)
+				get_tree().set_input_as_handled()
+
+func _on_menu_tree_exited() -> void:
+	menu_exists = false
 
 func queue_text(dialog_starter, textbox : Dictionary):
 	queue(dialog_starter, [textbox])
@@ -121,6 +138,12 @@ func queue_text(dialog_starter, textbox : Dictionary):
 func queue_dialog(dialog_starter, textbox_num : int):
 	var textbox = textboxes.get_dialog(textbox_num)
 	queue(dialog_starter, textbox)
+
+func queue_dialog_at_front(dialog_starter, textbox_num : int):
+	var textbox = textboxes.get_dialog(textbox_num)
+	for textbox_dict in textbox:
+		textbox_dict.starter = dialog_starter
+	text_to_run = textbox + text_to_run
 
 func queue(dialog_starter, textbox):
 	for textbox_dict in textbox:
@@ -130,44 +153,109 @@ func queue(dialog_starter, textbox):
 		var next_box = text_to_run.pop_front()
 		start_dialog(next_box)
 
-func start_dialog(next_box):
+func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 	dialog_active = true
 	PlayerGameManager.pause_except([])
+	
+	if next_box.has("if_tag_false") \
+		and SaveSystem.access_data().get_tag(next_box['if_tag_false']) != null \
+		and SaveSystem.access_data().get_tag(next_box['if_tag_false']) != false:
+		return
+	if next_box.has("if_tag_true") \
+		and SaveSystem.access_data().get_tag(next_box['if_tag_true']) != true:
+		return
+	
 	cur_speaking_name = ""
 	if next_box.has("name"):
-		gui.visible = false
-		dialog.visible = true
-		dialogName.text = next_box.name
-		cur_speaking_name = next_box.name
-		dialogText.text = next_box.text
-		dialogText.lines_skipped = 0
-		# Start text crawl
-		text_crawl_func = crawl(next_box.text.length())
+		if skip_events == Constants.SKIP_TYPE.RUN or next_box.has("unskippable"):
+			gui.visible = false
+			dialog.visible = true
+			dialogName.text = next_box.name
+			cur_speaking_name = next_box.name
+			dialogText.text = next_box.text
+			dialogText.lines_skipped = 0
+			# Start text crawl
+			text_crawl_func = crawl(next_box)
+		elif next_box.has("options"):
+			var first_option = next_box.options.keys()[0]
+			var next_textbox_num = next_box.options[first_option]
+			queue_dialog_at_front(next_box.starter, next_textbox_num)
 	elif next_box.has("signal"):
-		next_box.starter.emit_signal(next_box.signal)
+		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS or next_box.has("unskippable"):
+			next_box.starter.emit_signal(next_box.signal)
+	elif next_box.has("animate1"):
+		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS or next_box.has("unskippable"):
+			next_box.starter.animate1(next_box.animate1)
+	elif next_box.has("animate2"):
+		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS or next_box.has("unskippable"):
+			next_box.starter.animate2(next_box.animate2)
 	elif next_box.has("settag"):
-		SaveSystem.set_tag(next_box['settag'], next_box['value'])
+		SaveSystem.access_data().set_tag(next_box['settag'], next_box['value'])
+	elif next_box.has("queue"):
+		queue_dialog_at_front(next_box.starter, next_box['queue'])
+	elif next_box.has("delaytil_animate1_method_true"):
+		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS or next_box.has("unskippable"):
+			text_crawl_func = wait_for_method_true(next_box.starter, "animate1_method_true", next_box['delaytil_animate1_method_true'])
+	elif next_box.has("delaytil_animate2_method_true"):
+		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS or next_box.has("unskippable"):
+			text_crawl_func = wait_for_method_true(next_box.starter, "animate2_method_true", next_box['delaytil_animate2_method_true'])
 	elif next_box.has("enable"):
 		for body in next_box['enable']:
 			body.set_pause_mode(PAUSE_MODE_PROCESS)
 	elif next_box.has("disable"):
 		for body in next_box['disable']:
 			body.set_pause_mode(PAUSE_MODE_INHERIT)
+	elif next_box.has("enable_skipping"):
+		can_skip_cutscene = true
+	elif next_box.has("disable_skipping"):
+		can_skip_cutscene = false
 	elif next_box.has("unfreeze_player"):
 		next_box['unfreeze_player'].set_freeze(false)
 	elif next_box.has("freeze_player"):
 		next_box['freeze_player'].set_freeze(true)
+	elif next_box.has("brightness"):
+		set_brightness_param(next_box['brightness'])
 	elif next_box.has("level"):
 		var spawn_point = -1
 		if next_box.has('spawn_point'):
 			spawn_point = next_box['spawn_point']
+		PlayerGameManager.level_complete()
 		PlayerGameManager.start_level(next_box['level'], spawn_point)
+	elif next_box.has("fadeout"):
+		Gui.cover()
+	elif next_box.has("fadein"):
+		Gui.reveal()
+	elif next_box.has("sound"):
+		SoundSystem.start_sound(next_box['sound'])
+	elif next_box.has("music"):
+		SoundSystem.start_music(next_box['music'])
+	elif next_box.has("fadeout_music"):
+		SoundSystem.fadeout_music()
+	elif next_box.has("fadeout_music_fast"):
+		SoundSystem.fadeout_music_fast()
+	elif next_box.has("addpon"):
+		PlayerGameManager.add_pons(next_box["addpon"])
+	elif next_box.has("queue_free"):
+		next_box['queue_free'].queue_free()
 	
 	# Wait for program to return signal that we can continue scene
 	if next_box.has("delay"):
-		gui.visible = true
-		dialog.visible = false
-		text_crawl_func = delay(next_box['delay'])
+		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS or next_box.has("unskippable"):
+			gui.visible = true
+			dialog.visible = false
+			text_crawl_func = delay(next_box['delay'])
+
+func skip_cutscene():
+	text_crawl_func = null
+	if curbox != null and curbox.has('options'):
+		var first_option = curbox.options.keys()[0]
+		var next_textbox_num = curbox.options[first_option]
+		queue_dialog_at_front(curbox.starter, next_textbox_num)
+	while text_to_run.size() > 0:
+		var next_box = text_to_run.pop_front()
+		start_dialog(next_box, true)
+		if next_box.has('level'):
+			return
 
 func end_dialog():
 	dialog_active = false
@@ -185,7 +273,9 @@ func delay(wait_time):
 		var delta = yield()
 		time_passed += delta
 
-func crawl(_text_length):
+var curbox = null
+func crawl(text_box):
+	curbox = text_box
 	# Text crawl
 	dialogText.percent_visible = 0
 	var lettersVisible = 0.0
@@ -193,43 +283,88 @@ func crawl(_text_length):
 	while get_printed_lines() < dialogText.get_line_count():
 		var delta = yield()
 		lettersVisible += delta * speed * letters_per_sec
-		if dialogText.visible_characters >= 39:
+		if dialogText.visible_characters > LINE_LENGTH*2-1:
 			# Wait for user input
-			while(!Input.is_action_just_pressed("ui_A")):
-				yield()
+			if text_box.has("autoscroll") and text_box.autoscroll:
+				var time_passed = 0
+				while time_passed < DIALOG_AUTOSCROLL_NEXTBOX_DELAY:
+					time_passed += yield()
+			else:
+				while(!Input.is_action_just_pressed("ui_accept") and !Input.is_action_just_pressed("ui_B")):
+					yield()
 			dialogText.lines_skipped += 2
-			lettersVisible -= 40
+			lettersVisible -= LINE_LENGTH*2
 			dialogText.set_visible_characters(int(lettersVisible))
-			yield()
+		elif (!text_box.has("autoscroll") or !text_box.autoscroll) and (Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_B")):
+			# Set letters to fill if the user pressed A
+			# or if they pressed B and the textbox has options
+			lettersVisible = LINE_LENGTH*2
+		if (!text_box.has("autoscroll") or !text_box.autoscroll) and Input.is_action_just_pressed("ui_B") and !text_box.has("options"):
+			# Check if this is the last textbox.
+			# If it is, add delay so player won't activate powers on accident
+			var text_queue_finished = true
+			for textbox in text_to_run:
+				if !textbox.has("freeze_player") and !textbox.has("unfreeze_player") \
+					and !textbox.has("enable") and !textbox.has("disable"):
+					text_queue_finished = false
+			if text_queue_finished:
+				text_to_run.push_front({delay=0.25})
+			return
 		dialogText.set_visible_characters(int(lettersVisible))
-		if Input.is_action_just_pressed("ui_A"):
-			lettersVisible = 38
 	yield()
-	# Wait for user input
-	while(!Input.is_action_just_pressed("ui_A")):
-		yield()
+	if text_box.has("options"):
+		if dialogText.get_line_count() > 1:
+			dialogText.lines_skipped += 1
+			lettersVisible -= LINE_LENGTH
+		dialogOptions.show_options(text_box.options)
+		var selected_option = -1
+		while selected_option < 0:
+			selected_option = dialogOptions.poll_user_selection()
+			yield()
+		dialogOptions.hide_options()
+		queue_dialog_at_front(text_box.starter, selected_option)
+	else:
+		# Wait for user input
+		if text_box.has("autoscroll") and text_box.autoscroll:
+			var time_passed = 0
+			while time_passed < DIALOG_AUTOSCROLL_NEXTBOX_DELAY:
+				time_passed += yield()
+		else:
+			while(!Input.is_action_just_pressed("ui_accept") and !Input.is_action_just_pressed("ui_B")):
+				yield()
 	return
+
+func wait_for_method_true(object : Node, function_name : String, param):
+	while object.call(function_name, param) == false:
+		yield()
 
 ## Sets score multiplicity to visible or invisible
 ## based on the amount of time left. Visualizes the speed at
 ## which multiplicity time is depleting
 func notify_multiplicity_time(time):
 	if time < 0.1:
-		playerScoreMult.visible = true
+		multVisible = true
+		render_score_mult()
 	elif time < 0.25:
-		playerScoreMult.visible = false
+		multVisible = false
+		render_score_mult()
 	elif time < 0.4:
-		playerScoreMult.visible = true
+		multVisible = true
+		render_score_mult()
 	elif time < 0.55:
-		playerScoreMult.visible = false
+		multVisible = false
+		render_score_mult()
 	elif time < 0.7:
-		playerScoreMult.visible = true
+		multVisible = true
+		render_score_mult()
 	elif time < 0.85:
-		playerScoreMult.visible = false
+		multVisible = false
+		render_score_mult()
 
 onready var dialog = $DialogBox
 onready var dialogName = $DialogBox/Name
 onready var dialogText = $DialogBox/Dialog
+onready var dialogOptions = $DialogBox/DialogOptions
 onready var textboxes = game_dialog.new()
 
 ### ------------------------------
@@ -237,19 +372,26 @@ onready var textboxes = game_dialog.new()
 ### -------------------------------
 
 var cur_resolution : Vector2 = Vector2.ZERO
+var cur_multiplier : int = 1
 func set_screen_resolution(new_size : Vector2) -> void:
 	cur_resolution = new_size
-	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_2D, SceneTree.STRETCH_ASPECT_KEEP, new_size)
+	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_VIEWPORT, SceneTree.STRETCH_ASPECT_KEEP_HEIGHT, new_size)
 	# Resize window if not maximized
-	if !OS.window_maximized:
-		#Find closest multiple of new resolution near current window size
-		var dist_to_cur_size = OS.get_window_size().distance_to(new_size)
-		var multiplier : int = 1
-		for mult in range(2, 5):
-			if OS.get_window_size().distance_to(new_size*mult) < dist_to_cur_size \
-				and new_size.x*mult < OS.get_screen_size().x and new_size.y*mult < OS.get_screen_size().y:
-				multiplier = mult
-			OS.set_window_size(new_size * multiplier)
+	#if !OS.window_maximized:
+	#	#Find closest multiple of new resolution near current window size
+	#	var dist_to_cur_size = OS.get_window_size().distance_to(new_size)
+	#	var multiplier : int = 1
+	#	for mult in range(2, 5):
+	#		if OS.get_window_size().distance_to(new_size*mult) < dist_to_cur_size \
+	#			and new_size.x*mult < OS.get_screen_size().x and new_size.y*mult < OS.get_screen_size().y:
+	#			multiplier = mult
+	OS.set_window_size(cur_resolution * cur_multiplier)
+	OS.center_window()
+
+func set_screen_multiplier(mult: int) -> void:
+	cur_multiplier = mult
+	OS.set_window_size(cur_resolution * cur_multiplier)
+	OS.center_window()
 
 func get_screen_resolution() -> Vector2:
 	return cur_resolution
@@ -259,37 +401,31 @@ func get_screen_resolution() -> Vector2:
 ### -------------------------------
 
 func set_palette(palette_name):
-	palette_controller.set_palette(palette_name)
+	$PaletteFilter.set_palette(palette_name)
 func set_brightness(val):
-	palette_controller.set_brightness(val)
+	$PaletteFilter.set_brightness(val)
+func set_brightness_param(val):
+	$PaletteFilter.set_brightness_param(val)
 
 ### ------------------------------
 ### Parallax
 ### -------------------------------
 
-onready var palette_controller = $PaletteFilter
-
 func cover() -> float:
-	if !Constants.PHOTOSENSITIVE_MODE:
-		cover_animator.play("cover")
-		return 0.7
-	else:
-		cover_animator.play("cover (slow)")
-		return 1.5
-	return 1.0
+	cover_animator.play("cover (slow)")
+	return 1.4
 func reveal() -> float:
-	if !Constants.PHOTOSENSITIVE_MODE:
-		cover_animator.play("reveal")
-		return 0.7
-	else:
-		cover_animator.play("reveal (slow)")
-		return 1.5
-	return 1.0
+	cover_animator.play("reveal (slow)")
+	return 1.4
 func unlock_palette(palette_name):
 	$UnlockPaletteBox.visible = true
 	$UnlockPaletteBox.grab_focus()
 	$UnlockPaletteBox.show_palette_get(palette_name)
-	SaveSystem.unlock_palette(palette_name)
+	SaveSystem.access_data().unlock_palette(palette_name)
+func unlock_storybook_page(num_pages : int):
+	$UnlockPaletteBox.visible = true
+	$UnlockPaletteBox.grab_focus()
+	$UnlockPaletteBox.show_storybook_get(num_pages)
 
 
 onready var cover_animator = $CoverAnimator

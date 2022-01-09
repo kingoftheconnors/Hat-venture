@@ -148,6 +148,9 @@ min_value = -360.0
 max_value = 360.0
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 9, 1 )
+
 [node name="Block" type="StaticBody2D" groups=[
 "block",
 ]]
@@ -192,3 +195,11 @@ direction = Vector2( 0, 0 )
 spread = 0.0
 gravity = Vector2( 0, 400 )
 angle_curve = SubResource( 14 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, 8 )
+shape = SubResource( 15 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

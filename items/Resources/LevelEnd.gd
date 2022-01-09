@@ -4,5 +4,9 @@ extends Node2D
 
 export(String) var next_level = "res://world1/level1.tscn"
 
+var done = false
 func end_level():
-	PlayerGameManager.start_level(next_level)
+	if not done:
+		PlayerGameManager.level_complete()
+		PlayerGameManager.start_level(next_level)
+		done = true

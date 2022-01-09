@@ -16,11 +16,11 @@
 	"1": {
 		"name": "music_volume",
 		"default": {
-			"value": 0.5,
+			"value": 0.3,
 			"bus_name": "Music"
 		},
 		"current": {
-			"value": 0,
+			"value": 0.3,
 			"bus_name": "Music"
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/audio_slider.gd"
@@ -32,7 +32,7 @@
 			"bus_name": "SoundEffects"
 		},
 		"current": {
-			"value": 0,
+			"value": 0.6,
 			"bus_name": "SoundEffects"
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/audio_slider.gd"
@@ -147,11 +147,11 @@
 		"name": "kb_jump",
 		"default": {
 			"value": 90,
-			"action_name": "ui_A"
+			"action_name": "ui_accept"
 		},
 		"current": {
 			"value": 90,
-			"action_name": "ui_A"
+			"action_name": "ui_accept"
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/keybind_kb.gd"
 	},
@@ -171,11 +171,11 @@
 		"name": "gp_jump",
 		"default": {
 			"value": 0,
-			"action_name": "ui_A"
+			"action_name": "ui_accept"
 		},
 		"current": {
 			"value": 0,
-			"action_name": "ui_A"
+			"action_name": "ui_accept"
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/keybind_gp.gd"
 	},
@@ -199,7 +199,7 @@
 		"current": {
 			"value": 2
 		},
-		"logic": "res://gui/optionsmenu/setting_logic/window_scale.gd"
+		"logic": "res://gui/optionsmenu/setting_logic/window_res.gd"
 	},
 	"17": {
 		"name": "brightness",
@@ -278,5 +278,25 @@
 			"action_name": "ui_menu"
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/keybind_gp.gd"
+	},
+	"24": {
+		"name": "cutscene_mode",
+		"default": {
+			"value": 0
+		},
+		"current": {
+			"value": 0
+		},
+		"logic": "res://gui/optionsmenu/setting_logic/skip_cutscenes.gd"
+	},
+	"25": {
+		"name": "window_scale",
+		"default": {
+			"value": 0
+		},
+		"current": {
+			"value": 2
+		},
+		"logic": "res://gui/optionsmenu/setting_logic/window_scale.gd"
 	}
 }
