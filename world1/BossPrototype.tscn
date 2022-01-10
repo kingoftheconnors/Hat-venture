@@ -81,6 +81,7 @@ active_bodies_in_dialog = [ NodePath("../RoboKurt") ]
 one_shot = true
 
 [node name="Area2D" type="Area2D" parent="Boss/DialogOnCollisionStarter"]
+position = Vector2( -48, 0 )
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/DialogOnCollisionStarter/Area2D"]

@@ -44,8 +44,12 @@ const GRAVITY = 13
 func fall():
 	velo = Vector2($EnemyCore.scale.x*100, -200)
 	falling = true
+func fall_towards_right():
+	velo = Vector2(100, -200)
+	falling = true
 func end_fall():
 	falling = false
+	velo = Vector2.ZERO
 func _physics_process(delta):
 	if falling:
 		velo += Vector2.DOWN*GRAVITY
@@ -56,6 +60,7 @@ func _physics_process(delta):
 				if abs(collision.normal.y) > abs(collision.normal.x) \
 					and collision.collider.get_collision_layer_bit(1):
 					animator.set_parameter("hurt/HurtState/conditions/fall_complete", true)
+					animator.set_parameter("die/die/conditions/fall_complete", true)
 					break
 
 func damage(isStomp):
@@ -67,6 +72,9 @@ func damage(isStomp):
 	animator.set_condition("hurt", true)
 	emit_signal("hurt")
 	Gui.update_boss_health($EnemyCore.enemy_hp, MAX_HEALTH)
+
+func throw_death_signal():
+	emit_signal("dead")
 
 func fly_to_other_side(duration : float):
 	swap_side()
@@ -135,3 +143,4 @@ func _ready():
 
 signal ground_pound
 signal hurt
+signal dead
