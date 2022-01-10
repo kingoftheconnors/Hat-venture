@@ -8,6 +8,7 @@ extends "res://enemy/Scripts/EnemyController.gd"
 """
 
 var idle_count : int = 0
+const MAX_HEALTH = 6
 const ATTACK_THRESHOLD = 2
 const SCREEN_SHAKE_INTENSITY = 4
 const SCREEN_SHAKE_DURATION = 1.0
@@ -65,6 +66,7 @@ func damage(isStomp):
 		animator.set_parameter("hurt/IsFlashing/add_amount", 1)
 	animator.set_condition("hurt", true)
 	emit_signal("hurt")
+	Gui.update_boss_health($EnemyCore.enemy_hp, MAX_HEALTH)
 
 func fly_to_other_side(duration : float):
 	swap_side()
@@ -108,6 +110,12 @@ func update_direction():
 		$EnemyCore.scale.x = -1
 	else:
 		$EnemyCore.scale.x = 1
+
+func start_gui():
+	Gui.boss_start(MAX_HEALTH)
+	$EnemyCore.enemy_hp = MAX_HEALTH
+func turn_on():
+	animator.active = true
 
 var is_left_side : bool = false
 onready var left = get_node(left_side)

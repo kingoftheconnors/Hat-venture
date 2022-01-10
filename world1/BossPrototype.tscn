@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://enemy/RoboKurt/RoboKurt.tscn" type="PackedScene" id=2]
@@ -9,6 +9,11 @@
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://enemy/RoboKurt/AppleDropper.tscn" type="PackedScene" id=8]
 [ext_resource path="res://gui/PlayerPalette.tres" type="Material" id=9]
+[ext_resource path="res://NPCs/DialogStarter.gd" type="Script" id=10]
+[ext_resource path="res://NPCs/DialogOnCollisionStarter.gd" type="Script" id=11]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 176 )
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 3 )
@@ -40,7 +45,7 @@ tile_data = PoolIntArray( -786418, 21, 131072, -786417, 21, 131073, -786416, 21,
 script = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
-position = Vector2( 32, 0 )
+position = Vector2( -104, 0 )
 rotation = 4.46638e-06
 
 [node name="Camera" parent="." instance=ExtResource( 6 )]
@@ -68,6 +73,19 @@ position = Vector2( -128, -184 )
 left = -104
 right = 104
 
+[node name="DialogOnCollisionStarter" type="Node2D" parent="Boss"]
+position = Vector2( -88, -128 )
+script = ExtResource( 10 )
+dialog_num = 27
+active_bodies_in_dialog = [ NodePath("../RoboKurt") ]
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="Boss/DialogOnCollisionStarter"]
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/DialogOnCollisionStarter/Area2D"]
+shape = SubResource( 1 )
+
 [node name="Trees" type="Node2D" parent="."]
 
 [node name="Tree2" type="TileMap" parent="Trees"]
@@ -82,3 +100,6 @@ tile_data = PoolIntArray( -2228189, 14, 131073, -2162652, 14, 131073, -2097115, 
 
 [connection signal="ground_pound" from="Boss/RoboKurt" to="Boss/AppleDropper" method="generate_apples" binds= [ 3 ]]
 [connection signal="hurt" from="Boss/RoboKurt" to="Player" method="bounce_back"]
+[connection signal="action1" from="Boss/DialogOnCollisionStarter" to="Boss/RoboKurt" method="turn_on"]
+[connection signal="action2" from="Boss/DialogOnCollisionStarter" to="Boss/RoboKurt" method="start_gui"]
+[connection signal="body_entered" from="Boss/DialogOnCollisionStarter/Area2D" to="Boss/DialogOnCollisionStarter/Area2D" method="_on_Area2D_body_entered"]

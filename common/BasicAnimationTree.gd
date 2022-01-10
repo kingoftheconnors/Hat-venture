@@ -6,5 +6,5 @@ func set_condition(condition_name, flag : bool):
 func set_parameter(parameter_path, value):
 	set("parameters/" + parameter_path, value)
 
-func _ready():
-	active = true
+#func _ready():
+#	active = true
