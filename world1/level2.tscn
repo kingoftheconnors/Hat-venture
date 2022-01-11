@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://world1/background1.tres" type="TileSet" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://common/FakeWalls.gd" type="Script" id=7]
 [ext_resource path="res://common/Spring.tscn" type="PackedScene" id=8]
 [ext_resource path="res://common/LevelMusic.gd" type="Script" id=9]
+[ext_resource path="res://common/CollectableStorybookPage.tscn" type="PackedScene" id=10]
 [ext_resource path="res://enemy/eltun/eltun.tscn" type="PackedScene" id=11]
 [ext_resource path="res://common/TileInstancer.gd" type="Script" id=15]
 [ext_resource path="res://enemy/hen/Hen.tscn" type="PackedScene" id=17]
@@ -487,7 +488,7 @@ cell_quadrant_size = 4
 collision_layer = 2
 collision_mask = 3
 format = 1
-tile_data = PoolIntArray( -917352, 0, 65541, -917351, 14, 0, -917350, 14, 0, -917349, 0, 65541, -851816, 0, 65541, -851815, 14, 0, -851814, 14, 0, -851813, 0, 65541, -786280, 0, 65541, -786279, 14, 0, -786278, 14, 0, -786277, 0, 65541, -720744, 0, 65541, -720743, 14, 0, -720742, 14, 0, -720741, 0, 65541, -655208, 0, 65541, -655207, 14, 0, -655206, 14, 0, -655205, 0, 65541, -589672, 0, 65541, -589671, 14, 0, -589670, 14, 0, -589669, 0, 65541, -524136, 0, 65541, -524135, 14, 0, -524134, 14, 0, -524133, 0, 65541, -458600, 0, 65541, -458599, 14, 0, -458598, 14, 0, -458597, 0, 65541, -393064, 0, 65541, -393061, 0, 65541, -327528, 0, 65541, -327527, 0, 1, -327526, 0, 1, -327525, 0, 65541, -261992, 0, 65536, -261991, 0, 65537, -261990, 0, 65537, -261989, 0, 65538, -196456, 0, 131072, -196455, 0, 65540, -196454, 0, 65539, -196453, 0, 131074, -130919, 0, 131072, -130918, 0, 131074 )
+tile_data = PoolIntArray( -917352, 0, 65541, -917351, 14, 0, -917350, 14, 0, -917349, 0, 65541, -851816, 0, 65541, -851815, 14, 0, -851814, 14, 0, -851813, 0, 65541, -786280, 0, 65541, -786279, 14, 0, -786278, 14, 0, -786277, 0, 65541, -720744, 0, 65541, -720743, 14, 0, -720742, 14, 0, -720741, 0, 65541, -655208, 0, 65541, -655207, 14, 0, -655206, 14, 0, -655205, 0, 65541, -589672, 0, 65541, -589671, 14, 0, -589670, 14, 0, -589669, 0, 65541, -524136, 0, 65541, -524135, 14, 0, -524134, 14, 0, -524133, 0, 65541, -458600, 0, 65541, -458599, 15, 0, -458597, 0, 65541, -393064, 0, 65541, -393061, 0, 65541, -327528, 0, 65541, -327527, 0, 1, -327526, 0, 1, -327525, 0, 65541, -261992, 0, 65536, -261991, 0, 65537, -261990, 0, 65537, -261989, 0, 65538, -196456, 0, 131072, -196455, 0, 65540, -196454, 0, 65539, -196453, 0, 131074, -130919, 0, 131072, -130918, 0, 131074 )
 script = ExtResource( 15 )
 
 [node name="Spring" parent="SecretNode2/SecretNodeTiles2" instance=ExtResource( 8 )]
@@ -495,6 +496,9 @@ position = Vector2( 2456.04, -87.2876 )
 
 [node name="Spring2" parent="SecretNode2/SecretNodeTiles2" instance=ExtResource( 8 )]
 position = Vector2( 2472.31, -87.2956 )
+
+[node name="Collectable" parent="SecretNode2/SecretNodeTiles2" instance=ExtResource( 10 )]
+position = Vector2( 2472.16, -109.379 )
 
 [node name="SecretNode2Tiles" type="TileMap" parent="SecretNode2"]
 format = 1
