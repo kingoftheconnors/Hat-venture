@@ -150,22 +150,18 @@ position = Vector2( 2524.01, -75.244 )
 
 [node name="DEnemies" type="Node2D" parent="PartD"]
 
-[node name="Crow" parent="PartD/DEnemies" instance=ExtResource( 18 )]
-position = Vector2( 2020.66, -87.8782 )
-direction = -1
+[node name="Hen3" parent="PartD/DEnemies" instance=ExtResource( 17 )]
+position = Vector2( 2076.38, -37.9804 )
 
-[node name="Crow2" parent="PartD/DEnemies" instance=ExtResource( 18 )]
-position = Vector2( 1802.33, -7.2133 )
+[node name="Hen" parent="PartD/DEnemies" instance=ExtResource( 17 )]
+position = Vector2( 1986.96, -89.3963 )
 
-[node name="Crow3" parent="PartD/DEnemies" instance=ExtResource( 18 )]
-position = Vector2( 2083.64, -39.4121 )
+[node name="Hen2" parent="PartD/DEnemies" instance=ExtResource( 17 )]
+position = Vector2( 2083.19, -8.47412 )
 
 [node name="Crow4" parent="PartD/DEnemies" instance=ExtResource( 18 )]
 position = Vector2( 2085.84, -135.549 )
 direction = -1
-
-[node name="Crow5" parent="PartD/DEnemies" instance=ExtResource( 18 )]
-position = Vector2( 1827.11, -86.7217 )
 
 [node name="DTiles" type="TileMap" parent="PartD"]
 tile_set = ExtResource( 1 )
@@ -279,10 +275,6 @@ position = Vector2( 854.119, -72.1019 )
 scale = Vector2( -1, 1 )
 script = ExtResource( 23 )
 direction = Vector2( 0, -1 )
-
-[node name="Crow3" parent="PartB/BEnemies" instance=ExtResource( 18 )]
-position = Vector2( 784.341, -70.743 )
-direction = -1
 
 [node name="PartA" type="Node2D" parent="."]
 
@@ -511,5 +503,10 @@ format = 1
 script = ExtResource( 9 )
 level_music = 2
 
+[node name="Hen" parent="." instance=ExtResource( 17 )]
+position = Vector2( 1810.59, -8.25026 )
+
+[node name="Hen2" parent="." instance=ExtResource( 17 )]
+position = Vector2( 1832, -87.3325 )
 [connection signal="body_entered" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeWalls" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeWalls" method="_on_Area2D_body_exited"]
