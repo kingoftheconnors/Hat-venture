@@ -170,6 +170,7 @@ radius = 9.5
 
 [node name="TimePiece" type="Node2D"]
 pause_mode = 2
+z_index = 5
 script = ExtResource( 5 )
 
 [node name="ItemRoot" type="Node2D" parent="."]
@@ -198,6 +199,8 @@ playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemRoot/Area2D"]
 shape = SubResource( 18 )
+
+[node name="Tween" type="Tween" parent="."]
 
 [connection signal="area_entered" from="ItemRoot/Area2D" to="ItemRoot" method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="ItemRoot/Area2D" to="ItemRoot" method="_on_Area2D_body_entered"]

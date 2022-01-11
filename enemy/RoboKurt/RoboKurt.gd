@@ -17,6 +17,7 @@ const SCREAM_SHAKE_DURATION = 2.0
 
 export(NodePath) var left_side
 export(NodePath) var right_side
+export(NodePath) var timepiece_goal
 
 func increase_idle_count():
 	idle_count += 1
@@ -71,6 +72,7 @@ func damage(isStomp):
 		animator.set_parameter("hurt/IsFlashing/add_amount", 1)
 	animator.set_condition("hurt", true)
 	emit_signal("hurt")
+	idle_count = 0
 	Gui.update_boss_health($EnemyCore.enemy_hp, MAX_HEALTH)
 
 func throw_death_signal():
@@ -124,6 +126,21 @@ func start_gui():
 	$EnemyCore.enemy_hp = MAX_HEALTH
 func turn_on():
 	animator.active = true
+
+func pause_game():
+	PlayerGameManager.pause_except([self])
+	falling = false
+	velo = Vector2.ZERO
+	$Tween.stop_all()
+func unpause_game():
+	PlayerGameManager.unpause()
+func set_brightness(val : int):
+	Gui.set_brightness_param(val)
+func create_time_piece():
+	var timepiece = preload("res://items/Resources/TimePiece.tscn").instance()
+	timepiece.position = position + Vector2($HatchPos.position.x * $EnemyCore.scale.x, $HatchPos.position.y)
+	get_parent().add_child(timepiece)
+	timepiece.fly_to(get_node(timepiece_goal))
 
 var is_left_side : bool = false
 onready var left = get_node(left_side)

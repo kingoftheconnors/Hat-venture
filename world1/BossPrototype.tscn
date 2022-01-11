@@ -59,14 +59,20 @@ smoothing_speed = 12.0
 position = Vector2( 152, -8 )
 
 [node name="RoboKurt" parent="Boss" instance=ExtResource( 2 )]
+collision_layer = 1
+collision_mask = 3
 left_side = NodePath("../Left")
 right_side = NodePath("../Right")
+timepiece_goal = NodePath("../TimePieceGoal")
 
 [node name="Left" type="Node2D" parent="Boss"]
 position = Vector2( -280, 8 )
 
 [node name="Right" type="Node2D" parent="Boss"]
 position = Vector2( 40, 8 )
+
+[node name="TimePieceGoal" type="Node2D" parent="Boss"]
+position = Vector2( -120, -48 )
 
 [node name="AppleDropper" parent="Boss" instance=ExtResource( 8 )]
 position = Vector2( -128, -184 )
