@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://gui/EnemyPalette.tres" type="Material" id=1]
 [ext_resource path="res://enemy/RoboKurt/RobokurtStateMachine.tres" type="AnimationNodeStateMachine" id=2]
@@ -8,6 +8,10 @@
 [ext_resource path="res://common/BasicAnimationTree.gd" type="Script" id=6]
 [ext_resource path="res://enemy/RoboKurt/robokurt.png" type="Texture" id=7]
 [ext_resource path="res://enemy/RoboKurt/explosion.png" type="Texture" id=8]
+
+[sub_resource type="Animation" id=29]
+resource_name = "aaaa-empty"
+length = 0.1
 
 [sub_resource type="Animation" id=1]
 resource_name = "aaauto-setup"
@@ -103,7 +107,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=3]
 resource_name = "die_hurt"
 length = 4.0
 tracks/0/type = "method"
@@ -160,7 +164,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=4]
 resource_name = "die_kaboom"
 length = 3.0
 step = 0.05
@@ -239,8 +243,7 @@ tracks/5/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "fly"
+[sub_resource type="Animation" id=5]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position:y")
@@ -315,8 +318,7 @@ tracks/5/keys = {
 "values": [ 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "fly_smash"
+[sub_resource type="Animation" id=6]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position:y")
@@ -345,8 +347,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "hop_to_other_side"
+[sub_resource type="Animation" id=7]
 length = 0.02
 step = 0.01
 tracks/0/type = "method"
@@ -379,7 +380,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=8]
 length = 1.7
 step = 0.05
 tracks/0/type = "value"
@@ -407,7 +408,7 @@ tracks/1/keys = {
 "values": [ 3, 4, 2, 3, 4, 2, 3, 4, 0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=9]
 length = 4.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -462,9 +463,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("EnemyCore/AnimationTree:parameters/hurt/IsFlashing/add_amount")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
 
-[sub_resource type="Animation" id=8]
-resource_name = "hurt_bounce"
+[sub_resource type="Animation" id=10]
 length = 1.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position:y")
@@ -555,7 +567,141 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="CapsuleShape2D" id=11]
+radius = 18.0
+height = 6.0
+
+[sub_resource type="Animation" id=12]
+resource_name = "hurt_jump"
+length = 1.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("EnemyCore/AnimationTree:parameters/conditions/jump")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6, 1.2 ),
+"transitions": PoolRealArray( 0.5, 3, 1 ),
+"update": 0,
+"values": [ 0.0, -96.0, 0.0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ 1.5 ],
+"method": "fly_to_other_side"
+}, {
+"args": [  ],
+"method": "update_direction"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("EnemyCore:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.65, 1.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 2 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("EnemyCore/AnimationTree:parameters/hurt/IsFlashing/add_amount")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.25 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:collision_layer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath(".:collision_mask")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("HurtBox/CollisionShape2D:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("HitBox/CollisionShape2D:shape")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 11 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("EnemyCore:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=13]
 length = 0.6
 loop = true
 step = 0.05
@@ -620,8 +766,7 @@ tracks/4/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "idle"
+[sub_resource type="Animation" id=14]
 length = 0.7
 loop = true
 tracks/0/type = "method"
@@ -651,7 +796,7 @@ tracks/1/keys = {
 "values": [ 0, 1, 2, 1, 0 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=15]
 length = 1.2
 step = 0.05
 tracks/0/type = "value"
@@ -708,7 +853,7 @@ tracks/3/keys = {
 "values": [ 1, 2, 3, 4, 2 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=16]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("EnemyCore:frame")
@@ -735,7 +880,7 @@ tracks/1/keys = {
 "values": [ -136.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=17]
 length = 0.2
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -767,7 +912,7 @@ tracks/1/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=18]
 length = 2.4
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position:y")
@@ -823,7 +968,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=19]
 length = 0.1
 loop = true
 step = 0.05
@@ -888,7 +1033,7 @@ tracks/4/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=20]
 length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("EnemyCore:frame")
@@ -917,29 +1062,25 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=17]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=21]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=27]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=25]
 
 [sub_resource type="Gradient" id=26]
 offsets = PoolRealArray( 0.278481, 0.987342 )
 colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 1 )
 
-[sub_resource type="CapsuleShape2D" id=21]
+[sub_resource type="CapsuleShape2D" id=27]
 radius = 5.0
 height = 34.0
 
-[sub_resource type="CapsuleShape2D" id=22]
-radius = 18.0
-height = 6.0
-
-[sub_resource type="CapsuleShape2D" id=23]
+[sub_resource type="CapsuleShape2D" id=28]
 radius = 18.0
 height = 3.99999
 
@@ -961,40 +1102,42 @@ enemy_hp = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyCore"]
 root_node = NodePath("../..")
+anims/aaaa-empty = SubResource( 29 )
 anims/aaauto-setup = SubResource( 1 )
 anims/die = SubResource( 2 )
-anims/die_hurt = SubResource( 24 )
-anims/die_kaboom = SubResource( 25 )
-anims/fly = SubResource( 3 )
-anims/fly_smash = SubResource( 4 )
-anims/hop_to_other_side = SubResource( 5 )
-anims/hopping = SubResource( 6 )
-anims/hurt = SubResource( 7 )
-anims/hurt_bounce = SubResource( 8 )
-anims/hurtflash = SubResource( 9 )
-anims/idle = SubResource( 10 )
-anims/jump = SubResource( 11 )
-anims/pound_fall = SubResource( 12 )
-anims/pound_smash = SubResource( 13 )
-anims/pound_windup = SubResource( 14 )
-anims/reactive_hitboxes = SubResource( 15 )
-anims/turn_on = SubResource( 16 )
+anims/die_hurt = SubResource( 3 )
+anims/die_kaboom = SubResource( 4 )
+anims/fly = SubResource( 5 )
+anims/fly_smash = SubResource( 6 )
+anims/hop_to_other_side = SubResource( 7 )
+anims/hopping = SubResource( 8 )
+anims/hurt = SubResource( 9 )
+anims/hurt_bounce = SubResource( 10 )
+anims/hurt_jump = SubResource( 12 )
+anims/hurtflash = SubResource( 13 )
+anims/idle = SubResource( 14 )
+anims/jump = SubResource( 15 )
+anims/pound_fall = SubResource( 16 )
+anims/pound_smash = SubResource( 17 )
+anims/pound_windup = SubResource( 18 )
+anims/reactive_hitboxes = SubResource( 19 )
+anims/turn_on = SubResource( 20 )
 
 [node name="AnimationTree" type="AnimationTree" parent="EnemyCore"]
 tree_root = ExtResource( 2 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 17 )
+parameters/playback = SubResource( 21 )
 parameters/conditions/hurt = false
 parameters/conditions/jump = false
 parameters/conditions/pound = false
 parameters/die/Add2/add_amount = 1.0
-parameters/die/die/playback = SubResource( 27 )
+parameters/die/die/playback = SubResource( 22 )
 parameters/die/die/conditions/fall_complete = false
-parameters/hurt/HurtState/playback = SubResource( 18 )
+parameters/hurt/HurtState/playback = SubResource( 23 )
 parameters/hurt/HurtState/conditions/fall_complete = false
-parameters/hurt/IsFlashing/add_amount = 1.0
-parameters/jump/playback = SubResource( 19 )
-parameters/pound/playback = SubResource( 20 )
+parameters/hurt/IsFlashing/add_amount = 0.0
+parameters/jump/playback = SubResource( 24 )
+parameters/pound/playback = SubResource( 25 )
 script = ExtResource( 6 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="EnemyCore"]
@@ -1014,7 +1157,7 @@ position = Vector2( 0, 8 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2( 0, -21 )
 rotation = 1.5708
-shape = SubResource( 21 )
+shape = SubResource( 27 )
 disabled = true
 
 [node name="HitBox" type="Area2D" parent="." groups=[
@@ -1025,12 +1168,12 @@ script = ExtResource( 4 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 0, 6 )
 rotation = 1.5708
-shape = SubResource( 22 )
+shape = SubResource( 11 )
 disabled = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 4 )
-shape = SubResource( 23 )
+shape = SubResource( 28 )
 disabled = true
 
 [node name="Node2D" type="Node2D" parent="."]
