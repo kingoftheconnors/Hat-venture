@@ -504,6 +504,7 @@ position = Vector2( 2472.31, -87.2956 )
 
 [node name="Collectable" parent="ColumnSecretNode/SecretNodeTiles2" instance=ExtResource( 10 )]
 position = Vector2( 2472.16, -109.379 )
+storybook_page = "World1Page2"
 
 [node name="SecretNode2Tiles" type="TileMap" parent="ColumnSecretNode"]
 format = 1
