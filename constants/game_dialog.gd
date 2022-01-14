@@ -28,7 +28,8 @@ enum DIALOG_TYPE {
 	CHEST_YES = 23,
 	CHEST_NO = 24,
 	GOOD_MORNING_HATKID = 25,
-	SHIP_DOOR_DIALOG_SELECTOR = 26
+	SHIP_DOOR_DIALOG_SELECTOR = 26,
+	START_ROBOHEN_BOSS = 27
 }
 
 # Textbox Format:
@@ -336,4 +337,10 @@ func get_dialog(text_num):
 			return [
 				{queue = DIALOG_TYPE.GOTO_TUTORIAL, if_tag_false = "screen_seen_2"},
 				{queue = DIALOG_TYPE.TIMMY_SHIP, if_tag_true = "screen_seen_2"}
+			]
+		DIALOG_TYPE.START_ROBOHEN_BOSS:
+			return [
+				{delay = 1},
+				{signal = "action2", delay = 0.5},
+				{signal = "action1", delay = 4},
 			]

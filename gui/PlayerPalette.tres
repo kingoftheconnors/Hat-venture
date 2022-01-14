@@ -7,17 +7,19 @@ code = "shader_type canvas_item;
 uniform vec4 game_white : hint_color;
 uniform vec4 game_light : hint_color;
 uniform vec4 game_dark : hint_color;
+uniform vec4 game_black : hint_color;
 
 uniform vec4 palette_white : hint_color;
 uniform vec4 palette_light : hint_color;
 uniform vec4 palette_dark : hint_color;
+uniform vec4 palette_black : hint_color;
 
 uniform int brightness_level;
 uniform float precision;
 
 int get_level_from_game_color(vec3 color) {
-	vec4 original_colors[3] = vec4[3] (game_dark, game_light, game_white);
-	for (int i = 0; i < 3; i ++) {
+	vec4 original_colors[4] = vec4[4] (game_black, game_dark, game_light, game_white);
+	for (int i = 0; i < 4; i ++) {
 		if (distance(color, original_colors[i].rgb) <= precision){
 			return i;
 		}
@@ -26,7 +28,7 @@ int get_level_from_game_color(vec3 color) {
 }
 
 vec4 get_palette_color(int level) {
-	vec4 replace_colors[3] = vec4[3] (palette_dark, palette_light, palette_white);
+	vec4 replace_colors[4] = vec4[4] (palette_black, palette_dark, palette_light, palette_white);
 	if (level > replace_colors.length()-1)
 		level = replace_colors.length()-1;
 	if (level < 0)
@@ -34,7 +36,11 @@ vec4 get_palette_color(int level) {
 	return replace_colors[level];
 }
 
-void fragment() {
+void fragment()
+{
+	vec4 color = texture(TEXTURE, UV);
+	
+	// Default color situation
 	vec4 c = textureLod(TEXTURE, UV, 0.0);
 	int level = get_level_from_game_color(c.rgb);
 	if (level >= 0) {
@@ -50,8 +56,10 @@ shader = SubResource( 1 )
 shader_param/game_white = Color( 1, 1, 1, 1 )
 shader_param/game_light = Color( 0.67451, 0.682353, 0.67451, 1 )
 shader_param/game_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
+shader_param/game_black = Color( 0, 0, 0, 1 )
 shader_param/palette_white = Color( 1, 1, 1, 1 )
 shader_param/palette_light = Color( 0.67451, 0.682353, 0.67451, 1 )
 shader_param/palette_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
+shader_param/palette_black = Color( 0, 0, 0, 1 )
 shader_param/brightness_level = 0
-shader_param/precision = 0.1
+shader_param/precision = 0.27

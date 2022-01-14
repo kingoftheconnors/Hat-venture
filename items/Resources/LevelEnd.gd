@@ -10,3 +10,7 @@ func end_level():
 		PlayerGameManager.level_complete()
 		PlayerGameManager.start_level(next_level)
 		done = true
+
+func fly_to(goal : Node2D):
+	$Tween.interpolate_property(self, "position", self.position, goal.position, 2, Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT, 1)
+	$Tween.start()

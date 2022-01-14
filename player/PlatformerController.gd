@@ -646,9 +646,15 @@ func _input(event):
 		if event.is_action_pressed("ui_accept"):
 			holding_jump = true
 			jump_timer = JUMP_TIME
-		
 		if event.is_action_pressed("ui_down"):
 			crouch()
+		if event.is_action_pressed("dance"):
+			if animator["parameters/PlayerMovement/playback"].get_current_node() in ["idle", "smugdance"]:
+				animator["parameters/PlayerMovement/conditions/dancing"] = true
+				animator["parameters/PlayerMovement/conditions/not_dancing"] = false
+		elif event.is_action_type() and event.is_pressed():
+			animator["parameters/PlayerMovement/conditions/dancing"] = false
+			animator["parameters/PlayerMovement/conditions/not_dancing"] = true
 
 # Handle releasing player input in process function
 # This helps continuously poll for releasing, in case the

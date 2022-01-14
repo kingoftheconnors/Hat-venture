@@ -19,6 +19,8 @@ func show():
 func start(stageNum):
 	stageName.text = "LV." + str(stageNum)
 	energy.value = 4
+	scoreArea.visible = true
+	bossArea.visible = false
 
 # Health
 func update_health(value, max_value):
@@ -29,14 +31,14 @@ func heal():
 func reset_energy():
 	energy.value = MAX_ENERGY
 
+# Boss health
+func update_boss_health(value, max_value):
+	bossEnergy.set_max(max_value)
+	bossEnergy.set_value(value)
+
 # Pons
 func set_pons(amo):
 	pons.text = str(amo)
-
-# Boss energy
-func startBossBattle(life):
-	bossEnergy.value = life
-	# TODO: Show boss health
 
 # Score
 var multVisible = false
@@ -60,6 +62,7 @@ func set_gui_size(size):
 
 onready var gui = $Player
 onready var energy = $Player/MContainer/GuiInfo/Main/HatKid/Energy
+onready var bossAnimator = $Player/MContainer/GuiInfo/Main/Boss/AnimationPlayer
 onready var bossEnergy = $Player/MContainer/GuiInfo/Main/Boss/BossEnergy
 onready var playerScoreLabel = $Player/MContainer/GuiInfo/Main/Score/Score
 onready var playerScore = $Player/MContainer/GuiInfo/Main/Score/ScoreNum
@@ -366,6 +369,15 @@ onready var dialogName = $DialogBox/Name
 onready var dialogText = $DialogBox/Dialog
 onready var dialogOptions = $DialogBox/DialogOptions
 onready var textboxes = game_dialog.new()
+
+### ------------------------------
+### Boss
+### -------------------------------
+
+func boss_start(health):
+	bossArea.visible = true
+	scoreArea.visible = false
+	bossAnimator.play("FillEnergy")
 
 ### ------------------------------
 ### Screen Resolution

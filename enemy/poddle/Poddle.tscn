@@ -6,7 +6,7 @@
 [ext_resource path="res://enemy/Scripts/EnemyCore.gd" type="Script" id=4]
 [ext_resource path="res://enemy/poddle/shooter.gd" type="Script" id=5]
 [ext_resource path="res://enemy/Scripts/Hitbox.gd" type="Script" id=6]
-[ext_resource path="res://gui/PaletteSprite.tres" type="Material" id=7]
+[ext_resource path="res://gui/EnemyPalette.tres" type="Material" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
@@ -448,7 +448,7 @@ shape = SubResource( 26 )
 position = Vector2( 0, -3 )
 script = ExtResource( 5 )
 
-[connection signal="screen_entered" from="VisibilityNotifier2D" to="Shooter" method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="Shooter" method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="Shooter" method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="Shooter" method="_on_VisibilityNotifier2D_screen_exited"]

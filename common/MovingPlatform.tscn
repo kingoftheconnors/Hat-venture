@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://common/MovingPlatform.gd" type="Script" id=1]
 [ext_resource path="res://common/Resources/platform.png" type="Texture" id=2]
+[ext_resource path="res://gui/PlayerPalette.tres" type="Material" id=3]
 
 [sub_resource type="Curve2D" id=1]
 resource_local_to_scene = true
@@ -22,6 +23,7 @@ collision_mask = 3
 motion/sync_to_physics = true
 
 [node name="Sprite" type="Sprite" parent="PlatformBody"]
+material = ExtResource( 3 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformBody"]
@@ -30,4 +32,5 @@ shape = SubResource( 2 )
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( -1.43051e-06, -4.76837e-07 )
 scale = Vector2( 2.4, 0.8 )
+
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="set_active"]

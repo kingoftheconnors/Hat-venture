@@ -4,6 +4,7 @@
 [ext_resource path="res://common/Resources/Block.gd" type="Script" id=2]
 [ext_resource path="res://common/Resources/particle.png" type="Texture" id=3]
 [ext_resource path="res://common/Resources/particle2.png" type="Texture" id=4]
+[ext_resource path="res://gui/PlayerPalette.tres" type="Material" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -159,6 +160,7 @@ script = ExtResource( 2 )
 state = 3
 
 [node name="Sprite" type="Sprite" parent="."]
+material = ExtResource( 5 )
 texture = ExtResource( 1 )
 hframes = 3
 vframes = 2

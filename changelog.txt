@@ -360,3 +360,10 @@ Create Robo-Kurt Boss
 
 0.4.4
 Add Music
+RoboKurt boss prototype
+3-color-palettes
+Viewing all palettes in DEBUG mode
+
+0.4.5
+Robokurt health on gui
+Robokurt defeating

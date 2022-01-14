@@ -18,9 +18,6 @@ var target_spot : Vector2
 ## Lookahead amount for when the target is moving fast,
 ## so the camera can still catch incoming objects
 var lookahead_offset : float
-## Value for screen shake. Set to 0 to turn off
-var shake_amount : int = 0
-var shake_direc_right : bool = false
 const LOOKAHEAD_CHANGE_RATE = 30
 
 ## Flag for moving left and right bodies when captured
@@ -44,14 +41,15 @@ var lim_right = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	reset_limits()
 
-func _process(delta):
-	if !Constants.PHOTOSENSITIVE_MODE:
-		if shake_direc_right:
-			position.x += shake_amount
-		else:
-			position.x -= shake_amount
+#func _process(delta):
+#	if !Constants.PHOTOSENSITIVE_MODE:
+#		if shake_direc_right:
+#			position.x += shake_amount
+#		else:
+#			position.x -= shake_amount
 
 # Called every frame to update camera position
 func _physics_process(delta):
@@ -71,7 +69,7 @@ func _physics_process(delta):
 		else:
 			# Default behavior: move to player object
 			position = target.position + Vector2(lookahead_offset, 0)
-			shake_direc_right = !shake_direc_right
+			#shake_direc_right = !shake_direc_right
 		# Enforce limits
 		if position.y > lim_bottom - Gui.get_screen_resolution().y/2:
 			position.y = lim_bottom - Gui.get_screen_resolution().y/2
@@ -167,11 +165,34 @@ func move_lookahead_toward(offset_goal, delta):
 	elif(lookahead_offset < offset_goal):
 		lookahead_offset += LOOKAHEAD_CHANGE_RATE * delta
 
+## Value for screen shake. Set to 0 to turn off
+var shake_amount : Vector2
+#var shake_direc_right : bool = false
+var shake_intensity : int = 0
+var shake_duration : float = 0
+func shake_screen(amount : int, duration : float):
+	shake_intensity = amount
+	shake_duration = duration
+
+func _process(delta):
+	if shake_duration > 0.0:
+		position -= shake_amount
+		shake_duration -= delta
+		if shake_duration > 0.0:
+			var x_amo = randi() % (shake_intensity*2) - shake_intensity
+			var y_amo = 0.0 #randi() % (shake_intensity*2) - shake_intensity
+			shake_amount = Vector2(x_amo, y_amo)
+			position += shake_amount
+
 # Unpause game if node is destroyed in the middle of a transition
 func _exit_tree():
 	if timer.time_left > 0:
 		get_tree().paused = false
 
-func screen_shake(shake_amo : int = 0, time_length : float = 1):
-	tween.interpolate_property(self, "shake_amount", self.shake_amount, shake_amo, time_length, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.start()
+#func screen_shake(shake_amo : int = 0, time_length : float = 1):
+#	tween.interpolate_property(self, "shake_amount", self.shake_amount, shake_amo, time_length, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#	tween.start()
+
+
+func screen_shake(extra_arg_0, extra_arg_1):
+	pass # Replace with function body.
