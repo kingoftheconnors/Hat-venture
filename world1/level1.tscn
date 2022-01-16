@@ -280,6 +280,8 @@ position = Vector2( -40, -16 )
 [node name="LilenController" parent="." instance=ExtResource( 14 )]
 position = Vector2( -144, -16 )
 goal = Vector2( 576, -16 )
+jump_wait_time_min = 0.2
+jump_wait_time_max = 0.7
 
 [node name="Music" type="Node" parent="."]
 script = ExtResource( 9 )
