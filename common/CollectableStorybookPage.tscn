@@ -2,7 +2,7 @@
 
 [ext_resource path="res://common/Resources/PageCollectable.png" type="Texture" id=1]
 [ext_resource path="res://common/CollectableStorybookPage.gd" type="Script" id=2]
-[ext_resource path="res://gui/PaletteSprite.tres" type="Material" id=3]
+[ext_resource path="res://gui/PlayerPalette.tres" type="Material" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20, 20 )
