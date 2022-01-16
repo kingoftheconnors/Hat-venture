@@ -213,7 +213,7 @@ walled = false
 position = Vector2( 2104, -120 )
 
 [node name="Hen" parent="." instance=ExtResource( 17 )]
-position = Vector2( 504, -8 )
+position = Vector2( 552, -8 )
 direction = -1
 
 [node name="Crow" parent="." instance=ExtResource( 18 )]
@@ -273,7 +273,7 @@ position = Vector2( -40, -16 )
 
 [node name="LilenController" parent="." instance=ExtResource( 14 )]
 position = Vector2( -144, -16 )
-goal = Vector2( 288, -16 )
+goal = Vector2( 576, -16 )
 
 [node name="Music" type="Node" parent="."]
 script = ExtResource( 9 )
