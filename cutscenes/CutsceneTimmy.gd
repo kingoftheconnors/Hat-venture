@@ -23,7 +23,6 @@ func teleport_to(node_path : String):
 	position = get_node(node_path).position
 
 func play_animation(animation_name):
-	print(animation_name)
 	$AnimationTree['parameters/playback'].travel(animation_name)
 func animate(animation_name):
 	play_animation(animation_name)
