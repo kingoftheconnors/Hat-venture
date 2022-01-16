@@ -61,7 +61,7 @@ func _physics_process(delta):
 	if is_on_floor():
 		jump_time_counter += delta
 		if (jump_time_counter > jump_wait_time and jumping) or is_on_wall() \
-			or (is_on_floor() and floorchecker_obj and not floorchecker_obj.is_colliding()):
+			or (is_on_floor() and floorchecker_obj and not floorchecker_obj.is_colliding() and jumping):
 			jump()
 			jump_time_counter = 0
 	velo = move_and_slide(velo, Vector2.UP)
