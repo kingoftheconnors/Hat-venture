@@ -1,33 +1,19 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://enemy/hen/hen-walk.png" type="Texture" id=1]
 [ext_resource path="res://cutscenes/PlatformerPathFollower.gd" type="Script" id=2]
 [ext_resource path="res://cutscenes/CutsceneLilenPath.gd" type="Script" id=3]
-[ext_resource path="res://enemy/hen/hen-walkTP.png" type="Texture" id=4]
+[ext_resource path="res://gui/PlayerPalette.tres" type="Material" id=4]
+[ext_resource path="res://gui/EnemyPalette.tres" type="Material" id=5]
+[ext_resource path="res://items/Resources/timePiece.png" type="Texture" id=6]
 
-[sub_resource type="Curve2D" id=17]
+[sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array(  )
 }
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 9, 8 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 17, 16 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 17, 0, 17, 16 )
-
-[sub_resource type="SpriteFrames" id=5]
-animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ) ],
-"loop": true,
-"name": "default",
-"speed": 7.0
-} ]
 
 [sub_resource type="AnimationNodeAnimation" id=6]
 animation = "timepiece"
@@ -37,37 +23,24 @@ animation = "walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=8]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
 
-[sub_resource type="AnimationNodeStateMachine" id=19]
+[sub_resource type="AnimationNodeStateMachine" id=10]
 states/timepiece/node = SubResource( 6 )
 states/timepiece/position = Vector2( 204, 72 )
 states/walk/node = SubResource( 7 )
 states/walk/position = Vector2( 430, 72 )
-transitions = [ "timepiece", "walk", SubResource( 8 ), "walk", "timepiece", SubResource( 18 ) ]
+transitions = [ "timepiece", "walk", SubResource( 8 ), "walk", "timepiece", SubResource( 9 ) ]
 start_node = "walk"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
 
-[sub_resource type="AtlasTexture" id=21]
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 17, 32 )
-
-[sub_resource type="AtlasTexture" id=22]
-atlas = ExtResource( 4 )
-region = Rect2( 17, 0, 17, 32 )
-
-[sub_resource type="SpriteFrames" id=23]
-animations = [ {
-"frames": [ SubResource( 21 ), SubResource( 22 ) ],
-"loop": true,
-"name": "default",
-"speed": 7.0
-} ]
-
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=15]
+length = 0.3
+loop = true
+step = 0.15
 tracks/0/type = "value"
-tracks/0/path = NodePath("EnemyCore:position")
+tracks/0/path = NodePath("EnemyCore/Timepiece:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -75,25 +48,40 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, -8 ) ]
+"update": 1,
+"values": [ true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("EnemyCore:frames")
+tracks/1/path = NodePath("EnemyCore:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ SubResource( 23 ) ]
+"values": [ 0, 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EnemyCore/Timepiece:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 1, -13 ), Vector2( 1, -12 ) ]
 }
 
 [sub_resource type="Animation" id=16]
+length = 0.3
+loop = true
+step = 0.15
 tracks/0/type = "value"
-tracks/0/path = NodePath("EnemyCore:position")
+tracks/0/path = NodePath("EnemyCore/Timepiece:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -101,25 +89,25 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"update": 1,
+"values": [ false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("EnemyCore:frames")
+tracks/1/path = NodePath("EnemyCore:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ SubResource( 5 ) ]
+"values": [ 0, 1 ]
 }
 
 [node name="CutsceneLilen" type="Path2D"]
 pause_mode = 2
-curve = SubResource( 17 )
+curve = SubResource( 1 )
 script = ExtResource( 3 )
 
 [node name="Lilen" type="KinematicBody2D" parent="."]
@@ -132,19 +120,28 @@ horizontal_speed = 125
 position = Vector2( 1, 0 )
 shape = SubResource( 2 )
 
-[node name="EnemyCore" type="AnimatedSprite" parent="Lilen"]
-frames = SubResource( 5 )
+[node name="EnemyCore" type="Sprite" parent="Lilen"]
+material = ExtResource( 5 )
+texture = ExtResource( 1 )
+hframes = 2
 frame = 1
-playing = true
+
+[node name="Timepiece" type="Sprite" parent="Lilen/EnemyCore"]
+visible = false
+material = ExtResource( 4 )
+position = Vector2( 1, -13 )
+texture = ExtResource( 6 )
+hframes = 8
+frame = 2
 
 [node name="AnimationTree" type="AnimationTree" parent="Lilen"]
-tree_root = SubResource( 19 )
+tree_root = SubResource( 10 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 20 )
+parameters/playback = SubResource( 11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Lilen"]
-anims/timepiece = SubResource( 24 )
+anims/timepiece = SubResource( 15 )
 anims/walk = SubResource( 16 )
 
 [connection signal="reach_goal" from="Lilen" to="." method="_on_Lilen_reach_goal"]
