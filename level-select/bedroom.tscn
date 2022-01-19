@@ -303,7 +303,7 @@ animate2 = NodePath("../ScaleChildren/HatAnimator")
 [node name="Spawn" type="Node2D" parent="." groups=[
 "spawn",
 ]]
-position = Vector2( 200, -32 )
+position = Vector2( 200, -24 )
 script = ExtResource( 16 )
 spawn_num = 2
 
