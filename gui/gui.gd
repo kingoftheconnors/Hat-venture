@@ -204,18 +204,22 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 			text_crawl_func = wait_for_method_true(next_box.starter, "animate2_method_true", next_box['delaytil_animate2_method_true'])
 	elif next_box.has("enable"):
 		for body in next_box['enable']:
-			body.set_pause_mode(PAUSE_MODE_PROCESS)
+			if is_instance_valid(body):
+				body.set_pause_mode(PAUSE_MODE_PROCESS)
 	elif next_box.has("disable"):
 		for body in next_box['disable']:
-			body.set_pause_mode(PAUSE_MODE_INHERIT)
+			if is_instance_valid(body):
+				body.set_pause_mode(PAUSE_MODE_INHERIT)
 	elif next_box.has("enable_skipping"):
 		can_skip_cutscene = true
 	elif next_box.has("disable_skipping"):
 		can_skip_cutscene = false
 	elif next_box.has("unfreeze_player"):
-		next_box['unfreeze_player'].set_freeze(false)
+		if is_instance_valid(next_box['unfreeze_player']):
+			next_box['unfreeze_player'].set_freeze(false)
 	elif next_box.has("freeze_player"):
-		next_box['freeze_player'].set_freeze(true)
+		if is_instance_valid(next_box['freeze_player']):
+			next_box['freeze_player'].set_freeze(true)
 	elif next_box.has("brightness"):
 		set_brightness_param(next_box['brightness'])
 	elif next_box.has("level"):

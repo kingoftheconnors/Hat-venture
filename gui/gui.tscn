@@ -392,7 +392,7 @@ tracks/7/keys = {
 }
 
 [sub_resource type="Animation" id=8]
-length = 0.3
+length = 0.2
 tracks/0/type = "method"
 tracks/0/path = NodePath("PaletteFilter")
 tracks/0/interp = 1
@@ -400,12 +400,9 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
-"args": [ 0 ],
-"method": "set_brightness_param"
-}, {
 "args": [ 1 ],
 "method": "set_brightness_param"
 }, {
@@ -419,8 +416,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=12]
 resource_name = "cover (slow)"
-length = 1.2
-step = 0.2
+length = 0.8
 tracks/0/type = "method"
 tracks/0/path = NodePath("PaletteFilter")
 tracks/0/interp = 1
@@ -428,12 +424,9 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
-"args": [ 0 ],
-"method": "set_brightness_param"
-}, {
 "args": [ 1 ],
 "method": "set_brightness_param"
 }, {
@@ -447,7 +440,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=13]
 resource_name = "reveal"
-length = 0.3
+length = 0.2
 tracks/0/type = "method"
 tracks/0/path = NodePath("PaletteFilter")
 tracks/0/interp = 1
@@ -455,12 +448,9 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
-"args": [ 3 ],
-"method": "set_brightness_param"
-}, {
 "args": [ 2 ],
 "method": "set_brightness_param"
 }, {
@@ -474,8 +464,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=14]
 resource_name = "reveal (slow)"
-length = 1.2
-step = 0.2
+length = 0.8
 tracks/0/type = "method"
 tracks/0/path = NodePath("PaletteFilter")
 tracks/0/interp = 1
@@ -483,12 +472,9 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
-"args": [ 3 ],
-"method": "set_brightness_param"
-}, {
 "args": [ 2 ],
 "method": "set_brightness_param"
 }, {
