@@ -424,11 +424,19 @@ func set_brightness_param(val):
 ### -------------------------------
 
 func cover() -> float:
-	cover_animator.play("cover (slow)")
-	return 1.4
+	if Constants.PHOTOSENSITIVE_MODE:
+		cover_animator.play("cover (slow)")
+		return 1.3
+	else:
+		cover_animator.play("cover")
+		return .45
 func reveal() -> float:
-	cover_animator.play("reveal (slow)")
-	return 1.4
+	if Constants.PHOTOSENSITIVE_MODE:
+		cover_animator.play("reveal (slow)")
+		return 1.3
+	else:
+		cover_animator.play("reveal")
+		return .45
 func unlock_palette(palette_name):
 	$UnlockPaletteBox.visible = true
 	$UnlockPaletteBox.grab_focus()
