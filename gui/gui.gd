@@ -244,8 +244,9 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 	# Wait for program to return signal that we can continue scene
 	if next_box.has("delay"):
 		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS or next_box.has("unskippable"):
-			gui.visible = true
-			dialog.visible = false
+			if dialog.visible:
+				gui.visible = true
+				dialog.visible = false
 			text_crawl_func = delay(next_box['delay'])
 
 func skip_cutscene():
@@ -263,8 +264,9 @@ func skip_cutscene():
 func end_dialog():
 	dialog_active = false
 	PlayerGameManager.unpause()
-	gui.visible = true
-	dialog.visible = false
+	if dialog.visible:
+		gui.visible = true
+		dialog.visible = false
 	emit_signal("textbox_end")
 
 func get_printed_lines():

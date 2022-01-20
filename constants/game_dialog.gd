@@ -29,7 +29,8 @@ enum DIALOG_TYPE {
 	CHEST_NO = 24,
 	GOOD_MORNING_HATKID = 25,
 	SHIP_DOOR_DIALOG_SELECTOR = 26,
-	START_ROBOHEN_BOSS = 27
+	START_ROBOHEN_BOSS = 27,
+	SPLASH_SCREEN = 28
 }
 
 # Textbox Format:
@@ -344,4 +345,9 @@ func get_dialog(text_num):
 				{delay = 1},
 				{signal = "action2", delay = 0.5},
 				{signal = "action1", delay = 4},
+			]
+		DIALOG_TYPE.SPLASH_SCREEN:
+			return [
+				{delay = 2},
+				{level = "res://title-screen/title-screen.tscn"}
 			]

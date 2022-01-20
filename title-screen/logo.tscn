@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://level.gd" type="Script" id=1]
+[ext_resource path="res://gfblogo.png" type="Texture" id=2]
+[ext_resource path="res://NPCs/DialogOnLoad.tscn" type="PackedScene" id=3]
+
+[node name="TextureRect" type="TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource( 1 )
+col = Color( 0.431373, 0.388235, 0.431373, 1 )
+show_hud = false
+
+[node name="DialogBox" parent="." instance=ExtResource( 3 )]
+dialog_num = 28
+start_on_load = true

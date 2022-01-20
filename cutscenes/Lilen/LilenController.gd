@@ -19,7 +19,7 @@ func generate(goal_variance : int, time_between = 0):
 
 func _on_Timer_timeout():
 	num_to_generate -= 1
-	var generated_lilen = preload("res://cutscenes/CutsceneLilen.tscn").instance()
+	var generated_lilen = preload("res://cutscenes/Lilen/CutsceneLilen.tscn").instance()
 	get_parent().add_child(generated_lilen)
 	generated_lilen.init(self.position, self.position, goal, goal_var)
 	generated_lilens.push_front(generated_lilen)

@@ -7,6 +7,7 @@ export(int) var up = 32
 export(int) var down = 32
 export(Color, RGB) var col
 export(int) var stageNum = 1
+export(bool) var show_hud = true
 
 var prev_left = 0
 var prev_right = 0
@@ -38,6 +39,8 @@ func _ready():
 	if !Engine.is_editor_hint():
 		VisualServer.set_default_clear_color(col)
 		Gui.start(stageNum)
+		if not show_hud:
+			Gui.call_deferred("hide")
 
 var time_passed := 0.0
 func _process(_delta):
