@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://title-screen/SpawnLevelPiece.gd" type="Script" id=1]
 [ext_resource path="res://world1/background1.tres" type="TileSet" id=2]
@@ -13,7 +13,6 @@
 [ext_resource path="res://title-screen/BasicMenu.gd" type="Script" id=11]
 [ext_resource path="res://title-screen/QuitButton.gd" type="Script" id=12]
 [ext_resource path="res://gui/optionsmenu/paletteLoader.gd" type="Script" id=13]
-[ext_resource path="res://addons/GGS/src/components/arrow_list/ggs_arrow_list.gd" type="Script" id=14]
 [ext_resource path="res://addons/GGS/src/components/arrow_list/ggsArrowList.tscn" type="PackedScene" id=15]
 [ext_resource path="res://gui/transparentMenu.png" type="Texture" id=16]
 [ext_resource path="res://title-screen/Play.gd" type="Script" id=17]
@@ -75,11 +74,12 @@ position = Vector2( 112, -280 )
 process_mode = 0
 limit_left = -10000126
 drag_margin_v_enabled = true
+smoothing_enabled = false
 smoothing_speed = 12.0
 
 [node name="Music" type="Node" parent="."]
 script = ExtResource( 9 )
-level_music = 2
+level_music = 7
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 112, -280 )
@@ -705,16 +705,11 @@ margin_right = 200.0
 margin_bottom = 125.0
 alignment = 1
 
-[node name="PaletteList" type="HBoxContainer" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette" instance=ExtResource( 15 )]
+[node name="PaletteList" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette" instance=ExtResource( 15 )]
 margin_left = 72.0
 margin_right = 128.0
-margin_bottom = 24.0
 focus_neighbour_bottom = NodePath("../../HBoxContainer2/Continue/Play")
 focus_mode = 2
-script = ExtResource( 14 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 setting_index = 19
 list = [ "Classic", "Muted" ]
 
@@ -757,10 +752,8 @@ script = ExtResource( 17 )
 [connection signal="pressed" from="Menu/PlayTextBox2/Mrgn/MarginContainer/VBox/HBoxContainer2/Continue/Close" to="Menu/PlayTextBox2" method="close"]
 [connection signal="close" from="Menu/PlayTextBox3" to="Menu/Play" method="open"]
 [connection signal="pressed" from="Menu/PlayTextBox3/Mrgn/MarginContainer/VBox/HBoxContainer2/Continue/Close" to="Menu/PlayTextBox3" method="close"]
-[connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo" to="Menu/ColorSchemes" method="open"]
 [connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo" to="Menu/Play" method="close"]
+[connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo" to="Menu/ColorSchemes" method="open"]
 [connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer3/Quit/Quit" to="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer3/Quit/Quit" method="_on_Quit_pressed"]
 [connection signal="close" from="Menu/ColorSchemes" to="Menu/Play" method="open"]
-[connection signal="focus_entered" from="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList" to="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList" method="_on_ggsArrowList_focus_entered"]
-[connection signal="focus_exited" from="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList" to="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList" method="_on_ggsArrowList_focus_exited"]
 [connection signal="pressed" from="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/HBoxContainer2/Continue/Play" to="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/HBoxContainer2/Continue/Play" method="start_game"]
