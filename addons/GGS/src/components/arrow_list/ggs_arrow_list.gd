@@ -73,6 +73,8 @@ func _gui_input(event):
 		elif event.is_action_pressed("ui_right"):
 			accept_event()
 			NextBtn.emit_signal("pressed")
+		elif event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_select"):
+			emit_signal("pressed")
 
 # Handle mouse focus
 func _on_PrevBtn_mouse_entered() -> void:
@@ -88,3 +90,5 @@ func _on_ggsArrowList_focus_entered():
 func _on_ggsArrowList_focus_exited():
 	DisplayLabel.add_color_override("font_color", Color.black)
 	DisplayLabel.add_color_override("font_color_shadow", Color.transparent)
+
+signal pressed

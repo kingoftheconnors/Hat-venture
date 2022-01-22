@@ -1,4 +1,4 @@
-extends Button
+extends Node
 
 export(String) var goto_level = "res://level-select/bedroom.tscn"
 

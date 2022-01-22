@@ -622,7 +622,7 @@ anchor_top = 0.187
 anchor_right = 0.85
 anchor_bottom = 0.746
 margin_top = -31.872
-margin_bottom = 41.024
+margin_bottom = 33.024
 theme = ExtResource( 6 )
 custom_constants/margin_top = 10
 custom_constants/margin_bottom = 10
@@ -633,7 +633,7 @@ __meta__ = {
 [node name="NinePatchRect" type="NinePatchRect" parent="Menu/ColorSchemes/Mrgn"]
 margin_top = 10.0
 margin_right = 224.0
-margin_bottom = 206.0
+margin_bottom = 198.0
 texture = ExtResource( 16 )
 patch_margin_left = 8
 patch_margin_top = 8
@@ -645,7 +645,7 @@ axis_stretch_vertical = 1
 [node name="MarginContainer" type="MarginContainer" parent="Menu/ColorSchemes/Mrgn"]
 margin_top = 10.0
 margin_right = 224.0
-margin_bottom = 206.0
+margin_bottom = 198.0
 custom_constants/margin_right = 12
 custom_constants/margin_top = 20
 custom_constants/margin_left = 12
@@ -655,7 +655,7 @@ custom_constants/margin_bottom = 20
 margin_left = 12.0
 margin_top = 20.0
 margin_right = 212.0
-margin_bottom = 176.0
+margin_bottom = 168.0
 custom_constants/separation = 15
 __meta__ = {
 "_edit_use_anchors_": false
@@ -710,32 +710,22 @@ list = [ "Classic", "Muted" ]
 [node name="Node" type="Node" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList"]
 script = ExtResource( 13 )
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox"]
+[node name="Node2" type="Node" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList"]
+script = ExtResource( 17 )
+
+[node name="Title3" type="Label" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox"]
 margin_top = 140.0
 margin_right = 200.0
-margin_bottom = 156.0
-alignment = 1
-
-[node name="Continue" type="MarginContainer" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/HBoxContainer2"]
-margin_left = 60.0
-margin_right = 140.0
-margin_bottom = 16.0
-size_flags_horizontal = 0
-custom_constants/margin_right = 16
-custom_constants/margin_left = 16
+margin_bottom = 148.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Press Z to continue"
+align = 1
+valign = 1
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Play" type="Button" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/HBoxContainer2/Continue"]
-margin_left = 16.0
-margin_right = 64.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 48, 0 )
-focus_neighbour_top = NodePath("../../../Palette/PaletteList")
-size_flags_horizontal = 0
-text = "Play!"
-script = ExtResource( 17 )
 
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="VisibilityNotifier2D" method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="close" from="Menu/Start" to="Menu/PlayTextBox1" method="open"]
@@ -751,5 +741,5 @@ script = ExtResource( 17 )
 [connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer2/Options/Options" to="Menu/Settings" method="open"]
 [connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer3/Quit/Quit" to="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer3/Quit/Quit" method="_on_Quit_pressed"]
 [connection signal="close" from="Menu/Settings" to="Menu/Play" method="open"]
-[connection signal="pressed" from="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/HBoxContainer2/Continue/Play" to="Menu/ColorSchemes" method="close"]
-[connection signal="pressed" from="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/HBoxContainer2/Continue/Play" to="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/HBoxContainer2/Continue/Play" method="start_game"]
+[connection signal="pressed" from="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList" to="Menu/ColorSchemes" method="close"]
+[connection signal="pressed" from="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList" to="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList/Node2" method="start_game"]
