@@ -17,12 +17,9 @@
 [ext_resource path="res://addons/GGS/src/components/arrow_list/ggsArrowList.tscn" type="PackedScene" id=15]
 [ext_resource path="res://gui/transparentMenu.png" type="Texture" id=16]
 [ext_resource path="res://title-screen/Play.gd" type="Script" id=17]
+[ext_resource path="res://gui/optionsmenu/SettingsMenu.tscn" type="PackedScene" id=18]
 
 [sub_resource type="DynamicFont" id=1]
-outline_size = 1
-font_data = ExtResource( 8 )
-
-[sub_resource type="DynamicFont" id=2]
 size = 8
 outline_size = 1
 font_data = ExtResource( 8 )
@@ -599,6 +596,13 @@ rect_min_size = Vector2( 64, 0 )
 size_flags_horizontal = 0
 text = "Quit"
 script = ExtResource( 12 )
+
+[node name="Settings" parent="Menu" instance=ExtResource( 18 )]
+visible = false
+margin_top = -8.0
+margin_bottom = -48.0
+pause_game_on_open = false
+delete_on_close = false
 
 [node name="ColorSchemes" type="Control" parent="Menu"]
 visible = false

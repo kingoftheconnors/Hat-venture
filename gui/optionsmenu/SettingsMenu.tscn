@@ -325,7 +325,7 @@ frame_14/delay_sec = 0.0
 frame_15/texture = ExtResource( 16 )
 frame_15/delay_sec = 0.0
 
-[node name="Control" type="Control"]
+[node name="Settings" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 8.0
@@ -446,6 +446,8 @@ margin_left = 117.0
 margin_right = 181.0
 margin_bottom = 32.0
 focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath("../../../../../../Close/Save/Close")
+focus_previous = NodePath("../../../../../../Close/Save/Close")
 
 [node name="WindowRes" type="HBoxContainer" parent="Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display"]
 visible = false
@@ -1124,6 +1126,8 @@ __meta__ = {
 margin_left = 16.0
 margin_right = 183.0
 margin_bottom = 16.0
+focus_neighbour_bottom = NodePath("../../../Settings/Mrgn/VBox/Display/WindowMode/Bool")
+focus_next = NodePath("../../../Settings/Mrgn/VBox/Display/WindowMode/Bool")
 text = "Save"
 
 [connection signal="pressed" from="Mrgn/MarginContainer/VBox/Close/Save/Close" to="." method="_on_Close_pressed"]

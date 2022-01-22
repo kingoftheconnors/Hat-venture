@@ -12,9 +12,11 @@ func _ready() -> void:
 func open():
 	visible = true
 	get_node(first_item).grab_focus()
+	Gui.call_deferred("menu_opened")
 
 func close() -> void:
 	visible = false
 	emit_signal("close")
+	Gui.menu_closed()
 
 signal close

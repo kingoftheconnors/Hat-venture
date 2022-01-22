@@ -115,14 +115,14 @@ func _unhandled_input(event):
 					# skip cutscene menu
 					var iOptionsMenu = preload("res://gui/optionsmenu/SkipCutsceneMenu.tscn").instance()
 					get_node("/root/Gui").add_child(iOptionsMenu)
-					iOptionsMenu.connect("tree_exited", self, "_on_menu_tree_exited")
 					iOptionsMenu.connect("skip_cutscene", self, "skip_cutscene")
+					iOptionsMenu.open()
 					menu_exists = true
 			else:
 				if !get_tree().paused:
 					var iOptionsMenu = preload("res://gui/optionsmenu/SettingsMenu.tscn").instance()
 					get_node("/root/Gui").add_child(iOptionsMenu)
-					iOptionsMenu.connect("tree_exited", self, "_on_menu_tree_exited")
+					iOptionsMenu.open()
 					menu_exists = true
 			
 			if menu_exists:
@@ -132,7 +132,9 @@ func _unhandled_input(event):
 				get_node("/root/Gui").add_child(palette)
 				get_tree().set_input_as_handled()
 
-func _on_menu_tree_exited() -> void:
+func menu_opened() -> void:
+	menu_exists = true
+func menu_closed() -> void:
 	menu_exists = false
 
 func queue_text(dialog_starter, textbox : Dictionary):
