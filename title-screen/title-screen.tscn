@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://title-screen/SpawnLevelPiece.gd" type="Script" id=1]
 [ext_resource path="res://world1/background1.tres" type="TileSet" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://title-screen/BasicMenu.gd" type="Script" id=11]
 [ext_resource path="res://title-screen/QuitButton.gd" type="Script" id=12]
 [ext_resource path="res://gui/optionsmenu/paletteLoader.gd" type="Script" id=13]
+[ext_resource path="res://title-screen/logo.png" type="Texture" id=14]
 [ext_resource path="res://addons/GGS/src/components/arrow_list/ggsArrowList.tscn" type="PackedScene" id=15]
 [ext_resource path="res://gui/transparentMenu.png" type="Texture" id=16]
 [ext_resource path="res://title-screen/Play.gd" type="Script" id=17]
@@ -108,8 +109,8 @@ anchor_left = 0.15
 anchor_top = 0.361
 anchor_right = 0.85
 anchor_bottom = 0.694
-margin_top = -7.96801
-margin_bottom = 8.12799
+margin_top = -60.416
+margin_bottom = -0.664001
 theme = ExtResource( 6 )
 custom_constants/margin_top = 10
 custom_constants/margin_bottom = 10
@@ -120,7 +121,7 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="Menu/Start/Mrgn"]
 margin_top = 10.0
 margin_right = 224.0
-margin_bottom = 97.0
+margin_bottom = 135.0
 custom_constants/margin_right = 12
 custom_constants/margin_top = 20
 custom_constants/margin_left = 12
@@ -130,29 +131,23 @@ custom_constants/margin_bottom = 20
 margin_left = 12.0
 margin_top = 20.0
 margin_right = 212.0
-margin_bottom = 67.0
+margin_bottom = 105.0
 custom_constants/separation = 15
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title" type="Label" parent="Menu/Start/Mrgn/MarginContainer/VBox"]
+[node name="TextureRect" type="TextureRect" parent="Menu/Start/Mrgn/MarginContainer/VBox"]
 margin_right = 200.0
-margin_bottom = 16.0
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Hat-Venture"
-align = 1
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_bottom = 54.0
+grow_horizontal = 2
+texture = ExtResource( 14 )
+stretch_mode = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu/Start/Mrgn/MarginContainer/VBox"]
-margin_top = 31.0
+margin_top = 69.0
 margin_right = 200.0
-margin_bottom = 47.0
+margin_bottom = 85.0
 alignment = 1
 
 [node name="Yes" type="MarginContainer" parent="Menu/Start/Mrgn/MarginContainer/VBox/HBoxContainer"]
@@ -232,7 +227,7 @@ __meta__ = {
 [node name="Title" type="Label" parent="Menu/PlayTextBox1/Mrgn/MarginContainer/VBox"]
 margin_right = 200.0
 margin_bottom = 52.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "This is an alpha demo,
 intended for the Gears 
@@ -329,7 +324,7 @@ __meta__ = {
 [node name="Title" type="Label" parent="Menu/PlayTextBox2/Mrgn/MarginContainer/VBox"]
 margin_right = 200.0
 margin_bottom = 74.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "As a wise man once said,
 this game is far from
@@ -387,8 +382,8 @@ anchor_left = 0.15
 anchor_top = 0.187
 anchor_right = 0.85
 anchor_bottom = 0.746
-margin_top = 0.127998
-margin_bottom = 0.0239868
+margin_top = -7.872
+margin_bottom = -7.976
 theme = ExtResource( 6 )
 custom_constants/margin_top = 10
 custom_constants/margin_bottom = 10
@@ -428,7 +423,7 @@ __meta__ = {
 [node name="Title" type="Label" parent="Menu/PlayTextBox3/Mrgn/MarginContainer/VBox"]
 margin_right = 200.0
 margin_bottom = 52.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "We look forward to your
 thoughts and/or feedback
@@ -484,7 +479,8 @@ anchor_left = 0.15
 anchor_top = 0.125
 anchor_right = 0.85
 anchor_bottom = 0.781
-margin_bottom = 1.064
+margin_top = -16.0
+margin_bottom = 23.064
 theme = ExtResource( 6 )
 custom_constants/margin_top = 10
 custom_constants/margin_bottom = 10
@@ -495,7 +491,7 @@ __meta__ = {
 [node name="NinePatchRect" type="NinePatchRect" parent="Menu/Play/Mrgn"]
 margin_top = 10.0
 margin_right = 224.0
-margin_bottom = 159.0
+margin_bottom = 197.0
 texture = ExtResource( 10 )
 patch_margin_left = 8
 patch_margin_top = 8
@@ -505,7 +501,7 @@ patch_margin_bottom = 8
 [node name="MarginContainer" type="MarginContainer" parent="Menu/Play/Mrgn"]
 margin_top = 10.0
 margin_right = 224.0
-margin_bottom = 159.0
+margin_bottom = 197.0
 custom_constants/margin_right = 12
 custom_constants/margin_top = 20
 custom_constants/margin_left = 12
@@ -515,29 +511,23 @@ custom_constants/margin_bottom = 20
 margin_left = 12.0
 margin_top = 20.0
 margin_right = 212.0
-margin_bottom = 129.0
+margin_bottom = 167.0
 custom_constants/separation = 15
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title" type="Label" parent="Menu/Play/Mrgn/MarginContainer/VBox"]
+[node name="TextureRect2" type="TextureRect" parent="Menu/Play/Mrgn/MarginContainer/VBox"]
 margin_right = 200.0
-margin_bottom = 16.0
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Hat-Venture"
-align = 1
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_bottom = 54.0
+grow_horizontal = 2
+texture = ExtResource( 14 )
+stretch_mode = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu/Play/Mrgn/MarginContainer/VBox"]
-margin_top = 31.0
+margin_top = 69.0
 margin_right = 200.0
-margin_bottom = 47.0
+margin_bottom = 85.0
 alignment = 1
 
 [node name="PlayDemo" type="MarginContainer" parent="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer"]
@@ -560,9 +550,9 @@ size_flags_horizontal = 0
 text = "Play"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Menu/Play/Mrgn/MarginContainer/VBox"]
-margin_top = 62.0
+margin_top = 100.0
 margin_right = 200.0
-margin_bottom = 78.0
+margin_bottom = 116.0
 alignment = 1
 
 [node name="Options" type="MarginContainer" parent="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer2"]
@@ -585,9 +575,9 @@ size_flags_horizontal = 0
 text = "Options"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Menu/Play/Mrgn/MarginContainer/VBox"]
-margin_top = 93.0
+margin_top = 131.0
 margin_right = 200.0
-margin_bottom = 109.0
+margin_bottom = 147.0
 alignment = 1
 
 [node name="Quit" type="MarginContainer" parent="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer3"]
@@ -670,7 +660,7 @@ __meta__ = {
 [node name="Title" type="Label" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox"]
 margin_right = 200.0
 margin_bottom = 52.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Hat-Venture is inspired
 by the Game Boy and
@@ -688,7 +678,7 @@ __meta__ = {
 margin_top = 67.0
 margin_right = 200.0
 margin_bottom = 86.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "(this can be changed
 in the PAUSE menu)"
@@ -752,8 +742,10 @@ script = ExtResource( 17 )
 [connection signal="pressed" from="Menu/PlayTextBox2/Mrgn/MarginContainer/VBox/HBoxContainer2/Continue/Close" to="Menu/PlayTextBox2" method="close"]
 [connection signal="close" from="Menu/PlayTextBox3" to="Menu/Play" method="open"]
 [connection signal="pressed" from="Menu/PlayTextBox3/Mrgn/MarginContainer/VBox/HBoxContainer2/Continue/Close" to="Menu/PlayTextBox3" method="close"]
-[connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo" to="Menu/Play" method="close"]
 [connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo" to="Menu/ColorSchemes" method="open"]
+[connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo" to="Menu/Play" method="close"]
+[connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer2/Options/Options" to="Menu/Settings" method="open"]
 [connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer3/Quit/Quit" to="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer3/Quit/Quit" method="_on_Quit_pressed"]
-[connection signal="close" from="Menu/ColorSchemes" to="Menu/Play" method="open"]
+[connection signal="close" from="Menu/Settings" to="Menu/Play" method="open"]
+[connection signal="pressed" from="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/HBoxContainer2/Continue/Play" to="Menu/ColorSchemes" method="close"]
 [connection signal="pressed" from="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/HBoxContainer2/Continue/Play" to="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/HBoxContainer2/Continue/Play" method="start_game"]
