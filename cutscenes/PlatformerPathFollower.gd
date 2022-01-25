@@ -13,18 +13,25 @@ onready var path_follow = $".."
 var patrol_points : Array = []
 var patrol_index = 1
 
+export(int) var turnaround_offset= 8
+onready var floorchecker_obj : RayCast2D = $RayCast2D
+
 onready var sprite = $EnemyCore
 var jumping = true
-var jump_wait_time = 0.1
+var jump_wait_time : float = 0.2
 const JUMP_FORCE = 225
 
 func _ready():
-	jump_wait_time = rand_range(0.1, .5)
+	refresh_floorchecker_pos()
+
 var jump_time_counter = 0
+func set_jump_wait_time(jump_wait_time_min, jump_wait_time_max):
+	jump_wait_time = rand_range(jump_wait_time_min, jump_wait_time_max)
 
 func reset():
 	patrol_index = 1
 	patrol_points = path_follow.curve.get_baked_points()
+	refresh_floorchecker_pos()
 
 # Frame process function. Moves body.
 func _physics_process(delta):
@@ -53,13 +60,19 @@ func _physics_process(delta):
 		velo.x *= 0.8
 	if is_on_floor():
 		jump_time_counter += delta
-		if (jump_time_counter > jump_wait_time and jumping) or is_on_wall():
+		if (jump_time_counter > jump_wait_time and jumping) or is_on_wall() \
+			or (is_on_floor() and floorchecker_obj and not floorchecker_obj.is_colliding() and jumping):
 			jump()
 			jump_time_counter = 0
 	velo = move_and_slide(velo, Vector2.UP)
 	# Turn around sprite of enemies walking backwards
 	if(velo.x * sprite.scale.x < 0):
 		sprite.scale = Vector2(-sprite.scale.x, sprite.scale.y)
+		refresh_floorchecker_pos()
+
+func refresh_floorchecker_pos():
+	if floorchecker_obj:
+		floorchecker_obj.position.x = turnaround_offset * direction
 
 func jump():
 	velo.y = -JUMP_FORCE
