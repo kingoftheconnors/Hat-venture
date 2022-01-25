@@ -15,27 +15,27 @@ _data = {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 9, 8 )
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "timepiece"
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "walk"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
 
-[sub_resource type="AnimationNodeStateMachine" id=10]
-states/timepiece/node = SubResource( 6 )
+[sub_resource type="AnimationNodeStateMachine" id=7]
+states/timepiece/node = SubResource( 3 )
 states/timepiece/position = Vector2( 204, 72 )
-states/walk/node = SubResource( 7 )
+states/walk/node = SubResource( 4 )
 states/walk/position = Vector2( 430, 72 )
-transitions = [ "timepiece", "walk", SubResource( 8 ), "walk", "timepiece", SubResource( 9 ) ]
+transitions = [ "timepiece", "walk", SubResource( 5 ), "walk", "timepiece", SubResource( 6 ) ]
 start_node = "walk"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=9]
 length = 0.3
 loop = true
 step = 0.15
@@ -76,7 +76,7 @@ tracks/2/keys = {
 "values": [ Vector2( 1, -13 ), Vector2( 1, -12 ) ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=10]
 length = 0.3
 loop = true
 step = 0.15
@@ -135,13 +135,19 @@ hframes = 8
 frame = 2
 
 [node name="AnimationTree" type="AnimationTree" parent="Lilen"]
-tree_root = SubResource( 10 )
+tree_root = SubResource( 7 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 11 )
+parameters/playback = SubResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Lilen"]
-anims/timepiece = SubResource( 15 )
-anims/walk = SubResource( 16 )
+anims/timepiece = SubResource( 9 )
+anims/walk = SubResource( 10 )
+
+[node name="RayCast2D" type="RayCast2D" parent="Lilen"]
+position = Vector2( 8, 0 )
+enabled = true
+cast_to = Vector2( 0, 48 )
+collision_mask = 2
 
 [connection signal="reach_goal" from="Lilen" to="." method="_on_Lilen_reach_goal"]

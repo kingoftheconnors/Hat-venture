@@ -58,8 +58,8 @@ func _physics_process(delta):
 		if target_spot != Vector2.ZERO:
 			var prev_left = lim_left; var prev_right = lim_right
 			# Limits are changed to force player to stay near target_spot
-			lim_left = min(get_camera_screen_center().x-(Gui.get_screen_resolution().x/2), position.x-(Gui.get_screen_resolution().x/2))
-			lim_right = max(get_camera_screen_center().x+(Gui.get_screen_resolution().x/2), position.x+(Gui.get_screen_resolution().x/2))
+			lim_left = min(get_camera_screen_center().x-(get_viewport().size.x/2), position.x-get_viewport().size.x/2)
+			lim_right = max(get_camera_screen_center().x+(get_viewport().size.x/2), position.x+get_viewport().size.x/2)
 			if prev_left != lim_left or prev_right != lim_right:
 				left_body.set_collision_mask_bit(0, false)
 				right_body.set_collision_mask_bit(0, false)
@@ -71,14 +71,14 @@ func _physics_process(delta):
 			position = target.position + Vector2(lookahead_offset, 0)
 			#shake_direc_right = !shake_direc_right
 		# Enforce limits
-		if position.y > lim_bottom - Gui.get_screen_resolution().y/2:
-			position.y = lim_bottom - Gui.get_screen_resolution().y/2
-		if position.y < lim_top + Gui.get_screen_resolution().y/2:
-			position.y = lim_top + Gui.get_screen_resolution().y/2
-		if position.x > lim_right - (Gui.get_screen_resolution().x/2):
-			position.x = lim_right - (Gui.get_screen_resolution().x/2)
-		if position.x < lim_left + (Gui.get_screen_resolution().x/2):
-			position.x = lim_left + (Gui.get_screen_resolution().x/2)
+		if position.y > lim_bottom - get_viewport().size.y/2:
+			position.y = lim_bottom - get_viewport().size.y/2
+		if position.y < lim_top + get_viewport().size.y/2:
+			position.y = lim_top + get_viewport().size.y/2
+		if position.x > lim_right - get_viewport().size.x/2:
+			position.x = lim_right - get_viewport().size.x/2
+		if position.x < lim_left + get_viewport().size.x/2:
+			position.x = lim_left + get_viewport().size.x/2
 		# Moving left and right walls when limit moves
 		if left_body.global_position.x != lim_left - 10:
 			left_body.global_position.x = lim_left - 10
