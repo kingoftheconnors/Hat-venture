@@ -29,6 +29,7 @@ enum MUSIC {
 onready var music_player : AudioStreamPlayer = $Music
 var cur_music = MUSIC.NONE
 func start_music(music : int):
+	$AnimationPlayer.stop()
 	if music_player:
 		music_player.volume_db = 0
 		if cur_music != music:
