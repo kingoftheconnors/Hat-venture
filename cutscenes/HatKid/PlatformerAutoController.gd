@@ -96,19 +96,20 @@ var direction = 1
 var prev_horizontal = 0
 
 # Called every physics frame. 'delta' is the elapsed time since the previous frame.
-var falling = true
 func _physics_process(delta):
-	if falling and is_on_floor():
-		falling = false
 	if is_on_wall() or (is_on_floor() and not cliffRaycast.is_colliding()):
 		jump_timer = JUMP_TIME
 	move(delta)
 	manage_flags()
 
+var walking = false
+func start_walking():
+	walking = true
+
 ## Calculates velocity and moves player
 func move(delta):
 	var horizontal = 0
-	if !falling:
+	if walking:
 		horizontal = 1
 	var vertical = 0
 	
