@@ -2,10 +2,12 @@ class_name Palettes
 extends TextureRect
 
 var cur_palette : String = "Classic"
+var cur_palette_size = 4
 var cur_brightness : int = 0
 
 func set_palette(palette_name : String):
 	cur_palette = palette_name
+	cur_palette_size = palettes[cur_palette].size()
 	update_colors()
 
 func update_colors():
@@ -32,10 +34,10 @@ func update_colors():
 		playerFilter.material.set_shader_param("palette_dark", palette[14] + Color(.1, .1, .1)*cur_brightness)
 		playerFilter.material.set_shader_param("palette_black", palette[15] + Color(.1, .1, .1)*cur_brightness)
 	elif palette.size() > 8:
-		backgroundFilter.material.set_shader_param("palette_white", palette[0] + Color(.1, .1, .1)*cur_brightness)
-		backgroundFilter.material.set_shader_param("palette_light", palette[1] + Color(.1, .1, .1)*cur_brightness)
-		backgroundFilter.material.set_shader_param("palette_dark", palette[2] + Color(.1, .1, .1)*cur_brightness)
-		backgroundFilter.material.set_shader_param("palette_black", palette[3] + Color(.1, .1, .1)*cur_brightness)
+		backgroundFilter.material.set_shader_param("palette_white", backgroundFilter.material.get_shader_param("game_white"))
+		backgroundFilter.material.set_shader_param("palette_light", backgroundFilter.material.get_shader_param("game_light"))
+		backgroundFilter.material.set_shader_param("palette_dark", backgroundFilter.material.get_shader_param("game_dark"))
+		backgroundFilter.material.set_shader_param("palette_black", backgroundFilter.material.get_shader_param("game_black"))
 		spriteFilter.material.set_shader_param("palette_white", palette[4] + Color(.1, .1, .1)*cur_brightness)
 		spriteFilter.material.set_shader_param("palette_light", palette[5] + Color(.1, .1, .1)*cur_brightness)
 		spriteFilter.material.set_shader_param("palette_dark", palette[6] + Color(.1, .1, .1)*cur_brightness)
@@ -45,10 +47,10 @@ func update_colors():
 		playerFilter.material.set_shader_param("palette_dark", palette[10] + Color(.1, .1, .1)*cur_brightness)
 		playerFilter.material.set_shader_param("palette_black", palette[11] + Color(.1, .1, .1)*cur_brightness)
 	elif palette.size() > 4:
-		backgroundFilter.material.set_shader_param("palette_white", palette[0] + Color(.1, .1, .1)*cur_brightness)
-		backgroundFilter.material.set_shader_param("palette_light", palette[1] + Color(.1, .1, .1)*cur_brightness)
-		backgroundFilter.material.set_shader_param("palette_dark", palette[2] + Color(.1, .1, .1)*cur_brightness)
-		backgroundFilter.material.set_shader_param("palette_black", palette[3] + Color(.1, .1, .1)*cur_brightness)
+		backgroundFilter.material.set_shader_param("palette_white", backgroundFilter.material.get_shader_param("game_white"))
+		backgroundFilter.material.set_shader_param("palette_light", backgroundFilter.material.get_shader_param("game_light"))
+		backgroundFilter.material.set_shader_param("palette_dark", backgroundFilter.material.get_shader_param("game_dark"))
+		backgroundFilter.material.set_shader_param("palette_black", backgroundFilter.material.get_shader_param("game_black"))
 		spriteFilter.material.set_shader_param("palette_white", palette[4] + Color(.1, .1, .1)*cur_brightness)
 		spriteFilter.material.set_shader_param("palette_light", palette[5] + Color(.1, .1, .1)*cur_brightness)
 		spriteFilter.material.set_shader_param("palette_dark", palette[6] + Color(.1, .1, .1)*cur_brightness)
@@ -71,16 +73,27 @@ func update_colors():
 		playerFilter.material.set_shader_param("palette_dark", playerFilter.material.get_shader_param("game_dark"))
 		playerFilter.material.set_shader_param("palette_black", playerFilter.material.get_shader_param("game_black"))
 
+# Options-menu brightness. Controlled by slider
 func set_brightness(val : int):
 	cur_brightness = val
 	update_colors()
 
+# Game brightness. Moves colors up and down the color direction
 func set_brightness_param(val : int):
 	var spriteFilter = $SpriteFilter
 	var playerFilter = $PlayerFilter
+	var backgroundFilter = $BackgroundFilter
 	material.set_shader_param("brightness_level", val)
-	#spriteFilter.material.set_shader_param("brightness_level", val)
-	#playerFilter.material.set_shader_param("brightness_level", val)
+	if cur_palette_size > 4:
+		spriteFilter.material.set_shader_param("brightness_level", val)
+		playerFilter.material.set_shader_param("brightness_level", val)
+	else:
+		spriteFilter.material.set_shader_param("brightness_level", 0)
+		playerFilter.material.set_shader_param("brightness_level", 0)
+	if cur_palette_size > 12:
+		backgroundFilter.material.set_shader_param("brightness_level", val)
+	else:
+		backgroundFilter.material.set_shader_param("brightness_level", 0)
 
 const palettes = {
 	Classic = [

@@ -75,15 +75,15 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.GOTO_TUTORIAL:
 			return [
-				{level = "res://level-select/tutorial.tscn"}
+				{level = "res://level-select/tutorial.tscn", delay = 1}
 			]
 		DIALOG_TYPE.GOTO_SHIP_FROM_OUTSIDE:
 			return [
-				{level = "res://level-select/ship.tscn", spawn_point = 2}
+				{level = "res://level-select/ship.tscn", spawn_point = 2, delay = 1}
 			]
 		DIALOG_TYPE.GOTO_WORLD_1:
 			return [
-				{level = "res://world1/level1.tscn"}
+				{level = "res://world1/level1.tscn", delay = 1}
 			]
 		DIALOG_TYPE.SIGNAL_ACTION_1:
 			return [
@@ -179,12 +179,13 @@ func get_dialog(text_num):
 				{animate2 = "idle"},
 				# Pan over to time vault sequence
 				{signal = "action3", delay=1},
-				{animate2 = "talk"},
+				{animate2 = "talk"}, # TODO: Float
 				{name = "Timmy", text = "What's that?"},
-				{animate2 = "idle"},
 				# Walk to Time Piece
-				{signal = "action4", delay=0.5},
-				{signal = "action5", delay=1.25},
+				{signal = "action4"},
+				{animate2 = "float", delay=1.5},
+				{signal = "action5", delay=.5},
+				{signal = "actionM", delay=.5},
 				{animate2 = "talk"},
 				{name = "Timmy", text = "Looks like some kinda big vault... what do ya keep in here, anyway?"},
 				{animate2 = "idle"},
@@ -275,11 +276,11 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.GOTO_BEDROOM:
 			return [
-				{level = "res://level-select/bedroom.tscn", spawn_point = 2}
+				{level = "res://level-select/bedroom.tscn", spawn_point = 2, delay = 1}
 			]
 		DIALOG_TYPE.GOTO_SHIP_FROM_BEDROOM:
 			return [
-				{level = "res://level-select/ship.tscn", spawn_point = 3}
+				{level = "res://level-select/ship.tscn", spawn_point = 3, delay = 1}
 			]
 		DIALOG_TYPE.BED:
 			return [

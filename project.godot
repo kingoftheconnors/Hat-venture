@@ -224,6 +224,7 @@ PlayerGameManager="*res://common/PlayerGameManager.tscn"
 SoundSystem="*res://constants/SoundSystem.tscn"
 ggsManager="*res://addons/GGS/src/ggs_manager.gd"
 SaveSystem="*res://constants/SaveSystem.gd"
+IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resolution_handler.gd"
 
 [debug]
 
@@ -231,17 +232,19 @@ settings/fps/force_fps=60
 
 [display]
 
-window/size/width=320
-window/size/height=256
+window/integer_resolution_handler/base_width=640
+window/integer_resolution_handler/base_height=360
+window/size/width=640
+window/size/height=360
 window/size/resizable=false
-window/size/test_width=960
-window/size/test_height=864
+window/size/test_width=640
+window/size/test_height=320
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/GGS/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/GGS/plugin.cfg", "res://addons/integer_resolution_handler/plugin.cfg" )
 
 [input]
 

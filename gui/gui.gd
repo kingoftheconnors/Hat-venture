@@ -206,18 +206,22 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 			text_crawl_func = wait_for_method_true(next_box.starter, "animate2_method_true", next_box['delaytil_animate2_method_true'])
 	elif next_box.has("enable"):
 		for body in next_box['enable']:
-			body.set_pause_mode(PAUSE_MODE_PROCESS)
+			if is_instance_valid(body):
+				body.set_pause_mode(PAUSE_MODE_PROCESS)
 	elif next_box.has("disable"):
 		for body in next_box['disable']:
-			body.set_pause_mode(PAUSE_MODE_INHERIT)
+			if is_instance_valid(body):
+				body.set_pause_mode(PAUSE_MODE_INHERIT)
 	elif next_box.has("enable_skipping"):
 		can_skip_cutscene = true
 	elif next_box.has("disable_skipping"):
 		can_skip_cutscene = false
 	elif next_box.has("unfreeze_player"):
-		next_box['unfreeze_player'].set_freeze(false)
+		if is_instance_valid(next_box['unfreeze_player']):
+			next_box['unfreeze_player'].set_freeze(false)
 	elif next_box.has("freeze_player"):
-		next_box['freeze_player'].set_freeze(true)
+		if is_instance_valid(next_box['freeze_player']):
+			next_box['freeze_player'].set_freeze(true)
 	elif next_box.has("brightness"):
 		set_brightness_param(next_box['brightness'])
 	elif next_box.has("level"):
@@ -391,16 +395,9 @@ var cur_resolution : Vector2 = Vector2.ZERO
 var cur_multiplier : int = 1
 func set_screen_resolution(new_size : Vector2) -> void:
 	cur_resolution = new_size
+	ProjectSettings.set_setting("display/window/integer_resolution_handler/base_width", new_size.x)
+	ProjectSettings.set_setting("display/window/integer_resolution_handler/base_height", new_size.y)
 	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_VIEWPORT, SceneTree.STRETCH_ASPECT_KEEP_HEIGHT, new_size)
-	# Resize window if not maximized
-	#if !OS.window_maximized:
-	#	#Find closest multiple of new resolution near current window size
-	#	var dist_to_cur_size = OS.get_window_size().distance_to(new_size)
-	#	var multiplier : int = 1
-	#	for mult in range(2, 5):
-	#		if OS.get_window_size().distance_to(new_size*mult) < dist_to_cur_size \
-	#			and new_size.x*mult < OS.get_screen_size().x and new_size.y*mult < OS.get_screen_size().y:
-	#			multiplier = mult
 	OS.set_window_size(cur_resolution * cur_multiplier)
 	OS.center_window()
 
@@ -428,11 +425,19 @@ func set_brightness_param(val):
 ### -------------------------------
 
 func cover() -> float:
-	cover_animator.play("cover (slow)")
-	return 1.4
+	if Constants.PHOTOSENSITIVE_MODE:
+		cover_animator.play("cover (slow)")
+		return 1.3
+	else:
+		cover_animator.play("cover")
+		return .45
 func reveal() -> float:
-	cover_animator.play("reveal (slow)")
-	return 1.4
+	if Constants.PHOTOSENSITIVE_MODE:
+		cover_animator.play("reveal (slow)")
+		return 1.3
+	else:
+		cover_animator.play("reveal")
+		return .45
 func unlock_palette(palette_name):
 	$UnlockPaletteBox.visible = true
 	$UnlockPaletteBox.grab_focus()

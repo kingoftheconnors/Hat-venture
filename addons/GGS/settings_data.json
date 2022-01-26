@@ -194,10 +194,10 @@
 	"16": {
 		"name": "resolution",
 		"default": {
-			"value": 2
+			"value": 0
 		},
 		"current": {
-			"value": 2
+			"value": 0
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/window_res.gd"
 	},
@@ -295,7 +295,7 @@
 			"value": 0
 		},
 		"current": {
-			"value": 2
+			"value": 0
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/window_scale.gd"
 	}
