@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://world1/background1.tres" type="TileSet" id=2]
@@ -17,13 +17,10 @@
 [ext_resource path="res://NPCs/DialogStarter.gd" type="Script" id=16]
 [ext_resource path="res://enemy/hen/Hen.tscn" type="PackedScene" id=17]
 [ext_resource path="res://enemy/crow/Crow.tscn" type="PackedScene" id=18]
-[ext_resource path="res://enemy/RoboKurt/AppleDropper.gd" type="Script" id=19]
 [ext_resource path="res://enemy/RoboKurt/AppleDropper.tscn" type="PackedScene" id=20]
-[ext_resource path="res://items/Resources/TimePiece.tscn" type="PackedScene" id=21]
 [ext_resource path="res://enemy/RoboKurt/RoboKurt.tscn" type="PackedScene" id=22]
 [ext_resource path="res://enemy/eltun/pace.gd" type="Script" id=23]
 [ext_resource path="res://common/CameraCapture.tscn" type="PackedScene" id=24]
-[ext_resource path="res://enemy/RoboKurt/RoboKurt.gd" type="Script" id=25]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 176 )
@@ -359,10 +356,6 @@ position = Vector2( 1766.76, -350.152 )
 scale = Vector2( 0.85, 1.1 )
 walled = false
 
-[node name="TimePiece" parent="." instance=ExtResource( 21 )]
-position = Vector2( 3840, -152 )
-next_level = "res://levelgameover/gameOver.tscn"
-
 [node name="CameraCapture3" parent="." instance=ExtResource( 24 )]
 position = Vector2( -651.151, -615.539 )
 walled = false
@@ -542,13 +535,9 @@ position = Vector2( 4150, 0 )
 [node name="Boss" type="Node2D" parent="BossNode2D"]
 position = Vector2( 0, -8 )
 
-[node name="RoboKurt" type="KinematicBody2D" parent="BossNode2D/Boss" instance=ExtResource( 22 )]
-position = Vector2( 61.4028, -16.0181 )
-z_index = 3
+[node name="RoboKurt" parent="BossNode2D/Boss" instance=ExtResource( 22 )]
+position = Vector2( 61.9975, -16.0181 )
 collision_mask = 3
-script = ExtResource( 25 )
-is_active = true
-enemy_respawns = false
 left_side = NodePath("../Left")
 right_side = NodePath("../Right")
 timepiece_goal = NodePath("../TimePieceGoal")
@@ -562,14 +551,13 @@ position = Vector2( 40, 8 )
 [node name="TimePieceGoal" type="Node2D" parent="BossNode2D/Boss"]
 position = Vector2( -120, -48 )
 
-[node name="AppleDropper" type="Node2D" parent="BossNode2D/Boss" instance=ExtResource( 20 )]
+[node name="AppleDropper" parent="BossNode2D/Boss" instance=ExtResource( 20 )]
 position = Vector2( -128, -184 )
-script = ExtResource( 19 )
 left = -104
 right = 104
 
 [node name="DialogOnCollisionStarter" type="Node2D" parent="BossNode2D/Boss"]
-position = Vector2( -88, -128 )
+position = Vector2( -54.7021, -131.568 )
 script = ExtResource( 16 )
 dialog_num = 27
 active_bodies_in_dialog = [ NodePath("../RoboKurt") ]
@@ -580,7 +568,7 @@ position = Vector2( -48, 0 )
 script = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossNode2D/Boss/DialogOnCollisionStarter/Area2D"]
-position = Vector2( 32.7034, -27.3642 )
+position = Vector2( 1.18973, -37.4725 )
 shape = SubResource( 1 )
 
 [node name="Trees" type="Node2D" parent="BossNode2D"]
