@@ -25,5 +25,6 @@ func close():
 	else:
 		visible = false
 	emit_signal("close")
+	Gui.menu_closed()
 
 signal close
