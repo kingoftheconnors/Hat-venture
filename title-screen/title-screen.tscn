@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://title-screen/SpawnLevelPiece.gd" type="Script" id=1]
 [ext_resource path="res://world1/background1.tres" type="TileSet" id=2]
@@ -41,6 +41,7 @@
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=39]
 [ext_resource path="res://enemy/eltun/pace.gd" type="Script" id=40]
 [ext_resource path="res://player/regular/jump.png" type="Texture" id=41]
+[ext_resource path="res://title-screen/ControlSfx.gd" type="Script" id=42]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
@@ -296,7 +297,7 @@ func start_timer():
 	start()
 "
 
-[sub_resource type="Shader" id=17]
+[sub_resource type="Shader" id=8]
 code = "shader_type canvas_item;
 
 // Which color you want to change
@@ -343,8 +344,8 @@ void fragment() {
 		COLOR = c;
 }"
 
-[sub_resource type="ShaderMaterial" id=18]
-shader = SubResource( 17 )
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 8 )
 shader_param/game_white = Color( 1, 1, 1, 1 )
 shader_param/game_light = Color( 0.67451, 0.682353, 0.67451, 1 )
 shader_param/game_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
@@ -356,8 +357,7 @@ shader_param/palette_black = Color( 0, 0, 0, 1 )
 shader_param/brightness_level = 3
 shader_param/precision = 0.27
 
-[sub_resource type="Animation" id=8]
-resource_name = "fade_in"
+[sub_resource type="Animation" id=10]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Mrgn/MarginContainer/VBox/HBoxContainer/Yes/Close:visible")
 tracks/0/interp = 1
@@ -382,78 +382,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [ 3, 2, 1, 0 ]
 }
-
-[sub_resource type="AnimatedTexture" id=9]
-resource_local_to_scene = true
-frames = 16
-pause = true
-frame_0/texture = ExtResource( 32 )
-frame_1/texture = ExtResource( 27 )
-frame_1/delay_sec = 0.0
-frame_2/texture = ExtResource( 26 )
-frame_2/delay_sec = 0.0
-frame_3/texture = ExtResource( 31 )
-frame_3/delay_sec = 0.0
-frame_4/texture = ExtResource( 34 )
-frame_4/delay_sec = 0.0
-frame_5/texture = ExtResource( 30 )
-frame_5/delay_sec = 0.0
-frame_6/texture = ExtResource( 33 )
-frame_6/delay_sec = 0.0
-frame_7/texture = ExtResource( 25 )
-frame_7/delay_sec = 0.0
-frame_8/texture = ExtResource( 28 )
-frame_8/delay_sec = 0.0
-frame_9/texture = ExtResource( 29 )
-frame_9/delay_sec = 0.0
-frame_10/texture = ExtResource( 35 )
-frame_10/delay_sec = 0.0
-frame_11/texture = ExtResource( 21 )
-frame_11/delay_sec = 0.0
-frame_12/texture = ExtResource( 20 )
-frame_12/delay_sec = 0.0
-frame_13/texture = ExtResource( 23 )
-frame_13/delay_sec = 0.0
-frame_14/texture = ExtResource( 24 )
-frame_14/delay_sec = 0.0
-frame_15/texture = ExtResource( 22 )
-frame_15/delay_sec = 0.0
-
-[sub_resource type="AnimatedTexture" id=10]
-resource_local_to_scene = true
-frames = 16
-pause = true
-frame_0/texture = ExtResource( 32 )
-frame_1/texture = ExtResource( 27 )
-frame_1/delay_sec = 0.0
-frame_2/texture = ExtResource( 26 )
-frame_2/delay_sec = 0.0
-frame_3/texture = ExtResource( 31 )
-frame_3/delay_sec = 0.0
-frame_4/texture = ExtResource( 34 )
-frame_4/delay_sec = 0.0
-frame_5/texture = ExtResource( 30 )
-frame_5/delay_sec = 0.0
-frame_6/texture = ExtResource( 33 )
-frame_6/delay_sec = 0.0
-frame_7/texture = ExtResource( 25 )
-frame_7/delay_sec = 0.0
-frame_8/texture = ExtResource( 28 )
-frame_8/delay_sec = 0.0
-frame_9/texture = ExtResource( 29 )
-frame_9/delay_sec = 0.0
-frame_10/texture = ExtResource( 35 )
-frame_10/delay_sec = 0.0
-frame_11/texture = ExtResource( 21 )
-frame_11/delay_sec = 0.0
-frame_12/texture = ExtResource( 20 )
-frame_12/delay_sec = 0.0
-frame_13/texture = ExtResource( 23 )
-frame_13/delay_sec = 0.0
-frame_14/texture = ExtResource( 24 )
-frame_14/delay_sec = 0.0
-frame_15/texture = ExtResource( 22 )
-frame_15/delay_sec = 0.0
 
 [sub_resource type="AnimatedTexture" id=11]
 resource_local_to_scene = true
@@ -636,6 +564,78 @@ frame_15/texture = ExtResource( 22 )
 frame_15/delay_sec = 0.0
 
 [sub_resource type="AnimatedTexture" id=16]
+resource_local_to_scene = true
+frames = 16
+pause = true
+frame_0/texture = ExtResource( 32 )
+frame_1/texture = ExtResource( 27 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 26 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 31 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 34 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 30 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 33 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 25 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 28 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 29 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 35 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 21 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 20 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 23 )
+frame_13/delay_sec = 0.0
+frame_14/texture = ExtResource( 24 )
+frame_14/delay_sec = 0.0
+frame_15/texture = ExtResource( 22 )
+frame_15/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=17]
+resource_local_to_scene = true
+frames = 16
+pause = true
+frame_0/texture = ExtResource( 32 )
+frame_1/texture = ExtResource( 27 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 26 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 31 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 34 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 30 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 33 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 25 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 28 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 29 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 35 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 21 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 20 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 23 )
+frame_13/delay_sec = 0.0
+frame_14/texture = ExtResource( 24 )
+frame_14/delay_sec = 0.0
+frame_15/texture = ExtResource( 22 )
+frame_15/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=18]
 resource_local_to_scene = true
 frames = 16
 pause = true
@@ -999,7 +999,7 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="Menu/Start/Mrgn/MarginContainer/VBox"]
-material = SubResource( 18 )
+material = SubResource( 9 )
 margin_right = 424.0
 margin_bottom = 54.0
 grow_horizontal = 2
@@ -1018,9 +1018,11 @@ margin_right = 228.0
 size_flags_horizontal = 0
 custom_constants/margin_right = 16
 custom_constants/margin_left = 16
+script = ExtResource( 42 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+TRAVERSE_SFX = 0
 
 [node name="Close" type="Button" parent="Menu/Start/Mrgn/MarginContainer/VBox/HBoxContainer/Yes"]
 visible = false
@@ -1032,7 +1034,7 @@ size_flags_horizontal = 0
 text = "Press Z"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Menu/Start"]
-anims/fade_in = SubResource( 8 )
+anims/fade_in = SubResource( 10 )
 
 [node name="PlayTextBox1" type="Control" parent="Menu"]
 visible = false
@@ -1119,9 +1121,11 @@ margin_bottom = 16.0
 size_flags_horizontal = 0
 custom_constants/margin_right = 16
 custom_constants/margin_left = 16
+script = ExtResource( 42 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+TRAVERSE_SFX = 0
 
 [node name="Close" type="Button" parent="Menu/PlayTextBox1/Mrgn/MarginContainer/VBox/HBoxContainer2/Continue"]
 margin_left = 16.0
@@ -1218,9 +1222,11 @@ margin_bottom = 16.0
 size_flags_horizontal = 0
 custom_constants/margin_right = 16
 custom_constants/margin_left = 16
+script = ExtResource( 42 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+TRAVERSE_SFX = 0
 
 [node name="Close" type="Button" parent="Menu/PlayTextBox2/Mrgn/MarginContainer/VBox/HBoxContainer2/Continue"]
 margin_left = 16.0
@@ -1315,9 +1321,11 @@ margin_bottom = 16.0
 size_flags_horizontal = 0
 custom_constants/margin_right = 16
 custom_constants/margin_left = 16
+script = ExtResource( 42 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+TRAVERSE_SFX = 0
 
 [node name="Close" type="Button" parent="Menu/PlayTextBox3/Mrgn/MarginContainer/VBox/HBoxContainer2/Continue"]
 margin_left = 16.0
@@ -1402,6 +1410,7 @@ margin_bottom = 16.0
 size_flags_horizontal = 0
 custom_constants/margin_right = 16
 custom_constants/margin_left = 16
+script = ExtResource( 42 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1430,6 +1439,7 @@ margin_bottom = 16.0
 size_flags_horizontal = 0
 custom_constants/margin_right = 16
 custom_constants/margin_left = 16
+script = ExtResource( 42 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1455,6 +1465,7 @@ margin_bottom = 16.0
 size_flags_horizontal = 0
 custom_constants/margin_right = 16
 custom_constants/margin_left = 16
+script = ExtResource( 42 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1475,63 +1486,11 @@ margin_bottom = -48.0
 pause_game_on_open = false
 delete_on_close = false
 
-[node name="NinePatchRect" parent="Menu/Settings/Mrgn" index="0"]
-margin_right = 459.0
-margin_bottom = 256.0
-
-[node name="MarginContainer" parent="Menu/Settings/Mrgn" index="1"]
-margin_right = 459.0
-margin_bottom = 256.0
-
-[node name="VBox" parent="Menu/Settings/Mrgn/MarginContainer" index="0"]
-margin_right = 447.0
-margin_bottom = 234.0
-
-[node name="Settings" parent="Menu/Settings/Mrgn/MarginContainer/VBox" index="0"]
-margin_right = 435.0
-margin_bottom = 167.0
-
 [node name="Mrgn" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings" index="0"]
 margin_right = 435.0
 
 [node name="VBox" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn" index="0"]
 margin_right = 430.0
-
-[node name="Display" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox" index="0"]
-margin_right = 417.0
-
-[node name="Title" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display" index="0"]
-margin_right = 417.0
-
-[node name="WindowMode" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display" index="1"]
-margin_right = 417.0
-
-[node name="Label" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/WindowMode" index="0"]
-margin_right = 349.0
-
-[node name="Bool" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/WindowMode" index="1"]
-margin_left = 353.0
-margin_right = 417.0
-
-[node name="WindowScale" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display" index="3"]
-margin_right = 417.0
-
-[node name="Label" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/WindowScale" index="0"]
-margin_right = 357.0
-
-[node name="ArrowList" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/WindowScale" index="1"]
-margin_left = 361.0
-margin_right = 417.0
-
-[node name="Palette" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display" index="4"]
-margin_right = 417.0
-
-[node name="Label" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/Palette" index="0"]
-margin_right = 357.0
-
-[node name="PaletteList" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/Palette" index="1"]
-margin_left = 361.0
-margin_right = 417.0
 
 [node name="PrevBtn" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/Palette/PaletteList" index="0"]
 margin_right = 24.0
@@ -1544,235 +1503,29 @@ margin_right = 28.0
 margin_left = 32.0
 margin_right = 56.0
 
-[node name="Audio" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox" index="1"]
-margin_right = 417.0
-
-[node name="HSep" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Audio" index="0"]
-margin_right = 417.0
-
-[node name="Title" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Audio" index="1"]
-margin_right = 417.0
-
-[node name="Music" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Audio" index="2"]
-margin_right = 417.0
-
-[node name="Label" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Audio/Music" index="0"]
-margin_right = 313.0
-
-[node name="Volume" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Audio/Music" index="1"]
-margin_left = 317.0
-margin_right = 417.0
-
-[node name="Sfx" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Audio" index="3"]
-margin_right = 417.0
-
-[node name="Label" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Audio/Sfx" index="0"]
-margin_right = 313.0
-
-[node name="Volume" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Audio/Sfx" index="1"]
-margin_left = 317.0
-margin_right = 417.0
-
-[node name="Controls" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox" index="2"]
-margin_right = 417.0
-
-[node name="HSep" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls" index="0"]
-margin_right = 417.0
-
-[node name="Title" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls" index="1"]
-margin_right = 417.0
-
-[node name="Controls" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls" index="2"]
-margin_right = 417.0
-
-[node name="MoveRight" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls" index="0"]
-margin_right = 417.0
-
-[node name="Label" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/MoveRight" index="0"]
-margin_right = 343.0
-
-[node name="Keyboard" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/MoveRight" index="1"]
-margin_left = 358.0
-margin_right = 378.0
-
 [node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/MoveRight" index="2"]
-margin_left = 393.0
-margin_right = 417.0
-icon = SubResource( 9 )
-
-[node name="MoveLeft" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls" index="1"]
-margin_right = 417.0
-
-[node name="Label" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/MoveLeft" index="0"]
-margin_right = 343.0
-
-[node name="Keyboard" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/MoveLeft" index="1"]
-margin_left = 358.0
-margin_right = 378.0
-
-[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/MoveLeft" index="2"]
-margin_left = 393.0
-margin_right = 417.0
-icon = SubResource( 10 )
-
-[node name="Move Up" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls" index="2"]
-margin_right = 417.0
-
-[node name="Label" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Move Up" index="0"]
-margin_right = 343.0
-
-[node name="Keyboard" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Move Up" index="1"]
-margin_left = 358.0
-margin_right = 378.0
-
-[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Move Up" index="2"]
-margin_left = 393.0
-margin_right = 417.0
 icon = SubResource( 11 )
 
-[node name="Move Down" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls" index="3"]
-margin_right = 417.0
-
-[node name="Label" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Move Down" index="0"]
-margin_right = 343.0
-
-[node name="Keyboard" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Move Down" index="1"]
-margin_left = 358.0
-margin_right = 378.0
-
-[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Move Down" index="2"]
-margin_left = 393.0
-margin_right = 417.0
+[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/MoveLeft" index="2"]
 icon = SubResource( 12 )
 
-[node name="Jump" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls" index="4"]
-margin_right = 417.0
-
-[node name="Label" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Jump" index="0"]
-margin_right = 343.0
-
-[node name="Keyboard" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Jump" index="1"]
-margin_left = 358.0
-margin_right = 378.0
-
-[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Jump" index="2"]
-margin_left = 393.0
-margin_right = 417.0
+[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Move Up" index="2"]
 icon = SubResource( 13 )
 
-[node name="Action" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls" index="5"]
-margin_right = 417.0
-
-[node name="Label" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Action" index="0"]
-margin_right = 343.0
-
-[node name="Keyboard" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Action" index="1"]
-margin_left = 358.0
-margin_right = 378.0
-
-[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Action" index="2"]
-margin_left = 393.0
-margin_right = 417.0
+[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Move Down" index="2"]
 icon = SubResource( 14 )
 
-[node name="Release" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls" index="6"]
-margin_right = 417.0
-
-[node name="Label" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Release" index="0"]
-margin_right = 343.0
-
-[node name="Keyboard" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Release" index="1"]
-margin_left = 358.0
-margin_right = 378.0
-
-[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Release" index="2"]
-margin_left = 393.0
-margin_right = 417.0
+[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Jump" index="2"]
 icon = SubResource( 15 )
 
-[node name="Menu" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls" index="7"]
-margin_right = 417.0
-
-[node name="Label" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Menu" index="0"]
-margin_right = 343.0
-
-[node name="Keyboard" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Menu" index="1"]
-margin_left = 358.0
-margin_right = 378.0
-
-[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Menu" index="2"]
-margin_left = 393.0
-margin_right = 417.0
+[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Action" index="2"]
 icon = SubResource( 16 )
 
-[node name="Accessibilty" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox" index="3"]
-margin_right = 417.0
+[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Release" index="2"]
+icon = SubResource( 17 )
 
-[node name="HSep" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty" index="0"]
-margin_right = 417.0
-
-[node name="Title" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty" index="1"]
-margin_right = 417.0
-
-[node name="PhotosensMode" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty" index="2"]
-margin_right = 417.0
-
-[node name="Label" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty/PhotosensMode" index="0"]
-margin_right = 349.0
-
-[node name="Bool" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty/PhotosensMode" index="1"]
-margin_left = 353.0
-margin_right = 417.0
-
-[node name="Cutscenes" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty" index="3"]
-margin_right = 417.0
-
-[node name="Label" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty/Cutscenes" index="0"]
-margin_right = 357.0
-
-[node name="ArrowList" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty/Cutscenes" index="1"]
-margin_left = 361.0
-margin_right = 417.0
-
-[node name="Brightness" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty" index="4"]
-margin_right = 417.0
-
-[node name="Label" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty/Brightness" index="0"]
-margin_right = 313.0
-
-[node name="Level" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty/Brightness" index="1"]
-margin_left = 317.0
-margin_right = 417.0
-
-[node name="Parallax" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty" index="5"]
-margin_right = 417.0
-
-[node name="Label" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty/Parallax" index="0"]
-margin_right = 313.0
-
-[node name="Level" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Accessibilty/Parallax" index="1"]
-margin_left = 317.0
-margin_right = 417.0
-
-[node name="Close" parent="Menu/Settings/Mrgn/MarginContainer/VBox" index="1"]
-margin_top = 182.0
-margin_right = 435.0
-margin_bottom = 222.0
-
-[node name="HSep" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Close" index="0"]
-margin_right = 435.0
-
-[node name="Reset" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Close" index="1"]
-margin_right = 435.0
-
-[node name="ggsReset" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Close/Reset" index="0"]
-margin_right = 419.0
-
-[node name="Save" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Close" index="2"]
-margin_right = 435.0
-
-[node name="Close" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Close/Save" index="0"]
-margin_right = 419.0
+[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Menu" index="2"]
+icon = SubResource( 18 )
 
 [node name="ColorSchemes" type="Control" parent="Menu"]
 visible = false
@@ -1832,7 +1585,7 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox"]
-margin_right = 200.0
+margin_right = 424.0
 margin_bottom = 52.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1850,7 +1603,7 @@ __meta__ = {
 
 [node name="Title2" type="Label" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox"]
 margin_top = 67.0
-margin_right = 200.0
+margin_right = 424.0
 margin_bottom = 86.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1865,17 +1618,28 @@ __meta__ = {
 
 [node name="Palette" type="HBoxContainer" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox"]
 margin_top = 101.0
-margin_right = 200.0
+margin_right = 424.0
 margin_bottom = 125.0
 alignment = 1
 
 [node name="PaletteList" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette" instance=ExtResource( 15 )]
-margin_left = 72.0
-margin_right = 128.0
+margin_left = 184.0
+margin_right = 240.0
 focus_neighbour_bottom = NodePath("../../HBoxContainer2/Continue/Play")
 focus_mode = 2
 setting_index = 19
 list = [ "Classic", "Muted" ]
+
+[node name="PrevBtn" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList" index="0"]
+margin_right = 24.0
+
+[node name="DisplayLabel" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList" index="1"]
+margin_left = 28.0
+margin_right = 28.0
+
+[node name="NextBtn" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList" index="2"]
+margin_left = 32.0
+margin_right = 56.0
 
 [node name="Node" type="Node" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList"]
 script = ExtResource( 13 )
@@ -1883,9 +1647,12 @@ script = ExtResource( 13 )
 [node name="GameStarter" type="Node" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList"]
 script = ExtResource( 17 )
 
+[node name="SfxPlayer" type="Node" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList"]
+script = ExtResource( 42 )
+
 [node name="Title3" type="Label" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox"]
 margin_top = 140.0
-margin_right = 200.0
+margin_right = 424.0
 margin_bottom = 148.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1961,7 +1728,11 @@ direction = Vector2( -1, 0 )
 [connection signal="pressed" from="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/Palette/PaletteList/NextBtn" to="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo/PalettesChecked" method="mark_checked"]
 [connection signal="pressed" from="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList" to="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList/GameStarter" method="start_game"]
 [connection signal="pressed" from="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList" to="Menu/ColorSchemes" method="close"]
+[connection signal="pressed" from="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList/PrevBtn" to="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList/SfxPlayer" method="play_select_sfx"]
+[connection signal="pressed" from="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList/NextBtn" to="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList/SfxPlayer" method="play_select_sfx"]
 
 [editable path="Player"]
 [editable path="Menu/Settings"]
+[editable path="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/WindowScale/ArrowList"]
 [editable path="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/Palette/PaletteList"]
+[editable path="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList"]
