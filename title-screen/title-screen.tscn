@@ -785,9 +785,9 @@ patch_margin_right = 8
 patch_margin_bottom = 8
 
 [node name="MarginContainer" type="MarginContainer" parent="Menu/PlayTextBox4/Mrgn"]
-margin_top = 108.0
+margin_top = 86.0
 margin_right = 512.0
-margin_bottom = 251.0
+margin_bottom = 273.0
 size_flags_vertical = 4
 theme = ExtResource( 6 )
 custom_constants/margin_right = 12
@@ -799,7 +799,7 @@ custom_constants/margin_bottom = 20
 margin_left = 12.0
 margin_top = 20.0
 margin_right = 500.0
-margin_bottom = 123.0
+margin_bottom = 167.0
 custom_constants/separation = 15
 __meta__ = {
 "_edit_use_anchors_": false
@@ -821,10 +821,11 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox"]
 margin_top = 23.0
 margin_right = 488.0
-margin_bottom = 103.0
+margin_bottom = 147.0
 alignment = 1
 
 [node name="Titles" type="VBoxContainer" parent="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox/HBoxContainer"]
+visible = false
 margin_right = 120.0
 margin_bottom = 80.0
 size_flags_horizontal = 2
@@ -882,18 +883,19 @@ __meta__ = {
 }
 
 [node name="Names" type="VBoxContainer" parent="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox/HBoxContainer"]
-margin_left = 264.0
-margin_right = 488.0
-margin_bottom = 80.0
+margin_left = 132.0
+margin_right = 356.0
+margin_bottom = 124.0
 custom_constants/separation = 16
 
 [node name="Brawl" type="Label" parent="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox/HBoxContainer/Names"]
 margin_right = 224.0
-margin_bottom = 8.0
+margin_bottom = 19.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Angus \"BrawlersInTheZone\" M."
-align = 2
+text = "Angus \"BrawlersInTheZone\" M.
+(Director/Sprite Arist)"
+align = 1
 valign = 1
 uppercase = true
 __meta__ = {
@@ -901,13 +903,14 @@ __meta__ = {
 }
 
 [node name="Connor2" type="Label" parent="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox/HBoxContainer/Names"]
-margin_top = 24.0
+margin_top = 35.0
 margin_right = 224.0
-margin_bottom = 32.0
+margin_bottom = 54.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Connor \"TGT\" Mcpherson"
-align = 2
+text = "Connor \"TGT\" Mcpherson
+(Programmer)"
+align = 1
 valign = 1
 uppercase = true
 __meta__ = {
@@ -915,13 +918,14 @@ __meta__ = {
 }
 
 [node name="QP" type="Label" parent="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox/HBoxContainer/Names"]
-margin_top = 48.0
+margin_top = 70.0
 margin_right = 224.0
-margin_bottom = 56.0
+margin_bottom = 89.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "QuantumPotato"
-align = 2
+text = "QuantumPotato
+(Level Designer)"
+align = 1
 valign = 1
 uppercase = true
 __meta__ = {
@@ -929,13 +933,14 @@ __meta__ = {
 }
 
 [node name="Isabelle" type="Label" parent="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox/HBoxContainer/Names"]
-margin_top = 72.0
+margin_top = 105.0
 margin_right = 224.0
-margin_bottom = 80.0
+margin_bottom = 124.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Isabelle Chiming"
-align = 2
+text = "Isabelle Chiming
+(Musician)"
+align = 1
 valign = 1
 uppercase = true
 __meta__ = {
