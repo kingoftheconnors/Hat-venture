@@ -55,6 +55,8 @@ func start_music(music : int):
 					music_player.stream = preload("res://Music/Title_Theme.ogg")
 			music_player.play(0)
 		cur_music = music
+func skip_song_to(time : float):
+	music_player.play(time)
 func stop_music():
 	music_player.stop()
 func fadeout_music():

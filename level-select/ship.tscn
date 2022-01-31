@@ -108,7 +108,6 @@ texture = ExtResource( 19 )
 visible = false
 z_index = -1
 frames = SubResource( 4 )
-frame = 1
 playing = true
 
 [node name="DialogBox" parent="Display" instance=ExtResource( 9 )]
