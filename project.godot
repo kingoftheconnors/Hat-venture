@@ -104,6 +104,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://enemy/Scripts/lemming.gd"
 }, {
+"base": "Control",
+"class": "menu",
+"language": "GDScript",
+"path": "res://title-screen/BasicMenu.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "pace",
 "language": "GDScript",
@@ -194,6 +199,7 @@ _global_script_class_icons={
 "hpon": "",
 "item": "",
 "lemming": "",
+"menu": "",
 "pace": "",
 "paraenemy": "",
 "path_follower": "",

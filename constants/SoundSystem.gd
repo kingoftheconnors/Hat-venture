@@ -137,7 +137,7 @@ func start_sound(sfx : int, sound_var = 0):
 				sfx_player.stream = preload("res://Music/sfx/Skid.wav")
 		if cur_sound != sfx:
 			sfx_player.stop()
-		if cur_sound != SFX.NONE:
+		if sfx != SFX.NONE:
 			sfx_player.play()
 		cur_sound = sfx
 func start_sound_if_silent(sfx : int):

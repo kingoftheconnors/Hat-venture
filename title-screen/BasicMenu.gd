@@ -1,3 +1,4 @@
+class_name menu
 extends Control
 
 export(NodePath) var first_item
@@ -25,6 +26,9 @@ func open():
 	var first = get_node_or_null(first_item)
 	if first:
 		first.grab_focus()
+	# Connect sfx
+	if $Mrgn.has_method("enable"):
+		$Mrgn.call_deferred("enable")
 	# Signal
 	emit_signal("open")
 
@@ -33,8 +37,12 @@ func close() -> void:
 		$AnimationPlayer.play("fade_out")
 		yield(get_tree().create_timer(1), "timeout")
 	visible = false
+	# Turn off sfx
+	if $Mrgn.has_method("disable"):
+		$Mrgn.call_deferred("disable")
+	# Signal
+	Gui.call_deferred("menu_closed")
 	emit_signal("close")
-	Gui.menu_closed()
 
 signal close
 signal open
