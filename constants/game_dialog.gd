@@ -343,6 +343,8 @@ func get_dialog(text_num):
 		DIALOG_TYPE.START_ROBOHEN_BOSS:
 			return [
 				{delay = 1},
+        {fadeout_music_fast = true, delay=.5},
+        {music = sound_system.MUSIC.BOSS_1},
 				{signal = "action2", delay = 0.5},
 				{signal = "action1", delay = 4},
 			]
