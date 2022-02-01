@@ -149,7 +149,7 @@ tracks/8/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=6]
 resource_name = "fade_in_instant"
 length = 0.1
 tracks/0/type = "value"
@@ -261,8 +261,7 @@ tracks/8/keys = {
 "values": [ Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "fade_out"
+[sub_resource type="Animation" id=7]
 length = 1.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:visible")
@@ -385,7 +384,7 @@ tracks/9/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="GDScript" id=7]
+[sub_resource type="GDScript" id=8]
 script/source = "extends Timer
 
 # Called when the node enters the scene tree for the first time.
@@ -396,7 +395,7 @@ func stop_timer(_signal_param):
 	stop()
 "
 
-[sub_resource type="Shader" id=8]
+[sub_resource type="Shader" id=9]
 code = "shader_type canvas_item;
 
 // Which color you want to change
@@ -443,8 +442,8 @@ void fragment() {
 		COLOR = c;
 }"
 
-[sub_resource type="ShaderMaterial" id=9]
-shader = SubResource( 8 )
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
 shader_param/game_white = Color( 1, 1, 1, 1 )
 shader_param/game_light = Color( 0.67451, 0.682353, 0.67451, 1 )
 shader_param/game_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
@@ -456,7 +455,7 @@ shader_param/palette_black = Color( 0, 0, 0, 1 )
 shader_param/brightness_level = 3
 shader_param/precision = 0.27
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=11]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Mrgn/MarginContainer/VBox/HBoxContainer/Yes/Close:visible")
 tracks/0/interp = 1
@@ -482,8 +481,7 @@ tracks/1/keys = {
 "values": [ 3, 2, 1, 0 ]
 }
 
-[sub_resource type="Animation" id=11]
-resource_name = "fade_in_instant"
+[sub_resource type="Animation" id=12]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Mrgn/MarginContainer/VBox/HBoxContainer/Yes/Close:visible")
@@ -792,13 +790,13 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Menu/PlayTextBox4"]
 anims/fade_in = SubResource( 5 )
-anims/fade_in_instant = SubResource( 12 )
-anims/fade_out = SubResource( 6 )
+anims/fade_in_instant = SubResource( 6 )
+anims/fade_out = SubResource( 7 )
 
 [node name="Timer" type="Timer" parent="Menu/PlayTextBox4"]
 wait_time = 2.0
 one_shot = true
-script = SubResource( 7 )
+script = SubResource( 8 )
 
 [node name="Start" type="Control" parent="Menu"]
 visible = false
@@ -849,7 +847,7 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="Menu/Start/Mrgn/MarginContainer/VBox"]
-material = SubResource( 9 )
+material = SubResource( 10 )
 margin_right = 424.0
 margin_bottom = 54.0
 grow_horizontal = 2
@@ -882,8 +880,8 @@ size_flags_horizontal = 0
 text = "Press Z"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Menu/Start"]
-anims/fade_in = SubResource( 10 )
-anims/fade_in_instant = SubResource( 11 )
+anims/fade_in = SubResource( 11 )
+anims/fade_in_instant = SubResource( 12 )
 
 [node name="PlayTextBox1" type="Control" parent="Menu"]
 visible = false
@@ -1508,9 +1506,8 @@ script = ExtResource( 40 )
 direction = Vector2( -1, 0 )
 
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="VisibilityNotifier2D" method="_on_VisibilityNotifier2D_screen_entered"]
-[connection signal="close" from="Menu/PlayTextBox4" to="Menu/Start" method="open"]
 [connection signal="close" from="Menu/PlayTextBox4" to="Menu/PlayTextBox4/Timer" method="stop_timer"]
-[connection signal="close_skipping" from="Menu/PlayTextBox4" to="Music" method="skip_song_to" binds= [ 8.95 ]]
+[connection signal="close" from="Menu/PlayTextBox4" to="Menu/Start" method="open"]
 [connection signal="close_skipping" from="Menu/PlayTextBox4" to="Player" method="teleport_to" binds= [ "../SkipTarget" ]]
 [connection signal="open" from="Menu/PlayTextBox4" to="Menu/PlayTextBox4/Timer" method="start_timer"]
 [connection signal="timeout" from="Menu/PlayTextBox4/Timer" to="Menu/PlayTextBox4" method="close"]
@@ -1526,12 +1523,12 @@ direction = Vector2( -1, 0 )
 [connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo" to="Menu/Play" method="close"]
 [connection signal="checked" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo/PalettesChecked" to="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList/GameStarter" method="start_game"]
 [connection signal="notchecked" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo/PalettesChecked" to="Menu/ColorSchemes" method="open"]
-[connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer2/Options/Options" to="Menu/Settings" method="open"]
 [connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer2/Options/Options" to="Menu/Play" method="close"]
+[connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer2/Options/Options" to="Menu/Settings" method="open"]
 [connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer3/Quit/Quit" to="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer3/Quit/Quit" method="_on_Quit_pressed"]
 [connection signal="close" from="Menu/Settings" to="Menu/Play" method="open"]
-[connection signal="pressed" from="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList" to="Menu/ColorSchemes" method="close"]
 [connection signal="pressed" from="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList" to="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList/GameStarter" method="start_game"]
+[connection signal="pressed" from="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList" to="Menu/ColorSchemes" method="close"]
 
 [editable path="Player"]
 [editable path="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList"]
