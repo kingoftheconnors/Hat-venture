@@ -4,9 +4,9 @@ signal skip_cutscene
 
 export(NodePath) var first_item
 
-# You can use 'grab_focus()' to focus on the first element of the menu
-func _ready() -> void:
+func open():
 	get_node(first_item).grab_focus()
+	Gui.menu_opened()
 
 func _on_Close_pressed() -> void:
 	close()
@@ -20,4 +20,5 @@ func _unhandled_input(event):
 		close()
 
 func close():
+	Gui.menu_closed()
 	queue_free()

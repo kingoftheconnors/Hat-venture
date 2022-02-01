@@ -367,3 +367,8 @@ Viewing all palettes in DEBUG mode
 0.4.5
 Robokurt health on gui
 Robokurt defeating
+Widescreen
+Opening splash screen and music
+Title Menu
+Skippable opening cinematic with Hat Kid fall
+Sfx on menus

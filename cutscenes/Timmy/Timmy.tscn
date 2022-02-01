@@ -1,7 +1,8 @@
 [gd_scene load_steps=40 format=2]
 
-[ext_resource path="res://cutscenes/CutsceneTimmy.gd" type="Script" id=1]
+[ext_resource path="res://cutscenes/Timmy/CutsceneTimmy.gd" type="Script" id=1]
 [ext_resource path="res://enemy/timmy/timmy.png" type="Texture" id=2]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )

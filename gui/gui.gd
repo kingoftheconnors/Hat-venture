@@ -115,14 +115,14 @@ func _unhandled_input(event):
 					# skip cutscene menu
 					var iOptionsMenu = preload("res://gui/optionsmenu/SkipCutsceneMenu.tscn").instance()
 					get_node("/root/Gui").add_child(iOptionsMenu)
-					iOptionsMenu.connect("tree_exited", self, "_on_menu_tree_exited")
 					iOptionsMenu.connect("skip_cutscene", self, "skip_cutscene")
+					iOptionsMenu.open()
 					menu_exists = true
 			else:
 				if !get_tree().paused:
 					var iOptionsMenu = preload("res://gui/optionsmenu/SettingsMenu.tscn").instance()
 					get_node("/root/Gui").add_child(iOptionsMenu)
-					iOptionsMenu.connect("tree_exited", self, "_on_menu_tree_exited")
+					iOptionsMenu.open()
 					menu_exists = true
 			
 			if menu_exists:
@@ -132,7 +132,9 @@ func _unhandled_input(event):
 				get_node("/root/Gui").add_child(palette)
 				get_tree().set_input_as_handled()
 
-func _on_menu_tree_exited() -> void:
+func menu_opened() -> void:
+	menu_exists = true
+func menu_closed() -> void:
 	menu_exists = false
 
 func queue_text(dialog_starter, textbox : Dictionary):
@@ -248,8 +250,9 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 	# Wait for program to return signal that we can continue scene
 	if next_box.has("delay"):
 		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS or next_box.has("unskippable"):
-			gui.visible = true
-			dialog.visible = false
+			if dialog.visible:
+				gui.visible = true
+				dialog.visible = false
 			text_crawl_func = delay(next_box['delay'])
 
 func skip_cutscene():
@@ -267,8 +270,9 @@ func skip_cutscene():
 func end_dialog():
 	dialog_active = false
 	PlayerGameManager.unpause()
-	gui.visible = true
-	dialog.visible = false
+	if dialog.visible:
+		gui.visible = true
+		dialog.visible = false
 	emit_signal("textbox_end")
 
 func get_printed_lines():

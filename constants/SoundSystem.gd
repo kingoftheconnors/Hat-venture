@@ -4,16 +4,19 @@ class_name sound_system
 enum SFX {
 	NONE,
 	COLLECT,
+	COLLECT_BASIC,
 	JUMP,
 	DIVE,
 	THROW,
 	STOMP,
+	STOMP2,
 	LIFE_GET,
 	POWERUP_GET,
 	HURT,
 	SPRINT,
 	BLOCK_BREAK,
-	SKID
+	SKID,
+	SKID2
 }
 
 enum MUSIC {
@@ -24,6 +27,7 @@ enum MUSIC {
 	GAMEOVER_SCREEN,
 	TIMMY,
 	SHIP,
+	TITLE
 	BOSS_1
 }
 
@@ -48,10 +52,14 @@ func start_music(music : int):
 					music_player.stream = preload("res://Music/Timmys_Theme.ogg")
 				MUSIC.SHIP:
 					music_player.stream = preload("res://Music/Ship.ogg")
+				MUSIC.TITLE:
+					music_player.stream = preload("res://Music/Title_Theme.ogg")
 				MUSIC.BOSS_1:
 					music_player.stream = preload("res://Music/Boss_Theme.ogg")
 			music_player.play(0)
 		cur_music = music
+func skip_song_to(time : float):
+	music_player.play(time)
 func stop_music():
 	music_player.stop()
 func fadeout_music():
@@ -91,6 +99,8 @@ func start_sound(sfx : int, sound_var = 0):
 					sfx_player.stream = preload("res://Music/sfx/Coin_Pickup_7.wav")
 				if collect_level >= 8:
 					sfx_player.stream = preload("res://Music/sfx/Coin_Pickup_8.wav")
+			SFX.COLLECT_BASIC:
+				sfx_player.stream = preload("res://Music/sfx/Coin_Pickup_1.wav")
 			SFX.JUMP:
 				sfx_player.stream = preload("res://Music/sfx/jump.wav")
 			SFX.LIFE_GET:
@@ -103,6 +113,8 @@ func start_sound(sfx : int, sound_var = 0):
 			SFX.STOMP:
 				sfx_player.stream = preload("res://Music/sfx/Creature_Squash_4.wav")
 				#sfx_player.stream = preload("res://Music/sfx/Creature_Squash.wav")
+			SFX.STOMP2:
+				sfx_player.stream = preload("res://Music/sfx/Creature_Squash_3.wav")
 			SFX.POWERUP_GET:
 				sfx_player.stream = preload("res://Music/sfx/Powerup_get.wav")
 			SFX.HURT:
@@ -126,9 +138,12 @@ func start_sound(sfx : int, sound_var = 0):
 				effect.pitch_scale = sound_var/2 + 0.6
 				AudioServer.add_bus_effect(2, effect)
 				sfx_player.volume_db = -10
+			SFX.SKID2:
+				sfx_player.stream = preload("res://Music/sfx/Skid.wav")
 		if cur_sound != sfx:
 			sfx_player.stop()
-		sfx_player.play()
+		if sfx != SFX.NONE:
+			sfx_player.play()
 		cur_sound = sfx
 func start_sound_if_silent(sfx : int):
 	if !sfx_player.is_playing():

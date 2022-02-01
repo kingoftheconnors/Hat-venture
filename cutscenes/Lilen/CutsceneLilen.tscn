@@ -1,11 +1,11 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://enemy/hen/hen-walk.png" type="Texture" id=1]
-[ext_resource path="res://cutscenes/PlatformerPathFollower.gd" type="Script" id=2]
-[ext_resource path="res://cutscenes/CutsceneLilenPath.gd" type="Script" id=3]
-[ext_resource path="res://gui/PlayerPalette.tres" type="Material" id=4]
-[ext_resource path="res://gui/EnemyPalette.tres" type="Material" id=5]
-[ext_resource path="res://items/Resources/timePiece.png" type="Texture" id=6]
+[ext_resource path="res://gui/EnemyPalette.tres" type="Material" id=1]
+[ext_resource path="res://gui/PlayerPalette.tres" type="Material" id=2]
+[ext_resource path="res://cutscenes/Lilen/CutsceneLilenPath.gd" type="Script" id=3]
+[ext_resource path="res://cutscenes/Lilen/PlatformerPathFollower.gd" type="Script" id=4]
+[ext_resource path="res://items/Resources/timePiece.png" type="Texture" id=5]
+[ext_resource path="res://enemy/hen/hen-walk.png" type="Texture" id=6]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -113,7 +113,7 @@ script = ExtResource( 3 )
 [node name="Lilen" type="KinematicBody2D" parent="."]
 collision_layer = 0
 collision_mask = 2
-script = ExtResource( 2 )
+script = ExtResource( 4 )
 horizontal_speed = 125
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lilen"]
@@ -121,16 +121,15 @@ position = Vector2( 1, 0 )
 shape = SubResource( 2 )
 
 [node name="EnemyCore" type="Sprite" parent="Lilen"]
-material = ExtResource( 5 )
-texture = ExtResource( 1 )
+material = ExtResource( 1 )
+texture = ExtResource( 6 )
 hframes = 2
-frame = 1
 
 [node name="Timepiece" type="Sprite" parent="Lilen/EnemyCore"]
 visible = false
-material = ExtResource( 4 )
+material = ExtResource( 2 )
 position = Vector2( 1, -13 )
-texture = ExtResource( 6 )
+texture = ExtResource( 5 )
 hframes = 8
 frame = 2
 

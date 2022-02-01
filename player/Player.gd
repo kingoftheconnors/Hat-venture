@@ -8,7 +8,7 @@
 extends Sprite
 
 onready var controller = get_parent().get_parent()
-onready var hurtbox = $"../hurtbox"
+onready var hurtbox = get_node_or_null("../hurtbox")
 onready var animator = $"../../AnimationTree"
 
 var MAX_HEALTH = 4
@@ -85,21 +85,24 @@ func heal(amo = 1):
 	health = min(health + amo, MAX_HEALTH)
 	Gui.update_health(health, MAX_HEALTH)
 
-onready var uninvincible_timer = $"../../Uninvincible"
+onready var uninvincible_timer = get_node_or_null("../../Uninvincible")
 func turn_invincibilty(flag, auto_end = false):
 	if flag == true:
-		if auto_end:
+		if auto_end and uninvincible_timer:
 			uninvincible_timer.start()
 		#controller.set_collision_layer_bit(0, false)
 		#controller.set_collision_mask_bit(0, false)
-		hurtbox.set_collision_layer_bit(0, false)
-		hurtbox.set_collision_mask_bit(0, false)
+		if hurtbox:
+			hurtbox.set_collision_layer_bit(0, false)
+			hurtbox.set_collision_mask_bit(0, false)
 	else:
-		uninvincible_timer.stop()
+		if uninvincible_timer:
+			uninvincible_timer.stop()
 		#controller.set_collision_layer_bit(0, true)
 		#controller.set_collision_mask_bit(0, true)
-		hurtbox.set_collision_layer_bit(0, true)
-		hurtbox.set_collision_mask_bit(0, true)
+		if hurtbox:
+			hurtbox.set_collision_layer_bit(0, true)
+			hurtbox.set_collision_mask_bit(0, true)
 
 func _on_hurtbox_area_exited(area):
 	if area.is_in_group("ladder"):
