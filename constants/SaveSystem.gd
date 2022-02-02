@@ -4,9 +4,6 @@ extends Node2D
 
 # Accessor to lazy initialize datas
 func access_data() -> Node2D:
-	# Initialize to dummy info just in case
-	if game_data.size() == 0:
-		load_game(1)
 	return self
 
 ## Saves game data, including progress and collectibles
