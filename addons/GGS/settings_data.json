@@ -292,10 +292,10 @@
 	"25": {
 		"name": "window_scale",
 		"default": {
-			"value": 0
+			"value": 1
 		},
 		"current": {
-			"value": 0
+			"value": 1
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/window_scale.gd"
 	}
