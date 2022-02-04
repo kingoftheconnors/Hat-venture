@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://level-select/shiproom1.png" type="Texture" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://cutscenes/cloud.png" type="Texture" id=23]
 [ext_resource path="res://cutscenes/DustCloud.gd" type="Script" id=24]
 [ext_resource path="res://level-select/Door.tscn" type="PackedScene" id=25]
+[ext_resource path="res://levelgameover/menuselector.png" type="Texture" id=26]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 2 )
@@ -45,7 +46,34 @@ animations = [ {
 "speed": 2.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="GDScript" id=5]
+script/source = "extends Sprite
+
+func show():
+	visible = true
+
+func hide():
+	visible = false
+"
+
+[sub_resource type="Animation" id=7]
+resource_name = "point"
+length = 1.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 0.5, 1.5 ),
+"update": 0,
+"values": [ Vector2( -24, 8 ), Vector2( -32, 8 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 180, 24 )
 
 [node name="Level" type="Node2D"]
@@ -128,6 +156,17 @@ pause_mode = 2
 position = Vector2( 0, 8 )
 scale = Vector2( -1, 1 )
 
+[node name="Arrow" type="Sprite" parent="DoorDialog"]
+pause_mode = 2
+visible = false
+position = Vector2( -30.4067, 8 )
+texture = ExtResource( 26 )
+script = SubResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DoorDialog/Arrow"]
+autoplay = "point"
+anims/point = SubResource( 7 )
+
 [node name="Timmy" parent="." instance=ExtResource( 21 )]
 position = Vector2( 328, -32 )
 
@@ -167,7 +206,7 @@ foregroundSprite = NodePath("../shiproomForeground")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 108, -32 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="Spawn" type="Node2D" parent="." groups=[
 "spawn",
@@ -248,14 +287,15 @@ level_music = 6
 [connection signal="action1" from="Display/DialogBox" to="Display" method="pressed"]
 [connection signal="action2" from="Display/DialogBox" to="CameraCapture" method="capture"]
 [connection signal="action3" from="Display/DialogBox" to="DoorDialog" method="enable"]
-[connection signal="action4" from="Display/DialogBox" to="CameraCapture" method="capture_release"]
 [connection signal="action4" from="Display/DialogBox" to="CameraCapture2" method="capture_release" binds= [ false ]]
+[connection signal="action4" from="Display/DialogBox" to="CameraCapture" method="capture_release"]
 [connection signal="action5" from="Display/DialogBox" to="Display" method="set_to_exclamation"]
 [connection signal="action6" from="Display/DialogBox" to="CameraCapture2" method="capture"]
 [connection signal="action7" from="Display/DialogBox" to="Player" method="walk_to" binds= [ "../WalkTo_DisplayTarget", 1 ]]
-[connection signal="action1" from="DoorDialog" to="Timmy" method="make_visible"]
+[connection signal="action8" from="Display/DialogBox" to="DoorDialog/Arrow" method="show"]
 [connection signal="action1" from="DoorDialog" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target5", -1.0, -1.0, 0.175 ]]
 [connection signal="action1" from="DoorDialog" to="Timmy" method="fly_to" flags=3 binds= [ "../WalkTo_Target5", 0.5 ]]
+[connection signal="action1" from="DoorDialog" to="Timmy" method="make_visible"]
 [connection signal="action1" from="DoorDialog" to="Timmy" method="play_animation" binds= [ "float" ]]
 [connection signal="action2" from="DoorDialog" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target1" ]]
 [connection signal="action3" from="DoorDialog" to="Timmy" method="look_at_node" binds= [ "../WalkTo_Target2" ]]
@@ -286,8 +326,9 @@ level_music = 6
 [connection signal="actionL" from="DoorDialog" to="Timmy" method="look_at_node" binds= [ "../Timmy" ]]
 [connection signal="actionM" from="DoorDialog" to="Timmy" method="fly_to"]
 [connection signal="actionM" from="DoorDialog" to="Timmy" method="play_animation" binds= [ "drop" ]]
-[connection signal="actionN" from="DoorDialog" to="Player" method="watch_node" binds= [ "../Timmy" ]]
 [connection signal="actionN" from="DoorDialog" to="Player" method="walk_to" binds= [ "../WalkTo_Target4" ]]
+[connection signal="actionN" from="DoorDialog" to="Player" method="watch_node" binds= [ "../Timmy" ]]
+[connection signal="actionN" from="DoorDialog" to="DoorDialog/Arrow" method="hide"]
 [connection signal="body_entered" from="DoorDialog/DialogBox" to="DoorDialog/Door" method="play_if_player" binds= [ "open" ]]
 [connection signal="body_exited" from="DoorDialog/DialogBox" to="DoorDialog/Door" method="play_if_player" binds= [ "close" ]]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]

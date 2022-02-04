@@ -114,10 +114,11 @@ func get_dialog(text_num):
 				# Bounce player back
 				{signal = "action7", delay=1},
 				{name = "SHIP", text = "All systems operational. Hello master!"},
-				# TODO: Enable knock sfx
-				#{signal = "action8", delay=1},
+				{sound = sound_system.SFX.KNOCK},
+				{signal = "action8", delay=1},
 				# Move camera
 				{signal = "action2", delay=1, if_tag_false = "screen_seen_2"},
+				{sound = sound_system.SFX.KNOCK, if_tag_false = "screen_seen_2"},
 				# Reset camera
 				{signal = "action6", delay=1, if_tag_false = "screen_seen_2"},
 				{signal = "action4", if_tag_false = "screen_seen_2", unskippable = true},
@@ -319,32 +320,31 @@ func get_dialog(text_num):
 			return [
 				# TODO: Lullaby song?
 				# Teleport
-				{signal = "action1", if_tag_false = "goodmorning_complete"},
+				{signal = "action1"},
 				# Start sleeping animations
-				{animate1 = "sleep", if_tag_false = "goodmorning_complete"},
-				{animate2 = "sleep", if_tag_false = "goodmorning_complete"},
+				{animate1 = "sleep"},
+				{animate2 = "sleep"},
 				# Wait for screen brightness to fade in completely so brightness setting doesn't get overriden
 				{delay = 0.3},
 				# Brightness
-				{brightness = -1, delay = 5, if_tag_false = "goodmorning_complete"},
+				{brightness = -1, delay = 5},
 				# Start JUMP animation
-				{brightness = 0, if_tag_false = "goodmorning_complete"},
+				{brightness = 0},
 				{delay = 0.1},
-				{signal = "actionJ", if_tag_false = "goodmorning_complete"},
+				{signal = "actionJ"},
 				# TODO: Sound effect waking Hat Kid up
 				# Start speaker (TODO: SLOW TEXT DOWN ON "GOOOOOOD")
 				{music = sound_system.MUSIC.SHIP},
-				{name = "Speaker", text = "Goooood morning! And welcome to yet another day of adventure!!", if_tag_false = "goodmorning_complete", autoscroll = true},
-				{name = "Speaker", text = "You are currently situated in: GRASSY-LANDS. All systems are operational!", if_tag_false = "goodmorning_complete", autoscroll = true},
+				{name = "Speaker", text = "Goooood morning! And welcome to yet another day of adventure!!", autoscroll = true},
+				{name = "Speaker", text = "You are currently situated in: GRASSY-LANDS. All systems are operational!", autoscroll = true},
 				# Hat Kid stands up
 				# TODO: Wait for Hat Kid's condition "not_jumping" to be true and hat to be on Hat Kid
-				{delaytil_animate2_method_true = "is_hat_fall_finished", if_tag_false = "goodmorning_complete"},
-				{animate2 = "invisible", if_tag_false = "goodmorning_complete"},
-				{signal = "actionK", if_tag_false = "goodmorning_complete"},
-				#{animate1 = "get_up", if_tag_false = "goodmorning_complete"},
-				{name = "Speaker", text = "Today’s to-do list includes: waking up, adjusting to your surroundings, and exploring!", if_tag_false = "goodmorning_complete", autoscroll = true},
-				{animate1 = "idle", if_tag_false = "goodmorning_complete", unskippable = true},
-				{animate2 = "invisible", if_tag_false = "goodmorning_complete", unskippable = true},
+				{delaytil_animate2_method_true = "is_hat_fall_finished"},
+				{animate2 = "invisible"},
+				{signal = "actionK"},
+				{name = "Speaker", text = "Today’s to-do list includes: waking up, adjusting to your surroundings, and exploring!", autoscroll = true},
+				{animate1 = "idle", unskippable = true},
+				{animate2 = "invisible", unskippable = true},
 				{settag = "goodmorning_complete", value = true},
 			]
 		DIALOG_TYPE.SHIP_DOOR_DIALOG_SELECTOR:

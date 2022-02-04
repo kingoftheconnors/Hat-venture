@@ -14,6 +14,8 @@ export(bool) var one_shot
 export(bool) var enabled = true
 ## If true, this dialog will automatically run when the scene is loaded
 export(bool) var start_on_load = false
+## Tag name that, if true, will make this dialog unusable
+export(String) var enabled_if_tag_false = ""
 
 func queue_dialog(player_body = null):
 	queue_dialog_by_id(dialog_num, player_body)
@@ -54,6 +56,12 @@ func enable():
 	enabled = true
 
 func _ready():
+	if enabled_if_tag_false != "":
+		if SaveSystem.access_data().get_tag(enabled_if_tag_false) == null \
+			or SaveSystem.access_data().get_tag(enabled_if_tag_false) == false:
+			enabled = true
+		else:
+			enabled = false
 	if start_on_load and enabled:
 		var players : Array = get_tree().get_nodes_in_group("player_root")
 		if players != null and players.size() > 0:

@@ -297,6 +297,7 @@ position = Vector2( 200, -32 )
 dialog_num = 25
 one_shot = true
 start_on_load = true
+enabled_if_tag_false = "goodmorning_complete"
 animate1 = NodePath("../Player")
 animate2 = NodePath("../ScaleChildren/HatAnimator")
 
