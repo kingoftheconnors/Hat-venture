@@ -323,10 +323,13 @@ func get_dialog(text_num):
 				# Start sleeping animations
 				{animate1 = "sleep", if_tag_false = "goodmorning_complete"},
 				{animate2 = "sleep", if_tag_false = "goodmorning_complete"},
+				# Wait for screen brightness to fade in completely so brightness setting doesn't get overriden
+				{delay = 0.3},
 				# Brightness
 				{brightness = -1, delay = 5, if_tag_false = "goodmorning_complete"},
 				# Start JUMP animation
 				{brightness = 0, if_tag_false = "goodmorning_complete"},
+				{delay = 0.1},
 				{signal = "actionJ", if_tag_false = "goodmorning_complete"},
 				# TODO: Sound effect waking Hat Kid up
 				# Start speaker (TODO: SLOW TEXT DOWN ON "GOOOOOOD")
