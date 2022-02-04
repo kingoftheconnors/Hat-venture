@@ -16,7 +16,8 @@ enum SFX {
 	SPRINT,
 	BLOCK_BREAK,
 	SKID,
-	SKID2
+	SKID2,
+	DOOR
 }
 
 enum MUSIC {
@@ -140,6 +141,8 @@ func start_sound(sfx : int, sound_var = 0):
 				sfx_player.volume_db = -10
 			SFX.SKID2:
 				sfx_player.stream = preload("res://Music/sfx/Skid.wav")
+			SFX.DOOR:
+				sfx_player.stream = preload("res://Music/sfx/Door_Enter.wav")
 		if cur_sound != sfx:
 			sfx_player.stop()
 		if sfx != SFX.NONE:

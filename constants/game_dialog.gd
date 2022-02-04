@@ -75,14 +75,17 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.GOTO_TUTORIAL:
 			return [
+				{sound = sound_system.SFX.DOOR},
 				{level = "res://level-select/tutorial.tscn", delay = 1}
 			]
 		DIALOG_TYPE.GOTO_SHIP_FROM_OUTSIDE:
 			return [
+				{sound = sound_system.SFX.DOOR},
 				{level = "res://level-select/ship.tscn", spawn_point = 2, delay = 1}
 			]
 		DIALOG_TYPE.GOTO_WORLD_1:
 			return [
+				{sound = sound_system.SFX.DOOR},
 				{level = "res://world1/level1.tscn", delay = 1}
 			]
 		DIALOG_TYPE.SIGNAL_ACTION_1:
@@ -263,6 +266,7 @@ func get_dialog(text_num):
 				# Hat Kid walk towards door
 				{signal = "actionD", delay=0.5},
 				# Goto 1
+				{sound = sound_system.SFX.DOOR},
 				{level = "res://world1/level1.tscn"}
 			]
 		DIALOG_TYPE.LEVEL_1_CHASE_LILENS:
@@ -276,10 +280,12 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.GOTO_BEDROOM:
 			return [
+				{sound = sound_system.SFX.DOOR},
 				{level = "res://level-select/bedroom.tscn", spawn_point = 2, delay = 1}
 			]
 		DIALOG_TYPE.GOTO_SHIP_FROM_BEDROOM:
 			return [
+				{sound = sound_system.SFX.DOOR},
 				{level = "res://level-select/ship.tscn", spawn_point = 3, delay = 1}
 			]
 		DIALOG_TYPE.BED:
@@ -344,8 +350,8 @@ func get_dialog(text_num):
 		DIALOG_TYPE.START_ROBOHEN_BOSS:
 			return [
 				{delay = 1},
-        {fadeout_music_fast = true, delay=.5},
-        {music = sound_system.MUSIC.BOSS_1},
+		{fadeout_music_fast = true, delay=.5},
+		{music = sound_system.MUSIC.BOSS_1},
 				{signal = "action2", delay = 0.5},
 				{signal = "action1", delay = 4},
 			]
