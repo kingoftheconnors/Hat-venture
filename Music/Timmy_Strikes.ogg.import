@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Timmy_Strikes.ogg-73eb5ed71314a946d8054461b19ef7e7.oggstr"
+
+[deps]
+
+source_file="res://Music/Timmy_Strikes.ogg"
+dest_files=[ "res://.import/Timmy_Strikes.ogg-73eb5ed71314a946d8054461b19ef7e7.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

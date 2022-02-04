@@ -28,8 +28,9 @@ enum MUSIC {
 	GAMEOVER_SCREEN,
 	TIMMY,
 	SHIP,
-	TITLE
-	BOSS_1
+	TITLE,
+	BOSS_1,
+	TIMMY_STRIKES,
 }
 
 onready var music_player : AudioStreamPlayer = $Music
@@ -51,6 +52,8 @@ func start_music(music : int):
 					music_player.stream = preload("res://Music/Time_Piece_Get.ogg")
 				MUSIC.TIMMY:
 					music_player.stream = preload("res://Music/Timmys_Theme.ogg")
+				MUSIC.TIMMY_STRIKES:
+					music_player.stream = preload("res://Music/Timmy_Strikes.ogg")
 				MUSIC.SHIP:
 					music_player.stream = preload("res://Music/Ship.ogg")
 				MUSIC.TITLE:

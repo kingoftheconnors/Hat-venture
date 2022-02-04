@@ -188,11 +188,3 @@ func _process(delta):
 func _exit_tree():
 	if timer.time_left > 0:
 		get_tree().paused = false
-
-#func screen_shake(shake_amo : int = 0, time_length : float = 1):
-#	tween.interpolate_property(self, "shake_amount", self.shake_amount, shake_amo, time_length, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-#	tween.start()
-
-
-func screen_shake(extra_arg_0, extra_arg_1):
-	pass # Replace with function body.

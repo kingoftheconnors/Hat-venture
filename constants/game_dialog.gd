@@ -211,7 +211,8 @@ func get_dialog(text_num):
 				{name = "Timmy", text = "Think of what you could do with even one of these..."},
 				# TODO: Some other Timmy animation
 				{name = "Timmy", text = "...you could have an infinite flapjack breakfast if you wanted to!"},
-				{delay=1},
+				{delay=0.6},
+				{fadeout_music = true, delay=0.4},
 				# Look at Hat
 				{animate2 = "idle"},
 				{signal = "actionK", delay=0.1},
@@ -245,6 +246,7 @@ func get_dialog(text_num):
 				# Screen shake
 				{signal = "actionE", delay=1},
 				# Lil'ens enter and walk to vault
+				{music = sound_system.MUSIC.TIMMY_STRIKES},
 				{signal = "action9", delay=2},
 				# Dust cloud
 				{signal = "actionF", delay=3},
