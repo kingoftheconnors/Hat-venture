@@ -4,15 +4,15 @@
 # the dialog will be queued in the GUI.
 extends Area2D
 
-var active = true
+var inactive_timer : float = 0.0
 
-func _process(_delta):
-	if Input.is_action_just_pressed("ui_up") and active:
+func _process(delta):
+	if inactive_timer > 0:
+		inactive_timer -= delta
+	if Input.is_action_just_pressed("ui_up") and inactive_timer <= 0:
 		var started = play_dialog()
 		if started:
-			active = false
-			yield(get_tree().create_timer(2), "timeout")
-			active = true
+			inactive_timer = 2
 
 func play_dialog():
 	for body in get_overlapping_bodies():
