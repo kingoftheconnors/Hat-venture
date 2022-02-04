@@ -125,10 +125,10 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.TIMMY_SHIP:
 			return [
-				{signal = "actionN", delay=1.75},
+				{signal = "actionN"},
 				{fadeout_music_fast = true, delay=.5},
-				{music = sound_system.MUSIC.TIMMY},
-				{signal = "action1", delay=4.5},
+				{music = sound_system.MUSIC.TIMMY, delay=1.5},
+				{signal = "action1", delay=5.25},
 				{signal = "actionM", delay=.5},
 				# Start dialog options
 				{animate2 = "talk"},
