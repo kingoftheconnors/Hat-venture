@@ -230,10 +230,10 @@ func is_hat_fall_finished():
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 3 )
-left = -248
-right = 392
+left = -141
+right = 285
 up = -256
-down = 96
+down = 80
 col = Color( 1, 1, 1, 1 )
 
 [node name="LevelTiles" type="TileMap" parent="."]
@@ -278,10 +278,11 @@ rotation = 4.46638e-06
 
 [node name="Hat" type="Sprite" parent="ScaleChildren"]
 visible = false
-position = Vector2( -34, -8 )
+position = Vector2( 6, 1.66667 )
 z_index = 2
 texture = ExtResource( 12 )
 hframes = 2
+frame = 1
 
 [node name="HatAnimator" type="AnimationPlayer" parent="ScaleChildren"]
 pause_mode = 2

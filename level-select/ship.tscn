@@ -81,7 +81,7 @@ script = ExtResource( 3 )
 left = -112
 right = 336
 up = -260
-down = 100
+down = 80
 col = Color( 1, 1, 1, 1 )
 
 [node name="LevelTiles" type="TileMap" parent="."]
@@ -136,6 +136,7 @@ texture = ExtResource( 19 )
 visible = false
 z_index = -1
 frames = SubResource( 4 )
+frame = 1
 playing = true
 
 [node name="DialogBox" parent="Display" instance=ExtResource( 9 )]
@@ -159,7 +160,7 @@ scale = Vector2( -1, 1 )
 [node name="Arrow" type="Sprite" parent="DoorDialog"]
 pause_mode = 2
 visible = false
-position = Vector2( -30.4067, 8 )
+position = Vector2( -25.5622, 8 )
 texture = ExtResource( 26 )
 script = SubResource( 5 )
 
@@ -184,7 +185,7 @@ z_index = 3
 texture = ExtResource( 12 )
 
 [node name="Camera" parent="." instance=ExtResource( 5 )]
-position = Vector2( 48, -80 )
+position = Vector2( 101, -80 )
 process_mode = 0
 limit_left = -10000126
 drag_margin_v_enabled = true
@@ -226,7 +227,7 @@ walled = false
 collision_enabled = false
 
 [node name="CameraCapture2" parent="." instance=ExtResource( 20 )]
-position = Vector2( 48, -104 )
+position = Vector2( 101, -80 )
 scale = Vector2( 1e-05, 1e-05 )
 release_on_exit = false
 walled = false

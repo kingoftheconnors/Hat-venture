@@ -238,13 +238,13 @@ settings/fps/force_fps=60
 
 [display]
 
-window/integer_resolution_handler/base_width=640
-window/integer_resolution_handler/base_height=360
-window/size/width=640
-window/size/height=360
+window/integer_resolution_handler/base_width=426
+window/integer_resolution_handler/base_height=256
+window/size/width=426
+window/size/height=256
 window/size/resizable=false
-window/size/test_width=640
-window/size/test_height=320
+window/size/test_width=426
+window/size/test_height=256
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
 
