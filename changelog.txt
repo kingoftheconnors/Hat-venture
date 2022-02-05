@@ -372,3 +372,9 @@ Opening splash screen and music
 Title Menu
 Skippable opening cinematic with Hat Kid fall
 Sfx on menus
+
+0.4.6
+Timmy Strikes Music
+Screen shaking during cutscenes and Robo-kurt boss
+Door sfx
+Update ship camera barriers to account for new screen size
