@@ -177,8 +177,8 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 			dialog.visible = true
 			dialogName.text = next_box.name
 			cur_speaking_name = next_box.name
-			dialogText.text = next_box.text
-			dialogText.lines_skipped = 0
+			dialogText.bbcode_text = next_box.text
+			dialogText.visible_characters = 0
 			# Start text crawl
 			text_crawl_func = crawl(next_box)
 		elif next_box.has("options"):
@@ -275,9 +275,6 @@ func end_dialog():
 		dialog.visible = false
 	emit_signal("textbox_end")
 
-func get_printed_lines():
-	return dialogText.lines_skipped + dialogText.get_line_count() * dialogText.percent_visible
-
 func delay(wait_time):
 	var time_passed = 0
 	while time_passed < wait_time:
@@ -288,13 +285,14 @@ var curbox = null
 func crawl(text_box):
 	curbox = text_box
 	# Text crawl
-	dialogText.percent_visible = 0
-	var lettersVisible = 0.0
+	var letters_visible : float = 0
+	var cur_line = 0
 	var speed = 1
-	while get_printed_lines() < dialogText.get_line_count():
+	while letters_visible < dialogText.text.length():
 		var delta = yield()
-		lettersVisible += delta * speed * letters_per_sec
-		if dialogText.visible_characters > LINE_LENGTH*2-1:
+		letters_visible += delta * speed * letters_per_sec
+		dialogText.set_visible_characters(int(letters_visible))
+		if dialogText.get_visible_line_count() > cur_line + 2:
 			# Wait for user input
 			if text_box.has("autoscroll") and text_box.autoscroll:
 				var time_passed = 0
@@ -303,14 +301,15 @@ func crawl(text_box):
 			else:
 				while(!Input.is_action_just_pressed("ui_accept") and !Input.is_action_just_pressed("ui_B")):
 					yield()
-			dialogText.lines_skipped += 2
-			lettersVisible -= LINE_LENGTH*2
-			dialogText.set_visible_characters(int(lettersVisible))
-		elif (!text_box.has("autoscroll") or !text_box.autoscroll) and (Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_B")):
+			cur_line += 2
+			dialogText.scroll_to_line(cur_line)
+		elif (!text_box.has("autoscroll") or !text_box.autoscroll) and (Input.is_action_just_pressed("ui_accept")):
 			# Set letters to fill if the user pressed A
 			# or if they pressed B and the textbox has options
-			lettersVisible = LINE_LENGTH*2
-		if (!text_box.has("autoscroll") or !text_box.autoscroll) and Input.is_action_just_pressed("ui_B") and !text_box.has("options"):
+			while(dialogText.get_visible_line_count() < cur_line + 2 and letters_visible < dialogText.text.length()):
+				letters_visible += 1
+				dialogText.set_visible_characters(int(letters_visible))
+		elif (!text_box.has("autoscroll") or !text_box.autoscroll) and Input.is_action_just_pressed("ui_B") and !text_box.has("options"):
 			# Check if this is the last textbox.
 			# If it is, add delay so player won't activate powers on accident
 			var text_queue_finished = true
@@ -321,12 +320,11 @@ func crawl(text_box):
 			if text_queue_finished:
 				text_to_run.push_front({delay=0.25})
 			return
-		dialogText.set_visible_characters(int(lettersVisible))
 	yield()
 	if text_box.has("options"):
 		if dialogText.get_line_count() > 1:
-			dialogText.lines_skipped += 1
-			lettersVisible -= LINE_LENGTH
+			cur_line += 1
+			dialogText.scroll_to_line(cur_line)
 		dialogOptions.show_options(text_box.options)
 		var selected_option = -1
 		while selected_option < 0:

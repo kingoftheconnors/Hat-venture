@@ -414,7 +414,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=9]
 resource_name = "cover (slow)"
 length = 0.8
 tracks/0/type = "method"
@@ -438,7 +438,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=10]
 resource_name = "reveal"
 length = 0.2
 tracks/0/type = "method"
@@ -462,7 +462,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=11]
 resource_name = "reveal (slow)"
 length = 0.8
 tracks/0/type = "method"
@@ -522,31 +522,35 @@ __meta__ = {
 }
 
 [node name="Name" type="Label" parent="DialogBox"]
-anchor_left = 0.05
-anchor_right = 0.525
 anchor_bottom = 0.333
+margin_left = 12.0
+margin_right = 96.0
 margin_bottom = 0.0159998
 custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Timmy"
+align = 1
 valign = 1
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Dialog" type="Label" parent="DialogBox"]
+[node name="Dialog" type="RichTextLabel" parent="DialogBox"]
 anchor_left = 0.05
 anchor_top = 0.354
 anchor_right = 0.975
 anchor_bottom = 0.865
 margin_top = 0.00799942
 margin_bottom = -1.52
-custom_fonts/font = ExtResource( 14 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Are you looking for your umbrella? I saw it land near the market area whe you, you know..."
-autowrap = true
-max_lines_visible = 2
+custom_fonts/normal_font = ExtResource( 14 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_constants/line_separation = 5
+bbcode_enabled = true
+bbcode_text = "Are  you looking for your umbrella? I saw it land near the market area when you, you know..."
+visible_characters = 282
+text = "Are you looking for your umbrella? I saw it land near the market area when you, you know..."
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -565,9 +569,10 @@ __meta__ = {
 }
 
 [node name="Option1" type="Label" parent="DialogBox/DialogOptions"]
-margin_left = 50.0
-margin_right = 98.0
-margin_bottom = 8.0
+margin_left = 210.0
+margin_top = 1.0
+margin_right = 258.0
+margin_bottom = 9.0
 focus_neighbour_right = NodePath("../Option2")
 focus_mode = 2
 custom_fonts/font = ExtResource( 14 )
@@ -599,15 +604,16 @@ __meta__ = {
 
 [node name="Panel" type="Panel" parent="DialogBox/DialogOptions"]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = 102.0
-margin_right = 202.0
-margin_bottom = 8.0
+margin_left = 262.0
+margin_right = 362.0
+margin_bottom = 11.0
 rect_min_size = Vector2( 100, 0 )
 
 [node name="Option2" type="Label" parent="DialogBox/DialogOptions"]
-margin_left = 206.0
-margin_right = 270.0
-margin_bottom = 8.0
+margin_left = 366.0
+margin_top = 1.0
+margin_right = 430.0
+margin_bottom = 9.0
 focus_neighbour_left = NodePath("../Option1")
 focus_mode = 2
 custom_fonts/font = ExtResource( 14 )
@@ -661,7 +667,7 @@ __meta__ = {
 
 [node name="GuiInfo" type="HBoxContainer" parent="Player/MContainer"]
 margin_top = 2.0
-margin_right = 320.0
+margin_right = 640.0
 margin_bottom = 26.0
 grow_horizontal = 0
 custom_constants/separation = 40
@@ -671,8 +677,8 @@ __meta__ = {
 }
 
 [node name="Main" type="VBoxContainer" parent="Player/MContainer/GuiInfo"]
-margin_left = 62.0
-margin_right = 186.0
+margin_left = 222.0
+margin_right = 346.0
 margin_bottom = 24.0
 
 [node name="HatKid" type="HBoxContainer" parent="Player/MContainer/GuiInfo/Main"]
@@ -782,8 +788,8 @@ __meta__ = {
 anims/FillEnergy = SubResource( 2 )
 
 [node name="Pons" type="VBoxContainer" parent="Player/MContainer/GuiInfo"]
-margin_left = 226.0
-margin_right = 258.0
+margin_left = 386.0
+margin_right = 418.0
 margin_bottom = 24.0
 
 [node name="StageName" type="Label" parent="Player/MContainer/GuiInfo/Pons"]
@@ -839,9 +845,9 @@ anims/regular = SubResource( 7 )
 
 [node name="CoverAnimator" type="AnimationPlayer" parent="."]
 anims/cover = SubResource( 8 )
-"anims/cover (slow)" = SubResource( 12 )
-anims/reveal = SubResource( 13 )
-"anims/reveal (slow)" = SubResource( 14 )
+"anims/cover (slow)" = SubResource( 9 )
+anims/reveal = SubResource( 10 )
+"anims/reveal (slow)" = SubResource( 11 )
 
 [connection signal="focus_entered" from="DialogBox/DialogOptions/Option1" to="DialogBox/DialogOptions/Option1" method="_on_focus_entered"]
 [connection signal="focus_exited" from="DialogBox/DialogOptions/Option1" to="DialogBox/DialogOptions/Option1" method="_on_focus_exited"]
