@@ -205,3 +205,4 @@ shape = SubResource( 18 )
 
 [connection signal="area_entered" from="ItemRoot/Area2D" to="ItemRoot" method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="ItemRoot/Area2D" to="ItemRoot" method="_on_Area2D_body_entered"]
+[connection signal="tween_all_completed" from="Tween" to="." method="fly_complete"]

@@ -8,6 +8,8 @@ extends Node2D
 ## Item's effect script. Must have a power() function that is
 ## called when the item is collected
 export(Resource) var itemCommand
+## Item collectable right now
+export(bool) var active = true
 onready var wait_collect = 20
 onready var animation_player = get_node_or_null("AnimationPlayer")
 var collected = false
@@ -19,8 +21,7 @@ func _physics_process(_delta):
 		wait_collect -= 1
 
 func _on_Area2D_body_entered(body):
-	if body.is_in_group("player") and !collected:
-		emit_signal("collected")
+	if body.is_in_group("player") and !collected and active:
 		collect(body)
 
 func collect(body):
@@ -34,7 +35,7 @@ func collect(body):
 		emit_signal("collected")
 
 func _on_Area2D_area_entered(area):
-	if area.is_in_group("player") and !collected:
+	if area.is_in_group("player") and !collected and active:
 		var parent = area.get_parent()
 		while parent.get_name() != "Player":
 			parent = parent.get_parent()

@@ -12,5 +12,9 @@ func end_level():
 		done = true
 
 func fly_to(goal : Node2D):
+	$ItemRoot.active = false
 	$Tween.interpolate_property(self, "position", self.position, goal.position, 2, Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT, 1)
 	$Tween.start()
+
+func fly_complete():
+	$ItemRoot.active = true
