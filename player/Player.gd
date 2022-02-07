@@ -43,10 +43,12 @@ func _on_hitbox_area_entered(area):
 func _on_hurtbox_area_entered(area):
 	if area.is_in_group("hitbox") and area.get_parent() != get_parent():
 		var damage = area.get_damage()
-		# TODO: Play sound effect
 		damage(false, damage)
 		# Bounce back
 		controller.bounce_back()
+		# Add collision exception
+		if area.has_method("get_body") and area.get_body() is PhysicsBody2D:
+			controller.add_collision_exception_with(area.get_body())
 	elif area.is_in_group("ladder"):
 		controller.on_ladders += 1
 
@@ -103,6 +105,8 @@ func turn_invincibilty(flag, auto_end = false):
 		if hurtbox:
 			hurtbox.set_collision_layer_bit(0, true)
 			hurtbox.set_collision_mask_bit(0, true)
+		for node in controller.get_collision_exceptions():
+			controller.remove_collision_exception_with(node)
 
 func _on_hurtbox_area_exited(area):
 	if area.is_in_group("ladder"):

@@ -3,6 +3,10 @@
 extends Node
 
 onready var enemyCore = $"../EnemyCore"
+onready var enemyBody = get_parent()
 
 func get_damage():
 	return enemyCore.get_damage()
+
+func get_body() -> Node:
+	return enemyBody
