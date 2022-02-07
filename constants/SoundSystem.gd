@@ -10,7 +10,6 @@ enum SFX {
 	THROW,
 	STOMP,
 	STOMP2,
-	STOMP3,
 	LIFE_GET,
 	POWERUP_GET,
 	HURT,
@@ -22,6 +21,7 @@ enum SFX {
 	DOOR,
 	KNOCK,
 	EXPLOSION,
+	STOMP3,
 }
 
 enum MUSIC {

@@ -245,7 +245,8 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 	elif next_box.has("addpon"):
 		PlayerGameManager.add_pons(next_box["addpon"])
 	elif next_box.has("queue_free"):
-		next_box['queue_free'].queue_free()
+		if is_instance_valid(next_box['queue_free']) and next_box['queue_free'] != null:
+			next_box['queue_free'].queue_free()
 	
 	# Wait for program to return signal that we can continue scene
 	if next_box.has("delay"):

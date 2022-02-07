@@ -90,7 +90,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ false ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("EnemyCore/Smoke:emitting")
@@ -588,6 +588,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [ 0 ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("CollisionShape2D2:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=7]
 length = 1.5
@@ -798,36 +810,24 @@ tracks/2/keys = {
 "values": [ 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("CollisionShape2D2:disabled")
+tracks/3/path = NodePath("EnemyCore/AnimationTree:parameters/hurt/IsFlashing/add_amount")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.1 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("EnemyCore/AnimationTree:parameters/hurt/IsFlashing/add_amount")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 1.0 ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("EnemyCore/AnimationTree:parameters/hurt/HurtState/conditions/hurt")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/path = NodePath("EnemyCore/AnimationTree:parameters/hurt/HurtState/conditions/hurt")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -901,24 +901,12 @@ tracks/4/keys = {
 } ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("CollisionShape2D2:disabled")
+tracks/5/path = NodePath("EnemyCore/AnimationTree:parameters/die/die/conditions/fall_complete")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("EnemyCore/AnimationTree:parameters/die/die/conditions/fall_complete")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
 "times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -1049,6 +1037,18 @@ tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
 "times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("CollisionShape2D2:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0.4 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
@@ -1428,6 +1428,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [ 3 ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("CollisionShape2D2:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=21]
 length = 4.0
@@ -1518,11 +1530,11 @@ position = Vector2( 0, -1 )
 texture = ExtResource( 10 )
 
 [node name="EnemyCore" type="Sprite" parent="."]
-self_modulate = Color( 0.888889, 0.888889, 0.888889, 1 )
 material = ExtResource( 1 )
 position = Vector2( 2, -7 )
 texture = ExtResource( 7 )
 hframes = 11
+frame = 8
 script = ExtResource( 3 )
 enemy_hp = 6
 
@@ -1562,7 +1574,7 @@ parameters/die/die/playback = SubResource( 23 )
 parameters/hurt/HurtState/playback = SubResource( 24 )
 parameters/hurt/HurtState/conditions/fall_complete = false
 parameters/hurt/HurtState/conditions/hurt = false
-parameters/hurt/IsFlashing/add_amount = 1.0
+parameters/hurt/IsFlashing/add_amount = 0.0
 parameters/jump/playback = SubResource( 25 )
 parameters/pound/playback = SubResource( 26 )
 script = ExtResource( 6 )
@@ -1639,6 +1651,7 @@ disabled = true
 [node name="HitBox" type="Area2D" parent="." groups=[
 "hitbox",
 ]]
+visible = false
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
@@ -1650,7 +1663,6 @@ disabled = true
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 4 )
 shape = SubResource( 33 )
-disabled = true
 
 [node name="Node2D" type="Node2D" parent="."]
 

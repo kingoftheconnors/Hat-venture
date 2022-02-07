@@ -148,7 +148,7 @@ states/pound_windup/position = Vector2( -48, 137 )
 transitions = [ "pound_smash", "hopping", SubResource( 30 ), "pound_fall", "pound_smash", SubResource( 31 ), "pound_windup", "pound_fall", SubResource( 32 ) ]
 start_node = "pound_windup"
 end_node = "hopping"
-graph_offset = Vector2( -41.4647, 26.6702 )
+graph_offset = Vector2( -161.853, 26.6702 )
 
 [sub_resource type="AnimationNodeAnimation" id=34]
 animation = "setup"
@@ -228,4 +228,4 @@ states/turn_on/node = SubResource( 36 )
 states/turn_on/position = Vector2( 223, -87 )
 transitions = [ "setup", "turn_on", SubResource( 37 ), "idle", "hurt", SubResource( 38 ), "turn_on", "activate_hitboxes", SubResource( 39 ), "activate_hitboxes", "idle", SubResource( 40 ), "idle", "pound", SubResource( 41 ), "pound", "hurt", SubResource( 42 ), "pound", "idle", SubResource( 43 ), "idle", "jump", SubResource( 44 ), "jump", "idle", SubResource( 45 ), "jump", "hurt", SubResource( 46 ), "hurt", "smash", SubResource( 47 ), "hurt", "die", SubResource( 48 ), "smash", "die", SubResource( 49 ), "hurt", "idle", SubResource( 50 ) ]
 start_node = "setup"
-graph_offset = Vector2( -272.607, 166.362 )
+graph_offset = Vector2( -272.607, -210.974 )
