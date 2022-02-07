@@ -11,11 +11,11 @@
 [ext_resource path="res://effects/smoke.png" type="Texture" id=9]
 [ext_resource path="res://effects/whitecover.png" type="Texture" id=10]
 
-[sub_resource type="Animation" id=32]
+[sub_resource type="Animation" id=1]
 resource_name = "aaaa-empty"
 length = 0.1
 
-[sub_resource type="Animation" id=33]
+[sub_resource type="Animation" id=2]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("EnemyCore:frame")
@@ -174,7 +174,7 @@ tracks/12/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=34]
+[sub_resource type="Animation" id=3]
 length = 2.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -191,7 +191,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=31]
+[sub_resource type="Animation" id=4]
 resource_name = "die_freeze"
 length = 10.9
 step = 0.001
@@ -366,7 +366,7 @@ tracks/10/keys = {
 "values": [ 3, 0 ]
 }
 
-[sub_resource type="Animation" id=35]
+[sub_resource type="Animation" id=5]
 length = 4.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -422,7 +422,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=36]
+[sub_resource type="Animation" id=6]
 length = 3.0
 step = 0.05
 tracks/0/type = "value"
@@ -474,7 +474,7 @@ tracks/3/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=37]
+[sub_resource type="Animation" id=7]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position:y")
@@ -549,7 +549,7 @@ tracks/5/keys = {
 "values": [ 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=38]
+[sub_resource type="Animation" id=8]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position:y")
@@ -578,7 +578,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=39]
+[sub_resource type="Animation" id=9]
 length = 0.02
 step = 0.01
 tracks/0/type = "method"
@@ -611,7 +611,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=40]
+[sub_resource type="Animation" id=10]
 length = 1.7
 step = 0.05
 tracks/0/type = "value"
@@ -639,7 +639,7 @@ tracks/1/keys = {
 "values": [ 3, 4, 2, 3, 4, 2, 3, 4, 0 ]
 }
 
-[sub_resource type="Animation" id=41]
+[sub_resource type="Animation" id=11]
 length = 4.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -719,7 +719,7 @@ tracks/5/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=42]
+[sub_resource type="Animation" id=12]
 length = 1.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position:y")
@@ -810,7 +810,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=43]
+[sub_resource type="Animation" id=13]
 length = 1.2
 step = 0.05
 tracks/0/type = "value"
@@ -939,7 +939,7 @@ tracks/9/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=44]
+[sub_resource type="Animation" id=14]
 length = 0.6
 loop = true
 step = 0.05
@@ -1004,7 +1004,7 @@ tracks/4/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=45]
+[sub_resource type="Animation" id=15]
 length = 0.7
 loop = true
 tracks/0/type = "method"
@@ -1034,7 +1034,7 @@ tracks/1/keys = {
 "values": [ 0, 1, 2, 1, 0 ]
 }
 
-[sub_resource type="Animation" id=46]
+[sub_resource type="Animation" id=16]
 length = 1.2
 step = 0.05
 tracks/0/type = "value"
@@ -1091,7 +1091,7 @@ tracks/3/keys = {
 "values": [ 1, 2, 3, 4, 2 ]
 }
 
-[sub_resource type="Animation" id=47]
+[sub_resource type="Animation" id=17]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("EnemyCore:frame")
@@ -1118,7 +1118,7 @@ tracks/1/keys = {
 "values": [ -136.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=48]
+[sub_resource type="Animation" id=18]
 length = 0.2
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -1150,7 +1150,7 @@ tracks/1/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=49]
+[sub_resource type="Animation" id=19]
 length = 2.4
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position:y")
@@ -1206,7 +1206,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=50]
+[sub_resource type="Animation" id=20]
 length = 0.1
 loop = true
 step = 0.05
@@ -1271,7 +1271,7 @@ tracks/4/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=51]
+[sub_resource type="Animation" id=21]
 length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("EnemyCore:frame")
@@ -1300,23 +1300,23 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=52]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=53]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=54]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=55]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=25]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=56]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=26]
 
-[sub_resource type="CanvasItemMaterial" id=57]
+[sub_resource type="CanvasItemMaterial" id=27]
 particles_animation = true
 particles_anim_h_frames = 5
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="CanvasItemMaterial" id=58]
+[sub_resource type="CanvasItemMaterial" id=28]
 particles_animation = true
 particles_anim_h_frames = 3
 particles_anim_v_frames = 1
@@ -1326,11 +1326,11 @@ particles_anim_loop = false
 radius = 5.0
 height = 34.0
 
-[sub_resource type="CapsuleShape2D" id=59]
+[sub_resource type="CapsuleShape2D" id=30]
 radius = 18.0
 height = 6.0
 
-[sub_resource type="CapsuleShape2D" id=30]
+[sub_resource type="CapsuleShape2D" id=31]
 radius = 18.0
 height = 3.99999
 
@@ -1358,47 +1358,47 @@ enemy_hp = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyCore"]
 root_node = NodePath("../..")
-anims/aaaa-empty = SubResource( 32 )
-anims/aaauto-setup = SubResource( 33 )
-anims/die = SubResource( 34 )
-anims/die_freeze = SubResource( 31 )
-anims/die_hurt = SubResource( 35 )
-anims/die_kaboom = SubResource( 36 )
-anims/fly = SubResource( 37 )
-anims/fly_smash = SubResource( 38 )
-anims/hop_to_other_side = SubResource( 39 )
-anims/hopping = SubResource( 40 )
-anims/hurt = SubResource( 41 )
-anims/hurt_bounce = SubResource( 42 )
-anims/hurt_jump = SubResource( 43 )
-anims/hurtflash = SubResource( 44 )
-anims/idle = SubResource( 45 )
-anims/jump = SubResource( 46 )
-anims/pound_fall = SubResource( 47 )
-anims/pound_smash = SubResource( 48 )
-anims/pound_windup = SubResource( 49 )
-anims/reactive_hitboxes = SubResource( 50 )
-anims/turn_on = SubResource( 51 )
+anims/aaaa-empty = SubResource( 1 )
+anims/aaauto-setup = SubResource( 2 )
+anims/die = SubResource( 3 )
+anims/die_freeze = SubResource( 4 )
+anims/die_hurt = SubResource( 5 )
+anims/die_kaboom = SubResource( 6 )
+anims/fly = SubResource( 7 )
+anims/fly_smash = SubResource( 8 )
+anims/hop_to_other_side = SubResource( 9 )
+anims/hopping = SubResource( 10 )
+anims/hurt = SubResource( 11 )
+anims/hurt_bounce = SubResource( 12 )
+anims/hurt_jump = SubResource( 13 )
+anims/hurtflash = SubResource( 14 )
+anims/idle = SubResource( 15 )
+anims/jump = SubResource( 16 )
+anims/pound_fall = SubResource( 17 )
+anims/pound_smash = SubResource( 18 )
+anims/pound_windup = SubResource( 19 )
+anims/reactive_hitboxes = SubResource( 20 )
+anims/turn_on = SubResource( 21 )
 
 [node name="AnimationTree" type="AnimationTree" parent="EnemyCore"]
 tree_root = ExtResource( 2 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 52 )
+parameters/playback = SubResource( 22 )
 parameters/conditions/hurt = false
 parameters/conditions/jump = false
 parameters/conditions/pound = false
 parameters/die/Add2/add_amount = 1.0
-parameters/die/die/playback = SubResource( 53 )
-parameters/hurt/HurtState/playback = SubResource( 54 )
+parameters/die/die/playback = SubResource( 23 )
+parameters/hurt/HurtState/playback = SubResource( 24 )
 parameters/hurt/HurtState/conditions/fall_complete = false
 parameters/hurt/HurtState/conditions/hurt = false
 parameters/hurt/IsFlashing/add_amount = 1.0
-parameters/jump/playback = SubResource( 55 )
-parameters/pound/playback = SubResource( 56 )
+parameters/jump/playback = SubResource( 25 )
+parameters/pound/playback = SubResource( 26 )
 script = ExtResource( 6 )
 
 [node name="Explosions" type="CPUParticles2D" parent="EnemyCore"]
-material = SubResource( 57 )
+material = SubResource( 27 )
 position = Vector2( -2, 7 )
 emitting = false
 amount = 2
@@ -1409,7 +1409,7 @@ gravity = Vector2( 0, 0 )
 anim_speed = 1.75
 
 [node name="Smoke" type="CPUParticles2D" parent="EnemyCore"]
-material = SubResource( 58 )
+material = SubResource( 28 )
 position = Vector2( -10, -1 )
 emitting = false
 amount = 2
@@ -1441,12 +1441,12 @@ script = ExtResource( 4 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 0, 6 )
 rotation = 1.5708
-shape = SubResource( 59 )
+shape = SubResource( 30 )
 disabled = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 4 )
-shape = SubResource( 30 )
+shape = SubResource( 31 )
 disabled = true
 
 [node name="Node2D" type="Node2D" parent="."]

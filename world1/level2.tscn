@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://world1/background1.tres" type="TileSet" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://common/CollectableStorybookPage.tscn" type="PackedScene" id=10]
 [ext_resource path="res://enemy/eltun/eltun.tscn" type="PackedScene" id=11]
 [ext_resource path="res://common/CollectablePalette.tscn" type="PackedScene" id=12]
+[ext_resource path="res://NPCs/DialogBox.tscn" type="PackedScene" id=13]
 [ext_resource path="res://NPCs/DialogOnCollisionStarter.gd" type="Script" id=14]
 [ext_resource path="res://common/TileInstancer.gd" type="Script" id=15]
 [ext_resource path="res://NPCs/DialogStarter.gd" type="Script" id=16]
@@ -571,6 +572,13 @@ script = ExtResource( 14 )
 position = Vector2( 1.18973, -19.0877 )
 shape = SubResource( 1 )
 
+[node name="DialogBox" parent="BossNode2D/Boss" instance=ExtResource( 13 )]
+position = Vector2( -32, 104 )
+scale = Vector2( 1e-05, 1e-05 )
+dialog_num = 29
+active_bodies_in_dialog = [ NodePath("../RoboKurt") ]
+one_shot = true
+
 [node name="Trees" type="Node2D" parent="BossNode2D"]
 
 [node name="Tree2" type="TileMap" parent="BossNode2D/Trees"]
@@ -585,6 +593,7 @@ tile_data = PoolIntArray( -2228189, 14, 131073, -2162652, 14, 131073, -2097115, 
 
 [connection signal="body_entered" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeWalls" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeWalls" method="_on_Area2D_body_exited"]
+[connection signal="dead" from="BossNode2D/Boss/RoboKurt" to="BossNode2D/Boss/DialogBox" method="queue_dialog"]
 [connection signal="ground_pound" from="BossNode2D/Boss/RoboKurt" to="BossNode2D/Boss/AppleDropper" method="generate_apples" binds= [ 3 ]]
 [connection signal="ground_pound" from="BossNode2D/Boss/RoboKurt" to="Camera" method="shake_screen" binds= [ 6, 1 ]]
 [connection signal="action1" from="BossNode2D/Boss/DialogOnCollisionStarter" to="BossNode2D/Boss/RoboKurt" method="turn_on"]

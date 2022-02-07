@@ -30,7 +30,8 @@ enum DIALOG_TYPE {
 	GOOD_MORNING_HATKID = 25,
 	SHIP_DOOR_DIALOG_SELECTOR = 26,
 	START_ROBOHEN_BOSS = 27,
-	SPLASH_SCREEN = 28
+	SPLASH_SCREEN = 28,
+	FADEOUT_MUSIC = 29
 }
 
 # Textbox Format:
@@ -355,8 +356,8 @@ func get_dialog(text_num):
 		DIALOG_TYPE.START_ROBOHEN_BOSS:
 			return [
 				{delay = 1},
-		{fadeout_music_fast = true, delay=.5},
-		{music = sound_system.MUSIC.BOSS_1},
+				{fadeout_music_fast = true, delay=.5},
+				{music = sound_system.MUSIC.BOSS_1},
 				{signal = "action2", delay = 0.5},
 				{signal = "action1", delay = 4},
 			]
@@ -364,4 +365,8 @@ func get_dialog(text_num):
 			return [
 				{delay = 2},
 				{level = "res://title-screen/title-screen.tscn"}
+			]
+		DIALOG_TYPE.FADEOUT_MUSIC:
+			return [
+				{fadeout_music_fast = true, delay=.5},
 			]

@@ -65,7 +65,7 @@ func _physics_process(delta):
 					break
 
 func damage(isStomp):
-	.damage(isStomp)
+	var killed = .damage(isStomp)
 	if Constants.PHOTOSENSITIVE_MODE:
 		animator.set_parameter("hurt/IsFlashing/add_amount", 0)
 	else:
@@ -74,9 +74,8 @@ func damage(isStomp):
 	emit_signal("hurt")
 	idle_count = 0
 	Gui.update_boss_health($EnemyCore.enemy_hp, MAX_HEALTH)
-
-func throw_death_signal():
-	emit_signal("dead")
+	if killed:
+		emit_signal("dead")
 
 func fly_to_other_side(duration : float):
 	swap_side()
