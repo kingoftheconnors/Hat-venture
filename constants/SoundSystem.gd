@@ -15,10 +15,12 @@ enum SFX {
 	HURT,
 	SPRINT,
 	BLOCK_BREAK,
+	BLOCK_BREAK_2,
 	SKID,
 	SKID2,
 	DOOR,
 	KNOCK,
+	EXPLOSION,
 }
 
 enum MUSIC {
@@ -136,6 +138,8 @@ func start_sound(sfx : int, sound_var = 0):
 				]
 				# Randomly use one of the block break sounds
 				sfx_player.stream = sounds[randi() % len(sounds)]
+			SFX.BLOCK_BREAK_2:
+				sfx_player.stream = preload("res://Music/sfx/Block_break_2.wav")
 			SFX.SKID:
 				sfx_player.stream = preload("res://Music/sfx/Skid_2.wav")
 				# Add pitch shift
@@ -149,6 +153,8 @@ func start_sound(sfx : int, sound_var = 0):
 				sfx_player.stream = preload("res://Music/sfx/Door_Enter.wav")
 			SFX.KNOCK:
 				sfx_player.stream = preload("res://Music/sfx/knock.wav")
+			SFX.EXPLOSION:
+				sfx_player.stream = preload("res://Music/sfx/explosion.wav")
 		if cur_sound != sfx:
 			sfx_player.stop()
 		if sfx != SFX.NONE:
