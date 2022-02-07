@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://gui/EnemyPalette.tres" type="Material" id=1]
 [ext_resource path="res://enemy/RoboKurt/RobokurtStateMachine.tres" type="AnimationNodeStateMachine" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://effects/smoke.png" type="Texture" id=9]
 [ext_resource path="res://effects/whitecover.png" type="Texture" id=10]
 [ext_resource path="res://Music/startSong.gd" type="Script" id=11]
+[ext_resource path="res://common/Resources/particle.png" type="Texture" id=12]
+[ext_resource path="res://common/Resources/particle2.png" type="Texture" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "aaaa-empty"
@@ -1262,6 +1264,32 @@ tracks/1/keys = {
 "update": 1,
 "values": [ 2 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("EnemyCore/Blocks:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("EnemyCore/BlockBreakSfx")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ null ],
+"method": "start_sound"
+} ]
+}
 
 [sub_resource type="Animation" id=19]
 length = 2.4
@@ -1317,6 +1345,23 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("EnemyCore/FlapSfx")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1.1, 1.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ null ],
+"method": "start_sound"
+}, {
+"args": [ null ],
+"method": "start_sound"
+} ]
 }
 
 [sub_resource type="Animation" id=20]
@@ -1435,15 +1480,27 @@ particles_anim_h_frames = 3
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="CapsuleShape2D" id=29]
+[sub_resource type="AnimatedTexture" id=29]
+frames = 2
+fps = 8.0
+frame_0/texture = ExtResource( 12 )
+frame_1/texture = ExtResource( 13 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="Curve" id=30]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CapsuleShape2D" id=31]
 radius = 5.0
 height = 34.0
 
-[sub_resource type="CapsuleShape2D" id=30]
+[sub_resource type="CapsuleShape2D" id=32]
 radius = 18.0
 height = 6.0
 
-[sub_resource type="CapsuleShape2D" id=31]
+[sub_resource type="CapsuleShape2D" id=33]
 radius = 18.0
 height = 3.99999
 
@@ -1539,6 +1596,35 @@ anim_speed = 1.5
 script = ExtResource( 11 )
 sound = 18
 
+[node name="BlockBreakSfx" type="Node" parent="EnemyCore"]
+script = ExtResource( 11 )
+sound = 13
+
+[node name="FlapSfx" type="Node" parent="EnemyCore"]
+script = ExtResource( 11 )
+sound = 8
+
+[node name="Blocks" type="CPUParticles2D" parent="EnemyCore"]
+show_behind_parent = true
+position = Vector2( -2, 31 )
+emitting = false
+amount = 12
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+fract_delta = false
+local_coords = false
+texture = SubResource( 29 )
+emission_shape = 4
+emission_points = PoolVector2Array( 8, 2, -8, 2, 8, -2, -8, -2 )
+emission_normals = PoolVector2Array( 70, -150, -70, -150, 70, -250, -70, -250 )
+emission_colors = PoolColorArray(  )
+direction = Vector2( 0, 0 )
+spread = 0.0
+gravity = Vector2( 0, 400 )
+initial_velocity = 1.0
+angle_curve = SubResource( 30 )
+
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
 ]]
@@ -1547,7 +1633,7 @@ position = Vector2( 0, 8 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2( 0, -21 )
 rotation = 1.5708
-shape = SubResource( 29 )
+shape = SubResource( 31 )
 disabled = true
 
 [node name="HitBox" type="Area2D" parent="." groups=[
@@ -1558,12 +1644,12 @@ script = ExtResource( 4 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 0, 6 )
 rotation = 1.5708
-shape = SubResource( 30 )
+shape = SubResource( 32 )
 disabled = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 4 )
-shape = SubResource( 31 )
+shape = SubResource( 33 )
 disabled = true
 
 [node name="Node2D" type="Node2D" parent="."]

@@ -10,6 +10,7 @@ enum SFX {
 	THROW,
 	STOMP,
 	STOMP2,
+	STOMP3,
 	LIFE_GET,
 	POWERUP_GET,
 	HURT,
@@ -122,6 +123,8 @@ func start_sound(sfx : int, sound_var = 0):
 				#sfx_player.stream = preload("res://Music/sfx/Creature_Squash.wav")
 			SFX.STOMP2:
 				sfx_player.stream = preload("res://Music/sfx/Creature_Squash_3.wav")
+			SFX.STOMP3:
+				sfx_player.stream = preload("res://Music/sfx/Creature_Squash.wav")
 			SFX.POWERUP_GET:
 				sfx_player.stream = preload("res://Music/sfx/Powerup_get.wav")
 			SFX.HURT:
