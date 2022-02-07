@@ -247,7 +247,7 @@ func move(delta):
 				velo.x *= SPIN_DECELERATION
 			else:
 				velo.x *= SPIN_JUMP_DECELERATION
-	elif (horizontal == 0 and !ignore_air_friction and !is_on_floor()):
+	elif (horizontal == 0 and !is_on_floor() and (frozen or !ignore_air_friction)):
 		velo.x *= 0.87
 	elif (horizontal == 0 and !crouching and is_on_floor()):
 		velo.x *= 0.87
