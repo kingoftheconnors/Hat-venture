@@ -45,8 +45,8 @@ script = ExtResource( 2 )
 is_active = true
 
 [node name="EnemyCore" type="AnimatedSprite" parent="."]
+z_index = 5
 frames = SubResource( 5 )
-frame = 2
 playing = true
 script = ExtResource( 4 )
 death_score = 0
