@@ -1606,15 +1606,15 @@ anim_speed = 1.5
 
 [node name="ExplosionSound" type="Node" parent="EnemyCore"]
 script = ExtResource( 11 )
-sound = 18
+sound = 16
 
 [node name="BlockBreakSfx" type="Node" parent="EnemyCore"]
 script = ExtResource( 11 )
-sound = 13
+sound = 11
 
 [node name="FlapSfx" type="Node" parent="EnemyCore"]
 script = ExtResource( 11 )
-sound = 8
+sound = 19
 
 [node name="Blocks" type="CPUParticles2D" parent="EnemyCore"]
 show_behind_parent = true

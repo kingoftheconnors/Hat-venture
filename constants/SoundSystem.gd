@@ -4,12 +4,10 @@ class_name sound_system
 enum SFX {
 	NONE,
 	COLLECT,
-	COLLECT_BASIC,
 	JUMP,
 	DIVE,
 	THROW,
 	STOMP,
-	STOMP2,
 	LIFE_GET,
 	POWERUP_GET,
 	HURT,
@@ -21,6 +19,8 @@ enum SFX {
 	DOOR,
 	KNOCK,
 	EXPLOSION,
+	COLLECT_BASIC,
+	STOMP2,
 	STOMP3,
 }
 
