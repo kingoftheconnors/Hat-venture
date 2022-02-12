@@ -615,11 +615,13 @@ dialog_num = 29
 active_bodies_in_dialog = [ NodePath("../RoboKurt") ]
 one_shot = true
 
+[node name="GifGetterUI" parent="." instance=ExtResource( 25 )]
+
 [connection signal="body_entered" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeWalls" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeWalls" method="_on_Area2D_body_exited"]
 [connection signal="dead" from="BossNode2D/Boss/RoboKurt" to="BossNode2D/Boss/DialogBox" method="queue_dialog"]
-[connection signal="ground_pound" from="BossNode2D/Boss/RoboKurt" to="BossNode2D/Boss/AppleDropper" method="generate_apples" binds= [ 3 ]]
 [connection signal="ground_pound" from="BossNode2D/Boss/RoboKurt" to="Camera" method="shake_screen" binds= [ 6, 1 ]]
+[connection signal="ground_pound" from="BossNode2D/Boss/RoboKurt" to="BossNode2D/Boss/AppleDropper" method="generate_apples" binds= [ 3 ]]
 [connection signal="action1" from="BossNode2D/Boss/DialogOnCollisionStarter" to="BossNode2D/Boss/RoboKurt" method="turn_on"]
 [connection signal="action2" from="BossNode2D/Boss/DialogOnCollisionStarter" to="BossNode2D/Boss/RoboKurt" method="start_gui"]
 [connection signal="body_entered" from="BossNode2D/Boss/DialogOnCollisionStarter/Area2D" to="BossNode2D/Boss/DialogOnCollisionStarter/Area2D" method="_on_Area2D_body_entered"]

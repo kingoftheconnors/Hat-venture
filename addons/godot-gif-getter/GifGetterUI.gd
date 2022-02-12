@@ -12,7 +12,6 @@ const MAX_CONSOLE_MESSAGE_COUNT: int = 20
 
 onready var _viewport_rid: RID = get_viewport().get_viewport_rid()
 
-onready var save_location_line_edit: LineEdit = $Control/Options/VBoxContainer/SaveLocationContainer/LineEdit
 # Gif width (must match image data passed in)
 var _width : int = 320
 # Gif height (must match image data passed in)
@@ -44,7 +43,7 @@ var _max_threads: int = 4
 # Rust gif creation library
 var _gif_handler: Reference = load("res://addons/godot-gif-getter/GifHandler.gdns").new()
 
-var time_passed := 0.0
+var time_passed : float = 0.0
 func _physics_process(delta: float) -> void:
 	time_passed += delta
 	if Constants.DEBUG_MODE and time_passed > FRAME_LENGTH:

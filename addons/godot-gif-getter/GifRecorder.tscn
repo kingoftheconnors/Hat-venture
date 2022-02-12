@@ -3,4 +3,5 @@
 [ext_resource path="res://addons/godot-gif-getter/GifGetterUI.gd" type="Script" id=1]
 
 [node name="GifGetterUI" type="CanvasLayer"]
+pause_mode = 2
 script = ExtResource( 1 )
