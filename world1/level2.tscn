@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://world1/background1.tres" type="TileSet" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://enemy/RoboKurt/RoboKurt.tscn" type="PackedScene" id=22]
 [ext_resource path="res://enemy/eltun/pace.gd" type="Script" id=23]
 [ext_resource path="res://common/CameraCapture.tscn" type="PackedScene" id=24]
+[ext_resource path="res://addons/godot-gif-getter/GifRecorder.tscn" type="PackedScene" id=25]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 176 )

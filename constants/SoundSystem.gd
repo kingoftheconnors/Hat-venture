@@ -179,7 +179,6 @@ func _physics_process(_delta):
 		collect_timer -= 1
 		if collect_timer == 0:
 			collect_level = 0
-			print("Restart")
 	if sprint_timer > 0 and cur_sound != SFX.SPRINT:
 		sprint_timer -= 1
 		if sprint_timer == 0:

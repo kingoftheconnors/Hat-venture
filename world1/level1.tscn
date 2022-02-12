@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://world1/background1.tres" type="TileSet" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://enemy/hen/Hen.tscn" type="PackedScene" id=17]
 [ext_resource path="res://enemy/crow/Crow.tscn" type="PackedScene" id=18]
 [ext_resource path="res://common/FakeWalls.gd" type="Script" id=19]
+[ext_resource path="res://addons/godot-gif-getter/GifRecorder.tscn" type="PackedScene" id=20]
 [ext_resource path="res://items/Resources/TimePiece.tscn" type="PackedScene" id=21]
 [ext_resource path="res://enemy/eltun/pace.gd" type="Script" id=23]
 [ext_resource path="res://common/CameraCapture.tscn" type="PackedScene" id=24]

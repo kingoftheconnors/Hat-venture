@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/godot-gif-getter/GifGetterUI.gd" type="Script" id=1]
+
+[node name="GifGetterUI" type="CanvasLayer"]
+script = ExtResource( 1 )
