@@ -378,3 +378,7 @@ Timmy Strikes Music
 Screen shaking during cutscenes and Robo-kurt boss
 Door sfx
 Update ship camera barriers to account for new screen size
+Add explosion and groundpound sfx to Robokurt
+Fix dialog system glitch that didn't reveal entire sentence
+Prettify trees in 1-2
+Replace gif system with fast version
