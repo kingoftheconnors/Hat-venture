@@ -12,10 +12,6 @@ const MAX_CONSOLE_MESSAGE_COUNT: int = 20
 
 onready var _viewport_rid: RID = get_viewport().get_viewport_rid()
 
-# Gif width (must match image data passed in)
-var _width : int = 320
-# Gif height (must match image data passed in)
-var _height : int = 240
 # Determines if viewport texture data should be stored for processing
 var _should_capture: bool = false
 # Holds viewport texture data
@@ -25,7 +21,7 @@ var saving_gif := false
 var pics : Array = []
 # Constants
 const FRAME_LENGTH = .08
-const GIF_WIDTH = 208
+const GIF_WIDTH = 426
 const GIF_HEIGHT = 208
 
 # Total number of frames in the gif
@@ -76,8 +72,6 @@ func _exit_tree() -> void:
 
 func capture(images : Array, width : int, height: int) -> void:
 	_images = images
-	_width = width
-	_height = height
 	_should_capture = true
 	yield(get_tree(), "physics_frame")
 
@@ -98,8 +92,8 @@ func _rust_multi_thread() -> void:
 	_gif_handler.set_render_quality(_render_quality)
 	_gif_handler.write_frames(
 			images_bytes,
-			_width,
-			_height,
+			GIF_WIDTH,
+			GIF_HEIGHT,
 			_max_threads,
 			_max_frames)
 
