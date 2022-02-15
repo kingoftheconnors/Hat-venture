@@ -51,8 +51,7 @@ func get_pons():
 # 'palette_list' should be defined manually. String of palettes.
 const default_palettes : Array = [
 	"Classic",
-	"Muted",
-	"GBoy"
+	"New Venture"
 ]
 
 func unlock_palette(new_palette):
