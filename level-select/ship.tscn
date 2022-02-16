@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://level-select/shiproom1.png" type="Texture" id=2]
@@ -73,6 +73,13 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 36, 8 ), Vector2( 50, 8 ) ]
 }
+
+[sub_resource type="GDScript" id=9]
+script/source = "extends Timer
+
+func play_sound():
+	SoundSystem.start_sound(SoundSystem.SFX.KNOCK)
+"
 
 [sub_resource type="Animation" id=7]
 length = 1.6
@@ -169,6 +176,10 @@ script = SubResource( 5 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Display/Arrow"]
 autoplay = "point"
 anims/point = SubResource( 6 )
+
+[node name="Timer" type="Timer" parent="Display"]
+wait_time = 3.0
+script = SubResource( 9 )
 
 [node name="DoorDialog" parent="." instance=ExtResource( 9 )]
 position = Vector2( 304, -40 )
@@ -325,6 +336,8 @@ level_music = 6
 [connection signal="action7" from="Display/DialogBox" to="Display/Arrow" method="hide"]
 [connection signal="action7" from="Display/DialogBox" to="Player" method="walk_to" binds= [ "../WalkTo_DisplayTarget", 1 ]]
 [connection signal="action8" from="Display/DialogBox" to="DoorDialog/Arrow" method="show"]
+[connection signal="action9" from="Display/DialogBox" to="Display/Timer" method="start"]
+[connection signal="timeout" from="Display/Timer" to="Display/Timer" method="play_sound"]
 [connection signal="action1" from="DoorDialog" to="Timmy" method="play_animation" binds= [ "float" ]]
 [connection signal="action1" from="DoorDialog" to="Timmy" method="make_visible"]
 [connection signal="action1" from="DoorDialog" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target5", -1.0, -1.0, 0.175 ]]
@@ -360,6 +373,7 @@ level_music = 6
 [connection signal="actionM" from="DoorDialog" to="Timmy" method="fly_to"]
 [connection signal="actionN" from="DoorDialog" to="Player" method="walk_to" binds= [ "../WalkTo_Target4" ]]
 [connection signal="actionN" from="DoorDialog" to="Player" method="watch_node" binds= [ "../Timmy" ]]
+[connection signal="actionN" from="DoorDialog" to="Display/Timer" method="stop"]
 [connection signal="actionN" from="DoorDialog" to="DoorDialog/Arrow" method="hide"]
 [connection signal="body_entered" from="DoorDialog/DialogBox" to="DoorDialog/Door" method="play_if_player" binds= [ "open" ]]
 [connection signal="body_exited" from="DoorDialog/DialogBox" to="DoorDialog/Door" method="play_if_player" binds= [ "close" ]]
