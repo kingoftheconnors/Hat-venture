@@ -4,9 +4,11 @@ extends Node2D
 func _ready():
 	print(SaveSystem.access_data().get_tag("satellite_aligned"))
 	print(SaveSystem.access_data().get_tag("timepieces_stolen"))
-	if SaveSystem.access_data().get_tag("satellite_aligned") == null \
-		or SaveSystem.access_data().get_tag("timepieces_stolen") == null:
+	if SaveSystem.access_data().get_tag("satellite_aligned") == null:
 		$Exclamation.visible = true
+	elif SaveSystem.access_data().get_tag("timepieces_stolen") == null:
+		$Exclamation.visible = true
+		$Arrow.show()
 	else:
 		$TimePieces.visible = true
 		$DialogBox.enabled = false
