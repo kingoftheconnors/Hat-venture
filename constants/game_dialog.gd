@@ -311,6 +311,7 @@ func get_dialog(text_num):
 				{name = ":T", text = "You’re a big fan of the noodle-y fellow, but you’ve never met someone like that before..."},
 				{name = ":D", text = "Regardless, there’s also a pon in here!", if_tag_false = "get_chest_pon"},
 				{addpon = 1},
+				{sound = sound_system.SFX.COLLECT},
 				{settag = "get_chest_pon", value = true},
 			]
 		DIALOG_TYPE.CHEST_NO:
