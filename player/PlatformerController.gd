@@ -555,7 +555,7 @@ func bounce_back(towards_x = null):
 		walk_to(towards_x, -direc.x/abs(direc.x))
 	push(direc)
 
-func bounce_towards(direc : int = direction):
+func bounce_towards(direc : float = direction):
 	push(Vector2(direc, -0.8) * KNOCKBACK_MULTIPLIER)
 
 func spin_bounce(body):

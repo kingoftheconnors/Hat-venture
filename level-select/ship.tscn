@@ -279,7 +279,7 @@ position = Vector2( 240, -24 )
 position = Vector2( 64, -96 )
 
 [node name="WalkTo_Target3" type="Node2D" parent="."]
-position = Vector2( 112, -64 )
+position = Vector2( 108, -64 )
 
 [node name="WalkTo_Target4" type="Node2D" parent="."]
 position = Vector2( 264, -24 )
@@ -364,7 +364,7 @@ level_music = 6
 [connection signal="actionD" from="DoorDialog" to="Player" method="walk_to" binds= [ "../DoorDialog" ]]
 [connection signal="actionE" from="DoorDialog" to="Camera" method="shake_screen" binds= [ 12, 3.0 ]]
 [connection signal="actionF" from="DoorDialog" to="DustCloud" method="show"]
-[connection signal="actionG" from="DoorDialog" to="Player" method="bounce_towards" binds= [ -2 ]]
+[connection signal="actionG" from="DoorDialog" to="Player" method="bounce_towards" binds= [ -1.5 ]]
 [connection signal="actionH" from="DoorDialog" to="Timmy" method="bounce_towards" binds= [ -1 ]]
 [connection signal="actionJ" from="DoorDialog" to="Timmy" method="fly_to" binds= [ "../WalkTo_Target2" ]]
 [connection signal="actionK" from="DoorDialog" to="Timmy" method="fly_to"]
