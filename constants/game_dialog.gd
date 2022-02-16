@@ -151,7 +151,7 @@ func get_dialog(text_num):
 		DIALOG_TYPE.TIMMY_SHIP_NO:
 			return [
 				{animate2 = "sass"},
-				{name = "Timmy", text = "Okay, but I know you meant to say yes!"},
+				{name = "Timmy", text = "Ok, but I know you meant to say yes."},
 				{animate2 = "idle"},
 				{queue = DIALOG_TYPE.TIMMY_SHIP_2},
 			]
@@ -187,14 +187,14 @@ func get_dialog(text_num):
 				# Pan over to time vault sequence
 				{signal = "action3", delay=1},
 				{animate2 = "talk"}, # TODO: Float
-				{name = "Timmy", text = "What's that?"},
+				{name = "Timmy", text = "What's that big vault?"},
 				# Walk to Time Piece
 				{signal = "action4"},
 				{animate2 = "float", delay=1.5},
 				{signal = "action5", delay=.5},
 				{signal = "actionM", delay=.5},
 				{animate2 = "talk"},
-				{name = "Timmy", text = "Looks like some kinda big vault... what do ya keep in here, anyway?"},
+				{name = "Timmy", text = "Looks kinda important... what do ya keep in here, anyway?"},
 				{animate2 = "idle"},
 				{animate1 = "talk", delay=1},
 				{animate1 = "idle"},
