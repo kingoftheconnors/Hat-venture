@@ -115,7 +115,8 @@ func get_dialog(text_num):
 				# Bounce player back
 				{signal = "action7", delay=1},
 				{name = "SHIP", text = "All systems operational. Hello master!"},
-				{sound = sound_system.SFX.KNOCK},
+				{fadeout_music_fast = true, if_tag_false = "screen_seen_2"},
+				{sound = sound_system.SFX.KNOCK, if_tag_false = "screen_seen_2"},
 				{signal = "action8", delay=1},
 				# Move camera
 				{signal = "action2", delay=1, if_tag_false = "screen_seen_2"},
@@ -123,12 +124,13 @@ func get_dialog(text_num):
 				# Reset camera
 				{signal = "action6", delay=1, if_tag_false = "screen_seen_2"},
 				{signal = "action4", if_tag_false = "screen_seen_2", unskippable = true},
+				# Start looping knock sound
+				{signal = "action9", unskippable = true},
 				{settag = "screen_seen_2", value = true},
 			]
 		DIALOG_TYPE.TIMMY_SHIP:
 			return [
 				{signal = "actionN"},
-				{fadeout_music_fast = true, delay=.5},
 				{music = sound_system.MUSIC.TIMMY, delay=1.5},
 				{signal = "action1", delay=5.25},
 				{signal = "actionM", delay=.5},
