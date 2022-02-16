@@ -7,6 +7,6 @@ func show_palette_get(palette_name):
 	$AnimationTree['parameters/playback'].travel("enter")
 func show_storybook_get(num_pages : int):
 	$Dialog.text = "New Storybook Page Found"
-	$PaletteName.text = str(num_pages) + "/0"
-	$Dialog2.text = "There is no Gallery... YET"
+	$PaletteName.text = str(num_pages) + "/1"
+	$Dialog2.text = "Storybook coming in the full version!"
 	$AnimationTree['parameters/playback'].travel("enter")

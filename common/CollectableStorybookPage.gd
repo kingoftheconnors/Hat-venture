@@ -10,6 +10,7 @@ func _ready():
 
 func _on_Collectable_body_entered(body):
 	if body.is_in_group("player"):
+		SoundSystem.start_sound(SoundSystem.SFX.LIFE_GET)
 		Gui.unlock_storybook_page(get_num_pages())
 		SaveSystem.access_data().set_tag(storybook_page, true)
 		queue_free()
