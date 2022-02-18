@@ -1,6 +1,25 @@
 class_name Palettes
 extends TextureRect
 
+enum COLOR {
+	WORLD_WHITE = 0,
+	WORLD_LIGHT = 1,
+	WORLD_DARK = 2,
+	WORLD_BLACK = 3,
+	PLAYER_WHITE = 4,
+	PLAYER_LIGHT = 5,
+	PLAYER_DARK = 6,
+	PLAYER_BLACK = 7,
+	ENEMY_WHITE = 8,
+	ENEMY_LIGHT = 9,
+	ENEMY_DARK = 10,
+	ENEMY_BLACK = 11,
+	SCENERY_WHITE = 12,
+	SCENERY_LIGHT = 13,
+	SCENERY_DARK = 14,
+	SCENERY_BLACK = 15
+}
+
 var cur_palette : String = "Classic"
 var cur_palette_size = 4
 var cur_brightness : int = 0
@@ -10,68 +29,73 @@ func set_palette(palette_name : String):
 	cur_palette_size = palettes[cur_palette].size()
 	update_colors()
 
+onready var playerFilter = $PlayerFilter
+func is_player_colors_different() -> bool:
+	return cur_palette_size > 4
+func get_palette():
+	return palettes[cur_palette]
+
 func update_colors():
 	var spriteFilter = $SpriteFilter
-	var playerFilter = $PlayerFilter
 	var backgroundFilter = $BackgroundFilter
 	
 	var palette : Array = palettes[cur_palette]
-	material.set_shader_param("palette_white", palette[0] + Color(.1, .1, .1)*cur_brightness)
-	material.set_shader_param("palette_light", palette[1] + Color(.1, .1, .1)*cur_brightness)
-	material.set_shader_param("palette_dark", palette[2] + Color(.1, .1, .1)*cur_brightness)
-	material.set_shader_param("palette_black", palette[3] + Color(.1, .1, .1)*cur_brightness)
+	material.set_shader_param("palette_white", palette[COLOR.WORLD_WHITE] + Color(.1, .1, .1)*cur_brightness)
+	material.set_shader_param("palette_light", palette[COLOR.WORLD_LIGHT] + Color(.1, .1, .1)*cur_brightness)
+	material.set_shader_param("palette_dark", palette[COLOR.WORLD_DARK] + Color(.1, .1, .1)*cur_brightness)
+	material.set_shader_param("palette_black", palette[COLOR.WORLD_BLACK] + Color(.1, .1, .1)*cur_brightness)
 	if palette.size() > 12:
-		backgroundFilter.material.set_shader_param("palette_white", palette[4] + Color(.1, .1, .1)*cur_brightness)
-		backgroundFilter.material.set_shader_param("palette_light", palette[5] + Color(.1, .1, .1)*cur_brightness)
-		backgroundFilter.material.set_shader_param("palette_dark", palette[6] + Color(.1, .1, .1)*cur_brightness)
-		backgroundFilter.material.set_shader_param("palette_black", palette[7] + Color(.1, .1, .1)*cur_brightness)
-		spriteFilter.material.set_shader_param("palette_white", palette[8] + Color(.1, .1, .1)*cur_brightness)
-		spriteFilter.material.set_shader_param("palette_light", palette[9] + Color(.1, .1, .1)*cur_brightness)
-		spriteFilter.material.set_shader_param("palette_dark", palette[10] + Color(.1, .1, .1)*cur_brightness)
-		spriteFilter.material.set_shader_param("palette_black", palette[11] + Color(.1, .1, .1)*cur_brightness)
-		playerFilter.material.set_shader_param("palette_white", palette[12] + Color(.1, .1, .1)*cur_brightness)
-		playerFilter.material.set_shader_param("palette_light", palette[13] + Color(.1, .1, .1)*cur_brightness)
-		playerFilter.material.set_shader_param("palette_dark", palette[14] + Color(.1, .1, .1)*cur_brightness)
-		playerFilter.material.set_shader_param("palette_black", palette[15] + Color(.1, .1, .1)*cur_brightness)
+		playerFilter.material.set_shader_param("palette_white", palette[COLOR.PLAYER_WHITE] + Color(.1, .1, .1)*cur_brightness)
+		playerFilter.material.set_shader_param("palette_light", palette[COLOR.PLAYER_LIGHT] + Color(.1, .1, .1)*cur_brightness)
+		playerFilter.material.set_shader_param("palette_dark", palette[COLOR.PLAYER_DARK] + Color(.1, .1, .1)*cur_brightness)
+		playerFilter.material.set_shader_param("palette_black", palette[COLOR.PLAYER_BLACK] + Color(.1, .1, .1)*cur_brightness)
+		spriteFilter.material.set_shader_param("palette_white", palette[COLOR.ENEMY_WHITE] + Color(.1, .1, .1)*cur_brightness)
+		spriteFilter.material.set_shader_param("palette_light", palette[COLOR.ENEMY_LIGHT] + Color(.1, .1, .1)*cur_brightness)
+		spriteFilter.material.set_shader_param("palette_dark", palette[COLOR.ENEMY_DARK] + Color(.1, .1, .1)*cur_brightness)
+		spriteFilter.material.set_shader_param("palette_black", palette[COLOR.ENEMY_BLACK] + Color(.1, .1, .1)*cur_brightness)
+		backgroundFilter.material.set_shader_param("palette_white", palette[COLOR.SCENERY_WHITE] + Color(.1, .1, .1)*cur_brightness)
+		backgroundFilter.material.set_shader_param("palette_light", palette[COLOR.SCENERY_LIGHT] + Color(.1, .1, .1)*cur_brightness)
+		backgroundFilter.material.set_shader_param("palette_dark", palette[COLOR.SCENERY_DARK] + Color(.1, .1, .1)*cur_brightness)
+		backgroundFilter.material.set_shader_param("palette_black", palette[COLOR.SCENERY_BLACK] + Color(.1, .1, .1)*cur_brightness)
 	elif palette.size() > 8:
+		playerFilter.material.set_shader_param("palette_white", palette[COLOR.PLAYER_WHITE] + Color(.1, .1, .1)*cur_brightness)
+		playerFilter.material.set_shader_param("palette_light", palette[COLOR.PLAYER_LIGHT] + Color(.1, .1, .1)*cur_brightness)
+		playerFilter.material.set_shader_param("palette_dark", palette[COLOR.PLAYER_DARK] + Color(.1, .1, .1)*cur_brightness)
+		playerFilter.material.set_shader_param("palette_black", palette[COLOR.PLAYER_BLACK] + Color(.1, .1, .1)*cur_brightness)
+		spriteFilter.material.set_shader_param("palette_white", palette[COLOR.ENEMY_WHITE] + Color(.1, .1, .1)*cur_brightness)
+		spriteFilter.material.set_shader_param("palette_light", palette[COLOR.ENEMY_LIGHT] + Color(.1, .1, .1)*cur_brightness)
+		spriteFilter.material.set_shader_param("palette_dark", palette[COLOR.ENEMY_DARK] + Color(.1, .1, .1)*cur_brightness)
+		spriteFilter.material.set_shader_param("palette_black", palette[COLOR.ENEMY_BLACK] + Color(.1, .1, .1)*cur_brightness)
 		backgroundFilter.material.set_shader_param("palette_white", backgroundFilter.material.get_shader_param("game_white"))
 		backgroundFilter.material.set_shader_param("palette_light", backgroundFilter.material.get_shader_param("game_light"))
 		backgroundFilter.material.set_shader_param("palette_dark", backgroundFilter.material.get_shader_param("game_dark"))
 		backgroundFilter.material.set_shader_param("palette_black", backgroundFilter.material.get_shader_param("game_black"))
-		spriteFilter.material.set_shader_param("palette_white", palette[4] + Color(.1, .1, .1)*cur_brightness)
-		spriteFilter.material.set_shader_param("palette_light", palette[5] + Color(.1, .1, .1)*cur_brightness)
-		spriteFilter.material.set_shader_param("palette_dark", palette[6] + Color(.1, .1, .1)*cur_brightness)
-		spriteFilter.material.set_shader_param("palette_black", palette[7] + Color(.1, .1, .1)*cur_brightness)
-		playerFilter.material.set_shader_param("palette_white", palette[8] + Color(.1, .1, .1)*cur_brightness)
-		playerFilter.material.set_shader_param("palette_light", palette[9] + Color(.1, .1, .1)*cur_brightness)
-		playerFilter.material.set_shader_param("palette_dark", palette[10] + Color(.1, .1, .1)*cur_brightness)
-		playerFilter.material.set_shader_param("palette_black", palette[11] + Color(.1, .1, .1)*cur_brightness)
 	elif palette.size() > 4:
+		playerFilter.material.set_shader_param("palette_white", palette[COLOR.PLAYER_WHITE] + Color(.1, .1, .1)*cur_brightness)
+		playerFilter.material.set_shader_param("palette_light", palette[COLOR.PLAYER_LIGHT] + Color(.1, .1, .1)*cur_brightness)
+		playerFilter.material.set_shader_param("palette_dark", palette[COLOR.PLAYER_DARK] + Color(.1, .1, .1)*cur_brightness)
+		playerFilter.material.set_shader_param("palette_black", palette[COLOR.PLAYER_BLACK] + Color(.1, .1, .1)*cur_brightness)
+		spriteFilter.material.set_shader_param("palette_white", palette[COLOR.ENEMY_WHITE] + Color(.1, .1, .1)*cur_brightness)
+		spriteFilter.material.set_shader_param("palette_light", palette[COLOR.ENEMY_LIGHT] + Color(.1, .1, .1)*cur_brightness)
+		spriteFilter.material.set_shader_param("palette_dark", palette[COLOR.ENEMY_DARK] + Color(.1, .1, .1)*cur_brightness)
+		spriteFilter.material.set_shader_param("palette_black", palette[COLOR.ENEMY_BLACK] + Color(.1, .1, .1)*cur_brightness)
 		backgroundFilter.material.set_shader_param("palette_white", backgroundFilter.material.get_shader_param("game_white"))
 		backgroundFilter.material.set_shader_param("palette_light", backgroundFilter.material.get_shader_param("game_light"))
 		backgroundFilter.material.set_shader_param("palette_dark", backgroundFilter.material.get_shader_param("game_dark"))
 		backgroundFilter.material.set_shader_param("palette_black", backgroundFilter.material.get_shader_param("game_black"))
-		spriteFilter.material.set_shader_param("palette_white", palette[4] + Color(.1, .1, .1)*cur_brightness)
-		spriteFilter.material.set_shader_param("palette_light", palette[5] + Color(.1, .1, .1)*cur_brightness)
-		spriteFilter.material.set_shader_param("palette_dark", palette[6] + Color(.1, .1, .1)*cur_brightness)
-		spriteFilter.material.set_shader_param("palette_black", palette[7] + Color(.1, .1, .1)*cur_brightness)
-		playerFilter.material.set_shader_param("palette_white", palette[4] + Color(.1, .1, .1)*cur_brightness)
-		playerFilter.material.set_shader_param("palette_light", palette[5] + Color(.1, .1, .1)*cur_brightness)
-		playerFilter.material.set_shader_param("palette_dark", palette[6] + Color(.1, .1, .1)*cur_brightness)
-		playerFilter.material.set_shader_param("palette_black", palette[7] + Color(.1, .1, .1)*cur_brightness)
 	else:
-		backgroundFilter.material.set_shader_param("palette_white", backgroundFilter.material.get_shader_param("game_white"))
-		backgroundFilter.material.set_shader_param("palette_light", backgroundFilter.material.get_shader_param("game_light"))
-		backgroundFilter.material.set_shader_param("palette_dark", backgroundFilter.material.get_shader_param("game_dark"))
-		backgroundFilter.material.set_shader_param("palette_black", backgroundFilter.material.get_shader_param("game_black"))
-		spriteFilter.material.set_shader_param("palette_white", spriteFilter.material.get_shader_param("game_white"))
-		spriteFilter.material.set_shader_param("palette_light", spriteFilter.material.get_shader_param("game_light"))
-		spriteFilter.material.set_shader_param("palette_dark", spriteFilter.material.get_shader_param("game_dark"))
-		spriteFilter.material.set_shader_param("palette_black", spriteFilter.material.get_shader_param("game_black"))
 		playerFilter.material.set_shader_param("palette_white", playerFilter.material.get_shader_param("game_white"))
 		playerFilter.material.set_shader_param("palette_light", playerFilter.material.get_shader_param("game_light"))
 		playerFilter.material.set_shader_param("palette_dark", playerFilter.material.get_shader_param("game_dark"))
 		playerFilter.material.set_shader_param("palette_black", playerFilter.material.get_shader_param("game_black"))
+		spriteFilter.material.set_shader_param("palette_white", spriteFilter.material.get_shader_param("game_white"))
+		spriteFilter.material.set_shader_param("palette_light", spriteFilter.material.get_shader_param("game_light"))
+		spriteFilter.material.set_shader_param("palette_dark", spriteFilter.material.get_shader_param("game_dark"))
+		spriteFilter.material.set_shader_param("palette_black", spriteFilter.material.get_shader_param("game_black"))
+		backgroundFilter.material.set_shader_param("palette_white", backgroundFilter.material.get_shader_param("game_white"))
+		backgroundFilter.material.set_shader_param("palette_light", backgroundFilter.material.get_shader_param("game_light"))
+		backgroundFilter.material.set_shader_param("palette_dark", backgroundFilter.material.get_shader_param("game_dark"))
+		backgroundFilter.material.set_shader_param("palette_black", backgroundFilter.material.get_shader_param("game_black"))
 
 # Options-menu brightness. Controlled by slider
 func set_brightness(val : int):
@@ -176,38 +200,38 @@ const palettes = {
 		Color(30.0/255, 0, 0, 1)],
 	"New Venture": [
 		Color("#ffffff"), Color("#68dce3"), Color("#4aa8d9"), Color("#000000"),
-		Color("#ebf9ee"), Color("#76d69b"), Color("#30a169"), Color("#000000"),
+		Color("#FFFFFF"), Color("#F9B71A"), Color("#b76610"), Color("#3b237b"),
 		Color("#FFFFFF"), Color("#fd6868"), Color("#903737"), Color("#4c152d"),
-		Color("#FFFFFF"), Color("#F9B71A"), Color("#b76610"), Color("#3b237b")],
+		Color("#ebf9ee"), Color("#76d69b"), Color("#30a169"), Color("#000000")],
 	"Blueberry": [
 		# Sky
 		Color(235.0/255, 249.0/255, 243.0/255, 1),
 		Color(102.0/255, 209.0/255, 207.0/255, 1),
 		Color(54.0/255, 137.0/255, 181.0/255, 1),
 		Color(0.0/255, 0.0/255, 0.0/255, 1),
-		# Enemy
-		Color(255.0/255, 255.0/255, 255.0/255, 1),
-		Color(180.0/255, 104.0/255, 253.0/255, 1),
-		Color(105.0/255, 66.0/255, 174.0/255, 1),
-		Color(76.0/255, 26.0/255, 96.0/255, 1),
 		# Player
 		Color(255.0/255, 255.0/255, 255.0/255, 1),
 		Color(250.0/255, 194.0/255, 41.0/255, 1),
 		Color(172.0/255, 108.0/255, 154.0/255, 1),
-		Color(30.0/255, 54.0/255, 159.0/255, 1)],
+		Color(30.0/255, 54.0/255, 159.0/255, 1),
+		# Enemy
+		Color(255.0/255, 255.0/255, 255.0/255, 1),
+		Color(180.0/255, 104.0/255, 253.0/255, 1),
+		Color(105.0/255, 66.0/255, 174.0/255, 1),
+		Color(76.0/255, 26.0/255, 96.0/255, 1)],
 	"Forest": [
 		Color("#FFFFFF"),
 		Color("#bcd676"),
 		Color("#7ba130"),
 		Color("#000000"),
-		Color("#FFFFFF"),
-		Color("#68affd"),
-		Color("#304f7e"),
-		Color("#152b4c"),
 		Color("#eff2ee"),
 		Color("#8ad888"),
 		Color("#29ae37"),
-		Color("#1c6338")],
+		Color("#1c6338"),
+		Color("#FFFFFF"),
+		Color("#68affd"),
+		Color("#304f7e"),
+		Color("#152b4c")],
 	"Margin Night": [Color("#494d9c"), Color("#2c3249"), Color("#15181e"), Color("#000000")],
 	"Snatcher-Vision": [Color("#000000"), Color("#3e274f"), Color("#8346af"), Color("#d6a100")],
 }
