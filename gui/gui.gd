@@ -412,12 +412,18 @@ func get_screen_resolution() -> Vector2:
 ### Palette
 ### -------------------------------
 
+onready var paletteManager = $PaletteFilter
 func set_palette(palette_name):
-	$PaletteFilter.set_palette(palette_name)
+	paletteManager.set_palette(palette_name)
 func set_brightness(val):
-	$PaletteFilter.set_brightness(val)
+	paletteManager.set_brightness(val)
 func set_brightness_param(val):
-	$PaletteFilter.set_brightness_param(val)
+	paletteManager.set_brightness_param(val)
+func is_player_colors_different() -> bool:
+	return paletteManager.is_player_colors_different()
+func get_palette():
+	# Move palette_filter to bottom of scene list so it's OVER the menu
+	return paletteManager.get_palette()
 
 ### ------------------------------
 ### Parallax

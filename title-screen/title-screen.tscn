@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://title-screen/SpawnLevelPiece.gd" type="Script" id=1]
 [ext_resource path="res://world1/background1.tres" type="TileSet" id=2]
@@ -459,7 +459,7 @@ void fragment() {
 		COLOR = c;
 }"
 
-[sub_resource type="ShaderMaterial" id=10]
+[sub_resource type="ShaderMaterial" id=22]
 shader = SubResource( 9 )
 shader_param/game_white = Color( 1, 1, 1, 1 )
 shader_param/game_light = Color( 0.67451, 0.682353, 0.67451, 1 )
@@ -524,6 +524,19 @@ tracks/1/keys = {
 "update": 1,
 "values": [ 0 ]
 }
+
+[sub_resource type="ShaderMaterial" id=21]
+shader = SubResource( 9 )
+shader_param/game_white = Color( 1, 1, 1, 1 )
+shader_param/game_light = Color( 0.67451, 0.682353, 0.67451, 1 )
+shader_param/game_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
+shader_param/game_black = Color( 0, 0, 0, 1 )
+shader_param/palette_white = Color( 1, 1, 1, 1 )
+shader_param/palette_light = Color( 0.67451, 0.682353, 0.67451, 1 )
+shader_param/palette_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
+shader_param/palette_black = Color( 0, 0, 0, 1 )
+shader_param/brightness_level = 0
+shader_param/precision = 0.27
 
 [sub_resource type="AnimatedTexture" id=13]
 resource_local_to_scene = true
@@ -1152,7 +1165,7 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="Menu/Start/Mrgn/MarginContainer/VBox"]
-material = SubResource( 10 )
+material = SubResource( 22 )
 margin_right = 274.0
 margin_bottom = 54.0
 grow_horizontal = 2
@@ -1542,21 +1555,23 @@ __meta__ = {
 }
 
 [node name="TextureRect2" type="TextureRect" parent="Menu/Play/Mrgn/MarginContainer/VBox"]
-margin_right = 424.0
+material = SubResource( 21 )
+margin_right = 274.0
 margin_bottom = 54.0
 grow_horizontal = 2
 texture = ExtResource( 14 )
 stretch_mode = 4
+script = ExtResource( 20 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu/Play/Mrgn/MarginContainer/VBox"]
 margin_top = 69.0
-margin_right = 424.0
+margin_right = 274.0
 margin_bottom = 85.0
 alignment = 1
 
 [node name="PlayDemo" type="MarginContainer" parent="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer"]
-margin_left = 146.0
-margin_right = 278.0
+margin_left = 71.0
+margin_right = 203.0
 margin_bottom = 16.0
 size_flags_horizontal = 0
 custom_constants/margin_right = 16
@@ -1578,13 +1593,13 @@ script = ExtResource( 19 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Menu/Play/Mrgn/MarginContainer/VBox"]
 margin_top = 100.0
-margin_right = 424.0
+margin_right = 274.0
 margin_bottom = 116.0
 alignment = 1
 
 [node name="Options" type="MarginContainer" parent="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer2"]
-margin_left = 146.0
-margin_right = 278.0
+margin_left = 71.0
+margin_right = 203.0
 margin_bottom = 16.0
 size_flags_horizontal = 0
 custom_constants/margin_right = 16
@@ -1603,13 +1618,13 @@ text = "Options"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Menu/Play/Mrgn/MarginContainer/VBox"]
 margin_top = 131.0
-margin_right = 424.0
+margin_right = 274.0
 margin_bottom = 147.0
 alignment = 1
 
 [node name="Quit" type="MarginContainer" parent="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer3"]
-margin_left = 164.0
-margin_right = 260.0
+margin_left = 89.0
+margin_right = 185.0
 margin_bottom = 16.0
 size_flags_horizontal = 0
 custom_constants/margin_right = 16
@@ -1853,8 +1868,8 @@ script = ExtResource( 40 )
 direction = Vector2( -1, 0 )
 
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="VisibilityNotifier2D" method="_on_VisibilityNotifier2D_screen_entered"]
-[connection signal="close" from="Menu/PlayTextBox4" to="Menu/Start" method="open"]
 [connection signal="close" from="Menu/PlayTextBox4" to="Menu/PlayTextBox4/Timer" method="stop_timer"]
+[connection signal="close" from="Menu/PlayTextBox4" to="Menu/Start" method="open"]
 [connection signal="close_skipping" from="Menu/PlayTextBox4" to="Player" method="teleport_to" binds= [ "../SkipTarget" ]]
 [connection signal="open" from="Menu/PlayTextBox4" to="Menu/PlayTextBox4/Timer" method="start_timer"]
 [connection signal="timeout" from="Menu/PlayTextBox4/Timer" to="Menu/PlayTextBox4" method="close"]
