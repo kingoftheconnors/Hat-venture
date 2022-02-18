@@ -4099,7 +4099,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 1 ]
+"values": [ 2 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("ScaleChildren/PlayerCore:frame")
@@ -4112,6 +4112,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ScaleChildren/BedCovers:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=73]
@@ -4214,6 +4226,18 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ScaleChildren/BedCovers:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=75]
@@ -5805,6 +5829,12 @@ material = ExtResource( 49 )
 texture = ExtResource( 1 )
 hframes = 2
 script = ExtResource( 4 )
+
+[node name="BedCovers" type="Sprite" parent="ScaleChildren"]
+visible = false
+texture = ExtResource( 53 )
+hframes = 2
+frame = 1
 
 [node name="Hat" type="Sprite" parent="ScaleChildren"]
 visible = false
