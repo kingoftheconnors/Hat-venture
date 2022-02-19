@@ -29,7 +29,7 @@ func damage(isStomp):
 	if isStomp:
 		SoundSystem.start_sound(sound_system.SFX.STOMP)
 	else:
-		SoundSystem.start_sound(sound_system.SFX.EXPLOSION)
+		SoundSystem.start_sound(sound_system.SFX.ENEMY_BASH)
 	if !invincible:
 		enemy_hp -= 1
 		emit_signal("hurt")

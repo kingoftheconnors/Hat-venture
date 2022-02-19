@@ -463,6 +463,7 @@ func move_player(v):
 				if abs(collision.normal.x) > abs(collision.normal.y):
 					new_velo.x = -velo.x * .1
 					unblow_back()
+					core.damage(false, 2)
 					power.release_power()
 					animate("dive")
 					diving = true
@@ -544,6 +545,7 @@ func bash_bounce(body):
 					# No corner correction, bounce off
 					animator["parameters/PlayerMovement/playback"].start("end_bash")
 					call_deferred("bounce_back")
+					SoundSystem.start_sound(SoundSystem.SFX.BASH_OFF_WALL)
 					unbash()
 
 func bounce_back(towards_x = null):
@@ -832,6 +834,7 @@ func bash():
 		if !is_on_floor():
 			velo.y = 0; pause_gravity()
 		animator["parameters/PlayerMovement/playback"].travel("bash")
+		SoundSystem.start_sound(sound_system.SFX.DIVE)
 
 func upgrade_smash():
 	if bashing:
