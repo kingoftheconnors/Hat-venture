@@ -23,8 +23,8 @@ font_data = ExtResource( 5 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "FillEnergy"
-length = 0.75
-step = 0.05
+length = 0.95
+step = 0.15
 tracks/0/type = "value"
 tracks/0/path = NodePath("BossEnergy:value")
 tracks/0/interp = 1
@@ -32,10 +32,39 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.75 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 6.0 ]
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../../../../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.15, 0.3, 0.45, 0.6, 0.75, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_boss_health_get_sfx"
+}, {
+"args": [  ],
+"method": "play_boss_health_get_sfx"
+}, {
+"args": [  ],
+"method": "play_boss_health_get_sfx"
+}, {
+"args": [  ],
+"method": "play_boss_health_get_sfx"
+}, {
+"args": [  ],
+"method": "play_boss_health_get_sfx"
+}, {
+"args": [  ],
+"method": "play_boss_health_get_sfx"
+} ]
 }
 
 [sub_resource type="Shader" id=3]
@@ -549,7 +578,7 @@ custom_constants/line_separation = 5
 bbcode_enabled = true
 bbcode_text = "Are  you looking for your umbrella? I saw it land near the market area when you, you know..."
 visible_characters = 282
-text = "Are you looking for your umbrella? I saw it land near the market area when you, you know..."
+text = "Are  you looking for your umbrella? I saw it land near the market area when you, you know..."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -667,7 +696,7 @@ __meta__ = {
 
 [node name="GuiInfo" type="HBoxContainer" parent="Player/MContainer"]
 margin_top = 2.0
-margin_right = 640.0
+margin_right = 426.0
 margin_bottom = 26.0
 grow_horizontal = 0
 custom_constants/separation = 40
@@ -677,12 +706,12 @@ __meta__ = {
 }
 
 [node name="Main" type="VBoxContainer" parent="Player/MContainer/GuiInfo"]
-margin_left = 222.0
-margin_right = 346.0
+margin_left = 111.0
+margin_right = 243.0
 margin_bottom = 24.0
 
 [node name="HatKid" type="HBoxContainer" parent="Player/MContainer/GuiInfo/Main"]
-margin_right = 124.0
+margin_right = 132.0
 margin_bottom = 8.0
 
 [node name="EnergyText" type="Label" parent="Player/MContainer/GuiInfo/Main/HatKid"]
@@ -711,7 +740,6 @@ __meta__ = {
 }
 
 [node name="Score" type="HBoxContainer" parent="Player/MContainer/GuiInfo/Main"]
-visible = false
 margin_top = 12.0
 margin_right = 132.0
 margin_bottom = 20.0
@@ -755,6 +783,7 @@ __meta__ = {
 }
 
 [node name="Boss" type="HBoxContainer" parent="Player/MContainer/GuiInfo/Main"]
+visible = false
 margin_top = 12.0
 margin_right = 124.0
 margin_bottom = 20.0
@@ -777,7 +806,6 @@ margin_right = 124.0
 margin_bottom = 8.0
 rect_pivot_offset = Vector2( 0, 2 )
 max_value = 6.0
-value = 6.0
 texture_under = ExtResource( 6 )
 texture_progress = ExtResource( 7 )
 __meta__ = {
@@ -788,8 +816,8 @@ __meta__ = {
 anims/FillEnergy = SubResource( 2 )
 
 [node name="Pons" type="VBoxContainer" parent="Player/MContainer/GuiInfo"]
-margin_left = 386.0
-margin_right = 418.0
+margin_left = 283.0
+margin_right = 315.0
 margin_bottom = 24.0
 
 [node name="StageName" type="Label" parent="Player/MContainer/GuiInfo/Pons"]
