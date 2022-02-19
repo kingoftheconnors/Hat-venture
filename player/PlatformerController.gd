@@ -993,3 +993,8 @@ func resume_gravity():
 
 func dance_fx():
 	SoundSystem.start_music(sound_system.MUSIC.VICTORY)
+
+func crash_onto_ground():
+	SoundSystem.start_sound(sound_system.SFX.HURT)
+	emit_signal("crash_landed")
+	camera.shake_screen(4, 0.5)
