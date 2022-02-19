@@ -471,6 +471,7 @@ script = ExtResource( 15 )
 [node name="Collectable" parent="SkySecretNode/SecretNodeTiles" instance=ExtResource( 12 )]
 position = Vector2( 1767.54, -384.776 )
 palette_name = "VBoy"
+enter_from = 1
 
 [node name="Grass" type="TileMap" parent="SkySecretNode"]
 material = ExtResource( 19 )
