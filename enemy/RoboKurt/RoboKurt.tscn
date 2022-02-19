@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://gui/EnemyPalette.tres" type="Material" id=1]
 [ext_resource path="res://enemy/RoboKurt/RobokurtStateMachine.tres" type="AnimationNodeStateMachine" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Music/startSong.gd" type="Script" id=11]
 [ext_resource path="res://common/Resources/particle.png" type="Texture" id=12]
 [ext_resource path="res://common/Resources/particle2.png" type="Texture" id=13]
+[ext_resource path="res://gui/PlayerPalette.tres" type="Material" id=14]
 
 [sub_resource type="Animation" id=1]
 resource_name = "aaaa-empty"
@@ -1618,6 +1619,7 @@ sound = 19
 
 [node name="Blocks" type="CPUParticles2D" parent="EnemyCore"]
 show_behind_parent = true
+material = ExtResource( 14 )
 position = Vector2( -2, 31 )
 emitting = false
 amount = 12
