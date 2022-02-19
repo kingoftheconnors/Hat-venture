@@ -443,15 +443,15 @@ func reveal() -> float:
 	else:
 		cover_animator.play("reveal")
 		return .45
-func unlock_palette(palette_name):
+func unlock_palette(palette_name, enter_from : int):
 	$UnlockPaletteBox.visible = true
 	$UnlockPaletteBox.grab_focus()
-	$UnlockPaletteBox.show_palette_get(palette_name)
+	$UnlockPaletteBox.show_palette_get(palette_name, enter_from)
 	SaveSystem.access_data().unlock_palette(palette_name)
-func unlock_storybook_page(num_pages : int):
+func unlock_storybook_page(num_pages : int, enter_from : int):
 	$UnlockPaletteBox.visible = true
 	$UnlockPaletteBox.grab_focus()
-	$UnlockPaletteBox.show_storybook_get(num_pages)
+	$UnlockPaletteBox.show_storybook_get(num_pages, enter_from)
 
 
 onready var cover_animator = $CoverAnimator

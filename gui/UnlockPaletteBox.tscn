@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://gui/gui_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://gui/box.png" type="Texture" id=2]
@@ -7,8 +7,14 @@
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "enter"
 
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "enter_bottom"
+
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "exit"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "exit_bottom"
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "idle"
@@ -25,17 +31,34 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=7]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+switch_mode = 2
+auto_advance = true
+
 [sub_resource type="AnimationNodeStateMachine" id=8]
 states/enter/node = SubResource( 1 )
 states/enter/position = Vector2( 251, 83 )
+states/enter_bottom/node = SubResource( 13 )
+states/enter_bottom/position = Vector2( 251, 253.319 )
 states/exit/node = SubResource( 2 )
 states/exit/position = Vector2( 424, 83 )
+states/exit_bottom/node = SubResource( 14 )
+states/exit_bottom/position = Vector2( 424, 253.319 )
 states/idle/node = SubResource( 3 )
 states/idle/position = Vector2( 331, 177 )
-transitions = [ "enter", "exit", SubResource( 4 ), "exit", "enter", SubResource( 5 ), "exit", "idle", SubResource( 6 ), "idle", "enter", SubResource( 7 ) ]
+transitions = [ "enter", "exit", SubResource( 4 ), "exit", "enter", SubResource( 5 ), "exit", "idle", SubResource( 6 ), "idle", "enter", SubResource( 7 ), "idle", "enter_bottom", SubResource( 15 ), "exit_bottom", "enter_bottom", SubResource( 16 ), "enter_bottom", "exit_bottom", SubResource( 17 ), "exit_bottom", "idle", SubResource( 18 ) ]
 start_node = "idle"
+graph_offset = Vector2( 0, 93.6021 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
 
 [sub_resource type="Animation" id=10]
 resource_name = "enter"
@@ -53,6 +76,21 @@ tracks/0/keys = {
 "values": [ Vector2( 8, -90 ), Vector2( 8, 10 ) ]
 }
 
+[sub_resource type="Animation" id=20]
+length = 2.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 8, 296 ), Vector2( 8, 176 ) ]
+}
+
 [sub_resource type="Animation" id=11]
 resource_name = "exit"
 tracks/0/type = "value"
@@ -66,6 +104,21 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 8, 10 ), Vector2( 8, -90 ) ]
+}
+
+[sub_resource type="Animation" id=21]
+length = 2.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 8, 176 ), Vector2( 8, 296 ) ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -89,7 +142,7 @@ anchor_right = 1.0
 margin_left = 8.0
 margin_top = -90.0
 margin_right = -8.0
-margin_bottom = -42.0
+margin_bottom = -42.0001
 focus_mode = 2
 texture = ExtResource( 2 )
 patch_margin_left = 233
@@ -158,9 +211,11 @@ __meta__ = {
 tree_root = SubResource( 8 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 9 )
+parameters/playback = SubResource( 19 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/enter = SubResource( 10 )
+anims/enter_bottom = SubResource( 20 )
 anims/exit = SubResource( 11 )
+anims/exit_bottom = SubResource( 21 )
 anims/idle = SubResource( 12 )
