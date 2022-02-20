@@ -35,3 +35,7 @@ func _on_Area2D_body_exited(body):
 			print("ERROR: Start tween failed: FakeWalls - _on_Area2D_body_exited")
 
 onready var tween : Tween = $Tween
+
+
+func _on_Area2D_area_entered(area):
+	pass # Replace with function body.
