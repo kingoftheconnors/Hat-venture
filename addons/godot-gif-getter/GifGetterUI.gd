@@ -37,7 +37,7 @@ var _capture_thread: Thread = Thread.new()
 var _max_threads: int = 4
 
 # Rust gif creation library
-var _gif_handler: Reference = load("res://addons/godot-gif-getter/GifHandler.gdns").new()
+# var _gif_handler: Reference = load("res://addons/godot-gif-getter/GifHandler.gdns").new()
 
 var time_passed : float = 0.0
 func _physics_process(delta: float) -> void:
@@ -47,9 +47,9 @@ func _physics_process(delta: float) -> void:
 		if pics.size() > 5/FRAME_LENGTH:
 			pics.pop_front()
 		time_passed -= FRAME_LENGTH
-	if _should_capture:
-		if not _capture_thread.is_active():
-			_capture_thread.start(self, "_capture_frames")
+#	if _should_capture:
+#		if not _capture_thread.is_active():
+#			_capture_thread.start(self, "_capture_frames")
 
 func _unhandled_input(event):
 		if event is InputEventKey and event.pressed and event.scancode == KEY_F12:
@@ -86,16 +86,16 @@ func _rust_multi_thread() -> void:
 	var images_bytes: Array = []
 	for image in _images:
 		images_bytes.append(image.get_data())
-	_gif_handler.set_file_name(str(OS.get_unix_time()) + '.gif')
-	_gif_handler.set_frame_delay(_gif_frame_delay)
-	_gif_handler.set_parent(self)
-	_gif_handler.set_render_quality(_render_quality)
-	_gif_handler.write_frames(
-			images_bytes,
-			GIF_WIDTH,
-			GIF_HEIGHT,
-			_max_threads,
-			_max_frames)
+	#_gif_handler.set_file_name(str(OS.get_unix_time()) + '.gif')
+	#_gif_handler.set_frame_delay(_gif_frame_delay)
+	#_gif_handler.set_parent(self)
+	#_gif_handler.set_render_quality(_render_quality)
+	#_gif_handler.write_frames(
+	#		images_bytes,
+	#		GIF_WIDTH,
+	#		GIF_HEIGHT,
+	#		_max_threads,
+	#		_max_frames)
 
 func _capture_frames(_x) -> void:
 	"""
