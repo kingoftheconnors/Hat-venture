@@ -268,7 +268,6 @@ func move(delta):
 		elif wallslide_friction_rate < WALLSLIDE_FRICTION_END:
 			wallslide_friction_rate += WALLSLIDE_CHANGE_RATE * delta
 		velo.y *= wallslide_friction_rate
-		print(wallslide_friction_rate, " - ", delta)
 		animate("wallslide")
 		animator["parameters/PlayerMovement/conditions/wallsliding"] = true
 		animator["parameters/PlayerMovement/conditions/not_wallsliding"] = false
