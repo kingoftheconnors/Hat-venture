@@ -115,7 +115,8 @@ func get_dialog(text_num):
 				# Bounce player back
 				{signal = "action7", delay=1},
 				{name = "SHIP", text = "All systems operational. Hello master!"},
-				{sound = sound_system.SFX.KNOCK},
+				{fadeout_music_fast = true, if_tag_false = "screen_seen_2"},
+				{sound = sound_system.SFX.KNOCK, if_tag_false = "screen_seen_2"},
 				{signal = "action8", delay=1},
 				# Move camera
 				{signal = "action2", delay=1, if_tag_false = "screen_seen_2"},
@@ -123,12 +124,13 @@ func get_dialog(text_num):
 				# Reset camera
 				{signal = "action6", delay=1, if_tag_false = "screen_seen_2"},
 				{signal = "action4", if_tag_false = "screen_seen_2", unskippable = true},
+				# Start looping knock sound
+				{signal = "action9", unskippable = true},
 				{settag = "screen_seen_2", value = true},
 			]
 		DIALOG_TYPE.TIMMY_SHIP:
 			return [
 				{signal = "actionN"},
-				{fadeout_music_fast = true, delay=.5},
 				{music = sound_system.MUSIC.TIMMY, delay=1.5},
 				{signal = "action1", delay=5.25},
 				{signal = "actionM", delay=.5},
@@ -149,7 +151,7 @@ func get_dialog(text_num):
 		DIALOG_TYPE.TIMMY_SHIP_NO:
 			return [
 				{animate2 = "sass"},
-				{name = "Timmy", text = "Okay, but I know you meant to say yes!"},
+				{name = "Timmy", text = "Ok, but I know you meant to say yes."},
 				{animate2 = "idle"},
 				{queue = DIALOG_TYPE.TIMMY_SHIP_2},
 			]
@@ -185,14 +187,14 @@ func get_dialog(text_num):
 				# Pan over to time vault sequence
 				{signal = "action3", delay=1},
 				{animate2 = "talk"}, # TODO: Float
-				{name = "Timmy", text = "What's that?"},
+				{name = "Timmy", text = "What's that big vault?"},
 				# Walk to Time Piece
 				{signal = "action4"},
 				{animate2 = "float", delay=1.5},
 				{signal = "action5", delay=.5},
 				{signal = "actionM", delay=.5},
 				{animate2 = "talk"},
-				{name = "Timmy", text = "Looks like some kinda big vault... what do ya keep in here, anyway?"},
+				{name = "Timmy", text = "Looks kinda important... what do ya keep in here, anyway?"},
 				{animate2 = "idle"},
 				{animate1 = "talk", delay=1},
 				{animate1 = "idle"},
@@ -311,6 +313,7 @@ func get_dialog(text_num):
 				{name = ":T", text = "You’re a big fan of the noodle-y fellow, but you’ve never met someone like that before..."},
 				{name = ":D", text = "Regardless, there’s also a pon in here!", if_tag_false = "get_chest_pon"},
 				{addpon = 1},
+				{sound = sound_system.SFX.COLLECT},
 				{settag = "get_chest_pon", value = true},
 			]
 		DIALOG_TYPE.CHEST_NO:
