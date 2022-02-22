@@ -38,6 +38,7 @@ func ground_pound():
 	get_tree().call_group("camera", "shake_screen", SCREEN_SHAKE_INTENSITY, SCREEN_SHAKE_DURATION)
 func scream():
 	get_tree().call_group("camera", "shake_screen", SCREAM_SHAKE_INTENSITY, SCREAM_SHAKE_DURATION)
+	SoundSystem.start_sound(SoundSystem.SFX.ROBOHEN_SCREAM)
 
 var velo : Vector2 = Vector2.ZERO
 var falling : bool = false

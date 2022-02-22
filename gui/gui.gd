@@ -256,6 +256,9 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 				dialog.visible = false
 			text_crawl_func = delay(next_box['delay'])
 
+func play_boss_health_get_sfx():
+	SoundSystem.start_sound(SoundSystem.SFX.BOSS_LIFE_GET)
+
 func skip_cutscene():
 	text_crawl_func = null
 	if curbox != null and curbox.has('options'):

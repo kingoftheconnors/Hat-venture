@@ -22,6 +22,11 @@ enum SFX {
 	COLLECT_BASIC,
 	STOMP2,
 	STOMP3,
+	ENEMY_BASH,
+	BASH_OFF_WALL,
+	SMACK_WALL,
+	BOSS_LIFE_GET,
+	ROBOHEN_SCREAM,
 }
 
 enum MUSIC {
@@ -113,6 +118,8 @@ func start_sound(sfx : int, sound_var = 0):
 				sfx_player.stream = preload("res://Music/sfx/jump.wav")
 			SFX.LIFE_GET:
 				sfx_player.stream = preload("res://Music/sfx/Life_Get.wav")
+			SFX.BOSS_LIFE_GET:
+				sfx_player.stream = preload("res://Music/sfx/BossHealthIncrease.wav")
 			SFX.DIVE:
 				sfx_player.stream = preload("res://Music/sfx/dive.wav")
 			SFX.THROW:
@@ -158,6 +165,15 @@ func start_sound(sfx : int, sound_var = 0):
 				sfx_player.stream = preload("res://Music/sfx/knock.wav")
 			SFX.EXPLOSION:
 				sfx_player.stream = preload("res://Music/sfx/explosion.wav")
+			SFX.ENEMY_BASH:
+				sfx_player.stream = preload("res://Music/sfx/explosion.wav")
+				sfx_player.volume_db = -10
+			SFX.BASH_OFF_WALL:
+				sfx_player.stream = preload("res://Music/sfx/hitWall.wav")
+			SFX.SMACK_WALL:
+				sfx_player.stream = preload("res://Music/sfx/hitWallHurt.wav")
+			SFX.ROBOHEN_SCREAM:
+				sfx_player.stream = preload("res://Music/sfx/RobohenDeathScream.wav")
 		if cur_sound != sfx:
 			sfx_player.stop()
 		if sfx != SFX.NONE:

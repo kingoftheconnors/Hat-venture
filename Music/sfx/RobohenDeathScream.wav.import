@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/RobohenDeathScream.wav-42f0d8e2f5d5b022001cea129d0bd95a.sample"
+
+[deps]
+
+source_file="res://Music/sfx/RobohenDeathScream.wav"
+dest_files=[ "res://.import/RobohenDeathScream.wav-42f0d8e2f5d5b022001cea129d0bd95a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
