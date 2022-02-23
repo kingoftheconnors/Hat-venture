@@ -303,8 +303,10 @@ func crawl(text_box):
 				while time_passed < DIALOG_AUTOSCROLL_NEXTBOX_DELAY:
 					time_passed += yield()
 			else:
+				advanceButton.show()
 				while(!Input.is_action_just_pressed("ui_accept") and !Input.is_action_just_pressed("ui_B")):
 					yield()
+				advanceButton.hide()
 			cur_line += 2
 			dialogText.scroll_to_line(cur_line)
 		elif (!text_box.has("autoscroll") or !text_box.autoscroll) and (Input.is_action_just_pressed("ui_accept")):
@@ -343,8 +345,10 @@ func crawl(text_box):
 			while time_passed < DIALOG_AUTOSCROLL_NEXTBOX_DELAY:
 				time_passed += yield()
 		else:
+			advanceButton.show()
 			while(!Input.is_action_just_pressed("ui_accept") and !Input.is_action_just_pressed("ui_B")):
 				yield()
+			advanceButton.hide()
 	return
 
 func wait_for_method_true(object : Node, function_name : String, param):
@@ -378,6 +382,7 @@ onready var dialog = $DialogBox
 onready var dialogName = $DialogBox/Name
 onready var dialogText = $DialogBox/Dialog
 onready var dialogOptions = $DialogBox/DialogOptions
+onready var advanceButton = $DialogBox/AdvanceButton
 onready var textboxes = game_dialog.new()
 
 ### ------------------------------

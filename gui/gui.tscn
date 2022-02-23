@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://gui/UnlockPaletteBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://gui/white.png" type="Texture" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://gui/PaletteFilter.tscn" type="PackedScene" id=12]
 [ext_resource path="res://gui/DialogOptionController.gd" type="Script" id=13]
 [ext_resource path="res://gui/gui_font.tres" type="DynamicFont" id=14]
+[ext_resource path="res://gui/optionsmenu/hatventuretheme.tres" type="Theme" id=15]
+[ext_resource path="res://gui/AdvanceButton.gd" type="Script" id=16]
 [ext_resource path="res://gui/dialog.png" type="Texture" id=18]
 
 [sub_resource type="DynamicFont" id=1]
@@ -22,7 +24,35 @@ outline_size = 1
 font_data = ExtResource( 5 )
 
 [sub_resource type="Animation" id=2]
-resource_name = "FillEnergy"
+resource_name = "bounce"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:margin_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ -23.0, -27.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:margin_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ -6.99999, -10.0 ]
+}
+
+[sub_resource type="Animation" id=3]
 length = 0.95
 step = 0.15
 tracks/0/type = "value"
@@ -67,7 +97,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Shader" id=3]
+[sub_resource type="Shader" id=4]
 code = "shader_type canvas_item;
 
 // Which color you want to change
@@ -112,9 +142,9 @@ void fragment() {
 		COLOR.rgb = c;
 }"
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=5]
 resource_local_to_scene = true
-shader = SubResource( 3 )
+shader = SubResource( 4 )
 shader_param/game_white = Color( 1, 1, 1, 1 )
 shader_param/game_light = Color( 0.67451, 0.682353, 0.67451, 1 )
 shader_param/game_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
@@ -126,7 +156,7 @@ shader_param/palette_black = Color( 0, 0, 0, 1 )
 shader_param/brightness_level = 0
 shader_param/precision = 0.27
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Player/MContainer/GuiInfo/Main/HatKid/EnergyText:custom_fonts/font:size")
 tracks/0/interp = 1
@@ -224,7 +254,7 @@ tracks/7/keys = {
 "values": [ Vector2( 2, 2 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Player/MContainer/GuiInfo/Main/HatKid/EnergyText:custom_fonts/font:size")
 tracks/0/interp = 1
@@ -322,7 +352,7 @@ tracks/7/keys = {
 "values": [ Vector2( 1.5, 1.5 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Player/MContainer/GuiInfo/Main/HatKid/EnergyText:custom_fonts/font:size")
 tracks/0/interp = 1
@@ -420,7 +450,7 @@ tracks/7/keys = {
 "values": [ Vector2( 304, 48 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 length = 0.2
 tracks/0/type = "method"
 tracks/0/path = NodePath("PaletteFilter")
@@ -443,8 +473,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "cover (slow)"
+[sub_resource type="Animation" id=10]
 length = 0.8
 tracks/0/type = "method"
 tracks/0/path = NodePath("PaletteFilter")
@@ -467,8 +496,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "reveal"
+[sub_resource type="Animation" id=11]
 length = 0.2
 tracks/0/type = "method"
 tracks/0/path = NodePath("PaletteFilter")
@@ -491,8 +519,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=11]
-resource_name = "reveal (slow)"
+[sub_resource type="Animation" id=12]
 length = 0.8
 tracks/0/type = "method"
 tracks/0/path = NodePath("PaletteFilter")
@@ -541,6 +568,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -48.0
+theme = ExtResource( 15 )
 texture = ExtResource( 18 )
 patch_margin_left = 134
 patch_margin_top = 25
@@ -568,10 +596,12 @@ __meta__ = {
 [node name="Dialog" type="RichTextLabel" parent="DialogBox"]
 anchor_left = 0.05
 anchor_top = 0.354
-anchor_right = 0.975
-anchor_bottom = 0.865
+anchor_right = 1.0
+anchor_bottom = 0.833
+margin_left = -0.300001
 margin_top = 0.00799942
-margin_bottom = -1.52
+margin_right = -26.0
+margin_bottom = 0.0159988
 custom_fonts/normal_font = ExtResource( 14 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_constants/line_separation = 5
@@ -598,10 +628,9 @@ __meta__ = {
 }
 
 [node name="Option1" type="Label" parent="DialogBox/DialogOptions"]
-margin_left = 210.0
-margin_top = 1.0
-margin_right = 258.0
-margin_bottom = 9.0
+margin_left = 103.0
+margin_right = 151.0
+margin_bottom = 8.0
 focus_neighbour_right = NodePath("../Option2")
 focus_mode = 2
 custom_fonts/font = ExtResource( 14 )
@@ -633,16 +662,15 @@ __meta__ = {
 
 [node name="Panel" type="Panel" parent="DialogBox/DialogOptions"]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = 262.0
-margin_right = 362.0
-margin_bottom = 11.0
+margin_left = 155.0
+margin_right = 255.0
+margin_bottom = 8.0
 rect_min_size = Vector2( 100, 0 )
 
 [node name="Option2" type="Label" parent="DialogBox/DialogOptions"]
-margin_left = 366.0
-margin_top = 1.0
-margin_right = 430.0
-margin_bottom = 9.0
+margin_left = 259.0
+margin_right = 323.0
+margin_bottom = 8.0
 focus_neighbour_left = NodePath("../Option1")
 focus_mode = 2
 custom_fonts/font = ExtResource( 14 )
@@ -672,9 +700,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AdvanceButton" type="Button" parent="DialogBox"]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -23.0
+margin_top = -23.0
+margin_right = -7.0
+margin_bottom = -6.99999
+text = "Z"
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DialogBox/AdvanceButton"]
+anims/bounce = SubResource( 2 )
+
 [node name="UnlockPaletteBox" parent="." instance=ExtResource( 1 )]
 
 [node name="Player" type="TextureRect" parent="."]
+visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -813,7 +861,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/MContainer/GuiInfo/Main/Boss"]
-anims/FillEnergy = SubResource( 2 )
+anims/FillEnergy = SubResource( 3 )
 
 [node name="Pons" type="VBoxContainer" parent="Player/MContainer/GuiInfo"]
 margin_left = 283.0
@@ -864,18 +912,18 @@ __meta__ = {
 }
 
 [node name="PaletteFilter" parent="." instance=ExtResource( 12 )]
-material = SubResource( 4 )
+material = SubResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/large = SubResource( 5 )
-anims/medium = SubResource( 6 )
-anims/regular = SubResource( 7 )
+anims/large = SubResource( 6 )
+anims/medium = SubResource( 7 )
+anims/regular = SubResource( 8 )
 
 [node name="CoverAnimator" type="AnimationPlayer" parent="."]
-anims/cover = SubResource( 8 )
-"anims/cover (slow)" = SubResource( 9 )
-anims/reveal = SubResource( 10 )
-"anims/reveal (slow)" = SubResource( 11 )
+anims/cover = SubResource( 9 )
+"anims/cover (slow)" = SubResource( 10 )
+anims/reveal = SubResource( 11 )
+"anims/reveal (slow)" = SubResource( 12 )
 
 [connection signal="focus_entered" from="DialogBox/DialogOptions/Option1" to="DialogBox/DialogOptions/Option1" method="_on_focus_entered"]
 [connection signal="focus_exited" from="DialogBox/DialogOptions/Option1" to="DialogBox/DialogOptions/Option1" method="_on_focus_exited"]
