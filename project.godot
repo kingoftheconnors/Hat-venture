@@ -237,6 +237,7 @@ SoundSystem="*res://constants/SoundSystem.tscn"
 ggsManager="*res://addons/GGS/src/ggs_manager.gd"
 SaveSystem="*res://constants/SaveSystem.gd"
 IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resolution_handler.gd"
+SettingsUtils="*res://constants/SettingsUtils.gd"
 
 [debug]
 

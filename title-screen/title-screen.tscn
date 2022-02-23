@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://title-screen/SpawnLevelPiece.gd" type="Script" id=1]
 [ext_resource path="res://world1/background1.tres" type="TileSet" id=2]
@@ -459,7 +459,7 @@ void fragment() {
 		COLOR = c;
 }"
 
-[sub_resource type="ShaderMaterial" id=22]
+[sub_resource type="ShaderMaterial" id=10]
 shader = SubResource( 9 )
 shader_param/game_white = Color( 1, 1, 1, 1 )
 shader_param/game_light = Color( 0.67451, 0.682353, 0.67451, 1 )
@@ -472,7 +472,17 @@ shader_param/palette_black = Color( 0, 0, 0, 1 )
 shader_param/brightness_level = 3
 shader_param/precision = 0.27
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="GDScript" id=11]
+script/source = "extends Button
+
+export(String) var template_text = \"Press {jump}\"
+
+# Called when the node enters the scene tree for the first time.
+func update_string():
+	text = SettingsUtils.get_parsed_string(template_text)
+"
+
+[sub_resource type="Animation" id=12]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Mrgn/MarginContainer/VBox/HBoxContainer/Yes/Close:visible")
 tracks/0/interp = 1
@@ -498,7 +508,7 @@ tracks/1/keys = {
 "values": [ 3, 2, 1, 0 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=13]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Mrgn/MarginContainer/VBox/HBoxContainer/Yes/Close:visible")
@@ -525,7 +535,7 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="ShaderMaterial" id=21]
+[sub_resource type="ShaderMaterial" id=14]
 shader = SubResource( 9 )
 shader_param/game_white = Color( 1, 1, 1, 1 )
 shader_param/game_light = Color( 0.67451, 0.682353, 0.67451, 1 )
@@ -537,78 +547,6 @@ shader_param/palette_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
 shader_param/palette_black = Color( 0, 0, 0, 1 )
 shader_param/brightness_level = 0
 shader_param/precision = 0.27
-
-[sub_resource type="AnimatedTexture" id=13]
-resource_local_to_scene = true
-frames = 16
-pause = true
-frame_0/texture = ExtResource( 43 )
-frame_1/texture = ExtResource( 26 )
-frame_1/delay_sec = 0.0
-frame_2/texture = ExtResource( 35 )
-frame_2/delay_sec = 0.0
-frame_3/texture = ExtResource( 30 )
-frame_3/delay_sec = 0.0
-frame_4/texture = ExtResource( 31 )
-frame_4/delay_sec = 0.0
-frame_5/texture = ExtResource( 27 )
-frame_5/delay_sec = 0.0
-frame_6/texture = ExtResource( 33 )
-frame_6/delay_sec = 0.0
-frame_7/texture = ExtResource( 32 )
-frame_7/delay_sec = 0.0
-frame_8/texture = ExtResource( 29 )
-frame_8/delay_sec = 0.0
-frame_9/texture = ExtResource( 34 )
-frame_9/delay_sec = 0.0
-frame_10/texture = ExtResource( 28 )
-frame_10/delay_sec = 0.0
-frame_11/texture = ExtResource( 25 )
-frame_11/delay_sec = 0.0
-frame_12/texture = ExtResource( 21 )
-frame_12/delay_sec = 0.0
-frame_13/texture = ExtResource( 24 )
-frame_13/delay_sec = 0.0
-frame_14/texture = ExtResource( 23 )
-frame_14/delay_sec = 0.0
-frame_15/texture = ExtResource( 22 )
-frame_15/delay_sec = 0.0
-
-[sub_resource type="AnimatedTexture" id=14]
-resource_local_to_scene = true
-frames = 16
-pause = true
-frame_0/texture = ExtResource( 43 )
-frame_1/texture = ExtResource( 26 )
-frame_1/delay_sec = 0.0
-frame_2/texture = ExtResource( 35 )
-frame_2/delay_sec = 0.0
-frame_3/texture = ExtResource( 30 )
-frame_3/delay_sec = 0.0
-frame_4/texture = ExtResource( 31 )
-frame_4/delay_sec = 0.0
-frame_5/texture = ExtResource( 27 )
-frame_5/delay_sec = 0.0
-frame_6/texture = ExtResource( 33 )
-frame_6/delay_sec = 0.0
-frame_7/texture = ExtResource( 32 )
-frame_7/delay_sec = 0.0
-frame_8/texture = ExtResource( 29 )
-frame_8/delay_sec = 0.0
-frame_9/texture = ExtResource( 34 )
-frame_9/delay_sec = 0.0
-frame_10/texture = ExtResource( 28 )
-frame_10/delay_sec = 0.0
-frame_11/texture = ExtResource( 25 )
-frame_11/delay_sec = 0.0
-frame_12/texture = ExtResource( 21 )
-frame_12/delay_sec = 0.0
-frame_13/texture = ExtResource( 24 )
-frame_13/delay_sec = 0.0
-frame_14/texture = ExtResource( 23 )
-frame_14/delay_sec = 0.0
-frame_15/texture = ExtResource( 22 )
-frame_15/delay_sec = 0.0
 
 [sub_resource type="AnimatedTexture" id=15]
 resource_local_to_scene = true
@@ -825,6 +763,88 @@ frame_14/texture = ExtResource( 23 )
 frame_14/delay_sec = 0.0
 frame_15/texture = ExtResource( 22 )
 frame_15/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=21]
+resource_local_to_scene = true
+frames = 16
+pause = true
+frame_0/texture = ExtResource( 43 )
+frame_1/texture = ExtResource( 26 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 35 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 30 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 31 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 27 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 33 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 32 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 29 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 34 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 28 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 25 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 21 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 24 )
+frame_13/delay_sec = 0.0
+frame_14/texture = ExtResource( 23 )
+frame_14/delay_sec = 0.0
+frame_15/texture = ExtResource( 22 )
+frame_15/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=22]
+resource_local_to_scene = true
+frames = 16
+pause = true
+frame_0/texture = ExtResource( 43 )
+frame_1/texture = ExtResource( 26 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 35 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 30 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 31 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 27 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 33 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 32 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 29 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 34 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 28 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 25 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 21 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 24 )
+frame_13/delay_sec = 0.0
+frame_14/texture = ExtResource( 23 )
+frame_14/delay_sec = 0.0
+frame_15/texture = ExtResource( 22 )
+frame_15/delay_sec = 0.0
+
+[sub_resource type="GDScript" id=23]
+script/source = "extends Label
+
+export(String) var template_text = \"Press {jump}\"
+
+# Called when the node enters the scene tree for the first time.
+func update_string():
+	text = SettingsUtils.get_parsed_string(template_text)
+"
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 3 )
@@ -1165,7 +1185,7 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="Menu/Start/Mrgn/MarginContainer/VBox"]
-material = SubResource( 22 )
+material = SubResource( 10 )
 margin_right = 274.0
 margin_bottom = 54.0
 grow_horizontal = 2
@@ -1197,10 +1217,11 @@ margin_bottom = 16.0
 rect_min_size = Vector2( 48, 0 )
 size_flags_horizontal = 0
 text = "Press Z"
+script = SubResource( 11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Menu/Start"]
-anims/fade_in = SubResource( 11 )
-anims/fade_in_instant = SubResource( 12 )
+anims/fade_in = SubResource( 12 )
+anims/fade_in_instant = SubResource( 13 )
 
 [node name="PlayTextBox1" type="Control" parent="Menu"]
 visible = false
@@ -1259,7 +1280,7 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="Menu/PlayTextBox1/Mrgn/MarginContainer/VBox"]
-margin_right = 424.0
+margin_right = 274.0
 margin_bottom = 52.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1277,13 +1298,13 @@ __meta__ = {
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Menu/PlayTextBox1/Mrgn/MarginContainer/VBox"]
 margin_top = 67.0
-margin_right = 424.0
+margin_right = 274.0
 margin_bottom = 83.0
 alignment = 1
 
 [node name="Continue" type="MarginContainer" parent="Menu/PlayTextBox1/Mrgn/MarginContainer/VBox/HBoxContainer2"]
-margin_left = 160.0
-margin_right = 264.0
+margin_left = 85.0
+margin_right = 189.0
 margin_bottom = 16.0
 size_flags_horizontal = 0
 custom_constants/margin_right = 16
@@ -1357,7 +1378,7 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="Menu/PlayTextBox2/Mrgn/MarginContainer/VBox"]
-margin_right = 424.0
+margin_right = 274.0
 margin_bottom = 74.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1377,13 +1398,13 @@ __meta__ = {
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Menu/PlayTextBox2/Mrgn/MarginContainer/VBox"]
 margin_top = 89.0
-margin_right = 424.0
+margin_right = 274.0
 margin_bottom = 105.0
 alignment = 1
 
 [node name="Continue" type="MarginContainer" parent="Menu/PlayTextBox2/Mrgn/MarginContainer/VBox/HBoxContainer2"]
-margin_left = 160.0
-margin_right = 264.0
+margin_left = 85.0
+margin_right = 189.0
 margin_bottom = 16.0
 size_flags_horizontal = 0
 custom_constants/margin_right = 16
@@ -1457,7 +1478,7 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="Menu/PlayTextBox3/Mrgn/MarginContainer/VBox"]
-margin_right = 424.0
+margin_right = 274.0
 margin_bottom = 52.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1475,13 +1496,13 @@ __meta__ = {
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Menu/PlayTextBox3/Mrgn/MarginContainer/VBox"]
 margin_top = 67.0
-margin_right = 424.0
+margin_right = 274.0
 margin_bottom = 83.0
 alignment = 1
 
 [node name="Continue" type="MarginContainer" parent="Menu/PlayTextBox3/Mrgn/MarginContainer/VBox/HBoxContainer2"]
-margin_left = 160.0
-margin_right = 264.0
+margin_left = 85.0
+margin_right = 189.0
 margin_bottom = 16.0
 size_flags_horizontal = 0
 custom_constants/margin_right = 16
@@ -1555,7 +1576,7 @@ __meta__ = {
 }
 
 [node name="TextureRect2" type="TextureRect" parent="Menu/Play/Mrgn/MarginContainer/VBox"]
-material = SubResource( 21 )
+material = SubResource( 14 )
 margin_right = 274.0
 margin_bottom = 54.0
 grow_horizontal = 2
@@ -1668,28 +1689,28 @@ margin_left = 32.0
 margin_right = 56.0
 
 [node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/MoveRight" index="2"]
-icon = SubResource( 13 )
-
-[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/MoveLeft" index="2"]
-icon = SubResource( 14 )
-
-[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Move Up" index="2"]
 icon = SubResource( 15 )
 
-[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Move Down" index="2"]
+[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/MoveLeft" index="2"]
 icon = SubResource( 16 )
 
-[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Jump" index="2"]
+[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Move Up" index="2"]
 icon = SubResource( 17 )
 
-[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Action" index="2"]
+[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Move Down" index="2"]
 icon = SubResource( 18 )
 
-[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Release" index="2"]
+[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Jump" index="2"]
 icon = SubResource( 19 )
 
-[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Menu" index="2"]
+[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Action" index="2"]
 icon = SubResource( 20 )
+
+[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Release" index="2"]
+icon = SubResource( 21 )
+
+[node name="Gamepad" parent="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Controls/Controls/Menu" index="2"]
+icon = SubResource( 22 )
 
 [node name="ColorSchemes" type="Control" parent="Menu"]
 visible = false
@@ -1750,7 +1771,7 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox"]
-margin_right = 424.0
+margin_right = 274.0
 margin_bottom = 52.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1768,7 +1789,7 @@ __meta__ = {
 
 [node name="Title2" type="Label" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox"]
 margin_top = 67.0
-margin_right = 424.0
+margin_right = 274.0
 margin_bottom = 86.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1783,13 +1804,13 @@ __meta__ = {
 
 [node name="Palette" type="HBoxContainer" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox"]
 margin_top = 101.0
-margin_right = 424.0
+margin_right = 274.0
 margin_bottom = 125.0
 alignment = 1
 
 [node name="PaletteList" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette" instance=ExtResource( 15 )]
-margin_left = 184.0
-margin_right = 240.0
+margin_left = 109.0
+margin_right = 165.0
 focus_neighbour_bottom = NodePath("../../HBoxContainer2/Continue/Play")
 focus_mode = 2
 setting_index = 19
@@ -1814,7 +1835,7 @@ script = ExtResource( 17 )
 
 [node name="Title3" type="Label" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox"]
 margin_top = 140.0
-margin_right = 424.0
+margin_right = 274.0
 margin_bottom = 148.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1822,9 +1843,11 @@ text = "Press Z to continue"
 align = 1
 valign = 1
 uppercase = true
+script = SubResource( 23 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+template_text = "Press {jump} to continue"
 
 [node name="LevelTiles" type="TileMap" parent="."]
 material = ExtResource( 36 )
@@ -1874,6 +1897,7 @@ direction = Vector2( -1, 0 )
 [connection signal="open" from="Menu/PlayTextBox4" to="Menu/PlayTextBox4/Timer" method="start_timer"]
 [connection signal="timeout" from="Menu/PlayTextBox4/Timer" to="Menu/PlayTextBox4" method="close"]
 [connection signal="close" from="Menu/Start" to="Menu/PlayTextBox1" method="open"]
+[connection signal="open" from="Menu/Start" to="Menu/Start/Mrgn/MarginContainer/VBox/HBoxContainer/Yes/Close" method="update_string"]
 [connection signal="pressed" from="Menu/Start/Mrgn/MarginContainer/VBox/HBoxContainer/Yes/Close" to="Menu/Start" method="close"]
 [connection signal="close" from="Menu/PlayTextBox1" to="Menu/PlayTextBox2" method="open"]
 [connection signal="pressed" from="Menu/PlayTextBox1/Mrgn/MarginContainer/VBox/HBoxContainer2/Continue/Close" to="Menu/PlayTextBox1" method="close"]
@@ -1885,12 +1909,13 @@ direction = Vector2( -1, 0 )
 [connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo" to="Menu/Play" method="close"]
 [connection signal="checked" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo/PalettesChecked" to="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList/GameStarter" method="start_game"]
 [connection signal="notchecked" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo/PalettesChecked" to="Menu/ColorSchemes" method="open"]
-[connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer2/Options/Options" to="Menu/Settings" method="open"]
 [connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer2/Options/Options" to="Menu/Play" method="close"]
+[connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer2/Options/Options" to="Menu/Settings" method="open"]
 [connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer3/Quit/Quit" to="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer3/Quit/Quit" method="_on_Quit_pressed"]
 [connection signal="close" from="Menu/Settings" to="Menu/Play" method="open"]
 [connection signal="pressed" from="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/Palette/PaletteList/PrevBtn" to="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo/PalettesChecked" method="mark_checked"]
 [connection signal="pressed" from="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/Palette/PaletteList/NextBtn" to="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo/PalettesChecked" method="mark_checked"]
+[connection signal="open" from="Menu/ColorSchemes" to="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Title3" method="update_string"]
 [connection signal="pressed" from="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList" to="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList/GameStarter" method="start_game"]
 [connection signal="pressed" from="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList" to="Menu/ColorSchemes" method="close"]
 
