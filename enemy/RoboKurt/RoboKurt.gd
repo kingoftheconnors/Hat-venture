@@ -9,6 +9,7 @@ extends "res://enemy/Scripts/EnemyController.gd"
 
 var idle_count : int = 0
 const MAX_HEALTH = 6
+const HEALTH_TO_PHASE_2 = 3
 const ATTACK_THRESHOLD = 2
 const SCREEN_SHAKE_INTENSITY = 4
 const SCREEN_SHAKE_DURATION = 1.0
@@ -67,6 +68,9 @@ func _physics_process(delta):
 
 func damage(isStomp):
 	var killed = .damage(isStomp)
+	if $EnemyCore.enemy_hp == 3:
+		animator.set_condition("phase_1", false)
+		animator.set_condition("phase_2", true)
 	if Constants.PHOTOSENSITIVE_MODE:
 		animator.set_parameter("hurt/IsFlashing/add_amount", 0)
 	else:
