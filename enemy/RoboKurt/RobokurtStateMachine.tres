@@ -18,7 +18,7 @@ start_node = "die_freeze"
 graph_offset = Vector2( 0, -50.75 )
 
 [sub_resource type="AnimationNodeBlendTree" id=6]
-graph_offset = Vector2( 0, 150.436 )
+graph_offset = Vector2( 0, 201.186 )
 nodes/Add2/node = SubResource( 2 )
 nodes/Add2/position = Vector2( 394, 135.75 )
 nodes/Kabooming/node = SubResource( 3 )
@@ -77,6 +77,7 @@ advance_condition = "fall_complete"
 [sub_resource type="AnimationNodeStateMachineTransition" id=13]
 switch_mode = 2
 advance_condition = "phase_1"
+priority = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=14]
 advance_condition = "hurt"
@@ -87,6 +88,7 @@ advance_condition = "hurt"
 [sub_resource type="AnimationNodeStateMachineTransition" id=16]
 switch_mode = 2
 auto_advance = true
+priority = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=17]
 advance_condition = "hurt"
@@ -94,10 +96,12 @@ advance_condition = "hurt"
 [sub_resource type="AnimationNodeStateMachineTransition" id=57]
 switch_mode = 2
 advance_condition = "phase_2"
+priority = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=58]
 switch_mode = 2
 auto_advance = true
+priority = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=59]
 advance_condition = "hurt"
@@ -112,16 +116,16 @@ states/hurt_bounce/position = Vector2( 261.604, 178 )
 states/hurt_jump/node = SubResource( 11 )
 states/hurt_jump/position = Vector2( 294.505, 325 )
 states/hurt_smash/node = SubResource( 56 )
-states/hurt_smash/position = Vector2( 373.842, 285 )
+states/hurt_smash/position = Vector2( 433.842, 269 )
 transitions = [ "hurt", "hurt_bounce", SubResource( 12 ), "hurt_bounce", "hurt_jump", SubResource( 13 ), "hurt_bounce", "hurt", SubResource( 14 ), "hurt_jump", "hurt", SubResource( 15 ), "hurt_jump", "hopping", SubResource( 16 ), "hopping", "hurt", SubResource( 17 ), "hurt_bounce", "hurt_smash", SubResource( 57 ), "hurt_smash", "hopping", SubResource( 58 ), "hurt_smash", "hurt", SubResource( 59 ) ]
 start_node = "hurt"
 end_node = "hopping"
-graph_offset = Vector2( -99.1578, 122.628 )
+graph_offset = Vector2( -99.1578, 146.314 )
 
 [sub_resource type="AnimationNodeAdd2" id=19]
 
 [sub_resource type="AnimationNodeBlendTree" id=20]
-graph_offset = Vector2( -166.574, 137.66 )
+graph_offset = Vector2( -166.574, 146.465 )
 nodes/Flash/node = SubResource( 7 )
 nodes/Flash/position = Vector2( -40, 280 )
 nodes/HurtState/node = SubResource( 18 )
@@ -269,4 +273,4 @@ states/turn_on/node = SubResource( 36 )
 states/turn_on/position = Vector2( 223, -87 )
 transitions = [ "setup", "turn_on", SubResource( 37 ), "idle", "hurt", SubResource( 38 ), "turn_on", "activate_hitboxes", SubResource( 39 ), "activate_hitboxes", "idle", SubResource( 40 ), "idle", "pound", SubResource( 41 ), "pound", "hurt", SubResource( 42 ), "pound", "idle", SubResource( 43 ), "idle", "jump", SubResource( 44 ), "jump", "idle", SubResource( 45 ), "jump", "hurt", SubResource( 46 ), "hurt", "smash", SubResource( 47 ), "hurt", "die", SubResource( 48 ), "smash", "die", SubResource( 49 ), "hurt", "idle", SubResource( 50 ) ]
 start_node = "setup"
-graph_offset = Vector2( -272.607, 104.264 )
+graph_offset = Vector2( -272.607, 63.1394 )
