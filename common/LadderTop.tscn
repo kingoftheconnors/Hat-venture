@@ -26,9 +26,9 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 material = ExtResource( 4 )
 texture = ExtResource( 1 )
-hframes = 8
+hframes = 11
 vframes = 6
-frame = 36
+frame = 48
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
