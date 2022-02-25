@@ -140,11 +140,8 @@ func unpause_game():
 	PlayerGameManager.unpause()
 func set_brightness(val : int):
 	Gui.set_brightness_param(val)
-func create_time_piece():
-	var timepiece = preload("res://items/Resources/TimePiece.tscn").instance()
-	timepiece.position = position + Vector2($HatchPos.position.x * $EnemyCore.scale.x, $HatchPos.position.y)
-	get_parent().add_child(timepiece)
-	timepiece.fly_to(get_node(timepiece_goal))
+func explosion_complete():
+	emit_signal("exploded")
 
 var is_left_side : bool = false
 onready var left = get_node(left_side)
@@ -165,3 +162,4 @@ func _ready():
 signal ground_pound
 signal hurt
 signal dead
+signal exploded

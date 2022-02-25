@@ -197,7 +197,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=4]
 resource_name = "die_freeze"
-length = 10.9
+length = 13.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -205,7 +205,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4.1, 4.5, 4.9, 5.3, 5.7, 6, 6.4, 6.8, 7.2, 7.6, 7.8, 10.6 ),
+"times": PoolRealArray( 0, 4.1, 4.5, 4.9, 5.3, 5.7, 5.9, 6, 6.4, 6.8, 7.2, 7.6, 12.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -226,6 +226,9 @@ tracks/0/keys = {
 "args": [ 9 ],
 "method": "set_brightness"
 }, {
+"args": [  ],
+"method": "explosion_complete"
+}, {
 "args": [ 4 ],
 "method": "set_brightness"
 }, {
@@ -240,9 +243,6 @@ tracks/0/keys = {
 }, {
 "args": [ 0 ],
 "method": "set_brightness"
-}, {
-"args": [  ],
-"method": "create_time_piece"
 }, {
 "args": [  ],
 "method": "unpause_game"
@@ -363,7 +363,7 @@ tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"times": PoolRealArray( 0, 10.6 ),
+"times": PoolRealArray( 0, 7.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 5, 0 ]
@@ -1588,45 +1588,45 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=25]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=35]
-
 [sub_resource type="AnimationNodeStateMachinePlayback" id=26]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=27]
 
-[sub_resource type="CanvasItemMaterial" id=28]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=28]
+
+[sub_resource type="CanvasItemMaterial" id=29]
 particles_animation = true
 particles_anim_h_frames = 5
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="CanvasItemMaterial" id=29]
+[sub_resource type="CanvasItemMaterial" id=30]
 particles_animation = true
 particles_anim_h_frames = 3
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="AnimatedTexture" id=30]
+[sub_resource type="AnimatedTexture" id=31]
 frames = 2
 fps = 8.0
 frame_0/texture = ExtResource( 12 )
 frame_1/texture = ExtResource( 13 )
 frame_1/delay_sec = 0.0
 
-[sub_resource type="Curve" id=31]
+[sub_resource type="Curve" id=32]
 min_value = -360.0
 max_value = 360.0
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CapsuleShape2D" id=32]
+[sub_resource type="CapsuleShape2D" id=33]
 radius = 5.0
 height = 34.0
 
-[sub_resource type="CapsuleShape2D" id=33]
+[sub_resource type="CapsuleShape2D" id=34]
 radius = 18.0
 height = 6.0
 
-[sub_resource type="CapsuleShape2D" id=34]
+[sub_resource type="CapsuleShape2D" id=35]
 radius = 18.0
 height = 3.99999
 
@@ -1691,14 +1691,14 @@ parameters/hurt/HurtState/conditions/fall_complete = false
 parameters/hurt/HurtState/conditions/hurt = false
 parameters/hurt/HurtState/conditions/phase_1 = true
 parameters/hurt/HurtState/conditions/phase_2 = false
-parameters/hurt/HurtState/hurt_smash/playback = SubResource( 35 )
+parameters/hurt/HurtState/hurt_smash/playback = SubResource( 26 )
 parameters/hurt/IsFlashing/add_amount = 0.0
-parameters/jump/playback = SubResource( 26 )
-parameters/pound/playback = SubResource( 27 )
+parameters/jump/playback = SubResource( 27 )
+parameters/pound/playback = SubResource( 28 )
 script = ExtResource( 6 )
 
 [node name="Explosions" type="CPUParticles2D" parent="EnemyCore"]
-material = SubResource( 28 )
+material = SubResource( 29 )
 position = Vector2( -2, 7 )
 emitting = false
 amount = 2
@@ -1709,7 +1709,7 @@ gravity = Vector2( 0, 0 )
 anim_speed = 1.75
 
 [node name="Smoke" type="CPUParticles2D" parent="EnemyCore"]
-material = SubResource( 29 )
+material = SubResource( 30 )
 position = Vector2( -10, -1 )
 emitting = false
 amount = 2
@@ -1745,7 +1745,7 @@ one_shot = true
 explosiveness = 1.0
 fract_delta = false
 local_coords = false
-texture = SubResource( 30 )
+texture = SubResource( 31 )
 emission_shape = 4
 emission_points = PoolVector2Array( 8, 2, -8, 2, 8, -2, -8, -2 )
 emission_normals = PoolVector2Array( 70, -150, -70, -150, 70, -250, -70, -250 )
@@ -1754,7 +1754,7 @@ direction = Vector2( 0, 0 )
 spread = 0.0
 gravity = Vector2( 0, 400 )
 initial_velocity = 1.0
-angle_curve = SubResource( 31 )
+angle_curve = SubResource( 32 )
 
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
@@ -1764,7 +1764,7 @@ position = Vector2( 0, 8 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2( 0, -21 )
 rotation = 1.5708
-shape = SubResource( 32 )
+shape = SubResource( 33 )
 disabled = true
 
 [node name="HitBox" type="Area2D" parent="." groups=[
@@ -1775,17 +1775,14 @@ script = ExtResource( 4 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 0, 6 )
 rotation = 1.5708
-shape = SubResource( 33 )
+shape = SubResource( 34 )
 disabled = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, 4 )
-shape = SubResource( 34 )
+shape = SubResource( 35 )
 
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Tween" type="Tween" parent="."]
-
-[node name="HatchPos" type="Node2D" parent="."]
-position = Vector2( -8, -16 )
