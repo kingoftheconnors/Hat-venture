@@ -1013,8 +1013,7 @@ tracks/8/keys = {
 }
 
 [sub_resource type="Animation" id=21]
-length = 2.5
-step = 0.01
+length = 5.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -1106,7 +1105,7 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 2, 2.2 ),
+"times": PoolRealArray( 0, 4.5, 4.7 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -1141,8 +1140,7 @@ tracks/8/keys = {
 }
 
 [sub_resource type="Animation" id=22]
-length = 2.5
-step = 0.01
+length = 5.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:frame")
 tracks/0/interp = 1
@@ -1234,7 +1232,7 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 0.7, 2, 2.2 ),
+"times": PoolRealArray( 0, 0.7, 4.5, 4.7 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -6039,6 +6037,7 @@ disabled = true
 position = Vector2( 0, 1 )
 rotation = 3.14159
 shape = SubResource( 8 )
+disabled = true
 
 [node name="BodyCollider" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 3.5 )

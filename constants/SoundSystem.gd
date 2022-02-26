@@ -68,7 +68,7 @@ func start_music(music : int, start_time : float = 0.0, fadein : int = FADEIN_SP
 			music_player.stop()
 			match music:
 				MUSIC.GAMEOVER:
-					music_player.stream = preload("res://Music/Character_Death_Jingle.wav")
+					music_player.stream = preload("res://Music/Death_Jingle.ogg")
 				MUSIC.GAMEOVER_SCREEN:
 					music_player.stream = preload("res://Music/Game_Over2.ogg")
 				MUSIC.GRASSLAND:
