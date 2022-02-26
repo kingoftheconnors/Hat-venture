@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://world1/background1.tres" type="TileSet" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://common/CameraCapture.tscn" type="PackedScene" id=24]
 [ext_resource path="res://addons/godot-gif-getter/GifRecorder.tscn" type="PackedScene" id=25]
 [ext_resource path="res://items/Resources/TimePiece.tscn" type="PackedScene" id=26]
+[ext_resource path="res://common/TimeBubble.tscn" type="PackedScene" id=27]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 176 )
@@ -81,6 +82,7 @@ format = 1
 [node name="CameraCapture" parent="." instance=ExtResource( 24 )]
 position = Vector2( 4032, -64 )
 scale = Vector2( 1.6, 1.5 )
+release_on_exit = false
 
 [node name="PartA" type="Node2D" parent="."]
 
@@ -511,7 +513,7 @@ position = Vector2( 1689.91, -362.451 )
 position = Vector2( 1861.74, -393.537 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( -75.0983, -20.0589 )
+position = Vector2( -75.098, -20.059 )
 rotation = 4.46638e-06
 
 [node name="Camera" parent="." instance=ExtResource( 5 )]
@@ -632,14 +634,18 @@ active_bodies_in_dialog = [ NodePath("../RoboKurt") ]
 one_shot = true
 
 [node name="TimePiece" parent="BossNode2D/Boss" instance=ExtResource( 26 )]
-position = Vector2( 202, -40 )
+position = Vector2( 514, -56 )
+
+[node name="TimeBubble" parent="BossNode2D/Boss/TimePiece" instance=ExtResource( 27 )]
+scale = Vector2( 2, 2 )
+z_index = -5
 
 [node name="GifGetterUI" parent="." instance=ExtResource( 25 )]
 
-[connection signal="body_entered" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeGrass" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeWalls" method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeGrass" method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeGrass" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeWalls" method="_on_Area2D_body_exited"]
+[connection signal="body_exited" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeGrass" method="_on_Area2D_body_exited"]
 [connection signal="dead" from="BossNode2D/Boss/RoboKurt" to="BossNode2D/Boss/DialogBox" method="queue_dialog"]
 [connection signal="exploded" from="BossNode2D/Boss/RoboKurt" to="BossNode2D/Boss/DialogBox2" method="queue_dialog"]
 [connection signal="ground_pound" from="BossNode2D/Boss/RoboKurt" to="Camera" method="shake_screen" binds= [ 6, 1 ]]
