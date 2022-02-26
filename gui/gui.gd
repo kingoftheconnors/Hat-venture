@@ -233,7 +233,9 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 	elif next_box.has("sound"):
 		SoundSystem.start_sound(next_box['sound'])
 	elif next_box.has("music"):
-		var fadein = next_box.has("fadein")
+		var fadein = sound_system.FADEIN_SPEED.INSTANT
+		if next_box.has("fadein"):
+			fadein = next_box['fadein']
 		var start_time = 0.0
 		if next_box.has("start_time"):
 			start_time = next_box["start_time"]
@@ -441,20 +443,51 @@ func get_palette():
 ### Parallax
 ### -------------------------------
 
-func cover() -> float:
-	if Constants.PHOTOSENSITIVE_MODE:
-		cover_animator.play("cover (slow)")
-		return 1.3
+enum COVER_TYPES {
+	WHITE,
+	BLACK,
+	BLACK_TO_LOW_BRIGHTNESS
+}
+
+var cover_type = COVER_TYPES.WHITE
+func cover(type : int = COVER_TYPES.WHITE) -> float:
+	cover_type = type
+	if cover_type == COVER_TYPES.WHITE:
+		if Constants.PHOTOSENSITIVE_MODE:
+			cover_animator.play("cover (slow)")
+			return 1.3
+		else:
+			cover_animator.play("cover")
+			return .45
+	elif cover_type in [COVER_TYPES.BLACK, COVER_TYPES.BLACK_TO_LOW_BRIGHTNESS]:
+		if Constants.PHOTOSENSITIVE_MODE:
+			cover_animator.play("cover_to_black (slow)")
+			return 2.6
+		else:
+			cover_animator.play("cover_to_black")
+			return 1.4
 	else:
-		cover_animator.play("cover")
-		return .45
+		return 0.0
 func reveal() -> float:
-	if Constants.PHOTOSENSITIVE_MODE:
-		cover_animator.play("reveal (slow)")
-		return 1.3
+	if cover_type == COVER_TYPES.WHITE:
+		if Constants.PHOTOSENSITIVE_MODE:
+			cover_animator.play("reveal (slow)")
+			return 1.3
+		else:
+			cover_animator.play("reveal")
+			return .45
+	elif cover_type == COVER_TYPES.BLACK:
+		if Constants.PHOTOSENSITIVE_MODE:
+			cover_animator.play("reveal_from_black (slow)")
+			return 2.2
+		else:
+			cover_animator.play("reveal_from_black")
+			return .6
+	elif cover_type == COVER_TYPES.BLACK_TO_LOW_BRIGHTNESS:
+		cover_animator.play("reveal_from_black_to_low_brightness (slow)")
+		return 2.2
 	else:
-		cover_animator.play("reveal")
-		return .45
+		return 0.0
 func unlock_palette(palette_name, enter_from : int):
 	$UnlockPaletteBox.visible = true
 	$UnlockPaletteBox.grab_focus()

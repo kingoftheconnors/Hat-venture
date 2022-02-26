@@ -44,13 +44,24 @@ enum MUSIC {
 	NEW_VENTURE
 }
 
+enum FADEIN_SPEED {
+	INSTANT,
+	FAST,
+	REGULAR,
+	SLOW,
+}
+
 onready var music_player : AudioStreamPlayer = $Music
 var cur_music = MUSIC.NONE
-func start_music(music : int, start_time : float = 0.0, fadein : bool = false):
+func start_music(music : int, start_time : float = 0.0, fadein : int = FADEIN_SPEED.INSTANT):
 	$AnimationPlayer.stop()
 	if music_player:
-		if fadein:
+		if fadein == FADEIN_SPEED.FAST:
 			fadein_music_fast()
+		elif fadein == FADEIN_SPEED.REGULAR:
+			fadein_music()
+		elif fadein == FADEIN_SPEED.SLOW:
+			fadein_music_slow()
 		else:
 			music_player.volume_db = 0
 		if cur_music != music:
@@ -100,6 +111,8 @@ func fadeout_music():
 	$AnimationPlayer.play("FadeOut")
 func fadeout_music_fast():
 	$AnimationPlayer.play("FadeOutFast")
+func fadein_music_slow():
+	$AnimationPlayer.play("FadeInSlow")
 func fadein_music():
 	$AnimationPlayer.play("FadeIn")
 func fadein_music_fast():

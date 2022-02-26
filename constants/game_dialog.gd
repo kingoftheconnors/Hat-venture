@@ -326,14 +326,12 @@ func get_dialog(text_num):
 				# TODO: Lullaby song?
 				# Teleport
 				{signal = "action1"},
-				{music = sound_system.MUSIC.NEW_VENTURE, fadein = true},
+				{music = sound_system.MUSIC.NEW_VENTURE, fadein = sound_system.FADEIN_SPEED.SLOW},
 				# Start sleeping animations
 				{animate1 = "sleep"},
 				{animate2 = "sleep"},
 				# Wait for screen brightness to fade in completely so brightness setting doesn't get overriden
-				{delay = 0.3},
-				# Brightness
-				{brightness = -1, delay = 13.55},
+				{delay = 13.84},
 				# Start JUMP animation
 				{brightness = 0},
 				{delay = 0.1},

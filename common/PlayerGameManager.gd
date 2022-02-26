@@ -68,10 +68,10 @@ func die():
 	Gui.reveal()
 
 ## Changes scene to start a level (called by number)
-func start_level(levelName : String, spawn_point : int = 0):
+func start_level(levelName : String, spawn_point : int = 0, fade_type : int = Gui.COVER_TYPES.WHITE):
 	spawn_num = spawn_point
 	# Fade to white
-	var transition_length = Gui.cover()
+	var transition_length = Gui.cover(fade_type)
 	yield(get_tree().create_timer(transition_length), "timeout")
 	unpause()
 	checkpoint_level = -1; checkpoint_pos = Vector2.ZERO
