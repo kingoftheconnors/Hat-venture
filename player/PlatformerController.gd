@@ -199,8 +199,8 @@ func move(delta):
 	
 	# Moving towards goal_x (supported-in-cutscene)
 	if goal_x != null:
-		if abs(position.x - goal_x) > WALK_EPSILON:
-			if position.x > goal_x:
+		if abs(global_position.x - goal_x) > WALK_EPSILON:
+			if global_position.x > goal_x:
 				horizontal = -1
 			else:
 				horizontal = 1
@@ -476,9 +476,15 @@ func teleport_to(node_path : String):
 	position = get_node(node_path).position
 
 func walk_to(node_path : String, direction_override = null):
-	goal_x = get_node(node_path).position.x
+	goal_x = get_node(node_path).global_position.x
 	if direction_override:
 		direc_override = direction_override
+func walk_to_node(node : Node2D, direction_override = null):
+	goal_x = node.global_position.x
+	if direction_override:
+		direc_override = direction_override
+func override_direction(direction_override):
+	direc_override = direction_override
 func fly_to(node_path : String):
 	goal_y = get_node(node_path).position.y
 func watch_node(node_path: String):

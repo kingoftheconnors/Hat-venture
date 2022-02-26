@@ -19,9 +19,9 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 material = ExtResource( 3 )
 texture = ExtResource( 1 )
-hframes = 8
+hframes = 11
 vframes = 6
-frame = 44
+frame = 59
 
 [connection signal="body_entered" from="." to="." method="_on_Ladder_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Ladder_body_exited"]
