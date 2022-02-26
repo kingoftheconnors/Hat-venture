@@ -80,6 +80,9 @@ func start_music(music : int, start_time : float = 0.0, fadein : bool = false):
 				MUSIC.NEW_VENTURE:
 					music_player.stream = preload("res://Music/A_New_Adventure.ogg")
 			    music_player.play(0)
+				MUSIC.TIME_PIECE_BUBBLE:
+					music_player.stream = preload("res://Music/Time_Piece_Bubble.ogg")
+			    music_player.play(start_time)
 		cur_music = music
 func skip_song_to(time : float):
 	music_player.play(time)

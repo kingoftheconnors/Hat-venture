@@ -311,6 +311,10 @@ position = Vector2( 3840, -152 )
 position = Vector2( 4184, -88 )
 palette_name = "Snatcher-Vision"
 
+[node name="TimeBubble" parent="." instance=ExtResource( 20 )]
+position = Vector2( 3840, -152 )
+
+[connection signal="body_entered" from="Area2D" to="Area2D/FakeWalls" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D/FakeGrass" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D/FakeWalls" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D/FakeGrass" method="_on_Area2D_body_exited"]
