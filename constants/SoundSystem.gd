@@ -41,6 +41,7 @@ enum MUSIC {
 	BOSS_1,
 	TIMMY_STRIKES,
 	TIME_PIECE_BUBBLE,
+	NEW_VENTURE
 }
 
 onready var music_player : AudioStreamPlayer = $Music
@@ -75,7 +76,10 @@ func start_music(music : int, start_time : float = 0.0, fadein : bool = false):
 					music_player.stream = preload("res://Music/Boss_Theme.ogg")
 				MUSIC.TIME_PIECE_BUBBLE:
 					music_player.stream = preload("res://Music/Time_Piece_Bubble.ogg")
-			music_player.play(start_time)
+			    music_player.play(start_time)
+				MUSIC.NEW_VENTURE:
+					music_player.stream = preload("res://Music/A_New_Adventure.ogg")
+			    music_player.play(0)
 		cur_music = music
 func skip_song_to(time : float):
 	music_player.play(time)
