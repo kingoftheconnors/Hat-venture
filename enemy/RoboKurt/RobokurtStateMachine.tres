@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=60 format=2]
+[gd_resource type="AnimationNodeStateMachine" load_steps=59 format=2]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "reactive_hitboxes"
@@ -70,6 +70,7 @@ states/pound_smash/position = Vector2( 584, 102 )
 transitions = [ "hurt_pound_windup", "pound_fall", SubResource( 15 ), "pound_fall", "pound_smash", SubResource( 16 ) ]
 start_node = "hurt_pound_windup"
 end_node = "pound_smash"
+graph_offset = Vector2( 0, 11.1204 )
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=18]
 advance_condition = "fall_complete"
@@ -78,9 +79,6 @@ advance_condition = "fall_complete"
 switch_mode = 2
 advance_condition = "phase_1"
 priority = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
-advance_condition = "hurt"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=21]
 advance_condition = "hurt"
@@ -117,10 +115,10 @@ states/hurt_jump/node = SubResource( 11 )
 states/hurt_jump/position = Vector2( 294.505, 325 )
 states/hurt_smash/node = SubResource( 17 )
 states/hurt_smash/position = Vector2( 433.842, 269 )
-transitions = [ "hurt", "hurt_bounce", SubResource( 18 ), "hurt_bounce", "hurt_jump", SubResource( 19 ), "hurt_bounce", "hurt", SubResource( 20 ), "hurt_jump", "hurt", SubResource( 21 ), "hurt_jump", "hopping", SubResource( 22 ), "hopping", "hurt", SubResource( 23 ), "hurt_bounce", "hurt_smash", SubResource( 24 ), "hurt_smash", "hopping", SubResource( 25 ), "hurt_smash", "hurt", SubResource( 26 ) ]
+transitions = [ "hurt", "hurt_bounce", SubResource( 18 ), "hurt_bounce", "hurt_jump", SubResource( 19 ), "hurt_jump", "hurt", SubResource( 21 ), "hurt_jump", "hopping", SubResource( 22 ), "hopping", "hurt", SubResource( 23 ), "hurt_bounce", "hurt_smash", SubResource( 24 ), "hurt_smash", "hopping", SubResource( 25 ), "hurt_smash", "hurt", SubResource( 26 ) ]
 start_node = "hurt"
 end_node = "hopping"
-graph_offset = Vector2( -99.1578, 146.314 )
+graph_offset = Vector2( -99.1578, 148.948 )
 
 [sub_resource type="AnimationNodeAdd2" id=28]
 
