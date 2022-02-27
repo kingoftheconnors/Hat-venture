@@ -635,6 +635,7 @@ one_shot = true
 
 [node name="TimePiece" parent="BossNode2D/Boss" instance=ExtResource( 26 )]
 position = Vector2( 514, -56 )
+next_level = "res://title-screen/thanks-for-playing.tscn"
 
 [node name="TimeBubble" parent="BossNode2D/Boss/TimePiece" instance=ExtResource( 27 )]
 scale = Vector2( 2, 2 )
