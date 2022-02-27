@@ -176,6 +176,7 @@ collision_layer = 2
 collision_mask = 3
 
 [node name="FakeWalls" type="TileMap" parent="PartC/Node2D/Area2D"]
+material = ExtResource( 21 )
 z_index = 4
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
