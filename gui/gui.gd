@@ -105,7 +105,7 @@ func _process(delta):
 var menu_exists: bool = false
 var can_skip_cutscene : bool = true
 func _unhandled_input(event):
-	if event.is_action_pressed("toggle_hud"):
+	if event.is_action_pressed("toggle_hud") and Constants.DEBUG_MODE:
 		gui.visible = !gui.visible
 	# Open and close menu
 	if event.is_action_pressed("ui_menu"):
