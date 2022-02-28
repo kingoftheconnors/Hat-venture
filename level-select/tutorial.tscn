@@ -215,7 +215,7 @@ smoothing_speed = 12.0
 
 [node name="Music" type="Node" parent="."]
 script = ExtResource( 10 )
-level_music = 6
+level_music = 10
 
 [node name="GifGetterUI" parent="." instance=ExtResource( 11 )]
 

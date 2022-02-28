@@ -17,6 +17,10 @@ func generate_apples(amount : int):
 	apples_to_generate = amount
 	generate()
 
+func stop():
+	apples_to_generate = 0
+	$Timer.stop()
+
 func generate():
 	var apple = preload("res://enemy/RoboKurt/Apple.tscn").instance()
 	apple.position.x = randi() % (right - left) + left

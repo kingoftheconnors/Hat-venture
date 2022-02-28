@@ -31,7 +31,8 @@ enum DIALOG_TYPE {
 	SHIP_DOOR_DIALOG_SELECTOR = 26,
 	START_ROBOHEN_BOSS = 27,
 	SPLASH_SCREEN = 28,
-	FADEOUT_MUSIC = 29
+	FADEOUT_MUSIC = 29,
+	ROBOHEN_DEFEATED = 30,
 }
 
 # Textbox Format:
@@ -333,20 +334,18 @@ func get_dialog(text_num):
 				# TODO: Lullaby song?
 				# Teleport
 				{signal = "action1"},
+				{music = sound_system.MUSIC.NEW_VENTURE, fadein = sound_system.FADEIN_SPEED.SLOW},
 				# Start sleeping animations
 				{animate1 = "sleep"},
 				{animate2 = "sleep"},
 				# Wait for screen brightness to fade in completely so brightness setting doesn't get overriden
-				{delay = 0.3},
-				# Brightness
-				{brightness = -1, delay = 5},
+				{delay = 13.84},
 				# Start JUMP animation
 				{brightness = 0},
 				{delay = 0.1},
 				{signal = "actionJ"},
 				# TODO: Sound effect waking Hat Kid up
 				# Start speaker (TODO: SLOW TEXT DOWN ON "GOOOOOOD")
-				{music = sound_system.MUSIC.SHIP},
 				{name = "Speaker", text = "Goooood morning! And welcome to yet another day of adventure!!", autoscroll = true},
 				{name = "Speaker", text = "You are currently situated in: GRASSY-LANDS. All systems are operational!", autoscroll = true},
 				# Hat Kid stands up
@@ -366,11 +365,15 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.START_ROBOHEN_BOSS:
 			return [
-				{delay = 1},
-				{fadeout_music_fast = true, delay=.5},
-				{music = sound_system.MUSIC.BOSS_1},
-				{signal = "action2", delay = 0.5},
-				{signal = "action1", delay = 4},
+				# TO ADD: Timmy and Kurt jumping into machine. Later textboxes are unskippable
+				# in case player chooses to start skip during those text boxes (which don't exist yet)
+				{disable_skipping = true},
+				{delay = 1, unskippable = true},
+				{fadeout_music_fast = true, delay=.5, unskippable = true},
+				{music = sound_system.MUSIC.BOSS_1, unskippable = true},
+				{signal = "action2", delay = 0.5, unskippable = true},
+				{signal = "action1", delay = 4, unskippable = true},
+				{enable_skipping = true},
 			]
 		DIALOG_TYPE.SPLASH_SCREEN:
 			return [
@@ -380,4 +383,11 @@ func get_dialog(text_num):
 		DIALOG_TYPE.FADEOUT_MUSIC:
 			return [
 				{fadeout_music_fast = true, delay=.5},
+			]
+		DIALOG_TYPE.ROBOHEN_DEFEATED:
+			return [
+				{disable_skipping = true},
+				{signal = "action1", delay = 2.5}, # Move timepiece to Robohen
+				{signal = "action2", delay = 2}, # Fly timepiece to goal
+				{enable_skipping = true},
 			]

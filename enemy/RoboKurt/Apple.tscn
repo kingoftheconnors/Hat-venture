@@ -42,6 +42,7 @@ radius = 3.0
 height = 14.3208
 
 [node name="Apple" type="KinematicBody2D"]
+z_index = -1
 script = ExtResource( 2 )
 is_active = true
 

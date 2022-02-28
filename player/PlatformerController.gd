@@ -7,6 +7,7 @@ extends KinematicBody2D
 signal off_cliff
 signal dead
 signal landed_on_ground
+signal crash_landed
 
 # BASIC MOVEMENT
 const PLAYER_GRAVITY = 10

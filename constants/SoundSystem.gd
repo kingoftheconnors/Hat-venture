@@ -40,19 +40,35 @@ enum MUSIC {
 	TITLE,
 	BOSS_1,
 	TIMMY_STRIKES,
+	TIME_PIECE_BUBBLE,
+	NEW_VENTURE
+}
+
+enum FADEIN_SPEED {
+	INSTANT,
+	FAST,
+	REGULAR,
+	SLOW,
 }
 
 onready var music_player : AudioStreamPlayer = $Music
 var cur_music = MUSIC.NONE
-func start_music(music : int):
+func start_music(music : int, start_time : float = 0.0, fadein : int = FADEIN_SPEED.INSTANT):
 	$AnimationPlayer.stop()
 	if music_player:
-		music_player.volume_db = 0
+		if fadein == FADEIN_SPEED.FAST:
+			fadein_music_fast()
+		elif fadein == FADEIN_SPEED.REGULAR:
+			fadein_music()
+		elif fadein == FADEIN_SPEED.SLOW:
+			fadein_music_slow()
+		else:
+			music_player.volume_db = 0
 		if cur_music != music:
 			music_player.stop()
 			match music:
 				MUSIC.GAMEOVER:
-					music_player.stream = preload("res://Music/Character_Death_Jingle.wav")
+					music_player.stream = preload("res://Music/Death_Jingle.ogg")
 				MUSIC.GAMEOVER_SCREEN:
 					music_player.stream = preload("res://Music/Game_Over2.ogg")
 				MUSIC.GRASSLAND:
@@ -69,18 +85,55 @@ func start_music(music : int):
 					music_player.stream = preload("res://Music/Title_Theme.ogg")
 				MUSIC.BOSS_1:
 					music_player.stream = preload("res://Music/Boss_Theme.ogg")
-			music_player.play(0)
+				MUSIC.TIME_PIECE_BUBBLE:
+					music_player.stream = preload("res://Music/Time_Piece_Bubble.ogg")
+				MUSIC.NEW_VENTURE:
+					music_player.stream = preload("res://Music/A_New_Adventure.ogg")
+				MUSIC.TIME_PIECE_BUBBLE:
+					music_player.stream = preload("res://Music/Time_Piece_Bubble.ogg")
+			music_player.play(start_time)
 		cur_music = music
 func skip_song_to(time : float):
 	music_player.play(time)
+func get_current_song_time():
+	if in_transition_song:
+		return in_transition_song
+	return music_player.get_playback_position()
+func get_current_song():
+	if in_transition_time:
+		return in_transition_time
+	return cur_music
 func stop_music():
 	music_player.stop()
 func fadeout_music():
 	$AnimationPlayer.play("FadeOut")
 func fadeout_music_fast():
 	$AnimationPlayer.play("FadeOutFast")
+func fadein_music_slow():
+	$AnimationPlayer.play("FadeInSlow")
 func fadein_music():
 	$AnimationPlayer.play("FadeIn")
+func fadein_music_fast():
+	$AnimationPlayer.play("FadeInFast")
+
+var in_transition_time = null; var in_transition_song = null
+func song_transition(song_to_play, start_time : float = 0.0):
+	if music_player.volume_db < -50:
+		# Skip to fadein
+		song_fadeout_finished("", song_to_play, start_time, true)
+	else:
+		in_transition_time = start_time; in_transition_song = song_to_play
+		var animation_player = $AnimationPlayer
+		if animation_player.is_connected("animation_finished", self, "song_fadeout_finished"):
+			animation_player.disconnect("animation_finished", self, "song_fadeout_finished")
+		animation_player.connect("animation_finished", self, "song_fadeout_finished", [song_to_play, start_time, true])
+		$AnimationPlayer.play("FadeOutFast")
+func song_fadeout_finished(_anim_name, music : int, start_time : float = 0.0, fadein : bool = false):
+	in_transition_time = null; in_transition_song = null
+	start_music(music, start_time, fadein)
+	var animation_player = $AnimationPlayer
+	if animation_player.is_connected("animation_finished", self, "song_fadeout_finished"):
+		animation_player.disconnect("animation_finished", self, "song_fadeout_finished")
 
 onready var sfx_player : AudioStreamPlayer = $Sfx
 var cur_sound = SFX.NONE

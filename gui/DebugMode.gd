@@ -9,6 +9,7 @@ func _unhandled_input(event):
 		visible = Constants.DEBUG_MODE
 		emit_signal("debug_mode_changed")
 	if event.is_action_pressed("toggle_hud"):
-		visible = !visible
+		if Constants.DEBUG_MODE or visible:
+			visible = !visible
 
 signal debug_mode_changed
