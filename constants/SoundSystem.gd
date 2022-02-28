@@ -41,22 +41,34 @@ enum MUSIC {
 	BOSS_1,
 	TIMMY_STRIKES,
 	TIME_PIECE_BUBBLE,
+	NEW_VENTURE
+}
+
+enum FADEIN_SPEED {
+	INSTANT,
+	FAST,
+	REGULAR,
+	SLOW,
 }
 
 onready var music_player : AudioStreamPlayer = $Music
 var cur_music = MUSIC.NONE
-func start_music(music : int, start_time : float = 0.0, fadein : bool = false):
+func start_music(music : int, start_time : float = 0.0, fadein : int = FADEIN_SPEED.INSTANT):
 	$AnimationPlayer.stop()
 	if music_player:
-		if fadein:
+		if fadein == FADEIN_SPEED.FAST:
 			fadein_music_fast()
+		elif fadein == FADEIN_SPEED.REGULAR:
+			fadein_music()
+		elif fadein == FADEIN_SPEED.SLOW:
+			fadein_music_slow()
 		else:
 			music_player.volume_db = 0
 		if cur_music != music:
 			music_player.stop()
 			match music:
 				MUSIC.GAMEOVER:
-					music_player.stream = preload("res://Music/Character_Death_Jingle.wav")
+					music_player.stream = preload("res://Music/Death_Jingle.ogg")
 				MUSIC.GAMEOVER_SCREEN:
 					music_player.stream = preload("res://Music/Game_Over2.ogg")
 				MUSIC.GRASSLAND:
@@ -75,7 +87,13 @@ func start_music(music : int, start_time : float = 0.0, fadein : bool = false):
 					music_player.stream = preload("res://Music/Boss_Theme.ogg")
 				MUSIC.TIME_PIECE_BUBBLE:
 					music_player.stream = preload("res://Music/Time_Piece_Bubble.ogg")
-			music_player.play(start_time)
+			    music_player.play(start_time)
+				MUSIC.NEW_VENTURE:
+					music_player.stream = preload("res://Music/A_New_Adventure.ogg")
+			    music_player.play(0)
+				MUSIC.TIME_PIECE_BUBBLE:
+					music_player.stream = preload("res://Music/Time_Piece_Bubble.ogg")
+			    music_player.play(start_time)
 		cur_music = music
 func skip_song_to(time : float):
 	music_player.play(time)
@@ -93,6 +111,8 @@ func fadeout_music():
 	$AnimationPlayer.play("FadeOut")
 func fadeout_music_fast():
 	$AnimationPlayer.play("FadeOutFast")
+func fadein_music_slow():
+	$AnimationPlayer.play("FadeInSlow")
 func fadein_music():
 	$AnimationPlayer.play("FadeIn")
 func fadein_music_fast():

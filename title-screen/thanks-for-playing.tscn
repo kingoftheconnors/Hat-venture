@@ -1,0 +1,152 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://level.gd" type="Script" id=3]
+[ext_resource path="res://gui/optionsmenu/hatventuretheme.tres" type="Theme" id=6]
+[ext_resource path="res://font/PressStart2P-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://common/LevelMusic.gd" type="Script" id=9]
+[ext_resource path="res://gui/optionsmenu/menu.png" type="Texture" id=10]
+[ext_resource path="res://title-screen/BasicMenu.gd" type="Script" id=11]
+[ext_resource path="res://title-screen/QuitButton.gd" type="Script" id=12]
+[ext_resource path="res://title-screen/Play.gd" type="Script" id=17]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+outline_size = 1
+font_data = ExtResource( 8 )
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 3 )
+left = 0
+right = 10000542
+up = -3286
+down = -208
+col = Color( 1, 1, 1, 1 )
+show_hud = false
+
+[node name="Music" type="Node" parent="."]
+script = ExtResource( 9 )
+level_music = 11
+
+[node name="Menu" type="CanvasLayer" parent="."]
+
+[node name="PlayTextBox4" type="Control" parent="Menu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 6 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+first_item = NodePath("Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo")
+
+[node name="Mrgn" type="MarginContainer" parent="Menu/PlayTextBox4"]
+anchor_right = 0.995
+anchor_bottom = 1.0
+margin_right = 0.129974
+custom_constants/margin_top = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Menu/PlayTextBox4/Mrgn"]
+visible = false
+margin_top = 10.0
+margin_right = 424.0
+margin_bottom = 246.0
+texture = ExtResource( 10 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/PlayTextBox4/Mrgn"]
+margin_top = 73.0
+margin_right = 424.0
+margin_bottom = 183.0
+size_flags_vertical = 4
+theme = ExtResource( 6 )
+custom_constants/margin_right = 12
+custom_constants/margin_top = 20
+custom_constants/margin_left = 12
+custom_constants/margin_bottom = 20
+
+[node name="VBox" type="VBoxContainer" parent="Menu/PlayTextBox4/Mrgn/MarginContainer"]
+margin_left = 12.0
+margin_top = 20.0
+margin_right = 412.0
+margin_bottom = 90.0
+custom_constants/separation = 15
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox"]
+margin_right = 400.0
+margin_bottom = 8.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Thank you for playing!"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox"]
+margin_top = 23.0
+margin_right = 400.0
+margin_bottom = 39.0
+alignment = 1
+
+[node name="PlayDemo" type="MarginContainer" parent="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox/HBoxContainer"]
+margin_left = 124.0
+margin_right = 276.0
+margin_bottom = 16.0
+size_flags_horizontal = 0
+custom_constants/margin_right = 16
+custom_constants/margin_left = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayDemo" type="Button" parent="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo"]
+margin_left = 16.0
+margin_right = 136.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 0
+text = "Back to Title"
+script = ExtResource( 17 )
+goto_level = "res://title-screen/title-screen.tscn"
+fade_type = 0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox"]
+margin_top = 54.0
+margin_right = 400.0
+margin_bottom = 70.0
+alignment = 1
+
+[node name="Quit" type="MarginContainer" parent="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox/HBoxContainer3"]
+margin_left = 124.0
+margin_right = 276.0
+margin_bottom = 16.0
+size_flags_horizontal = 0
+custom_constants/margin_right = 16
+custom_constants/margin_left = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox/HBoxContainer3/Quit"]
+margin_left = 16.0
+margin_right = 136.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 0
+text = "Quit"
+script = ExtResource( 12 )
+
+[connection signal="pressed" from="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo" to="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo" method="start_game"]
+[connection signal="pressed" from="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox/HBoxContainer3/Quit/Quit" to="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox/HBoxContainer3/Quit/Quit" method="_on_Quit_pressed"]

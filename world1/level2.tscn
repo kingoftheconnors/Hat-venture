@@ -635,6 +635,7 @@ one_shot = true
 
 [node name="TimePiece" parent="BossNode2D/Boss" instance=ExtResource( 26 )]
 position = Vector2( 514, -56 )
+next_level = "res://title-screen/thanks-for-playing.tscn"
 
 [node name="TimeBubble" parent="BossNode2D/Boss/TimePiece" instance=ExtResource( 27 )]
 scale = Vector2( 2, 2 )
@@ -642,11 +643,12 @@ z_index = -5
 
 [node name="GifGetterUI" parent="." instance=ExtResource( 25 )]
 
-[connection signal="body_entered" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeWalls" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeGrass" method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeWalls" method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeWalls" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeGrass" method="_on_Area2D_body_exited"]
+[connection signal="body_exited" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeWalls" method="_on_Area2D_body_exited"]
 [connection signal="dead" from="BossNode2D/Boss/RoboKurt" to="BossNode2D/Boss/DialogBox" method="queue_dialog"]
+[connection signal="dead" from="BossNode2D/Boss/RoboKurt" to="BossNode2D/Boss/AppleDropper" method="stop"]
 [connection signal="exploded" from="BossNode2D/Boss/RoboKurt" to="BossNode2D/Boss/DialogBox2" method="queue_dialog"]
 [connection signal="ground_pound" from="BossNode2D/Boss/RoboKurt" to="Camera" method="shake_screen" binds= [ 6, 1 ]]
 [connection signal="ground_pound" from="BossNode2D/Boss/RoboKurt" to="BossNode2D/Boss/AppleDropper" method="generate_apples" binds= [ 3 ]]

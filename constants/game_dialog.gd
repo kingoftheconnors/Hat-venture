@@ -326,20 +326,18 @@ func get_dialog(text_num):
 				# TODO: Lullaby song?
 				# Teleport
 				{signal = "action1"},
+				{music = sound_system.MUSIC.NEW_VENTURE, fadein = sound_system.FADEIN_SPEED.SLOW},
 				# Start sleeping animations
 				{animate1 = "sleep"},
 				{animate2 = "sleep"},
 				# Wait for screen brightness to fade in completely so brightness setting doesn't get overriden
-				{delay = 0.3},
-				# Brightness
-				{brightness = -1, delay = 5},
+				{delay = 13.84},
 				# Start JUMP animation
 				{brightness = 0},
 				{delay = 0.1},
 				{signal = "actionJ"},
 				# TODO: Sound effect waking Hat Kid up
 				# Start speaker (TODO: SLOW TEXT DOWN ON "GOOOOOOD")
-				{music = sound_system.MUSIC.SHIP},
 				{name = "Speaker", text = "Goooood morning! And welcome to yet another day of adventure!!", autoscroll = true},
 				{name = "Speaker", text = "You are currently situated in: GRASSY-LANDS. All systems are operational!", autoscroll = true},
 				# Hat Kid stands up
