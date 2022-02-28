@@ -31,7 +31,8 @@ enum DIALOG_TYPE {
 	SHIP_DOOR_DIALOG_SELECTOR = 26,
 	START_ROBOHEN_BOSS = 27,
 	SPLASH_SCREEN = 28,
-	FADEOUT_MUSIC = 29
+	FADEOUT_MUSIC = 29,
+	ROBOHEN_DEFEATED = 30,
 }
 
 # Textbox Format:
@@ -358,11 +359,15 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.START_ROBOHEN_BOSS:
 			return [
-				{delay = 1},
-				{fadeout_music_fast = true, delay=.5},
-				{music = sound_system.MUSIC.BOSS_1},
-				{signal = "action2", delay = 0.5},
-				{signal = "action1", delay = 4},
+				# TO ADD: Timmy and Kurt jumping into machine. Later textboxes are unskippable
+				# in case player chooses to start skip during those text boxes (which don't exist yet)
+				{disable_skipping = true},
+				{delay = 1, unskippable = true},
+				{fadeout_music_fast = true, delay=.5, unskippable = true},
+				{music = sound_system.MUSIC.BOSS_1, unskippable = true},
+				{signal = "action2", delay = 0.5, unskippable = true},
+				{signal = "action1", delay = 4, unskippable = true},
+				{enable_skipping = true},
 			]
 		DIALOG_TYPE.SPLASH_SCREEN:
 			return [
@@ -372,4 +377,11 @@ func get_dialog(text_num):
 		DIALOG_TYPE.FADEOUT_MUSIC:
 			return [
 				{fadeout_music_fast = true, delay=.5},
+			]
+		DIALOG_TYPE.ROBOHEN_DEFEATED:
+			return [
+				{disable_skipping = true},
+				{signal = "action1", delay = 2.5}, # Move timepiece to Robohen
+				{signal = "action2", delay = 2}, # Fly timepiece to goal
+				{enable_skipping = true},
 			]

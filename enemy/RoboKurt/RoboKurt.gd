@@ -9,6 +9,7 @@ extends "res://enemy/Scripts/EnemyController.gd"
 
 var idle_count : int = 0
 const MAX_HEALTH = 6
+const HEALTH_TO_PHASE_2 = 3
 const ATTACK_THRESHOLD = 2
 const SCREEN_SHAKE_INTENSITY = 4
 const SCREEN_SHAKE_DURATION = 1.0
@@ -67,6 +68,9 @@ func _physics_process(delta):
 
 func damage(isStomp):
 	var killed = .damage(isStomp)
+	if $EnemyCore.enemy_hp == 3:
+		animator.set_condition("phase_1", false)
+		animator.set_condition("phase_2", true)
 	if Constants.PHOTOSENSITIVE_MODE:
 		animator.set_parameter("hurt/IsFlashing/add_amount", 0)
 	else:
@@ -136,11 +140,8 @@ func unpause_game():
 	PlayerGameManager.unpause()
 func set_brightness(val : int):
 	Gui.set_brightness_param(val)
-func create_time_piece():
-	var timepiece = preload("res://items/Resources/TimePiece.tscn").instance()
-	timepiece.position = position + Vector2($HatchPos.position.x * $EnemyCore.scale.x, $HatchPos.position.y)
-	get_parent().add_child(timepiece)
-	timepiece.fly_to(get_node(timepiece_goal))
+func explosion_complete():
+	emit_signal("exploded")
 
 var is_left_side : bool = false
 onready var left = get_node(left_side)
@@ -161,3 +162,4 @@ func _ready():
 signal ground_pound
 signal hurt
 signal dead
+signal exploded

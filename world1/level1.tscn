@@ -19,6 +19,7 @@
 [ext_resource path="res://enemy/hen/Hen.tscn" type="PackedScene" id=17]
 [ext_resource path="res://enemy/crow/Crow.tscn" type="PackedScene" id=18]
 [ext_resource path="res://common/FakeWalls.gd" type="Script" id=19]
+[ext_resource path="res://common/TimeBubble.tscn" type="PackedScene" id=20]
 [ext_resource path="res://items/Resources/TimePiece.tscn" type="PackedScene" id=21]
 [ext_resource path="res://enemy/eltun/pace.gd" type="Script" id=23]
 [ext_resource path="res://common/CameraCapture.tscn" type="PackedScene" id=24]
@@ -302,6 +303,9 @@ storybook_page = "World1Page1"
 [node name="Palette2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 3832.08, -0.760162 )
 palette_name = "GBoy2"
+
+[node name="TimeBubble" parent="." instance=ExtResource( 20 )]
+position = Vector2( 3840, -152 )
 
 [node name="Palette3" parent="." instance=ExtResource( 8 )]
 position = Vector2( 4184, -88 )

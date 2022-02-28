@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Time_Piece_Bubble.ogg-017f0f4c0b0f9b4cfaf4bd91f0c47674.oggstr"
+
+[deps]
+
+source_file="res://Music/Time_Piece_Bubble.ogg"
+dest_files=[ "res://.import/Time_Piece_Bubble.ogg-017f0f4c0b0f9b4cfaf4bd91f0c47674.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=4.33

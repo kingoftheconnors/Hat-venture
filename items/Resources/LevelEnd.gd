@@ -11,10 +11,18 @@ func end_level():
 		PlayerGameManager.start_level(next_level)
 		done = true
 
-func fly_to(goal : Node2D):
+func enable():
+	$ItemRoot.active = true
+func disable():
 	$ItemRoot.active = false
-	$Tween.interpolate_property(self, "position", self.position, goal.position, 2, Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT, 1)
+
+func teleport_to(goal : NodePath):
+	global_position = get_node(goal).global_position
+
+func fly_to(goal : NodePath):
+	disable()
+	$Tween.interpolate_property(self, "position", self.position, get_node(goal).position, 2, Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
 	$Tween.start()
 
 func fly_complete():
-	$ItemRoot.active = true
+	enable()

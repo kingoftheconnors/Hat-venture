@@ -230,18 +230,22 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 			spawn_point = next_box['spawn_point']
 		PlayerGameManager.level_complete()
 		PlayerGameManager.start_level(next_box['level'], spawn_point)
-	elif next_box.has("fadeout"):
-		Gui.cover()
-	elif next_box.has("fadein"):
-		Gui.reveal()
 	elif next_box.has("sound"):
 		SoundSystem.start_sound(next_box['sound'])
 	elif next_box.has("music"):
-		SoundSystem.start_music(next_box['music'])
+		var fadein = next_box.has("fadein")
+		var start_time = 0.0
+		if next_box.has("start_time"):
+			start_time = next_box["start_time"]
+		SoundSystem.start_music(next_box['music'], start_time, fadein)
 	elif next_box.has("fadeout_music"):
 		SoundSystem.fadeout_music()
 	elif next_box.has("fadeout_music_fast"):
 		SoundSystem.fadeout_music_fast()
+	elif next_box.has("fadeout"):
+		Gui.cover()
+	elif next_box.has("fadein"):
+		Gui.reveal()
 	elif next_box.has("addpon"):
 		PlayerGameManager.add_pons(next_box["addpon"])
 	elif next_box.has("queue_free"):
