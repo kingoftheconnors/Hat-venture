@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://cutscenes/Timmy/CutsceneTimmy.gd" type="Script" id=1]
 [ext_resource path="res://enemy/timmy/timmy.png" type="Texture" id=2]
@@ -32,6 +32,21 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+
+[sub_resource type="Animation" id=60]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 18 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -95,7 +110,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 22 ]
+"values": [ 18 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite/TimePiece:visible")
@@ -235,7 +250,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 18 ]
+"values": [ 17 ]
 }
 
 [sub_resource type="Animation" id=14]
@@ -413,7 +428,7 @@ states/walk/node = SubResource( 30 )
 states/walk/position = Vector2( 347, 51 )
 transitions = [ "walk", "idle", SubResource( 31 ), "idle", "walk", SubResource( 32 ), "idle", "psychic", SubResource( 33 ), "psychic", "idle", SubResource( 34 ), "idle", "fly", SubResource( 35 ), "fly", "idle", SubResource( 36 ), "idle", "sass", SubResource( 37 ), "sass", "idle", SubResource( 38 ), "idle", "talk", SubResource( 39 ), "talk", "idle", SubResource( 40 ), "idle", "surprise", SubResource( 41 ), "surprise", "idle", SubResource( 42 ), "float", "drop", SubResource( 43 ), "drop", "idle", SubResource( 44 ), "idle", "float", SubResource( 45 ), "fly", "sass_fly", SubResource( 46 ), "sass_fly", "fly", SubResource( 47 ), "idle", "open_vault", SubResource( 48 ), "open_vault", "idle", SubResource( 49 ), "idle", "hold_fly", SubResource( 50 ), "hold_fly", "idle", SubResource( 51 ), "hold_fly", "hold_idle", SubResource( 52 ), "hold_idle", "hold_fly", SubResource( 53 ), "hold_idle", "hold_walk", SubResource( 54 ), "hold_walk", "hold_fly", SubResource( 55 ), "hold_walk", "hold_idle", SubResource( 56 ), "hold_fly", "hold_walk", SubResource( 57 ) ]
 start_node = "idle"
-graph_offset = Vector2( -298.065, 5.1594 )
+graph_offset = Vector2( -298.065, -4.52461 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=59]
 
@@ -427,7 +442,7 @@ script = ExtResource( 1 )
 scale = Vector2( -1, 1 )
 texture = ExtResource( 2 )
 hframes = 23
-frame = 10
+frame = 18
 
 [node name="TimePiece" type="Sprite" parent="Sprite"]
 visible = false
@@ -442,6 +457,7 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 2 )
+anims/RESET = SubResource( 60 )
 anims/drop = SubResource( 3 )
 anims/float = SubResource( 4 )
 anims/fly = SubResource( 5 )
