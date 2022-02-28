@@ -14,8 +14,9 @@ func look_at_node(node_path : String):
 	else:
 		sprite.scale.x = 1
 
-func walk_to_then_leave(node_path : String):
+func walk_to_then_leave(node_path : String, direc_during = null):
 	goal_x = get_node(node_path).position.x
+	direc_override = direc_during
 	leave_after_reaching_goal = true
 	play_animation("walk")
 

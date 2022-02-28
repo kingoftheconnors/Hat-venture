@@ -102,6 +102,7 @@ signal action9; signal actionA; signal actionB; signal actionC;
 signal actionD; signal actionE; signal actionF; signal actionG;
 signal actionH; signal actionJ; signal actionK; signal actionL;
 signal actionM; signal actionN; signal actionO; signal actionP;
+signal actionQ; signal actionR; signal actionS; signal actionT;
 
 export(NodePath) var animate1
 export(NodePath) var animate2

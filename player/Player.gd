@@ -82,6 +82,15 @@ func damage(_isStomp, damage = 1):
 		return true
 	# Player didn't die. Return false
 	return false
+func mock_damage(damage = 1, animate = true):
+	health -= damage
+	Gui.update_health(health, MAX_HEALTH)
+	if animate:
+		animator['parameters/PlayerMovement/playback'].travel('hurt_basic')
+	if !Constants.PHOTOSENSITIVE_MODE:
+		animator['parameters/PlayerEffect/playback'].travel('hurtFlash')
+	emit_signal("hurt")
+	SoundSystem.start_sound(sound_system.SFX.HURT)
 
 func heal(amo = 1):
 	health = min(health + amo, MAX_HEALTH)
