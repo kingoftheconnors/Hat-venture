@@ -461,17 +461,20 @@ func move_player(v):
 			# Blowing_back hitting wall
 			if blowing_back:
 				if abs(collision.normal.x) > abs(collision.normal.y):
-					new_velo.x = -velo.x * .1
+					new_velo.x = -velo.x * .6
 					unblow_back()
-					core.damage(false, 2)
+					mock_damage(1, false)
 					power.release_power()
-					animate("dive")
-					diving = true
+					call_deferred("animate_dive")
 	if !recognize_collision:
 		new_velo = prev_velo
 	#if bashing:
 	#	new_velo.y = 0
 	return new_velo
+
+func animate_dive():
+	animate("dive")
+	diving = true
 
 func teleport_to(node_path : String):
 	position = get_node(node_path).position
@@ -590,6 +593,7 @@ func manage_flags():
 		if !air_time:
 			air_time = true
 			PlayerGameManager.set_multiplicity_fast_decrease(false)
+			animator["parameters/PlayerMovement/conditions/on_floor"] = false
 		if coyoteTimer > 0:
 			coyoteTimer -= 1
 	
@@ -600,6 +604,7 @@ func manage_flags():
 		PlayerGameManager.set_multiplicity_fast_decrease(true)
 		animator["parameters/PlayerMovement/conditions/jumping"] = false
 		animator["parameters/PlayerMovement/conditions/not_jumping"] = true
+		animator["parameters/PlayerMovement/conditions/on_floor"] = true
 		if running:
 			run_start_effect()
 	
@@ -983,6 +988,8 @@ func run_start_effect():
 
 func damage(isStomp, amount = 1):
 	core.damage(isStomp, amount)
+func mock_damage(amount = 1, animate = true):
+	core.mock_damage(amount, animate)
 func signal_death():
 	emit_signal("dead")
 	SoundSystem.start_music(sound_system.MUSIC.GAMEOVER)

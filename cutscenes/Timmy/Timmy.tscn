@@ -1,8 +1,8 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://cutscenes/Timmy/CutsceneTimmy.gd" type="Script" id=1]
 [ext_resource path="res://enemy/timmy/timmy.png" type="Texture" id=2]
-
+[ext_resource path="res://items/Resources/timePiece.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -20,6 +20,33 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 10 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/TimePiece:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=60]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 18 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -71,6 +98,90 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=6]
+resource_name = "hold_fly"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/TimePiece:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "hold_idle"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 21 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/TimePiece:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "hold_walk"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 21 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/TimePiece:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=9]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -84,7 +195,21 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=10]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 19, 20, 21 ]
+}
+
+[sub_resource type="Animation" id=11]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -98,7 +223,7 @@ tracks/0/keys = {
 "values": [ 4 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=12]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -114,7 +239,21 @@ tracks/0/keys = {
 "values": [ 0, 12 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=13]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 17 ]
+}
+
+[sub_resource type="Animation" id=14]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -128,7 +267,7 @@ tracks/0/keys = {
 "values": [ 7 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=15]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -144,7 +283,7 @@ tracks/0/keys = {
 "values": [ 10, 11 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=16]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -160,52 +299,47 @@ tracks/0/keys = {
 "values": [ 1, 2, 3 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=12]
+[sub_resource type="AnimationNodeAnimation" id=17]
 animation = "drop"
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "float"
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="AnimationNodeAnimation" id=19]
 animation = "fly"
 
-[sub_resource type="AnimationNodeAnimation" id=15]
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "hold_fly"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "hold_idle"
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "hold_walk"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=16]
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "open_vault"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
 animation = "psychic"
 
-[sub_resource type="AnimationNodeAnimation" id=17]
+[sub_resource type="AnimationNodeAnimation" id=26]
 animation = "sass"
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "sass_fly"
+
+[sub_resource type="AnimationNodeAnimation" id=28]
 animation = "surprise"
 
-[sub_resource type="AnimationNodeAnimation" id=19]
+[sub_resource type="AnimationNodeAnimation" id=29]
 animation = "talk"
 
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id=30]
 animation = "walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=26]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=27]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=29]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=30]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
 
@@ -214,35 +348,89 @@ animation = "walk"
 [sub_resource type="AnimationNodeStateMachineTransition" id=33]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=34]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=35]
 
-[sub_resource type="AnimationNodeStateMachine" id=36]
-states/drop/node = SubResource( 12 )
-states/drop/position = Vector2( 40, -31.9686 )
-states/float/node = SubResource( 13 )
-states/float/position = Vector2( -106.195, -31.9686 )
-states/fly/node = SubResource( 14 )
-states/fly/position = Vector2( 40, 51 )
-states/idle/node = SubResource( 15 )
-states/idle/position = Vector2( 188, 51 )
-states/psychic/node = SubResource( 16 )
-states/psychic/position = Vector2( 308, 154 )
-states/sass/node = SubResource( 17 )
-states/sass/position = Vector2( 70, 154 )
-states/surprise/node = SubResource( 18 )
-states/surprise/position = Vector2( 188, -31.9686 )
-states/talk/node = SubResource( 19 )
-states/talk/position = Vector2( 188, 201 )
-states/walk/node = SubResource( 20 )
-states/walk/position = Vector2( 347, 51 )
-transitions = [ "walk", "idle", SubResource( 21 ), "idle", "walk", SubResource( 22 ), "idle", "psychic", SubResource( 23 ), "psychic", "idle", SubResource( 24 ), "idle", "fly", SubResource( 25 ), "fly", "idle", SubResource( 26 ), "idle", "sass", SubResource( 27 ), "sass", "idle", SubResource( 28 ), "idle", "talk", SubResource( 29 ), "talk", "idle", SubResource( 30 ), "idle", "surprise", SubResource( 31 ), "surprise", "idle", SubResource( 32 ), "float", "drop", SubResource( 33 ), "drop", "idle", SubResource( 34 ), "idle", "float", SubResource( 35 ) ]
-start_node = "idle"
-graph_offset = Vector2( -220.035, -89.2126 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=37]
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=40]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=44]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=45]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=48]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=50]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=52]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=53]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=54]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=56]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=57]
+
+[sub_resource type="AnimationNodeStateMachine" id=58]
+states/drop/node = SubResource( 17 )
+states/drop/position = Vector2( 40, -31.9686 )
+states/float/node = SubResource( 18 )
+states/float/position = Vector2( -106.195, -31.9686 )
+states/fly/node = SubResource( 19 )
+states/fly/position = Vector2( 40, 51 )
+states/hold_fly/node = SubResource( 20 )
+states/hold_fly/position = Vector2( -131.195, 137 )
+states/hold_idle/node = SubResource( 21 )
+states/hold_idle/position = Vector2( -211.035, 203.527 )
+states/hold_walk/node = SubResource( 22 )
+states/hold_walk/position = Vector2( -49.035, 203.527 )
+states/idle/node = SubResource( 23 )
+states/idle/position = Vector2( 188, 51 )
+states/open_vault/node = SubResource( 24 )
+states/open_vault/position = Vector2( 347, -31.9686 )
+states/psychic/node = SubResource( 25 )
+states/psychic/position = Vector2( 308, 154 )
+states/sass/node = SubResource( 26 )
+states/sass/position = Vector2( 70, 154 )
+states/sass_fly/node = SubResource( 27 )
+states/sass_fly/position = Vector2( -106.195, 51 )
+states/surprise/node = SubResource( 28 )
+states/surprise/position = Vector2( 188, -31.9686 )
+states/talk/node = SubResource( 29 )
+states/talk/position = Vector2( 188, 201 )
+states/walk/node = SubResource( 30 )
+states/walk/position = Vector2( 347, 51 )
+transitions = [ "walk", "idle", SubResource( 31 ), "idle", "walk", SubResource( 32 ), "idle", "psychic", SubResource( 33 ), "psychic", "idle", SubResource( 34 ), "idle", "fly", SubResource( 35 ), "fly", "idle", SubResource( 36 ), "idle", "sass", SubResource( 37 ), "sass", "idle", SubResource( 38 ), "idle", "talk", SubResource( 39 ), "talk", "idle", SubResource( 40 ), "idle", "surprise", SubResource( 41 ), "surprise", "idle", SubResource( 42 ), "float", "drop", SubResource( 43 ), "drop", "idle", SubResource( 44 ), "idle", "float", SubResource( 45 ), "fly", "sass_fly", SubResource( 46 ), "sass_fly", "fly", SubResource( 47 ), "idle", "open_vault", SubResource( 48 ), "open_vault", "idle", SubResource( 49 ), "idle", "hold_fly", SubResource( 50 ), "hold_fly", "idle", SubResource( 51 ), "hold_fly", "hold_idle", SubResource( 52 ), "hold_idle", "hold_fly", SubResource( 53 ), "hold_idle", "hold_walk", SubResource( 54 ), "hold_walk", "hold_fly", SubResource( 55 ), "hold_walk", "hold_idle", SubResource( 56 ), "hold_fly", "hold_walk", SubResource( 57 ) ]
+start_node = "idle"
+graph_offset = Vector2( -298.065, -4.52461 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=59]
 
 [node name="Timmy" type="KinematicBody2D"]
 pause_mode = 2
@@ -253,8 +441,15 @@ script = ExtResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( -1, 1 )
 texture = ExtResource( 2 )
-hframes = 17
-frame = 10
+hframes = 23
+frame = 18
+
+[node name="TimePiece" type="Sprite" parent="Sprite"]
+visible = false
+position = Vector2( 10, 0 )
+texture = ExtResource( 3 )
+hframes = 8
+frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 5 )
@@ -262,18 +457,24 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 2 )
+anims/RESET = SubResource( 60 )
 anims/drop = SubResource( 3 )
 anims/float = SubResource( 4 )
 anims/fly = SubResource( 5 )
-anims/mean_idle = SubResource( 6 )
-anims/psychic = SubResource( 7 )
-anims/sass = SubResource( 8 )
-anims/surprise = SubResource( 9 )
-anims/talk = SubResource( 10 )
-anims/walk = SubResource( 11 )
+anims/hold_fly = SubResource( 6 )
+anims/hold_idle = SubResource( 7 )
+anims/hold_walk = SubResource( 8 )
+anims/mean_idle = SubResource( 9 )
+anims/open_vault = SubResource( 10 )
+anims/psychic = SubResource( 11 )
+anims/sass = SubResource( 12 )
+anims/sass_fly = SubResource( 13 )
+anims/surprise = SubResource( 14 )
+anims/talk = SubResource( 15 )
+anims/walk = SubResource( 16 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 36 )
+tree_root = SubResource( 58 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 37 )
+parameters/playback = SubResource( 59 )

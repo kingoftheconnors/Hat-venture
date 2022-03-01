@@ -205,12 +205,19 @@ func get_dialog(text_num):
 				{name = "Timmy", text = "I've heard so much about these! And you have a whole vault of them!?"},
 				{animate2 = "sass"},
 				{name = "Timmy", text = "I wanna have a peek!"},
-				{animate2 = "psychic", delay=0.5},
-				# TODO: Open up vault and hat kid flies backward
+				# Psychic pose + Shake Vault + Delay 1
+				{animate2 = "open_vault"},
+				{signal = "actionO", delay=1},
+				# Vault blasts open and hat falls forward
+				{signal = "actionP", delay=1},
+				# Timmy Flies up
 				{animate2 = "fly"},
 				{signal = "actionJ", delay=1},
-				# TODO: Float a timepiece to Timmy
+				# Animate Timmy holding Time piece
+				{animate2 = "hold_fly"},
 				{name = "Timmy", text = "Woahhhh.... sparkly."},
+				# Hat Kid jumps up and faces right
+				{signal = "actionQ"},
 				# TODO: Start tossing it in one hand
 				{name = "Timmy", text = "You know what I heard? I heard these pieces let you travel time!"},
 				{name = "Timmy", text = "Think of what you could do with even one of these..."},
@@ -220,8 +227,8 @@ func get_dialog(text_num):
 				{fadeout_music = true, delay=0.4},
 				# Look at Hat
 				{animate2 = "idle"},
-				{signal = "actionK", delay=0.1},
 				{animate2 = "talk"},
+				{signal = "actionK", delay=0.1},
 				{name = "Timmy", text = "What? You've never seen someone use psychic powers before?"},
 				{animate2 = "idle"},
 				# Bounce Hat Kid towards Timmy, bounce Timmy away, holding back the TimePiece
@@ -245,19 +252,20 @@ func get_dialog(text_num):
 				# Animate hat kid hurt animation
 				{animate1 = "hurt_basic"},
 				{signal = "action7", delay=2},
+				{signal = "actionR"},
 				{animate2 = "sass"},
 				{name = "Timmy", text = "Alright Lil'ens! Come on in!"},
 				{animate2 = "idle"},
 				# Screen shake
-				{signal = "actionE", delay=1},
+				{signal = "actionE", delay=2},
 				# Lil'ens enter and walk to vault
 				{music = sound_system.MUSIC.TIMMY_STRIKES},
+				{signal = "actionS"},
 				{signal = "action9", delay=2},
 				# Dust cloud
 				{signal = "actionF", delay=3},
-				# Turn off dust cloud and walk Eltuns (now carrying timepieces) to door
-				# Move Timmy towards door
-				{signal = "actionA", delay=2.5},
+				# Walk Eltuns (now carrying timepieces) to door and Timmy towards Hat Kid
+				{signal = "actionA", delay=2},
 				# Say words
 				{animate2 = "sass"},
 				{name = "Timmy", text = "Keeping all these Time Pieces to yourself is mondo uncool."},
@@ -271,7 +279,7 @@ func get_dialog(text_num):
 				# Hat Kid Jump up
 				{signal = "actionC", delay=1},
 				# Hat Kid walk towards door
-				{signal = "actionD", delay=0.5},
+				{signal = "actionD", delay=4},
 				# Goto 1
 				{sound = sound_system.SFX.DOOR},
 				{level = "res://world1/level1.tscn"}
