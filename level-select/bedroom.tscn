@@ -305,9 +305,7 @@ enabled_if_tag_false = "goodmorning_complete"
 animate1 = NodePath("../Player")
 animate2 = NodePath("../ScaleChildren/HatAnimator")
 
-[node name="Spawn" type="Node2D" parent="." groups=[
-"spawn",
-]]
+[node name="Spawn" type="Node2D" parent="." groups=["spawn"]]
 position = Vector2( 200, -24 )
 script = ExtResource( 16 )
 spawn_num = 2
@@ -315,6 +313,7 @@ spawn_num = 2
 [node name="HatKidRoom" parent="." instance=ExtResource( 9 )]
 position = Vector2( 200, -32 )
 dialog_num = 19
+unfreeze_after_dialog = false
 
 [node name="Door" parent="HatKidRoom" instance=ExtResource( 1 )]
 position = Vector2( 0, 8 )

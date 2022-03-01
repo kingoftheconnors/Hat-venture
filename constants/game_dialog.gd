@@ -78,17 +78,17 @@ func get_dialog(text_num):
 		DIALOG_TYPE.GOTO_TUTORIAL:
 			return [
 				{sound = sound_system.SFX.DOOR},
-				{level = "res://level-select/tutorial.tscn", delay = 1}
+				{level = "res://level-select/tutorial.tscn"}
 			]
 		DIALOG_TYPE.GOTO_SHIP_FROM_OUTSIDE:
 			return [
 				{sound = sound_system.SFX.DOOR},
-				{level = "res://level-select/ship.tscn", spawn_point = 2, delay = 1}
+				{level = "res://level-select/ship.tscn", spawn_point = 2}
 			]
 		DIALOG_TYPE.GOTO_WORLD_1:
 			return [
 				{sound = sound_system.SFX.DOOR},
-				{level = "res://world1/level1.tscn", delay = 1}
+				{level = "res://world1/level1.tscn"}
 			]
 		DIALOG_TYPE.SIGNAL_ACTION_1:
 			return [
@@ -288,12 +288,12 @@ func get_dialog(text_num):
 		DIALOG_TYPE.GOTO_BEDROOM:
 			return [
 				{sound = sound_system.SFX.DOOR},
-				{level = "res://level-select/bedroom.tscn", spawn_point = 2, delay = 1}
+				{level = "res://level-select/bedroom.tscn", spawn_point = 2}
 			]
 		DIALOG_TYPE.GOTO_SHIP_FROM_BEDROOM:
 			return [
 				{sound = sound_system.SFX.DOOR},
-				{level = "res://level-select/ship.tscn", spawn_point = 3, delay = 1}
+				{level = "res://level-select/ship.tscn", spawn_point = 3}
 			]
 		DIALOG_TYPE.BED:
 			return [

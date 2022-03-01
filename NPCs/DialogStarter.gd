@@ -16,6 +16,9 @@ export(bool) var enabled = true
 export(bool) var start_on_load = false
 ## Tag name that, if true, will make this dialog unusable
 export(String) var enabled_if_tag_false = ""
+## Whether to unfreeze player after dialog. For changing scenes, we don't
+## want the player actionable while the level is swapping
+export(bool) var unfreeze_after_dialog = true
 
 func queue_dialog(player_body = null):
 	queue_dialog_by_id(dialog_num, player_body)
@@ -33,7 +36,7 @@ func queue_dialog_by_id(dialog_id, player_body = null):
 	# Queue dialog
 	Gui.queue_dialog(self, dialog_id)
 	# Re-freeze bodies so next dialog won't have them doing whatevs
-	if player_body:
+	if player_body and unfreeze_after_dialog:
 		Gui.queue_text(self, {"unfreeze_player": player_body})
 	Gui.queue_text(self, {"disable": active_bodies})
 	if one_shot:
