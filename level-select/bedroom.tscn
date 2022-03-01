@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://level-select/Door.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level-select/background2.png" type="Texture" id=2]
@@ -14,6 +14,9 @@
 [ext_resource path="res://player/regular/hat.png" type="Texture" id=12]
 [ext_resource path="res://common/TileInstancer.gd" type="Script" id=15]
 [ext_resource path="res://common/SpawnPoint.gd" type="Script" id=16]
+[ext_resource path="res://gui/EnemyPalette.tres" type="Material" id=17]
+[ext_resource path="res://level-select/desk.png" type="Texture" id=18]
+[ext_resource path="res://level-select/coffeetable.png" type="Texture" id=19]
 
 [sub_resource type="Animation" id=1]
 resource_name = "hat_fall"
@@ -239,6 +242,7 @@ down = 80
 col = Color( 1, 1, 1, 1 )
 
 [node name="LevelTiles" type="TileMap" parent="."]
+material = ExtResource( 10 )
 position = Vector2( 0, 8 )
 z_index = -3
 tile_set = ExtResource( 6 )
@@ -251,6 +255,7 @@ tile_data = PoolIntArray( -1048592, 1, 0, -1048591, 1, 0, -1048590, 1, 0, -10485
 script = ExtResource( 15 )
 
 [node name="background" type="Sprite" parent="."]
+material = ExtResource( 10 )
 position = Vector2( 72, -48 )
 z_index = -2
 texture = ExtResource( 2 )
@@ -259,6 +264,16 @@ texture = ExtResource( 2 )
 position = Vector2( 72, -64 )
 z_index = -1
 texture = ExtResource( 7 )
+
+[node name="desk" type="Sprite" parent="."]
+material = ExtResource( 17 )
+position = Vector2( 152, -24 )
+texture = ExtResource( 18 )
+
+[node name="desk2" type="Sprite" parent="."]
+material = ExtResource( 17 )
+position = Vector2( -64, -16 )
+texture = ExtResource( 19 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( -24, -20 )
@@ -316,6 +331,7 @@ dialog_num = 19
 unfreeze_after_dialog = false
 
 [node name="Door" parent="HatKidRoom" instance=ExtResource( 1 )]
+material = ExtResource( 10 )
 position = Vector2( 0, 8 )
 scale = Vector2( -1, 1 )
 

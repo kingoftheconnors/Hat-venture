@@ -1,4 +1,4 @@
-extends Sprite
+extends Node2D
 
 ## Value for screen shake. Set to 0 to turn off
 var shake_amount : Vector2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://level-select/shiproom1.png" type="Texture" id=2]
@@ -30,6 +30,87 @@
 [ext_resource path="res://level-select/Vault.gd" type="Script" id=28]
 [ext_resource path="res://level-select/vault.png" type="Texture" id=29]
 [ext_resource path="res://gui/EnemyPalette.tres" type="Material" id=30]
+[ext_resource path="res://gui/BlankPalette.tres" type="Material" id=31]
+[ext_resource path="res://title-screen/PaletteMixer.gd" type="Script" id=32]
+[ext_resource path="res://gui/PlayerPalette.tres" type="Material" id=33]
+[ext_resource path="res://level-select/door2.png" type="Texture" id=34]
+[ext_resource path="res://level-select/display.png" type="Texture" id=35]
+[ext_resource path="res://level-select/shiproom1pillars.png" type="Texture" id=36]
+
+[sub_resource type="Shader" id=9]
+code = "shader_type canvas_item;
+
+// Which color you want to change
+uniform vec4 game_white : hint_color;
+uniform vec4 game_light : hint_color;
+uniform vec4 game_dark : hint_color;
+uniform vec4 game_black : hint_color;
+
+uniform vec4 palette_white : hint_color;
+uniform vec4 palette_light : hint_color;
+uniform vec4 palette_dark : hint_color;
+uniform vec4 palette_black : hint_color;
+
+uniform int brightness_level;
+uniform float precision;
+
+int get_level_from_game_color(vec3 color) {
+	vec4 original_colors[4] = vec4[4] (game_black, game_dark, game_light, game_white);
+	for (int i = 0; i < 4; i ++) {
+		if (distance(color, original_colors[i].rgb) <= precision){
+			return i;
+		}
+	}
+	return -1;
+}
+
+vec4 get_palette_color(int level) {
+	vec4 replace_colors[4] = vec4[4] (palette_black, palette_dark, palette_light, palette_white);
+	if (level > replace_colors.length()-1)
+		level = replace_colors.length()-1;
+	if (level < 0)
+		level = 0;
+	return replace_colors[level];
+}
+
+void fragment() {
+	vec4 c = textureLod(TEXTURE, UV, 0.0);
+	int level = get_level_from_game_color(c.rgb);
+	if (level >= 0) {
+		COLOR.rgb = get_palette_color(level+brightness_level).rgb;
+		COLOR.a = c.a;
+	}
+	else
+		COLOR = c;
+}"
+
+[sub_resource type="ShaderMaterial" id=14]
+resource_local_to_scene = true
+shader = SubResource( 9 )
+shader_param/game_white = Color( 1, 1, 1, 1 )
+shader_param/game_light = Color( 0.67451, 0.682353, 0.67451, 1 )
+shader_param/game_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
+shader_param/game_black = Color( 0, 0, 0, 1 )
+shader_param/palette_white = Color( 1, 1, 1, 1 )
+shader_param/palette_light = Color( 0.67451, 0.682353, 0.67451, 1 )
+shader_param/palette_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
+shader_param/palette_black = Color( 0, 0, 0, 1 )
+shader_param/brightness_level = 0
+shader_param/precision = 0.27
+
+[sub_resource type="ShaderMaterial" id=17]
+resource_local_to_scene = true
+shader = SubResource( 9 )
+shader_param/game_white = Color( 1, 1, 1, 1 )
+shader_param/game_light = Color( 0.67451, 0.682353, 0.67451, 1 )
+shader_param/game_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
+shader_param/game_black = Color( 0, 0, 0, 1 )
+shader_param/palette_white = Color( 1, 1, 1, 1 )
+shader_param/palette_light = Color( 0.67451, 0.682353, 0.67451, 1 )
+shader_param/palette_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
+shader_param/palette_black = Color( 0, 0, 0, 1 )
+shader_param/brightness_level = 0
+shader_param/precision = 0.27
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 2 )
@@ -101,8 +182,7 @@ tracks/0/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "empty"
+[sub_resource type="Animation" id=15]
 length = 0.3
 step = 0.05
 tracks/0/type = "value"
@@ -159,6 +239,34 @@ tracks/0/keys = {
 "values": [ Vector2( -24, 8 ), Vector2( -32, 8 ) ]
 }
 
+[sub_resource type="ShaderMaterial" id=16]
+resource_local_to_scene = true
+shader = SubResource( 9 )
+shader_param/game_white = Color( 1, 1, 1, 1 )
+shader_param/game_light = Color( 0.67451, 0.682353, 0.67451, 1 )
+shader_param/game_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
+shader_param/game_black = Color( 0, 0, 0, 1 )
+shader_param/palette_white = Color( 1, 1, 1, 1 )
+shader_param/palette_light = Color( 0.67451, 0.682353, 0.67451, 1 )
+shader_param/palette_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
+shader_param/palette_black = Color( 0, 0, 0, 1 )
+shader_param/brightness_level = 0
+shader_param/precision = 0.27
+
+[sub_resource type="ShaderMaterial" id=18]
+resource_local_to_scene = true
+shader = SubResource( 9 )
+shader_param/game_white = Color( 1, 1, 1, 1 )
+shader_param/game_light = Color( 0.67451, 0.682353, 0.67451, 1 )
+shader_param/game_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
+shader_param/game_black = Color( 0, 0, 0, 1 )
+shader_param/palette_white = Color( 1, 1, 1, 1 )
+shader_param/palette_light = Color( 0.67451, 0.682353, 0.67451, 1 )
+shader_param/palette_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
+shader_param/palette_black = Color( 0, 0, 0, 1 )
+shader_param/brightness_level = 0
+shader_param/precision = 0.27
+
 [sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 180, 24 )
 
@@ -171,6 +279,7 @@ down = 80
 col = Color( 1, 1, 1, 1 )
 
 [node name="LevelTiles" type="TileMap" parent="."]
+material = ExtResource( 33 )
 z_index = -3
 tile_set = ExtResource( 6 )
 cell_size = Vector2( 16, 16 )
@@ -182,6 +291,7 @@ tile_data = PoolIntArray( -1048589, 1, 0, -1048588, 1, 0, -1048587, 1, 0, -10485
 script = ExtResource( 15 )
 
 [node name="background" type="Sprite" parent="."]
+material = ExtResource( 33 )
 position = Vector2( 112, -64 )
 z_index = -2
 texture = ExtResource( 14 )
@@ -199,9 +309,32 @@ tile_data = PoolIntArray( -196612, 17, 0, -196611, 17, 0, -196610, 17, 0, -19660
 script = ExtResource( 15 )
 
 [node name="shiproom1" type="Sprite" parent="."]
+material = ExtResource( 30 )
 position = Vector2( 112, -80 )
 z_index = -1
 texture = ExtResource( 2 )
+
+[node name="shiproomPillars" type="Sprite" parent="."]
+material = SubResource( 14 )
+position = Vector2( 112, -80 )
+z_index = -1
+texture = ExtResource( 36 )
+script = ExtResource( 32 )
+white = 0
+light = 1
+dark = 2
+black = 7
+
+[node name="shiproomBackground" type="Sprite" parent="."]
+material = SubResource( 17 )
+position = Vector2( 112, -80 )
+texture = ExtResource( 12 )
+script = ExtResource( 32 )
+white = 4
+light = 5
+dark = 6
+black = 7
+brightness_offset = -1
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -214,12 +347,20 @@ one_way_collision = true
 position = Vector2( 36, -80 )
 script = ExtResource( 17 )
 
+[node name="Board" type="Sprite" parent="Display"]
+material = ExtResource( 33 )
+position = Vector2( -4, 0 )
+z_index = -1
+texture = ExtResource( 35 )
+
 [node name="TimePieces" type="Sprite" parent="Display"]
 visible = false
+material = ExtResource( 33 )
 texture = ExtResource( 19 )
 
 [node name="Exclamation" type="AnimatedSprite" parent="Display"]
 visible = false
+material = ExtResource( 30 )
 z_index = -1
 frames = SubResource( 4 )
 frame = 1
@@ -245,23 +386,30 @@ anims/point = SubResource( 6 )
 wait_time = 3.0
 script = SubResource( 7 )
 
-[node name="Vault" type="Sprite" parent="."]
+[node name="Vault" type="Node2D" parent="."]
 position = Vector2( 80, -88 )
+script = ExtResource( 28 )
+
+[node name="Vault" type="Sprite" parent="Vault"]
+material = ExtResource( 31 )
 texture = ExtResource( 29 )
 vframes = 4
 frame = 2
-script = ExtResource( 28 )
+script = ExtResource( 32 )
+white = 4
+light = 5
+black = 15
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Vault"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Vault/Vault"]
 anims/closed = SubResource( 8 )
-anims/empty = SubResource( 9 )
+anims/empty = SubResource( 15 )
 anims/open = SubResource( 10 )
 script = SubResource( 11 )
 
 [node name="DoorDialog" parent="." instance=ExtResource( 9 )]
 position = Vector2( 304, -40 )
 dialog_num = 26
-active_bodies_in_dialog = [ NodePath("../Player"), NodePath("../LilenController"), NodePath("../DustCloud"), NodePath("../Vault"), NodePath("Door"), NodePath("../Area2D"), NodePath("../shiproomForeground") ]
+active_bodies_in_dialog = [ NodePath("../Player"), NodePath("../LilenController"), NodePath("../DustCloud"), NodePath("../Vault/Vault"), NodePath("Door"), NodePath("../Area2D"), NodePath("../shiproomForeground") ]
 unfreeze_after_dialog = false
 animate1 = NodePath("../Player")
 animate2 = NodePath("../Timmy")
@@ -271,6 +419,7 @@ z_index = 1
 
 [node name="Door" parent="DoorDialog" instance=ExtResource( 25 )]
 pause_mode = 2
+material = ExtResource( 33 )
 position = Vector2( 0, 8 )
 scale = Vector2( -1, 1 )
 
@@ -285,11 +434,26 @@ script = SubResource( 5 )
 autoplay = "point"
 anims/point = SubResource( 12 )
 
+[node name="DoubleDoors" type="Node2D" parent="."]
+material = ExtResource( 33 )
+position = Vector2( 112, -80 )
+
+[node name="Sprite" type="Sprite" parent="DoubleDoors"]
+material = SubResource( 16 )
+position = Vector2( 104, 0 )
+texture = ExtResource( 34 )
+script = ExtResource( 32 )
+white = 0
+light = 1
+dark = 2
+black = 7
+
 [node name="Timmy" parent="." instance=ExtResource( 21 )]
 material = ExtResource( 30 )
 position = Vector2( 328, -32 )
 
 [node name="OverDoor" type="Sprite" parent="."]
+material = ExtResource( 33 )
 position = Vector2( 336, -40 )
 texture = ExtResource( 13 )
 
@@ -298,9 +462,16 @@ position = Vector2( -32, -80 )
 rotation = 4.46638e-06
 
 [node name="shiproomForeground" type="Sprite" parent="."]
+material = SubResource( 18 )
 position = Vector2( 112, -80 )
 z_index = 3
 texture = ExtResource( 12 )
+script = ExtResource( 32 )
+white = 4
+light = 5
+dark = 6
+black = 7
+brightness_offset = -1
 
 [node name="Camera" parent="." instance=ExtResource( 5 )]
 position = Vector2( 101, -80 )
@@ -379,6 +550,7 @@ goal = Vector2( 96, -64 )
 
 [node name="DustCloud" type="Sprite" parent="."]
 visible = false
+material = ExtResource( 30 )
 position = Vector2( 96, -88 )
 z_index = 1
 texture = ExtResource( 23 )
@@ -392,6 +564,7 @@ dialog_num = 18
 unfreeze_after_dialog = false
 
 [node name="Door" parent="HatKidRoom" instance=ExtResource( 25 )]
+material = ExtResource( 33 )
 position = Vector2( -2, 8 )
 
 [node name="Spawn2" type="Node2D" parent="." groups=["spawn"]]
@@ -401,7 +574,7 @@ spawn_num = 3
 
 [node name="Music" type="Node" parent="."]
 script = ExtResource( 10 )
-level_music = 10
+level_music = 11
 
 [node name="GifGetterUI" parent="." instance=ExtResource( 27 )]
 
@@ -424,7 +597,6 @@ level_music = 10
 [connection signal="action2" from="DoorDialog" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target1" ]]
 [connection signal="action3" from="DoorDialog" to="Timmy" method="look_at_node" binds= [ "../WalkTo_Target3" ]]
 [connection signal="action3" from="DoorDialog" to="CameraCapture2" method="capture"]
-[connection signal="action4" from="DoorDialog" to="Timmy" method="fly_to" binds= [ "../WalkTo_Target2", 0.5 ]]
 [connection signal="action4" from="DoorDialog" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target2", -1, 1 ]]
 [connection signal="action4" from="DoorDialog" to="Timmy" method="fly_to" binds= [ "../WalkTo_Target2", 0.5 ]]
 [connection signal="action5" from="DoorDialog" to="Player" method="jump"]
@@ -434,11 +606,11 @@ level_music = 10
 [connection signal="action7" from="DoorDialog" to="CameraCapture2" method="capture_release" binds= [ false ]]
 [connection signal="action8" from="DoorDialog" to="Player" method="stop_watching"]
 [connection signal="action9" from="DoorDialog" to="LilenController" method="generate" binds= [ 16 ]]
-[connection signal="actionA" from="DoorDialog" to="Vault/AnimationPlayer" method="empty"]
+[connection signal="actionA" from="DoorDialog" to="Vault/Vault/AnimationPlayer" method="empty"]
 [connection signal="actionA" from="DoorDialog" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target6", -1, -1 ]]
-[connection signal="actionA" from="DoorDialog" to="LilenController" method="get_timepieces"]
-[connection signal="actionA" from="DoorDialog" to="LilenController" method="recall"]
 [connection signal="actionA" from="DoorDialog" to="LilenController" method="hide_after_reaching_pos"]
+[connection signal="actionA" from="DoorDialog" to="LilenController" method="recall"]
+[connection signal="actionA" from="DoorDialog" to="LilenController" method="get_timepieces"]
 [connection signal="actionA" from="DoorDialog" to="DustCloud" method="hide"]
 [connection signal="actionB" from="DoorDialog" to="Timmy" method="walk_to_then_leave" binds= [ "../DoorDialog", 1 ]]
 [connection signal="actionC" from="DoorDialog" to="Player" method="jump"]
@@ -458,7 +630,7 @@ level_music = 10
 [connection signal="actionN" from="DoorDialog" to="Player" method="walk_to" binds= [ "../WalkTo_Target4" ]]
 [connection signal="actionN" from="DoorDialog" to="Player" method="watch_node" binds= [ "../Timmy" ]]
 [connection signal="actionO" from="DoorDialog" to="Vault" method="shake" binds= [ 2, 1.0 ]]
-[connection signal="actionP" from="DoorDialog" to="Vault/AnimationPlayer" method="open"]
+[connection signal="actionP" from="DoorDialog" to="Vault/Vault/AnimationPlayer" method="open"]
 [connection signal="actionP" from="DoorDialog" to="Player" method="bounce_towards" binds= [ -4 ]]
 [connection signal="actionP" from="DoorDialog" to="Player" method="mock_damage"]
 [connection signal="actionQ" from="DoorDialog" to="Player" method="jump" binds= [ true ]]

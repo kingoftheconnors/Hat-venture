@@ -5,6 +5,8 @@
 extends CanvasLayer
 
 signal textbox_end
+signal brightness_changed
+signal palette_changed
 
 const MAX_ENERGY = 4
 
@@ -433,11 +435,18 @@ func set_brightness(val):
 	paletteManager.set_brightness(val)
 func set_brightness_param(val):
 	paletteManager.set_brightness_param(val)
+func get_brightness_param():
+	return paletteManager.get_brightness_param()
 func is_player_colors_different() -> bool:
 	return paletteManager.is_player_colors_different()
 func get_palette():
 	# Move palette_filter to bottom of scene list so it's OVER the menu
 	return paletteManager.get_palette()
+
+func palette_changed():
+	emit_signal("palette_changed")
+func brightness_changed():
+	emit_signal("brightness_changed")
 
 ### ------------------------------
 ### Parallax

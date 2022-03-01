@@ -43,6 +43,7 @@
 [ext_resource path="res://player/regular/jump.png" type="Texture" id=41]
 [ext_resource path="res://title-screen/ControlSfx.gd" type="Script" id=42]
 [ext_resource path="res://addons/GGS/assets/glyph/gamepad/a.png" type="Texture" id=43]
+[ext_resource path="res://gui/BlankPalette.tres" type="Material" id=44]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
@@ -412,66 +413,6 @@ func stop_timer(_signal_param):
 	stop()
 "
 
-[sub_resource type="Shader" id=9]
-code = "shader_type canvas_item;
-
-// Which color you want to change
-uniform vec4 game_white : hint_color;
-uniform vec4 game_light : hint_color;
-uniform vec4 game_dark : hint_color;
-uniform vec4 game_black : hint_color;
-
-uniform vec4 palette_white : hint_color;
-uniform vec4 palette_light : hint_color;
-uniform vec4 palette_dark : hint_color;
-uniform vec4 palette_black : hint_color;
-
-uniform int brightness_level;
-uniform float precision;
-
-int get_level_from_game_color(vec3 color) {
-	vec4 original_colors[4] = vec4[4] (game_black, game_dark, game_light, game_white);
-	for (int i = 0; i < 4; i ++) {
-		if (distance(color, original_colors[i].rgb) <= precision){
-			return i;
-		}
-	}
-	return -1;
-}
-
-vec4 get_palette_color(int level) {
-	vec4 replace_colors[4] = vec4[4] (palette_black, palette_dark, palette_light, palette_white);
-	if (level > replace_colors.length()-1)
-		level = replace_colors.length()-1;
-	if (level < 0)
-		level = 0;
-	return replace_colors[level];
-}
-
-void fragment() {
-	vec4 c = textureLod(TEXTURE, UV, 0.0);
-	int level = get_level_from_game_color(c.rgb);
-	if (level >= 0) {
-		COLOR.rgb = get_palette_color(level+brightness_level).rgb;
-		COLOR.a = c.a;
-	}
-	else
-		COLOR = c;
-}"
-
-[sub_resource type="ShaderMaterial" id=10]
-shader = SubResource( 9 )
-shader_param/game_white = Color( 1, 1, 1, 1 )
-shader_param/game_light = Color( 0.67451, 0.682353, 0.67451, 1 )
-shader_param/game_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
-shader_param/game_black = Color( 0, 0, 0, 1 )
-shader_param/palette_white = Color( 1, 1, 1, 1 )
-shader_param/palette_light = Color( 0.67451, 0.682353, 0.67451, 1 )
-shader_param/palette_dark = Color( 0.345098, 0.352941, 0.345098, 1 )
-shader_param/palette_black = Color( 0, 0, 0, 1 )
-shader_param/brightness_level = 3
-shader_param/precision = 0.27
-
 [sub_resource type="GDScript" id=11]
 script/source = "extends Button
 
@@ -534,6 +475,53 @@ tracks/1/keys = {
 "update": 1,
 "values": [ 0 ]
 }
+
+[sub_resource type="Shader" id=9]
+code = "shader_type canvas_item;
+
+// Which color you want to change
+uniform vec4 game_white : hint_color;
+uniform vec4 game_light : hint_color;
+uniform vec4 game_dark : hint_color;
+uniform vec4 game_black : hint_color;
+
+uniform vec4 palette_white : hint_color;
+uniform vec4 palette_light : hint_color;
+uniform vec4 palette_dark : hint_color;
+uniform vec4 palette_black : hint_color;
+
+uniform int brightness_level;
+uniform float precision;
+
+int get_level_from_game_color(vec3 color) {
+	vec4 original_colors[4] = vec4[4] (game_black, game_dark, game_light, game_white);
+	for (int i = 0; i < 4; i ++) {
+		if (distance(color, original_colors[i].rgb) <= precision){
+			return i;
+		}
+	}
+	return -1;
+}
+
+vec4 get_palette_color(int level) {
+	vec4 replace_colors[4] = vec4[4] (palette_black, palette_dark, palette_light, palette_white);
+	if (level > replace_colors.length()-1)
+		level = replace_colors.length()-1;
+	if (level < 0)
+		level = 0;
+	return replace_colors[level];
+}
+
+void fragment() {
+	vec4 c = textureLod(TEXTURE, UV, 0.0);
+	int level = get_level_from_game_color(c.rgb);
+	if (level >= 0) {
+		COLOR.rgb = get_palette_color(level+brightness_level).rgb;
+		COLOR.a = c.a;
+	}
+	else
+		COLOR = c;
+}"
 
 [sub_resource type="ShaderMaterial" id=14]
 shader = SubResource( 9 )
@@ -987,8 +975,8 @@ __meta__ = {
 [node name="Title" type="Label" parent="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox"]
 margin_right = 316.0
 margin_bottom = 8.0
-custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "A GAME BY "
 align = 1
 valign = 1
@@ -1013,8 +1001,8 @@ custom_constants/separation = 16
 [node name="Brawl" type="Label" parent="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox/HBoxContainer/Titles"]
 margin_right = 120.0
 margin_bottom = 8.0
-custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Director/Artist"
 valign = 1
 uppercase = true
@@ -1026,8 +1014,8 @@ __meta__ = {
 margin_top = 24.0
 margin_right = 120.0
 margin_bottom = 32.0
-custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Programmer"
 valign = 1
 uppercase = true
@@ -1039,8 +1027,8 @@ __meta__ = {
 margin_top = 48.0
 margin_right = 120.0
 margin_bottom = 56.0
-custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Level Designer"
 valign = 1
 uppercase = true
@@ -1052,8 +1040,8 @@ __meta__ = {
 margin_top = 72.0
 margin_right = 120.0
 margin_bottom = 80.0
-custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Musician"
 valign = 1
 uppercase = true
@@ -1070,8 +1058,8 @@ custom_constants/separation = 16
 [node name="Brawl" type="Label" parent="Menu/PlayTextBox4/Mrgn/MarginContainer/VBox/HBoxContainer/Names"]
 margin_right = 224.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Angus \"BrawlersInTheZone\" M.
 (Director/Sprite Arist)"
 align = 1
@@ -1085,8 +1073,8 @@ __meta__ = {
 margin_top = 35.0
 margin_right = 224.0
 margin_bottom = 54.0
-custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Connor \"TGT\" Mcpherson
 (Programmer)"
 align = 1
@@ -1100,8 +1088,8 @@ __meta__ = {
 margin_top = 70.0
 margin_right = 224.0
 margin_bottom = 89.0
-custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "QuantumPotato
 (Level Designer)"
 align = 1
@@ -1115,8 +1103,8 @@ __meta__ = {
 margin_top = 105.0
 margin_right = 224.0
 margin_bottom = 124.0
-custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Isabelle Chiming
 (Musician)"
 align = 1
@@ -1185,7 +1173,7 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="Menu/Start/Mrgn/MarginContainer/VBox"]
-material = SubResource( 10 )
+material = ExtResource( 44 )
 margin_right = 274.0
 margin_bottom = 54.0
 grow_horizontal = 2
@@ -1282,8 +1270,8 @@ __meta__ = {
 [node name="Title" type="Label" parent="Menu/PlayTextBox1/Mrgn/MarginContainer/VBox"]
 margin_right = 274.0
 margin_bottom = 52.0
-custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "This is an alpha demo,
 intended for the Gears 
 for Breakfast team.
@@ -1380,8 +1368,8 @@ __meta__ = {
 [node name="Title" type="Label" parent="Menu/PlayTextBox2/Mrgn/MarginContainer/VBox"]
 margin_right = 274.0
 margin_bottom = 74.0
-custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "As a wise man once said,
 this game is far from
 finished, and many
@@ -1480,8 +1468,8 @@ __meta__ = {
 [node name="Title" type="Label" parent="Menu/PlayTextBox3/Mrgn/MarginContainer/VBox"]
 margin_right = 274.0
 margin_bottom = 52.0
-custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "We look forward to your
 thoughts and/or feedback
 about the game, and hope
@@ -1773,8 +1761,8 @@ __meta__ = {
 [node name="Title" type="Label" parent="Menu/ColorSchemes/Mrgn/MarginContainer/VBox"]
 margin_right = 274.0
 margin_bottom = 52.0
-custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Hat-Venture is inspired
 by the Game Boy and
 Game Boy Color games--
@@ -1791,8 +1779,8 @@ __meta__ = {
 margin_top = 67.0
 margin_right = 274.0
 margin_bottom = 86.0
-custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "(this can be changed
 in the PAUSE menu)"
 align = 1
@@ -1837,8 +1825,8 @@ script = ExtResource( 17 )
 margin_top = 140.0
 margin_right = 274.0
 margin_bottom = 148.0
-custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Press Z to continue"
 align = 1
 valign = 1
@@ -1891,8 +1879,8 @@ script = ExtResource( 40 )
 direction = Vector2( -1, 0 )
 
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="VisibilityNotifier2D" method="_on_VisibilityNotifier2D_screen_entered"]
-[connection signal="close" from="Menu/PlayTextBox4" to="Menu/Start" method="open"]
 [connection signal="close" from="Menu/PlayTextBox4" to="Menu/PlayTextBox4/Timer" method="stop_timer"]
+[connection signal="close" from="Menu/PlayTextBox4" to="Menu/Start" method="open"]
 [connection signal="close_skipping" from="Menu/PlayTextBox4" to="Player" method="teleport_to" binds= [ "../SkipTarget" ]]
 [connection signal="open" from="Menu/PlayTextBox4" to="Menu/PlayTextBox4/Timer" method="start_timer"]
 [connection signal="timeout" from="Menu/PlayTextBox4/Timer" to="Menu/PlayTextBox4" method="close"]
@@ -1909,8 +1897,8 @@ direction = Vector2( -1, 0 )
 [connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo" to="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo/PalettesChecked" method="send_signals"]
 [connection signal="checked" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo/PalettesChecked" to="Menu/ColorSchemes/Mrgn/MarginContainer/VBox/Palette/PaletteList/GameStarter" method="start_game"]
 [connection signal="notchecked" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo/PalettesChecked" to="Menu/ColorSchemes" method="open"]
-[connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer2/Options/Options" to="Menu/Settings" method="open"]
 [connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer2/Options/Options" to="Menu/Play" method="close"]
+[connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer2/Options/Options" to="Menu/Settings" method="open"]
 [connection signal="pressed" from="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer3/Quit/Quit" to="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer3/Quit/Quit" method="_on_Quit_pressed"]
 [connection signal="close" from="Menu/Settings" to="Menu/Play" method="open"]
 [connection signal="pressed" from="Menu/Settings/Mrgn/MarginContainer/VBox/Settings/Mrgn/VBox/Display/Palette/PaletteList/PrevBtn" to="Menu/Play/Mrgn/MarginContainer/VBox/HBoxContainer/PlayDemo/PlayDemo/PalettesChecked" method="mark_checked"]

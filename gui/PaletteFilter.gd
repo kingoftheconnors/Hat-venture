@@ -20,6 +20,9 @@ enum COLOR {
 	SCENERY_BLACK = 15
 }
 
+signal palette_changed
+signal brightness_changed
+
 var cur_palette : String = "Classic"
 var cur_palette_size = 4
 var cur_brightness : int = 0
@@ -28,6 +31,7 @@ func set_palette(palette_name : String):
 	cur_palette = palette_name
 	cur_palette_size = palettes[cur_palette].size()
 	update_colors()
+	emit_signal("palette_changed")
 
 onready var playerFilter = $PlayerFilter
 func is_player_colors_different() -> bool:
@@ -118,6 +122,9 @@ func set_brightness_param(val : int):
 		backgroundFilter.material.set_shader_param("brightness_level", val)
 	else:
 		backgroundFilter.material.set_shader_param("brightness_level", 0)
+	emit_signal("brightness_changed")
+func get_brightness_param():
+	return material.get_shader_param("brightness_level")
 
 const palettes = {
 	Classic = [

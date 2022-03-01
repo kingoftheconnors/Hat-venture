@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shiproomForeground.png-cdf784721f7567bd374a1e0334746840.stex"
+path="res://.import/display.png-151fec0a2defaf3d1b5c68d078699cdd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level-select/shiproomForeground.png"
-dest_files=[ "res://.import/shiproomForeground.png-cdf784721f7567bd374a1e0334746840.stex" ]
+source_file="res://level-select/display.png"
+dest_files=[ "res://.import/display.png-151fec0a2defaf3d1b5c68d078699cdd.stex" ]
 
 [params]
 

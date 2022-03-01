@@ -467,7 +467,7 @@ tracks/0/keys = {
 "args": [ 2 ],
 "method": "set_brightness_param"
 }, {
-"args": [ 3 ],
+"args": [ 4 ],
 "method": "set_brightness_param"
 } ]
 }
@@ -490,7 +490,7 @@ tracks/0/keys = {
 "args": [ 2 ],
 "method": "set_brightness_param"
 }, {
-"args": [ 3 ],
+"args": [ 4 ],
 "method": "set_brightness_param"
 } ]
 }
@@ -514,7 +514,7 @@ tracks/0/keys = {
 "args": [ 2 ],
 "method": "set_brightness_param"
 }, {
-"args": [ 3 ],
+"args": [ 4 ],
 "method": "set_brightness_param"
 }, {
 "args": [ -1 ],
@@ -559,7 +559,7 @@ tracks/0/keys = {
 "args": [ 2 ],
 "method": "set_brightness_param"
 }, {
-"args": [ 3 ],
+"args": [ 4 ],
 "method": "set_brightness_param"
 }, {
 "args": [ -1 ],
@@ -775,8 +775,8 @@ anchor_bottom = 0.333
 margin_left = 12.0
 margin_right = 96.0
 margin_bottom = 0.0159998
-custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 14 )
 text = "Timmy"
 align = 1
 valign = 1
@@ -794,9 +794,9 @@ margin_left = -0.300001
 margin_top = 0.00799942
 margin_right = -26.0
 margin_bottom = 0.0159988
-custom_fonts/normal_font = ExtResource( 14 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_constants/line_separation = 5
+custom_fonts/normal_font = ExtResource( 14 )
 bbcode_enabled = true
 bbcode_text = "Are  you looking for your umbrella? I saw it land near the market area when you, you know..."
 visible_characters = 282
@@ -825,8 +825,8 @@ margin_right = 151.0
 margin_bottom = 8.0
 focus_neighbour_right = NodePath("../Option2")
 focus_mode = 2
-custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 14 )
 text = "THANKS"
 align = 1
 script = ExtResource( 13 )
@@ -842,8 +842,8 @@ margin_right = -4.0
 margin_bottom = 9.0
 focus_neighbour_right = NodePath("../Down")
 focus_neighbour_bottom = NodePath("../Left")
-custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 14 )
 text = ">"
 align = 2
 valign = 1
@@ -865,8 +865,8 @@ margin_right = 323.0
 margin_bottom = 8.0
 focus_neighbour_left = NodePath("../Option1")
 focus_mode = 2
-custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 14 )
 text = "RADICAL?"
 align = 1
 script = ExtResource( 13 )
@@ -882,8 +882,8 @@ margin_right = -4.0
 margin_bottom = 9.0
 focus_neighbour_right = NodePath("../Down")
 focus_neighbour_bottom = NodePath("../Left")
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
 text = ">"
 align = 2
 valign = 1
@@ -957,8 +957,8 @@ margin_bottom = 8.0
 margin_right = 72.0
 margin_bottom = 8.0
 grow_horizontal = 2
-custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 14 )
 text = "HAT KID :"
 align = 2
 __meta__ = {
@@ -987,8 +987,8 @@ margin_bottom = 20.0
 margin_right = 72.0
 margin_bottom = 8.0
 grow_horizontal = 2
-custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 14 )
 text = "SCORE   :"
 align = 2
 __meta__ = {
@@ -1002,8 +1002,8 @@ margin_right = 100.0
 margin_bottom = 8.0
 grow_horizontal = 2
 rect_pivot_offset = Vector2( 4, 0 )
-custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 14 )
 text = "x5:"
 align = 2
 __meta__ = {
@@ -1014,8 +1014,8 @@ __meta__ = {
 margin_left = 76.0
 margin_right = 132.0
 margin_bottom = 8.0
-custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 14 )
 text = "0000000"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1031,8 +1031,8 @@ margin_bottom = 20.0
 margin_right = 72.0
 margin_bottom = 8.0
 grow_horizontal = 2
-custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 14 )
 text = "BOSS    :"
 align = 2
 __meta__ = {
@@ -1063,8 +1063,8 @@ margin_bottom = 24.0
 margin_right = 32.0
 margin_bottom = 8.0
 grow_horizontal = 2
-custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 14 )
 text = "LV.1"
 align = 1
 __meta__ = {
@@ -1095,8 +1095,8 @@ margin_left = 14.0
 margin_right = 22.0
 margin_bottom = 8.0
 rect_pivot_offset = Vector2( 0, -4 )
-custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 14 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1137,5 +1137,7 @@ anims/reveal_from_black = SubResource( 16 )
 [connection signal="focus_entered" from="DialogBox/DialogOptions/Option2" to="DialogBox/DialogOptions/Option2" method="_on_focus_entered"]
 [connection signal="focus_exited" from="DialogBox/DialogOptions/Option2" to="DialogBox/DialogOptions/Option2" method="_on_focus_exited"]
 [connection signal="option_selected" from="DialogBox/DialogOptions/Option2" to="DialogBox/DialogOptions" method="set_selected_option"]
+[connection signal="brightness_changed" from="PaletteFilter" to="." method="brightness_changed"]
+[connection signal="palette_changed" from="PaletteFilter" to="." method="palette_changed"]
 
 [editable path="PaletteFilter"]
