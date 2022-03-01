@@ -282,8 +282,8 @@ func get_dialog(text_num):
 				{signal = "action1", if_tag_false = "chased_lilens"},
 				{signal = "action2", delay=5, if_tag_false = "chased_lilens"},
 				{signal = "action3", delay=2, if_tag_false = "chased_lilens"},
-				{enable_skipping = true},
 				{settag = "chased_lilens", value = true},
+				{enable_skipping = true},
 			]
 		DIALOG_TYPE.GOTO_BEDROOM:
 			return [
