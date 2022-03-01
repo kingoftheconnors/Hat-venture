@@ -92,6 +92,7 @@ texture = ExtResource( 8 )
 [node name="DialogBox" parent="House" instance=ExtResource( 9 )]
 position = Vector2( 208, 32 )
 dialog_num = 6
+unfreeze_after_dialog = false
 
 [node name="Door" parent="House/DialogBox" instance=ExtResource( 18 )]
 position = Vector2( 0, 16 )
