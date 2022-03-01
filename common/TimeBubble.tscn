@@ -56,9 +56,6 @@ margin_bottom = 154.0
 rect_scale = Vector2( 1e-05, 1e-05 )
 rect_pivot_offset = Vector2( 162, 162 )
 texture = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/grow = SubResource( 1 )

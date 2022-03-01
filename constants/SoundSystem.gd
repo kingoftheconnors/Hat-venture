@@ -128,7 +128,7 @@ func song_transition(song_to_play, start_time : float = 0.0):
 			animation_player.disconnect("animation_finished", self, "song_fadeout_finished")
 		animation_player.connect("animation_finished", self, "song_fadeout_finished", [song_to_play, start_time, true])
 		$AnimationPlayer.play("FadeOutFast")
-func song_fadeout_finished(_anim_name, music : int, start_time : float = 0.0, fadein : bool = false):
+func song_fadeout_finished(_anim_name, music, start_time, fadein):
 	in_transition_time = null; in_transition_song = null
 	start_music(music, start_time, fadein)
 	var animation_player = $AnimationPlayer
