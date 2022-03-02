@@ -19,6 +19,7 @@ signal hurt
 func _process(_delta):
 	if dying:
 		controller.set_velo_x(0)
+		controller.set_freeze(true)
 		if animating_death:
 			animator['parameters/PlayerMovement/playback'].travel('die')
 		else:

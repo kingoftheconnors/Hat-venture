@@ -3,6 +3,7 @@ extends Area2D
 export(bool) var active = true
 var start_time : float = 0.0
 var song_to_play = sound_system.MUSIC.TIME_PIECE_BUBBLE
+var bubble_shown : bool = false
 
 func _ready():
 	if !active:
@@ -18,10 +19,11 @@ func activate():
 
 ## Captures the camera
 func _on_CameraCapture_body_entered(body):
-	if body.is_in_group("player") and active:
+	if body.is_in_group("player") and active and !bubble_shown:
 		#$TextureRect.visible = true
 		$AnimationPlayer.play("grow")
 		play_song_to_play()
+		bubble_shown = true
 
 func play_song_to_play():
 		var old_song = SoundSystem.get_current_song()
@@ -36,3 +38,4 @@ func _on_CameraCapture_body_exited(body):
 		#$TextureRect.visible = false
 		$AnimationPlayer.play("shrink")
 		play_song_to_play()
+		bubble_shown = false

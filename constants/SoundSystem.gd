@@ -96,12 +96,12 @@ func start_music(music : int, start_time : float = 0.0, fadein : int = FADEIN_SP
 func skip_song_to(time : float):
 	music_player.play(time)
 func get_current_song_time():
-	if in_transition_song:
-		return in_transition_song
+	if in_transition_time != null:
+		return in_transition_time
 	return music_player.get_playback_position()
 func get_current_song():
-	if in_transition_time:
-		return in_transition_time
+	if in_transition_song != null:
+		return in_transition_song
 	return cur_music
 func stop_music():
 	music_player.stop()
@@ -118,11 +118,11 @@ func fadein_music_fast():
 
 var in_transition_time = null; var in_transition_song = null
 func song_transition(song_to_play, start_time : float = 0.0):
+	in_transition_time = start_time; in_transition_song = song_to_play
 	if music_player.volume_db < -50:
 		# Skip to fadein
 		song_fadeout_finished("", song_to_play, start_time, true)
 	else:
-		in_transition_time = start_time; in_transition_song = song_to_play
 		var animation_player = $AnimationPlayer
 		if animation_player.is_connected("animation_finished", self, "song_fadeout_finished"):
 			animation_player.disconnect("animation_finished", self, "song_fadeout_finished")
