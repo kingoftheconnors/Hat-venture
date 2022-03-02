@@ -12,4 +12,4 @@ dest_files=[ "res://.import/A_New_Adventure.ogg-cce8c1e0653917be8d2d2828b27d9777
 [params]
 
 loop=true
-loop_offset=0
+loop_offset=51.535
