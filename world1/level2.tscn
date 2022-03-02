@@ -599,7 +599,7 @@ position = Vector2( -294, 8 )
 position = Vector2( 58, 8 )
 
 [node name="TimePieceGoal" type="Node2D" parent="BossNode2D/Boss"]
-position = Vector2( -118, -56 )
+position = Vector2( -118, -72 )
 
 [node name="AppleDropper" parent="BossNode2D/Boss" instance=ExtResource( 20 )]
 position = Vector2( -118, -184 )
