@@ -40,6 +40,9 @@ func get_tag(tag_name):
 			return game_data['tags'][tag_name]
 	return null
 
+func reset_tags():
+	game_data['tags'] = {}
+
 func set_pons(pons_num : int):
 	game_data['pons'] = pons_num
 func get_pons():
