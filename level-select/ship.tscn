@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://level-select/shiproom1.png" type="Texture" id=2]
@@ -36,6 +36,7 @@
 [ext_resource path="res://level-select/door2.png" type="Texture" id=34]
 [ext_resource path="res://level-select/display.png" type="Texture" id=35]
 [ext_resource path="res://level-select/shiproom1pillars.png" type="Texture" id=36]
+[ext_resource path="res://level-select/shiproom1ladder.png" type="Texture" id=37]
 
 [sub_resource type="Shader" id=9]
 code = "shader_type canvas_item;
@@ -336,6 +337,11 @@ dark = 6
 black = 7
 brightness_offset = -1
 
+[node name="shiproomBackground2" type="Sprite" parent="."]
+material = ExtResource( 33 )
+position = Vector2( 128, -40 )
+texture = ExtResource( 37 )
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -409,7 +415,7 @@ script = SubResource( 11 )
 [node name="DoorDialog" parent="." instance=ExtResource( 9 )]
 position = Vector2( 304, -40 )
 dialog_num = 26
-active_bodies_in_dialog = [ NodePath("../Player"), NodePath("../LilenController"), NodePath("../DustCloud"), NodePath("../Vault/Vault"), NodePath("Door"), NodePath("../Area2D"), NodePath("../shiproomForeground") ]
+active_bodies_in_dialog = [ NodePath("../Player"), NodePath("../LilenController"), NodePath("../DustCloud"), NodePath("../Vault"), NodePath("Door"), NodePath("../Area2D"), NodePath("../shiproomForeground") ]
 unfreeze_after_dialog = false
 animate1 = NodePath("../Player")
 animate2 = NodePath("../Timmy")
@@ -449,7 +455,6 @@ dark = 2
 black = 7
 
 [node name="Timmy" parent="." instance=ExtResource( 21 )]
-material = ExtResource( 30 )
 position = Vector2( 328, -32 )
 
 [node name="OverDoor" type="Sprite" parent="."]
@@ -590,10 +595,10 @@ level_music = 11
 [connection signal="action8" from="Display/DialogBox" to="DoorDialog/Arrow" method="show"]
 [connection signal="action9" from="Display/DialogBox" to="Display/Timer" method="start"]
 [connection signal="timeout" from="Display/Timer" to="Display/Timer" method="play_sound"]
+[connection signal="action1" from="DoorDialog" to="Timmy" method="play_animation" binds= [ "float" ]]
 [connection signal="action1" from="DoorDialog" to="Timmy" method="make_visible"]
 [connection signal="action1" from="DoorDialog" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target5", -1.0, -1.0, 0.175 ]]
 [connection signal="action1" from="DoorDialog" to="Timmy" method="fly_to" flags=3 binds= [ "../WalkTo_Target5", 0.5 ]]
-[connection signal="action1" from="DoorDialog" to="Timmy" method="play_animation" binds= [ "float" ]]
 [connection signal="action2" from="DoorDialog" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target1" ]]
 [connection signal="action3" from="DoorDialog" to="Timmy" method="look_at_node" binds= [ "../WalkTo_Target3" ]]
 [connection signal="action3" from="DoorDialog" to="CameraCapture2" method="capture"]
@@ -620,11 +625,11 @@ level_music = 11
 [connection signal="actionG" from="DoorDialog" to="Player" method="bounce_towards" binds= [ 1.5 ]]
 [connection signal="actionH" from="DoorDialog" to="Timmy" method="bounce_towards" binds= [ 1.5 ]]
 [connection signal="actionJ" from="DoorDialog" to="Timmy" method="fly_to" binds= [ "../WalkTo_Target2" ]]
-[connection signal="actionK" from="DoorDialog" to="Timmy" method="fly_to"]
 [connection signal="actionK" from="DoorDialog" to="Timmy" method="look_at_node" binds= [ "../Player" ]]
+[connection signal="actionK" from="DoorDialog" to="Timmy" method="fly_to"]
 [connection signal="actionL" from="DoorDialog" to="Timmy" method="look_at_node" binds= [ "../Timmy" ]]
-[connection signal="actionM" from="DoorDialog" to="Timmy" method="fly_to"]
 [connection signal="actionM" from="DoorDialog" to="Timmy" method="play_animation" binds= [ "drop" ]]
+[connection signal="actionM" from="DoorDialog" to="Timmy" method="fly_to"]
 [connection signal="actionN" from="DoorDialog" to="Display/Timer" method="stop"]
 [connection signal="actionN" from="DoorDialog" to="DoorDialog/Arrow" method="hide"]
 [connection signal="actionN" from="DoorDialog" to="Player" method="walk_to" binds= [ "../WalkTo_Target4" ]]

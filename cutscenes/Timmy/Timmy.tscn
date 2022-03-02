@@ -1,8 +1,10 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://cutscenes/Timmy/CutsceneTimmy.gd" type="Script" id=1]
 [ext_resource path="res://enemy/timmy/timmy.png" type="Texture" id=2]
 [ext_resource path="res://items/Resources/timePiece.png" type="Texture" id=3]
+[ext_resource path="res://gui/EnemyPalette.tres" type="Material" id=4]
+[ext_resource path="res://gui/PlayerPalette.tres" type="Material" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -439,6 +441,7 @@ collision_mask = 2
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+material = ExtResource( 4 )
 scale = Vector2( -1, 1 )
 texture = ExtResource( 2 )
 hframes = 23
@@ -446,6 +449,7 @@ frame = 18
 
 [node name="TimePiece" type="Sprite" parent="Sprite"]
 visible = false
+material = ExtResource( 5 )
 position = Vector2( 10, 0 )
 texture = ExtResource( 3 )
 hframes = 8

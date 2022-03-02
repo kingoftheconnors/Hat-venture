@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background.png-31fdb4a10a05ab9a00998a771ff92abc.stex"
+path="res://.import/shiproom1ladder.png-a98817ac55c5d5010ec25a3b896f93ec.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level-select/background.png"
-dest_files=[ "res://.import/background.png-31fdb4a10a05ab9a00998a771ff92abc.stex" ]
+source_file="res://level-select/shiproom1ladder.png"
+dest_files=[ "res://.import/shiproom1ladder.png-a98817ac55c5d5010ec25a3b896f93ec.stex" ]
 
 [params]
 
