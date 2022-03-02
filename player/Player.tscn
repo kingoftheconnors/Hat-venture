@@ -1235,14 +1235,11 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 0.7, 4.5, 4.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 4.5, 4.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "pause_game"
-}, {
-"args": [  ],
-"method": "resume_player"
 }, {
 "args": [  ],
 "method": "die"
@@ -6036,11 +6033,7 @@ particles_anim_h_frames = 5
 particles_anim_v_frames = 1
 particles_anim_loop = true
 
-[node name="Player" type="KinematicBody2D" groups=[
-"all",
-"player",
-"player_root",
-]]
+[node name="Player" type="KinematicBody2D" groups=["all", "player", "player_root"]]
 rotation = 6.28319
 z_index = 2
 collision_mask = 3
@@ -6103,29 +6096,20 @@ position = Vector2( 14, 1 )
 scale = Vector2( -1, 1 )
 texture = ExtResource( 44 )
 
-[node name="hurtbox" type="Area2D" parent="ScaleChildren" groups=[
-"hurtbox",
-"player",
-]]
+[node name="hurtbox" type="Area2D" parent="ScaleChildren" groups=["hurtbox", "player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScaleChildren/hurtbox"]
 position = Vector2( 0.5, -1.5 )
 shape = SubResource( 3 )
 
-[node name="hitbox" type="Area2D" parent="ScaleChildren" groups=[
-"hitbox",
-"player",
-]]
+[node name="hitbox" type="Area2D" parent="ScaleChildren" groups=["hitbox", "player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScaleChildren/hitbox"]
 position = Vector2( 0, 13 )
 rotation = 1.5708
 shape = SubResource( 4 )
 
-[node name="bashbox" type="Area2D" parent="ScaleChildren" groups=[
-"hitbox",
-"player",
-]]
+[node name="bashbox" type="Area2D" parent="ScaleChildren" groups=["hitbox", "player"]]
 visible = false
 collision_layer = 0
 collision_mask = 3
@@ -6135,10 +6119,7 @@ position = Vector2( 8, 1.5 )
 shape = SubResource( 5 )
 disabled = true
 
-[node name="spinbodysmasher" type="Area2D" parent="ScaleChildren" groups=[
-"hitbox",
-"player",
-]]
+[node name="spinbodysmasher" type="Area2D" parent="ScaleChildren" groups=["hitbox", "player"]]
 visible = false
 collision_layer = 0
 
@@ -6158,10 +6139,7 @@ emission_rect_extents = Vector2( 0, 4 )
 gravity = Vector2( 0, 0 )
 scale_amount = 2.0
 
-[node name="spinbox" type="Area2D" parent="." groups=[
-"hitbox",
-"player",
-]]
+[node name="spinbox" type="Area2D" parent="." groups=["hitbox", "player"]]
 visible = false
 collision_layer = 0
 collision_mask = 3
@@ -6171,10 +6149,7 @@ position = Vector2( 13, 1 )
 shape = SubResource( 7 )
 disabled = true
 
-[node name="spinbox2" type="Area2D" parent="." groups=[
-"hitbox",
-"player",
-]]
+[node name="spinbox2" type="Area2D" parent="." groups=["hitbox", "player"]]
 visible = false
 collision_layer = 0
 collision_mask = 3
