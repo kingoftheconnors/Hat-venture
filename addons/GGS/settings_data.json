@@ -20,7 +20,7 @@
 			"bus_name": "Music"
 		},
 		"current": {
-			"value": 0,
+			"value": 0.3,
 			"bus_name": "Music"
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/audio_slider.gd"
@@ -28,11 +28,11 @@
 	"2": {
 		"name": "sfx_volume",
 		"default": {
-			"value": 1,
+			"value": 0.3,
 			"bus_name": "SoundEffects"
 		},
 		"current": {
-			"value": 0,
+			"value": 0.3,
 			"bus_name": "SoundEffects"
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/audio_slider.gd"
@@ -217,7 +217,7 @@
 			"value": 30
 		},
 		"current": {
-			"value": 40
+			"value": 30
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/parallax_slider.gd"
 	},
@@ -227,7 +227,7 @@
 			"value": 0
 		},
 		"current": {
-			"value": 1
+			"value": 0
 		},
 		"logic": "res://gui/optionsmenu/setting_logic/palette_selector.gd"
 	},
