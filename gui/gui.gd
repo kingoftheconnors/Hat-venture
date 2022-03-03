@@ -134,6 +134,9 @@ func _unhandled_input(event):
 				get_node("/root/Gui").add_child(palette)
 				get_tree().set_input_as_handled()
 
+func enable_skipping():
+	can_skip_cutscene = true
+
 func menu_opened() -> void:
 	menu_exists = true
 func menu_closed() -> void:
@@ -215,7 +218,7 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 			if is_instance_valid(body):
 				body.set_pause_mode(PAUSE_MODE_INHERIT)
 	elif next_box.has("enable_skipping"):
-		can_skip_cutscene = true
+		call_deferred("enable_skipping")
 	elif next_box.has("disable_skipping"):
 		can_skip_cutscene = false
 	elif next_box.has("unfreeze_player"):
