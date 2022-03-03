@@ -252,6 +252,10 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 		Gui.reveal()
 	elif next_box.has("addpon"):
 		PlayerGameManager.add_pons(next_box["addpon"])
+	elif next_box.has("stop_cutscene_controls"):
+		var players : Array = get_tree().get_nodes_in_group("player_root")
+		for player in players:
+			player.stop_cutscene_controls()
 	elif next_box.has("queue_free"):
 		if is_instance_valid(next_box['queue_free']) and next_box['queue_free'] != null:
 			next_box['queue_free'].queue_free()
@@ -268,6 +272,7 @@ func play_boss_health_get_sfx():
 	SoundSystem.start_sound(SoundSystem.SFX.BOSS_LIFE_GET)
 
 func skip_cutscene():
+	queue_text(null, {"stop_cutscene_controls": true})
 	text_crawl_func = null
 	if curbox != null and curbox.has('options'):
 		var first_option = curbox.options.keys()[0]
@@ -275,7 +280,7 @@ func skip_cutscene():
 		queue_dialog_at_front(curbox.starter, next_textbox_num)
 	while text_to_run.size() > 0:
 		var next_box = text_to_run.pop_front()
-		start_dialog(next_box, true)
+		start_dialog(next_box, Constants.SKIP_TYPE.SKIP)
 		if next_box.has('level'):
 			return
 

@@ -495,7 +495,10 @@ func watch_node(node_path: String):
 	watch_override = get_node(node_path)
 func stop_watching():
 	watch_override = null
-	
+func stop_cutscene_controls():
+	goal_x = null
+	direc_override = null
+
 func blow_back(go_right: bool = 1):
 	blowing_back = true
 	ignore_air_friction = true
