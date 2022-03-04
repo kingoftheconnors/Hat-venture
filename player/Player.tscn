@@ -949,11 +949,14 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.05, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [ Vector2( 0, 0 ) ],
 "method": "set_velo"
+}, {
+"args": [ true ],
+"method": "set_freeze"
 }, {
 "args": [ true ],
 "method": "set_freeze"
@@ -1007,7 +1010,7 @@ tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ 1 ],
