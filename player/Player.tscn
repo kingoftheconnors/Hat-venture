@@ -6328,7 +6328,7 @@ collision_mask = 3
 wait_time = 0.25
 
 [node name="Uninvincible" type="Timer" parent="."]
-wait_time = 0.75
+wait_time = 0.25
 
 [node name="SuperJumpParticle" type="CPUParticles2D" parent="."]
 material = SubResource( 286 )
