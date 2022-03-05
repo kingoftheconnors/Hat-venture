@@ -812,24 +812,12 @@ tracks/2/keys = {
 "values": [ 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("EnemyCore/AnimationTree:parameters/hurt/IsFlashing/add_amount")
+tracks/3/path = NodePath("EnemyCore/AnimationTree:parameters/hurt/HurtState/conditions/hurt")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1.0 ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("EnemyCore/AnimationTree:parameters/hurt/HurtState/conditions/hurt")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -1769,9 +1757,7 @@ gravity = Vector2( 0, 400 )
 initial_velocity = 1.0
 angle_curve = SubResource( 32 )
 
-[node name="HurtBox" type="Area2D" parent="." groups=[
-"hurtbox",
-]]
+[node name="HurtBox" type="Area2D" parent="." groups=["hurtbox"]]
 position = Vector2( 0, 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
@@ -1780,9 +1766,7 @@ rotation = 1.5708
 shape = SubResource( 33 )
 disabled = true
 
-[node name="HitBox" type="Area2D" parent="." groups=[
-"hitbox",
-]]
+[node name="HitBox" type="Area2D" parent="." groups=["hitbox"]]
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
