@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://gui/UnlockPaletteBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://gui/white.png" type="Texture" id=2]
@@ -17,6 +17,22 @@
 [ext_resource path="res://gui/optionsmenu/hatventuretheme.tres" type="Theme" id=15]
 [ext_resource path="res://gui/AdvanceButton.gd" type="Script" id=16]
 [ext_resource path="res://gui/dialog.png" type="Texture" id=18]
+
+[sub_resource type="StyleBoxEmpty" id=19]
+
+[sub_resource type="StyleBoxEmpty" id=20]
+
+[sub_resource type="StyleBoxEmpty" id=21]
+
+[sub_resource type="StyleBoxEmpty" id=22]
+
+[sub_resource type="StyleBoxEmpty" id=23]
+
+[sub_resource type="StyleBoxEmpty" id=24]
+
+[sub_resource type="StyleBoxEmpty" id=25]
+
+[sub_resource type="StyleBoxEmpty" id=26]
 
 [sub_resource type="DynamicFont" id=1]
 size = 8
@@ -807,20 +823,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Option1" type="Label" parent="DialogBox/DialogOptions"]
+[node name="Option1" type="Button" parent="DialogBox/DialogOptions"]
 margin_left = 103.0
 margin_right = 151.0
 margin_bottom = 8.0
 focus_neighbour_right = NodePath("../Option2")
-focus_mode = 2
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 14 )
+custom_styles/hover = SubResource( 19 )
+custom_styles/pressed = SubResource( 20 )
+custom_styles/focus = SubResource( 21 )
+custom_styles/normal = SubResource( 22 )
 text = "THANKS"
-align = 1
 script = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Arrow" type="Label" parent="DialogBox/DialogOptions/Option1"]
 modulate = Color( 1, 1, 1, 0 )
@@ -847,20 +862,19 @@ margin_right = 255.0
 margin_bottom = 8.0
 rect_min_size = Vector2( 100, 0 )
 
-[node name="Option2" type="Label" parent="DialogBox/DialogOptions"]
+[node name="Option2" type="Button" parent="DialogBox/DialogOptions"]
 margin_left = 259.0
 margin_right = 323.0
 margin_bottom = 8.0
 focus_neighbour_left = NodePath("../Option1")
-focus_mode = 2
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 14 )
+custom_styles/hover = SubResource( 23 )
+custom_styles/pressed = SubResource( 24 )
+custom_styles/focus = SubResource( 25 )
+custom_styles/normal = SubResource( 26 )
 text = "RADICAL?"
-align = 1
 script = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Arrow" type="Label" parent="DialogBox/DialogOptions/Option2"]
 modulate = Color( 1, 1, 1, 0 )
@@ -903,11 +917,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -24.0
+margin_right = -2.0
 texture = ExtResource( 2 )
 stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MContainer" type="MarginContainer" parent="Player"]
 anchor_right = 1.0
@@ -920,7 +932,7 @@ __meta__ = {
 
 [node name="GuiInfo" type="HBoxContainer" parent="Player/MContainer"]
 margin_top = 2.0
-margin_right = 426.0
+margin_right = 424.0
 margin_bottom = 26.0
 grow_horizontal = 0
 custom_constants/separation = 40
@@ -930,8 +942,8 @@ __meta__ = {
 }
 
 [node name="Main" type="VBoxContainer" parent="Player/MContainer/GuiInfo"]
-margin_left = 111.0
-margin_right = 243.0
+margin_left = 110.0
+margin_right = 242.0
 margin_bottom = 24.0
 
 [node name="HatKid" type="HBoxContainer" parent="Player/MContainer/GuiInfo/Main"]
@@ -1028,6 +1040,7 @@ __meta__ = {
 margin_left = 76.0
 margin_right = 124.0
 margin_bottom = 8.0
+rect_scale = Vector2( 304, 48 )
 rect_pivot_offset = Vector2( 0, 2 )
 max_value = 6.0
 texture_under = ExtResource( 6 )
@@ -1040,8 +1053,8 @@ __meta__ = {
 anims/FillEnergy = SubResource( 3 )
 
 [node name="Pons" type="VBoxContainer" parent="Player/MContainer/GuiInfo"]
-margin_left = 283.0
-margin_right = 315.0
+margin_left = 282.0
+margin_right = 314.0
 margin_bottom = 24.0
 
 [node name="StageName" type="Label" parent="Player/MContainer/GuiInfo/Pons"]
@@ -1119,9 +1132,11 @@ anims/reveal_from_black = SubResource( 16 )
 [connection signal="focus_entered" from="DialogBox/DialogOptions/Option1" to="DialogBox/DialogOptions/Option1" method="_on_focus_entered"]
 [connection signal="focus_exited" from="DialogBox/DialogOptions/Option1" to="DialogBox/DialogOptions/Option1" method="_on_focus_exited"]
 [connection signal="option_selected" from="DialogBox/DialogOptions/Option1" to="DialogBox/DialogOptions" method="set_selected_option"]
+[connection signal="pressed" from="DialogBox/DialogOptions/Option1" to="DialogBox/DialogOptions/Option1" method="_on_pressed"]
 [connection signal="focus_entered" from="DialogBox/DialogOptions/Option2" to="DialogBox/DialogOptions/Option2" method="_on_focus_entered"]
 [connection signal="focus_exited" from="DialogBox/DialogOptions/Option2" to="DialogBox/DialogOptions/Option2" method="_on_focus_exited"]
 [connection signal="option_selected" from="DialogBox/DialogOptions/Option2" to="DialogBox/DialogOptions" method="set_selected_option"]
+[connection signal="pressed" from="DialogBox/DialogOptions/Option2" to="DialogBox/DialogOptions/Option2" method="_on_pressed"]
 [connection signal="brightness_changed" from="PaletteFilter" to="." method="brightness_changed"]
 [connection signal="palette_changed" from="PaletteFilter" to="." method="palette_changed"]
 

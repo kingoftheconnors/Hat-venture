@@ -1,4 +1,4 @@
-extends Label
+extends Control
 
 signal option_selected
 
@@ -8,12 +8,8 @@ func _on_focus_entered():
 func _on_focus_exited():
 	$Arrow.modulate = Color(1, 1, 1, 0)
 
-# Handle overridable Left and Right functions (and emit signal)
-func _input(event):
-	# Change keybind
-	if has_focus():
-		if event.is_action_pressed("ui_accept"):
-			emit_signal("option_selected", option_value)
+func _on_pressed():
+	emit_signal("option_selected", option_value)
 
 # Textbox ID to run if this option is picked
 var option_value

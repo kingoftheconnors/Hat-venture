@@ -12,6 +12,8 @@ func hide_options():
 	visible = false
 
 func poll_user_selection():
+	if get_focus_owner() == null:
+		option_labels[0].grab_focus()
 	return selected_option
 
 func set_selected_option(value):
