@@ -202,7 +202,7 @@ position = Vector2( 0, -40 )
 shape = SubResource( 1 )
 
 [node name="CameraCapture4" parent="." instance=ExtResource( 24 )]
-position = Vector2( 3840, 40 )
+position = Vector2( 3840, 32 )
 scale = Vector2( 0.85, 0.85 )
 walled = false
 

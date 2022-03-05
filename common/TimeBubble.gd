@@ -34,7 +34,7 @@ func play_song_to_play():
 		song_to_play = old_song
 
 func _on_CameraCapture_body_exited(body):
-	if body.is_in_group("player") and active:
+	if body.is_in_group("player") and active and bubble_shown:
 		#$TextureRect.visible = false
 		$AnimationPlayer.play("shrink")
 		play_song_to_play()
