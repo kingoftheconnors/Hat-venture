@@ -382,3 +382,19 @@ Add explosion and groundpound sfx to Robokurt
 Fix dialog system glitch that didn't reveal entire sentence
 Prettify trees in 1-2
 Replace gif system with fast version
+
+0.4.7
+Correct Coloring
+Boss fight bugfixes
+Boss fight second-phase (start using smash instead of jump after getting hit 3 times)
+Misc polish:
+	Facing WRONG DIRECTION when collecting time piece (NOT CLICKBAIT!)
+	Dive-when-collecting timepiece glitch
+	Skip cutscene skips lights coming on and they stay dark
+	Skip cutscene option causes dialog to not even be STARTABLE (signs and screen)
+	Skip cutscene causes Timmy to not be activated when talking to screen
+	Skip cutscene causes Time Piece to not appear
+	Still just BARELY capable of exiting under-level camera capture using Running hat
+	Ladder-climbing animation for Running Hat
+	Make photosensitive mode slow Logo coming in
+	No robohen flashing in photosensitive mode
