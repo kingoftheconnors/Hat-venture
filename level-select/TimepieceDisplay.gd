@@ -2,13 +2,12 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(SaveSystem.access_data().get_tag("satellite_aligned"))
-	print(SaveSystem.access_data().get_tag("timepieces_stolen"))
 	if SaveSystem.access_data().get_tag("satellite_aligned") == null:
 		$Exclamation.visible = true
 	elif SaveSystem.access_data().get_tag("timepieces_stolen") == null:
 		$Exclamation.visible = true
-		$Arrow.show()
+		if Constants.SKIP_CUTSCENES != Constants.SKIP_TYPE.SKIP:
+			$Arrow.show()
 	else:
 		$TimePieces.visible = true
 		$DialogBox.enabled = false
