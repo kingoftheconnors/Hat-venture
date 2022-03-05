@@ -111,18 +111,16 @@ func move(delta):
 	var horizontal = 0
 	if walking:
 		horizontal = 1
-	var vertical = 0
 	
 	if ignore_horizontal_timer > 0 and horizontal * direction < 0:
 		horizontal = -horizontal
 	
 	if _stun > 0:
 		horizontal = 0
-		vertical = 0
 		_stun -= 1
 	
 	if frozen or diving:
-		horizontal = 0; vertical = 0
+		horizontal = 0;
 	
 	if horizontal * direction < 0:
 		if horizontal > 0:
@@ -534,13 +532,13 @@ func set_climb_speed(flag : bool):
 # EXTERNAL NODE METHODS
 ####################
 
-func on_ladder(ladder):
+func on_ladder(_ladder):
 	pass
 func off_ladder():
 	pass
-func on_ladder_top(ladder):
+func on_ladder_top(_ladder):
 	pass
-func off_ladder_top(ladder):
+func off_ladder_top(_ladder):
 	pass
 
 func get_direction():
@@ -584,7 +582,7 @@ func run_start_effect():
 func signal_death():
 	emit_signal("dead")
 	SoundSystem.start_music(sound_system.MUSIC.GAMEOVER)
-func heal(amount = 1):
+func heal(_amount):
 	pass
 
 onready var gravity_timer = $"GravityTimer"

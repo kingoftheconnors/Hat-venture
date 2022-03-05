@@ -3,7 +3,7 @@ class_name thorPower
 var blendValue = 3
 func name(): return "ThorHat"
 
-func power_equipped(body, _animator):
+func power_equipped(_body, _animator):
 	pass
 
 func press_power_button(body, _animator):

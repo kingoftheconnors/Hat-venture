@@ -109,7 +109,6 @@ func set_brightness(val : int):
 # Game brightness. Moves colors up and down the color direction
 func set_brightness_param(val : int):
 	var spriteFilter = $SpriteFilter
-	var playerFilter = $PlayerFilter
 	var backgroundFilter = $BackgroundFilter
 	material.set_shader_param("brightness_level", val)
 	if cur_palette_size > 4:

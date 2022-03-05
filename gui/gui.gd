@@ -412,7 +412,7 @@ onready var textboxes = game_dialog.new()
 ### Boss
 ### -------------------------------
 
-func boss_start(health):
+func boss_start(_health):
 	bossArea.visible = true
 	scoreArea.visible = false
 	bossAnimator.play("FillEnergy")

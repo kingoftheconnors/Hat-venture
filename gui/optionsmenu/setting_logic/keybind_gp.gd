@@ -21,7 +21,7 @@ func main(value: Dictionary) -> void:
 		prev_event = GGSUtils.array_find_type(action_list, "InputEventJoypadMotion") as InputEventJoypadMotion
 	
 	# Create the correct event type
-	var prev_event_class: String = prev_event.get_class()
+	var _prev_event_class: String = prev_event.get_class()
 	if not value.has("axis"):
 		new_event = InputEventJoypadButton.new() as InputEventJoypadButton
 		new_event.button_index = value["value"]

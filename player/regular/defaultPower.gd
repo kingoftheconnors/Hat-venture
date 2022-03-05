@@ -3,7 +3,7 @@ class_name defaultPower
 var blendValue = 0
 func name(): return "DefaultHat"
 
-func power_equipped(body, _animator):
+func power_equipped(_body, _animator):
 	pass
 
 func press_power_button(body, _animator):

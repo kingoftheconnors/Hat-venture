@@ -28,7 +28,7 @@ func play_animation(animation_name):
 func animate(animation_name):
 	play_animation(animation_name)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if goal_y != null:
 			if abs(position.y - goal_y) > 3:
 				if abs(velo.y) > 35:

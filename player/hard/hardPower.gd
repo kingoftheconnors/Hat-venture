@@ -3,7 +3,7 @@ class_name hardPower
 var blendValue = 4
 func name(): return "HardHat"
 
-func power_equipped(body, _animator):
+func power_equipped(_body, _animator):
 	pass
 
 func press_power_button(body, _animator):

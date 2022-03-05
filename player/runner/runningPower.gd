@@ -12,13 +12,13 @@ func power_equipped(body, _animator):
 
 func press_power_button(body, _animator):
 	body.dive()
-func press_power_button_on_init(body, _animator):
+func press_power_button_on_init(_body, _animator):
 	pass
 
-func release_power_button(body, _animator):
+func release_power_button(_body, _animator):
 	pass
 
-func power_removed(body, animator):
+func power_removed(body, _animator):
 	body.stop_run()
 	body.set_lookahead(0)
 

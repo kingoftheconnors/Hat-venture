@@ -53,10 +53,10 @@ func fall_towards_right():
 func end_fall():
 	falling = false
 	velo = Vector2.ZERO
-func _physics_process(delta):
+func _physics_process(_delta):
 	if falling:
 		velo += Vector2.DOWN*GRAVITY
-		move_and_slide(velo, Vector2.UP)
+		var _v = move_and_slide(velo, Vector2.UP)
 		if get_slide_count() > 0:
 			for i in get_slide_count():
 				var collision = get_slide_collision(i)

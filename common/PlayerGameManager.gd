@@ -65,7 +65,7 @@ func die():
 	multiplicity = 1; Gui.set_score_mult(1)
 	multiplicity_decrease_time_left = -1
 	#get_tree().change_scene("res://transitionScenes/death.tscn")
-	Gui.reveal()
+	var _fade_length = Gui.reveal()
 
 ## Changes scene to start a level (called by number)
 func start_level(levelName : String, spawn_point : int = 0, fade_type : int = Gui.COVER_TYPES.WHITE):
@@ -79,7 +79,7 @@ func start_level(levelName : String, spawn_point : int = 0, fade_type : int = Gu
 	Gui.show()
 	# Load level
 	var _success = get_tree().change_scene(levelName)
-	Gui.reveal()
+	var _fade_length = Gui.reveal()
 
 func level_complete():
 	if pons != 0:

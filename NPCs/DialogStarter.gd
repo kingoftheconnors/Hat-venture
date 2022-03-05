@@ -99,6 +99,10 @@ func _ready():
 # warning-ignore:unused_signal
 # warning-ignore:unused_signal
 # warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
+# warning-ignore:unused_signal
 signal action1; signal action2; signal action3; signal action4;
 signal action5; signal action6; signal action7; signal action8;
 signal action9; signal actionA; signal actionB; signal actionC;
