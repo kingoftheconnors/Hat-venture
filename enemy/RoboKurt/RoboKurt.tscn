@@ -811,18 +811,6 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6 ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("EnemyCore/AnimationTree:parameters/hurt/HurtState/conditions/hurt")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
 
 [sub_resource type="Animation" id=12]
 length = 1.1
@@ -898,18 +886,6 @@ tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
 "times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("EnemyCore/AnimationTree:parameters/hurt/HurtState/conditions/hurt")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
@@ -1702,10 +1678,9 @@ script = ExtResource( 6 )
 material = SubResource( 29 )
 position = Vector2( -2, 7 )
 emitting = false
-amount = 2
 texture = ExtResource( 8 )
 emission_shape = 1
-emission_sphere_radius = 15.0
+emission_sphere_radius = 25.0
 gravity = Vector2( 0, 0 )
 anim_speed = 1.75
 
