@@ -337,16 +337,15 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.GOOD_MORNING_HATKID:
 			return [
-				# TODO: Lullaby song?
 				# Teleport
+				{fadeinfromblack = true, if_skipping_on = true},
 				{signal = "action1", unskippable = true},
 				{music = sound_system.MUSIC.NEW_VENTURE, fadein = sound_system.FADEIN_SPEED.SLOW, unskippable = true},
 				# Start sleeping animations
 				{animate1 = "sleep"},
 				{animate2 = "sleep"},
 				# Wait for screen brightness to fade in completely so brightness setting doesn't get overriden
-				{delay = 3, unskippable = true},
-				{delay = 10.84},
+				{delay = 13.84},
 				# Start JUMP animation
 				{brightness = 0, unskippable = true},
 				{delay = 0.1},

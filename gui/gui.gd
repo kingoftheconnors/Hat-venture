@@ -86,6 +86,7 @@ const letters_per_sec = 20.0
 var text_to_run = []
 var text_crawl_func
 var dialog_active = false
+var text_crawl_func_unskippable := false
 var cur_speaking_name = ""
 const LINE_LENGTH = 30
 const DIALOG_AUTOSCROLL_NEXTBOX_DELAY : float = 1.0
@@ -168,6 +169,9 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 	dialog_active = true
 	PlayerGameManager.pause_except([])
 	
+	if skip_this_cutscene:
+		skip_events = Constants.SKIP_TYPE.SKIP
+	
 	if next_box.has("skippable") \
 		and skip_events == Constants.SKIP_TYPE.SKIP:
 		return
@@ -193,6 +197,7 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 			dialogText.visible_characters = 0
 			# Start text crawl
 			text_crawl_func = crawl(next_box)
+			text_crawl_func_unskippable = next_box.has("unskippable")
 		elif next_box.has("options"):
 			var first_option = next_box.options.keys()[0]
 			var next_textbox_num = next_box.options[first_option]
@@ -213,9 +218,11 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 	elif next_box.has("delaytil_animate1_method_true"):
 		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS or next_box.has("unskippable"):
 			text_crawl_func = wait_for_method_true(next_box.starter, "animate1_method_true", next_box['delaytil_animate1_method_true'])
+			text_crawl_func_unskippable = next_box.has("unskippable")
 	elif next_box.has("delaytil_animate2_method_true"):
 		if skip_events == Constants.SKIP_TYPE.RUN or skip_events == Constants.SKIP_TYPE.WORDLESS or next_box.has("unskippable"):
 			text_crawl_func = wait_for_method_true(next_box.starter, "animate2_method_true", next_box['delaytil_animate2_method_true'])
+			text_crawl_func_unskippable = next_box.has("unskippable")
 	elif next_box.has("enable"):
 		for body in next_box['enable']:
 			if is_instance_valid(body):
@@ -260,6 +267,8 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 		Gui.cover()
 	elif next_box.has("fadein"):
 		Gui.reveal()
+	elif next_box.has("fadeinfromblack"):
+		Gui.reveal(COVER_TYPES.BLACK)
 	elif next_box.has("addpon"):
 		PlayerGameManager.add_pons(next_box["addpon"])
 	elif next_box.has("stop_cutscene_controls"):
@@ -277,24 +286,25 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 				gui.visible = true
 				dialog.visible = false
 			text_crawl_func = delay(next_box['delay'])
+			text_crawl_func_unskippable = next_box.has("unskippable")
 
 func play_boss_health_get_sfx():
 	SoundSystem.start_sound(SoundSystem.SFX.BOSS_LIFE_GET)
 
+var skip_this_cutscene = false
 func skip_cutscene():
+	cover_animator.stop()
 	queue_text(null, {"stop_cutscene_controls": true})
-	text_crawl_func = null
+	if not text_crawl_func_unskippable:
+		text_crawl_func = null
 	if curbox != null and curbox.has('options'):
 		var first_option = curbox.options.keys()[0]
 		var next_textbox_num = curbox.options[first_option]
 		queue_dialog_at_front(curbox.starter, next_textbox_num)
-	while text_to_run.size() > 0:
-		var next_box = text_to_run.pop_front()
-		start_dialog(next_box, Constants.SKIP_TYPE.SKIP)
-		if next_box.has('level'):
-			return
+	skip_this_cutscene = true
 
 func end_dialog():
+	skip_this_cutscene = false
 	dialog_active = false
 	PlayerGameManager.unpause()
 	if dialog.visible:
@@ -473,7 +483,7 @@ enum COVER_TYPES {
 	BLACK_TO_LOW_BRIGHTNESS
 }
 
-var cover_type = COVER_TYPES.WHITE
+var cover_type : int = COVER_TYPES.WHITE
 func cover(type : int = COVER_TYPES.WHITE) -> float:
 	cover_type = type
 	if cover_type == COVER_TYPES.WHITE:
@@ -492,22 +502,22 @@ func cover(type : int = COVER_TYPES.WHITE) -> float:
 			return 1.4
 	else:
 		return 0.0
-func reveal() -> float:
-	if cover_type == COVER_TYPES.WHITE:
+func reveal(type : int = cover_type) -> float:
+	if type == COVER_TYPES.WHITE:
 		if Constants.PHOTOSENSITIVE_MODE:
 			cover_animator.play("reveal (slow)")
 			return 1.3
 		else:
 			cover_animator.play("reveal")
 			return .45
-	elif cover_type == COVER_TYPES.BLACK:
+	elif type == COVER_TYPES.BLACK:
 		if Constants.PHOTOSENSITIVE_MODE:
 			cover_animator.play("reveal_from_black (slow)")
 			return 2.2
 		else:
 			cover_animator.play("reveal_from_black")
 			return .6
-	elif cover_type == COVER_TYPES.BLACK_TO_LOW_BRIGHTNESS:
+	elif type == COVER_TYPES.BLACK_TO_LOW_BRIGHTNESS:
 		cover_animator.play("reveal_from_black_to_low_brightness (slow)")
 		return 2.2
 	else:
