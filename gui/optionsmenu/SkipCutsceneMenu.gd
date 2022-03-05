@@ -6,7 +6,7 @@ export(NodePath) var first_item
 
 func open():
 	get_node(first_item).grab_focus()
-	Gui.menu_opened()
+	Gui.claim_menu_space()
 
 func _on_Close_pressed() -> void:
 	close()
@@ -20,5 +20,5 @@ func _unhandled_input(event):
 		close()
 
 func close():
-	Gui.menu_closed()
+	Gui.release_menu_space()
 	queue_free()

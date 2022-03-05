@@ -92,7 +92,7 @@ const LINE_LENGTH = 30
 const DIALOG_AUTOSCROLL_NEXTBOX_DELAY : float = 1.0
 
 func _process(delta):
-	if !menu_exists:
+	if !menu_space_controlled:
 		if text_crawl_func is GDScriptFunctionState:
 			# Pre-empt textboxes
 			text_crawl_func = text_crawl_func.resume(delta)
@@ -106,14 +106,14 @@ func _process(delta):
 		multVisible = true
 		render_score_mult()
 
-var menu_exists: bool = false
+var menu_space_controlled: bool = false
 var can_skip_cutscene : bool = true
 func _unhandled_input(event):
 	if event.is_action_pressed("toggle_hud") and Constants.DEBUG_MODE:
 		gui.visible = !gui.visible
 	# Open and close menu
 	if event.is_action_pressed("ui_menu"):
-		if menu_exists == false:
+		if menu_space_controlled == false:
 			if dialog_active:
 				if can_skip_cutscene:
 					# skip cutscene menu
@@ -121,15 +121,15 @@ func _unhandled_input(event):
 					get_node("/root/Gui").add_child(iOptionsMenu)
 					iOptionsMenu.connect("skip_cutscene", self, "skip_cutscene")
 					iOptionsMenu.open()
-					menu_exists = true
+					menu_space_controlled = true
 			else:
 				if !get_tree().paused:
 					var iOptionsMenu = preload("res://gui/optionsmenu/SettingsMenu.tscn").instance()
 					get_node("/root/Gui").add_child(iOptionsMenu)
 					iOptionsMenu.open()
-					menu_exists = true
+					menu_space_controlled = true
 			
-			if menu_exists:
+			if menu_space_controlled:
 				# Move palette_filter to bottom of scene list so it's OVER the menu
 				var palette = get_node("/root/Gui/PaletteFilter")
 				get_node("/root/Gui").remove_child(palette)
@@ -139,10 +139,10 @@ func _unhandled_input(event):
 func enable_skipping():
 	can_skip_cutscene = true
 
-func menu_opened() -> void:
-	menu_exists = true
-func menu_closed() -> void:
-	menu_exists = false
+func claim_menu_space() -> void:
+	menu_space_controlled = true
+func release_menu_space() -> void:
+	menu_space_controlled = false
 
 func queue_text(dialog_starter, textbox : Dictionary):
 	queue(dialog_starter, [textbox])
@@ -243,12 +243,6 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 			next_box['freeze_player'].set_freeze(true)
 	elif next_box.has("brightness"):
 		set_brightness_param(next_box['brightness'])
-	elif next_box.has("level"):
-		var spawn_point = -1
-		if next_box.has('spawn_point'):
-			spawn_point = next_box['spawn_point']
-		PlayerGameManager.level_complete()
-		PlayerGameManager.start_level(next_box['level'], spawn_point)
 	elif next_box.has("sound"):
 		SoundSystem.start_sound(next_box['sound'])
 	elif next_box.has("music"):
@@ -278,6 +272,14 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 	elif next_box.has("queue_free"):
 		if is_instance_valid(next_box['queue_free']) and next_box['queue_free'] != null:
 			next_box['queue_free'].queue_free()
+	elif next_box.has("level"): # Go to new level. Ends current scene
+		var spawn_point = -1
+		if next_box.has('spawn_point'):
+			spawn_point = next_box['spawn_point']
+		PlayerGameManager.level_complete()
+		PlayerGameManager.start_level(next_box['level'], spawn_point)
+		text_to_run = []
+		end_dialog()
 	
 	# Wait for program to return signal that we can continue scene
 	if next_box.has("delay"):

@@ -21,7 +21,7 @@ func _ready() -> void:
 var skipped = false
 func open(skip_opening = false):
 	skipped = false
-	Gui.call_deferred("menu_opened")
+	Gui.call_deferred("claim_menu_space")
 	# Delay
 	if skip_opening == false:
 		yield(get_tree().create_timer(appear_delay), "timeout")
@@ -69,7 +69,7 @@ func close(skip_end = false) -> void:
 	if $Mrgn.has_method("disable"):
 		$Mrgn.call_deferred("disable")
 	# Signal
-	Gui.call_deferred("menu_closed")
+	Gui.call_deferred("release_menu_space")
 	emit_signal("close", skip_end)
 	if skip_end:
 		emit_signal("close_skipping")

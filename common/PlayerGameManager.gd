@@ -69,6 +69,7 @@ func die():
 
 ## Changes scene to start a level (called by number)
 func start_level(levelName : String, spawn_point : int = 0, fade_type : int = Gui.COVER_TYPES.WHITE):
+	Gui.call_deferred("claim_menu_space")
 	spawn_num = spawn_point
 	# Fade to white
 	var transition_length = Gui.cover(fade_type)
@@ -80,6 +81,7 @@ func start_level(levelName : String, spawn_point : int = 0, fade_type : int = Gu
 	# Load level
 	var _success = get_tree().change_scene(levelName)
 	var _fade_length = Gui.reveal()
+	Gui.release_menu_space()
 
 func level_complete():
 	if pons != 0:
