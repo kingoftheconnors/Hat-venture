@@ -32,8 +32,12 @@ func open(skip_opening = false):
 	visible = true
 	if fade_in:
 		if skip_opening == false:
-			$AnimationPlayer.play("fade_in")
-			yield(get_tree().create_timer(1), "timeout")
+			if Constants.PHOTOSENSITIVE_MODE:
+				$AnimationPlayer.play("fade_in_slow")
+				yield(get_tree().create_timer(1), "timeout")
+			else:
+				$AnimationPlayer.play("fade_in")
+				yield(get_tree().create_timer(1), "timeout")
 			# Check if skip occured during timer
 			if skipped:
 				return
@@ -51,10 +55,14 @@ func open(skip_opening = false):
 
 func close(skip_end = false) -> void:
 	if fade_out and skip_end == false:
-		$AnimationPlayer.play("fade_out")
-		yield(get_tree().create_timer(1), "timeout")
+		if Constants.PHOTOSENSITIVE_MODE:
+			$AnimationPlayer.play("fade_out_slow")
+			yield(get_tree().create_timer(1.6), "timeout")
+		else:
+			$AnimationPlayer.play("fade_out")
+			yield(get_tree().create_timer(1.6), "timeout")
 		# Check if skip occured during timer
-		if not visible:
+		if skipped:
 			return
 	visible = false
 	# Turn off sfx
