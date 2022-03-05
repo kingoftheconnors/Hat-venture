@@ -66,9 +66,11 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.DIVE_TUTORIAL:
 			return [
-				{name = "WARNING!", text = "To my subjects! Kids have been known to dive over large gaps using the " + OS.get_scancode_string(ggsManager.settings_data["13"].current.value) + " button!"},
-				{name = "WARNING!", text = "If you don't know what " + OS.get_scancode_string(ggsManager.settings_data["13"].current.value) + " buttons are, call up your radical overlord!"},
-				{name = "...", text = "*A messy sketch of a kid and a bird is scrawled into the sign*"}
+				{disable_skipping = true},
+				{name = "WARNING!", text = "To my subjects! Kids have been known to dive over large gaps using the " + OS.get_scancode_string(ggsManager.settings_data["13"].current.value) + " button!", unskippable = true},
+				{name = "WARNING!", text = "If you don't know what " + OS.get_scancode_string(ggsManager.settings_data["13"].current.value) + " buttons are, call up your radical overlord!", unskippable = true},
+				{name = "...", text = "*A messy sketch of a kid and a bird is scrawled into the sign*", unskippable = true},
+				{enable_skipping = true}
 			]
 		DIALOG_TYPE.SATELLITE:
 			return [
@@ -92,42 +94,46 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.SIGNAL_ACTION_1:
 			return [
-				{signal = "action1"}
+				{signal = "action1", unskippable = true}
 			]
 		DIALOG_TYPE.SHIP_SCREEN_1:
 			return [
+				{disable_skipping = true},
 				# Bounce player back
 				{signal = "action7", delay=0.5},
 				{name = "ERROR", text = "SATELLITE NOT PROPERLY CONFIGURED."},
 				{name = "ERROR", text = "PLEASE RECONFIGURE THE SATELLITE MANUALLY."},
 				# Move camera
-				{signal = "action2", delay=1, if_tag_false = "screen_seen_1"},
+				{signal = "action2", delay=1, if_tag_false = "screen_seen_1", unskippable = true},
 				# Unlatch door
-				{signal = "action3", delay=0.5, if_tag_false = "screen_seen_1"}, # TODO: unlatch SFX
+				{signal = "action3", delay=0.5, if_tag_false = "screen_seen_1", unskippable = true},
 				# Reset camera
-				{signal = "action6", delay=1, if_tag_false = "screen_seen_1"},
+				{signal = "action6", delay=1, if_tag_false = "screen_seen_1", unskippable = true},
 				{signal = "action4", if_tag_false = "screen_seen_1", unskippable = true},
 				# Hide display (showing only exclamation point)
-				{signal = "action5"},
+				{signal = "action5", unskippable = true},
 				{settag = "screen_seen_1", value = true},
+				{enable_skipping = true}
 			]
 		DIALOG_TYPE.SHIP_SCREEN_2:
 			return [
+				{disable_skipping = true},
 				# Bounce player back
 				{signal = "action7", delay=1},
 				{name = "SHIP", text = "All systems operational. Hello master!"},
 				{fadeout_music_fast = true, if_tag_false = "screen_seen_2"},
 				{sound = sound_system.SFX.KNOCK, if_tag_false = "screen_seen_2"},
-				{signal = "action8", delay=1},
+				{signal = "action8", delay=1, unskippable = true},
 				# Move camera
-				{signal = "action2", delay=1, if_tag_false = "screen_seen_2"},
+				{signal = "action2", delay=1, if_tag_false = "screen_seen_2", unskippable = true},
 				{sound = sound_system.SFX.KNOCK, if_tag_false = "screen_seen_2"},
 				# Reset camera
-				{signal = "action6", delay=1, if_tag_false = "screen_seen_2"},
+				{signal = "action6", delay=1, if_tag_false = "screen_seen_2", unskippable = true},
 				{signal = "action4", if_tag_false = "screen_seen_2", unskippable = true},
 				# Start looping knock sound
 				{signal = "action9", unskippable = true},
 				{settag = "screen_seen_2", value = true},
+				{enable_skipping = true}
 			]
 		DIALOG_TYPE.TIMMY_SHIP:
 			return [
@@ -287,9 +293,9 @@ func get_dialog(text_num):
 		DIALOG_TYPE.LEVEL_1_CHASE_LILENS:
 			return [
 				{disable_skipping = true},
-				{signal = "action1", if_tag_false = "chased_lilens"},
-				{signal = "action2", delay=5, if_tag_false = "chased_lilens"},
-				{signal = "action3", delay=2, if_tag_false = "chased_lilens"},
+				{signal = "action1", if_tag_false = "chased_lilens", unskippable = true},
+				{signal = "action2", delay=5, if_tag_false = "chased_lilens", unskippable = true},
+				{signal = "action3", delay=2, if_tag_false = "chased_lilens", unskippable = true},
 				{settag = "chased_lilens", value = true},
 				{enable_skipping = true},
 			]
@@ -333,15 +339,16 @@ func get_dialog(text_num):
 			return [
 				# TODO: Lullaby song?
 				# Teleport
-				{signal = "action1"},
-				{music = sound_system.MUSIC.NEW_VENTURE, fadein = sound_system.FADEIN_SPEED.SLOW},
+				{signal = "action1", unskippable = true},
+				{music = sound_system.MUSIC.NEW_VENTURE, fadein = sound_system.FADEIN_SPEED.SLOW, unskippable = true},
 				# Start sleeping animations
 				{animate1 = "sleep"},
 				{animate2 = "sleep"},
 				# Wait for screen brightness to fade in completely so brightness setting doesn't get overriden
-				{delay = 13.84},
+				{delay = 3, unskippable = true},
+				{delay = 10.84},
 				# Start JUMP animation
-				{brightness = 0},
+				{brightness = 0, unskippable = true},
 				{delay = 0.1},
 				{signal = "actionJ"},
 				# TODO: Sound effect waking Hat Kid up
@@ -360,8 +367,10 @@ func get_dialog(text_num):
 			]
 		DIALOG_TYPE.SHIP_DOOR_DIALOG_SELECTOR:
 			return [
-				{queue = DIALOG_TYPE.GOTO_TUTORIAL, if_tag_false = "screen_seen_2"},
-				{queue = DIALOG_TYPE.TIMMY_SHIP, if_tag_true = "screen_seen_2"}
+				{queue = DIALOG_TYPE.GOTO_TUTORIAL, if_tag_false = "screen_seen_2", skippable = true},
+				{queue = DIALOG_TYPE.TIMMY_SHIP, if_tag_true = "screen_seen_2", skippable = true},
+				{queue = DIALOG_TYPE.GOTO_TUTORIAL, if_skipping_on = true, if_tag_false = "satellite_aligned"},
+				{queue = DIALOG_TYPE.TIMMY_SHIP, if_skipping_on = true, if_tag_true = "satellite_aligned"},
 			]
 		DIALOG_TYPE.START_ROBOHEN_BOSS:
 			return [
@@ -387,7 +396,7 @@ func get_dialog(text_num):
 		DIALOG_TYPE.ROBOHEN_DEFEATED:
 			return [
 				{disable_skipping = true},
-				{signal = "action1", delay = 2.5}, # Move timepiece to Robohen
-				{signal = "action2", delay = 2}, # Fly timepiece to goal
+				{signal = "action1", delay = 2.5, unskippable = true}, # Move timepiece to Robohen
+				{signal = "action2", delay = 2, unskippable = true}, # Fly timepiece to goal
 				{enable_skipping = true},
 			]

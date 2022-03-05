@@ -96,8 +96,9 @@ func _process(delta):
 			# Pre-empt textboxes
 			text_crawl_func = text_crawl_func.resume(delta)
 		elif text_to_run.size() > 0:
-			var next_box = text_to_run.pop_front()
-			start_dialog(next_box)
+			while not text_crawl_func is GDScriptFunctionState and text_to_run.size() > 0:
+				var next_box = text_to_run.pop_front()
+				start_dialog(next_box)
 		elif dialog_active:
 			end_dialog()
 	if get_tree().paused and playerScoreMultAmo > 1:
@@ -167,12 +168,18 @@ func start_dialog(next_box, skip_events : int = Constants.SKIP_CUTSCENES):
 	dialog_active = true
 	PlayerGameManager.pause_except([])
 	
+	if next_box.has("skippable") \
+		and skip_events == Constants.SKIP_TYPE.SKIP:
+		return
 	if next_box.has("if_tag_false") \
 		and SaveSystem.access_data().get_tag(next_box['if_tag_false']) != null \
 		and SaveSystem.access_data().get_tag(next_box['if_tag_false']) != false:
 		return
 	if next_box.has("if_tag_true") \
 		and SaveSystem.access_data().get_tag(next_box['if_tag_true']) != true:
+		return
+	if next_box.has("if_skipping_on") \
+		and skip_events != Constants.SKIP_TYPE.SKIP:
 		return
 	
 	cur_speaking_name = ""
