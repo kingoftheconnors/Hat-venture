@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://world1/background1.tres" type="TileSet" id=2]
@@ -24,7 +24,6 @@
 [ext_resource path="res://enemy/RoboKurt/RoboKurt.tscn" type="PackedScene" id=22]
 [ext_resource path="res://enemy/eltun/pace.gd" type="Script" id=23]
 [ext_resource path="res://common/CameraCapture.tscn" type="PackedScene" id=24]
-[ext_resource path="res://addons/godot-gif-getter/GifRecorder.tscn" type="PackedScene" id=25]
 [ext_resource path="res://items/Resources/TimePiece.tscn" type="PackedScene" id=26]
 [ext_resource path="res://common/TimeBubble.tscn" type="PackedScene" id=27]
 
@@ -642,8 +641,6 @@ next_level = "res://title-screen/thanks-for-playing.tscn"
 [node name="TimeBubble" parent="BossNode2D/Boss/TimePiece" instance=ExtResource( 27 )]
 scale = Vector2( 2, 2 )
 z_index = -5
-
-[node name="GifGetterUI" parent="." instance=ExtResource( 25 )]
 
 [connection signal="body_entered" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeWalls" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="PartC/Node2D/Area2D" to="PartC/Node2D/Area2D/FakeGrass" method="_on_Area2D_body_entered"]
