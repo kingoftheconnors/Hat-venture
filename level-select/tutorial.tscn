@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://world1/background1.tres" type="TileSet" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://level-select/exterior.png" type="Texture" id=8]
 [ext_resource path="res://NPCs/DialogBox.tscn" type="PackedScene" id=9]
 [ext_resource path="res://common/LevelMusic.gd" type="Script" id=10]
-[ext_resource path="res://addons/godot-gif-getter/GifRecorder.tscn" type="PackedScene" id=11]
 [ext_resource path="res://items/Resources/Pon.tscn" type="PackedScene" id=12]
 [ext_resource path="res://gui/PlayerPalette.tres" type="Material" id=13]
 [ext_resource path="res://common/Block.tscn" type="PackedScene" id=14]
@@ -219,8 +218,6 @@ smoothing_speed = 12.0
 [node name="Music" type="Node" parent="."]
 script = ExtResource( 10 )
 level_music = 11
-
-[node name="GifGetterUI" parent="." instance=ExtResource( 11 )]
 
 [connection signal="body_entered" from="House/DialogBox/DialogBox" to="House/DialogBox/Door" method="play_if_player" binds= [ "open" ]]
 [connection signal="body_exited" from="House/DialogBox/DialogBox" to="House/DialogBox/Door" method="play_if_player" binds= [ "close" ]]
