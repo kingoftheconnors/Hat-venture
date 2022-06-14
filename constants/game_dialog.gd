@@ -33,6 +33,7 @@ enum DIALOG_TYPE {
 	SPLASH_SCREEN = 28,
 	FADEOUT_MUSIC = 29,
 	ROBOHEN_DEFEATED = 30,
+	SATELLITE_ASKEW = 31,
 }
 
 # Textbox Format:
@@ -334,6 +335,10 @@ func get_dialog(text_num):
 		DIALOG_TYPE.CHEST_NO:
 			return [
 				{name = ":X", text = "You decide to keep the chest’s contents a secret."},
+			]
+		DIALOG_TYPE.SATELLITE_ASKEW:
+			return [
+				{name = ":/", text = "It looks askew. Maybe it can be bumped back into position?"},
 			]
 		DIALOG_TYPE.GOOD_MORNING_HATKID:
 			return [
