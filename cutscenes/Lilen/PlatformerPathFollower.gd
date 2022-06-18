@@ -56,11 +56,12 @@ func _physics_process(delta):
 				target = patrol_points[patrol_index]
 				if patrol_index == patrol_points.size() - 1:
 					emit_signal("reach_goal")
+			velo.x = 0
 	else:
 		velo.x *= 0.8
 	if is_on_floor():
 		jump_time_counter += delta
-		if (jump_time_counter > jump_wait_time and jumping) or is_on_wall() \
+		if (jump_time_counter > jump_wait_time and jumping and position.y > target.y) or is_on_wall() \
 			or (is_on_floor() and floorchecker_obj and not floorchecker_obj.is_colliding() and jumping):
 			jump()
 			jump_time_counter = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://world1/level1.tres" type="TileSet" id=1]
 [ext_resource path="res://level-select/shiproom1.png" type="Texture" id=2]
@@ -22,10 +22,9 @@
 [ext_resource path="res://common/CameraCapture.tscn" type="PackedScene" id=20]
 [ext_resource path="res://cutscenes/Timmy/Timmy.tscn" type="PackedScene" id=21]
 [ext_resource path="res://cutscenes/Lilen/LilenController.tscn" type="PackedScene" id=22]
-[ext_resource path="res://cutscenes/cloud.png" type="Texture" id=23]
-[ext_resource path="res://cutscenes/DustCloud.gd" type="Script" id=24]
 [ext_resource path="res://level-select/Door.tscn" type="PackedScene" id=25]
 [ext_resource path="res://levelgameover/menuselector.png" type="Texture" id=26]
+[ext_resource path="res://cutscenes/TimePieceBall/TimePieceBall.tscn" type="PackedScene" id=27]
 [ext_resource path="res://level-select/Vault.gd" type="Script" id=28]
 [ext_resource path="res://level-select/vault.png" type="Texture" id=29]
 [ext_resource path="res://gui/EnemyPalette.tres" type="Material" id=30]
@@ -398,7 +397,7 @@ script = ExtResource( 28 )
 [node name="Vault" type="Sprite" parent="Vault"]
 material = ExtResource( 31 )
 texture = ExtResource( 29 )
-vframes = 4
+vframes = 6
 frame = 2
 script = ExtResource( 32 )
 white = 4
@@ -411,10 +410,14 @@ anims/empty = SubResource( 15 )
 anims/open = SubResource( 10 )
 script = SubResource( 11 )
 
+[node name="TimePieceBall" parent="." instance=ExtResource( 27 )]
+position = Vector2( 96, -88 )
+z_index = 1
+
 [node name="DoorDialog" parent="." instance=ExtResource( 9 )]
 position = Vector2( 304, -40 )
 dialog_num = 26
-active_bodies_in_dialog = [ NodePath("../Player"), NodePath("../LilenController"), NodePath("../DustCloud"), NodePath("../Vault"), NodePath("Door"), NodePath("../Area2D"), NodePath("../shiproomForeground") ]
+active_bodies_in_dialog = [ NodePath("../Player"), NodePath("../LilenController"), NodePath("../TimePieceBall"), NodePath("../Vault"), NodePath("Door"), NodePath("../Area2D"), NodePath("../shiproomForeground") ]
 unfreeze_after_dialog = false
 animate1 = NodePath("../Player")
 animate2 = NodePath("../Timmy")
@@ -532,6 +535,9 @@ position = Vector2( 240, -24 )
 [node name="WalkTo_Target2" type="Node2D" parent="."]
 position = Vector2( 64, -96 )
 
+[node name="WalkTo_Target7" type="Node2D" parent="."]
+position = Vector2( 60, -96 )
+
 [node name="WalkTo_Target3" type="Node2D" parent="."]
 position = Vector2( 96, -64 )
 
@@ -542,7 +548,7 @@ position = Vector2( 264, -24 )
 position = Vector2( 288, -40 )
 
 [node name="WalkTo_Target6" type="Node2D" parent="."]
-position = Vector2( -40, -72 )
+position = Vector2( -72, -40 )
 
 [node name="Teleport_Target" type="Node2D" parent="."]
 position = Vector2( 264, -72 )
@@ -552,17 +558,7 @@ position = Vector2( 0, -32 )
 
 [node name="LilenController" parent="." instance=ExtResource( 22 )]
 position = Vector2( 304, -24 )
-goal = Vector2( 96, -64 )
-
-[node name="DustCloud" type="Sprite" parent="."]
-visible = false
-material = ExtResource( 30 )
-position = Vector2( 96, -88 )
-z_index = 1
-texture = ExtResource( 23 )
-script = ExtResource( 24 )
-
-[node name="Tween" type="Tween" parent="DustCloud"]
+goal = Vector2( 48, -48 )
 
 [node name="HatKidRoom" parent="." instance=ExtResource( 9 )]
 position = Vector2( -30, -40 )
@@ -610,24 +606,23 @@ level_music = 11
 [connection signal="action7" from="DoorDialog" to="Player" method="blow_back" binds= [ false ]]
 [connection signal="action7" from="DoorDialog" to="CameraCapture2" method="capture_release" binds= [ false ]]
 [connection signal="action8" from="DoorDialog" to="Player" method="stop_watching"]
+[connection signal="action9" from="DoorDialog" to="CameraCapture" method="capture_release"]
 [connection signal="action9" from="DoorDialog" to="LilenController" method="generate" binds= [ 16 ]]
 [connection signal="actionA" from="DoorDialog" to="Vault/Vault/AnimationPlayer" method="empty"]
 [connection signal="actionA" from="DoorDialog" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target6", -1, -1 ]]
-[connection signal="actionA" from="DoorDialog" to="LilenController" method="get_timepieces"]
-[connection signal="actionA" from="DoorDialog" to="LilenController" method="recall"]
-[connection signal="actionA" from="DoorDialog" to="LilenController" method="hide_after_reaching_pos"]
-[connection signal="actionA" from="DoorDialog" to="DustCloud" method="hide"]
+[connection signal="actionA" from="DoorDialog" to="Timmy" method="fly_to" binds= [ "../WalkTo_Target6", 1.0 ]]
+[connection signal="actionA" from="DoorDialog" to="LilenController" method="walk_towards" binds= [ -48 ]]
 [connection signal="actionB" from="DoorDialog" to="Timmy" method="walk_to_then_leave" binds= [ "../DoorDialog", 1 ]]
+[connection signal="actionB" from="DoorDialog" to="LilenController" method="hide_after_reaching_pos"]
+[connection signal="actionB" from="DoorDialog" to="LilenController" method="recall"]
 [connection signal="actionC" from="DoorDialog" to="Player" method="jump"]
 [connection signal="actionD" from="DoorDialog" to="Player" method="walk_to" binds= [ "../DoorDialog" ]]
 [connection signal="actionE" from="DoorDialog" to="Camera" method="shake_screen" binds= [ 12, 2.0 ]]
-[connection signal="actionF" from="DoorDialog" to="DustCloud" method="show"]
-[connection signal="actionG" from="DoorDialog" to="Player" method="bounce_towards" binds= [ 1.5 ]]
-[connection signal="actionH" from="DoorDialog" to="Timmy" method="bounce_towards" binds= [ 1.5 ]]
+[connection signal="actionG" from="DoorDialog" to="Player" method="walk_to" binds= [ "../WalkTo_Target7" ]]
+[connection signal="actionH" from="DoorDialog" to="Player" method="bounce_towards" binds= [ -2.0 ]]
 [connection signal="actionJ" from="DoorDialog" to="Timmy" method="fly_to" binds= [ "../WalkTo_Target2" ]]
 [connection signal="actionK" from="DoorDialog" to="Timmy" method="fly_to"]
-[connection signal="actionK" from="DoorDialog" to="Timmy" method="look_at_node" binds= [ "../Player" ]]
-[connection signal="actionL" from="DoorDialog" to="Timmy" method="look_at_node" binds= [ "../Timmy" ]]
+[connection signal="actionL" from="DoorDialog" to="Timmy" method="look_at_node" binds= [ "../Player" ]]
 [connection signal="actionM" from="DoorDialog" to="Timmy" method="fly_to"]
 [connection signal="actionM" from="DoorDialog" to="Timmy" method="play_animation" binds= [ "drop" ]]
 [connection signal="actionN" from="DoorDialog" to="Display/Timer" method="stop"]
@@ -636,17 +631,19 @@ level_music = 11
 [connection signal="actionN" from="DoorDialog" to="Player" method="watch_node" binds= [ "../Timmy" ]]
 [connection signal="actionO" from="DoorDialog" to="Vault" method="shake" binds= [ 2, 1.0 ]]
 [connection signal="actionP" from="DoorDialog" to="Vault/Vault/AnimationPlayer" method="open"]
-[connection signal="actionP" from="DoorDialog" to="Player" method="mock_damage"]
 [connection signal="actionP" from="DoorDialog" to="Player" method="bounce_towards" binds= [ -4 ]]
+[connection signal="actionP" from="DoorDialog" to="Player" method="mock_damage"]
 [connection signal="actionQ" from="DoorDialog" to="Player" method="jump" binds= [ true ]]
 [connection signal="actionR" from="DoorDialog" to="Timmy" method="look_at_node" binds= [ "../LilenController" ]]
-[connection signal="actionR" from="DoorDialog" to="CameraCapture" method="capture"]
-[connection signal="actionS" from="DoorDialog" to="CameraCapture" method="capture_release"]
+[connection signal="actionT" from="DoorDialog" to="Timmy" method="jump"]
+[connection signal="actionU" from="DoorDialog" to="CameraCapture" method="capture"]
+[connection signal="actionV" from="DoorDialog" to="TimePieceBall" method="create"]
+[connection signal="actionW" from="DoorDialog" to="Vault/Vault/AnimationPlayer" method="empty"]
+[connection signal="actionW" from="DoorDialog" to="TimePieceBall" method="split"]
 [connection signal="body_entered" from="DoorDialog/DialogBox" to="DoorDialog/Door" method="play_if_player" binds= [ "open" ]]
 [connection signal="body_exited" from="DoorDialog/DialogBox" to="DoorDialog/Door" method="play_if_player" binds= [ "close" ]]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_Area2D_body_exited"]
-[connection signal="tween_all_completed" from="DustCloud/Tween" to="DustCloud" method="_on_Tween_tween_all_completed"]
 [connection signal="body_entered" from="HatKidRoom/DialogBox" to="HatKidRoom/Door" method="play_if_player" binds= [ "open" ]]
 [connection signal="body_exited" from="HatKidRoom/DialogBox" to="HatKidRoom/Door" method="play_if_player" binds= [ "close" ]]
 

@@ -166,6 +166,7 @@ func get_dialog(text_num):
 		DIALOG_TYPE.TIMMY_SHIP_2:
 			return [
 				# Move Timmy to the left and have him look around
+				{animate2 = "walk"},
 				{signal = "action2", delay=1},
 				{animate2 = "talk"},
 				{name = "Timmy", text = "Whoa!! This is your place?"},
@@ -213,18 +214,21 @@ func get_dialog(text_num):
 				{animate2 = "sass"},
 				{name = "Timmy", text = "I wanna have a peek!"},
 				# Psychic pose + Shake Vault + Delay 1
-				{animate2 = "open_vault"},
-				{signal = "actionO", delay=1},
+				{animate2 = "open_vault", delay=0.4},
+				{signal = "actionO", delay=0.7},
 				# Vault blasts open and hat falls forward
 				{signal = "actionP", delay=1},
 				# Timmy Flies up
-				{animate2 = "fly"},
-				{signal = "actionJ", delay=1},
+				{sound = sound_system.SFX.JUMP},
+				{signal = "actionT"},
+				{animate2 = "jump", delay=0.7},
+				{signal = "actionJ"},
+				{animate2 = "arms_crossed", delay=1},
 				# Animate Timmy holding Time piece
+				{animate2 = "hold_collect", delay = 0.7},
 				{animate2 = "hold_fly"},
 				{name = "Timmy", text = "Woahhhh.... sparkly."},
 				# Hat Kid jumps up and faces right
-				{signal = "actionQ"},
 				# TODO: Start tossing it in one hand
 				{name = "Timmy", text = "You know what I heard? I heard these pieces let you travel time!"},
 				{name = "Timmy", text = "Think of what you could do with even one of these..."},
@@ -233,60 +237,82 @@ func get_dialog(text_num):
 				{delay=0.6},
 				{fadeout_music = true, delay=0.4},
 				# Look at Hat
-				{animate2 = "idle"},
-				{animate2 = "talk"},
-				{signal = "actionK", delay=0.1},
+				{signal = "actionK", delay=0.2},
+				{animate2 = "hold_stare", delay=0.7},
+				{animate2 = "hold_idle", delay=0.7},
+				{signal = "actionL"},
+				{animate2 = "hold_talk"},
 				{name = "Timmy", text = "What? You've never seen someone use psychic powers before?"},
-				{animate2 = "idle"},
+				{animate2 = "hold_idle"},
 				# Bounce Hat Kid towards Timmy, bounce Timmy away, holding back the TimePiece
-				{signal = "actionG", delay=0.1},
-				{signal = "actionH", delay=0.75},
-				{animate2 = "sass"},
+				{signal = "actionQ", delay=0.5},
+				{animate1 = "glare", delay=0.4},
+				{animate2 = "hold_sass", delay=0.2},
 				{name = "Timmy", text = "Yo, what's the rush? You got a hot date with this Piece or something?"},
 				{name = "Timmy", text = "I'll take as much time as I wanna! Buzz off!"},
-				{animate2 = "idle"},
+				{animate2 = "hold_idle"},
 				# Bounce Hat Kid towards Timmy
-				{signal = "actionG", delay=0.075},
-				{signal = "actionH", delay=0.1},
+				{animate1 = "idle"},
+				{signal = "actionG", delay=0.2},
+				{animate1 = "struggle"},
+				{animate2 = "hold_struggle", delay=1.0},
 				# Timmy lifts up Hat up
-				{signal = "action6", delay=0.2},
-				{animate2 = "psychic"},
+				{animate2 = "hold_push"},
+				{signal = "actionH", delay=0.5},
+				{animate2 = "hold_psychic"},
+				{signal = "action6", delay=0.4},
+				{animate1 = "struggle_idle"},
+				{animate2 = "hold_psychic_talk"},
 				{name = "Timmy", text = "Hey! Didn't your mom ever teach you that 'sharing is caring?'"},
-				{animate2 = "sass"},
 				{name = "Timmy", text = "If you're gonna be greedy, then I'll just steal all of them!"},
-				{animate2 = "psychic"},
+				{animate2 = "hold_psychic_throw", delay=0.2},
 				# Camera release and throw
 				# Animate hat kid hurt animation
-				{animate1 = "hurt_basic"},
-				{signal = "action7", delay=2},
-				{signal = "actionR"},
-				{animate2 = "sass"},
+				{animate1 = "wheeling"},
+				{signal = "action7", delay=1.5},
+				{animate2 = "hold_idle", delay=0.5},
+				{signal = "actionR", delay=0.3},
+				{animate2 = "hold_psychic_fly"},
+				{signal = "actionJ", delay=0.2}, # Fly up
+				{signal = "actionO", delay = 0.1}, # Shake vault
+				# Start the timepiece ball animaton
+				{signal = "actionV", delay=1},
+				{signal = "actionU"}, # Look at lilen generator
+				{animate2 = "hold_psychic_fly_talk"},
 				{name = "Timmy", text = "Alright Lil'ens! Come on in!"},
-				{animate2 = "idle"},
+				{animate2 = "hold_psychic_fly"},
 				# Screen shake
 				{signal = "actionE", delay=2},
 				# Lil'ens enter and walk to vault
 				{music = sound_system.MUSIC.TIMMY_STRIKES},
-				{signal = "actionS"},
-				{signal = "action9", delay=2},
-				# Dust cloud
-				{signal = "actionF", delay=3},
-				# Walk Eltuns (now carrying timepieces) to door and Timmy towards Hat Kid
+				{signal = "action9", delay=3},
+				# Time pieces distributed
+				{animate2 = "hold_fly_idle"},
+				{signal = "actionW", delay=1},
+				# Timmy FLIES over in relaxed, floaty fashion. Lilens follow
+				{animate2 = "float_idle"},
 				{signal = "actionA", delay=2},
 				# Say words
-				{animate2 = "sass"},
+				{animate2 = "float_talk"},
 				{name = "Timmy", text = "Keeping all these Time Pieces to yourself is mondo uncool."},
 				{name = "Timmy", text = "So as the ruler of this world, I'll take them off your hands! It's only fair for trespassing."},
 				{name = "Timmy", text = "Smell ya later stinky!"},
+
 				# Timmy Leave
+				# TODO: Speed up exit
 				{signal = "actionB"},
+
+				{animate2 = "float_laugh"},
 				{name = "Timmy", text = "Hahahahahahahahahaha!!"},
 				{fadeout_music = true},
 				{delay=2},
 				# Hat Kid Jump up
 				{signal = "actionC", delay=1},
+
 				# Hat Kid walk towards door
+				# TODO: Speed up Hat Kid
 				{signal = "actionD", delay=4},
+
 				# Goto 1
 				{sound = sound_system.SFX.DOOR},
 				{level = "res://world1/level1.tscn"}

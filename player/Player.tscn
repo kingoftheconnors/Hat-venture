@@ -1,4 +1,4 @@
-[gd_scene load_steps=357 format=2]
+[gd_scene load_steps=380 format=2]
 
 [ext_resource path="res://player/regular/idle.png" type="Texture" id=1]
 [ext_resource path="res://player/PlatformerController.gd" type="Script" id=2]
@@ -65,6 +65,9 @@
 [ext_resource path="res://player/regular/sitting.png" type="Texture" id=63]
 [ext_resource path="res://player/hard/sitting.png" type="Texture" id=64]
 [ext_resource path="res://player/runner/sitting.png" type="Texture" id=65]
+[ext_resource path="res://player/regular/glare.png" type="Texture" id=66]
+[ext_resource path="res://player/regular/struggle.png" type="Texture" id=67]
+[ext_resource path="res://player/regular/struggle-idle.png" type="Texture" id=68]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -120,6 +123,69 @@ extents = Vector2( 4.75, 8.5 )
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 7, 1 )
+
+[sub_resource type="Animation" id=295]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScaleChildren/PlayerCore:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 66 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ScaleChildren/PlayerCore:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ScaleChildren/PlayerCore:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ScaleChildren/PlayerCore:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ScaleChildren/PlayerCore:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [sub_resource type="Animation" id=11]
 length = 1.4
@@ -2234,6 +2300,47 @@ tracks/2/keys = {
 "values": [ 2 ]
 }
 
+[sub_resource type="Animation" id=296]
+resource_name = "glare"
+length = 0.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScaleChildren/PlayerCore:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 66 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ScaleChildren/PlayerCore:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ScaleChildren/PlayerCore:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
 [sub_resource type="Animation" id=39]
 length = 0.8
 step = 0.01
@@ -2538,7 +2645,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=45]
-length = 0.8
+length = 0.4
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:texture")
@@ -2578,7 +2685,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=46]
-length = 0.8
+length = 0.4
 step = 0.02
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:texture")
@@ -2618,7 +2725,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=47]
-length = 0.8
+length = 0.4
 step = 0.02
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:texture")
@@ -2658,7 +2765,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=48]
-length = 0.8
+length = 0.4
 step = 0.02
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:texture")
@@ -2698,7 +2805,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=49]
-length = 0.8
+length = 0.4
 step = 0.02
 tracks/0/type = "value"
 tracks/0/path = NodePath("ScaleChildren/PlayerCore:texture")
@@ -2895,6 +3002,18 @@ tracks/12/keys = {
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
+tracks/13/type = "value"
+tracks/13/path = NodePath("ScaleChildren/PlayerCore:rotation_degrees")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0.85 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [sub_resource type="Animation" id=51]
 step = 0.05
@@ -3017,6 +3136,18 @@ tracks/9/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("ScaleChildren/PlayerCore:rotation_degrees")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0.85 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
 }
 
 [sub_resource type="Animation" id=52]
@@ -3141,6 +3272,18 @@ tracks/9/keys = {
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
+tracks/10/type = "value"
+tracks/10/path = NodePath("ScaleChildren/PlayerCore:rotation_degrees")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0.85 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [sub_resource type="Animation" id=53]
 step = 0.05
@@ -3264,6 +3407,18 @@ tracks/9/keys = {
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
+tracks/10/type = "value"
+tracks/10/path = NodePath("ScaleChildren/PlayerCore:rotation_degrees")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0.85 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [sub_resource type="Animation" id=54]
 step = 0.05
@@ -3386,6 +3541,18 @@ tracks/9/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("ScaleChildren/PlayerCore:rotation_degrees")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0.85 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
 }
 
 [sub_resource type="Animation" id=55]
@@ -4779,6 +4946,102 @@ tracks/8/keys = {
 "values": [ false ]
 }
 
+[sub_resource type="Animation" id=301]
+resource_name = "struggle"
+length = 0.3
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScaleChildren/PlayerCore:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 67 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ScaleChildren/PlayerCore:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ScaleChildren/PlayerCore:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ScaleChildren/PlayerCore:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 0 ), Vector2( -1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=308]
+resource_name = "struggle_idle"
+length = 0.4
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScaleChildren/PlayerCore:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 68 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ScaleChildren/PlayerCore:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ScaleChildren/PlayerCore:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
 [sub_resource type="Animation" id=82]
 length = 0.4
 loop = true
@@ -5201,6 +5464,59 @@ tracks/0/keys = {
 "values": [ false ]
 }
 
+[sub_resource type="Animation" id=306]
+resource_name = "wheeling"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScaleChildren/PlayerCore:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 43 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ScaleChildren/PlayerCore:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ScaleChildren/PlayerCore:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ScaleChildren/PlayerCore:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0.0, -90.0, -180.0, -270.0, 0.0 ]
+}
+
 [sub_resource type="AnimationNodeAnimation" id=93]
 animation = "hurtFlash"
 
@@ -5430,6 +5746,16 @@ min_space = 0.0
 max_space = 4.0
 snap = 1.0
 
+[sub_resource type="AnimationNodeAnimation" id=297]
+animation = "glare"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=298]
+blend_point_0/node = SubResource( 297 )
+blend_point_0/pos = 0.0
+min_space = 0.0
+max_space = 4.0
+snap = 1.0
+
 [sub_resource type="AnimationNodeAnimation" id=150]
 animation = "hurt"
 
@@ -5640,6 +5966,26 @@ transitions = [ "spin", "end_spin", SubResource( 190 ) ]
 start_node = "spin"
 end_node = "end_spin"
 
+[sub_resource type="AnimationNodeAnimation" id=302]
+animation = "struggle"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=303]
+blend_point_0/node = SubResource( 302 )
+blend_point_0/pos = 0.0
+min_space = 0.0
+max_space = 4.0
+snap = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id=309]
+animation = "struggle_idle"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=310]
+blend_point_0/node = SubResource( 309 )
+blend_point_0/pos = 0.0
+min_space = 0.0
+max_space = 4.0
+snap = 1.0
+
 [sub_resource type="AnimationNodeAnimation" id=192]
 animation = "talk"
 
@@ -5715,6 +6061,9 @@ animation = "wallslide (runner)"
 
 [sub_resource type="AnimationNodeAnimation" id=207]
 animation = "wallslide_end"
+
+[sub_resource type="AnimationNodeAnimation" id=307]
+animation = "wheeling"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=208]
 advance_condition = "walking"
@@ -5923,10 +6272,27 @@ advance_condition = "jumping"
 [sub_resource type="AnimationNodeStateMachineTransition" id=277]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=293]
+switch_mode = 2
 advance_condition = "on_floor"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=294]
 advance_condition = "jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=299]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=300]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=304]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=305]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=311]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=312]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=313]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=314]
 
 [sub_resource type="AnimationNodeStateMachine" id=280]
 states/adjust_hat/node = SubResource( 112 )
@@ -5969,10 +6335,12 @@ states/freefall/node = SubResource( 149 )
 states/freefall/position = Vector2( -42.7333, 296.684 )
 "states/freefall 2/node" = SubResource( 143 )
 "states/freefall 2/position" = Vector2( 822.318, -228.734 )
+states/glare/node = SubResource( 298 )
+states/glare/position = Vector2( 399.059, -35.3096 )
 states/hurt/node = SubResource( 155 )
 states/hurt/position = Vector2( 889.318, 152.684 )
 states/hurt_basic/node = SubResource( 161 )
-states/hurt_basic/position = Vector2( 909.318, 196.89 )
+states/hurt_basic/position = Vector2( 922.318, 215.684 )
 states/idle/node = SubResource( 167 )
 states/idle/position = Vector2( 302, 127.684 )
 states/jump/node = SubResource( 174 )
@@ -5997,6 +6365,10 @@ states/smugdance/node = SubResource( 187 )
 states/smugdance/position = Vector2( 775, 42.684 )
 states/spin/node = SubResource( 191 )
 states/spin/position = Vector2( 775, -11.662 )
+states/struggle/node = SubResource( 303 )
+states/struggle/position = Vector2( 409.059, -109.062 )
+states/struggle_idle/node = SubResource( 310 )
+states/struggle_idle/position = Vector2( 363.013, -171.042 )
 states/talk/node = SubResource( 194 )
 states/talk/position = Vector2( 291.909, -115.31 )
 states/throw/node = SubResource( 195 )
@@ -6007,9 +6379,11 @@ states/wallslide/node = SubResource( 206 )
 states/wallslide/position = Vector2( -262.094, 215.684 )
 states/wallslide_end/node = SubResource( 207 )
 states/wallslide_end/position = Vector2( -255.07, 147.684 )
-transitions = [ "idle", "walk", SubResource( 208 ), "walk", "idle", SubResource( 209 ), "walk", "skid", SubResource( 210 ), "skid", "end_crouch", SubResource( 211 ), "end_crouch", "walk", SubResource( 212 ), "walk", "jump", SubResource( 213 ), "jump", "freefall", SubResource( 214 ), "freefall", "idle", SubResource( 215 ), "idle", "jump", SubResource( 216 ), "jump", "idle", SubResource( 217 ), "idle", "bash", SubResource( 218 ), "bash", "end_bash", SubResource( 219 ), "idle", "throw", SubResource( 220 ), "throw", "idle", SubResource( 221 ), "idle", "refresh", SubResource( 222 ), "refresh", "idle", SubResource( 223 ), "end_crouch 2", "idle", SubResource( 224 ), "idle", "power_get", SubResource( 225 ), "power_get", "idle", SubResource( 226 ), "idle", "crouch", SubResource( 227 ), "crouch", "end_crouch 2", SubResource( 228 ), "end_bash", "idle", SubResource( 229 ), "idle", "die", SubResource( 230 ), "idle", "hurt", SubResource( 231 ), "hurt", "idle", SubResource( 232 ), "idle", "die_simple", SubResource( 233 ), "bash", "pre-bash", SubResource( 234 ), "pre-bash", "end_bash", SubResource( 235 ), "pre-bash", "bash", SubResource( 236 ), "end_dive", "end_dive_call", SubResource( 237 ), "end_dive_call", "idle", SubResource( 238 ), "end_dive_call", "jump", SubResource( 239 ), "idle", "dance", SubResource( 240 ), "idle", "climb", SubResource( 241 ), "climb", "idle", SubResource( 242 ), "climb", "climb_over", SubResource( 243 ), "climb_over", "climb", SubResource( 244 ), "climb_over", "idle", SubResource( 245 ), "jump", "crouch", SubResource( 246 ), "freefall", "crouch", SubResource( 247 ), "jump", "wallslide", SubResource( 248 ), "freefall", "wallslide", SubResource( 249 ), "idle", "wallslide", SubResource( 250 ), "wallslide", "wallslide_end", SubResource( 251 ), "wallslide_end", "idle", SubResource( 252 ), "idle", "smugdance", SubResource( 253 ), "smugdance", "idle", SubResource( 254 ), "idle", "sleep", SubResource( 255 ), "idle", "spin", SubResource( 256 ), "spin", "idle", SubResource( 257 ), "sleep", "fall_out", SubResource( 258 ), "fall_out", "on_floor", SubResource( 259 ), "on_floor", "jump 2", SubResource( 260 ), "jump 2", "freefall 2", SubResource( 261 ), "freefall 2", "adjust_hat", SubResource( 262 ), "adjust_hat", "idle", SubResource( 263 ), "jump 2", "refresh", SubResource( 264 ), "adjust_hat", "refresh", SubResource( 265 ), "idle", "hurt_basic", SubResource( 266 ), "hurt_basic", "idle", SubResource( 267 ), "idle", "talk", SubResource( 268 ), "talk", "idle", SubResource( 269 ), "idle", "dive", SubResource( 270 ), "dive", "end_dive", SubResource( 271 ), "end_dive 2", "dive_boost", SubResource( 272 ), "dive_boost", "jump", SubResource( 273 ), "dive_rest", "dive", SubResource( 274 ), "dive", "dive_rest", SubResource( 275 ), "dive_rest", "end_dive", SubResource( 276 ), "dive_rest", "end_dive 2", SubResource( 277 ), "hurt_basic", "sitting", SubResource( 293 ), "sitting", "idle", SubResource( 294 ) ]
+states/wheeling/node = SubResource( 307 )
+states/wheeling/position = Vector2( 349.318, -223.503 )
+transitions = [ "idle", "walk", SubResource( 208 ), "walk", "idle", SubResource( 209 ), "walk", "skid", SubResource( 210 ), "skid", "end_crouch", SubResource( 211 ), "end_crouch", "walk", SubResource( 212 ), "walk", "jump", SubResource( 213 ), "jump", "freefall", SubResource( 214 ), "freefall", "idle", SubResource( 215 ), "idle", "jump", SubResource( 216 ), "jump", "idle", SubResource( 217 ), "idle", "bash", SubResource( 218 ), "bash", "end_bash", SubResource( 219 ), "idle", "throw", SubResource( 220 ), "throw", "idle", SubResource( 221 ), "idle", "refresh", SubResource( 222 ), "refresh", "idle", SubResource( 223 ), "end_crouch 2", "idle", SubResource( 224 ), "idle", "power_get", SubResource( 225 ), "power_get", "idle", SubResource( 226 ), "idle", "crouch", SubResource( 227 ), "crouch", "end_crouch 2", SubResource( 228 ), "end_bash", "idle", SubResource( 229 ), "idle", "die", SubResource( 230 ), "idle", "hurt", SubResource( 231 ), "hurt", "idle", SubResource( 232 ), "idle", "die_simple", SubResource( 233 ), "bash", "pre-bash", SubResource( 234 ), "pre-bash", "end_bash", SubResource( 235 ), "pre-bash", "bash", SubResource( 236 ), "end_dive", "end_dive_call", SubResource( 237 ), "end_dive_call", "idle", SubResource( 238 ), "end_dive_call", "jump", SubResource( 239 ), "idle", "dance", SubResource( 240 ), "idle", "climb", SubResource( 241 ), "climb", "idle", SubResource( 242 ), "climb", "climb_over", SubResource( 243 ), "climb_over", "climb", SubResource( 244 ), "climb_over", "idle", SubResource( 245 ), "jump", "crouch", SubResource( 246 ), "freefall", "crouch", SubResource( 247 ), "jump", "wallslide", SubResource( 248 ), "freefall", "wallslide", SubResource( 249 ), "idle", "wallslide", SubResource( 250 ), "wallslide", "wallslide_end", SubResource( 251 ), "wallslide_end", "idle", SubResource( 252 ), "idle", "smugdance", SubResource( 253 ), "smugdance", "idle", SubResource( 254 ), "idle", "sleep", SubResource( 255 ), "idle", "spin", SubResource( 256 ), "spin", "idle", SubResource( 257 ), "sleep", "fall_out", SubResource( 258 ), "fall_out", "on_floor", SubResource( 259 ), "on_floor", "jump 2", SubResource( 260 ), "jump 2", "freefall 2", SubResource( 261 ), "freefall 2", "adjust_hat", SubResource( 262 ), "adjust_hat", "idle", SubResource( 263 ), "jump 2", "refresh", SubResource( 264 ), "adjust_hat", "refresh", SubResource( 265 ), "idle", "hurt_basic", SubResource( 266 ), "hurt_basic", "idle", SubResource( 267 ), "idle", "talk", SubResource( 268 ), "talk", "idle", SubResource( 269 ), "idle", "dive", SubResource( 270 ), "dive", "end_dive", SubResource( 271 ), "end_dive 2", "dive_boost", SubResource( 272 ), "dive_boost", "jump", SubResource( 273 ), "dive_rest", "dive", SubResource( 274 ), "dive", "dive_rest", SubResource( 275 ), "dive_rest", "end_dive", SubResource( 276 ), "dive_rest", "end_dive 2", SubResource( 277 ), "hurt_basic", "sitting", SubResource( 293 ), "sitting", "idle", SubResource( 294 ), "idle", "glare", SubResource( 299 ), "glare", "idle", SubResource( 300 ), "glare", "struggle", SubResource( 304 ), "struggle", "glare", SubResource( 305 ), "struggle", "struggle_idle", SubResource( 311 ), "struggle_idle", "struggle", SubResource( 312 ), "struggle_idle", "wheeling", SubResource( 313 ), "wheeling", "struggle_idle", SubResource( 314 ) ]
 start_node = "idle"
-graph_offset = Vector2( -218.161, -73.1499 )
+graph_offset = Vector2( -132.034, -262.154 )
 
 [sub_resource type="AnimationNodeAdd2" id=281]
 
@@ -6054,7 +6428,7 @@ collision_mask = 2
 
 [node name="PlayerCore" type="Sprite" parent="ScaleChildren"]
 material = ExtResource( 49 )
-texture = ExtResource( 1 )
+texture = ExtResource( 66 )
 hframes = 2
 script = ExtResource( 4 )
 
@@ -6180,6 +6554,7 @@ disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 pause_mode = 2
+anims/RESET = SubResource( 295 )
 anims/aaaaa = SubResource( 11 )
 anims/bash = SubResource( 12 )
 anims/climb = SubResource( 13 )
@@ -6208,6 +6583,7 @@ anims/freefall = SubResource( 34 )
 "anims/freefall (hard)" = SubResource( 36 )
 "anims/freefall (runner)" = SubResource( 37 )
 "anims/freefall (thor)" = SubResource( 38 )
+anims/glare = SubResource( 296 )
 anims/hurt = SubResource( 39 )
 "anims/hurt (brewing)" = SubResource( 40 )
 "anims/hurt (hard)" = SubResource( 41 )
@@ -6253,6 +6629,8 @@ anims/sleep_jump = SubResource( 78 )
 anims/sleep_on_floor = SubResource( 79 )
 anims/smugdance = SubResource( 80 )
 anims/spin = SubResource( 81 )
+anims/struggle = SubResource( 301 )
+anims/struggle_idle = SubResource( 308 )
 anims/talk = SubResource( 82 )
 "anims/talk (hard)" = SubResource( 83 )
 anims/throw = SubResource( 84 )
@@ -6264,6 +6642,7 @@ anims/walk = SubResource( 85 )
 anims/walljumpInvincibility = SubResource( 90 )
 "anims/wallslide (runner)" = SubResource( 91 )
 anims/wallslide_end = SubResource( 92 )
+anims/wheeling = SubResource( 306 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 pause_mode = 2
@@ -6297,6 +6676,7 @@ parameters/PlayerMovement/dive/blend_position = 0
 parameters/PlayerMovement/dive_boost/blend_position = 0
 parameters/PlayerMovement/dive_rest/blend_position = 0.0183066
 parameters/PlayerMovement/freefall/blend_position = 0
+parameters/PlayerMovement/glare/blend_position = 0.00475059
 parameters/PlayerMovement/hurt/blend_position = 0.0
 parameters/PlayerMovement/hurt_basic/blend_position = 0
 parameters/PlayerMovement/idle/blend_position = 0.0
@@ -6304,6 +6684,8 @@ parameters/PlayerMovement/jump/blend_position = 0
 parameters/PlayerMovement/sitting/blend_position = -0.00475059
 parameters/PlayerMovement/skid/blend_position = 0
 parameters/PlayerMovement/spin/playback = SubResource( 285 )
+parameters/PlayerMovement/struggle/blend_position = 0
+parameters/PlayerMovement/struggle_idle/blend_position = 0
 parameters/PlayerMovement/talk/blend_position = 0
 parameters/PlayerMovement/walk/blend_position = 0.0
 parameters/PlayerMovement/walk/4/blend_position = 0

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/vault.png-d11cf77db3832e404b02e2b56c9219e8.stex"
+path="res://.import/timepieceball.png-545974b90993daa1a9e69b3ece89805a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level-select/vault.png"
-dest_files=[ "res://.import/vault.png-d11cf77db3832e404b02e2b56c9219e8.stex" ]
+source_file="res://cutscenes/TimePieceBall/timepieceball.png"
+dest_files=[ "res://.import/timepieceball.png-545974b90993daa1a9e69b3ece89805a.stex" ]
 
 [params]
 

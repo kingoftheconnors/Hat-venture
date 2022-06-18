@@ -209,7 +209,10 @@ can_release_powers = false
 [node name="AnimationTree" parent="Player" index="8"]
 parameters/PlayerEffect/playback = SubResource( 1 )
 parameters/PlayerMovement/playback = SubResource( 2 )
+parameters/PlayerMovement/glare/blend_position = 0
 parameters/PlayerMovement/spin/playback = SubResource( 3 )
+parameters/PlayerMovement/struggle/blend_position = 0
+parameters/PlayerMovement/struggle_idle/blend_position = 0
 
 [node name="Camera" parent="." instance=ExtResource( 5 )]
 visible = false

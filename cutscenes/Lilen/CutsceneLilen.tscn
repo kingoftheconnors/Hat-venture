@@ -110,7 +110,7 @@ pause_mode = 2
 curve = SubResource( 1 )
 script = ExtResource( 3 )
 
-[node name="Lilen" type="KinematicBody2D" parent="."]
+[node name="Lilen" type="KinematicBody2D" parent="." groups=["timepiece_holder"]]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 4 )
@@ -128,7 +128,7 @@ hframes = 2
 [node name="Timepiece" type="Sprite" parent="Lilen/EnemyCore"]
 visible = false
 material = ExtResource( 2 )
-position = Vector2( 1, -13 )
+position = Vector2( 1, -12 )
 texture = ExtResource( 5 )
 hframes = 8
 frame = 2

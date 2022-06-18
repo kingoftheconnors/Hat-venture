@@ -5,7 +5,6 @@ func walk_to(node_path : String, direc_during = null, direct_after = null, speed
 	direc_override = direc_during
 	direc_at_goal_override = direct_after
 	speed = speed_mult
-	play_animation("walk")
 
 func look_at_node(node_path : String):
 	var target_x = get_node(node_path).position.x
@@ -27,6 +26,9 @@ func play_animation(animation_name):
 	$AnimationTree['parameters/playback'].travel(animation_name)
 func animate(animation_name):
 	play_animation(animation_name)
+
+func jump():
+	velo.y = -JUMP_STRENGTH
 
 func _physics_process(_delta):
 	if goal_y != null:
@@ -76,7 +78,7 @@ func make_invisible():
 	visible = false
 
 var velo : Vector2
-const GRAVITY = 10
+const GRAVITY = 5
 const FALL_UP_GRAVITY = 4
 var speed = 1
 var speed_y = 1
@@ -88,5 +90,6 @@ var leave_after_reaching_goal : bool = false
 const WALK_EPSILON : float = 1.0
 const WALK_SPEED = 110
 const KNOCKBACK_MULTIPLIER = 140
+var JUMP_STRENGTH := 160
 
 onready var sprite = $Sprite

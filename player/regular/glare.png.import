@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/vault.png-d11cf77db3832e404b02e2b56c9219e8.stex"
+path="res://.import/glare.png-33d82b04a1d6d8186f7b5007e8f51335.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level-select/vault.png"
-dest_files=[ "res://.import/vault.png-d11cf77db3832e404b02e2b56c9219e8.stex" ]
+source_file="res://player/regular/glare.png"
+dest_files=[ "res://.import/glare.png-33d82b04a1d6d8186f7b5007e8f51335.stex" ]
 
 [params]
 
