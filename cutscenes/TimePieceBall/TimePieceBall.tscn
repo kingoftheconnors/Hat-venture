@@ -200,3 +200,5 @@ tree_root = SubResource( 10 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 11 )
+
+[node name="Tween" type="Tween" parent="."]

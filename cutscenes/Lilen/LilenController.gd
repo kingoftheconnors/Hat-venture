@@ -2,6 +2,7 @@ extends Node2D
 
 export(Vector2) var goal = Vector2.ZERO
 export(int) var num_lilens = 10
+export(float) var intial_speed = 1.5
 
 var num_to_generate = 0
 var generated_lilens : Array = []
@@ -30,6 +31,7 @@ func _on_Timer_timeout():
 						 goal + Vector2(goal_delta*(num_lilens-num_to_generate), 0), \
 						 jump_wait_time_min, \
 						 jump_wait_time_max)
+	generated_lilen.set_speed(intial_speed)
 	generated_lilens.push_front(generated_lilen)
 	if has_timepieces:
 		generated_lilen.get_timepieces()
@@ -42,6 +44,11 @@ func recall():
 	for lilen in generated_lilens:
 		lilen.walk_to(self.position)
 		lilen.stop_jumping()
+
+func set_speed(speed : float):
+	intial_speed = speed
+	for lilen in generated_lilens:
+		lilen.set_speed(speed)
 
 func walk_towards(x : int):
 	for lilen in generated_lilens:

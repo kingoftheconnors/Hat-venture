@@ -2,7 +2,8 @@ extends KinematicBody2D
 class_name path_follower
 
 const ENEMY_GRAVITY = 9
-export(int) var horizontal_speed = 160
+export(int) var horizontal_speed = 125
+var speed : float = 1
 var velo := Vector2.ZERO
 ## Initial direction. Can be left, stationary, or right
 export(int, -1, 1) var direction : int = 1
@@ -45,9 +46,9 @@ func _physics_process(delta):
 	var target = patrol_points[patrol_index]
 	if patrol_index < patrol_points.size() - 1:
 		if target.x > self.position.x:
-			velo.x = horizontal_speed
+			velo.x = horizontal_speed * speed
 		else:
-			velo.x = -horizontal_speed
+			velo.x = -horizontal_speed * speed
 		# Once we're close enough, change to next patrol point
 		if abs(position.x - target.x) < 5:
 			# Unless it's the last point, in which case, require being on floor as well
@@ -74,6 +75,9 @@ func _physics_process(delta):
 func refresh_floorchecker_pos():
 	if floorchecker_obj:
 		floorchecker_obj.position.x = turnaround_offset * direction
+
+func set_speed(_speed : float):
+	speed = _speed
 
 func jump():
 	velo.y = -JUMP_FORCE

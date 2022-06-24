@@ -21,6 +21,9 @@ func walk_to(pos : Vector2):
 	$Lilen.reset()
 	cur_goal = pos
 
+func set_speed(speed : float):
+	$Lilen.set_speed(speed)
+
 func walk_horizontally(amount : int):
 	var new_curve = Curve2D.new()
 	new_curve.add_point(cur_goal)

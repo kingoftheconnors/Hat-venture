@@ -114,7 +114,6 @@ script = ExtResource( 3 )
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 4 )
-horizontal_speed = 125
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lilen"]
 position = Vector2( 1, 0 )
@@ -124,6 +123,7 @@ shape = SubResource( 2 )
 material = ExtResource( 1 )
 texture = ExtResource( 6 )
 hframes = 2
+frame = 1
 
 [node name="Timepiece" type="Sprite" parent="Lilen/EnemyCore"]
 visible = false

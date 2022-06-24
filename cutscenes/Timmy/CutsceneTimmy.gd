@@ -13,11 +13,12 @@ func look_at_node(node_path : String):
 	else:
 		sprite.scale.x = 1
 
-func walk_to_then_leave(node_path : String, direc_during = null):
+func walk_to_then_leave(node_path : String, direc_during = null, speed_mult = 1):
 	goal_x = get_node(node_path).position.x
 	direc_override = direc_during
 	leave_after_reaching_goal = true
 	play_animation("walk")
+	speed = speed_mult
 
 func teleport_to(node_path : String):
 	position = get_node(node_path).position
@@ -77,6 +78,9 @@ func make_visible():
 func make_invisible():
 	visible = false
 
+func turn_off_collision():
+	set_collision_mask_bit(1, false)
+
 var velo : Vector2
 const GRAVITY = 5
 const FALL_UP_GRAVITY = 4
@@ -87,7 +91,7 @@ var goal_y = null
 var direc_override = null
 var direc_at_goal_override = null
 var leave_after_reaching_goal : bool = false
-const WALK_EPSILON : float = 1.0
+const WALK_EPSILON : float = 3.0
 const WALK_SPEED = 110
 const KNOCKBACK_MULTIPLIER = 140
 var JUMP_STRENGTH := 160

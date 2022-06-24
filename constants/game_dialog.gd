@@ -225,7 +225,8 @@ func get_dialog(text_num):
 				{signal = "actionJ"},
 				{animate2 = "arms_crossed", delay=1},
 				# Animate Timmy holding Time piece
-				{animate2 = "hold_collect", delay = 0.7},
+				{animate2 = "hold_collect", delay = 0.3},
+				{signal = "actionF", delay = 0.4},
 				{animate2 = "hold_fly"},
 				{name = "Timmy", text = "Woahhhh.... sparkly."},
 				# Hat Kid jumps up and faces right
@@ -285,10 +286,10 @@ func get_dialog(text_num):
 				{signal = "actionE", delay=2},
 				# Lil'ens enter and walk to vault
 				{music = sound_system.MUSIC.TIMMY_STRIKES},
-				{signal = "action9", delay=3},
+				{signal = "action9", delay=4},
 				# Time pieces distributed
 				{animate2 = "hold_fly_idle"},
-				{signal = "actionW", delay=1},
+				{signal = "actionW", delay=1.5},
 				# Timmy FLIES over in relaxed, floaty fashion. Lilens follow
 				{animate2 = "float_idle"},
 				{signal = "actionA", delay=2},
@@ -297,22 +298,20 @@ func get_dialog(text_num):
 				{name = "Timmy", text = "Keeping all these Time Pieces to yourself is mondo uncool."},
 				{name = "Timmy", text = "So as the ruler of this world, I'll take them off your hands! It's only fair for trespassing."},
 				{name = "Timmy", text = "Smell ya later stinky!"},
-
 				# Timmy Leave
-				# TODO: Speed up exit
 				{signal = "actionB"},
-
 				{animate2 = "float_laugh"},
 				{name = "Timmy", text = "Hahahahahahahahahaha!!"},
 				{fadeout_music = true},
-				{delay=2},
+				{delay=1},
 				# Hat Kid Jump up
 				{signal = "actionC", delay=1},
-
 				# Hat Kid walk towards door
 				# TODO: Speed up Hat Kid
-				{signal = "actionD", delay=4},
-
+				{signal = "actionD", delay=.5},
+				{signal = "actionS", delay=0.5}, # Dive
+				{signal = "actionC", delay=0.5}, # Jump
+				{signal = "actionS", delay=1.0}, # Dive
 				# Goto 1
 				{sound = sound_system.SFX.DOOR},
 				{level = "res://world1/level1.tscn"}

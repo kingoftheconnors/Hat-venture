@@ -1,4 +1,4 @@
-[gd_scene load_steps=127 format=2]
+[gd_scene load_steps=129 format=2]
 
 [ext_resource path="res://cutscenes/Timmy/CutsceneTimmy.gd" type="Script" id=1]
 [ext_resource path="res://enemy/timmy/timmy.png" type="Texture" id=2]
@@ -1204,6 +1204,10 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=137]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=138]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=139]
+
 [sub_resource type="AnimationNodeStateMachine" id=58]
 states/arms_crossed/node = SubResource( 101 )
 states/arms_crossed/position = Vector2( -95.5191, 51 )
@@ -1265,9 +1269,9 @@ states/talk/node = SubResource( 29 )
 states/talk/position = Vector2( 188, 201 )
 states/walk/node = SubResource( 30 )
 states/walk/position = Vector2( 347, 51 )
-transitions = [ "walk", "idle", SubResource( 31 ), "idle", "walk", SubResource( 32 ), "idle", "psychic", SubResource( 33 ), "psychic", "idle", SubResource( 34 ), "idle", "fly", SubResource( 35 ), "fly", "idle", SubResource( 36 ), "idle", "sass", SubResource( 37 ), "sass", "idle", SubResource( 38 ), "idle", "talk", SubResource( 39 ), "talk", "idle", SubResource( 40 ), "idle", "surprise", SubResource( 41 ), "surprise", "idle", SubResource( 42 ), "float", "drop", SubResource( 43 ), "drop", "idle", SubResource( 44 ), "idle", "float", SubResource( 45 ), "fly", "sass_fly", SubResource( 46 ), "sass_fly", "fly", SubResource( 47 ), "idle", "open_vault", SubResource( 48 ), "open_vault", "idle", SubResource( 49 ), "hold_fly", "hold_stare", SubResource( 57 ), "hold_stare", "hold_idle", SubResource( 64 ), "hold_idle", "hold_talk", SubResource( 67 ), "hold_talk", "hold_sass", SubResource( 68 ), "hold_sass", "hold_fly", SubResource( 69 ), "hold_struggle", "hold_fly", SubResource( 72 ), "hold_sass", "hold_struggle", SubResource( 73 ), "hold_psychic", "hold_psychic_talk", SubResource( 80 ), "hold_psychic_talk", "hold_psychic_throw", SubResource( 84 ), "hold_sass", "hold_idle", SubResource( 86 ), "hold_idle", "hold_sass", SubResource( 87 ), "hold_idle", "idle", SubResource( 88 ), "hold_struggle", "hold_push", SubResource( 91 ), "hold_push", "hold_psychic", SubResource( 92 ), "idle", "hold_collect", SubResource( 95 ), "hold_collect", "idle", SubResource( 96 ), "hold_collect", "hold_fly", SubResource( 97 ), "hold_fly", "hold_collect", SubResource( 98 ), "fly", "arms_crossed", SubResource( 102 ), "arms_crossed", "idle", SubResource( 103 ), "sass_fly", "arms_crossed", SubResource( 104 ), "arms_crossed", "hold_collect", SubResource( 106 ), "idle", "jump", SubResource( 109 ), "jump", "fly", SubResource( 110 ), "jump", "hold_collect", SubResource( 111 ), "hold_psychic_throw", "hold_idle", SubResource( 117 ), "hold_idle", "hold_psychic_fly", SubResource( 118 ), "hold_psychic_fly", "hold_fly_idle", SubResource( 119 ), "float", "float_talk", SubResource( 127 ), "float", "float_laugh", SubResource( 128 ), "float_talk", "float_laugh", SubResource( 129 ), "float", "float_idle", SubResource( 130 ), "float_idle", "float_talk", SubResource( 131 ), "hold_fly_idle", "idle", SubResource( 132 ), "hold_psychic_fly", "hold_psychic_fly_talk", SubResource( 135 ), "hold_psychic_fly_talk", "hold_fly_idle", SubResource( 136 ), "float_talk", "float_idle", SubResource( 137 ) ]
+transitions = [ "walk", "idle", SubResource( 31 ), "idle", "walk", SubResource( 32 ), "idle", "psychic", SubResource( 33 ), "psychic", "idle", SubResource( 34 ), "idle", "fly", SubResource( 35 ), "fly", "idle", SubResource( 36 ), "idle", "sass", SubResource( 37 ), "sass", "idle", SubResource( 38 ), "idle", "talk", SubResource( 39 ), "talk", "idle", SubResource( 40 ), "idle", "surprise", SubResource( 41 ), "surprise", "idle", SubResource( 42 ), "float", "drop", SubResource( 43 ), "drop", "idle", SubResource( 44 ), "idle", "float", SubResource( 45 ), "fly", "sass_fly", SubResource( 46 ), "sass_fly", "fly", SubResource( 47 ), "idle", "open_vault", SubResource( 48 ), "open_vault", "idle", SubResource( 49 ), "hold_fly", "hold_stare", SubResource( 57 ), "hold_stare", "hold_idle", SubResource( 64 ), "hold_idle", "hold_talk", SubResource( 67 ), "hold_talk", "hold_sass", SubResource( 68 ), "hold_sass", "hold_fly", SubResource( 69 ), "hold_struggle", "hold_fly", SubResource( 72 ), "hold_sass", "hold_struggle", SubResource( 73 ), "hold_psychic", "hold_psychic_talk", SubResource( 80 ), "hold_psychic_talk", "hold_psychic_throw", SubResource( 84 ), "hold_sass", "hold_idle", SubResource( 86 ), "hold_idle", "hold_sass", SubResource( 87 ), "hold_idle", "idle", SubResource( 88 ), "hold_struggle", "hold_push", SubResource( 91 ), "hold_push", "hold_psychic", SubResource( 92 ), "idle", "hold_collect", SubResource( 95 ), "hold_collect", "idle", SubResource( 96 ), "hold_collect", "hold_fly", SubResource( 97 ), "hold_fly", "hold_collect", SubResource( 98 ), "fly", "arms_crossed", SubResource( 102 ), "arms_crossed", "idle", SubResource( 103 ), "sass_fly", "arms_crossed", SubResource( 104 ), "arms_crossed", "hold_collect", SubResource( 106 ), "idle", "jump", SubResource( 109 ), "jump", "fly", SubResource( 110 ), "jump", "hold_collect", SubResource( 111 ), "hold_psychic_throw", "hold_idle", SubResource( 117 ), "hold_idle", "hold_psychic_fly", SubResource( 118 ), "hold_psychic_fly", "hold_fly_idle", SubResource( 119 ), "float", "float_talk", SubResource( 127 ), "float", "float_laugh", SubResource( 128 ), "float_talk", "float_laugh", SubResource( 129 ), "float", "float_idle", SubResource( 130 ), "float_idle", "float_talk", SubResource( 131 ), "hold_fly_idle", "idle", SubResource( 132 ), "hold_psychic_fly", "hold_psychic_fly_talk", SubResource( 135 ), "hold_psychic_fly_talk", "hold_fly_idle", SubResource( 136 ), "float_talk", "float_idle", SubResource( 137 ), "hold_talk", "hold_idle", SubResource( 138 ), "hold_psychic_fly_talk", "hold_psychic_fly", SubResource( 139 ) ]
 start_node = "idle"
-graph_offset = Vector2( -562.18, -219.409 )
+graph_offset = Vector2( -329.118, -124.489 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=59]
 
@@ -1302,7 +1306,7 @@ hframes = 8
 frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 5 )
+position = Vector2( 0, 6 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
