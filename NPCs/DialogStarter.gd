@@ -57,6 +57,8 @@ func set_dialog_option(dialog_id : int):
 
 func enable():
 	enabled = true
+func disable():
+	enabled = false
 
 func _ready():
 	if enabled_if_tag_false != "":

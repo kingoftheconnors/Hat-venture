@@ -16,6 +16,10 @@ func hit():
 		$Satellite.frame = 1
 		$CPUParticles2D.emitting = false
 		SaveSystem.access_data().set_tag("satellite_aligned", true)
+		SoundSystem.call_deferred("start_sound", sound_system.SFX.YOU_DID_GOOD)
 		corrected = true
+		emit_signal("corrected")
 	# Return false for un-smashed blocks
 	return false
+
+signal corrected
