@@ -50,6 +50,10 @@ func updatePowerValues():
 	animator["parameters/PlayerMovement/dive_boost/blend_position"] = int(power.blendValue)
 	animator["parameters/PlayerMovement/dive_rest/blend_position"] = int(power.blendValue)
 	animator["parameters/PlayerMovement/sitting/blend_position"] = int(power.blendValue)
+	animator["parameters/PlayerMovement/glare/blend_position"] = int(power.blendValue)
+	animator["parameters/PlayerMovement/struggle/blend_position"] = int(power.blendValue)
+	animator["parameters/PlayerMovement/struggle_idle/blend_position"] = int(power.blendValue)
+	animator["parameters/PlayerMovement/wheeling/blend_position"] = int(power.blendValue)
 
 var power_pressed = false
 func _process(_delta):
