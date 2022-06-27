@@ -64,6 +64,9 @@ func _physics_process(_delta):
 				make_invisible()
 	velo = move_and_slide(velo, Vector2.UP)
 
+func play_struggle_sfx():
+	SoundSystem.start_sound(sound_system.SFX.SKID_RAW)
+
 func bounce_towards(direc : int = 1):
 	velo = (Vector2(direc, -0.8) * KNOCKBACK_MULTIPLIER)
 func fly_to(node_path = null, speed_mult = 1):

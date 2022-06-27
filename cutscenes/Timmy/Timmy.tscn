@@ -824,6 +824,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [ Vector2( 0, 0 ), Vector2( 1, 0 ) ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_struggle_sfx"
+} ]
+}
 
 [sub_resource type="Animation" id=61]
 resource_name = "hold_talk"
@@ -1290,7 +1304,6 @@ hframes = 44
 frame = 18
 
 [node name="TimePiece" type="Sprite" parent="Sprite"]
-visible = false
 material = ExtResource( 5 )
 position = Vector2( -5, 5 )
 texture = ExtResource( 3 )

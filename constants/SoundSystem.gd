@@ -27,6 +27,8 @@ enum SFX {
 	SMACK_WALL,
 	BOSS_LIFE_GET,
 	ROBOHEN_SCREAM,
+	SKID_RAW,
+	YOU_DID_GOOD,
 }
 
 enum MUSIC {
@@ -167,6 +169,8 @@ func start_sound(sfx : int, sound_var = 0):
 					sfx_player.stream = preload("res://Music/sfx/Coin_Pickup_8.wav")
 			SFX.COLLECT_BASIC:
 				sfx_player.stream = preload("res://Music/sfx/Coin_Pickup_1.wav")
+			SFX.YOU_DID_GOOD:
+				sfx_player.stream = preload("res://Music/sfx/pickupCoin3.wav")
 			SFX.JUMP:
 				sfx_player.stream = preload("res://Music/sfx/jump.wav")
 			SFX.LIFE_GET:
@@ -210,6 +214,8 @@ func start_sound(sfx : int, sound_var = 0):
 				effect.pitch_scale = sound_var/2 + 0.6
 				AudioServer.add_bus_effect(2, effect)
 				sfx_player.volume_db = -10
+			SFX.SKID_RAW:
+				sfx_player.stream = preload("res://Music/sfx/Skid_2.wav")
 			SFX.SKID2:
 				sfx_player.stream = preload("res://Music/sfx/Skid.wav")
 			SFX.DOOR:

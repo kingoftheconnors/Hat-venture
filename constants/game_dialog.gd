@@ -226,6 +226,7 @@ func get_dialog(text_num):
 				{animate2 = "arms_crossed", delay=1},
 				# Animate Timmy holding Time piece
 				{animate2 = "hold_collect", delay = 0.3},
+				{sound = sound_system.SFX.SKID2},
 				{signal = "actionF", delay = 0.4},
 				{animate2 = "hold_fly"},
 				{name = "Timmy", text = "Woahhhh.... sparkly."},
@@ -266,6 +267,7 @@ func get_dialog(text_num):
 				{animate2 = "hold_psychic_talk"},
 				{name = "Timmy", text = "Hey! Didn't your mom ever teach you that 'sharing is caring?'"},
 				{name = "Timmy", text = "If you're gonna be greedy, then I'll just steal all of them!"},
+				{music = sound_system.MUSIC.TIMMY_STRIKES},
 				{animate2 = "hold_psychic_throw", delay=0.2},
 				# Camera release and throw
 				# Animate hat kid hurt animation
@@ -285,7 +287,6 @@ func get_dialog(text_num):
 				# Screen shake
 				{signal = "actionE", delay=2},
 				# Lil'ens enter and walk to vault
-				{music = sound_system.MUSIC.TIMMY_STRIKES},
 				{signal = "action9", delay=4},
 				# Time pieces distributed
 				{animate2 = "hold_fly_idle"},
