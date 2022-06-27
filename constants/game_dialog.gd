@@ -124,7 +124,8 @@ func get_dialog(text_num):
 				{name = "SHIP", text = "All systems operational. Hello master!"},
 				{fadeout_music_fast = true, if_tag_false = "screen_seen_2"},
 				{sound = sound_system.SFX.KNOCK, if_tag_false = "screen_seen_2"},
-				{signal = "action8", delay=1, unskippable = true},
+				{signal = "action8", unskippable = true},
+				{delay=1, if_tag_false = "screen_seen_2", unskippable = true},
 				# Move camera
 				{signal = "action2", delay=1, if_tag_false = "screen_seen_2", unskippable = true},
 				{sound = sound_system.SFX.KNOCK, if_tag_false = "screen_seen_2"},
