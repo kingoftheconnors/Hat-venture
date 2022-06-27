@@ -16,8 +16,8 @@ func show_palette_get(palette_name, enter_from : int):
 		$AnimationTree['parameters/playback'].travel("enter_bottom")
 func show_storybook_get(num_pages : int, enter_from : int):
 	$Dialog.text = "New Storybook Page Found"
-	$PaletteName.text = str(num_pages) + "/1"
-	$Dialog2.text = "Storybook coming in the full version!"
+	$PaletteName.text = str(num_pages) + "/2"
+	$Dialog2.text = ""
 	if enter_from == PALETTE_ENTER_DIRECTION.TOP:
 		$AnimationTree['parameters/playback'].travel("enter")
 	else:

@@ -2145,7 +2145,7 @@ direction = Vector2( -1, 0 )
 [connection signal="close_skipping" from="Menu/PlayTextBox4" to="Player" method="teleport_to" binds= [ "../SkipTarget" ]]
 [connection signal="open" from="Menu/PlayTextBox4" to="Menu/PlayTextBox4/Timer" method="start_timer"]
 [connection signal="timeout" from="Menu/PlayTextBox4/Timer" to="Menu/PlayTextBox4" method="close"]
-[connection signal="close" from="Menu/Start" to="Menu/PlayTextBox1" method="open"]
+[connection signal="close" from="Menu/Start" to="Menu/Play" method="open"]
 [connection signal="open" from="Menu/Start" to="Menu/Start/Mrgn/MarginContainer/VBox/HBoxContainer/Yes/Close" method="update_string"]
 [connection signal="pressed" from="Menu/Start/Mrgn/MarginContainer/VBox/HBoxContainer/Yes/Close" to="Menu/Start" method="close"]
 [connection signal="close" from="Menu/PlayTextBox1" to="Menu/PlayTextBox2" method="open"]
