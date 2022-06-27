@@ -1,14 +1,9 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://items/Resources/timePiece.png" type="Texture" id=1]
+[ext_resource path="res://gui/PlayerPalette.tres" type="Material" id=1]
 [ext_resource path="res://cutscenes/TimePieceBall/timepieceball.png" type="Texture" id=2]
 [ext_resource path="res://cutscenes/TimePieceBall/TimePieceBall.gd" type="Script" id=3]
-
-[sub_resource type="CanvasItemMaterial" id=1]
-particles_animation = true
-particles_anim_h_frames = 8
-particles_anim_v_frames = 1
-particles_anim_loop = false
+[ext_resource path="res://items/Resources/timePieceOneFrame.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -120,6 +115,56 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3 ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_grow_sfx"
+}, {
+"args": [  ],
+"method": "play_grow_sfx"
+}, {
+"args": [  ],
+"method": "play_grow_sfx"
+}, {
+"args": [  ],
+"method": "play_grow_sfx"
+}, {
+"args": [  ],
+"method": "play_grow_sfx"
+}, {
+"args": [  ],
+"method": "play_grow_sfx"
+}, {
+"args": [  ],
+"method": "play_grow_sfx"
+}, {
+"args": [  ],
+"method": "play_grow_sfx"
+}, {
+"args": [  ],
+"method": "play_grow_sfx"
+}, {
+"args": [  ],
+"method": "play_grow_sfx"
+}, {
+"args": [  ],
+"method": "play_grow_sfx"
+}, {
+"args": [  ],
+"method": "play_grow_sfx"
+}, {
+"args": [  ],
+"method": "play_grow_sfx"
+} ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "idle"
@@ -167,19 +212,19 @@ start_node = "idle"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=11]
 
 [node name="TimePieceBall" type="CPUParticles2D"]
-material = SubResource( 1 )
+material = ExtResource( 1 )
 emitting = false
 local_coords = false
-texture = ExtResource( 1 )
+texture = ExtResource( 4 )
 emission_shape = 1
 emission_sphere_radius = 10.0
 gravity = Vector2( 0, 0 )
 radial_accel = -100.0
-anim_speed = 1.0
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
+use_parent_material = true
 position = Vector2( 0, 16 )
 texture = ExtResource( 2 )
 hframes = 4

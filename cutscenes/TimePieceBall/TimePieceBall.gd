@@ -26,3 +26,6 @@ func split():
 func move_to(node_path):
 	tween.interpolate_property(self, "position", self.position, get_node(node_path).position, 2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	tween.start()
+
+func play_grow_sfx():
+	SoundSystem.start_sound(sound_system.SFX.SKID2)

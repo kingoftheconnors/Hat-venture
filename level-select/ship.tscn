@@ -397,6 +397,7 @@ position = Vector2( 0, -4 )
 [node name="Arrow" type="Sprite" parent="Display"]
 pause_mode = 2
 visible = false
+material = ExtResource( 33 )
 position = Vector2( 36, 8 )
 scale = Vector2( -1, 1 )
 z_index = 1
@@ -465,6 +466,7 @@ scale = Vector2( -1, 1 )
 [node name="Arrow" type="Sprite" parent="DoorDialog"]
 pause_mode = 2
 visible = false
+material = ExtResource( 33 )
 position = Vector2( -24, 8 )
 texture = ExtResource( 26 )
 script = SubResource( 5 )
@@ -593,6 +595,7 @@ position = Vector2( 0, -32 )
 [node name="LilenController" parent="." instance=ExtResource( 22 )]
 position = Vector2( 304, -24 )
 goal = Vector2( 48, -48 )
+intial_speed = 1.0
 
 [node name="Spawn2" type="Node2D" parent="." groups=["spawn"]]
 position = Vector2( -30, -40 )
@@ -619,8 +622,8 @@ level_music = 11
 [connection signal="body_exited" from="HatKidRoom/DialogBox" to="HatKidRoom/Door" method="play_if_player" binds= [ "close" ]]
 [connection signal="action1" from="DoorDialog" to="Timmy" method="make_visible"]
 [connection signal="action1" from="DoorDialog" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target5", -1.0, -1.0, 0.175 ]]
-[connection signal="action1" from="DoorDialog" to="Timmy" method="play_animation" binds= [ "float" ]]
 [connection signal="action1" from="DoorDialog" to="Timmy" method="fly_to" flags=3 binds= [ "../WalkTo_Target5", 0.5 ]]
+[connection signal="action1" from="DoorDialog" to="Timmy" method="play_animation" binds= [ "float" ]]
 [connection signal="action2" from="DoorDialog" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target1" ]]
 [connection signal="action3" from="DoorDialog" to="Timmy" method="look_at_node" binds= [ "../WalkTo_Target3" ]]
 [connection signal="action3" from="DoorDialog" to="CameraCapture2" method="capture"]
@@ -638,11 +641,11 @@ level_music = 11
 [connection signal="action9" from="DoorDialog" to="LilenController" method="generate" binds= [ 16 ]]
 [connection signal="actionA" from="DoorDialog" to="Vault/Vault/AnimationPlayer" method="empty"]
 [connection signal="actionA" from="DoorDialog" to="Timmy" method="walk_to" binds= [ "../WalkTo_Target6", -1, -1 ]]
-[connection signal="actionA" from="DoorDialog" to="Timmy" method="fly_to" binds= [ "../WalkTo_Target6", 0.5 ]]
 [connection signal="actionA" from="DoorDialog" to="Timmy" method="turn_off_collision"]
+[connection signal="actionA" from="DoorDialog" to="Timmy" method="fly_to" binds= [ "../WalkTo_Target6", 0.5 ]]
 [connection signal="actionA" from="DoorDialog" to="LilenController" method="walk_towards" binds= [ -48 ]]
 [connection signal="actionB" from="DoorDialog" to="Timmy" method="walk_to_then_leave" binds= [ "../DoorDialog", -1, 2.0 ]]
-[connection signal="actionB" from="DoorDialog" to="LilenController" method="set_speed" binds= [ 3.0 ]]
+[connection signal="actionB" from="DoorDialog" to="LilenController" method="set_speed" binds= [ 1.67 ]]
 [connection signal="actionB" from="DoorDialog" to="LilenController" method="recall"]
 [connection signal="actionB" from="DoorDialog" to="LilenController" method="hide_after_reaching_pos"]
 [connection signal="actionC" from="DoorDialog" to="Player" method="jump"]
@@ -654,16 +657,16 @@ level_music = 11
 [connection signal="actionJ" from="DoorDialog" to="Timmy" method="fly_to" binds= [ "../WalkTo_Target2" ]]
 [connection signal="actionK" from="DoorDialog" to="Timmy" method="fly_to"]
 [connection signal="actionL" from="DoorDialog" to="Timmy" method="look_at_node" binds= [ "../Player" ]]
-[connection signal="actionM" from="DoorDialog" to="Timmy" method="play_animation" binds= [ "drop" ]]
 [connection signal="actionM" from="DoorDialog" to="Timmy" method="fly_to"]
+[connection signal="actionM" from="DoorDialog" to="Timmy" method="play_animation" binds= [ "drop" ]]
 [connection signal="actionN" from="DoorDialog" to="Display/Timer" method="stop"]
 [connection signal="actionN" from="DoorDialog" to="DoorDialog/Arrow" method="hide"]
-[connection signal="actionN" from="DoorDialog" to="Player" method="watch_node" binds= [ "../Timmy" ]]
 [connection signal="actionN" from="DoorDialog" to="Player" method="walk_to" binds= [ "../WalkTo_Target4" ]]
+[connection signal="actionN" from="DoorDialog" to="Player" method="watch_node" binds= [ "../Timmy" ]]
 [connection signal="actionO" from="DoorDialog" to="Vault" method="shake" binds= [ 2, 1.0 ]]
 [connection signal="actionP" from="DoorDialog" to="Vault/Vault/AnimationPlayer" method="open"]
-[connection signal="actionP" from="DoorDialog" to="Player" method="mock_damage"]
 [connection signal="actionP" from="DoorDialog" to="Player" method="bounce_towards" binds= [ -4 ]]
+[connection signal="actionP" from="DoorDialog" to="Player" method="mock_damage"]
 [connection signal="actionQ" from="DoorDialog" to="Player" method="jump" binds= [ true ]]
 [connection signal="actionR" from="DoorDialog" to="Timmy" method="look_at_node" binds= [ "../LilenController" ]]
 [connection signal="actionS" from="DoorDialog" to="Player" method="dive"]
