@@ -12,8 +12,13 @@ func _ready():
 func _on_Collectable_body_entered(body):
 	if body.is_in_group("player"):
 		SoundSystem.start_sound(SoundSystem.SFX.LIFE_GET)
-		Gui.unlock_storybook_page(get_num_pages(), enter_from)
+		var cur_pages = SaveSystem.access_data().get_tag("num_pages")
+		if cur_pages == null:
+			cur_pages = 0
+		
+		SaveSystem.access_data().set_tag("num_pages", cur_pages+1)
+		Gui.unlock_storybook_page(cur_pages+1, enter_from)
 		SaveSystem.access_data().set_tag(storybook_page, true)
 		queue_free()
 func get_num_pages() -> int:
-	return 1
+	return SaveSystem.access_data().get_tag("num_pages")
