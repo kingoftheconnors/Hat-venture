@@ -758,7 +758,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DialogBox" type="NinePatchRect" parent="."]
+[node name="DialogBox" type="TextureRect" parent="."]
 visible = false
 anchor_top = 1.0
 anchor_right = 1.0
@@ -766,28 +766,17 @@ anchor_bottom = 1.0
 margin_top = -48.0
 theme = ExtResource( 15 )
 texture = ExtResource( 18 )
-patch_margin_left = 232
-patch_margin_top = 25
-patch_margin_right = 8
-patch_margin_bottom = 8
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Name" type="Label" parent="DialogBox"]
-anchor_bottom = 0.333
-margin_left = 12.0
-margin_right = 96.0
-margin_bottom = 0.0159998
+margin_left = 16.0
+margin_right = 120.0
+margin_bottom = 16.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 14 )
-text = "Timmy"
+text = "Warning!"
 align = 1
 valign = 1
 uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Dialog" type="RichTextLabel" parent="DialogBox"]
 anchor_left = 0.05
@@ -806,9 +795,6 @@ bbcode_text = "Are  you looking for your umbrella? I saw it land near the market
 visible_characters = 282
 text = "Are  you looking for your umbrella? I saw it land near the market area when you, you know..."
 scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="DialogOptions" type="HBoxContainer" parent="DialogBox"]
 visible = false
@@ -816,16 +802,14 @@ anchor_top = 0.833
 anchor_right = 1.0
 anchor_bottom = 0.833
 margin_top = -7.984
+margin_right = -2.0
 margin_bottom = 0.0159988
 alignment = 1
 script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Option1" type="Button" parent="DialogBox/DialogOptions"]
-margin_left = 103.0
-margin_right = 151.0
+margin_left = 102.0
+margin_right = 150.0
 margin_bottom = 8.0
 focus_neighbour_right = NodePath("../Option2")
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -857,14 +841,14 @@ __meta__ = {
 
 [node name="Panel" type="Panel" parent="DialogBox/DialogOptions"]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = 155.0
-margin_right = 255.0
+margin_left = 154.0
+margin_right = 254.0
 margin_bottom = 8.0
 rect_min_size = Vector2( 100, 0 )
 
 [node name="Option2" type="Button" parent="DialogBox/DialogOptions"]
-margin_left = 259.0
-margin_right = 323.0
+margin_left = 258.0
+margin_right = 322.0
 margin_bottom = 8.0
 focus_neighbour_left = NodePath("../Option1")
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -902,8 +886,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -23.0
 margin_top = -23.0
-margin_right = -7.0
-margin_bottom = -6.99999
+margin_right = -3.0
+margin_bottom = -2.99999
 text = "Z"
 script = ExtResource( 16 )
 
@@ -917,7 +901,6 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -24.0
-margin_right = -2.0
 texture = ExtResource( 2 )
 stretch_mode = 2
 
@@ -932,7 +915,7 @@ __meta__ = {
 
 [node name="GuiInfo" type="HBoxContainer" parent="Player/MContainer"]
 margin_top = 2.0
-margin_right = 424.0
+margin_right = 426.0
 margin_bottom = 26.0
 grow_horizontal = 0
 custom_constants/separation = 40
@@ -942,8 +925,8 @@ __meta__ = {
 }
 
 [node name="Main" type="VBoxContainer" parent="Player/MContainer/GuiInfo"]
-margin_left = 110.0
-margin_right = 242.0
+margin_left = 111.0
+margin_right = 243.0
 margin_bottom = 24.0
 
 [node name="HatKid" type="HBoxContainer" parent="Player/MContainer/GuiInfo/Main"]
@@ -1053,8 +1036,8 @@ __meta__ = {
 anims/FillEnergy = SubResource( 3 )
 
 [node name="Pons" type="VBoxContainer" parent="Player/MContainer/GuiInfo"]
-margin_left = 282.0
-margin_right = 314.0
+margin_left = 283.0
+margin_right = 315.0
 margin_bottom = 24.0
 
 [node name="StageName" type="Label" parent="Player/MContainer/GuiInfo/Pons"]
