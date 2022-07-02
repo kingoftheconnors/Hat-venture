@@ -5,7 +5,7 @@ var terminalVelocity = 400
 
 ## When set to true, gives players GOD POWERS (keybinds visible
 ## from options menu [press escape in game to see])
-var DEBUG_MODE : bool = false
+var DEBUG_MODE : bool = true
 
 var PHOTOSENSITIVE_MODE : bool = false
 

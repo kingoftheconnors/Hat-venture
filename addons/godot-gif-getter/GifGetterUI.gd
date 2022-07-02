@@ -20,12 +20,12 @@ var _images: Array = []
 var saving_gif := false
 var pics : Array = []
 # Constants
-const FRAME_LENGTH = .08
+const FRAME_LENGTH = .09
 const GIF_WIDTH = 426
 const GIF_HEIGHT = 208
 
 # Total number of frames in the gif
-var _max_frames: int = 60
+var _max_frames: int = 150
 var _gif_frame_delay : int = 8
 
 # Rendering quality for gifs from 1 - 30. 1 is highest quality but slow
@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	time_passed += delta
 	if Constants.DEBUG_MODE and time_passed > FRAME_LENGTH:
 		pics.append(get_viewport().get_texture().get_data())
-		if pics.size() > 5/FRAME_LENGTH:
+		if pics.size() > _max_frames:
 			pics.pop_front()
 		time_passed -= FRAME_LENGTH
 	if _should_capture:
@@ -52,15 +52,15 @@ func _physics_process(delta: float) -> void:
 			_capture_thread.start(self, "_capture_frames")
 
 func _unhandled_input(event):
-		if event is InputEventKey and event.pressed and event.scancode == KEY_F12:
-			if pics.size() > 10:
-				for img in pics:
-					img.flip_x()
-					img.crop(img.get_width() - (img.get_width()-GIF_WIDTH)/2, img.get_height() - (img.get_height()-GIF_HEIGHT)/2)
-					img.flip_x(); img.flip_y()
-					img.crop(GIF_WIDTH, GIF_HEIGHT)
-					img.convert(Image.FORMAT_RGBA8)
-				capture(pics, GIF_WIDTH, GIF_HEIGHT)
+	if event is InputEventKey and event.pressed and event.scancode == KEY_F12:
+		if pics.size() > 10:
+			for img in pics:
+				img.flip_x()
+				img.crop(img.get_width() - (img.get_width()-GIF_WIDTH)/2, img.get_height() - (img.get_height()-GIF_HEIGHT)/2)
+				img.flip_x(); img.flip_y()
+				img.crop(GIF_WIDTH, GIF_HEIGHT)
+				img.convert(Image.FORMAT_RGBA8)
+			capture(pics, GIF_WIDTH, GIF_HEIGHT)
 
 func _exit_tree() -> void:
 	if _capture_thread.is_active():
